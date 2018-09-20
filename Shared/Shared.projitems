@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>df99c0f2-2ab7-4e48-bd58-cf8f3771479d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\AppString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\BaseCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\BaseResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\CommandDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\Error.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\ICommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Command\ICommandDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\ILocalDb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\LocalDb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\GetList\GetListCommand\GetListCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\GetList\GetListCommand\GetListRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\GetList\GetListCommand\GetListResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\LoadMessages\LoadMessagesCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\LoadMessages\LoadMessagesResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\LoadMessages\LoadMessagesRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssAppString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\New\NewCommand\NewRssCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\New\NewCommand\NewRssResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\New\NewRssField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\New\NewCommand\NewRssRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssResponse.cs" />
+  </ItemGroup>
+</Project>
