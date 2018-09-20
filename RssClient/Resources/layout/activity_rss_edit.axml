@@ -39,6 +39,7 @@
                         android:inputType="text" />
                 </android.support.design.widget.TextInputLayout>
                 <Button
+					style="@style/Widget.AppCompat.Button.Colored"
                     android:id="@+id/rss_edit_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
