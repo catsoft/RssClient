@@ -4,6 +4,7 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Java.Lang;
 using RssClient.App.Base;
 using Shared.App.Base.Database;
@@ -15,21 +16,29 @@ namespace RssClient.App.Rss.Detail
     public class GetMessagesTask : AsyncTask<RssModel, IEnumerable<RssMessageModel>, IEnumerable<RssMessageModel>>
     {
         private readonly RecyclerView _recyclerView;
-        private readonly Activity _activity;
+        private readonly ShimmerActivity _shimmerActivity;
         private readonly SwipeRefreshLayout _refreshLayout;
 
-        public GetMessagesTask(RecyclerView recyclerView, Activity activity, SwipeRefreshLayout refreshLayout)
+        public GetMessagesTask(RecyclerView recyclerView, ShimmerActivity shimmerActivity, SwipeRefreshLayout refreshLayout)
         {
             _recyclerView = recyclerView;
-            _activity = activity;
+            _shimmerActivity = shimmerActivity;
             _refreshLayout = refreshLayout;
+        }
+
+        protected override void OnPreExecute()
+        {
+            base.OnPreExecute();
+
+            _shimmerActivity.ShimmerViewContainer.StartShimmerAnimation();
+            _shimmerActivity.ShimmerViewContainer.Visibility = ViewStates.Visible;
         }
 
         protected override IEnumerable<RssMessageModel> RunInBackground(params RssModel[] @params)
         {
             var item = @params.First();
             var request = new LoadMessagesRequest(item);
-            var @delegate = _activity.GetCommandDelegate<LoadMessagesResponse>(null);
+            var @delegate = _shimmerActivity.GetCommandDelegate<LoadMessagesResponse>(null);
             var command = new LoadMessagesCommand(LocalDb.Instance, @delegate);
             command.Execute(request);
 
@@ -48,18 +57,21 @@ namespace RssClient.App.Rss.Detail
 
         protected override void OnPostExecute(IEnumerable<RssMessageModel> messages)
         {
+            _shimmerActivity.ShimmerViewContainer.StopShimmerAnimation();
+            _shimmerActivity.ShimmerViewContainer.Visibility = ViewStates.Gone;
+
             _refreshLayout.Refreshing = false;
 
             if (messages?.Any() == true)
             {
-                _activity.ShowValidData();
+                _shimmerActivity.ShowValidData();
             }
             else
             {
-                _activity.ShowNotValidError("No data");
+                _shimmerActivity.ShowNotValidError("No data");
             }
 
-            var adapter = new RssMessageAdapter(messages ?? new List<RssMessageModel>(), _activity);
+            var adapter = new RssMessageAdapter(messages ?? new List<RssMessageModel>(), _shimmerActivity);
             _recyclerView.SetAdapter(adapter);
         }
     }

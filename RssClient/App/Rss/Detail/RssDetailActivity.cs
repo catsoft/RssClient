@@ -9,7 +9,7 @@ using Shared.App.Rss;
 namespace RssClient.App.Rss.Detail
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
-    public class RssDetailActivity : ToolbarActivity
+    public class RssDetailActivity : ShimmerActivity
     {
         public const string ItemIntentId = "ItemIntentId";
 
