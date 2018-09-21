@@ -1,5 +1,4 @@
 ﻿using System;
-using Android.Content;
 using Shared.App.Base.Command;
 using Shared.App.Base.Database;
 

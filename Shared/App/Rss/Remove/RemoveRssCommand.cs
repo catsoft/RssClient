@@ -1,5 +1,4 @@
-﻿using Android.Content;
-using Shared.App.Base.Command;
+﻿using Shared.App.Base.Command;
 using Shared.App.Base.Database;
 
 namespace Shared.App.Rss.Remove
@@ -14,7 +13,7 @@ namespace Shared.App.Rss.Remove
         {
             LocalDatabase?.DeleteItemByLocalId(model.Model);
 
-            Delegate?.OnSuccess?.Invoke(new RemoveRssResponse());
+            Delegate?.OnSuccess?.Invoke(new RemoveRssResponse(model.Model));
         }
     }
 }

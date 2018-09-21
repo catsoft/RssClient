@@ -4,6 +4,6 @@
     <SelectedDevice>Xiaomi Mi A1</SelectedDevice>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
     <ProjectView>ShowAllFiles</ProjectView>
-    <DefaultDevice>Android_Accelerated_x86_Oreo</DefaultDevice>
+    <DefaultDevice>4_1</DefaultDevice>
   </PropertyGroup>
 </Project>

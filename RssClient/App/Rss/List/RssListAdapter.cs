@@ -5,10 +5,13 @@ using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Newtonsoft.Json;
+using RssClient.App.Base;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
 using Shared.App.Base.Database;
 using Shared.App.Rss;
+using Shared.App.Rss.Edit;
+using Shared.App.Rss.Remove;
 
 namespace RssClient.App.Rss.List
 {
@@ -87,14 +90,23 @@ namespace RssClient.App.Rss.List
             var builder = new AlertDialog.Builder(_activity);
             builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
             {
-                LocalDb.Instance.DeleteItemByLocalId(holderItem);
-                var index = Items.IndexOf(holderItem);
-                Items.RemoveAt(index);
-                NotifyItemRemoved(index);
+                var request = new RemoveRssRequest(holderItem);
+                var @delegate = _activity.GetCommandDelegate<RemoveRssResponse>(OnSuccessRemove);
+                var command = new RemoveRssCommand(LocalDb.Instance, @delegate);
+
+                command.Execute(request);
             });
             builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
             builder.SetTitle(DeleteTitle);
             builder.Show();
+        }
+
+        private void OnSuccessRemove(RemoveRssResponse obj)
+        {
+            var index = Items.IndexOf(obj.Model);
+
+            Items.RemoveAt(index);
+            NotifyItemRemoved(index);
         }
 
         private void OpenDetailActivity(RssModel holderItem)

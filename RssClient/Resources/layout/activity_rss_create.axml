@@ -24,7 +24,6 @@
                     android:layout_height="wrap_content">
                     <EditText
 						android:inputType="text"
-						style="@android:style/Widget.Holo.EditText"
                         android:hint="@string/rss_name_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

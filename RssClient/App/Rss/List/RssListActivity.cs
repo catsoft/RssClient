@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -9,7 +7,7 @@ using Android.Support.V7.Widget;
 using RssClient.App.Base;
 using RssClient.App.Rss.Create;
 using Shared.App.Base.Database;
-using Shared.App.Rss;
+using Shared.App.Rss.List.GetListCommand;
 
 namespace RssClient.App.Rss.List
 {
@@ -21,7 +19,6 @@ namespace RssClient.App.Rss.List
         private const string TitleActivity = "RSS client";
 
         private RecyclerView _recyclerView;
-        private List<RssModel> _items;
 
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         protected override bool IsDisplayHomeAsUpEnable => false;
@@ -53,8 +50,15 @@ namespace RssClient.App.Rss.List
 
         private void LoadItems()
         {
-            _items = LocalDb.Instance.GetItems<RssModel>().ToList();
-            var adapter = new RssListAdapter(_items, this);
+            var @delegate = this.GetCommandDelegate<GetListResponse>(OnSuccessGetList);
+            var command = new GetListCommand(LocalDb.Instance, @delegate);
+
+            command.Execute(new GetListRequest());
+        }
+
+        private void OnSuccessGetList(GetListResponse obj)
+        {
+            var adapter = new RssListAdapter(obj.Models, this);
             _recyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
         }

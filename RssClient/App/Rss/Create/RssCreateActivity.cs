@@ -51,7 +51,7 @@ namespace RssClient.App.Rss.Create
             _sendButton.Click += SendButtonOnClick;
         }
 
-        private void InitUrlEditText()
+        private void InitUrlEditText() 
         {
             _url = FindViewById<TextInputLayout>(Resource.Id.rss_create_rss);
             _url.EditText.SetTextAndSetCursorToLast(UrlDefault);

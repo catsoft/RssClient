@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Android.Content;
 using Shared.App.Base.Command;
 using Shared.App.Base.Database;
 
@@ -13,13 +12,12 @@ namespace Shared.App.Rss.List.GetListCommand
 
         public override void Execute(GetListRequest model)
         {
-            var responce = new GetListResponse()
+            var response = new GetListResponse()
             {
-                IsSuccess = true,
                 Models = LocalDatabase.GetItems<RssModel>()?.ToArray(),
             };
 
-            CommonExecute(responce);
+            CommonExecute(response);
         }
     }
 }

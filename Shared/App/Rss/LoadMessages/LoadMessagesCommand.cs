@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using Shared.App.Base.Command;
@@ -17,7 +19,13 @@ namespace Shared.App.Rss.LoadMessages
         {
             try
             {
-                var xmlReader = XmlReader.Create(model.Model.Rss);
+                var httpClient = new HttpClient();
+                var response = httpClient.GetAsync(model.Model.Rss);
+                response.Wait();
+
+                var stream = response.Result.Content.ReadAsStreamAsync();
+
+                var xmlReader = XmlReader.Create(stream.Result);
                 var feed = SyndicationFeed.Load(xmlReader);
                 var messages = feed?.Items?.Select(w => new RssMessageModel(w, model.Model.Id)).ToList();
 
