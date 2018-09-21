@@ -1,3 +1,4 @@
 /.vs
 /RssClient/obj
 /RssClient/bin
+/RssClient/*.user
