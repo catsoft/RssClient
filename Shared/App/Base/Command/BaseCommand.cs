@@ -2,8 +2,8 @@
 
 namespace Shared.App.Base.Command
 {
-    /// <typeparam name="T">Передаваемый тип в onsuccess</typeparam>
-    /// <typeparam name="TE">Тип модели для выполнения</typeparam>
+    /// <typeparam name="T">Response</typeparam>
+    /// <typeparam name="TE">Request</typeparam>
     public abstract class BaseCommand<T, TE> : ICommand<T, TE>
     where T : BaseResponse
     {

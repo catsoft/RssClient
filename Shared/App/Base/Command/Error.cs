@@ -3,12 +3,12 @@
     public class Error
     {
         /// <summary>
-        /// Сообщение об ошибке
+        /// Error message
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        /// Служебное сообщение
+        /// Code message
         /// </summary>
         public string Code { get; set; }
 

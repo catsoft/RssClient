@@ -10,7 +10,6 @@ using Shared.App.Base.Database;
 using Shared.App.Rss;
 using Shared.App.Rss.Edit;
 using Shared.App.Rss.New;
-using Shared.App.Rss.New.NewCommand;
 
 namespace RssClient.App.Rss.Edit
 {
@@ -31,7 +30,7 @@ namespace RssClient.App.Rss.Edit
 		{
 			base.OnCreate(savedInstanceState);
 
-		    Title = "Редактирование RSS";
+		    Title = "Edit RSS";
 
 		    var stringItem = Intent.GetStringExtra(ItemIntentId);
 		    _item = JsonConvert.DeserializeObject<RssModel>(stringItem);

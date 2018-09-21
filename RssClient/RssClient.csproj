@@ -63,6 +63,7 @@
     <Compile Include="App\Base\NotValidDataActivityExtension.cs" />
     <Compile Include="App\Base\ShowErrorExtension.cs" />
     <Compile Include="App\Base\ToolbarActivity.cs" />
+    <Compile Include="App\Rss\Detail\GetMessagesTask.cs" />
     <Compile Include="App\Rss\Detail\RssDetailActivity.cs" />
     <Compile Include="App\Rss\Detail\RssMessageAdapter.cs" />
     <Compile Include="App\Rss\Detail\RssMessageModel.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="App\Rss\List\RssListActivity.cs" />
     <Compile Include="App\Rss\List\RssListAdapter.cs" />
     <Compile Include="App\Rss\List\RssListViewHolder.cs" />
-    <Compile Include="App\Rss\New\RssCreateActivity.cs" />
+    <Compile Include="App\Rss\Create\RssCreateActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

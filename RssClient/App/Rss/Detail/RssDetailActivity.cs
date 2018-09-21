@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Newtonsoft.Json;
 using RssClient.App.Base;
-using System.Threading;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using Shared.App.Base.Database;
 using Shared.App.Rss;
-using Shared.App.Rss.LoadMessages;
 
 namespace RssClient.App.Rss.Detail
 {
@@ -40,43 +35,8 @@ namespace RssClient.App.Rss.Detail
 
         private void LoadItems()
         {
-            var thread = new Thread(() =>
-            {
-                var request = new LoadMessagesRequest(_item);
-                var @delegate = this.GetCommandDelegate<LoadMessagesResponse>(OnSuccessLoad);
-                var command = new LoadMessagesCommand(this, LocalDb.Instance, @delegate);
-                command.Execute(request);
-            });
-
-            thread.Start();
+            var asyncTask = new GetMessagesTask(_list, this, _refreshLayout);
+            asyncTask.Execute(_item);
         }
-
-	    private void OnSuccessLoad(LoadMessagesResponse obj)
-	    {
-	        UpdateItems();
-	    }
-
-	    private void UpdateItems()
-	    {
-            RunOnUiThread(() =>
-            {
-                _refreshLayout.Refreshing = false;
-                _item.LoadMessagesFromDb(LocalDb.Instance);
-
-                var messages = _item.Messages;
-
-                if (messages?.Any() == true)
-                {
-                    this.ShowValidData();
-                }
-                else
-                {
-                    this.ShowNotValidError("No data");
-                }
-
-                var adapter = new RssMessageAdapter(_item.Messages ?? new List<RssMessageModel>(), this);
-                _list.SetAdapter(adapter);
-            });
-	    }
 	}
 }

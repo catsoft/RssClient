@@ -1,6 +1,4 @@
 ﻿
-using Shared.App.Rss.List;
-
 namespace Shared.App.Rss.Remove
 {
     public class RemoveRssRequest

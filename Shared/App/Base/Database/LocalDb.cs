@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using RssClient.App.Rss.Detail;
 using Shared.App.Rss;
-using Shared.App.Rss.List;
 using SQLite;
 
 namespace Shared.App.Base.Database
@@ -21,20 +20,15 @@ namespace Shared.App.Base.Database
         private static readonly object Locker = new object();
 
         private readonly SQLiteConnection _database;
-        private const string SqliteFilename = "database1.db3";
+        private const string DatabaseFilename = "database1.db3";
 
-        private static string DatabasePath => GetFullPath(SqliteFilename);
+        private static string DatabasePath => GetFullPath(DatabaseFilename);
 
         public static string GetFullPath(string filename)
         {
-    #if __IOS__
-                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                var libraryPath = Path.Combine(documentsPath, "..", "Library");
-                var path = Path.Combine(libraryPath, filename);
-    #else
                 var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                 var path = Path.Combine(documentsPath, filename);
-    #endif
+
                 return path;
         }
 
@@ -59,6 +53,7 @@ namespace Shared.App.Base.Database
                 }
                 catch (Exception e)
                 {
+                    
                 }
             }
         }

@@ -1,7 +1,6 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using Android.Views;
 
 namespace RssClient.App.Base
 {

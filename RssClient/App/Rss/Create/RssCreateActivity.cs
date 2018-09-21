@@ -9,7 +9,7 @@ using Shared.App.Base.Database;
 using Shared.App.Rss.New;
 using Shared.App.Rss.New.NewCommand;
 
-namespace RssClient.App.Rss.New
+namespace RssClient.App.Rss.Create
 {
 	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
 	public class RssCreateActivity : ToolbarActivity
@@ -18,7 +18,7 @@ namespace RssClient.App.Rss.New
 	    private TextInputLayout _url;
 	    private Button _sendButton;
 	    private Dictionary<NewRssField, TextInputLayout> _fields;
-
+	    private const string UrlDefault = "http://";
 
 	    protected override int ResourceView => Resource.Layout.activity_rss_create;
 
@@ -26,7 +26,7 @@ namespace RssClient.App.Rss.New
 		{
 			base.OnCreate(savedInstanceState);
 
-		    Title = "Создание RSS";
+		    Title = "Create RSS";
 
 		    _name = FindViewById<TextInputLayout>(Resource.Id.rss_create_name);
             _url = FindViewById<TextInputLayout>(Resource.Id.rss_create_rss);
@@ -39,7 +39,9 @@ namespace RssClient.App.Rss.New
 		        {NewRssField.Name, _name},
 		        {NewRssField.Rss, _url},
 		    };
-        }
+
+		    _url.EditText.Text = UrlDefault;
+		}
 
 	    private void SendButtonOnClick(object sender, EventArgs eventArgs)
 	    {
