@@ -7,7 +7,7 @@ namespace Shared.App.Rss.List.GetListCommand
 {
     public class GetListCommand : BaseCommand<GetListResponse, GetListRequest>
     {
-        public GetListCommand(Context context, ILocalDb localDb, ICommandDelegate<GetListResponse> commandDelegate) : base(context, localDb, commandDelegate)
+        public GetListCommand(ILocalDb localDb, ICommandDelegate<GetListResponse> commandDelegate) : base(localDb, commandDelegate)
         {
         }
 

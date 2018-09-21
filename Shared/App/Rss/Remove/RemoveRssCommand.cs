@@ -6,7 +6,7 @@ namespace Shared.App.Rss.Remove
 {
     public class RemoveRssCommand : BaseCommand<RemoveRssResponse, RemoveRssRequest>
     {
-        public RemoveRssCommand(Context context, ILocalDb localDb, ICommandDelegate<RemoveRssResponse> commandDelegate) : base(context, localDb, commandDelegate)
+        public RemoveRssCommand(ILocalDb localDb, ICommandDelegate<RemoveRssResponse> commandDelegate) : base(localDb, commandDelegate)
         {
         }
 

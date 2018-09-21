@@ -3592,6 +3592,12 @@ namespace RssClient
 			// aapt resource value: 0x7f0b0010
 			public const int abc_toolbar_collapse_description = 2131427344;
 			
+			// aapt resource value: 0x7f0b0028
+			public const int activity_create_rss_send_button = 2131427368;
+			
+			// aapt resource value: 0x7f0b0029
+			public const int activity_edit_rss_send_button = 2131427369;
+			
 			// aapt resource value: 0x7f0b0027
 			public const int app_name = 2131427367;
 			
@@ -3618,6 +3624,12 @@ namespace RssClient
 			
 			// aapt resource value: 0x7f0b0025
 			public const int path_password_strike_through = 2131427365;
+			
+			// aapt resource value: 0x7f0b002b
+			public const int rss_link_edit_text = 2131427371;
+			
+			// aapt resource value: 0x7f0b002a
+			public const int rss_name_edit_text = 2131427370;
 			
 			// aapt resource value: 0x7f0b0011
 			public const int search_menu_title = 2131427345;

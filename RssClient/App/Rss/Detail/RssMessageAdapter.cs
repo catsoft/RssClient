@@ -6,19 +6,23 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Net;
+using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Detail
 {
     public class RssMessageAdapter : RecyclerView.Adapter
     {
-        private readonly Activity _activity;
-        public List<RssMessageModel> Items { get; }
+        private const string CreationDateFormat = "dd MMMM yyyy";
 
-        public RssMessageAdapter(List<RssMessageModel> items, Activity activity)
+        private readonly Activity _activity;
+
+        public RssMessageAdapter(IEnumerable<RssMessageModel> items, Activity activity)
         {
             _activity = activity;
             Items = items.OrderByDescending(w => w.CreationDate).ToList();
         }
+
+        public List<RssMessageModel> Items { get; }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
@@ -28,7 +32,7 @@ namespace RssClient.App.Rss.Detail
             {
                 rssMessageViewHolder.Title.Text = item.Title;
                 rssMessageViewHolder.Text.Text = item.Text;
-                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("dd MMMM yyyy", CultureInfo.CurrentCulture);
+                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString(CreationDateFormat, CultureInfo.CurrentCulture);
                 rssMessageViewHolder.Item = item;
             }
         }
@@ -44,6 +48,9 @@ namespace RssClient.App.Rss.Detail
             return holder;
         }
 
+        public override int ItemCount => Items.Count;
+
+
         private void OpenContentActivity(RssMessageModel item)
         {
             if (!string.IsNullOrEmpty(item.Url))
@@ -52,7 +59,5 @@ namespace RssClient.App.Rss.Detail
                 _activity.StartActivity(intent);
             }
         }
-
-        public override int ItemCount => Items.Count;
     }
 }

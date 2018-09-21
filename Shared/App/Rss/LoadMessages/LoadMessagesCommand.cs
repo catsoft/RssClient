@@ -2,8 +2,6 @@
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml;
-using Android.Content;
-using RssClient.App.Rss.Detail;
 using Shared.App.Base.Command;
 using Shared.App.Base.Database;
 
@@ -11,7 +9,7 @@ namespace Shared.App.Rss.LoadMessages
 {
     public class LoadMessagesCommand : BaseCommand<LoadMessagesResponse, LoadMessagesRequest>
     {
-        public LoadMessagesCommand(Context context, ILocalDb localDb, ICommandDelegate<LoadMessagesResponse> commandDelegate) : base(context, localDb, commandDelegate)
+        public LoadMessagesCommand(ILocalDb localDb, ICommandDelegate<LoadMessagesResponse> commandDelegate) : base(localDb, commandDelegate)
         {
         }
 
@@ -25,7 +23,8 @@ namespace Shared.App.Rss.LoadMessages
 
                 if (messages?.Any() == true)
                 {
-                    var oldMessages = LocalDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == model.Model.Id);
+                    var oldMessages = LocalDatabase.GetItems<RssMessageModel>()
+                        ?.Where(w => w.PrimaryKeyRssModel == model.Model.Id);
                     LocalDatabase.DeleteItemsByLocalId(oldMessages);
 
                     LocalDatabase?.AddNewItems(messages);
@@ -33,9 +32,8 @@ namespace Shared.App.Rss.LoadMessages
             }
             catch (Exception e)
             {
-                Delegate?.OnNotConnection?.Invoke();
+                Delegate?.OnFailed?.Invoke(new Error(e.Message, e.Message));
             }
-
 
             Delegate?.OnSuccess?.Invoke(new LoadMessagesResponse());
         }

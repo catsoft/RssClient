@@ -1,9 +1,9 @@
-﻿using Android.Support.V7.Widget;
-using Android.Views;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Support.V7.Widget;
+using Android.Views;
 using Newtonsoft.Json;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
@@ -14,14 +14,20 @@ namespace RssClient.App.Rss.List
 {
     public class RssListAdapter : RecyclerView.Adapter
     {
-        private readonly Activity _activity;
-        public List<RssModel> Items { get; }
+        private const string DeletePositiveTitle = "Yes";
+        private const string DeleteNegativeTitle = "No";
+        private const string DeleteTitle = "Ara you sure?";
 
-        public RssListAdapter(List<RssModel> items, Activity activity)
+        private readonly Activity _activity;
+
+        public RssListAdapter(IEnumerable<RssModel> items, Activity activity)
         {
             _activity = activity;
             Items = items.OrderByDescending(w => w.CreationTime).ToList();
         }
+
+        public override int ItemCount => Items.Count;
+        public List<RssModel> Items { get; }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
@@ -41,35 +47,31 @@ namespace RssClient.App.Rss.List
             var holder = new RssListViewHolder(view);
 
             view.Clickable = true;
-            view.Click += (sender, args) =>
-            {
-                OpenDetailActivity(holder.Item);
-            };
+            view.Click += (sender, args) => { OpenDetailActivity(holder.Item); };
 
-            view.LongClick += (sender, args) =>
-            {
-                ItemLongClick(holder.Item, sender, args);
-            };
+            view.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
             return holder;
         }
 
-        private void ItemLongClick(RssModel holderItem, object sender, View.LongClickEventArgs args)
+
+        private void ItemLongClick(RssModel holderItem, object sender)
         {
-            var menu = new PopupMenu(_activity, sender as View, (int)GravityFlags.Right);
-            menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, o, eventArgs);
+            var menu = new PopupMenu(_activity, sender as View, (int) GravityFlags.Right);
+            menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
             menu.Inflate(Resource.Menu.rss_list_item);
             menu.Show();
         }
 
-        private void MenuClick(RssModel holderItem, object sender, PopupMenu.MenuItemClickEventArgs eventArgs)
+        private void MenuClick(RssModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
         {
-            if (eventArgs.Item.ItemId == Resource.Id.rss_item_edit_action)
+            switch (eventArgs.Item.ItemId)
             {
-                EditItem(holderItem);
-            }
-            else if (eventArgs.Item.ItemId == Resource.Id.rss_item_remove_action)
-            {
-                DeleteItem(holderItem);
+                case Resource.Id.rss_item_edit_action:
+                    EditItem(holderItem);
+                    break;
+                case Resource.Id.rss_item_remove_action:
+                    DeleteItem(holderItem);
+                    break;
             }
         }
 
@@ -83,25 +85,23 @@ namespace RssClient.App.Rss.List
         private void DeleteItem(RssModel holderItem)
         {
             var builder = new AlertDialog.Builder(_activity);
-            builder.SetPositiveButton("YES", (sender, args) =>
+            builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
             {
                 LocalDb.Instance.DeleteItemByLocalId(holderItem);
                 var index = Items.IndexOf(holderItem);
                 Items.RemoveAt(index);
                 NotifyItemRemoved(index);
             });
-            builder.SetNegativeButton("No", (sender, args) => { });
-            builder.SetTitle("Are you sure?");
+            builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
+            builder.SetTitle(DeleteTitle);
             builder.Show();
         }
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var intent = new Intent(_activity, typeof(Detail.RssDetailActivity));
+            var intent = new Intent(_activity, typeof(RssDetailActivity));
             intent.PutExtra(RssDetailActivity.ItemIntentId, JsonConvert.SerializeObject(holderItem));
             _activity.StartActivity(intent);
         }
-
-        public override int ItemCount => Items.Count;
     }
 }

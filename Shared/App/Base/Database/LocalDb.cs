@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using RssClient.App.Rss.Detail;
 using Shared.App.Rss;
 using SQLite;
 

@@ -23,8 +23,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:inputType="text"
-                        android:hint="Name"
+						android:inputType="text"
+						style="@android:style/Widget.Holo.EditText"
+                        android:hint="@string/rss_name_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </android.support.design.widget.TextInputLayout>
@@ -33,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:hint="Rss"
+                        android:hint="@string/rss_link_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text" />
@@ -43,7 +44,7 @@
                     android:id="@+id/rss_create_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Create" />
+                    android:text="@string/activity_create_rss_send_button" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

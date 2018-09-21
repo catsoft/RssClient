@@ -12,7 +12,7 @@ using Shared.App.Rss.LoadMessages;
 
 namespace RssClient.App.Rss.Detail
 {
-    public class GetMessagesTask : AsyncTask<RssModel, List<RssMessageModel>, List<RssMessageModel>>
+    public class GetMessagesTask : AsyncTask<RssModel, IEnumerable<RssMessageModel>, IEnumerable<RssMessageModel>>
     {
         private readonly RecyclerView _recyclerView;
         private readonly Activity _activity;
@@ -25,12 +25,12 @@ namespace RssClient.App.Rss.Detail
             _refreshLayout = refreshLayout;
         }
 
-        protected override List<RssMessageModel> RunInBackground(params RssModel[] @params)
+        protected override IEnumerable<RssMessageModel> RunInBackground(params RssModel[] @params)
         {
             var item = @params.First();
             var request = new LoadMessagesRequest(item);
             var @delegate = _activity.GetCommandDelegate<LoadMessagesResponse>(null);
-            var command = new LoadMessagesCommand(_activity, LocalDb.Instance, @delegate);
+            var command = new LoadMessagesCommand(LocalDb.Instance, @delegate);
             command.Execute(request);
 
             item.LoadMessagesFromDb(LocalDb.Instance);
@@ -46,10 +46,8 @@ namespace RssClient.App.Rss.Detail
             base.OnPostExecute(result);
         }
 
-        protected override void OnPostExecute(List<RssMessageModel> messages)
+        protected override void OnPostExecute(IEnumerable<RssMessageModel> messages)
         {
-            base.OnPostExecute(messages);
-
             _refreshLayout.Refreshing = false;
 
             if (messages?.Any() == true)

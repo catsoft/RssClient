@@ -1,13 +1,10 @@
 ﻿using System;
 using Shared.App.Base.Command;
 
-namespace Shared.App.Rss.New.NewCommand
+namespace Shared.App.Rss.New.Command
 {
     public class NewRssRequest
     {
-        public string Name { get; set; }
-        public string Rss { get; set; }
-
         public NewRssRequest()
         {
             
@@ -18,6 +15,9 @@ namespace Shared.App.Rss.New.NewCommand
             Name = name;
             Rss = rss;
         }
+
+        public string Name { get; set; }
+        public string Rss { get; set; }
 
         public bool IsValid(Action<NewRssField, Error> errorAction)
         {

@@ -6,7 +6,7 @@ namespace Shared.App.Rss.Edit
 {
     public class EditRssCommand : BaseCommand<EditRssResponse, EditRssRequest>
     {
-        public EditRssCommand(Context context, ILocalDb localDb, ICommandDelegate<EditRssResponse> commandDelegate) : base(context, localDb, commandDelegate)
+        public EditRssCommand(ILocalDb localDb, ICommandDelegate<EditRssResponse> commandDelegate) : base(localDb, commandDelegate)
         {
         }
 

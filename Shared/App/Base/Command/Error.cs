@@ -2,6 +2,17 @@
 {
     public class Error
     {
+        public Error()
+        {
+
+        }
+
+        public Error(string errorCode, string errorMessage)
+        {
+            Code = errorCode;
+            Message = errorMessage;
+        }
+
         /// <summary>
         /// Error message
         /// </summary>
@@ -11,16 +22,5 @@
         /// Code message
         /// </summary>
         public string Code { get; set; }
-
-        public Error(string errorCode, string errorMessage)
-        {
-            Code = errorCode;
-            Message = errorMessage;
-        }
-
-        public Error()
-        {
-            
-        }
     }
 }

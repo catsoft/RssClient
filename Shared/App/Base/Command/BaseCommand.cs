@@ -9,26 +9,12 @@ namespace Shared.App.Base.Command
     {
         public ILocalDb LocalDatabase { get; set; }
         public ICommandDelegate<T> Delegate { get; set; }
-
-#if __ANDROID__
-        public Android.Content.Context Context { get; set; }
-
-        protected BaseCommand(Android.Content.Context context, ILocalDb localDb, ICommandDelegate<T> commandDelegate)
-        {
-            Context = context;
-            LocalDatabase = localDb;
-            Delegate = commandDelegate;
-        }
-#endif
-
-#if __IOS__
+        
         protected BaseCommand(ILocalDb localDb, ICommandDelegate<T> commandDelegate)
         {
             LocalDatabase = localDb;
             Delegate = commandDelegate;
         }
-#endif
-
 
         public abstract void Execute(TE model);
 

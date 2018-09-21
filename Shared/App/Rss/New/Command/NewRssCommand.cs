@@ -3,11 +3,11 @@ using Android.Content;
 using Shared.App.Base.Command;
 using Shared.App.Base.Database;
 
-namespace Shared.App.Rss.New.NewCommand
+namespace Shared.App.Rss.New.Command
 {
     public class NewRssCommand : BaseCommand<NewRssResponse, NewRssRequest>
     {
-        public NewRssCommand(Context context, ILocalDb localDb, ICommandDelegate<NewRssResponse> commandDelegate) : base(context, localDb, commandDelegate)
+        public NewRssCommand(ILocalDb localDb, ICommandDelegate<NewRssResponse> commandDelegate) : base(localDb, commandDelegate)
         {
         }
 

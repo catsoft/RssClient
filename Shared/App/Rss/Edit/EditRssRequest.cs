@@ -7,13 +7,9 @@ namespace Shared.App.Rss.Edit
 {
     public class EditRssRequest
     {
-        public RssModel Model { get; set; }
-        public string Name { get; set; }
-        public string Rss { get; set; }
-
         public EditRssRequest()
         {
-            
+
         }
 
         public EditRssRequest(RssModel model, string name, string rss)
@@ -22,6 +18,10 @@ namespace Shared.App.Rss.Edit
             Name = name;
             Rss = rss;
         }
+
+        public RssModel Model { get; set; }
+        public string Name { get; set; }
+        public string Rss { get; set; }
 
         public bool IsValid(Action<NewRssField, Error> errorAction)
         {
