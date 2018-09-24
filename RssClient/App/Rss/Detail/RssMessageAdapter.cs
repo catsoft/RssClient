@@ -42,8 +42,7 @@ namespace RssClient.App.Rss.Detail
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.rss_message_item, parent, false);
             var holder = new RssMessageViewHolder(view);
 
-            view.Clickable = true;
-            view.Click += (sender, args) => { OpenContentActivity(holder.Item); };
+            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
 
             return holder;
         }

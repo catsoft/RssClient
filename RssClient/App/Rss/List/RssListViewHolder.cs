@@ -11,10 +11,12 @@ namespace RssClient.App.Rss.List
         {
             TitleTextView = itemView.FindViewById<TextView>(Resource.Id.rss_item_title);
             SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.rss_item_subtitle);
+            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.rss_list_item_click_view);
         }
 
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
         public RssModel Item { get; set; }
+        public LinearLayout ClickView { get; set; }
     }
 }

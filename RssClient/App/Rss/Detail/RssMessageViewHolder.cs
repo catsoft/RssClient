@@ -12,11 +12,13 @@ namespace RssClient.App.Rss.Detail
             Title = itemView.FindViewById<TextView>(Resource.Id.rss_message_title);
             Text = itemView.FindViewById<TextView>(Resource.Id.rss_message_text);
             CreationDate = itemView.FindViewById<TextView>(Resource.Id.rss_message_date);
+            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.rss_message_click_view);
         }
 
         public TextView Title { get; }
         public TextView Text { get; }
         public TextView CreationDate { get; }
         public RssMessageModel Item { get; set; }
+        public LinearLayout ClickView { get; set; }
     }
 }

@@ -49,10 +49,9 @@ namespace RssClient.App.Rss.List
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.rss_list_item, parent, false);
             var holder = new RssListViewHolder(view);
 
-            view.Clickable = true;
-            view.Click += (sender, args) => { OpenDetailActivity(holder.Item); };
+            holder.ClickView.Click += (sender, args) => { OpenDetailActivity(holder.Item); };
+            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
 
-            view.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
             return holder;
         }
 

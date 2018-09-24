@@ -2924,14 +2924,14 @@ namespace RssClient
 			// aapt resource value: 0x7f0800a6
 			public const int main_activity_content = 2131230886;
 			
-			// aapt resource value: 0x7f0800d8
-			public const int masked = 2131230936;
+			// aapt resource value: 0x7f0800da
+			public const int masked = 2131230938;
 			
 			// aapt resource value: 0x7f0800c3
 			public const int media_actions = 2131230915;
 			
-			// aapt resource value: 0x7f0800d6
-			public const int message = 2131230934;
+			// aapt resource value: 0x7f0800d8
+			public const int message = 2131230936;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -3041,29 +3041,35 @@ namespace RssClient
 			// aapt resource value: 0x7f0800a9
 			public const int rss_edit_rss = 2131230889;
 			
-			// aapt resource value: 0x7f0800d9
-			public const int rss_item_edit_action = 2131230937;
+			// aapt resource value: 0x7f0800db
+			public const int rss_item_edit_action = 2131230939;
 			
-			// aapt resource value: 0x7f0800da
-			public const int rss_item_remove_action = 2131230938;
+			// aapt resource value: 0x7f0800dc
+			public const int rss_item_remove_action = 2131230940;
+			
+			// aapt resource value: 0x7f0800d2
+			public const int rss_item_subtitle = 2131230930;
 			
 			// aapt resource value: 0x7f0800d1
-			public const int rss_item_subtitle = 2131230929;
+			public const int rss_item_title = 2131230929;
 			
 			// aapt resource value: 0x7f0800d0
-			public const int rss_item_title = 2131230928;
+			public const int rss_list_item_click_view = 2131230928;
 			
 			// aapt resource value: 0x7f0800ab
 			public const int rss_list_recycler_view = 2131230891;
 			
 			// aapt resource value: 0x7f0800d3
-			public const int rss_message_date = 2131230931;
+			public const int rss_message_click_view = 2131230931;
+			
+			// aapt resource value: 0x7f0800d5
+			public const int rss_message_date = 2131230933;
+			
+			// aapt resource value: 0x7f0800d6
+			public const int rss_message_text = 2131230934;
 			
 			// aapt resource value: 0x7f0800d4
-			public const int rss_message_text = 2131230932;
-			
-			// aapt resource value: 0x7f0800d2
-			public const int rss_message_title = 2131230930;
+			public const int rss_message_title = 2131230932;
 			
 			// aapt resource value: 0x7f08000c
 			public const int save_image_matrix = 2131230732;
@@ -3227,8 +3233,8 @@ namespace RssClient
 			// aapt resource value: 0x7f080084
 			public const int title_template = 2131230852;
 			
-			// aapt resource value: 0x7f0800d5
-			public const int toolbar = 2131230933;
+			// aapt resource value: 0x7f0800d7
+			public const int toolbar = 2131230935;
 			
 			// aapt resource value: 0x7f08003e
 			public const int top = 2131230782;
@@ -3266,8 +3272,8 @@ namespace RssClient
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800d7
-			public const int visible = 2131230935;
+			// aapt resource value: 0x7f0800d9
+			public const int visible = 2131230937;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
