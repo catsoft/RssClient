@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import asura.com.rssclient.R
@@ -32,5 +33,9 @@ class RssActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appbarConfiguration)
 
         binding.navigationView.setupWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appbarConfiguration) || super.onSupportNavigateUp()
     }
 }

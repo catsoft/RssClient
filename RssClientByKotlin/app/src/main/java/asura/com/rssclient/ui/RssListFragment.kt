@@ -10,7 +10,7 @@ import asura.com.rssclient.databinding.FragmentRssListBinding
 
 class RssListFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var binding = FragmentRssListBinding.inflate(inflater, container, false)
+        val binding = FragmentRssListBinding.inflate(inflater, container, false)
 
         return binding.root
     }
