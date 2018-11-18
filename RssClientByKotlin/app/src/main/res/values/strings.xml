@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RssClient</string>
+    <string name="rss_list_title">Rss list</string>
+    <string name="rss_detail_title">Rss detail</string>
+    <string name="navigation_drawer_header_content_description">Header desctiption</string>
+    <string name="navigation_drawer_header_title">Header Title</string>
+    <string name="rss_list_empty">No items</string>
 </resources>

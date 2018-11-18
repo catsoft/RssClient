@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/rss_list_fragment">
+    <fragment
+            android:id="@+id/rss_list_fragment"
+            android:name="asura.com.rssclient.ui.RssListFragment"
+            android:label="@string/rss_list_title"
+            tools:layout="@layout/fragment_rss_list"/>
+    <fragment
+            android:id="@+id/rss_detail_fragment"
+            android:name="asura.com.rssclient.ui.RssDetailFragment"
+            android:label="@string/rss_detail_title"
+            tools:layout="@layout/fragment_rss_detail"/>
+</navigation>
