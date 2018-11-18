@@ -19,8 +19,8 @@
             android:id="@+id/add_button"
             android:layout_width="@dimen/fab_width"
             android:layout_height="@dimen/fab_height"
-            android:src="@android:drawable/btn_plus"
-            android:layout_gravity="end"
+            android:src="@android:drawable/ic_input_add"
+            android:layout_gravity="end|bottom"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"/>
     </FrameLayout>
