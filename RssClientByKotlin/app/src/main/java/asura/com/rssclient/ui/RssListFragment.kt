@@ -18,6 +18,10 @@ class RssListFragment : Fragment(){
             it.findNavController().navigate(R.id.rss_detail_fragment)
         }
 
+        binding.addButton.setOnClickListener{
+            it.findNavController().navigate(R.id.rss_create_fragment)
+        }
+
         return binding.root
     }
 }

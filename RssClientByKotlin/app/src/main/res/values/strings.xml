@@ -5,4 +5,5 @@
     <string name="navigation_drawer_header_content_description">Header desctiption</string>
     <string name="navigation_drawer_header_title">Header Title</string>
     <string name="rss_list_empty">No items</string>
+    <string name="rss_create_title">Rss create</string>
 </resources>
