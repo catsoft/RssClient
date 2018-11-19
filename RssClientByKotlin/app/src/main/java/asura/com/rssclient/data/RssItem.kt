@@ -9,7 +9,7 @@ import java.util.*
 data class RssItem (
     @ColumnInfo(name = "rss_id")
     @PrimaryKey
-    val rssId : String,
+    val rssId : Long,
     val url : String,
     val name : String,
     val lastOpenDate : String,
