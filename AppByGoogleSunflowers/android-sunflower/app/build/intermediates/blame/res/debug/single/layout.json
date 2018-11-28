@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\list_item_garden_planting.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\list_item_garden_planting.xml"
+    },
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_plant_detail.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\fragment_plant_detail.xml"
+    },
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_garden.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\fragment_garden.xml"
+    },
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_garden.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\activity_garden.xml"
+    },
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\list_item_plant.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\list_item_plant.xml"
+    },
+    {
+        "merged": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_plant_list.xml",
+        "source": "C:\\Projects\\RssClient\\RssClientByKotlin\\AppByGoogleSunflowers\\android-sunflower\\app\\src\\main\\res\\layout\\fragment_plant_list.xml"
+    }
+]

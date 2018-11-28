@@ -1,0 +1,455 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+MERGED from [androidx.databinding:databinding-adapters:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-adapters-3.3.0-beta04.aar\8ba53b96bd0489c35d6ea2bf68cca4c4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.databinding:databinding-runtime:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-runtime-3.3.0-beta04.aar\7eeded02aa0bee10c1907f01b23ee853\AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-ktx-1.0.0-alpha07.aar\d2b2e834a23991265344aaade9ecdd35\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.navigation:navigation-ui-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-ktx-1.0.0-alpha07.aar\32195bd28ffa54ffc5c8e9389bbfc70f\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.work:work-runtime-ktx:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-ktx-1.0.0-alpha10.aar\ecbf1a1e54ff8c4f5428f5750b94c2e0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\constraintlayout-2.0.0-alpha2.aar\4faf389d1ac492026b35a1576577f7cc\AndroidManifest.xml:2:1-11:12
+MERGED from [android.arch.navigation:navigation-ui:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-1.0.0-alpha07.aar\c66ac1e9e202db9f62e620ed92cd73c5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\a558c6585bd834e0353c56f844459db5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\appcompat-1.0.2.aar\6fc7d3daa2a1052c20c811e5250922ab\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-ktx-1.0.1.aar\f096378a7a6342d42b719366cc65dbe9\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-v4-1.0.0.aar\ce2f8b82f2a246dfcb532d8c0bea24ef\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:17:1-118:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-extensions-2.0.0.aar\4b4e5a1f8fa0b0e40a44d5f81b266232\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\recyclerview-1.0.0.aar\d6e7262d57f250494f33f9093b70bc37\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:17:1-28:12
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-glide-4.8.0.aar\832656e9426c3fe3f30d771ea3e5bf50\AndroidManifest.xml:2:1-12:12
+MERGED from [android.arch.navigation:navigation-fragment:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-1.0.0-alpha07.aar\247ff2d4578828e317f639d2bfea448e\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\fragment-1.0.0.aar\3a826eaba63e05131285f633567cc350\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-animated-1.0.0.aar\b64e3d0916568f5ec225e63d532eb78f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-ui-1.0.0.aar\04b818c7a94495c4f9668ed476902d80\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.navigation:navigation-runtime-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-ktx-1.0.0-alpha07.aar\a490116b7d7dc9e0d71c8db85f29d31a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.navigation:navigation-runtime:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-1.0.0-alpha07.aar\71a19cb8da360b5408e6ebe88b40e2df\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-utils-1.0.0.aar\2c9ad00a36fd15f0970ced845a39206b\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-1.0.1.aar\556719f29dcbb1718b9d871db537a6a2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\media-1.0.0.aar\6765fe31d5f07bc72c5b46eaac6667bb\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\transition-1.0.0.aar\86e6624897291b593babd673867707c2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\ce8160776e6de96a64815fdabf883ad2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\237e6330be49adc076ae012d5ae011e1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-1.0.0.aar\95fdd346346801b3c0c09045a3131aff\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\drawerlayout-1.0.0.aar\ba4116213f662b4c688d5e3e2abc7a2d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-1.0.0.aar\94d48cc3a0faddc8633da35bbe5e6005\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\05c7c58de45981eb350af5baeff35863\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-1.0.0.aar\c9e4842343f0f79e10d20979652bfc25\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-1.0.0.aar\5143589636fabf73e48e8c88a35d3142\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.navigation:navigation-common-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-ktx-1.0.0-alpha07.aar\a622afc7b12092c37d75b25137c85d0d\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.navigation:navigation-common:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-1.0.0-alpha07.aar\e702f254e57d0e4d9b41593fb5d19a23\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-service-2.0.0.aar\8ee77259a16cbe42d52669832f9b546d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.0.0.aar\6015dccc4cbcedf595715cc0d94df5e1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\88ba0dfa8dbbdc5ac94523739f8a4c92\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cursoradapter-1.0.0.aar\6f8f3b0cde99fe20df3ebc440a4b5b28\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\5f01fe97696c17b5e7c32768de3404b5\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\53aafd93c13c13fbda9f09fcc5d2b1be\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.1-alpha01] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.1-alpha01.aar\c808b08b83767287ea80751a69b3ab44\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.0.0.aar\9c3a782cae1b2ccac04a70dc791fe7d7\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-framework-2.0.0.aar\fad159faa1855cbfdcfef499565d2e4f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-2.0.0.aar\acb234bf10088965281c514c27932250\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cardview-1.0.0.aar\981890b2bd6f5ec6b790bace93c914ce\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\documentfile-1.0.0.aar\4ac5089cc8f6d6e350ee962ef3841193\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-1.0.0.aar\eed8f8853cc43fa03103e0047d6ba1b8\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\print-1.0.0.aar\18cee91b9a462a1cd645f656e11ad7a1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\interpolator-1.0.0.aar\01dc4cc29e025317de53baf6405ee12e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-gifdecoder-4.8.0.aar\c8890a8a725f128be195f896b9db4d30\AndroidManifest.xml:2:1-11:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+	package
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:19:5-48
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:1-42:12
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:18:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:21:5-67
+	android:name
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:21:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:22:5-79
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:24:5-79
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:22:22-76
+application
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:24:5-40:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\constraintlayout-2.0.0-alpha2.aar\4faf389d1ac492026b35a1576577f7cc\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\constraintlayout-2.0.0-alpha2.aar\4faf389d1ac492026b35a1576577f7cc\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\a558c6585bd834e0353c56f844459db5\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\a558c6585bd834e0353c56f844459db5\AndroidManifest.xml:22:5-20
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:27:5-116:19
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:27:5-116:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-extensions-2.0.0.aar\4b4e5a1f8fa0b0e40a44d5f81b266232\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-extensions-2.0.0.aar\4b4e5a1f8fa0b0e40a44d5f81b266232\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-glide-4.8.0.aar\832656e9426c3fe3f30d771ea3e5bf50\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-glide-4.8.0.aar\832656e9426c3fe3f30d771ea3e5bf50\AndroidManifest.xml:10:5-20
+MERGED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:22:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\88ba0dfa8dbbdc5ac94523739f8a4c92\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\88ba0dfa8dbbdc5ac94523739f8a4c92\AndroidManifest.xml:22:5-23:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-gifdecoder-4.8.0.aar\c8890a8a725f128be195f896b9db4d30\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-gifdecoder-4.8.0.aar\c8890a8a725f128be195f896b9db4d30\AndroidManifest.xml:9:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:29:9-35
+	android:label
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:27:9-41
+	android:roundIcon
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:28:9-54
+	android:icon
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:26:9-43
+	android:allowBackup
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:25:9-35
+	android:theme
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:30:9-40
+activity#com.google.samples.apps.sunflower.GardenActivity
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:31:9-39:20
+	android:theme
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:33:13-56
+	android:name
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:32:13-43
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:34:13-38:29
+action#android.intent.action.MAIN
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:35:17-69
+	android:name
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:35:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:37:17-77
+	android:name
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml:37:27-74
+uses-sdk
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-adapters-3.3.0-beta04.aar\8ba53b96bd0489c35d6ea2bf68cca4c4\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-adapters:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-adapters-3.3.0-beta04.aar\8ba53b96bd0489c35d6ea2bf68cca4c4\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-runtime-3.3.0-beta04.aar\7eeded02aa0bee10c1907f01b23ee853\AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.0-beta04] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\databinding-runtime-3.3.0-beta04.aar\7eeded02aa0bee10c1907f01b23ee853\AndroidManifest.xml:22:5-44
+MERGED from [android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-ktx-1.0.0-alpha07.aar\d2b2e834a23991265344aaade9ecdd35\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-ktx-1.0.0-alpha07.aar\d2b2e834a23991265344aaade9ecdd35\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-ui-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-ktx-1.0.0-alpha07.aar\32195bd28ffa54ffc5c8e9389bbfc70f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-ui-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-ktx-1.0.0-alpha07.aar\32195bd28ffa54ffc5c8e9389bbfc70f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.work:work-runtime-ktx:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-ktx-1.0.0-alpha10.aar\ecbf1a1e54ff8c4f5428f5750b94c2e0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.work:work-runtime-ktx:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-ktx-1.0.0-alpha10.aar\ecbf1a1e54ff8c4f5428f5750b94c2e0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\constraintlayout-2.0.0-alpha2.aar\4faf389d1ac492026b35a1576577f7cc\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.0-alpha2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\constraintlayout-2.0.0-alpha2.aar\4faf389d1ac492026b35a1576577f7cc\AndroidManifest.xml:5:5-7:41
+MERGED from [android.arch.navigation:navigation-ui:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-1.0.0-alpha07.aar\c66ac1e9e202db9f62e620ed92cd73c5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-ui:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-ui-1.0.0-alpha07.aar\c66ac1e9e202db9f62e620ed92cd73c5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\a558c6585bd834e0353c56f844459db5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\a558c6585bd834e0353c56f844459db5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\appcompat-1.0.2.aar\6fc7d3daa2a1052c20c811e5250922ab\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\appcompat-1.0.2.aar\6fc7d3daa2a1052c20c811e5250922ab\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-ktx-1.0.1.aar\f096378a7a6342d42b719366cc65dbe9\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-ktx-1.0.1.aar\f096378a7a6342d42b719366cc65dbe9\AndroidManifest.xml:5:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-v4-1.0.0.aar\ce2f8b82f2a246dfcb532d8c0bea24ef\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-v4-1.0.0.aar\ce2f8b82f2a246dfcb532d8c0bea24ef\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:21:5-44
+MERGED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-extensions-2.0.0.aar\4b4e5a1f8fa0b0e40a44d5f81b266232\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-extensions-2.0.0.aar\4b4e5a1f8fa0b0e40a44d5f81b266232\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\recyclerview-1.0.0.aar\d6e7262d57f250494f33f9093b70bc37\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\recyclerview-1.0.0.aar\d6e7262d57f250494f33f9093b70bc37\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-glide-4.8.0.aar\832656e9426c3fe3f30d771ea3e5bf50\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-glide-4.8.0.aar\832656e9426c3fe3f30d771ea3e5bf50\AndroidManifest.xml:6:5-8:41
+MERGED from [android.arch.navigation:navigation-fragment:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-1.0.0-alpha07.aar\247ff2d4578828e317f639d2bfea448e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-fragment:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-fragment-1.0.0-alpha07.aar\247ff2d4578828e317f639d2bfea448e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\fragment-1.0.0.aar\3a826eaba63e05131285f633567cc350\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\fragment-1.0.0.aar\3a826eaba63e05131285f633567cc350\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-animated-1.0.0.aar\b64e3d0916568f5ec225e63d532eb78f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-animated-1.0.0.aar\b64e3d0916568f5ec225e63d532eb78f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-ui-1.0.0.aar\04b818c7a94495c4f9668ed476902d80\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-ui-1.0.0.aar\04b818c7a94495c4f9668ed476902d80\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-runtime-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-ktx-1.0.0-alpha07.aar\a490116b7d7dc9e0d71c8db85f29d31a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-runtime-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-ktx-1.0.0-alpha07.aar\a490116b7d7dc9e0d71c8db85f29d31a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-runtime:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-1.0.0-alpha07.aar\71a19cb8da360b5408e6ebe88b40e2df\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-runtime:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-runtime-1.0.0-alpha07.aar\71a19cb8da360b5408e6ebe88b40e2df\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-utils-1.0.0.aar\2c9ad00a36fd15f0970ced845a39206b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\legacy-support-core-utils-1.0.0.aar\2c9ad00a36fd15f0970ced845a39206b\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-1.0.1.aar\556719f29dcbb1718b9d871db537a6a2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\vectordrawable-1.0.1.aar\556719f29dcbb1718b9d871db537a6a2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\media-1.0.0.aar\6765fe31d5f07bc72c5b46eaac6667bb\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\media-1.0.0.aar\6765fe31d5f07bc72c5b46eaac6667bb\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\transition-1.0.0.aar\86e6624897291b593babd673867707c2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\transition-1.0.0.aar\86e6624897291b593babd673867707c2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\ce8160776e6de96a64815fdabf883ad2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\loader-1.0.0.aar\ce8160776e6de96a64815fdabf883ad2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\237e6330be49adc076ae012d5ae011e1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\viewpager-1.0.0.aar\237e6330be49adc076ae012d5ae011e1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-1.0.0.aar\95fdd346346801b3c0c09045a3131aff\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-1.0.0.aar\95fdd346346801b3c0c09045a3131aff\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\drawerlayout-1.0.0.aar\ba4116213f662b4c688d5e3e2abc7a2d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\drawerlayout-1.0.0.aar\ba4116213f662b4c688d5e3e2abc7a2d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-1.0.0.aar\94d48cc3a0faddc8633da35bbe5e6005\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-1.0.0.aar\94d48cc3a0faddc8633da35bbe5e6005\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\05c7c58de45981eb350af5baeff35863\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\customview-1.0.0.aar\05c7c58de45981eb350af5baeff35863\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-1.0.0.aar\c9e4842343f0f79e10d20979652bfc25\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-1.0.0.aar\c9e4842343f0f79e10d20979652bfc25\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-1.0.0.aar\5143589636fabf73e48e8c88a35d3142\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-1.0.0.aar\5143589636fabf73e48e8c88a35d3142\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-common-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-ktx-1.0.0-alpha07.aar\a622afc7b12092c37d75b25137c85d0d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-common-ktx:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-ktx-1.0.0-alpha07.aar\a622afc7b12092c37d75b25137c85d0d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-common:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-1.0.0-alpha07.aar\e702f254e57d0e4d9b41593fb5d19a23\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.navigation:navigation-common:1.0.0-alpha07] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-navigation-common-1.0.0-alpha07.aar\e702f254e57d0e4d9b41593fb5d19a23\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-1.0.1.aar\7e8436da97132e8afaa7eecdc569212e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-service-2.0.0.aar\8ee77259a16cbe42d52669832f9b546d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-service-2.0.0.aar\8ee77259a16cbe42d52669832f9b546d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.0.0.aar\6015dccc4cbcedf595715cc0d94df5e1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-runtime-2.0.0.aar\6015dccc4cbcedf595715cc0d94df5e1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\88ba0dfa8dbbdc5ac94523739f8a4c92\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\versionedparcelable-1.0.0.aar\88ba0dfa8dbbdc5ac94523739f8a4c92\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cursoradapter-1.0.0.aar\6f8f3b0cde99fe20df3ebc440a4b5b28\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cursoradapter-1.0.0.aar\6f8f3b0cde99fe20df3ebc440a4b5b28\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\5f01fe97696c17b5e7c32768de3404b5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-2.0.0.aar\5f01fe97696c17b5e7c32768de3404b5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\53aafd93c13c13fbda9f09fcc5d2b1be\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-livedata-core-2.0.0.aar\53aafd93c13c13fbda9f09fcc5d2b1be\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.1-alpha01] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.1-alpha01.aar\c808b08b83767287ea80751a69b3ab44\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.1-alpha01] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\core-runtime-2.0.1-alpha01.aar\c808b08b83767287ea80751a69b3ab44\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.0.0.aar\9c3a782cae1b2ccac04a70dc791fe7d7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-viewmodel-2.0.0.aar\9c3a782cae1b2ccac04a70dc791fe7d7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-framework-2.0.0.aar\fad159faa1855cbfdcfef499565d2e4f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-framework-2.0.0.aar\fad159faa1855cbfdcfef499565d2e4f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-2.0.0.aar\acb234bf10088965281c514c27932250\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\sqlite-2.0.0.aar\acb234bf10088965281c514c27932250\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cardview-1.0.0.aar\981890b2bd6f5ec6b790bace93c914ce\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\cardview-1.0.0.aar\981890b2bd6f5ec6b790bace93c914ce\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\documentfile-1.0.0.aar\4ac5089cc8f6d6e350ee962ef3841193\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\documentfile-1.0.0.aar\4ac5089cc8f6d6e350ee962ef3841193\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-1.0.0.aar\eed8f8853cc43fa03103e0047d6ba1b8\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-1.0.0.aar\eed8f8853cc43fa03103e0047d6ba1b8\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\print-1.0.0.aar\18cee91b9a462a1cd645f656e11ad7a1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\print-1.0.0.aar\18cee91b9a462a1cd645f656e11ad7a1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\interpolator-1.0.0.aar\01dc4cc29e025317de53baf6405ee12e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\interpolator-1.0.0.aar\01dc4cc29e025317de53baf6405ee12e\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-gifdecoder-4.8.0.aar\c8890a8a725f128be195f896b9db4d30\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-gifdecoder-4.8.0.aar\c8890a8a725f128be195f896b9db4d30\AndroidManifest.xml:5:5-7:41
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		ADDED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Projects\RssClient\RssClientByKotlin\AppByGoogleSunflowers\android-sunflower\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:23:5-68
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:23:22-65
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:25:22-78
+provider#androidx.work.impl.WorkManagerInitializer
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:28:9-34:35
+	android:authorities
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:30:13-68
+	android:multiprocess
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:33:13-40
+	android:exported
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:32:13-37
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:34:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:31:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:29:13-69
+service#androidx.work.impl.background.systemalarm.SystemAlarmService
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:36:9-41:35
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:39:13-72
+	android:exported
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:40:13-37
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:41:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:38:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:37:13-88
+service#androidx.work.impl.background.systemjob.SystemJobService
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:42:9-48:35
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:45:13-70
+	android:exported
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:46:13-36
+	android:permission
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:47:13-69
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:48:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:44:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:43:13-84
+receiver#androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:50:9-55:35
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:53:13-35
+	android:exported
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:54:13-37
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:55:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:52:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:51:13-88
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:56:9-65:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:59:13-36
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:60:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:58:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:57:13-106
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:61:13-64:29
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:62:17-87
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:62:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:63:17-90
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:63:25-87
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:66:9-75:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:69:13-36
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:70:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:68:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:67:13-104
+intent-filter#action:name:android.intent.action.BATTERY_LOW+action:name:android.intent.action.BATTERY_OKAY
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:71:13-74:29
+action#android.intent.action.BATTERY_OKAY
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:72:17-77
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:72:25-74
+action#android.intent.action.BATTERY_LOW
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:73:17-76
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:73:25-73
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:76:9-85:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:79:13-36
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:80:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:78:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:77:13-104
+intent-filter#action:name:android.intent.action.DEVICE_STORAGE_LOW+action:name:android.intent.action.DEVICE_STORAGE_OK
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:81:13-84:29
+action#android.intent.action.DEVICE_STORAGE_LOW
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:82:17-83
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:82:25-80
+action#android.intent.action.DEVICE_STORAGE_OK
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:83:17-82
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:83:25-79
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:86:9-94:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:89:13-36
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:90:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:88:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:87:13-103
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:91:13-93:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:92:17-79
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:92:25-76
+receiver#androidx.work.impl.background.systemalarm.RescheduleReceiver
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:95:9-105:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:98:13-36
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:99:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:97:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:96:13-88
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.TIMEZONE_CHANGED+action:name:android.intent.action.TIME_SET
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:100:13-104:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:101:17-79
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:101:25-76
+action#android.intent.action.TIME_SET
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:102:17-73
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:102:25-70
+action#android.intent.action.TIMEZONE_CHANGED
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:103:17-81
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:103:25-78
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:106:9-115:20
+	android:enabled
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:109:13-72
+	android:exported
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:110:13-37
+	tools:targetApi
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:111:13-32
+	android:directBootAware
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:108:13-44
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:107:13-99
+intent-filter#action:name:androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:112:13-114:29
+action#androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:113:17-98
+	android:name
+		ADDED from [android.arch.work:work-runtime:1.0.0-alpha10] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\jetified-work-runtime-1.0.0-alpha10.aar\6046a9c80762e99176ced5f65df4c9d4\AndroidManifest.xml:113:25-95
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:23:9-25:40
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.room:room-runtime:2.1.0-alpha02] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\room-runtime-2.1.0-alpha02.aar\3a1ef4b84802176e0252b14b06bf774d\AndroidManifest.xml:24:13-74
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:25:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Asura\.gradle\caches\transforms-1\files-1.1\lifecycle-process-2.0.0.aar\67f75d78d69fe3e1e4394b9c25bba28c\AndroidManifest.xml:24:13-79
