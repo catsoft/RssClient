@@ -13,7 +13,7 @@ data class RssItem (
     val url : String,
     val name : String,
     val lastOpenDate : String,
-    val createDate : Calendar = Calendar.getInstance()
+    val createDate : String
 
 ) {
     override fun toString() = "$name $url"

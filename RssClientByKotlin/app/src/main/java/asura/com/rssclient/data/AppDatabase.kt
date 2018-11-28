@@ -9,7 +9,7 @@ import androidx.room.TypeConverters
 import asura.com.rssclient.utilites.DATABASE_NAME
 
 @Database(entities = [RssItem::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+//@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun rssItemDao(): RssItemDao
 
