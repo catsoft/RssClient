@@ -3,3 +3,4 @@
 /RssClient/bin
 /RssClient/*.user
 /RssClientByKotlin/.idea
+/RssClientByKotlin/app/.idea
