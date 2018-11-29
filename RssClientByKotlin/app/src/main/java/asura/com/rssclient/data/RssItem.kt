@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "rss_item")
+@Entity(tableName = "rss_items")
 data class RssItem (
     @ColumnInfo(name = "rss_id")
     @PrimaryKey

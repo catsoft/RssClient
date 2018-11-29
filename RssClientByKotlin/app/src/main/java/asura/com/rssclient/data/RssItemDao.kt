@@ -12,7 +12,7 @@ import androidx.room.Query
 @Dao
 interface RssItemDao {
 
-    @Query("Select * From rss_item Order by createDate")
+    @Query("Select * FROM rss_items")
     fun getRssItemsList() : LiveData<List<RssItem>>
 
     @Insert

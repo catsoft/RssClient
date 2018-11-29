@@ -1,22 +1,15 @@
 package asura.com.rssclient.ui
 
 import android.os.Bundle
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.databinding.FragmentRssListBinding
-import asura.com.rssclient.R
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import kotlin.random.Random
@@ -24,6 +17,7 @@ import kotlin.random.Random
 
 class RssListFragment : DaggerFragment(){
     @Inject lateinit var repository : RssItemRepository
+    private val random = Random(1000)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentRssListBinding.inflate(inflater, container, false)
@@ -35,7 +29,7 @@ class RssListFragment : DaggerFragment(){
             Observable.just(repository)
                 .subscribeOn(Schedulers.io())
                 .map {
-                    var id = Random(10000).nextLong()
+                    val id = random.nextLong()
                     val item = RssItem(id, "url", "name", "date", "date")
                     it.insertItem(item)
                 }
@@ -55,8 +49,11 @@ class RssListFragment : DaggerFragment(){
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {
-                    var data = it
-                    Toast.makeText(context, data.value?.size.toString(), Toast.LENGTH_LONG).show()
+                    val data = it
+
+                    data.observe(this, androidx.lifecycle.Observer {
+                        Toast.makeText(context, it.size.toString(), Toast.LENGTH_LONG).show()
+                    })
                 }
                 .subscribe()
         }
