@@ -25,6 +25,8 @@ buildscript {
         navigationVersion = '1.0.0-alpha07'
         recyclerViewVersion = '1.0.0'
         roomVersion = '2.1.0-alpha02'
+        rxJavaVersion = '2.1.7'
+        rxAndroidVersion = '2.0.1'
         runnerVersion = '1.0.1'
         supportLibraryVersion = '1.0.2'
         uiAutomatorVersion = '2.2.0-alpha4'

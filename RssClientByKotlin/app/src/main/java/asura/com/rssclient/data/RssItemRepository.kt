@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 
 class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
 
-
-
-    fun unsertItem(item : RssItem) = rssItemDao.insertRssItem(item)
+    fun insertItem(item : RssItem) = rssItemDao.insertRssItem(item)
 
     fun deleteItem(item : RssItem) = rssItemDao.deleteRssItem(item)
 
