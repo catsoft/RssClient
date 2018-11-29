@@ -5,58 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import asura.com.rssclient.databinding.FragmentRssListBinding
-import asura.com.rssclient.data.RssItem
-import asura.com.rssclient.data.RssItemRepository
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
-import kotlin.random.Random
+import asura.com.rssclient.viewmodels.RssListViewModel
 
 
-class RssListFragment : DaggerFragment(){
-    @Inject lateinit var repository : RssItemRepository
-    private val random = Random(1000)
+class RssListFragment : Fragment(){
+
+    private lateinit var viewModel: RssListViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentRssListBinding.inflate(inflater, container, false)
 
-        RssApplication.appComponent.inject(this)
+        viewModel = ViewModelProviders.of(this).get(RssListViewModel::class.java)
+        viewModel.getRssList().observe(this,androidx.lifecycle.Observer  {
+            Toast.makeText(context, it.size.toString(), Toast.LENGTH_LONG).show()
+        })
 
-        binding.noItems.setOnClickListener {
-
-            Observable.just(repository)
-                .subscribeOn(Schedulers.io())
-                .map {
-                    val id = random.nextLong()
-                    val item = RssItem(id, "url", "name", "date", "date")
-                    it.insertItem(item)
-                }
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-                }
-        }
-
-        binding.addButton.setOnClickListener{
-            Observable.just(repository)
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .map {
-                    it.getItems()
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .map {
-                    val data = it
-
-                    data.observe(this, androidx.lifecycle.Observer {
-                        Toast.makeText(context, it.size.toString(), Toast.LENGTH_LONG).show()
-                    })
-                }
-                .subscribe()
-        }
+        binding.noItems.setOnClickListener { viewModel.addItem() }
 
         return binding.root
     }

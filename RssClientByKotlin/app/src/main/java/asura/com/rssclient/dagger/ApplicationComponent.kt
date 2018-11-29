@@ -1,7 +1,6 @@
 package asura.com.rssclient.dagger
 
-import asura.com.rssclient.ui.DaggerFragment
-import asura.com.rssclient.ui.RssListFragment
+import asura.com.rssclient.viewmodels.RssListViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,6 +8,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(ApplicationModule::class, RepositotyModule::class))
 interface ApplicationComponent {
 
-    fun inject(daggerFragment: DaggerFragment)
-    fun inject(fragment: RssListFragment)
+    fun inject(rssListViewModel: RssListViewModel)
+
 }
