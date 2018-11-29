@@ -27,7 +27,6 @@ class RssListFragment : Fragment(){
         binding.noItems.setOnClickListener { viewModel.addItem() }
         val adapter = RssItemAdapter()
         binding.rssList.adapter = adapter
-        binding.rssList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         subscribeUi(adapter)
 
         return binding.root
