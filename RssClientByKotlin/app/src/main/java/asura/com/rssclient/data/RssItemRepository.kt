@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 
 class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
 
+
+
     fun unsertItem(item : RssItem) = rssItemDao.insertRssItem(item)
 
     fun deleteItem(item : RssItem) = rssItemDao.deleteRssItem(item)
@@ -18,9 +20,9 @@ class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
         // For Singleton instantiation
         @Volatile private var instance: RssItemRepository? = null
 
-        fun getInstance(gardenPlantingDao: RssItemDao) =
+        fun getInstance(rssItemDao: RssItemDao) =
             instance ?: synchronized(this) {
-                instance ?: RssItemRepository(gardenPlantingDao).also { instance = it }
+                instance ?: RssItemRepository(rssItemDao).also { instance = it }
             }
     }
 }
