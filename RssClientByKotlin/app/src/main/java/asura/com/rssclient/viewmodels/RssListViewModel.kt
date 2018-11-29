@@ -15,15 +15,14 @@ import kotlin.random.Random
  */
 class RssListViewModel : ViewModel(){
     @Inject lateinit var repository: RssItemRepository
-    private val random = Random(1000)
 
+    private val random = Random(1000)
     private val rssList = MediatorLiveData<List<RssItem>>()
 
     init {
         RssApplication.appComponent.inject(this)
 
-        val items = repository.getItems()
-        rssList.addSource(items, rssList::setValue)
+        rssList.addSource(repository.getItems(), rssList::setValue)
     }
 
     fun getRssList() = rssList
