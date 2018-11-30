@@ -73,6 +73,9 @@ dependencies {
 
     // Retrofit
 
+    // Anko
+    implementation "org.jetbrains.anko:anko:$ankoVersion"
+
     // Testing dependencies
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
