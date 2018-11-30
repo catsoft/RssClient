@@ -5,13 +5,17 @@ import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import asura.com.rssclient.ui.RssApplication
+import asura.com.rssclient.ui.RssListFragment
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
  * The ViewModel for [RssListFragment].
  */
-class RssListViewModel : ViewModel(){
-    @Inject lateinit var repository: RssItemRepository
+class RssListViewModel : ViewModel() {
+    @Inject
+    lateinit var repository: RssItemRepository
 
     private val rssList = MediatorLiveData<List<RssItem>>()
 
@@ -24,11 +28,12 @@ class RssListViewModel : ViewModel(){
     fun getRssList() = rssList
 
     fun removeItem(item: RssItem) {
-        repository.deleteItem(item)
 
-//        Observable.just(repository)
-//            .subscribeOn(Schedulers.io())
-//            .subscribe{
-//            }
+        Observable.just(repository)
+            .subscribeOn(Schedulers.io())
+            .map {
+                repository.deleteItem(item)
+            }
+            .subscribe()
     }
 }

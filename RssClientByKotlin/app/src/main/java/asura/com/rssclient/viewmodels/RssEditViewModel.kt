@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import asura.com.rssclient.ui.RssApplication
+import asura.com.rssclient.ui.RssEditFragment
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * The ViewModel for [RssEditFragment].
+ */
 class RssEditViewModel(rssId: String) : ViewModel() {
     @Inject
     lateinit var repository: RssItemRepository
