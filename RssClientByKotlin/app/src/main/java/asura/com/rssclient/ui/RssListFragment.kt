@@ -51,12 +51,15 @@ class RssListFragment : Fragment() {
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         item?.let {
-            if (item.itemId == R.id.context_menu_remove) {
-                val menuInfo = item.menuInfo
-                val castMenuInfo = menuInfo as LongClickRecyclerView.RecyclerContextMenuInfo
+            val menuInfo = item.menuInfo
+            val castMenuInfo = menuInfo as LongClickRecyclerView.RecyclerContextMenuInfo
+            val rssItem = adapter.getRssItem(castMenuInfo.position)
 
-                val rssItem = adapter.getRssItem(castMenuInfo.position)
+            if (item.itemId == R.id.context_menu_remove) {
                 viewModel.removeItem(rssItem)
+            } else if(item.itemId == R.id.context_menu_edit){
+                val direction = RssListFragmentDirections.ActionRssListFragmentToRssEditFragment(rssItem.rssId)
+                findNavController().navigate(direction)
             }
         }
 

@@ -11,4 +11,6 @@
     <string name="create_name_hint">Name</string>
     <string name="create_default_url">http://</string>
     <string name="context_menu_remove">Remove</string>
+    <string name="context_menu_edit">Edit</string>
+    <string name="edit_button">Edit</string>
 </resources>

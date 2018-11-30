@@ -6,7 +6,11 @@ class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
 
     fun insertItem(item : RssItem) = rssItemDao.insertRssItem(item)
 
+    fun updateItem(item : RssItem) = rssItemDao.updateRssItem(item)
+
     fun deleteItem(item : RssItem) = rssItemDao.deleteRssItem(item)
+
+    fun getItemById(rssId : String) = rssItemDao.getItemById(rssId)
 
     fun getItems() : LiveData<List<RssItem>>
     {
@@ -15,7 +19,6 @@ class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
 
     companion object {
 
-        // For Singleton instantiation
         @Volatile private var instance: RssItemRepository? = null
 
         fun getInstance(rssItemDao: RssItemDao) =

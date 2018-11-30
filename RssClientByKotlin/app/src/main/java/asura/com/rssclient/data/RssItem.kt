@@ -13,8 +13,8 @@ data class RssItem(
     val createDate: String,
 
     @ColumnInfo(name = "rss_id")
-    @PrimaryKey(autoGenerate = true)
-    val rssId: Long = 0
+    @PrimaryKey()
+    val rssId: String = UUID.randomUUID().toString()
 ) {
     override fun toString() = "$name $url"
 }
