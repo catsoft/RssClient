@@ -13,8 +13,7 @@ import android.view.*
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
 import java.lang.NullPointerException
 
-
-class RssListFragment : Fragment(){
+class RssListFragment : Fragment() {
 
     private lateinit var viewModel: RssListViewModel
     private lateinit var adapter: RssItemAdapter
@@ -28,7 +27,7 @@ class RssListFragment : Fragment(){
         binding.rssList.adapter = adapter
         subscribeUi(adapter)
 
-        binding.addButton.setOnClickListener{
+        binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.rss_create_fragment)
         }
 
@@ -46,8 +45,7 @@ class RssListFragment : Fragment(){
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         item?.let {
-            if(item.itemId == R.id.context_menu_remove)
-            {
+            if (item.itemId == R.id.context_menu_remove) {
                 val menuInfo = item.menuInfo
                 val castMenuInfo = menuInfo as LongClickRecyclerView.RecyclerContextMenuInfo
 
