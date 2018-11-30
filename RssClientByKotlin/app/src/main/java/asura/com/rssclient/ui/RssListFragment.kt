@@ -1,5 +1,6 @@
 package asura.com.rssclient.ui
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -10,6 +11,8 @@ import asura.com.rssclient.databinding.FragmentRssListBinding
 import asura.com.rssclient.viewmodels.RssListViewModel
 import asura.com.rssclient.R
 import android.view.*
+import android.widget.TextView
+import androidx.core.view.isGone
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
 import java.lang.NullPointerException
 
@@ -25,7 +28,8 @@ class RssListFragment : Fragment() {
 
         adapter = RssItemAdapter()
         binding.rssList.adapter = adapter
-        subscribeUi(adapter)
+        subscribeAdapter(adapter)
+        subscribeEmptyView(binding.noItems)
 
         binding.addButton.setOnClickListener {
             findNavController().navigate(R.id.rss_create_fragment)
@@ -36,7 +40,7 @@ class RssListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
 
         val menuInflater = this.activity?.menuInflater ?: throw NullPointerException("Not found menuInflater")
@@ -57,11 +61,17 @@ class RssListFragment : Fragment() {
         return super.onContextItemSelected(item)
     }
 
-    private fun subscribeUi(adapter: RssItemAdapter) {
+    private fun subscribeAdapter(adapter: RssItemAdapter) {
         viewModel.getRssList().observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 adapter.submitList(it.toMutableList())
             }
+        })
+    }
+
+    private fun subscribeEmptyView(noItems: TextView) {
+        viewModel.getRssList().observe(viewLifecycleOwner, Observer {
+            noItems.isGone = it?.isNotEmpty() == true
         })
     }
 }

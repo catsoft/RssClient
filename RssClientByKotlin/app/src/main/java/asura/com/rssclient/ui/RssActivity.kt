@@ -1,5 +1,7 @@
 package asura.com.rssclient.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -37,5 +39,11 @@ class RssActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appbarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    companion object {
+        fun newIntent(context: Context) : Intent {
+            return Intent(context, RssActivity::class.java)
+        }
     }
 }
