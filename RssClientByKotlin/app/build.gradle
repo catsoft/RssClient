@@ -74,7 +74,7 @@ dependencies {
     // Retrofit
 
     // Anko
-    implementation "org.jetbrains.anko:anko:$ankoVersion"
+    implementation "org.jetbrains.anko:anko:$rootProject.ankoVersion"
 
     // Testing dependencies
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
