@@ -2,20 +2,38 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@id/rss_list_fragment">
+            app:startDestination="@+id/rss_list_fragment">
     <fragment
-        android:id="@+id/rss_list_fragment"
-        android:name="asura.com.rssclient.ui.RssListFragment"
-        android:label="@string/rss_list_title"
-        tools:layout="@layout/fragment_rss_list"/>
-    <fragment
-        android:id="@+id/rss_detail_fragment"
-        android:name="asura.com.rssclient.ui.RssDetailFragment"
-        android:label="@string/rss_detail_title"
-        tools:layout="@layout/fragment_rss_detail"/>
+            android:id="@+id/rss_list_fragment"
+            android:name="asura.com.rssclient.ui.RssListFragment"
+            android:label="@string/rss_list_title"
+            tools:layout="@layout/fragment_rss_list">
+
+        <action
+                android:id="@+id/action_rss_list_fragment_to_rss_detail_fragment"
+                app:destination="@id/rss_detail_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+                android:id="@+id/action_rss_list_fragment_to_rss_create_fragment"
+                app:destination="@id/rss_create_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
     <fragment
-        android:id="@+id/rss_create_fragment"
-        android:name="asura.com.rssclient.ui.RssCreateFragment"
-        android:label="@string/rss_create_title"/>
+            android:id="@+id/rss_detail_fragment"
+            android:name="asura.com.rssclient.ui.RssDetailFragment"
+            android:label="@string/rss_detail_title"
+            tools:layout="@layout/fragment_rss_detail"/>
+
+    <fragment
+            android:id="@+id/rss_create_fragment"
+            android:name="asura.com.rssclient.ui.RssCreateFragment"
+            android:label="@string/rss_create_title"/>
 </navigation>

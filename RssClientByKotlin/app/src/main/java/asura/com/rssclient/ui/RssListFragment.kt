@@ -13,6 +13,7 @@ import asura.com.rssclient.R
 import android.view.*
 import android.widget.TextView
 import androidx.core.view.isGone
+import androidx.navigation.findNavController
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
 import java.lang.NullPointerException
 
@@ -32,7 +33,8 @@ class RssListFragment : Fragment() {
         subscribeEmptyView(binding.noItems)
 
         binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.rss_create_fragment)
+            val direction = RssListFragmentDirections.ActionRssListFragmentToRssCreateFragment()
+            findNavController().navigate(direction)
         }
 
         registerForContextMenu(binding.rssList)

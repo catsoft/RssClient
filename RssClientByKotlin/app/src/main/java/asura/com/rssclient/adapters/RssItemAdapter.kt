@@ -1,12 +1,17 @@
 package asura.com.rssclient.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.databinding.ListItemRssBinding
+import asura.com.rssclient.ui.RssListFragmentDirections
 
 class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(RssItemDiffCallback()) {
 
@@ -25,6 +30,10 @@ class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(Rs
     class RssItemViewHolder(private val binding : ListItemRssBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(rssItem: RssItem) {
             binding.apply {
+                clickListener = View.OnClickListener {
+                    val direction = RssListFragmentDirections.ActionRssListFragmentToRssDetailFragment()
+                    it.findNavController().navigate(direction)
+                }
                 item = rssItem
                 executePendingBindings()
             }
