@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.databinding.ListItemRssBinding
 import asura.com.rssclient.ui.RssListFragmentDirections
+import asura.com.rssclient.ui.RssListFragment
 
+/**
+ * Adapter for the [RecyclerView] in [RssListFragment].
+ */
 class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(RssItemDiffCallback()) {
 
     override fun onBindViewHolder(holder: RssItemViewHolder, position: Int) {

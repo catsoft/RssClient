@@ -2,6 +2,9 @@ package asura.com.rssclient.data
 
 import androidx.lifecycle.LiveData
 
+/**
+ * Repository module for handling data operations with [RssItem]
+ */
 class RssItemRepository private constructor(private val rssItemDao: RssItemDao){
 
     fun insertItem(item : RssItem) = rssItemDao.insertRssItem(item)

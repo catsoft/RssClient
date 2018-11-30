@@ -6,6 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import asura.com.rssclient.utilites.DATABASE_NAME
 
+/**
+ * The Room database for this app
+ */
 @Database(entities = [RssItem::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun rssItemDao(): RssItemDao

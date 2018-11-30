@@ -6,10 +6,12 @@ import android.view.ContextMenu
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * RecyclerView with context menu by long click
+ */
 class LongClickRecyclerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
-
 
     private var menuInfo: RecyclerContextMenuInfo? = null
 
