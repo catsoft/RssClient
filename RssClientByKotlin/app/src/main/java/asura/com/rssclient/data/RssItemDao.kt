@@ -9,7 +9,7 @@ import androidx.room.*
 @Dao
 interface RssItemDao {
 
-    @Query("Select * FROM rss_items")
+    @Query("SELECT * FROM rss_items")
     fun getRssItemsList() : LiveData<List<RssItem>>
 
     @Insert

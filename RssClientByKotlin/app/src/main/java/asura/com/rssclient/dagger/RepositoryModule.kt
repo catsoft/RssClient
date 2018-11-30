@@ -8,12 +8,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class RepositotyModule(private val baseApp: Application) {
+class RepositoryModule(private val baseApp: Application) {
 
     @Singleton
     @Provides
-    fun provideRssItemRepository() : RssItemRepository {
+    fun provideRssItemRepository(): RssItemRepository {
         return RssItemRepository.getInstance(AppDatabase.getInstance(baseApp.applicationContext).rssItemDao())
     }
-
 }

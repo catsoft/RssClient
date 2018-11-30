@@ -3,9 +3,7 @@ package asura.com.rssclient.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +25,7 @@ class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(Rs
 
     fun getRssItem(position: Int) = getItem(position)
 
-    class RssItemViewHolder(private val binding : ListItemRssBinding) : RecyclerView.ViewHolder(binding.root) {
+    class RssItemViewHolder(private val binding: ListItemRssBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(rssItem: RssItem) {
             binding.apply {
                 clickListener = View.OnClickListener {

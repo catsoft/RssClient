@@ -6,7 +6,6 @@ import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import asura.com.rssclient.ui.RssApplication
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 

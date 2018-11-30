@@ -1,21 +1,18 @@
 package asura.com.rssclient.ui
 
-import android.opengl.Visibility
 import android.os.Bundle
+import android.view.*
+import android.widget.TextView
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import asura.com.rssclient.R
 import asura.com.rssclient.adapters.RssItemAdapter
 import asura.com.rssclient.databinding.FragmentRssListBinding
-import asura.com.rssclient.viewmodels.RssListViewModel
-import asura.com.rssclient.R
-import android.view.*
-import android.widget.TextView
-import androidx.core.view.isGone
-import androidx.navigation.findNavController
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
-import java.lang.NullPointerException
+import asura.com.rssclient.viewmodels.RssListViewModel
 
 class RssListFragment : Fragment() {
 

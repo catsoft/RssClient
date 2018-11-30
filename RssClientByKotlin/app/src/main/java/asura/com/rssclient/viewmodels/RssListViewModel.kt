@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import asura.com.rssclient.ui.RssApplication
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.random.Random
 
 /**
  * The ViewModel for [RssListFragment].
@@ -27,10 +24,11 @@ class RssListViewModel : ViewModel(){
     fun getRssList() = rssList
 
     fun removeItem(item: RssItem) {
-        Observable.just(repository)
-            .subscribeOn(Schedulers.io())
-            .subscribe{
-                repository.deleteItem(item)
-            }
+        repository.deleteItem(item)
+
+//        Observable.just(repository)
+//            .subscribeOn(Schedulers.io())
+//            .subscribe{
+//            }
     }
 }

@@ -7,7 +7,6 @@ import asura.com.rssclient.ui.RssApplication
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.random.Random
 
 class RssCreateViewModel : ViewModel() {
     @Inject
