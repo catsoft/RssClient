@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
 import asura.com.rssclient.ui.RssApplication
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RssEditViewModel(rssId: String) : ViewModel() {
@@ -21,8 +24,12 @@ class RssEditViewModel(rssId: String) : ViewModel() {
 
     fun updateItem(url : String, name : String){
         rssItem.value?.let {
-            var copy = it.copy(name = name, url = url)
-            repository.updateItem(copy)
+            val copy = it.copy(name = name, url = url)
+            Observable.just(repository)
+                .observeOn(Schedulers.io())
+                .subscribe {
+                    repository.updateItem(copy)
+                }
         }
     }
 }
