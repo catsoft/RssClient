@@ -16,7 +16,6 @@ import kotlin.random.Random
 class RssListViewModel : ViewModel(){
     @Inject lateinit var repository: RssItemRepository
 
-    private val random = Random(1000)
     private val rssList = MediatorLiveData<List<RssItem>>()
 
     init {
@@ -27,13 +26,11 @@ class RssListViewModel : ViewModel(){
 
     fun getRssList() = rssList
 
-    fun addItem() {
+    fun removeItem(item: RssItem) {
         Observable.just(repository)
             .subscribeOn(Schedulers.io())
-            .map {
-                val id = random.nextLong()
-                val item = RssItem(id, "url", "name", "date", "date")
-                it.insertItem(item)
-            }.subscribe()
+            .subscribe{
+                repository.deleteItem(item)
+            }
     }
 }

@@ -6,4 +6,13 @@
     <dimen name="fab_height">56dp</dimen>
     <dimen name="fab_width">56dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_item_top_margin">5dp</dimen>
+    <dimen name="list_item_bottom_margin">5dp</dimen>
+    <dimen name="list_item_left_margin">10dp</dimen>
+    <dimen name="list_item_right_margin">10dp</dimen>
+    <dimen name="list_item_top_padding">5dp</dimen>
+    <dimen name="list_item_bottom_padding">5dp</dimen>
+    <dimen name="list_item_left_padding">10dp</dimen>
+    <dimen name="list_item_right_padding">10dp</dimen>
+    <dimen name="common_padding">24dp</dimen>
 </resources>

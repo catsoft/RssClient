@@ -4,30 +4,31 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rss_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/list_item_rss"/>
+            android:layout_height="match_parent">
+
+        <asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
+                android:id="@+id/rss_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_rss"/>
 
         <TextView
-            android:id="@+id/no_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rss_list_empty"
-            android:layout_gravity="center"/>
+                android:id="@+id/no_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rss_list_empty"
+                android:layout_gravity="center"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_button"
-            android:layout_width="@dimen/fab_width"
-            android:layout_height="@dimen/fab_height"
-            android:src="@android:drawable/ic_input_add"
-            android:layout_gravity="end|bottom"
-            android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin"/>
+                android:id="@+id/add_button"
+                android:layout_width="@dimen/fab_width"
+                android:layout_height="@dimen/fab_height"
+                android:src="@android:drawable/ic_input_add"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="@dimen/fab_margin"
+                android:layout_marginBottom="@dimen/fab_margin"/>
+
     </FrameLayout>
 </layout>

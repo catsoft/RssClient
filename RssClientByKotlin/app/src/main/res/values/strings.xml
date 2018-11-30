@@ -6,4 +6,9 @@
     <string name="navigation_drawer_header_title">Header Title</string>
     <string name="rss_list_empty">No items</string>
     <string name="rss_create_title">Rss create</string>
+    <string name="create_button">Create</string>
+    <string name="create_url_hint">Url</string>
+    <string name="create_name_hint">Name</string>
+    <string name="create_default_url">http://</string>
+    <string name="context_menu_remove">Remove</string>
 </resources>

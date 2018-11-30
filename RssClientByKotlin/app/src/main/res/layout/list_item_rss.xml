@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="longClickListener"
+                type="android.view.View.OnLongClickListener"/>
+        <variable
+                name="clickListener"
+                type="android.view.View.OnClickListener"/>
+        <variable
+                name="item"
+                type="asura.com.rssclient.data.RssItem"/>
+    </data>
+
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/list_item_top_margin"
+            android:layout_marginBottom="@dimen/list_item_bottom_margin"
+            android:layout_marginStart="@dimen/list_item_left_margin"
+            android:layout_marginEnd="@dimen/list_item_right_margin">
 
         <LinearLayout
+                android:longClickable="true"
+                android:id="@+id/rss_list_item_click_view"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:paddingTop="@dimen/list_item_top_padding"
+                android:paddingBottom="@dimen/list_item_bottom_padding"
+                android:paddingStart="@dimen/list_item_left_padding"
+                android:paddingEnd="@dimen/list_item_right_padding"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#FF0000">
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
             <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/list_item_rss_title"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="123123132"/>
+                    android:text="@{item.Name}"/>
+
+            <TextView
+                    android:id="@+id/list_item_rss_subtitle"
+                    style="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.Url}"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

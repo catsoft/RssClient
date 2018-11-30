@@ -20,11 +20,15 @@ class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(Rs
         return RssItemViewHolder(binding)
     }
 
+    fun getRssItem(position: Int) = getItem(position)
+
     class RssItemViewHolder(private val binding : ListItemRssBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: RssItem) {
+        fun bind(rssItem: RssItem) {
             binding.apply {
+                item = rssItem
                 executePendingBindings()
             }
+            itemView.isLongClickable = true
         }
     }
 
