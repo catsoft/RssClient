@@ -8,7 +8,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, RepositoryModule::class])
+@Component(modules = [ApplicationModule::class, RepositoryModule::class, RssApiModule::class])
 interface ApplicationComponent {
 
     fun inject(rssListViewModel: RssListViewModel)
