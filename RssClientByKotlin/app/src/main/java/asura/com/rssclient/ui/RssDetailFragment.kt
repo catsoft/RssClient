@@ -40,7 +40,7 @@ class RssDetailFragment : Fragment() {
         viewModel.getData().observe(viewLifecycleOwner, Observer {
             it?.items?.let {
                 adapter.submitList(it.map {
-                    RssMessage(it.title, it.link, it.description, it.title)
+                    RssMessage(it.title, it.publishDate, it.description, it.title)
                 })
             }
         })
