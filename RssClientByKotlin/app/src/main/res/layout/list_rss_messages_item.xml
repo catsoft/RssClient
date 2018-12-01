@@ -32,7 +32,8 @@
                     android:paddingRight="10dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:onClickListener="@{clickListener}">
 
                 <TextView
                         android:id="@+id/rss_message_title"

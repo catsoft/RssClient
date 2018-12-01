@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssMessage
 import asura.com.rssclient.databinding.ListRssMessagesItemBinding
 import asura.com.rssclient.ui.RssDetailFragment
+import org.jetbrains.anko.browse
 
 /**
  * Adapter for the [RecyclerView] in [RssDetailFragment].
@@ -29,6 +30,7 @@ class RssMessageAdapter : ListAdapter<RssMessage, RssMessageAdapter.RssMessageVi
         fun bind(rssItem: RssMessage) {
             binding.apply {
                 clickListener = View.OnClickListener {
+                    root.context.browse(item?.url ?: "", false)
                 }
                 item = rssItem
                 executePendingBindings()
