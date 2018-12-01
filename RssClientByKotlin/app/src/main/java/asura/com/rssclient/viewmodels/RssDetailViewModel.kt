@@ -10,6 +10,7 @@ import asura.com.rssclient.ui.RssApplication
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import me.toptas.rssconverter.RssFeed
 import javax.inject.Inject
 
 class RssDetailViewModel(rssItemId: String) : ViewModel() {
@@ -21,7 +22,7 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
 
     var rssItem: LiveData<RssItem>
 
-    private var loadData: MutableLiveData<String>
+    private var loadData: MutableLiveData<RssFeed>
 
     init {
         RssApplication.appComponent.inject(this)
@@ -38,11 +39,13 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                loadData.value = it?.body() ?: ""
+                it?.body()?.let {
+                    loadData.value = it
+                }
             }
     }
 
-    fun getData(): LiveData<String> = loadData
+    fun getData(): LiveData<RssFeed> = loadData
 
     fun deleteItem() {
         Observable.just(repository)

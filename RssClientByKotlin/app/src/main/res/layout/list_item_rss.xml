@@ -22,8 +22,10 @@
             android:layout_marginEnd="@dimen/list_item_right_margin">
 
         <LinearLayout
-                android:longClickable="true"
                 android:id="@+id/rss_list_item_click_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:longClickable="true"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:paddingTop="@dimen/list_item_top_padding"
@@ -31,23 +33,21 @@
                 android:paddingStart="@dimen/list_item_left_padding"
                 android:paddingEnd="@dimen/list_item_right_padding"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:focusable="true"
                 android:onClickListener="@{clickListener}">
 
             <TextView
                     android:id="@+id/list_item_rss_title"
-                    style="@style/Base.TextAppearance.AppCompat.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
                     android:text="@{item.Name}"/>
 
             <TextView
                     android:id="@+id/list_item_rss_subtitle"
-                    style="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:text="@{item.Url}"/>
 
         </LinearLayout>

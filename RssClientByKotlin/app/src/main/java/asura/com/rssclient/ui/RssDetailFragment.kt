@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.R
+import asura.com.rssclient.adapters.RssMessageAdapter
+import asura.com.rssclient.data.RssMessage
 import asura.com.rssclient.databinding.FragmentRssDetailBinding
 import asura.com.rssclient.viewmodels.RssDetailViewModel
 import asura.com.rssclient.viewmodels.RssDetailViewModelFactory
@@ -18,6 +20,7 @@ class RssDetailFragment : Fragment() {
     private lateinit var webView : WebView
     private lateinit var viewModel: RssDetailViewModel
     private lateinit var args: RssEditFragmentArgs
+    private lateinit var adapter : RssMessageAdapter
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,8 +34,15 @@ class RssDetailFragment : Fragment() {
         webView.settings.javaScriptEnabled = true
         (binding.root as ViewGroup).addView(webView)
 
+        adapter = RssMessageAdapter()
+        binding.recyclerView.adapter = adapter
+
         viewModel.getData().observe(viewLifecycleOwner, Observer {
-            webView.loadDataWithBaseURL("", it, "text/html", "URF-8", "")
+            it?.items?.let {
+                adapter.submitList(it.map {
+                    RssMessage(it.title, it.link, it.description, it.title)
+                })
+            }
         })
 
         viewModel.rssItem.observe(viewLifecycleOwner, Observer {
