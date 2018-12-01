@@ -2,19 +2,20 @@ package asura.com.rssclient.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import asura.com.rssclient.R
 import asura.com.rssclient.databinding.FragmentRssDetailBinding
 import asura.com.rssclient.viewmodels.RssDetailViewModel
 import asura.com.rssclient.viewmodels.RssDetailViewModelFactory
 
 class RssDetailFragment : Fragment() {
 
+    private lateinit var webView : WebView
     private lateinit var viewModel: RssDetailViewModel
     private lateinit var args: RssEditFragmentArgs
 
@@ -26,17 +27,51 @@ class RssDetailFragment : Fragment() {
         val factory = RssDetailViewModelFactory(args.rssItemId)
         viewModel = ViewModelProviders.of(this, factory).get(RssDetailViewModel::class.java)
 
+        webView = WebView(context)
+        webView.settings.javaScriptEnabled = true
+        (binding.root as ViewGroup).addView(webView)
+
         viewModel.getData().observe(viewLifecycleOwner, Observer {
-            val webView = WebView(context)
-            webView.settings.javaScriptEnabled = true
             webView.loadDataWithBaseURL("", it, "text/html", "URF-8", "")
-            (binding.root as ViewGroup).addView(webView)
         })
 
         viewModel.rssItem.observe(viewLifecycleOwner, Observer {
             viewModel.loadItems()
         })
 
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val menuInflater = this.activity?.menuInflater ?: throw NullPointerException("Not found menuInflater")
+        menuInflater.inflate(R.menu.rss_detail_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.let {
+            val navController = findNavController()
+            when(it.itemId){
+                R.id.rss_detail_menu_edit -> {
+                    val id = viewModel.rssItem.value?.rssId
+                    id?.let {
+                        val toEdit = RssDetailFragmentDirections.ActionRssDetailFragmentToRssEditFragment(id)
+                        navController.navigate(toEdit)
+                    }
+                }
+                R.id.rss_detail_menu_remove -> {
+                    viewModel.deleteItem()
+                    navController.navigateUp()
+                }
+                else -> {
+
+                }
+            }
+        }
+
+        return super.onContextItemSelected(item)
     }
 }

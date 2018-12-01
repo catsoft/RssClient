@@ -21,7 +21,7 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
 
     var rssItem: LiveData<RssItem>
 
-    private var loadData : MutableLiveData<String>
+    private var loadData: MutableLiveData<String>
 
     init {
         RssApplication.appComponent.inject(this)
@@ -42,5 +42,16 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
             }
     }
 
-    fun getData() : LiveData<String> = loadData
+    fun getData(): LiveData<String> = loadData
+
+    fun deleteItem() {
+        Observable.just(repository)
+            .subscribeOn(Schedulers.io())
+            .map {
+                rssItem.value?.let {
+                    repository.deleteItem(it)
+                }
+            }
+            .subscribe()
+    }
 }

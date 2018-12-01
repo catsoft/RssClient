@@ -14,4 +14,6 @@
     <string name="context_menu_edit">Edit</string>
     <string name="edit_button">Edit</string>
     <string name="rss_edit_title">Rss edit</string>
+    <string name="rss_detail_menu_edit">Edit</string>
+    <string name="rss_detail_menu_remove">Remove</string>
 </resources>

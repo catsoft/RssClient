@@ -16,17 +16,16 @@
         <activity
                 android:name=".ui.RssActivity"
                 android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity
                 android:name=".ui.SplashActivity"
-                android:theme="@style/AppTheme.Launcher"
-                android:noHistory="true">
+                android:noHistory="true"
+                android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

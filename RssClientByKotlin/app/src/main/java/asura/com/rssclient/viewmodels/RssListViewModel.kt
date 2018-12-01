@@ -28,7 +28,6 @@ class RssListViewModel : ViewModel() {
     fun getRssList() = rssList
 
     fun removeItem(item: RssItem) {
-
         Observable.just(repository)
             .subscribeOn(Schedulers.io())
             .map {
