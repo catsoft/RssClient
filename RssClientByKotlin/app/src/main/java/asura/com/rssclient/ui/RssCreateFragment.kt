@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.databinding.FragmentRssCreateBinding
+import asura.com.rssclient.utils.hideKeyboard
+import asura.com.rssclient.utils.showKeyboard
 import asura.com.rssclient.viewmodels.RssCreateViewModel
 
 class RssCreateFragment : Fragment() {
@@ -24,6 +26,13 @@ class RssCreateFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        showKeyboard(binding.nameTextInput )
+
         return binding.root
+    }
+
+    override fun onDetach() {
+        hideKeyboard()
+        super.onDetach()
     }
 }

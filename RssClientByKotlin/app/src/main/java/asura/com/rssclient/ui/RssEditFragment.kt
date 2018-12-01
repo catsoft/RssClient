@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.databinding.FragmentRssEditBinding
+import asura.com.rssclient.utils.hideKeyboard
+import asura.com.rssclient.utils.showKeyboard
 import asura.com.rssclient.viewmodels.RssEditViewModel
 import asura.com.rssclient.viewmodels.RssEditViewModelFactory
 
@@ -32,6 +34,8 @@ class RssEditFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        showKeyboard(binding.nameTextInput)
+
         return binding.root
     }
 
@@ -40,5 +44,10 @@ class RssEditFragment : Fragment() {
             binding.nameTextInput.setText(it.name)
             binding.urlTextInput.setText(it.url)
         })
+    }
+
+    override fun onDetach() {
+        hideKeyboard()
+        super.onDetach()
     }
 }
