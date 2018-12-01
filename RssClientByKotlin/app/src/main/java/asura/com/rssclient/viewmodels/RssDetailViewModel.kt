@@ -23,12 +23,14 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
     var rssItem: LiveData<RssItem>
 
     private var loadData: MutableLiveData<RssFeed>
+    private var errorMessage : MutableLiveData<String>
 
     init {
         RssApplication.appComponent.inject(this)
         rssItem = repository.getItemById(rssItemId)
 
         loadData = MutableLiveData()
+        errorMessage = MutableLiveData()
     }
 
     fun loadItems() {
@@ -38,14 +40,17 @@ class RssDetailViewModel(rssItemId: String) : ViewModel() {
                 rssApiService.getQuery(rssItem.value?.url ?: "").execute()
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe({
                 it?.body()?.let {
                     loadData.value = it
                 }
-            }
+            }, {
+                errorMessage.value = it.message
+            })
     }
 
     fun getData(): LiveData<RssFeed> = loadData
+    fun getError() : LiveData<String> = errorMessage
 
     fun deleteItem() {
         Observable.just(repository)

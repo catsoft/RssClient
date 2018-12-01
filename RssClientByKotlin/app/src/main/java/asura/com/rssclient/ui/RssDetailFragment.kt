@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -36,6 +37,12 @@ class RssDetailFragment : Fragment() {
 
         adapter = RssMessageAdapter()
         binding.recyclerView.adapter = adapter
+
+        viewModel.getError().observe(viewLifecycleOwner, Observer {
+            binding.errorView.text = it
+            binding.errorView.isGone = false
+            binding.recyclerView.isGone = true
+        })
 
         viewModel.getData().observe(viewLifecycleOwner, Observer {
             it?.items?.let {
