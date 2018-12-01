@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.databinding.ListItemRssBinding
-import asura.com.rssclient.ui.RssListFragmentDirections
 import asura.com.rssclient.ui.RssListFragment
+import asura.com.rssclient.ui.RssListFragmentDirections
 
 /**
  * Adapter for the [RecyclerView] in [RssListFragment].
@@ -27,13 +27,15 @@ class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(Rs
         return RssItemViewHolder(binding)
     }
 
-    fun getRssItem(position: Int) = getItem(position)
+    fun getRssItem(position: Int) : RssItem {
+        return getItem(position)
+    }
 
     class RssItemViewHolder(private val binding: ListItemRssBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(rssItem: RssItem) {
             binding.apply {
                 clickListener = View.OnClickListener {
-                    val direction = RssListFragmentDirections.ActionRssListFragmentToRssDetailFragment()
+                    val direction = RssListFragmentDirections.ActionRssListFragmentToRssDetailFragment(rssItem.rssId)
                     it.findNavController().navigate(direction)
                 }
                 item = rssItem

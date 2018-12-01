@@ -38,17 +38,24 @@
             android:id="@+id/rss_detail_fragment"
             android:name="asura.com.rssclient.ui.RssDetailFragment"
             android:label="@string/rss_detail_title"
-            tools:layout="@layout/fragment_rss_detail"/>
+            tools:layout="@layout/fragment_rss_detail">
+
+        <argument
+                android:name="rssItemId"
+                app:argType="string"/>
+    </fragment>
 
     <fragment
             android:id="@+id/rss_create_fragment"
             android:name="asura.com.rssclient.ui.RssCreateFragment"
-            android:label="@string/rss_create_title"/>
+            android:label="@string/rss_create_title"
+            tools:layout="@layout/fragment_rss_create"/>
 
     <fragment
             android:id="@+id/rss_edit_fragment"
             android:name="asura.com.rssclient.ui.RssEditFragment"
-            android:label="Rss edit">
+            android:label="@string/rss_edit_title"
+            tools:layout="@layout/fragment_rss_edit">
 
         <argument
                 android:name="rssItemId"
