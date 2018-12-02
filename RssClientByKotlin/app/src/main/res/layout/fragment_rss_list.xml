@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
+    
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+        
         <asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
                 android:id="@+id/rss_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_rss"/>
-
+        
         <TextView
                 android:id="@+id/no_items"
                 android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Headline"
                 android:text="@string/rss_list_empty"
                 android:layout_gravity="center"/>
-
+        
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_button"
                 android:layout_width="@dimen/fab_width"
@@ -30,6 +31,6 @@
                 android:layout_gravity="end|bottom"
                 android:layout_marginEnd="@dimen/fab_margin"
                 android:layout_marginBottom="@dimen/fab_margin"/>
-
+    
     </FrameLayout>
 </layout>

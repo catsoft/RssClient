@@ -5,25 +5,25 @@
         android:id="@+id/root_stated"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+    
     <LinearLayout
             android:id="@+id/normal_state_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"/>
-
+    
     <LinearLayout
             android:id="@+id/load_state_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"/>
-
+    
     <LinearLayout
             android:id="@+id/invalid_state_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+        
         <include layout="@layout/stated_error"/>
     </LinearLayout>
 

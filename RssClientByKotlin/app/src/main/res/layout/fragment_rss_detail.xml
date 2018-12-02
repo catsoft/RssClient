@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-
+    
     <RelativeLayout
             android:orientation="vertical"
             android:id="@+id/root_stated"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+        
         <LinearLayout
                 android:id="@+id/normal_state_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+            
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
@@ -22,25 +23,25 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/list_item_rss"/>
         </LinearLayout>
-
+        
         <LinearLayout
                 android:id="@+id/load_state_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+            
             <include layout="@layout/stated_load"/>
         </LinearLayout>
-
+        
         <LinearLayout
                 android:id="@+id/invalid_state_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+            
             <include layout="@layout/stated_error"/>
         </LinearLayout>
-
+    
     </RelativeLayout>
 </layout>
 
