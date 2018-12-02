@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssMessage
 import asura.com.rssclient.databinding.ListRssMessagesItemBinding
 import asura.com.rssclient.ui.RssDetailFragment
+import asura.com.rssclient.viewmodels.RssDetailViewModel
 import org.jetbrains.anko.browse
 
 /**
  * Adapter for the [RecyclerView] in [RssDetailFragment].
  */
-class RssMessageAdapter : ListAdapter<RssMessage, RssMessageAdapter.RssMessageViewHolder>(RssMessageAdapter.RssItemDiffCallback()) {
+class RssMessageAdapter(private val viewModel : RssDetailViewModel) : ListAdapter<RssMessage, RssMessageAdapter.RssMessageViewHolder>(RssMessageAdapter.RssItemDiffCallback()) {
 
     override fun onBindViewHolder(holder: RssMessageViewHolder, position: Int) {
         val item = getItem(position)
@@ -23,16 +24,17 @@ class RssMessageAdapter : ListAdapter<RssMessage, RssMessageAdapter.RssMessageVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RssMessageViewHolder {
         val binding = ListRssMessagesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RssMessageAdapter.RssMessageViewHolder(binding)
+        return RssMessageAdapter.RssMessageViewHolder(binding, viewModel)
     }
 
-    class RssMessageViewHolder(private val binding : ListRssMessagesItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(rssItem: RssMessage) {
+    class RssMessageViewHolder(private val binding : ListRssMessagesItemBinding,
+                               private val viewModel: RssDetailViewModel) : RecyclerView.ViewHolder(binding.root){
+        fun bind(rssMessage: RssMessage) {
             binding.apply {
                 clickListener = View.OnClickListener {
-                    root.context.browse(item?.url ?: "", false)
+                    viewModel.openMessage(rssMessage)
                 }
-                item = rssItem
+                item = rssMessage
                 executePendingBindings()
             }
             itemView.isLongClickable = true

@@ -32,7 +32,7 @@
     </style>
 
     <style name="ListItem">
-        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:paddingTop">@dimen/list_item_top_padding</item>
         <item name="android:paddingBottom">@dimen/list_item_bottom_padding</item>
         <item name="android:paddingStart">@dimen/list_item_left_padding</item>

@@ -1,10 +1,13 @@
 package asura.com.rssclient.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import asura.com.rssclient.api.RssApiService
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
+import asura.com.rssclient.data.RssMessage
+import asura.com.rssclient.data.RssMessageRepository
 import asura.com.rssclient.stated.InvalidStateData
 import asura.com.rssclient.stated.LoadStateData
 import asura.com.rssclient.stated.NormalStateData
@@ -13,8 +16,8 @@ import asura.com.rssclient.ui.RssApplication
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.delay
 import me.toptas.rssconverter.RssFeed
+import org.jetbrains.anko.browse
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -25,16 +28,20 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
     @Inject
     lateinit var rssApiService: RssApiService
 
-    var rssItem: LiveData<RssItem>
+    @Inject
+    lateinit var context: Context
 
-    private var loadData: MutableLiveData<RssFeed>
-    fun getData(): LiveData<RssFeed> = loadData
+    @Inject
+    lateinit var rssMessageRepository: RssMessageRepository
+
+    var rssItem: LiveData<RssItem>
+    var rssMessages: LiveData<List<RssMessage>>
 
     init {
         RssApplication.appComponent.inject(this)
         rssItem = repository.getItemById(rssItemId)
 
-        loadData = MutableLiveData()
+        rssMessages = rssMessageRepository.getItems()
     }
 
     fun loadItems() {
@@ -45,12 +52,17 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
                 rssApiService.getQuery(rssItem.value?.url ?: "").execute()
             }
             .delay(2000, TimeUnit.MILLISECONDS)
+            .map {
+                it?.body()?.let {
+                    it.items?.map {
+                        var item = RssMessage(it.title, it.publishDate, it.description, it.title, it.link)
+                        rssMessageRepository.insertItem(item)
+                    }
+                }
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                it?.body()?.let {
-                    setNormalState(NormalStateData())
-                    loadData.value = it
-                }
+                setNormalState(NormalStateData())
             }, {
                 setInvalidState(InvalidStateData(it.message))
             })
@@ -65,5 +77,16 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
                 }
             }
             .subscribe()
+    }
+
+    fun openMessage(rssMessage: RssMessage) {
+        context.browse(rssMessage.url ?: "", false)
+        val viewedMessage = rssMessage.copy(isViewed = true)
+
+        Observable.just(rssMessageRepository)
+            .observeOn(Schedulers.io())
+            .subscribe {
+                rssMessageRepository.updateItem(viewedMessage)
+            }
     }
 }

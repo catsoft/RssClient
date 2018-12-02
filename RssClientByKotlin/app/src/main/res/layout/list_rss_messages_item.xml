@@ -23,6 +23,7 @@
             <LinearLayout
                     android:id="@+id/rss_message_click_view"
                     style="@style/ListItem"
+                    android:background="@{item.isViewed ? @color/gray : @color/white}"
                     android:onClickListener="@{clickListener}">
                 
                 <TextView

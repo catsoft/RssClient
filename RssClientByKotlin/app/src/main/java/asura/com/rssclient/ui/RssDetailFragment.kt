@@ -38,14 +38,12 @@ class RssDetailFragment : StatedFragment() {
         webView.settings.javaScriptEnabled = true
         (binding.root as ViewGroup).addView(webView)
 
-        adapter = RssMessageAdapter()
+        adapter = RssMessageAdapter(viewModel)
         binding.recyclerView.adapter = adapter
 
-        viewModel.getData().observe(viewLifecycleOwner, Observer {
-            it?.items?.let {
-                adapter.submitList(it.map {
-                    RssMessage(it.title, it.publishDate, it.description, it.title, it.link)
-                })
+        viewModel.rssMessages.observe(viewLifecycleOwner, Observer {
+            if(it != null){
+                adapter.submitList(it)
             }
         })
 
@@ -54,10 +52,6 @@ class RssDetailFragment : StatedFragment() {
         })
 
         setHasOptionsMenu(true)
-
-
-
-
 
         return binding.root
     }
