@@ -12,7 +12,6 @@ data class RssMessage(
     val text: String?,
     val id: String?,
     val url: String?,
-    val isNew: Boolean = true,
     val isViewed: Boolean = false,
 
     @ColumnInfo(name = "rss_message_id")
