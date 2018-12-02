@@ -1,3 +1,3 @@
 package asura.com.rssclient.stated
 
-class LoadStateData
+class LoadStateData(val text : String? = null)

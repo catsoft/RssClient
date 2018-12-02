@@ -13,10 +13,11 @@ import asura.com.rssclient.R
 import asura.com.rssclient.adapters.RssMessageAdapter
 import asura.com.rssclient.data.RssMessage
 import asura.com.rssclient.databinding.FragmentRssDetailBinding
+import asura.com.rssclient.stated.StatedFragment
 import asura.com.rssclient.viewmodels.RssDetailViewModel
 import asura.com.rssclient.viewmodels.RssDetailViewModelFactory
 
-class RssDetailFragment : Fragment() {
+class RssDetailFragment : StatedFragment() {
 
     private lateinit var webView : WebView
     private lateinit var viewModel: RssDetailViewModel
@@ -31,18 +32,14 @@ class RssDetailFragment : Fragment() {
         val factory = RssDetailViewModelFactory(args.rssItemId)
         viewModel = ViewModelProviders.of(this, factory).get(RssDetailViewModel::class.java)
 
+        subscribeOnState(viewModel)
+
         webView = WebView(context)
         webView.settings.javaScriptEnabled = true
         (binding.root as ViewGroup).addView(webView)
 
         adapter = RssMessageAdapter()
         binding.recyclerView.adapter = adapter
-
-        viewModel.getError().observe(viewLifecycleOwner, Observer {
-            binding.errorView.text = it
-            binding.errorView.isGone = false
-            binding.recyclerView.isGone = true
-        })
 
         viewModel.getData().observe(viewLifecycleOwner, Observer {
             it?.items?.let {
@@ -57,6 +54,10 @@ class RssDetailFragment : Fragment() {
         })
 
         setHasOptionsMenu(true)
+
+
+
+
 
         return binding.root
     }

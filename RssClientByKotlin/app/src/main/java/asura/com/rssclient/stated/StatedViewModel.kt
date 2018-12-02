@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-abstract class StateViewModel : ViewModel() {
+abstract class StatedViewModel : ViewModel() {
 
     private var loadData: MutableLiveData<LoadStateData> =
         MutableLiveData()

@@ -3,26 +3,45 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
+            android:orientation="vertical"
+            android:id="@+id/root_stated"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+        <LinearLayout
+                android:id="@+id/normal_state_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/list_item_rss"/>
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/error_view"
-                style="@style/ErrorTextView"
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/list_item_rss"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/load_state_block"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:gravity="center"/>
-    </LinearLayout>
+                android:orientation="vertical">
+
+            <include layout="@layout/stated_load"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/invalid_state_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <include layout="@layout/stated_error"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 </layout>
 
 

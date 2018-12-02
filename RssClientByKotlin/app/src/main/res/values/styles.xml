@@ -44,4 +44,6 @@
 
     <style name="ErrorTextView" parent="TextAppearance.AppCompat.Large"/>
 
+    <style name="LoadText" parent="TextAppearance.AppCompat.Large"/>
+
 </resources>

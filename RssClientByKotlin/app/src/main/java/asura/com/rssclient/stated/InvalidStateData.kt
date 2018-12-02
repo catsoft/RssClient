@@ -1,3 +1,3 @@
 package asura.com.rssclient.stated
 
-class InvalidStateData(private val data: String)
+class InvalidStateData(val data: String?)
