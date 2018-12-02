@@ -15,4 +15,5 @@
     <dimen name="list_item_left_padding">10dp</dimen>
     <dimen name="list_item_right_padding">10dp</dimen>
     <dimen name="common_padding">24dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
 </resources>
