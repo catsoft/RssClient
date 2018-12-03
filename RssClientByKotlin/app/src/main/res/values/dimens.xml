@@ -4,14 +4,14 @@
     <dimen name="navigation_drawer_header_padding">16dp</dimen>
     <dimen name="navigation_drawer_image_width">100dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="list_item_top_margin">5dp</dimen>
-    <dimen name="list_item_bottom_margin">5dp</dimen>
-    <dimen name="list_item_left_margin">10dp</dimen>
-    <dimen name="list_item_right_margin">10dp</dimen>
-    <dimen name="list_item_top_padding">5dp</dimen>
-    <dimen name="list_item_bottom_padding">5dp</dimen>
-    <dimen name="list_item_left_padding">10dp</dimen>
-    <dimen name="list_item_right_padding">10dp</dimen>
+    <dimen name="list_item_top_margin">4dp</dimen>
+    <dimen name="list_item_bottom_margin">4dp</dimen>
+    <dimen name="list_item_left_margin">8dp</dimen>
+    <dimen name="list_item_right_margin">8dp</dimen>
+    <dimen name="list_item_top_padding">8dp</dimen>
+    <dimen name="list_item_bottom_padding">8dp</dimen>
+    <dimen name="list_item_left_padding">12dp</dimen>
+    <dimen name="list_item_right_padding">12dp</dimen>
     <dimen name="common_padding">24dp</dimen>
     <dimen name="large_margin">24dp</dimen>
 </resources>
