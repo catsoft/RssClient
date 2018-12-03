@@ -9,6 +9,7 @@
             android:layout_height="match_parent">
         
         <asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/rss_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -25,12 +26,13 @@
         
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_button"
-                android:layout_width="@dimen/fab_width"
-                android:layout_height="@dimen/fab_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_add"
                 android:layout_gravity="end|bottom"
                 android:layout_marginEnd="@dimen/fab_margin"
-                android:layout_marginBottom="@dimen/fab_margin"/>
+                android:layout_marginBottom="@dimen/fab_margin"
+                app:fabSize="normal"/>
     
     </FrameLayout>
 </layout>

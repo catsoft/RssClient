@@ -3,32 +3,33 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
     <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
-        
-        <LinearLayout
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinator"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-            
+                android:layout_height="match_parent">
+
             <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/AppTheme.AppBarOverlay">
-                
+
                 <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:popupTheme="@style/AppTheme.PopupOverlay"/>
-            
+                        app:popupTheme="@style/AppTheme.PopupOverlay"
+                        app:layout_scrollFlags="scroll|enterAlways"/>
+
             </com.google.android.material.appbar.AppBarLayout>
-            
+
             <fragment
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -36,9 +37,9 @@
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     app:defaultNavHost="true"
                     app:navGraph="@navigation/nav_rss"/>
-        
-        </LinearLayout>
-        
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navigation_view"
                 style="@style/Widget.MaterialComponents.NavigationView"
