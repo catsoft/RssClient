@@ -1,13 +1,13 @@
-﻿using System.Drawing;
-using Foundation;
+﻿using Foundation;
 using iOS.App.Rss.List;
 using UIKit;
 
-namespace iOS
+namespace iOS.App
 {
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
+	    public new static UIWindow Window { get; private set; }
 		public static AppDelegate Instance { get; private set; }
 
 	    public UINavigationController NavigationController { get; private set; }
@@ -24,7 +24,7 @@ namespace iOS
 	    private void InitNavigation()
 	    {
 		    NavigationController = new UINavigationController();
-		    Window = new UIWindow((RectangleF)UIScreen.MainScreen.Bounds)
+		    Window = new UIWindow(UIScreen.MainScreen.Bounds)
 		    {
 			    RootViewController = NavigationController
 		    };
