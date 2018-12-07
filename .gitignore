@@ -8,3 +8,7 @@
 /RssClientByKotlin/.idea/gradle.xml
 /RssClientByKotlin/.idea/misc.xml
 /RssClientByKotlin/.idea/modules.xml
+/RssClientByXamarin/iOS/obj
+/RssClientByXamarin/iOS/bin
+/RssClientByXamarin/packages
+/RssClientByXamarin/iOS/iOS.csproj.user

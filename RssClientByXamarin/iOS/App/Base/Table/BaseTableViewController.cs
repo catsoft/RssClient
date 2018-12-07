@@ -1,12 +1,21 @@
-﻿using UIKit;
+﻿using System.Collections.Generic;
+using UIKit;
 
 namespace iOS.App.Base.Table
 {
 	public class BaseTableViewController<TTableCell, TItem> : UITableViewController
+		where TTableCell : BaseTableViewCell<TItem>
+		where TItem : class
 	{
-		public BaseTableViewController()
+		protected List<TItem> List = new List<TItem>();
+
+		public override void ViewDidLoad()
 		{
-			
+			base.ViewDidLoad();
+
+			var source = new BaseTableViewSource<TTableCell, TItem>(List, UITableViewCellStyle.Default);
+
+			TableView.DataSource = source;
 		}
 	}
 }
