@@ -172,6 +172,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Base\Stated\ErrorData.cs" />
+    <Compile Include="App\Base\Stated\ErrorView.cs" />
+    <Compile Include="App\Base\Stated\LoadingData.cs" />
+    <Compile Include="App\Base\Stated\LoadingView.cs" />
+    <Compile Include="App\Base\Stated\NormalData.cs" />
+    <Compile Include="App\Base\Stated\ScreenState.cs" />
+    <Compile Include="App\Base\Stated\StatedViewControllerDecorator.cs" />
     <Compile Include="App\Base\Table\BaseTableViewCell.cs" />
     <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
     <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
