@@ -12,7 +12,10 @@ import androidx.room.PrimaryKey
 )
 data class RssMessage(
     val title: String?,
-    val data: String?,
+
+    @PrimaryKey
+    val data: String,
+
     val text: String?,
     val id: String?,
     val url: String?,
@@ -21,8 +24,4 @@ data class RssMessage(
     val rssId: Long,
 
     val isViewed: Boolean = false
-) {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "rss_message_id")
-    var messageId: Long = 0
-}
+)

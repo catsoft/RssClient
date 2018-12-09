@@ -55,7 +55,7 @@ class RssDetailViewModel(val rssItemId: Long) : StatedViewModel() {
             .map {
                 it.body()?.let {
                     it.items?.map {
-                        var item = RssMessage(it.title, it.publishDate, it.description, it.title, it.link, rssItemId)
+                        var item = RssMessage(it.title, it.publishDate ?: "", it.description, it.title, it.link, rssItemId)
                         rssMessageRepository.insertItem(item)
                     }
                 }
@@ -77,7 +77,6 @@ class RssDetailViewModel(val rssItemId: Long) : StatedViewModel() {
     fun openMessage(rssMessage: RssMessage) {
         context.browse(rssMessage.url ?: "", false)
         val viewedMessage = rssMessage.copy(isViewed = true)
-        viewedMessage.messageId = rssMessage.messageId
-        rssMessageRepository.insertItem(viewedMessage)
+        rssMessageRepository.updateItem(viewedMessage)
     }
 }

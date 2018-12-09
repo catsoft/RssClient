@@ -9,9 +9,11 @@ class RssMessageRepository private constructor(private val rssMessageDao: RssMes
 
     fun insertItem(item: RssMessage) = runOnIoThread { rssMessageDao.insertMessage(item) }
 
+    fun updateItem(item: RssMessage) = runOnIoThread { rssMessageDao.updateMessage(item) }
+
     fun deleteItem(item: RssMessage) = runOnIoThread { rssMessageDao.deleteMessage(item) }
 
-    fun getItemById(rssId: Long) = rssMessageDao.getMessageById(rssId)
+    fun getItemById(rssId: String) = rssMessageDao.getMessageById(rssId)
 
     fun getItems(rssId: Long) = rssMessageDao.getMessagesForRss(rssId)
 
