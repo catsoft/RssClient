@@ -53,7 +53,7 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
             }
             .delay(2000, TimeUnit.MILLISECONDS)
             .map {
-                it?.body()?.let {
+                it.body()?.let {
                     it.items?.map {
                         var item = RssMessage(it.title, it.publishDate, it.description, it.title, it.link)
                         rssMessageRepository.insertItem(item)
