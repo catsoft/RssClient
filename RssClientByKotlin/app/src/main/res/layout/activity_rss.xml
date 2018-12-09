@@ -3,51 +3,43 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    
     <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:id="@+id/coordinator"
+        
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            
             <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/AppTheme.AppBarOverlay">
-
+                
                 <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:popupTheme="@style/AppTheme.PopupOverlay"
                         app:layout_scrollFlags="scroll|enterAlways"/>
-
+            
             </com.google.android.material.appbar.AppBarLayout>
-
-            <FrameLayout
+            
+            <fragment
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <fragment
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/rss_list_nav_fragment"
-                        android:name="androidx.navigation.fragment.NavHostFragment"
-                        app:defaultNavHost="true"
-                        app:navGraph="@navigation/nav_rss"/>
-
-            </FrameLayout>
-
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+                    android:id="@+id/rss_list_nav_fragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/nav_rss"/>
+        
+        </LinearLayout>
+        
         <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navigation_view"
                 style="@style/Widget.MaterialComponents.NavigationView"

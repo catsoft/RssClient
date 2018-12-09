@@ -40,5 +40,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Remove\RemoveRssResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\RssDatabase\RssRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)App\RssDatabase\" />
   </ItemGroup>
 </Project>

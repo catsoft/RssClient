@@ -3,8 +3,6 @@ package asura.com.rssclient.ui
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.R
 import asura.com.rssclient.adapters.RssItemAdapter
 import asura.com.rssclient.databinding.FragmentRssListBinding
-import asura.com.rssclient.ui.behavior.ScrollAwareFABBehavior
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
 import asura.com.rssclient.viewmodels.RssListViewModel
 
@@ -38,12 +35,6 @@ class RssListFragment : Fragment() {
         }
 
         registerForContextMenu(binding.rssList)
-
-        var fabBehavior = binding.addButton.layoutParams
-        if(fabBehavior is CoordinatorLayout.LayoutParams){
-            fabBehavior.behavior = ScrollAwareFABBehavior()
-            Toast.makeText(this.context, "fsdfa", Toast.LENGTH_LONG).show()
-        }
 
         return binding.root
     }
