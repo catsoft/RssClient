@@ -21,11 +21,7 @@ class RssCreateViewModel : ViewModel() {
     }
 
     fun addItem(name: String, url: String) {
-        Observable.just(repository)
-            .subscribeOn(Schedulers.io())
-            .map {
-                val item = RssItem(url, name, "date2", "date")
-                it.insertItem(item)
-            }.subscribe()
+        val item = RssItem(url, name, "date2", "date")
+        repository.insertItem(item)
     }
 }

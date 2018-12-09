@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * The ViewModel for [RssEditFragment].
  */
-class RssEditViewModel(rssId: String) : ViewModel() {
+class RssEditViewModel(rssId: Long) : ViewModel() {
     @Inject
     lateinit var repository: RssItemRepository
 
@@ -28,11 +28,8 @@ class RssEditViewModel(rssId: String) : ViewModel() {
     fun updateItem(url : String, name : String){
         rssItem.value?.let {
             val copy = it.copy(name = name, url = url)
-            Observable.just(repository)
-                .observeOn(Schedulers.io())
-                .subscribe {
-                    repository.updateItem(copy)
-                }
+            copy.rssId = it.rssId
+            repository.insertItem(copy)
         }
     }
 }

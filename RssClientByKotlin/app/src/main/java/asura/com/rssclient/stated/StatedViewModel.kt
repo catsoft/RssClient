@@ -3,15 +3,13 @@ package asura.com.rssclient.stated
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import asura.com.rssclient.utilites.runOnIoThread
 
 abstract class StatedViewModel : ViewModel() {
 
-    private var loadData: MutableLiveData<LoadStateData> =
-        MutableLiveData()
-    private var invalidData: MutableLiveData<InvalidStateData> =
-        MutableLiveData()
-    private var normalData: MutableLiveData<NormalStateData> =
-        MutableLiveData()
+    private var loadData: MutableLiveData<LoadStateData> = MutableLiveData()
+    private var invalidData: MutableLiveData<InvalidStateData> = MutableLiveData()
+    private var normalData: MutableLiveData<NormalStateData> = MutableLiveData()
 
     fun getLoadData(): LiveData<LoadStateData> = loadData
 

@@ -1,28 +1,24 @@
 package asura.com.rssclient.data
 
-import androidx.lifecycle.LiveData
+import asura.com.rssclient.utilites.runOnIoThread
 
 /**
  * Repository module for handling data operations with [RssMessage]
  */
-class RssMessageRepository private constructor(private val rssMessageDao: RssMessageDao){
+class RssMessageRepository private constructor(private val rssMessageDao: RssMessageDao) {
 
-    fun insertItem(item : RssMessage) = rssMessageDao.insertMessage(item)
+    fun insertItem(item: RssMessage) = runOnIoThread { rssMessageDao.insertMessage(item) }
 
-    fun updateItem(item : RssMessage) = rssMessageDao.updateMessage(item)
+    fun deleteItem(item: RssMessage) = runOnIoThread { rssMessageDao.deleteMessage(item) }
 
-    fun deleteItem(item : RssMessage) = rssMessageDao.deleteMessage(item)
+    fun getItemById(rssId: Long) = rssMessageDao.getMessageById(rssId)
 
-    fun getItemById(rssId : String) = rssMessageDao.getMessageById(rssId)
-
-    fun getItems() : LiveData<List<RssMessage>>
-    {
-        return rssMessageDao.getMessageList()
-    }
+    fun getItems(rssId: Long) = rssMessageDao.getMessagesForRss(rssId)
 
     companion object {
 
-        @Volatile private var instance: RssMessageRepository? = null
+        @Volatile
+        private var instance: RssMessageRepository? = null
 
         fun getInstance(rssMessageDao: RssMessageDao) =
             instance ?: synchronized(this) {

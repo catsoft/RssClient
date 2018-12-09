@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 /**
  * Factory for creating a [RssEditViewModel] with a constructor that takes a [rssItemId].
  */
-class RssEditViewModelFactory(private val rssItemId : String) : ViewModelProvider.NewInstanceFactory() {
+class RssEditViewModelFactory(private val rssItemId : Long) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

@@ -2,19 +2,27 @@ package asura.com.rssclient.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.util.*
 
-@Entity(tableName = "rss_message")
+@Entity(
+    tableName = "rss_message",
+    foreignKeys = [ForeignKey(entity = RssItem::class, parentColumns = arrayOf("rss_id"), childColumns = arrayOf("rss_id"))],
+    indices = [androidx.room.Index("rss_id")]
+)
 data class RssMessage(
     val title: String?,
     val data: String?,
     val text: String?,
     val id: String?,
     val url: String?,
-    val isViewed: Boolean = false,
 
+    @ColumnInfo(name = "rss_id")
+    val rssId: Long,
+
+    val isViewed: Boolean = false
+) {
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "rss_message_id")
-    @PrimaryKey()
-    val messageId: String = UUID.randomUUID().toString()
-)
+    var messageId: Long = 0
+}

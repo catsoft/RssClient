@@ -21,7 +21,7 @@ import org.jetbrains.anko.browse
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
+class RssDetailViewModel(val rssItemId: Long) : StatedViewModel() {
     @Inject
     lateinit var repository: RssItemRepository
 
@@ -41,7 +41,7 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
         RssApplication.appComponent.inject(this)
         rssItem = repository.getItemById(rssItemId)
 
-        rssMessages = rssMessageRepository.getItems()
+        rssMessages = rssMessageRepository.getItems(rssItemId)
     }
 
     fun loadItems() {
@@ -55,7 +55,7 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
             .map {
                 it.body()?.let {
                     it.items?.map {
-                        var item = RssMessage(it.title, it.publishDate, it.description, it.title, it.link)
+                        var item = RssMessage(it.title, it.publishDate, it.description, it.title, it.link, rssItemId)
                         rssMessageRepository.insertItem(item)
                     }
                 }
@@ -69,24 +69,15 @@ class RssDetailViewModel(rssItemId: String) : StatedViewModel() {
     }
 
     fun deleteItem() {
-        Observable.just(repository)
-            .subscribeOn(Schedulers.io())
-            .map {
-                rssItem.value?.let {
-                    repository.deleteItem(it)
-                }
-            }
-            .subscribe()
+        rssItem.value?.let {
+            repository.deleteItem(it)
+        }
     }
 
     fun openMessage(rssMessage: RssMessage) {
         context.browse(rssMessage.url ?: "", false)
         val viewedMessage = rssMessage.copy(isViewed = true)
-
-        Observable.just(rssMessageRepository)
-            .observeOn(Schedulers.io())
-            .subscribe {
-                rssMessageRepository.updateItem(viewedMessage)
-            }
+        viewedMessage.messageId = rssMessage.messageId
+        rssMessageRepository.insertItem(viewedMessage)
     }
 }

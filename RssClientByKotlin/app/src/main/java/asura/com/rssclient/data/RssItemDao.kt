@@ -12,15 +12,12 @@ interface RssItemDao {
     @Query("SELECT * FROM rss_items")
     fun getRssItemsList() : LiveData<List<RssItem>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRssItem(rssItem: RssItem) : Long
-
-    @Update
-    fun updateRssItem(rssItem: RssItem)
 
     @Delete
     fun deleteRssItem(rssItem: RssItem)
 
     @Query("SELECT * FROM rss_items WHERE rss_id = :rssId")
-    fun getItemById(rssId : String) : LiveData<RssItem>
+    fun getItemById(rssId : Long) : LiveData<RssItem>
 }

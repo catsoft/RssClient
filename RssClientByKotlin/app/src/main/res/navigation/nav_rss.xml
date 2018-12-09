@@ -42,7 +42,7 @@
 
         <argument
                 android:name="rssItemId"
-                app:argType="string"/>
+                app:argType="long"/>
 
         <action android:id="@+id/action_rss_detail_fragment_to_rss_edit_fragment"
                 app:destination="@id/rss_edit_fragment"
@@ -66,6 +66,6 @@
 
         <argument
                 android:name="rssItemId"
-                app:argType="string"/>
+                app:argType="long"/>
     </fragment>
 </navigation>
