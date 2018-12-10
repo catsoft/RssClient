@@ -1,4 +1,6 @@
-﻿using UIKit;
+﻿using System;
+using iOS.App.Rss.List;
+using UIKit;
 
 namespace iOS.App.Base.Table
 {
@@ -15,11 +17,12 @@ namespace iOS.App.Base.Table
 
 		public TTableCell Create()
 		{
-			switch (typeof(TTableCell))
+			if (typeof(TTableCell) == typeof(RssViewCell))
 			{
-				default:
-					return null;
+				return new RssViewCell(_style, nameof(RssViewCell)) as TTableCell;
 			}
+
+			return null;
 		}
 	}
 }

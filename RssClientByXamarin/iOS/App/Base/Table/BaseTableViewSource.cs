@@ -37,6 +37,8 @@ namespace iOS.App.Base.Table
 
 			cell?.BindData(item);
 
+			cell?.UpdateConstraints();
+
 			return cell;
 		}
 	}

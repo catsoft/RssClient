@@ -35,7 +35,7 @@ namespace Shared.App.Rss
 
 		public List<RssModel> GetList()
 		{
-			return _localDatabase.GetItems<RssModel>()?.ToList();
+			return _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList();
 		}
 	}
 }

@@ -17,6 +17,8 @@ namespace iOS.App.Base.Table
 
 			var source = new BaseTableViewSource<TTableCell, TItem>(List, UITableViewCellStyle.Default);
 
+			TableView.RowHeight = UITableView.AutomaticDimension;
+			TableView.EstimatedRowHeight = 100;
 			TableView.DataSource = source;
 
 			StatedDecorator = new StatedViewControllerDecorator(this);

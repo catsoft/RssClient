@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using iOS.App.Rss.List;
+using Shared.AppCenter;
 using UIKit;
 
 namespace iOS.App
@@ -23,6 +24,8 @@ namespace iOS.App
 
 	    private void InitNavigation()
 	    {
+			AppCenterContainer.Init();
+
 		    NavigationController = new UINavigationController();
 		    Window = new UIWindow(UIScreen.MainScreen.Bounds)
 		    {
