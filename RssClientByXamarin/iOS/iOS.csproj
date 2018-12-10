@@ -180,6 +180,7 @@
     <Compile Include="App\Base\Stated\ScreenState.cs" />
     <Compile Include="App\Base\Stated\StatedViewControllerDecorator.cs" />
     <Compile Include="App\Base\Stated\UIViewControllerDecorator.cs" />
+    <Compile Include="App\Base\StyledView\RoundShadowView.cs" />
     <Compile Include="App\Base\Table\BaseTableViewCell.cs" />
     <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
     <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
     <Compile Include="App\Rss\List\RssListViewController.cs" />
     <Compile Include="App\Rss\List\RssViewCell.cs" />
+    <Compile Include="App\Styles\Colors.cs" />
     <Compile Include="App\Styles\Dimensions.cs" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />

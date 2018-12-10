@@ -35,9 +35,15 @@ namespace iOS.App.Base.Table
 
 			var item = _items[indexPath.Row];
 
-			cell?.BindData(item);
+			if (cell != null)
+			{
+				cell.ClipsToBounds = false;
+				cell.Layer.MasksToBounds = false;
 
-			cell?.UpdateConstraints();
+				cell.BindData(item);
+
+				cell.UpdateConstraints();
+			}
 
 			return cell;
 		}

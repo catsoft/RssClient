@@ -1,4 +1,6 @@
-﻿using UIKit;
+﻿using iOS.App.Base.StyledView;
+using iOS.App.Styles;
+using UIKit;
 
 namespace iOS.App.Base.Table
 {
@@ -7,14 +9,17 @@ namespace iOS.App.Base.Table
 	{
 		private bool _shouldSetupConstraint = true;
 
-		protected UIView RootView { get; private set; }
+		protected RoundShadowView RootView { get; }
 
 		protected BaseTableViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			RootView = new UIView()
+			RootView = new RoundShadowView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
+
+			SelectionStyle = UITableViewCellSelectionStyle.None;
+			ContentView.BackgroundColor = Colors.CommonBack;
 
 			ContentView.AddSubview(RootView);
 		}
@@ -25,10 +30,10 @@ namespace iOS.App.Base.Table
 
 			if (_shouldSetupConstraint)
 			{
-				ContentView.TopAnchor.ConstraintEqualTo(RootView.TopAnchor).Active = true;
-				ContentView.LeadingAnchor.ConstraintEqualTo(RootView.LeadingAnchor).Active = true;
-				ContentView.BottomAnchor.ConstraintEqualTo(RootView.BottomAnchor).Active = true;
-				ContentView.TrailingAnchor.ConstraintEqualTo(RootView.TrailingAnchor).Active = true;
+				ContentView.TopAnchor.ConstraintEqualTo(RootView.TopAnchor, -Dimensions.CommonTopMargin).Active = true;
+				ContentView.LeadingAnchor.ConstraintEqualTo(RootView.LeadingAnchor, -Dimensions.CommonLeftMargin).Active = true;
+				ContentView.BottomAnchor.ConstraintEqualTo(RootView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
+				ContentView.TrailingAnchor.ConstraintEqualTo(RootView.TrailingAnchor, Dimensions.CommonRightMargin).Active = true;
 
 				_shouldSetupConstraint = false;
 			}

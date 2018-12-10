@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Foundation;
 using iOS.App.Base.Stated;
+using iOS.App.Styles;
 using UIKit;
 
 namespace iOS.App.Base.Table
@@ -20,6 +23,8 @@ namespace iOS.App.Base.Table
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 100;
 			TableView.DataSource = source;
+			TableView.BackgroundColor = Colors.CommonBack;
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 
 			StatedDecorator = new StatedViewControllerDecorator(this);
 			StatedDecorator.SetNormal(new NormalData());
