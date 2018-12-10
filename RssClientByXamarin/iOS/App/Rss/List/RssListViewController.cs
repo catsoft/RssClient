@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
+using iOS.App.Styles;
 using Shared.App.Rss;
 
 namespace iOS.App.Rss.List
@@ -16,12 +16,12 @@ namespace iOS.App.Rss.List
 
 			_rssRepository = RssRepository.Instance;
 
-			_rssRepository.Insert("name1", "name2");
-			_rssRepository.Insert("name1", "name2");
-			_rssRepository.Insert("name1", "name2");
-			_rssRepository.Insert("name1", "name2");
-			_rssRepository.Insert("name1", "name2");
+			if (NavigationItem != null)
+			{
+				NavigationItem.Title = Strings.RssListTitle;
+			}
 
+			await _rssRepository.Insert("name2", "name2");
 
 			await UpdateData();
 		}
@@ -30,11 +30,7 @@ namespace iOS.App.Rss.List
 		{
 			StatedDecorator.SetLoading(new LoadingData());
 
-			var list = await Task.Run(() =>
-			{
-				Thread.Sleep(2000);
-				return _rssRepository.GetList();
-			});
+			var list = await _rssRepository.GetList();
 
 			StatedDecorator.SetNormal(new NormalData());
 

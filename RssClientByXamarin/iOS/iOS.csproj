@@ -191,6 +191,7 @@
     <Compile Include="App\Rss\List\RssViewCell.cs" />
     <Compile Include="App\Styles\Colors.cs" />
     <Compile Include="App\Styles\Dimensions.cs" />
+    <Compile Include="App\Styles\Strings.cs" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
