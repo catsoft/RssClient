@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Shared.App.Base.Database;
 
 namespace Shared.App.Rss
@@ -17,25 +18,28 @@ namespace Shared.App.Rss
 			_localDatabase = LocalDb.Instance;
 		}
 
-		public void Insert(string name, string url)
+		public Task Insert(string name, string url)
 		{
-			var newItem = new RssModel(name, url, DateTime.Now);
-			_localDatabase.AddNewItem(newItem);
+			return Task.Run(() =>
+			{
+				var newItem = new RssModel(name, url, DateTime.Now);
+				_localDatabase.AddNewItem(newItem); 
+			});
 		}
 
-		public void Update(RssModel item)
+		public Task Update(RssModel item)
 		{
-			_localDatabase.UpdateItemByLocalId(item);
+			return Task.Run(() => _localDatabase.UpdateItemByLocalId(item));
 		}
 
-		public void Remove(RssModel item)
+		public Task Remove(RssModel item)
 		{
-			_localDatabase.DeleteItemByLocalId(item);
+			return Task.Run(() => _localDatabase.DeleteItemByLocalId(item));
 		}
 
-		public List<RssModel> GetList()
+		public Task<List<RssModel>> GetList()
 		{
-			return _localDatabase.GetItems<RssModel>()?.ToList();
+			return Task.Run(() => _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList());
 		}
 	}
 }

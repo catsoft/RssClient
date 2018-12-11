@@ -1,6 +1,9 @@
 /.vs
-/RssClient/obj
-/RssClient/bin
-/RssClient/*.user
+/Droid/obj
+/Droid/bin
+/Droid/*.user
+/iOS/obj
+/iOS/bin
+/iOS/*.user
 /RssClientByKotlin/.idea
 /RssClientByKotlin/app/.idea

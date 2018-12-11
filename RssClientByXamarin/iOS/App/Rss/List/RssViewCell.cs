@@ -1,4 +1,5 @@
 ﻿using iOS.App.Base.Table;
+using iOS.App.Styles;
 using Shared.App.Rss;
 using UIKit;
 
@@ -14,7 +15,11 @@ namespace iOS.App.Rss.List
 
 		public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			_rootsStackView = new UIStackView();
+			_rootsStackView = new UIStackView()
+			{
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				Axis = UILayoutConstraintAxis.Vertical,
+			};
 
 			_nameLabel = new UILabel()
 			{
@@ -26,7 +31,7 @@ namespace iOS.App.Rss.List
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 
-			ContentView.AddSubview(_rootsStackView);
+			RootView.AddSubview(_rootsStackView);
 			_rootsStackView.AddArrangedSubview(_nameLabel);
 			_rootsStackView.AddArrangedSubview(_urlLabel);
 		}
@@ -41,6 +46,10 @@ namespace iOS.App.Rss.List
 		{
 			if (_shouldSetupConstraint)
 			{
+				RootView.TopAnchor.ConstraintEqualTo(_rootsStackView.TopAnchor, -Dimensions.CommonTopMargin).Active = true;
+				RootView.LeftAnchor.ConstraintEqualTo(_rootsStackView.LeftAnchor, -Dimensions.CommonLeftMargin).Active = true;
+				RootView.BottomAnchor.ConstraintEqualTo(_rootsStackView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
+				RootView.RightAnchor.ConstraintEqualTo(_rootsStackView.RightAnchor, Dimensions.CommonRightMargin).Active = true;
 
 				_shouldSetupConstraint = false;
 			}

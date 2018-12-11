@@ -1,6 +1,12 @@
 ﻿using System.Threading.Tasks;
+using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
+using iOS.App.Rss.Create;
+using iOS.App.Rss.Detail;
+using iOS.App.Styles;
 using Shared.App.Rss;
+using UIKit;
+using Xamarin;
 
 namespace iOS.App.Rss.List
 {
@@ -8,15 +14,53 @@ namespace iOS.App.Rss.List
 	{
 		private RssRepository _rssRepository;
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
 			_rssRepository = RssRepository.Instance;
 
-			var list = await Task.Run(() => _rssRepository.GetList());
+			if (NavigationItem != null)
+			{
+				NavigationItem.Title = Strings.RssListTitle;
+				var rightItem = new IQBarButtonItem()
+				{
+					Image = UIImage.FromBundle("Plus")
+				};
+				NavigationItem.RightBarButtonItem = rightItem;
+				rightItem.Clicked += (sender, args) =>
+				{
+					NavigationController?.PushViewController(new RssCreateViewController(), true);
+				};
+			}
 
+			Source.ItemSelected += model =>
+			{
+				NavigationController?.PushViewController(new RssDetailViewController(model), true);
+			};
+		}
+
+		public override async void ViewWillAppear(bool animated)
+		{
+			base.ViewWillAppear(animated);
+
+			await _rssRepository.Insert("name2", "name2");
+
+			await UpdateData();
+		}
+
+		private async Task UpdateData()
+		{
+			StatedDecorator.SetLoading(new LoadingData());
+
+			var list = await _rssRepository.GetList();
+
+			StatedDecorator.SetNormal(new NormalData());
+
+			List.Clear();
 			List.AddRange(list);
+
+			TableView.ReloadData();
 		}
 	}
 }
