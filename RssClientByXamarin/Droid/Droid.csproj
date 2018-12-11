@@ -69,6 +69,7 @@
     <Compile Include="App\Base\ShowErrorExtension.cs" />
     <Compile Include="App\Base\ToolbarActivity.cs" />
     <Compile Include="App\CustomApplication.cs" />
+    <Compile Include="App\RssClient\ctor.cs" />
     <Compile Include="App\Rss\Detail\GetMessagesTask.cs" />
     <Compile Include="App\Rss\Detail\RssDetailActivity.cs" />
     <Compile Include="App\Rss\Detail\RssMessageAdapter.cs" />

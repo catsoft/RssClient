@@ -1,6 +1,7 @@
 ﻿using CoreGraphics;
 using Foundation;
 using iOS.App.Rss.List;
+using iOS.App.Rss.RssUpdater;
 using iOS.App.Styles;
 using Shared.AppCenter;
 using UIKit;

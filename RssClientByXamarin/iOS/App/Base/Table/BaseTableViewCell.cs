@@ -1,5 +1,4 @@
-﻿using iOS.App.Base.StyledView;
-using iOS.App.Styles;
+﻿using iOS.App.Styles;
 using UIKit;
 
 namespace iOS.App.Base.Table
@@ -9,17 +8,17 @@ namespace iOS.App.Base.Table
 	{
 		private bool _shouldSetupConstraint = true;
 
-		protected RoundShadowView RootView { get; }
+		protected UIView RootView { get; }
 
 		protected BaseTableViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			RootView = new RoundShadowView()
+			RootView = new UIView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 
 			SelectionStyle = UITableViewCellSelectionStyle.None;
-			ContentView.BackgroundColor = Colors.CommonBack;
+			ContentView.BackgroundColor = Colors.ListItemBack;
 
 			ContentView.AddSubview(RootView);
 		}

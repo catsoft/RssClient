@@ -14,7 +14,7 @@ namespace iOS.App.Rss.List
 	{
 		private RssRepository _rssRepository;
 
-		public override void ViewDidLoad()
+		public async override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -38,6 +38,8 @@ namespace iOS.App.Rss.List
 			{
 				NavigationController?.PushViewController(new RssDetailViewController(model), true);
 			};
+
+			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
 		}
 
 		public override async void ViewWillAppear(bool animated)

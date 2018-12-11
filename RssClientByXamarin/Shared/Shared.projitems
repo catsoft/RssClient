@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\IEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\ILocalDb.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Base\Database\LocalDb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App\RssClient\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\Edit\EditRssResponse.cs" />

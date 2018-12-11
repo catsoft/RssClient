@@ -21,7 +21,9 @@ namespace Shared.App.Rss
 
         public string Name { get; set; }
         public string Rss { get; set; }
+	    public string UrlPreviewImage { get; set; }
         public DateTime CreationTime { get; set; }
+		public DateTime? UpdateTime { get; set; }
 
         [SQLite.Ignore]
         public List<RssMessageModel> Messages { get; set; }

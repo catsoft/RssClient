@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using Shared.App.Base.Database;
 
@@ -9,9 +10,9 @@ namespace Shared.App.Rss
 	public class RssRepository
 	{
 		private static RssRepository _instance;
-		private readonly LocalDb _localDatabase;
-
 		public static RssRepository Instance => _instance ?? (_instance = new RssRepository());
+
+		private readonly LocalDb _localDatabase;
 
 		private RssRepository()
 		{
@@ -40,6 +41,18 @@ namespace Shared.App.Rss
 		public Task<List<RssModel>> GetList()
 		{
 			return Task.Run(() => _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList());
+		}
+
+		public Task Update(RssModel item, SyndicationFeed feed)
+		{
+			return Task.Run(() =>
+			{
+				item.Name = feed.Title.Text;
+				item.UpdateTime = DateTime.Now;
+				item.UrlPreviewImage = feed.ImageUrl.AbsolutePath;
+
+				_localDatabase.UpdateItemByLocalId(item);
+			});
 		}
 	}
 }

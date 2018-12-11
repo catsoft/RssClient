@@ -1,5 +1,7 @@
-﻿using iOS.App.Base.Table;
+﻿using Foundation;
+using iOS.App.Base.Table;
 using iOS.App.Styles;
+using SDWebImage;
 using Shared.App.Rss;
 using UIKit;
 
@@ -10,14 +12,30 @@ namespace iOS.App.Rss.List
 		private bool _shouldSetupConstraint = true;
 
 		private readonly UIStackView _rootsStackView;
+		private readonly UIImageView _imagePreview;
+		private readonly UIStackView _textStackView;
 		private readonly UILabel _nameLabel;
-		private readonly UILabel _urlLabel;
+		private readonly UILabel _dataUpdateLabel;
+		private readonly UILabel _countMessages;
 
 		public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
 			_rootsStackView = new UIStackView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
+				Spacing = 10,
+				Axis = UILayoutConstraintAxis.Horizontal,
+			};
+
+			_imagePreview = new UIImageView()
+			{
+				TranslatesAutoresizingMaskIntoConstraints = false,
+			};
+
+			_textStackView = new UIStackView()
+			{
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				Spacing = 5,
 				Axis = UILayoutConstraintAxis.Vertical,
 			};
 
@@ -26,20 +44,32 @@ namespace iOS.App.Rss.List
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 
-			_urlLabel = new UILabel()
+			_dataUpdateLabel = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 
+			_countMessages = new UILabel()
+			{
+				TranslatesAutoresizingMaskIntoConstraints = false,
+			};
+
+
 			RootView.AddSubview(_rootsStackView);
 			_rootsStackView.AddArrangedSubview(_nameLabel);
-			_rootsStackView.AddArrangedSubview(_urlLabel);
+			_rootsStackView.AddArrangedSubview(_textStackView);
+			_rootsStackView.AddArrangedSubview(_countMessages);
+
+			_textStackView.AddArrangedSubview(_nameLabel);
+			_textStackView.AddArrangedSubview(_dataUpdateLabel);
 		}
 
 		public override void BindData(RssModel item)
 		{
 			_nameLabel.Text = item.Name;
-			_urlLabel.Text = item.Rss;
+			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value.ToString("g")}";
+			_countMessages.Text = (item.Messages?.Count ?? 0).ToString();
+			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""));
 		}
 
 		public override void UpdateConstraints()
