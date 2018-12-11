@@ -195,7 +195,7 @@
     <ImageAsset Include="Assets.xcassets\Rss.imageset\Icon-256.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Rss.imageset\Icon-64.png">
+    <ImageAsset Include="Assets.xcassets\Rss.imageset\Icon-512.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

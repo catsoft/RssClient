@@ -38,13 +38,13 @@ namespace iOS.App.Rss.List
 			{
 				NavigationController?.PushViewController(new RssDetailViewController(model), true);
 			};
-
-			await _rssRepository.Insert("name2", "name2");
 		}
 
 		public override async void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);
+
+			await _rssRepository.Insert("name2", "name2");
 
 			await UpdateData();
 		}
