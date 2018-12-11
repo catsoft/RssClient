@@ -2,9 +2,9 @@
 {
 	public class Strings
 	{
-		public static string RssListTitle => "Rss Reader";
-		public static string RssCreateTitle => "Create";
-		public static string RssEditTitle => "Edit";
+		public static string RssListTitle => "RSS Reader";
+		public static string RssCreateTitle => "RSS Create";
+		public static string RssEditTitle => "RSS Edit";
 
 	}
 }
