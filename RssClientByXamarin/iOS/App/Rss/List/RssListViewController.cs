@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
+using iOS.App.Rss.Create;
+using iOS.App.Rss.Detail;
 using iOS.App.Styles;
 using Shared.App.Rss;
 using UIKit;
@@ -21,11 +23,21 @@ namespace iOS.App.Rss.List
 			if (NavigationItem != null)
 			{
 				NavigationItem.Title = Strings.RssListTitle;
-				NavigationItem.RightBarButtonItem = new IQBarButtonItem()
+				var rightItem = new IQBarButtonItem()
 				{
 					Image = UIImage.FromBundle("Plus")
 				};
+				NavigationItem.RightBarButtonItem = rightItem;
+				rightItem.Clicked += (sender, args) =>
+				{
+					NavigationController?.PushViewController(new RssCreateViewController(), true);
+				};
 			}
+
+			Source.ItemSelected += model =>
+			{
+				NavigationController?.PushViewController(new RssDetailViewController(model), true);
+			};
 
 			await _rssRepository.Insert("name2", "name2");
 		}

@@ -86,6 +86,9 @@
     <Reference Include="Microsoft.AppCenter.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AppCenter.1.11.0\lib\Xamarin.iOS10\Microsoft.AppCenter.iOS.Bindings.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -185,9 +188,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Rss\Create\" />
-    <Folder Include="App\Rss\Detail\" />
-    <Folder Include="App\Rss\Edit\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +214,9 @@
     <Compile Include="App\Main.cs" />
     <Compile Include="App\AppDelegate.cs" />
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
+    <Compile Include="App\Rss\Create\RssCreateViewController.cs" />
+    <Compile Include="App\Rss\Detail\RssDetailViewController.cs" />
+    <Compile Include="App\Rss\Edit\RssEditViewController.cs" />
     <Compile Include="App\Rss\List\RssListViewController.cs" />
     <Compile Include="App\Rss\List\RssViewCell.cs" />
     <Compile Include="App\Styles\Colors.cs" />

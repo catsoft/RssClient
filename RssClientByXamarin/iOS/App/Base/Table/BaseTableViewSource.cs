@@ -5,10 +5,11 @@ using UIKit;
 
 namespace iOS.App.Base.Table
 {
-	public class BaseTableViewSource<TTableCell, TItem> : UITableViewDataSource
+	public class BaseTableViewSource<TTableCell, TItem> : UITableViewSource
 		where TTableCell : BaseTableViewCell<TItem>
-		where TItem : class 
+		where TItem : class
 	{
+		public event Action<TItem> ItemSelected;
 		private readonly List<TItem> _items;
 		private readonly FactoryTableViewCellFactory<TTableCell, TItem> _factory;
 
@@ -46,6 +47,16 @@ namespace iOS.App.Base.Table
 			}
 
 			return cell;
+		}
+
+		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+			ItemSelected?.Invoke(_items[indexPath.Row]);
+		}
+
+		public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return true;
 		}
 	}
 }

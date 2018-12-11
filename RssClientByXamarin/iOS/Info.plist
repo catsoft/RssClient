@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>iOS</string>
+	<string>RSS Reader</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.iOS</string>
+	<string>com.asura.rssreader</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
