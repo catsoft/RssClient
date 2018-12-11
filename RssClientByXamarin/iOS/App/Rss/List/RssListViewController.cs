@@ -14,7 +14,7 @@ namespace iOS.App.Rss.List
 	{
 		private RssRepository _rssRepository;
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
