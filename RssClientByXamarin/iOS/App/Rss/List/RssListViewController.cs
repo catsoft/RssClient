@@ -23,7 +23,7 @@ namespace iOS.App.Rss.List
 				NavigationItem.Title = Strings.RssListTitle;
 				NavigationItem.RightBarButtonItem = new IQBarButtonItem()
 				{
-//					Image = UIImage.FromBundle()
+					Image = UIImage.FromBundle("Plus")
 				};
 			}
 

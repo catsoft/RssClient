@@ -177,6 +177,12 @@
     <ImageAsset Include="Assets.xcassets\Plus.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Plus.imageset\Icon-48.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Plus.imageset\Icon-72.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Rss\Create\" />

@@ -6,11 +6,13 @@
     },
     {
       "scale": "2x",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "Icon-48.png"
     },
     {
       "scale": "3x",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "Icon-72.png"
     }
   ],
   "properties": {},
