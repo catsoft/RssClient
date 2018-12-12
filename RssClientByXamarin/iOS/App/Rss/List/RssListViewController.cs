@@ -40,6 +40,8 @@ namespace iOS.App.Rss.List
 				NavigationController?.PushViewController(new RssDetailViewController(model), true);
 			};
 
+			RssUpdater.RssUpdater.Instance.UpdateData += async () => await UpdateData();
+
 			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
 		}
 
@@ -48,6 +50,8 @@ namespace iOS.App.Rss.List
 			base.ViewWillAppear(animated);
 
 			await _rssRepository.Insert("name2", "http://old-hard.ru/rss");
+			await _rssRepository.Insert("name2", "https://lenta.ru/rss/news");
+
 
 			await UpdateData();
 		}

@@ -15,6 +15,6 @@ namespace iOS.App.Styles
 		public static UIColor SecondaryTextColor => UIColor.Gray;
 		public static UIColor SpecialTextColor = UIColor.White;
 
-		public static UIColor Divider => UIColor.Black;
+		public static UIColor Divider => UIColor.FromRGB(224, 224, 224);
 	}
 }

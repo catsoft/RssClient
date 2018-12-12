@@ -1,4 +1,5 @@
-﻿using iOS.App.Styles;
+﻿using iOS.App.CustomUI;
+using iOS.App.Styles;
 using UIKit;
 
 namespace iOS.App.Base.Table
@@ -9,6 +10,7 @@ namespace iOS.App.Base.Table
 		private bool _shouldSetupConstraint = true;
 
 		protected UIView RootView { get; }
+		private readonly Divider _divider;
 
 		protected BaseTableViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
@@ -17,10 +19,13 @@ namespace iOS.App.Base.Table
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 
+			_divider = new Divider();
+
 			SelectionStyle = UITableViewCellSelectionStyle.None;
 			ContentView.BackgroundColor = Colors.ListItemBack;
 
 			ContentView.AddSubview(RootView);
+			ContentView.AddSubview(_divider);
 		}
 
 		public override void UpdateConstraints()
@@ -29,10 +34,14 @@ namespace iOS.App.Base.Table
 
 			if (_shouldSetupConstraint)
 			{
-				ContentView.TopAnchor.ConstraintEqualTo(RootView.TopAnchor, -Dimensions.CommonTopMargin).Active = true;
-				ContentView.LeadingAnchor.ConstraintEqualTo(RootView.LeadingAnchor, -Dimensions.CommonLeftMargin).Active = true;
-				ContentView.BottomAnchor.ConstraintEqualTo(RootView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
-				ContentView.TrailingAnchor.ConstraintEqualTo(RootView.TrailingAnchor, Dimensions.CommonRightMargin).Active = true;
+				RootView.TopAnchor.ConstraintEqualTo(ContentView.TopAnchor, Dimensions.CommonTopMargin).Active = true;
+				RootView.LeadingAnchor.ConstraintEqualTo(ContentView.LeadingAnchor, Dimensions.CommonLeftMargin).Active = true;
+				RootView.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor, -Dimensions.CommonRightMargin).Active = true;
+
+				_divider.TrailingAnchor.ConstraintEqualTo(ContentView.TrailingAnchor).Active = true;
+				_divider.LeadingAnchor.ConstraintEqualTo(ContentView.LeadingAnchor).Active = true;
+				_divider.TopAnchor.ConstraintEqualTo(RootView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
+				_divider.BottomAnchor.ConstraintEqualTo(ContentView.BottomAnchor).Active = true;
 
 				_shouldSetupConstraint = false;
 			}

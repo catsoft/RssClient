@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Database.Rss;
 using Shared.App.Rss;
 using Shared.App.RssClient;
@@ -14,6 +15,8 @@ namespace iOS.App.Rss.RssUpdater
 		private bool _isUpdateting;
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;
+
+		public event Action UpdateData;
 
 		private RssUpdater()
 		{
@@ -35,6 +38,8 @@ namespace iOS.App.Rss.RssUpdater
 			await _repository.Update(item, request);
 
 			SetLockedFlag(false);
+
+			UpdateData?.Invoke();
 		}
 
 		public async Task StartUpdateAll()
@@ -55,6 +60,8 @@ namespace iOS.App.Rss.RssUpdater
 			}
 
 			SetLockedFlag(false);
+
+			UpdateData?.Invoke();
 		}
 
 		private void SetLockedFlag(bool value)

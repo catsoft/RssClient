@@ -43,11 +43,13 @@ namespace iOS.App.Rss.List
 			_nameLabel = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
+				Font = UIFont.FromName("Helvetica-bold", 16),
 			};
 
 			_dataUpdateLabel = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
+				Font = UIFont.SystemFontOfSize(14),
 			};
 
 			_countMessages = new UILabel()
@@ -69,9 +71,11 @@ namespace iOS.App.Rss.List
 		public override void BindData(RssModel item)
 		{
 			_nameLabel.Text = item.Name;
-			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value.ToString("g")}";
+			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
 			_countMessages.Text = (item.Messages?.Count ?? 0).ToString();
-			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""));
+			var placeHolderImage = UIImage.FromBundle("EmptyImage").ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""), placeHolderImage);
+			_imagePreview.TintColor = Colors.PrimaryColor;
 		}
 
 		public override void UpdateConstraints()
@@ -83,8 +87,8 @@ namespace iOS.App.Rss.List
 				RootView.BottomAnchor.ConstraintEqualTo(_rootsStackView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
 				RootView.RightAnchor.ConstraintEqualTo(_rootsStackView.RightAnchor, Dimensions.CommonRightMargin).Active = true;
 
-				_imagePreview.HeightAnchor.ConstraintEqualTo(48).Active = true;
-				_imagePreview.WidthAnchor.ConstraintEqualTo(48).Active = true;
+				_imagePreview.HeightAnchor.ConstraintEqualTo(42).Active = true;
+				_imagePreview.WidthAnchor.ConstraintEqualTo(42).Active = true;
 
 				_shouldSetupConstraint = false;
 			}

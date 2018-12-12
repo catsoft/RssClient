@@ -159,6 +159,18 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-87.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\EmptyImage.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\EmptyImage.imageset\Icon-120 (2).png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\EmptyImage.imageset\Icon-40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\EmptyImage.imageset\Icon-60 (3).png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Rss.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -206,6 +218,7 @@
     <Compile Include="App\Base\Table\BaseTableViewCell.cs" />
     <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
     <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
+    <Compile Include="App\CustomUI\Divider.cs" />
     <Compile Include="App\Main.cs" />
     <Compile Include="App\AppDelegate.cs" />
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
