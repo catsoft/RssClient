@@ -23,14 +23,13 @@ namespace Shared.App.Rss
 			_rssMessagesRepository = RssMessagesRepository.Instance;;
 		}
 
-		public Task Insert(string name, string url)
+		public Task Insert(string url)
 		{
 			return Task.Run(() =>
 			{
 				var newItem = new RssModel()
 				{
 					Id = url,
-					Name = name,
 					CreationTime = DateTime.Now,
 				};
 				_localDatabase.AddNewItem(newItem); 

@@ -225,6 +225,7 @@
     <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
     <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
     <Compile Include="App\CustomUI\Divider.cs" />
+    <Compile Include="App\CustomUI\RoundTextField.cs" />
     <Compile Include="App\Main.cs" />
     <Compile Include="App\AppDelegate.cs" />
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
