@@ -13,13 +13,16 @@ namespace iOS.App.Rss.List
 {
 	public class RssListViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
-		private RssRepository _rssRepository;
+		private readonly RssRepository _rssRepository;
 
-		public override async void ViewDidLoad()
+		public RssListViewController()
+		{
+			_rssRepository = RssRepository.Instance;
+		}
+
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			_rssRepository = RssRepository.Instance;
 
 			if (NavigationItem != null)
 			{
@@ -41,8 +44,6 @@ namespace iOS.App.Rss.List
 			};
 
 			RssUpdater.RssUpdater.Instance.UpdateData += async () => await UpdateData();
-
-			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
 		}
 
 		public override async void ViewWillAppear(bool animated)
@@ -52,6 +53,7 @@ namespace iOS.App.Rss.List
 			await _rssRepository.Insert("name2", "http://old-hard.ru/rss");
 			await _rssRepository.Insert("name2", "https://lenta.ru/rss/news");
 
+			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
 
 			await UpdateData();
 		}

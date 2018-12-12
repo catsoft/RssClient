@@ -9,18 +9,17 @@ namespace iOS.App.Rss.Edit
 	public class RssEditViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
 		private readonly RssModel _item;
-		private RssRepository _rssRepository;
+		private readonly RssRepository _rssRepository;
 
 		public RssEditViewController(RssModel item)
 		{
 			_item = item;
+			_rssRepository = RssRepository.Instance;
 		}
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			_rssRepository = RssRepository.Instance;
 
 			if (NavigationItem != null)
 			{

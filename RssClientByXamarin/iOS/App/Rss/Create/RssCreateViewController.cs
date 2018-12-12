@@ -8,13 +8,16 @@ namespace iOS.App.Rss.Create
 {
 	public class RssCreateViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
-		private RssRepository _rssRepository;
+		private readonly RssRepository _rssRepository;
+
+		public RssCreateViewController()
+		{
+			_rssRepository = RssRepository.Instance;
+		}
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-			_rssRepository = RssRepository.Instance;
 
 			if (NavigationItem != null)
 			{

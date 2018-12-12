@@ -33,15 +33,6 @@ namespace Shared.App.Rss
 				_localDatabase.AddNewItem(newItem); 
 			});
 		}
-		//public RssMessageModel(SyndicationItem syndicationItem, int primaryKey)
-		//{
-		//	Title = syndicationItem.Title?.Text;
-		//	Text = syndicationItem.Summary.Text;
-		//	CreationDate = syndicationItem.PublishDate.Date;
-		//	Url = syndicationItem.Links?.FirstOrDefault()?.Uri?.AbsoluteUri;
-
-		//	PrimaryKeyRssModel = primaryKey;
-		//}
 
 		public Task Update(RssModel item)
 		{
