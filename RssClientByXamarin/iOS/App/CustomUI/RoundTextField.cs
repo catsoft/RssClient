@@ -12,7 +12,7 @@ namespace iOS.App.CustomUI
 
 		public RoundTextField()
 		{
-			Field = new UITextField()
+			Field = new IQTextView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};

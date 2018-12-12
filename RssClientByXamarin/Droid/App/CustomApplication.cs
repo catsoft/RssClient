@@ -38,10 +38,10 @@ namespace RssClient.App
 
 	            var repository = RssRepository.Instance;
 
-	            repository.Insert("meteoinfo", "https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-	            repository.Insert("acomics", "https://acomics.ru/~depth-of-delusion/rss");
-	            repository.Insert("calend", "http://www.calend.ru/img/export/calend.rss");
-	            repository.Insert("old-hard", "http://www.old-hard.ru/rss");
+	            repository.Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+	            repository.Insert("https://acomics.ru/~depth-of-delusion/rss");
+	            repository.Insert("http://www.calend.ru/img/export/calend.rss");
+	            repository.Insert("http://www.old-hard.ru/rss");
             }
         }
     }
