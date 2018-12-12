@@ -1,9 +1,8 @@
-﻿using CoreGraphics;
+﻿using Analytics;
+using CoreGraphics;
 using Foundation;
 using iOS.App.Rss.List;
-using iOS.App.Rss.RssUpdater;
 using iOS.App.Styles;
-using Shared.AppCenter;
 using UIKit;
 
 namespace iOS.App
@@ -27,7 +26,7 @@ namespace iOS.App
 
 	    private void InitNavigation()
 	    {
-			AppCenterContainer.Init();
+			Log.Init();
 
 		    UINavigationBar.Appearance.BarTintColor = Colors.PrimaryColor;
 		    UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;

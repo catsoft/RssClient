@@ -6,8 +6,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using RssClient.App.Base;
 using RssClient.App.Rss.Create;
-using Shared.App.Base.Database;
-using Shared.App.Rss.List.GetListCommand;
 
 namespace RssClient.App.Rss.List
 {
@@ -50,18 +48,19 @@ namespace RssClient.App.Rss.List
 
         private void LoadItems()
         {
-            var @delegate = this.GetCommandDelegate<GetListResponse>(OnSuccessGetList);
-            var command = new GetListCommand(LocalDb.Instance, @delegate);
+			// TODO Воскресить загрузку списка android
+            //var @delegate = this.GetCommandDelegate<GetListResponse>(OnSuccessGetList);
+            //var command = new GetListCommand(LocalDb.Instance, @delegate);
 
-            command.Execute(new GetListRequest());
+            //command.Execute(new GetListRequest());
         }
 
-        private void OnSuccessGetList(GetListResponse obj)
-        {
-            var adapter = new RssListAdapter(obj.Models, this);
-            _recyclerView.SetAdapter(adapter);
-            adapter.NotifyDataSetChanged();
-        }
+        //private void OnSuccessGetList(GetListResponse obj)
+        //{
+        //    var adapter = new RssListAdapter(obj.Models, this);
+        //    _recyclerView.SetAdapter(adapter);
+        //    adapter.NotifyDataSetChanged();
+        //}
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {

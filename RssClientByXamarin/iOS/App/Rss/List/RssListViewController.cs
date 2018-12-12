@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
 using iOS.App.Rss.Create;
@@ -14,7 +15,7 @@ namespace iOS.App.Rss.List
 	{
 		private RssRepository _rssRepository;
 
-		public async override void ViewDidLoad()
+		public override async void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 

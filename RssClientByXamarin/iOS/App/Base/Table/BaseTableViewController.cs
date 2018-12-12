@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Foundation;
+﻿using System.Collections.Generic;
 using iOS.App.Base.Stated;
-using iOS.App.Rss.Detail;
 using iOS.App.Styles;
 using UIKit;
 

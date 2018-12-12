@@ -1,8 +1,8 @@
-﻿using Foundation;
+﻿using Database.Rss;
+using Foundation;
 using iOS.App.Base.Table;
 using iOS.App.Styles;
 using SDWebImage;
-using Shared.App.Rss;
 using UIKit;
 
 namespace iOS.App.Rss.List

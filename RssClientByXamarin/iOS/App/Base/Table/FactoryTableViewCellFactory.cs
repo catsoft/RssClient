@@ -1,5 +1,4 @@
-﻿using System;
-using iOS.App.Rss.List;
+﻿using iOS.App.Rss.List;
 using UIKit;
 
 namespace iOS.App.Base.Table

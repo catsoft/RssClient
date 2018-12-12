@@ -2,13 +2,13 @@
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using Database.Rss;
 using Newtonsoft.Json;
 using RssClient.App.Base;
-using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Detail
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class RssDetailActivity : ShimmerActivity
     {
         public const string ItemIntentId = "ItemIntentId";
@@ -35,11 +35,11 @@ namespace RssClient.App.Rss.Detail
             LoadItems();
         }
 
-
         private void LoadItems()
         {
-            var asyncTask = new GetMessagesTask(_list, this, _refreshLayout);
-            asyncTask.Execute(_item);
+			// TODO прикрутить загрузку элементов
+            //var asyncTask = new GetMessagesTask(_list, this, _refreshLayout);
+            //asyncTask.Execute(_item);
         }
     }
 }

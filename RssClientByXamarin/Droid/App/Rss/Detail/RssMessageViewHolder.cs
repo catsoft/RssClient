@@ -1,11 +1,11 @@
 ﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Shared.App.Rss;
+using Database.Rss;
 
 namespace RssClient.App.Rss.Detail
 {
-    public class RssMessageViewHolder : RecyclerView.ViewHolder
+	public class RssMessageViewHolder : RecyclerView.ViewHolder
     {
         public RssMessageViewHolder(View itemView) : base(itemView)
         {

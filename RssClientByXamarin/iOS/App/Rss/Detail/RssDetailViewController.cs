@@ -1,4 +1,5 @@
-﻿using iOS.App.Base.Table;
+﻿using Database.Rss;
+using iOS.App.Base.Table;
 using iOS.App.Rss.List;
 using Shared.App.Rss;
 

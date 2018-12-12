@@ -1,5 +1,4 @@
-﻿using CoreGraphics;
-using UIKit;
+﻿using UIKit;
 
 namespace iOS.App.Styles
 {

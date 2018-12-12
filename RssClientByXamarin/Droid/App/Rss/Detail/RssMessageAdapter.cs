@@ -6,11 +6,11 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Net;
-using Shared.App.Rss;
+using Database.Rss;
 
 namespace RssClient.App.Rss.Detail
 {
-    public class RssMessageAdapter : RecyclerView.Adapter
+	public class RssMessageAdapter : RecyclerView.Adapter
     {
         private const string CreationDateFormat = "dd MMMM yyyy";
 

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
 using RssClient.App.Base;
-using Shared.App.Base.Database;
-using Shared.App.Rss.New;
-using Shared.App.Rss.New.Command;
 
 namespace RssClient.App.Rss.Create
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+	[Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class RssCreateActivity : ToolbarActivity
     {
         private const string UrlDefault = "http://";
@@ -21,7 +17,6 @@ namespace RssClient.App.Rss.Create
         private TextInputLayout _name;
         private TextInputLayout _url;
         private Button _sendButton;
-        private Dictionary<NewRssField, TextInputLayout> _fields;
 
         protected override int ResourceView => Resource.Layout.activity_rss_create;
 
@@ -36,12 +31,6 @@ namespace RssClient.App.Rss.Create
             InitUrlEditText();
 
             InitSendButton();
-
-            _fields = new Dictionary<NewRssField, TextInputLayout>
-            {
-                {NewRssField.Name, _name},
-                {NewRssField.Rss, _url}
-            };
         }
 
 
@@ -70,22 +59,22 @@ namespace RssClient.App.Rss.Create
         {
             var name = _name.EditText.Text;
             var url = _url.EditText.Text;
+			// TODO Воскресить создание android
+            //var request = new NewRssRequest(name, url);
 
-            var request = new NewRssRequest(name, url);
+            //if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
+            //{
+            //    var @delegate = this.GetCommandDelegate<NewRssResponse>(OnSuccessCreate);
+            //    var command = new NewRssCommand(LocalDb.Instance, @delegate);
 
-            if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
-            {
-                var @delegate = this.GetCommandDelegate<NewRssResponse>(OnSuccessCreate);
-                var command = new NewRssCommand(LocalDb.Instance, @delegate);
-
-                command.Execute(request);
-            }
+            //    command.Execute(request);
+            //}
         }
 
-        private void OnSuccessCreate(NewRssResponse obj)
-        {
-            SetResult(Result.Ok);
-            Finish();
-        }
+        //private void OnSuccessCreate(NewRssResponse obj)
+        //{
+        //    SetResult(Result.Ok);
+        //    Finish();
+        //}
     }
 }

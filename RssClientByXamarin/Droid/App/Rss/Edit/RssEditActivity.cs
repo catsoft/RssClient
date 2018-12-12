@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
+using Database.Rss;
 using Newtonsoft.Json;
 using RssClient.App.Base;
-using Shared.App.Base.Database;
-using Shared.App.Rss;
-using Shared.App.Rss.Edit;
-using Shared.App.Rss.New;
 
 namespace RssClient.App.Rss.Edit
 {
@@ -23,7 +19,6 @@ namespace RssClient.App.Rss.Edit
         private TextInputLayout _name;
         private TextInputLayout _url;
         private Button _sendButton;
-        private Dictionary<NewRssField, TextInputLayout> _fields;
         private RssModel _item;
 
         protected override int ResourceView => Resource.Layout.activity_rss_edit;
@@ -44,12 +39,6 @@ namespace RssClient.App.Rss.Edit
             InitUrlEditText();
 
             InitSendButton();
-
-            _fields = new Dictionary<NewRssField, TextInputLayout>
-            {
-                {NewRssField.Name, _name},
-                {NewRssField.Rss, _url}
-            };
         }
 
 
@@ -79,22 +68,22 @@ namespace RssClient.App.Rss.Edit
         {
             var name = _name.EditText.Text;
             var url = _url.EditText.Text;
+			// TODO воскресить редактирование android
+            //var request = new EditRssRequest(_item, name, url); 
 
-            var request = new EditRssRequest(_item, name, url);
+            //if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
+            //{
+            //    var @delegate = this.GetCommandDelegate<EditRssResponse>(OnSuccessEdit);
+            //    var command = new EditRssCommand(LocalDb.Instance, @delegate);
 
-            if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
-            {
-                var @delegate = this.GetCommandDelegate<EditRssResponse>(OnSuccessEdit);
-                var command = new EditRssCommand(LocalDb.Instance, @delegate);
-
-                command.Execute(request);
-            }
+            //    command.Execute(request);
+            //}
         }
 
-        private void OnSuccessEdit(EditRssResponse obj)
-        {
-            SetResult(Result.Ok);
-            Finish();
-        }
+        //private void OnSuccessEdit(EditRssResponse obj)
+        //{
+        //    SetResult(Result.Ok);
+        //    Finish();
+        //}
     }
 }

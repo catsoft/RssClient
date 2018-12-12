@@ -4,18 +4,14 @@ using Android.App;
 using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Database.Rss;
 using Newtonsoft.Json;
-using RssClient.App.Base;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
-using Shared.App.Base.Database;
-using Shared.App.Rss;
-using Shared.App.Rss.Edit;
-using Shared.App.Rss.Remove;
 
 namespace RssClient.App.Rss.List
 {
-    public class RssListAdapter : RecyclerView.Adapter
+	public class RssListAdapter : RecyclerView.Adapter
     {
         private const string DeletePositiveTitle = "Yes";
         private const string DeleteNegativeTitle = "No";
@@ -86,27 +82,28 @@ namespace RssClient.App.Rss.List
 
         private void DeleteItem(RssModel holderItem)
         {
-            var builder = new AlertDialog.Builder(_activity);
-            builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
-            {
-                var request = new RemoveRssRequest(holderItem);
-                var @delegate = _activity.GetCommandDelegate<RemoveRssResponse>(OnSuccessRemove);
-                var command = new RemoveRssCommand(LocalDb.Instance, @delegate);
+			// TODO Воскресить удаление в android
+            //var builder = new AlertDialog.Builder(_activity);
+            //builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
+            //{
+            //    var request = new RemoveRssRequest(holderItem);
+            //    var @delegate = _activity.GetCommandDelegate<RemoveRssResponse>(OnSuccessRemove);
+            //    var command = new RemoveRssCommand(LocalDb.Instance, @delegate);
 
-                command.Execute(request);
-            });
-            builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
-            builder.SetTitle(DeleteTitle);
-            builder.Show();
+            //    command.Execute(request);
+            //});
+            //builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
+            //builder.SetTitle(DeleteTitle);
+            //builder.Show();
         }
 
-        private void OnSuccessRemove(RemoveRssResponse obj)
-        {
-            var index = Items.IndexOf(obj.Model);
+        //private void OnSuccessRemove(RemoveRssResponse obj)
+        //{
+        //    var index = Items.IndexOf(obj.Model);
 
-            Items.RemoveAt(index);
-            NotifyItemRemoved(index);
-        }
+        //    Items.RemoveAt(index);
+        //    NotifyItemRemoved(index);
+        //}
 
         private void OpenDetailActivity(RssModel holderItem)
         {
