@@ -31,10 +31,6 @@ namespace Database
                 return path;
         }
 
-        public void Clear()
-        {
-        }
-
         /// <summary>
         /// https://github.com/praeclarum/sqlite-net/wiki
         /// Всю информацию по автоматическим миграциям и польность по sql lite et pcl можно найти по этой ссылке

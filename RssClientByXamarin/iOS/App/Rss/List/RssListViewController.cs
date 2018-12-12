@@ -47,7 +47,7 @@ namespace iOS.App.Rss.List
 		{
 			base.ViewWillAppear(animated);
 
-			await _rssRepository.Insert("name2", "name2");
+			await _rssRepository.Insert("name2", "http://old-hard.ru/rss");
 
 			await UpdateData();
 		}

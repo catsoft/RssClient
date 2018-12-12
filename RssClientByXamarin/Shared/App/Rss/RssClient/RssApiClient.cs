@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
+using Analytics;
 using Database.Rss;
 
 namespace Shared.App.RssClient
@@ -11,6 +12,12 @@ namespace Shared.App.RssClient
 	{
 		private static RssApiClient _instance;
 		public static RssApiClient Instance => _instance ?? (_instance = new RssApiClient());
+
+		private ILog _log;
+		public RssApiClient()
+		{
+			_log = new Log();
+		}
 
 		public async Task<SyndicationFeed> Update(RssModel item)
 		{
@@ -26,6 +33,7 @@ namespace Shared.App.RssClient
 			}
 			catch (Exception e)
 			{
+				_log.TrackLog(LogLevel.Warn, "UpdateFeed", "При попытке обновить данные", e);
 				return null;
 			}
 		}

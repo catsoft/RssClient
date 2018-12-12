@@ -25,6 +25,7 @@ namespace iOS.App.Rss.List
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Spacing = 10,
 				Axis = UILayoutConstraintAxis.Horizontal,
+				Distribution = UIStackViewDistribution.Fill
 			};
 
 			_imagePreview = new UIImageView()
@@ -52,11 +53,12 @@ namespace iOS.App.Rss.List
 			_countMessages = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
+				TextAlignment = UITextAlignment.Right,
 			};
 
 
 			RootView.AddSubview(_rootsStackView);
-			_rootsStackView.AddArrangedSubview(_nameLabel);
+			_rootsStackView.AddArrangedSubview(_imagePreview);
 			_rootsStackView.AddArrangedSubview(_textStackView);
 			_rootsStackView.AddArrangedSubview(_countMessages);
 
@@ -80,6 +82,9 @@ namespace iOS.App.Rss.List
 				RootView.LeftAnchor.ConstraintEqualTo(_rootsStackView.LeftAnchor, -Dimensions.CommonLeftMargin).Active = true;
 				RootView.BottomAnchor.ConstraintEqualTo(_rootsStackView.BottomAnchor, Dimensions.CommonBottomMargin).Active = true;
 				RootView.RightAnchor.ConstraintEqualTo(_rootsStackView.RightAnchor, Dimensions.CommonRightMargin).Active = true;
+
+				_imagePreview.HeightAnchor.ConstraintEqualTo(48).Active = true;
+				_imagePreview.WidthAnchor.ConstraintEqualTo(48).Active = true;
 
 				_shouldSetupConstraint = false;
 			}

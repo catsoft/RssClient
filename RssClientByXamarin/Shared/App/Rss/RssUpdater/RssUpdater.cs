@@ -10,7 +10,7 @@ namespace iOS.App.Rss.RssUpdater
 		private static RssUpdater _instance;
 		public static RssUpdater Instance => _instance ?? (_instance = new RssUpdater());
 
-		private readonly object _locker;
+		private readonly object _locker = new object();
 		private bool _isUpdateting;
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;

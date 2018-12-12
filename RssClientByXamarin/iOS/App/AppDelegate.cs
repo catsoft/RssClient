@@ -31,13 +31,9 @@ namespace iOS.App
 		    UINavigationBar.Appearance.BarTintColor = Colors.PrimaryColor;
 		    UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;
 		    UINavigationBar.Appearance.Translucent = false;
+		    UINavigationBar.Appearance.TintColor = Colors.SecondaryColor;
 
 		    NavigationController = new UINavigationController();
-
-		    NavigationController.NavigationBar.Layer.ShadowColor = Colors.Shadow.CGColor;
-		    NavigationController.NavigationBar.Layer.ShadowRadius = 4;
-		    NavigationController.NavigationBar.Layer.ShadowOpacity = 1;
-		    NavigationController.NavigationBar.Layer.ShadowOffset = new CGSize(0, 0);
 
 			Window = new UIWindow(UIScreen.MainScreen.Bounds)
 		    {

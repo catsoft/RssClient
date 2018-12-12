@@ -62,9 +62,12 @@ namespace Shared.App.Rss
 		{
 			return Task.Run(() =>
 			{
-				item.Name = feed.Title.Text;
+				if (feed == null)
+					return;
+
+				item.Name = feed.Title?.Text;
 				item.UpdateTime = DateTime.Now;
-				item.UrlPreviewImage = feed.ImageUrl.AbsolutePath;
+				item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
 
 				_localDatabase.UpdateItemByLocalId(item);
 			});
