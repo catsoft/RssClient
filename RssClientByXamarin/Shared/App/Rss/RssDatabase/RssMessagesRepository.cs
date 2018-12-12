@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
@@ -23,24 +24,31 @@ namespace Shared.App.Rss.RssDatabase
 		{
 			return Task.Run(() =>
 			{
-				if (_localDatabase.GetItems<RssMessageModel>()
-					    ?.Any(w => w.CreationDate == syndicationItem.PublishDate.Date) == true)
-				{
-					// TODO обработать валидацию
-					return;
-				}
+				var imageUri = syndicationItem.Links.FirstOrDefault(w =>
+						w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
+						w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
+
+				var url = syndicationItem.Links.FirstOrDefault(w =>
+					w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
 
 				var item = new RssMessageModel()
 				{
-					Title = syndicationItem.Title?.Text,
-					Text = syndicationItem.Summary.Text,
+					Id = syndicationItem.Id,
+					Title = SafeTrim(syndicationItem.Title?.Text),
+					Text = SafeTrim(syndicationItem.Summary.Text),
 					CreationDate = syndicationItem.PublishDate.Date,
-					Url = syndicationItem.Links?.FirstOrDefault()?.Uri?.AbsoluteUri,
+					Url = url,
+					ImageUrl = imageUri,
 					PrimaryKeyRssModel = rssModel.Id,
 				};
 
 				_localDatabase.AddNewItem(item);
 			});
+		}
+
+		private string SafeTrim(string text)
+		{
+			return text?.Trim(' ', '\n', '\r');
 		}
 
 		public Task<List<RssMessageModel>> GetMessagesForRss(RssModel rssModel)
@@ -50,6 +58,14 @@ namespace Shared.App.Rss.RssDatabase
 				return _localDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id)
 					.OrderBy(w => w.CreationDate)
 					.ToList();
+			});
+		}
+
+		public Task<long> GetCountForRss(RssModel rssModel)
+		{
+			return Task.Run<long>(() =>
+			{
+				return _localDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id).Count() ?? 0;
 			});
 		}
 	}

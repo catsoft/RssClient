@@ -1,8 +1,10 @@
-﻿namespace Database
+﻿using System;
+
+namespace Database
 {
     public class Entity : IEntity
     {
-        [SQLite.PrimaryKey, SQLite.AutoIncrement]
-        public int Id { get; set; }
+        [SQLite.PrimaryKey]
+        public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

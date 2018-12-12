@@ -68,6 +68,12 @@
     <Reference Include="IQKeyboardManager, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.IQKeyboardManager.1.4.1\lib\Xamarin.iOS10\IQKeyboardManager.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AppCenter, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.1.11.0\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.iOS.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AppCenter.1.11.0\lib\Xamarin.iOS10\Microsoft.AppCenter.iOS.Bindings.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
@@ -224,6 +230,7 @@
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
     <Compile Include="App\Rss\Create\RssCreateViewController.cs" />
     <Compile Include="App\Rss\Detail\RssDetailViewController.cs" />
+    <Compile Include="App\Rss\Detail\RssMessageViewCell.cs" />
     <Compile Include="App\Rss\Edit\RssEditViewController.cs" />
     <Compile Include="App\Rss\List\RssListViewController.cs" />
     <Compile Include="App\Rss\List\RssViewCell.cs" />

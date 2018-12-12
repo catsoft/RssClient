@@ -127,11 +127,11 @@ namespace Database
         /// <summary>
         /// Добавление нового элемента
         /// </summary>
-        public int AddNewItem<T>(T item) where T : IEntity, new()
+        public string AddNewItem<T>(T item) where T : IEntity, new()
         {
             lock (Locker)
             {
-                _database.Insert(item);
+                _database.InsertOrReplace(item);
                 return item.Id;
             }
         }
@@ -174,7 +174,7 @@ namespace Database
         /// <summary>
         /// Получение элемента по локальному id
         /// </summary>
-        public T GetItemByLocalId<T>(int id) where T : class, IEntity, new()
+        public T GetItemByLocalId<T>(string id) where T : class, IEntity, new()
         {
             lock (Locker)
             {

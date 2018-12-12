@@ -6,12 +6,11 @@ namespace Database.Rss
     public class RssModel : Entity
     {
         public string Name { get; set; }
-        public string Rss { get; set; }
+	    public string Rss => Id;
 	    public string UrlPreviewImage { get; set; }
         public DateTime CreationTime { get; set; }
 		public DateTime? UpdateTime { get; set; }
 
-        [SQLite.Ignore]
-        public List<RssMessageModel> Messages { get; set; }
+		public long CountMessages { get; set; }
     }
 }

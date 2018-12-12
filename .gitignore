@@ -12,3 +12,4 @@
 /RssClientByXamarin/iOS/bin
 /RssClientByXamarin/packages
 /RssClientByXamarin/iOS/iOS.csproj.user
+/RssClientByXamarin/*.user
