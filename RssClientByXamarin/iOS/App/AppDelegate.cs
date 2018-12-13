@@ -1,5 +1,4 @@
 ﻿using Analytics;
-using CoreGraphics;
 using Foundation;
 using iOS.App.Rss.List;
 using iOS.App.Styles;

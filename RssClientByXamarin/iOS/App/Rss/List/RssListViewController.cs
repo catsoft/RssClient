@@ -50,11 +50,6 @@ namespace iOS.App.Rss.List
 		{
 			base.ViewWillAppear(animated);
 
-			await _rssRepository.Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-			await _rssRepository.Insert("https://acomics.ru/~depth-of-delusion/rss");
-			await _rssRepository.Insert("http://www.calend.ru/img/export/calend.rss");
-			await _rssRepository.Insert("http://www.old-hard.ru/rss");
-
 			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
 
 			await UpdateData();

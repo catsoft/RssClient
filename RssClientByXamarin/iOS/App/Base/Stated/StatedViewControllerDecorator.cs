@@ -4,6 +4,7 @@ namespace iOS.App.Base.Stated
 {
 	public class StatedViewControllerDecorator : UIViewControllerDecorator
 	{
+		private readonly UIViewController _controller;
 		public ScreenState State { get; private set; }
 
 		private UIView _loadView;
@@ -11,12 +12,12 @@ namespace iOS.App.Base.Stated
 
 		public StatedViewControllerDecorator(UIViewController controller) : base(controller)
 		{
+			_controller = controller;
 		}
 
 		public void SetNormal(NormalData data)
 		{
-			_loadView?.RemoveFromSuperview();
-			_errorView?.RemoveFromSuperview();
+			Clear();
 			State = ScreenState.Normal;
 		}
 
@@ -24,6 +25,7 @@ namespace iOS.App.Base.Stated
 		{
 			Clear();
 			_loadView = new LoadingView(Controller.View);
+			_controller.View.AddSubview(_loadView);
 			State = ScreenState.Loading;
 		}
 
@@ -31,11 +33,13 @@ namespace iOS.App.Base.Stated
 		{
 			Clear();
 			_errorView = new ErrorView(Controller.View);
+			_controller.View.AddSubview(_errorView);
 			State = ScreenState.Error;
 		}
 
 		private void Clear()
 		{
+			_loadView?.RemoveFromSuperview();
 			_errorView?.RemoveFromSuperview();
 		}
 	}

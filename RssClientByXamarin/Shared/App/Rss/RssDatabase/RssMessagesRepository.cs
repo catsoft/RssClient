@@ -65,7 +65,7 @@ namespace Shared.App.Rss.RssDatabase
 			return Task.Run(() =>
 			{
 				return _localDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id)
-					.OrderBy(w => w.CreationDate)
+					.OrderByDescending(w => w.CreationDate)
 					.ToList();
 			});
 		}

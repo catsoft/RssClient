@@ -68,6 +68,21 @@ namespace Shared.App.Rss
 			return Task.Run(async () =>
 			{
 				var items = _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList() ?? new List<RssModel>();
+
+				if (items.Count == 0)
+				{
+					await Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+					await Insert("https://acomics.ru/~depth-of-delusion/rss");
+					await Insert("http://www.calend.ru/img/export/calend.rss");
+					await Insert("http://www.old-hard.ru/rss");
+					await Insert("https://lenta.ru/rss/news");
+					await Insert("https://lenta.ru/rss/articles");
+					await Insert("https://lenta.ru/rss/top7");
+					await Insert("https://lenta.ru/rss/news/russia");
+
+					items = _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList() ?? new List<RssModel>();
+				}
+
 				foreach (var rssModel in items)
 				{
 					rssModel.CountMessages = await _rssMessagesRepository.GetCountForRss(rssModel);

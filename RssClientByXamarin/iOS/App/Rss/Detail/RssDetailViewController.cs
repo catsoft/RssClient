@@ -61,7 +61,14 @@ namespace iOS.App.Rss.Detail
 
 			TableView.ReloadData();
 
-			StatedDecorator.SetNormal(new NormalData());
+			if (items.Count == 0)
+			{
+				StatedDecorator.SetError(new ErrorData());
+			}
+			else
+			{
+				StatedDecorator.SetNormal(new NormalData());
+			}
 		}
 	}
 }
