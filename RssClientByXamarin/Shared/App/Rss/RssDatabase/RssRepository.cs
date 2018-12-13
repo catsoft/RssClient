@@ -14,18 +14,18 @@ namespace Shared.App.Rss
 		private static RssRepository _instance;
 		public static RssRepository Instance => _instance ?? (_instance = new RssRepository());
 
-		private readonly LocalDb _localDatabase;
+		private readonly IDatabase _database;
 		private readonly RssMessagesRepository _rssMessagesRepository;
 
 		private RssRepository()
 		{
-			_localDatabase = LocalDb.Instance;
+			_database = RealmDatabase.Instance;
 			_rssMessagesRepository = RssMessagesRepository.Instance;;
 		}
 
 		public Task Insert(string url)
 		{
-			return Task.Run(async () =>
+			return Task.Run(() =>
 			{
 				var newItem = new RssModel()
 				{
@@ -33,7 +33,7 @@ namespace Shared.App.Rss
 					Name = url,
 					CreationTime = DateTime.Now,
 				};
-				_localDatabase.AddOrReplace(newItem);
+				_database.AddOrUpdate(newItem);
 			});
 		}
 
@@ -45,31 +45,28 @@ namespace Shared.App.Rss
 
 				if (item.Rss != rss)
 				{
-					await _rssMessagesRepository.DeleteItemForRss(item);
-					_localDatabase.DeleteItemByLocalId(item);
+					await _rssMessagesRepository.DeleteItemsForRss(item);
+					_database.Remove(item);
 
 					item.Id = rss;
-					_localDatabase.AddOrReplace(item);
 				}
-				else
-				{
-					_localDatabase.UpdateItemByLocalId(item);
-				}
+
+				_database.AddOrUpdate(item);
 			});
 		}
 
 		public Task Remove(RssModel item)
 		{
-			return Task.Run(() => _localDatabase.DeleteItemByLocalId(item));
+			return Task.Run(() => _database.Remove(item));
 		}
 
-		public Task<List<RssModel>> GetList()
+		public Task<IQueryable<RssModel>> GetList()
 		{
-			return Task.Run(async () =>
+			return Task.Run<IQueryable<RssModel>>(async () =>
 			{
-				var items = _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList() ?? new List<RssModel>();
+				var items = _database.All<RssModel>().OrderBy(w => w.CreationTime);
 
-				if (items.Count == 0)
+				if (!items.Any())
 				{
 					await Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
 					await Insert("https://acomics.ru/~depth-of-delusion/rss");
@@ -79,8 +76,6 @@ namespace Shared.App.Rss
 					await Insert("https://lenta.ru/rss/articles");
 					await Insert("https://lenta.ru/rss/top7");
 					await Insert("https://lenta.ru/rss/news/russia");
-
-					items = _localDatabase.GetItems<RssModel>()?.OrderBy(w => w.CreationTime).ToList() ?? new List<RssModel>();
 				}
 
 				foreach (var rssModel in items)
@@ -103,7 +98,7 @@ namespace Shared.App.Rss
 				item.UpdateTime = DateTime.Now;
 				item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
 
-				_localDatabase.UpdateItemByLocalId(item);
+				_database.AddOrUpdate(item);
 
 				foreach (var syndicationItem in feed.Items)
 				{

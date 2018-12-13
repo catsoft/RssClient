@@ -8,8 +8,8 @@ namespace Database.Rss
         public string Name { get; set; }
 	    public string Rss => Id;
 	    public string UrlPreviewImage { get; set; }
-        public DateTime CreationTime { get; set; }
-		public DateTime? UpdateTime { get; set; }
+        public DateTimeOffset CreationTime { get; set; }
+		public DateTimeOffset? UpdateTime { get; set; }
 
 		public long CountMessages { get; set; }
     }

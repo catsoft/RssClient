@@ -1,10 +1,11 @@
 ﻿using System;
+using Realms;
 
 namespace Database
 {
-    public class Entity : IEntity
+    public class Entity : RealmObject
     {
-        [SQLite.PrimaryKey]
+        [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

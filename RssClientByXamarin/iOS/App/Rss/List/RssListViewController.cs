@@ -6,7 +6,6 @@ using iOS.App.Rss.Create;
 using iOS.App.Rss.Detail;
 using iOS.App.Styles;
 using Shared.App.Rss;
-using SQLite;
 using UIKit;
 using Xamarin;
 
@@ -47,10 +46,6 @@ namespace iOS.App.Rss.List
 			};
 
 			await UpdateData();
-
-			_rssUpdater.CollectionChanged += (sender, args) =>
-			{
-			};
 		}
 
 		private async Task UpdateData()

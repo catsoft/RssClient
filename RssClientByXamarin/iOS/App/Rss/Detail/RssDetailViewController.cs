@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Database.Rss;
 using Foundation;
 using iOS.App.Base.Stated;
@@ -54,7 +55,7 @@ namespace iOS.App.Rss.Detail
 
 			TableView.ReloadData();
 
-			if (items.Count == 0)
+			if (items.Any())
 			{
 				StatedDecorator.SetError(new ErrorData());
 			}

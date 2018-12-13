@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Database;
 using Database.Rss;
 using Shared.App.Rss;
 using Shared.App.RssClient;
-using SQLite;
 
 namespace iOS.App.Rss.RssUpdater
 {
@@ -17,17 +15,11 @@ namespace iOS.App.Rss.RssUpdater
 		private bool _isUpdateting;
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;
-		private readonly Database.ILocalDb _localDb;
-
-		public event Action<RssModel> UpdateModel;
 
 		private RssUpdater()
 		{
 			_client = RssApiClient.Instance;
 			_repository = RssRepository.Instance;
-			_localDb = LocalDb.Instance;
-
-			_localDb.TableChanges += TableChanges;
 		}
 
 		public async Task StartUpdateByInternet(RssModel item)
@@ -44,8 +36,6 @@ namespace iOS.App.Rss.RssUpdater
 			await _repository.Update(item, request);
 
 			SetLockedFlag(false);
-
-			UpdateModel?.Invoke(item);
 		}
 
 		public async Task StartUpdateAllByInternet()
@@ -63,8 +53,6 @@ namespace iOS.App.Rss.RssUpdater
 			{
 				var request = await _client.Update(rssModel);
 				await _repository.Update(rssModel, request);
-
-				UpdateModel?.Invoke(rssModel);
 			}
 
 			SetLockedFlag(false);
@@ -77,12 +65,5 @@ namespace iOS.App.Rss.RssUpdater
 				_isUpdateting = value;
 			}
 		}
-
-		private void TableChanges(object sender, NotifyTableChangedEventArgs e)
-		{
-			CollectionChanged?.Invoke(sender, e);
-		}
-
-		public EventHandler<NotifyTableChangedEventArgs> CollectionChanged { get; set; }
 	}
 }

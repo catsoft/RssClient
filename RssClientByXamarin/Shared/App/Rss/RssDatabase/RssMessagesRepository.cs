@@ -13,11 +13,11 @@ namespace Shared.App.Rss.RssDatabase
 		private static RssMessagesRepository _instance;
 		public static RssMessagesRepository Instance => _instance ?? (_instance = new RssMessagesRepository());
 
-		private readonly LocalDb _localDatabase;
+		private readonly IDatabase _localDatabase;
 
 		public RssMessagesRepository()
 		{
-			_localDatabase = LocalDb.Instance;
+			_localDatabase = RealmDatabase.Instance;
 		}
 
 		public Task AddItem(SyndicationItem syndicationItem, RssModel rssModel)
@@ -44,7 +44,7 @@ namespace Shared.App.Rss.RssDatabase
 
 				try
 				{
-					_localDatabase.Insert(item);
+					_localDatabase.Add(item);
 				}
 				catch (Exception exception)
 				{
@@ -58,16 +58,16 @@ namespace Shared.App.Rss.RssDatabase
 		{
 			return Task.Run(() =>
 			{
-				_localDatabase.UpdateItemByLocalId(rssMessageModel);
+				_localDatabase.AddOrUpdate(rssMessageModel);
 			});
 		}
 
-		public Task DeleteItemForRss(RssModel rssModel)
+		public Task DeleteItemsForRss(RssModel rssModel)
 		{
 			return Task.Run(() =>
 			{
-				var items = _localDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id);
-				_localDatabase.DeleteItemsByLocalId(items);
+				var items = _localDatabase.All<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id);
+				_localDatabase.RemoveRange(items);
 			});
 		}
 
@@ -76,13 +76,13 @@ namespace Shared.App.Rss.RssDatabase
 			return text?.Trim(' ', '\n', '\r');
 		}
 
-		public Task<List<RssMessageModel>> GetMessagesForRss(RssModel rssModel)
+		public Task<IQueryable<RssMessageModel>> GetMessagesForRss(RssModel rssModel)
 		{
-			return Task.Run(() =>
+			return Task.Run<IQueryable<RssMessageModel>>(() =>
 			{
-				return _localDatabase.GetItems<RssMessageModel>()?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id)
-					.OrderByDescending(w => w.CreationDate)
-					.ToList();
+				return _localDatabase.All<RssMessageModel>()
+					?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id)
+					.OrderByDescending(w => w.CreationDate);
 			});
 		}
 
@@ -90,7 +90,7 @@ namespace Shared.App.Rss.RssDatabase
 		{
 			return Task.Run<long>(() =>
 			{
-				return _localDatabase.GetItems<RssMessageModel>()?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id).Count() ?? 0;
+				return _localDatabase.All<RssMessageModel>()?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id).Count() ?? 0;
 			});
 		}
 	}
