@@ -42,7 +42,15 @@ namespace Shared.App.Rss.RssDatabase
 					PrimaryKeyRssModel = rssModel.Id,
 				};
 
-				_localDatabase.AddNewItem(item);
+				try
+				{
+					_localDatabase.Insert(item);
+				}
+				catch (Exception exception)
+				{
+					// TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
+					// Также зная что много exceptions медленно работают, то точно нужно заменить
+				}
 			});
 		}
 

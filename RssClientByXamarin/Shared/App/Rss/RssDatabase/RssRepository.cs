@@ -33,7 +33,7 @@ namespace Shared.App.Rss
 					Name = url,
 					CreationTime = DateTime.Now,
 				};
-				_localDatabase.AddNewItem(newItem); 
+				_localDatabase.AddOrReplace(newItem); 
 			});
 		}
 
@@ -49,7 +49,7 @@ namespace Shared.App.Rss
 					_localDatabase.DeleteItemByLocalId(item);
 
 					item.Id = rss;
-					_localDatabase.AddNewItem(item);
+					_localDatabase.AddOrReplace(item);
 				}
 				else
 				{

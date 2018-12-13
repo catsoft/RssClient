@@ -10,8 +10,9 @@ namespace Database
         void DeleteItemsByLocalId<T>(IEnumerable<T> items) where T : IEntity, new();
         void DeleteItemsByLocalId<T>(IEnumerable<int> itemIds) where T : IEntity, new();
         void DeleteAll<T>() where T : IEntity, new();
-	    string AddNewItem<T>(T item) where T : IEntity, new();
-        void AddNewItems<T>(IEnumerable<T> items) where T : IEntity, new();
+	    string AddOrReplace<T>(T item) where T : IEntity, new();
+	    string Insert<T>(T item) where T : IEntity, new();
+        void InsertAll<T>(IEnumerable<T> items) where T : IEntity, new();
         void UpdateItemByLocalId<T>(T item) where T : IEntity, new();
         void UpdateItemsByLocalId<T>(IEnumerable<T> items) where T : IEntity, new();
         T GetItemByLocalId<T>(string id) where T : class, IEntity, new();

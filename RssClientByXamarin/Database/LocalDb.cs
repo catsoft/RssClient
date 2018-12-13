@@ -127,7 +127,7 @@ namespace Database
         /// <summary>
         /// Добавление нового элемента
         /// </summary>
-        public string AddNewItem<T>(T item) where T : IEntity, new()
+        public string AddOrReplace<T>(T item) where T : IEntity, new()
         {
             lock (Locker)
             {
@@ -135,10 +135,20 @@ namespace Database
                 return item.Id;
             }
         }
-        /// <summary>
+
+	    public string Insert<T>(T item) where T : IEntity, new()
+	    {
+		    lock (Locker)
+		    {
+			    _database.Insert(item);
+			    return item.Id;
+		    }
+		}
+
+	    /// <summary>
         /// Добавление новых элементов
         /// </summary>
-        public void AddNewItems<T>(IEnumerable<T> items) where T : IEntity, new()
+        public void InsertAll<T>(IEnumerable<T> items) where T : IEntity, new()
         {
             lock (Locker)
             {
