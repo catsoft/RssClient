@@ -3,13 +3,17 @@ using Database.Rss;
 using Foundation;
 using iOS.App.Base.Table;
 using iOS.App.Styles;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 using SDWebImage;
+using Shared.App.Rss.RssDatabase;
 using UIKit;
 
 namespace iOS.App.Rss.Detail
 {
 	public class RssMessageViewCell : BaseTableViewCell<RssMessageModel>
 	{
+		private readonly RssMessagesRepository _rssMessagesRepository;
 		private bool _shouldSetupConstraint = true;
 		private readonly UIStackView _rootStackView;
 
@@ -32,6 +36,8 @@ namespace iOS.App.Rss.Detail
 
 		public RssMessageViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
+			_rssMessagesRepository = RssMessagesRepository.Instance;
+
 			_rootStackView= new UIStackView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
@@ -74,7 +80,7 @@ namespace iOS.App.Rss.Detail
 			};
 
 			_readAction = UIButton.FromType(UIButtonType.System);
-			_readAction.SetTitle("Read", UIControlState.Normal);
+			_readAction.SetTitle("Read more", UIControlState.Normal);
 			_readAction.TranslatesAutoresizingMaskIntoConstraints = false;
 			_readAction.AddGestureRecognizer(new UITapGestureRecognizer(() => ReadClick?.Invoke(_item)));
 
@@ -105,6 +111,50 @@ namespace iOS.App.Rss.Detail
 			_actionsStackView.AddArrangedSubview(_deleteAction);
 			_actionsStackView.AddArrangedSubview(_markReadAction);
 			_actionsStackView.AddArrangedSubview(_shareAction);
+
+			InitAction();
+		}
+
+		private void InitAction()
+		{
+			DeleteClick += async (model) =>
+			{
+				// TODO Сделать настоящее удаление
+				model.IsDeleted = true;
+				BindData(model);
+
+				await _rssMessagesRepository.Update(model);
+			};
+
+			MarkAsReadClick += async (model) =>
+			{
+				model.IsRead = true;
+				BindData(model);
+
+				await _rssMessagesRepository.Update(model);
+			};
+
+			ReadClick += async (model) =>
+			{
+				model.IsRead = true;
+				BindData(model);
+
+				// Совсем не очевидное название но открывает url (Если может)
+				CrossShare.Current.CanOpenUrl(model.Url ?? "");
+
+				await _rssMessagesRepository.Update(model);
+			};
+
+			ShareClick += async model =>
+			{
+				var shareMessage = new ShareMessage()
+				{
+					Text = "Rss link from RSS Client by \"Catsoft\"",
+					Title = "Share RSS link",
+					Url = model.Url ?? "",
+				};
+				await CrossShare.Current.Share(shareMessage);
+			};
 		}
 
 		public override void BindData(RssMessageModel item)
@@ -114,6 +164,10 @@ namespace iOS.App.Rss.Detail
 			_titleLabel.Text = item.Title;
 			_contentLabel.Text = item.Text;
 			_imageContentView.SetImage(new NSUrl(item.ImageUrl ?? ""));
+
+			_dateLabel.Enabled = !item.IsRead;
+			_titleLabel.Enabled = !item.IsRead;
+			_contentLabel.Enabled = !item.IsRead;
 		}
 
 		public override void UpdateConstraints()

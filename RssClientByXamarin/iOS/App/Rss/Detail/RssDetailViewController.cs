@@ -40,13 +40,6 @@ namespace iOS.App.Rss.Detail
 				NavigationItem.RightBarButtonItem = editButton;
 			}
 
-			Source.ItemSelected += model =>
-			{
-				var url = model.Url;
-				var ctrl = new SFSafariViewController(new NSUrl(url ?? ""));
-				PresentViewController(ctrl, true, null);
-			};
-
 			await LoadItems();
 		}
 
