@@ -45,7 +45,7 @@ namespace iOS.App.Rss.Create
 			_submitButton.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
 			{
 				var text = _urlField.Text;
-				await _rssRepository.Insert(text);
+				await _rssRepository.InsertByUrl(text);
 
 				NavigationController?.PopViewController(true);
 			}));

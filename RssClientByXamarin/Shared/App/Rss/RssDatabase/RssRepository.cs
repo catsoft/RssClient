@@ -21,7 +21,7 @@ namespace Shared.App.Rss
 			_rssMessagesRepository = RssMessagesRepository.Instance;;
 		}
 
-		public void Insert(string url)
+		public void InsertByUrl(string url)
 		{
 			var newItem = new RssModel()
 			{
@@ -47,17 +47,20 @@ namespace Shared.App.Rss
 
 				_database.Realm.Write(() =>
 				{
+					var items = _database.Realm.All<RssMessageModel>().Where(w => w.Id == item.Id);
+					_database.Realm.RemoveRange(items);
+
 					_database.Realm.Remove(item);
 					_database.Realm.Add(copyItem, true);
 				});
 			}
 			else
 			{
-				using (var transaction = item.Realm.BeginWrite())
+				_database.Realm.Write(() =>
 				{
 					item.Name = name;
-					transaction.Commit();
-				}
+					_database.Realm.Add(item, true);
+				});
 			}
 		}
 
@@ -80,14 +83,14 @@ namespace Shared.App.Rss
 
 			if (!items.Any())
 			{
-				Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-				Insert("https://acomics.ru/~depth-of-delusion/rss");
-				Insert("http://www.calend.ru/img/export/calend.rss");
-				Insert("http://www.old-hard.ru/rss");
-				Insert("https://lenta.ru/rss/news");
-				Insert("https://lenta.ru/rss/articles");
-				Insert("https://lenta.ru/rss/top7");
-				Insert("https://lenta.ru/rss/news/russia");
+				InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+				InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+				InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+				InsertByUrl("http://www.old-hard.ru/rss");
+				InsertByUrl("https://lenta.ru/rss/news");
+				InsertByUrl("https://lenta.ru/rss/articles");
+				InsertByUrl("https://lenta.ru/rss/top7");
+				InsertByUrl("https://lenta.ru/rss/news/russia");
 			}
 
 			return items;

@@ -55,7 +55,7 @@ namespace RssClient.App.Rss.Create
         {
             var url = _url.EditText.Text;
 
-			_rssRepository.Insert(url);
+			_rssRepository.InsertByUrl(url);
 
 			Finish();
 		}
