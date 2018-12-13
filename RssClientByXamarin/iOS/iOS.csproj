@@ -200,7 +200,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Base\StyledView\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -224,12 +223,14 @@
     <Compile Include="App\Base\Table\BaseTableViewCell.cs" />
     <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
     <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
+    <Compile Include="App\Base\ViewController\BaseViewController.cs" />
     <Compile Include="App\CustomUI\Divider.cs" />
     <Compile Include="App\CustomUI\RoundTextField.cs" />
     <Compile Include="App\Main.cs" />
     <Compile Include="App\AppDelegate.cs" />
     <Compile Include="App\Base\Table\BaseTableViewController.cs" />
     <Compile Include="App\Rss\Create\RssCreateViewController.cs" />
+    <Compile Include="App\Base\StyledView\WrappedStackView.cs" />
     <Compile Include="App\Rss\Detail\RssDetailViewController.cs" />
     <Compile Include="App\Rss\Detail\RssMessageViewCell.cs" />
     <Compile Include="App\Rss\Edit\RssEditViewController.cs" />

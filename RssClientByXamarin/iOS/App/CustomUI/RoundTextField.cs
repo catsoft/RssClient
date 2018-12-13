@@ -4,30 +4,20 @@ using Xamarin;
 
 namespace iOS.App.CustomUI
 {
-	public sealed class RoundTextField : UIView
+	public sealed class RoundTextField : IQTextView
 	{
-		private const float Offset = 5;
-
-		public IQTextView Field { get; }
-
 		public RoundTextField()
 		{
-			Field = new IQTextView()
-			{
-				TranslatesAutoresizingMaskIntoConstraints = false,
-			};
-
 			TranslatesAutoresizingMaskIntoConstraints = false;
+			TextAlignment = UITextAlignment.Center;
+			TextContainer.MaximumNumberOfLines = 1;
+			TextContainer.LineBreakMode = UILineBreakMode.HeadTruncation;
+			Font = UIFont.SystemFontOfSize(16);
 
-			AddSubview(Field);
+			HeightAnchor.ConstraintEqualTo(36).Active = true;
 
-			LeadingAnchor.ConstraintEqualTo(Field.LeadingAnchor, Offset).Active = true;
-			TrailingAnchor.ConstraintEqualTo(Field.TrailingAnchor, Offset).Active = true;
-			TopAnchor.ConstraintEqualTo(Field.TopAnchor, Offset).Active = true;
-			BottomAnchor.ConstraintEqualTo(Field.BottomAnchor, Offset).Active = true;
-
-			Layer.CornerRadius = 5;
-			Layer.BorderWidth = 2;
+			Layer.CornerRadius = 10;
+			Layer.BorderWidth = 1;
 			Layer.BorderColor = Colors.PrimaryColor.CGColor;
 		}
 	}

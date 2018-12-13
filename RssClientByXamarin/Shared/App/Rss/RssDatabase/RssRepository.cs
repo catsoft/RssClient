@@ -30,15 +30,32 @@ namespace Shared.App.Rss
 				var newItem = new RssModel()
 				{
 					Id = url,
+					Name = url,
 					CreationTime = DateTime.Now,
 				};
 				_localDatabase.AddNewItem(newItem); 
 			});
 		}
 
-		public Task Update(RssModel item)
+		public Task Update(RssModel item, string rss, string name)
 		{
-			return Task.Run(() => _localDatabase.UpdateItemByLocalId(item));
+			return Task.Run(() =>
+			{
+				item.Name = name;
+
+				if (item.Rss != rss)
+				{
+					_rssMessagesRepository.DeleteItemForRss(item);
+					_localDatabase.DeleteItemByLocalId(item);
+
+					item.Id = rss;
+					_localDatabase.AddNewItem(item);
+				}
+				else
+				{
+					_localDatabase.UpdateItemByLocalId(item);
+				}
+			});
 		}
 
 		public Task Remove(RssModel item)

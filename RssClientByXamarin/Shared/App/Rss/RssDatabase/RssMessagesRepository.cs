@@ -46,6 +46,15 @@ namespace Shared.App.Rss.RssDatabase
 			});
 		}
 
+		public Task DeleteItemForRss(RssModel rssModel)
+		{
+			return Task.Run(() =>
+			{
+				var items = _localDatabase.GetItems<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id);
+				_localDatabase.DeleteItemsByLocalId(items);
+			});
+		}
+
 		private string SafeTrim(string text)
 		{
 			return text?.Trim(' ', '\n', '\r');

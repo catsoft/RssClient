@@ -3,8 +3,10 @@ using Database.Rss;
 using Foundation;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
+using iOS.App.Rss.Edit;
 using SafariServices;
 using Shared.App.Rss.RssDatabase;
+using Xamarin;
 
 namespace iOS.App.Rss.Detail
 {
@@ -27,6 +29,15 @@ namespace iOS.App.Rss.Detail
 			if (NavigationItem != null)
 			{
 				NavigationItem.Title = _item?.Name;
+
+				var editButton = new IQBarButtonItem();
+				editButton.Title = "Edit";
+				editButton.Clicked += (sender, args) =>
+				{
+					NavigationController?.PushViewController(new RssEditViewController(_item), true);
+				};
+
+				NavigationItem.RightBarButtonItem = editButton;
 			}
 
 			Source.ItemSelected += model =>
