@@ -6,6 +6,7 @@ using iOS.App.Rss.Create;
 using iOS.App.Rss.Detail;
 using iOS.App.Styles;
 using Shared.App.Rss;
+using SQLite;
 using UIKit;
 using Xamarin;
 
@@ -14,13 +15,15 @@ namespace iOS.App.Rss.List
 	public class RssListViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
 		private readonly RssRepository _rssRepository;
+		private readonly RssUpdater.RssUpdater _rssUpdater;
 
 		public RssListViewController()
 		{
 			_rssRepository = RssRepository.Instance;
+			_rssUpdater = RssUpdater.RssUpdater.Instance;
 		}
 
-		public override void ViewDidLoad()
+		public override async void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -43,16 +46,11 @@ namespace iOS.App.Rss.List
 				NavigationController?.PushViewController(new RssDetailViewController(model), true);
 			};
 
-			RssUpdater.RssUpdater.Instance.UpdateData += async () => await UpdateData();
-		}
-
-		public override async void ViewWillAppear(bool animated)
-		{
-			base.ViewWillAppear(animated);
-
-			await RssUpdater.RssUpdater.Instance.StartUpdateAll();
-
 			await UpdateData();
+
+			_rssUpdater.CollectionChanged += (sender, args) =>
+			{
+			};
 		}
 
 		private async Task UpdateData()

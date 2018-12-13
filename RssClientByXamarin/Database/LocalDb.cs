@@ -42,8 +42,9 @@ namespace Database
                 try
                 {
                     _database = new SQLiteConnection(DatabasePath);
+	                _database.TableChanged += DatabaseOnTableChanged;
 
-                    UpdateTable<RssModel>();
+	                UpdateTable<RssModel>();
                     UpdateTable<RssMessageModel>();
                 }
                 catch (Exception e)
@@ -53,7 +54,14 @@ namespace Database
             }
         }
 
-        private void UpdateTable<T>()
+	    private void DatabaseOnTableChanged(object sender, NotifyTableChangedEventArgs e)
+	    {
+		    TableChanges?.Invoke(sender, e);
+		}
+
+	    public EventHandler<NotifyTableChangedEventArgs> TableChanges { get; set; }
+
+	    private void UpdateTable<T>()
         {
             try
             {

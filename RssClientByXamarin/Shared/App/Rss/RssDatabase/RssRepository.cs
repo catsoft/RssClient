@@ -25,7 +25,7 @@ namespace Shared.App.Rss
 
 		public Task Insert(string url)
 		{
-			return Task.Run(() =>
+			return Task.Run(async () =>
 			{
 				var newItem = new RssModel()
 				{
@@ -33,19 +33,19 @@ namespace Shared.App.Rss
 					Name = url,
 					CreationTime = DateTime.Now,
 				};
-				_localDatabase.AddOrReplace(newItem); 
+				_localDatabase.AddOrReplace(newItem);
 			});
 		}
 
 		public Task Update(RssModel item, string rss, string name)
 		{
-			return Task.Run(() =>
+			return Task.Run(async () =>
 			{
 				item.Name = name;
 
 				if (item.Rss != rss)
 				{
-					_rssMessagesRepository.DeleteItemForRss(item);
+					await _rssMessagesRepository.DeleteItemForRss(item);
 					_localDatabase.DeleteItemByLocalId(item);
 
 					item.Id = rss;

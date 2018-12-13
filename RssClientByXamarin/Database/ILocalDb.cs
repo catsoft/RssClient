@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace Database
 {
@@ -18,5 +19,7 @@ namespace Database
         T GetItemByLocalId<T>(string id) where T : class, IEntity, new();
         T GetFirstItem<T>() where T : class, IEntity, new();
         IEnumerable<T> GetItems<T>() where T : IEntity, new();
-    }
+
+	    EventHandler<NotifyTableChangedEventArgs> TableChanges { get; set; }
+	}
 }
