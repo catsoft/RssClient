@@ -20,55 +20,47 @@ namespace Shared.App.Rss.RssDatabase
 			_localDatabase = RealmDatabase.Instance;
 		}
 
-		public Task AddItem(SyndicationItem syndicationItem, RssModel rssModel)
+		public void AddItem(SyndicationItem syndicationItem, RssModel rssModel)
 		{
-			return Task.Run(() =>
+			var imageUri = syndicationItem.Links.FirstOrDefault(w =>
+					w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
+					w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
+				?.OriginalString;
+
+			var url = syndicationItem.Links.FirstOrDefault(w =>
+					w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
+				?.OriginalString;
+
+			var item = new RssMessageModel()
 			{
-				var imageUri = syndicationItem.Links.FirstOrDefault(w =>
-						w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
-						w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
+				Id = syndicationItem.Id,
+				Title = SafeTrim(syndicationItem.Title?.Text),
+				Text = SafeTrim(syndicationItem.Summary.Text),
+//				CreationDate = syndicationItem.PublishDate.Date,
+				Url = url,
+				ImageUrl = imageUri,
+				Rss = rssModel,
+			};
 
-				var url = syndicationItem.Links.FirstOrDefault(w =>
-					w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
-
-				var item = new RssMessageModel()
-				{
-					Id = syndicationItem.Id,
-					Title = SafeTrim(syndicationItem.Title?.Text),
-					Text = SafeTrim(syndicationItem.Summary.Text),
-					CreationDate = syndicationItem.PublishDate.Date,
-					Url = url,
-					ImageUrl = imageUri,
-					PrimaryKeyRssModel = rssModel.Id,
-				};
-
-				try
-				{
-					_localDatabase.Add(item);
-				}
-				catch (Exception exception)
-				{
-					// TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
-					// Также зная что много exceptions медленно работают, то точно нужно заменить
-				}
-			});
+			try
+			{
+				_localDatabase.Add(item);
+			}
+			catch (Exception exception)
+			{
+				// TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
+				// Также зная что много exceptions медленно работают, то точно нужно заменить
+			}
 		}
 
-		public Task Update(RssMessageModel rssMessageModel)
+		public void Update(RssMessageModel rssMessageModel)
 		{
-			return Task.Run(() =>
-			{
-				_localDatabase.AddOrUpdate(rssMessageModel);
-			});
+			_localDatabase.AddOrUpdate(rssMessageModel);
 		}
 
-		public Task DeleteItemsForRss(RssModel rssModel)
+		public void DeleteItemsForRss(RssModel rssModel)
 		{
-			return Task.Run(() =>
-			{
-				var items = _localDatabase.All<RssMessageModel>()?.Where(w => w.PrimaryKeyRssModel == rssModel.Id);
-				_localDatabase.RemoveRange(items);
-			});
+			_localDatabase.RemoveRange(rssModel.RssMessageModels.AsQueryable());
 		}
 
 		private string SafeTrim(string text)
@@ -76,22 +68,18 @@ namespace Shared.App.Rss.RssDatabase
 			return text?.Trim(' ', '\n', '\r');
 		}
 
-		public Task<IQueryable<RssMessageModel>> GetMessagesForRss(RssModel rssModel)
+		public IQueryable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
 		{
-			return Task.Run<IQueryable<RssMessageModel>>(() =>
-			{
-				return _localDatabase.All<RssMessageModel>()
-					?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id)
-					.OrderByDescending(w => w.CreationDate);
-			});
+			var items = _localDatabase.All<RssMessageModel>()
+				.Where(w => !w.IsDeleted)
+				.OrderByDescending(w => w.CreationDate);
+
+			return items;
 		}
 
-		public Task<long> GetCountForRss(RssModel rssModel)
+		public long GetCountForRss(RssModel rssModel)
 		{
-			return Task.Run<long>(() =>
-			{
-				return _localDatabase.All<RssMessageModel>()?.Where(w => !w.IsDeleted && w.PrimaryKeyRssModel == rssModel.Id).Count() ?? 0;
-			});
+			return _localDatabase.All<RssMessageModel>().Where(w => !w.IsDeleted).AsQueryable().Count();
 		}
 	}
 }

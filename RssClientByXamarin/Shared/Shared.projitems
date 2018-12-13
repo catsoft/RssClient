@@ -13,7 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssEventName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssClient\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssUpdater\RssUpdater.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\LoadMessages\LoadMessagesCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssDatabase\RssRepository.cs" />
   </ItemGroup>
 </Project>

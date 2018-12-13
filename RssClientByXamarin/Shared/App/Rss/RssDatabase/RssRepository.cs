@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
 using Database;
 using Database.Rss;
 using Shared.App.Rss.RssDatabase;
@@ -23,88 +21,73 @@ namespace Shared.App.Rss
 			_rssMessagesRepository = RssMessagesRepository.Instance;;
 		}
 
-		public Task Insert(string url)
+		public void Insert(string url)
 		{
-			return Task.Run(() =>
+			var newItem = new RssModel()
 			{
-				var newItem = new RssModel()
-				{
-					Id = url,
-					Name = url,
-					CreationTime = DateTime.Now,
-				};
-				_database.AddOrUpdate(newItem);
-			});
+				Id = url,
+				Name = url,
+				CreationTime = DateTime.Now,
+			};
+			_database.AddOrUpdate(newItem);
 		}
 
-		public Task Update(RssModel item, string rss, string name)
+		public void Update(RssModel item, string rss, string name)
 		{
-			return Task.Run(async () =>
+			item.Name = name;
+
+			if (item.Rss != rss)
 			{
-				item.Name = name;
+				_rssMessagesRepository.DeleteItemsForRss(item);
+				_database.Remove(item);
 
-				if (item.Rss != rss)
-				{
-					await _rssMessagesRepository.DeleteItemsForRss(item);
-					_database.Remove(item);
+				item.Id = rss;
+			}
 
-					item.Id = rss;
-				}
-
-				_database.AddOrUpdate(item);
-			});
+			_database.AddOrUpdate(item);
 		}
 
-		public Task Remove(RssModel item)
+		public void Remove(RssModel item)
 		{
-			return Task.Run(() => _database.Remove(item));
+			_database.Remove(item);
 		}
 
-		public Task<IQueryable<RssModel>> GetList()
+		public IQueryable<RssModel> GetList()
 		{
-			return Task.Run<IQueryable<RssModel>>(async () =>
+			var items = _database.All<RssModel>().OrderByDescending(w => w.CreationTime);
+
+			if (!items.Any())
 			{
-				var items = _database.All<RssModel>().OrderBy(w => w.CreationTime);
+				Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+				Insert("https://acomics.ru/~depth-of-delusion/rss");
+				Insert("http://www.calend.ru/img/export/calend.rss");
+				Insert("http://www.old-hard.ru/rss");
+				Insert("https://lenta.ru/rss/news");
+				Insert("https://lenta.ru/rss/articles");
+				Insert("https://lenta.ru/rss/top7");
+				Insert("https://lenta.ru/rss/news/russia");
+			}
 
-				if (!items.Any())
-				{
-					await Insert("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-					await Insert("https://acomics.ru/~depth-of-delusion/rss");
-					await Insert("http://www.calend.ru/img/export/calend.rss");
-					await Insert("http://www.old-hard.ru/rss");
-					await Insert("https://lenta.ru/rss/news");
-					await Insert("https://lenta.ru/rss/articles");
-					await Insert("https://lenta.ru/rss/top7");
-					await Insert("https://lenta.ru/rss/news/russia");
-				}
-
-				foreach (var rssModel in items)
-				{
-					rssModel.CountMessages = await _rssMessagesRepository.GetCountForRss(rssModel);
-				}
-
-				return items;
-			});
+			return items;
 		}
 
-		public Task Update(RssModel item, SyndicationFeed feed)
+		public void Update(RssModel item, SyndicationFeed feed)
 		{
-			return Task.Run(() =>
-			{
-				if (feed == null)
-					return;
+			if (feed == null)
+				return;
 
+			using (var transaction = item.Realm.BeginWrite())
+			{
 				item.Name = feed.Title?.Text;
 				item.UpdateTime = DateTime.Now;
 				item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+				transaction.Commit();
+			}
 
-				_database.AddOrUpdate(item);
-
-				foreach (var syndicationItem in feed.Items)
-				{
-					_rssMessagesRepository.AddItem(syndicationItem, item);
-				}
-			});
+			foreach (var syndicationItem in feed.Items)
+			{
+				_rssMessagesRepository.AddItem(syndicationItem, item);
+			}
 		}
 	}
 }

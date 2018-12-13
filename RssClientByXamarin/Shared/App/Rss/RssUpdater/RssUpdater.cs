@@ -33,7 +33,7 @@ namespace iOS.App.Rss.RssUpdater
 			}
 
 			var request = await _client.Update(item);
-			await _repository.Update(item, request);
+			_repository.Update(item, request);
 
 			SetLockedFlag(false);
 		}
@@ -48,11 +48,11 @@ namespace iOS.App.Rss.RssUpdater
 				SetLockedFlag(true);
 			}
 
-			var items = await _repository.GetList();
+			var items = _repository.GetList();
 			foreach (var rssModel in items)
 			{
 				var request = await _client.Update(rssModel);
-				await _repository.Update(rssModel, request);
+				_repository.Update(rssModel, request);
 			}
 
 			SetLockedFlag(false);

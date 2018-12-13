@@ -15,18 +15,17 @@ namespace RssClient.App.Rss.Detail
         private const string CreationDateFormat = "dd MMMM yyyy";
 
         private readonly Activity _activity;
+	    public IQueryable<RssMessageModel> Items { get; }
 
-        public RssMessageAdapter(IEnumerable<RssMessageModel> items, Activity activity)
+		public RssMessageAdapter(IQueryable<RssMessageModel> items, Activity activity)
         {
             _activity = activity;
-            Items = items.OrderByDescending(w => w.CreationDate).ToList();
+	        Items = items;
         }
-
-        public List<RssMessageModel> Items { get; }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = Items[position];
+            var item = Items.ElementAt(position);
 
             if (holder is RssMessageViewHolder rssMessageViewHolder)
             {
@@ -47,7 +46,7 @@ namespace RssClient.App.Rss.Detail
             return holder;
         }
 
-        public override int ItemCount => Items.Count;
+        public override int ItemCount => Items.Count();
 
 
         private void OpenContentActivity(RssMessageModel item)

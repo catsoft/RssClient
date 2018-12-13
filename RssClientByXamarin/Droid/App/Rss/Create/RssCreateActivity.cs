@@ -5,6 +5,7 @@ using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
 using RssClient.App.Base;
+using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Create
 {
@@ -14,19 +15,19 @@ namespace RssClient.App.Rss.Create
         private const string UrlDefault = "http://";
         private const string TitleActivity = "Create RSS";
 
-        private TextInputLayout _name;
         private TextInputLayout _url;
         private Button _sendButton;
+	    private RssRepository _rssRepository;
 
         protected override int ResourceView => Resource.Layout.activity_rss_create;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+	        _rssRepository = RssRepository.Instance;
+
+			base.OnCreate(savedInstanceState);
 
             Title = TitleActivity;
-
-            InitNameEditText();
 
             InitUrlEditText();
 
@@ -50,31 +51,13 @@ namespace RssClient.App.Rss.Create
             };
         }
 
-        private void InitNameEditText()
-        {
-            _name = FindViewById<TextInputLayout>(Resource.Id.rss_create_name);
-        }
-
         private void SendButtonOnClick(object sender, EventArgs eventArgs)
         {
-            var name = _name.EditText.Text;
             var url = _url.EditText.Text;
-			// TODO Воскресить создание android
-            //var request = new NewRssRequest(name, url);
 
-            //if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
-            //{
-            //    var @delegate = this.GetCommandDelegate<NewRssResponse>(OnSuccessCreate);
-            //    var command = new NewRssCommand(LocalDb.Instance, @delegate);
+			_rssRepository.Insert(url);
 
-            //    command.Execute(request);
-            //}
-        }
-
-        //private void OnSuccessCreate(NewRssResponse obj)
-        //{
-        //    SetResult(Result.Ok);
-        //    Finish();
-        //}
+			Finish();
+		}
     }
 }

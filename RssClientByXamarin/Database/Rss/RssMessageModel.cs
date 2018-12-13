@@ -1,10 +1,14 @@
 ﻿using System;
+using Realms;
 
 namespace Database.Rss
 {
-    public class RssMessageModel : Entity
+    public class RssMessageModel : RealmObject
     {
-        public string Title { get; set; }
+	    [PrimaryKey]
+	    public string Id { get; set; }
+
+		public string Title { get; set; }
         public DateTimeOffset CreationDate { get; set; }
         public string Text { get; set; }
         public string Url { get; set; }
@@ -12,6 +16,6 @@ namespace Database.Rss
 		public bool IsRead { get; set; }
 	    public bool IsDeleted { get; set; }
 
-        public string PrimaryKeyRssModel { get; set; }
+		public RssModel Rss { get; set; }
 	}
 }

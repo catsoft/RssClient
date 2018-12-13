@@ -19,18 +19,18 @@ namespace RssClient.App.Rss.List
 
         private readonly Activity _activity;
 
-        public RssListAdapter(IEnumerable<RssModel> items, Activity activity)
+        public RssListAdapter(IQueryable<RssModel> items, Activity activity)
         {
             _activity = activity;
-            Items = items.OrderByDescending(w => w.CreationTime).ToList();
+	        Items = items;
         }
 
-        public override int ItemCount => Items.Count;
-        public List<RssModel> Items { get; }
+        public override int ItemCount => Items.Count();
+        public IQueryable<RssModel> Items { get; }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var item = Items[position];
+	        var item = Items.ElementAt(position);
 
             if (holder is RssListViewHolder rssListViewHolder)
             {
