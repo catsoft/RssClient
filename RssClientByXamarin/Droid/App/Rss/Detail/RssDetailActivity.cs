@@ -6,6 +6,7 @@ using Database.Rss;
 using Newtonsoft.Json;
 using Realms;
 using RssClient.App.Base;
+using Shared.App.Rss;
 using Shared.App.Rss.RssDatabase;
 
 namespace RssClient.App.Rss.Detail
@@ -16,6 +17,7 @@ namespace RssClient.App.Rss.Detail
         public const string ItemIntentId = "ItemIntentId";
 
 	    private RssMessagesRepository _rssMessagesRepository;
+		private RssRepository _rssRepository;
 
         private RssModel _item;
         private RecyclerView _list;
@@ -28,8 +30,13 @@ namespace RssClient.App.Rss.Detail
             base.OnCreate(savedInstanceState);
 
 	        _rssMessagesRepository = RssMessagesRepository.Instance;
+			_rssRepository = RssRepository.Instance;
 
-			_item = JsonConvert.DeserializeObject<RssModel>(Intent.GetStringExtra(ItemIntentId));
+	        var idItem = Intent.GetStringExtra(ItemIntentId);
+	        _item = _rssRepository.Find(idItem);
+			if(_item == null)
+				return;
+
             Title = _item.Name;
 
             _list = FindViewById<RecyclerView>(Resource.Id.rss_details_recycler_view);
@@ -43,11 +50,10 @@ namespace RssClient.App.Rss.Detail
 			_list.SetAdapter(adapter);
 	        adapter.NotifyDataSetChanged();
 
-			//
-			//	        items.SubscribeForNotifications((sender, changes, error) =>
-			//	        {
-			//		        adapter.NotifyDataSetChanged();
-			//	        });
+//	        items.SubscribeForNotifications((sender, changes, error) =>
+//	        {
+//		        adapter.NotifyDataSetChanged();
+//	        });
 		}
 	}
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
 using Database;
 using Database.Rss;
 
@@ -13,7 +11,7 @@ namespace Shared.App.Rss.RssDatabase
 		private static RssMessagesRepository _instance;
 		public static RssMessagesRepository Instance => _instance ?? (_instance = new RssMessagesRepository());
 
-		private readonly IDatabase _localDatabase;
+		private readonly RealmDatabase _localDatabase;
 
 		public RssMessagesRepository()
 		{
@@ -39,28 +37,28 @@ namespace Shared.App.Rss.RssDatabase
 //				CreationDate = syndicationItem.PublishDate.Date,
 				Url = url,
 				ImageUrl = imageUri,
-				Rss = rssModel,
 			};
 
-			try
+			_localDatabase.Realm.Write(() =>
 			{
-				_localDatabase.Add(item);
-			}
-			catch (Exception exception)
-			{
-				// TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
-				// Также зная что много exceptions медленно работают, то точно нужно заменить
-			}
+				try
+				{
+					rssModel.RssMessageModels.Add(item);
+				}
+				catch (Exception e)
+				{
+					// TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
+					// Также зная что много exceptions медленно работают, то точно нужно заменить
+				}
+			});
 		}
 
 		public void Update(RssMessageModel rssMessageModel)
 		{
-			_localDatabase.AddOrUpdate(rssMessageModel);
-		}
-
-		public void DeleteItemsForRss(RssModel rssModel)
-		{
-			_localDatabase.RemoveRange(rssModel.RssMessageModels.AsQueryable());
+			_localDatabase.Realm.Write(() =>
+			{
+				_localDatabase.Realm.Add(rssMessageModel, true);
+			});
 		}
 
 		private string SafeTrim(string text)
@@ -70,7 +68,7 @@ namespace Shared.App.Rss.RssDatabase
 
 		public IQueryable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
 		{
-			var items = _localDatabase.All<RssMessageModel>()
+			var items = rssModel.RssMessageModels.AsQueryable()
 				.Where(w => !w.IsDeleted)
 				.OrderByDescending(w => w.CreationDate);
 
@@ -79,7 +77,7 @@ namespace Shared.App.Rss.RssDatabase
 
 		public long GetCountForRss(RssModel rssModel)
 		{
-			return _localDatabase.All<RssMessageModel>().Where(w => !w.IsDeleted).AsQueryable().Count();
+			return _localDatabase.Realm.All<RssMessageModel>().Where(w => !w.IsDeleted).AsQueryable().Count();
 		}
 	}
 }

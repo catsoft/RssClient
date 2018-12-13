@@ -7,6 +7,7 @@ using Android.Widget;
 using Database.Rss;
 using Newtonsoft.Json;
 using RssClient.App.Base;
+using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Edit
 {
@@ -21,16 +22,21 @@ namespace RssClient.App.Rss.Edit
         private Button _sendButton;
         private RssModel _item;
 
+	    private RssRepository _rssRepository;
+
         protected override int ResourceView => Resource.Layout.activity_rss_edit;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            Title = TitleActivity;
+	        _rssRepository = RssRepository.Instance;
 
-            var stringItem = Intent.GetStringExtra(ItemIntentId);
-            _item = JsonConvert.DeserializeObject<RssModel>(stringItem);
+			Title = TitleActivity;
+
+            var idItem = Intent.GetStringExtra(ItemIntentId);
+	        _item = _rssRepository.Find(idItem);
+
             if (_item == null)
                 return;
 
@@ -40,7 +46,6 @@ namespace RssClient.App.Rss.Edit
 
             InitSendButton();
         }
-
 
         private void InitSendButton()
         {
@@ -68,22 +73,10 @@ namespace RssClient.App.Rss.Edit
         {
             var name = _name.EditText.Text;
             var url = _url.EditText.Text;
-			// TODO воскресить редактирование android
-            //var request = new EditRssRequest(_item, name, url); 
 
-            //if (request.IsValid((field, error) => this.ShowFieldError(_fields, field, error)))
-            //{
-            //    var @delegate = this.GetCommandDelegate<EditRssResponse>(OnSuccessEdit);
-            //    var command = new EditRssCommand(LocalDb.Instance, @delegate);
+	        _rssRepository.Update(_item, url, name);
 
-            //    command.Execute(request);
-            //}
+			Finish();
         }
-
-        //private void OnSuccessEdit(EditRssResponse obj)
-        //{
-        //    SetResult(Result.Ok);
-        //    Finish();
-        //}
     }
 }

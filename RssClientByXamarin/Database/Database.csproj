@@ -64,7 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealmDatabase.cs" />
     <Compile Include="Rss\RssMessageModel.cs" />

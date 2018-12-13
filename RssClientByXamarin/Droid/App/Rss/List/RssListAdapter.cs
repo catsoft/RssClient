@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Support.V7.Widget;
@@ -8,6 +7,7 @@ using Database.Rss;
 using Newtonsoft.Json;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
+using Shared.App.Rss;
 
 namespace RssClient.App.Rss.List
 {
@@ -18,9 +18,11 @@ namespace RssClient.App.Rss.List
         private const string DeleteTitle = "Ara you sure?";
 
         private readonly Activity _activity;
+	    private readonly RssRepository _rssRepository;
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity)
         {
+			_rssRepository = RssRepository.Instance;
             _activity = activity;
 	        Items = items;
         }
@@ -76,39 +78,26 @@ namespace RssClient.App.Rss.List
         private void EditItem(RssModel holderItem)
         {
             var intent = new Intent(_activity, typeof(RssEditActivity));
-            intent.PutExtra(RssEditActivity.ItemIntentId, JsonConvert.SerializeObject(holderItem));
+            intent.PutExtra(RssEditActivity.ItemIntentId, holderItem.Id);
             _activity.StartActivityForResult(intent, RssListActivity.EditRequestCode);
         }
 
         private void DeleteItem(RssModel holderItem)
-        {
-			// TODO Воскресить удаление в android
-            //var builder = new AlertDialog.Builder(_activity);
-            //builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
-            //{
-            //    var request = new RemoveRssRequest(holderItem);
-            //    var @delegate = _activity.GetCommandDelegate<RemoveRssResponse>(OnSuccessRemove);
-            //    var command = new RemoveRssCommand(LocalDb.Instance, @delegate);
-
-            //    command.Execute(request);
-            //});
-            //builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
-            //builder.SetTitle(DeleteTitle);
-            //builder.Show();
-        }
-
-        //private void OnSuccessRemove(RemoveRssResponse obj)
-        //{
-        //    var index = Items.IndexOf(obj.Model);
-
-        //    Items.RemoveAt(index);
-        //    NotifyItemRemoved(index);
-        //}
+		{
+			var builder = new AlertDialog.Builder(_activity);
+			builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
+			{
+				_rssRepository.Remove(holderItem);
+			});
+			builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
+			builder.SetTitle(DeleteTitle);
+			builder.Show();
+		}
 
         private void OpenDetailActivity(RssModel holderItem)
         {
             var intent = new Intent(_activity, typeof(RssDetailActivity));
-            intent.PutExtra(RssDetailActivity.ItemIntentId, JsonConvert.SerializeObject(holderItem));
+            intent.PutExtra(RssDetailActivity.ItemIntentId, holderItem.Id);
             _activity.StartActivity(intent);
         }
     }

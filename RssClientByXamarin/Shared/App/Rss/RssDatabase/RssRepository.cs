@@ -12,7 +12,7 @@ namespace Shared.App.Rss
 		private static RssRepository _instance;
 		public static RssRepository Instance => _instance ?? (_instance = new RssRepository());
 
-		private readonly IDatabase _database;
+		private readonly RealmDatabase _database;
 		private readonly RssMessagesRepository _rssMessagesRepository;
 
 		private RssRepository()
@@ -29,32 +29,54 @@ namespace Shared.App.Rss
 				Name = url,
 				CreationTime = DateTime.Now,
 			};
-			_database.AddOrUpdate(newItem);
+
+			_database.Realm.Write(() =>
+			{
+				_database.Realm.Add(newItem, true);
+			});
 		}
 
 		public void Update(RssModel item, string rss, string name)
 		{
-			item.Name = name;
-
 			if (item.Rss != rss)
 			{
-				_rssMessagesRepository.DeleteItemsForRss(item);
-				_database.Remove(item);
+				var copyItem = new RssModel();
+				copyItem.Id = rss;
+				copyItem.Name = name;
+				copyItem.CreationTime = item.CreationTime;
 
-				item.Id = rss;
+				_database.Realm.Write(() =>
+				{
+					_database.Realm.Remove(item);
+					_database.Realm.Add(copyItem, true);
+				});
 			}
+			else
+			{
+				using (var transaction = item.Realm.BeginWrite())
+				{
+					item.Name = name;
+					transaction.Commit();
+				}
+			}
+		}
 
-			_database.AddOrUpdate(item);
+		public RssModel Find(string id)
+		{
+			return _database.Realm.Find<RssModel>(id);
 		}
 
 		public void Remove(RssModel item)
 		{
-			_database.Remove(item);
+			_database.Realm.Write(() =>
+			{
+				_database.Realm.Remove(item);
+			});
 		}
 
 		public IQueryable<RssModel> GetList()
 		{
-			var items = _database.All<RssModel>().OrderByDescending(w => w.CreationTime);
+			var items = _database.Realm.All<RssModel>().OrderByDescending(w => w.CreationTime);
 
 			if (!items.Any())
 			{
