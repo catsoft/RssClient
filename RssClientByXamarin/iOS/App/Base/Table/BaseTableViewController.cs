@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using iOS.App.Base.Stated;
 using iOS.App.Styles;
 using UIKit;
@@ -10,7 +9,6 @@ namespace iOS.App.Base.Table
 		where TTableCell : BaseTableViewCell<TItem>
 		where TItem : class
 	{
-		protected List<TItem> List = new List<TItem>();
 		public BaseTableViewSource<TTableCell, TItem> Source { get; set; }
 		public StatedViewControllerDecorator StatedDecorator { get; private set; }
 
@@ -20,7 +18,7 @@ namespace iOS.App.Base.Table
 		{
 			base.ViewDidLoad();
 
-			Source = new BaseTableViewSource<TTableCell, TItem>(List, UITableViewCellStyle.Default);
+			Source = new BaseTableViewSource<TTableCell, TItem>(UITableViewCellStyle.Default);
 
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 100;
@@ -36,6 +34,5 @@ namespace iOS.App.Base.Table
 			StatedDecorator = new StatedViewControllerDecorator(this);
 			StatedDecorator.SetNormal(new NormalData());
 		}
-
 	}
 }

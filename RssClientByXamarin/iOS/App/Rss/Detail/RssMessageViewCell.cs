@@ -123,7 +123,7 @@ namespace iOS.App.Rss.Detail
 				model.IsDeleted = true;
 				BindData(model);
 
-				await _rssMessagesRepository.Update(model);
+				_rssMessagesRepository.Update(model);
 			};
 
 			MarkAsReadClick += async (model) =>
@@ -131,7 +131,7 @@ namespace iOS.App.Rss.Detail
 				model.IsRead = true;
 				BindData(model);
 
-				await _rssMessagesRepository.Update(model);
+				_rssMessagesRepository.Update(model);
 			};
 
 			ReadClick += async (model) =>
@@ -142,7 +142,7 @@ namespace iOS.App.Rss.Detail
 				// Совсем не очевидное название но открывает url (Если может)
 				CrossShare.Current.CanOpenUrl(model.Url ?? "");
 
-				await _rssMessagesRepository.Update(model);
+				_rssMessagesRepository.Update(model);
 			};
 
 			ShareClick += async model =>
@@ -153,7 +153,7 @@ namespace iOS.App.Rss.Detail
 					Title = "Share RSS link",
 					Url = model.Url ?? "",
 				};
-				await CrossShare.Current.Share(shareMessage);
+				await CrossShare.Current.Share(shareMessage).ConfigureAwait(false);
 			};
 		}
 

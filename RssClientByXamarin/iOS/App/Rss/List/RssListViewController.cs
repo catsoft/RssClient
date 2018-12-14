@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
@@ -22,7 +23,7 @@ namespace iOS.App.Rss.List
 			_rssUpdater = RssUpdater.RssUpdater.Instance;
 		}
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -45,21 +46,19 @@ namespace iOS.App.Rss.List
 				NavigationController?.PushViewController(new RssDetailViewController(model), true);
 			};
 
-			await UpdateData();
-		}
-
-		private async Task UpdateData()
-		{
-			StatedDecorator.SetLoading(new LoadingData());
-
-			var list = await _rssRepository.GetList();
-
-			StatedDecorator.SetNormal(new NormalData());
-
-			List.Clear();
-			List.AddRange(list);
+			var list = _rssRepository.GetList();
+			Source.SetList(list);
 
 			TableView.ReloadData();
+
+			if (list.Any())
+			{
+				StatedDecorator.SetNormal(new NormalData());
+			}
+			else
+			{
+				StatedDecorator.SetError(new ErrorData());
+			}
 		}
 	}
 }

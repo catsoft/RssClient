@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Foundation;
 using UIKit;
 
@@ -10,13 +11,17 @@ namespace iOS.App.Base.Table
 		where TItem : class
 	{
 		public event Action<TItem> ItemSelected;
-		private readonly List<TItem> _items;
+		private IQueryable<TItem> _items = new List<TItem>().AsQueryable();
 		private readonly FactoryTableViewCellFactory<TTableCell, TItem> _factory;
 
-		public BaseTableViewSource(List<TItem> items, UITableViewCellStyle style)
+		public BaseTableViewSource(UITableViewCellStyle style)
 		{
-			_items = items;
 			_factory = new FactoryTableViewCellFactory<TTableCell, TItem>(style);
+		}
+
+		public void SetList(IQueryable<TItem> list)
+		{
+			_items = list;
 		}
 
 		public override nint NumberOfSections(UITableView tableView)
@@ -26,7 +31,7 @@ namespace iOS.App.Base.Table
 
 		public override nint RowsInSection(UITableView tableView, nint section)
 		{
-			return _items.Count;
+			return _items.Count();
 		}
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
@@ -34,7 +39,7 @@ namespace iOS.App.Base.Table
 			var cellIdentifier = nameof(TTableCell);
 			var cell = (tableView.DequeueReusableCell(cellIdentifier) ?? _factory.Create()) as TTableCell;
 
-			var item = _items[indexPath.Row];
+			var item = _items.ElementAt(indexPath.Row);
 
 			if (cell != null)
 			{
@@ -51,7 +56,7 @@ namespace iOS.App.Base.Table
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			ItemSelected?.Invoke(_items[indexPath.Row]);
+			ItemSelected?.Invoke(_items.ElementAt(indexPath.Row));
 		}
 
 		public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)

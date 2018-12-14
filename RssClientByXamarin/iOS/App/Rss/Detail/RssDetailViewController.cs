@@ -41,27 +41,18 @@ namespace iOS.App.Rss.Detail
 				NavigationItem.RightBarButtonItem = editButton;
 			}
 
-			await LoadItems();
-		}
+			var items = _rssMessagesRepository.GetMessagesForRss(_item);
 
-		private async Task LoadItems()
-		{
-			StatedDecorator.SetLoading(new LoadingData());
-
-			var items = await _rssMessagesRepository.GetMessagesForRss(_item);
-			
-			List.Clear();
-			List.AddRange(items);
-
+			Source.SetList(items);
 			TableView.ReloadData();
 
 			if (items.Any())
 			{
-				StatedDecorator.SetError(new ErrorData());
+				StatedDecorator.SetNormal(new NormalData());
 			}
 			else
 			{
-				StatedDecorator.SetNormal(new NormalData());
+				StatedDecorator.SetError(new ErrorData());
 			}
 		}
 	}
