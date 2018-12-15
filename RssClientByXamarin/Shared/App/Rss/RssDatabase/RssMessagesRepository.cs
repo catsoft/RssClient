@@ -35,7 +35,7 @@ namespace Shared.App.Rss.RssDatabase
 
                 var item = new RssMessageModel()
                 {
-                    Id = syndicationItem.Id,
+                    SyndicationId = syndicationItem.Id,
                     Title = SafeTrim(syndicationItem.Title?.Text),
                     Text = SafeTrim(syndicationItem.Summary.Text),
                     //				CreationDate = syndicationItem.PublishDate.Date,

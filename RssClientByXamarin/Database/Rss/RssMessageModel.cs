@@ -8,6 +8,8 @@ namespace Database.Rss
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        public string SyndicationId { get; set; }
+
 		public string Title { get; set; }
         public DateTimeOffset CreationDate { get; set; }
         public string Text { get; set; }
