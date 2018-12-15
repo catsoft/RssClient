@@ -7,4 +7,6 @@
     <color name="ic_launcher_background">#EA7819</color>
 
     <color name="shimmer_background">#dddddd</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>

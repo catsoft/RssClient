@@ -80,8 +80,7 @@ namespace RssClient.App.Rss.List
 
         private void EditItem(RssModel holderItem)
         {
-            var intent = new Intent(_activity, typeof(RssEditActivity));
-            intent.PutExtra(RssEditActivity.ItemIntentId, holderItem.Id);
+            var intent = RssEditActivity.Create(_activity, holderItem.Id);
             _activity.StartActivityForResult(intent, RssListActivity.EditRequestCode);
         }
 

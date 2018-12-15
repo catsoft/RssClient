@@ -23,53 +23,55 @@ namespace Shared.App.Rss
 			_rssMessagesRepository = RssMessagesRepository.Instance;;
 		}
 
-		public void InsertByUrl(string url)
-		{
-			var newItem = new RssModel()
-			{
-				Id = url,
-				Name = url,
-				CreationTime = DateTime.Now,
-			};
-
-            using (var realm = _database.OpenDatabase)
-            {
-                realm.Write(() =>
-                {
-                    _database.MainThreadRealm.Add(newItem, true);
-                });
-            }
-		}
-
-		public Task Update(RssModel item, string rss, string name)
+		public Task InsertByUrl(string url)
         {
-            var threadingId = item.Id;
+            return Task.Run(() =>
+            {
+                var newItem = new RssModel()
+                {
+                    Id = url,
+                    Name = url,
+                    CreationTime = DateTime.Now,
+                };
 
+                using (var realm = _database.OpenDatabase)
+                {
+                    using (var transaction = realm.BeginWrite())
+                    {
+                        realm.Add(newItem, true);
+                        transaction.Commit();
+                    }
+                }
+            });
+        }
+
+		public Task Update(string rssId, string rss, string name)
+        {
             return Task.Run(() =>
             {
                 using (var realm = RealmDatabase.Instance.OpenDatabase)
                 {
                     using (var transaction = realm.BeginWrite())
                     {
-                        var currentThreadItem = realm.Find<RssModel>(threadingId);
+                        var currentThreadItem = realm.Find<RssModel>(rssId);
 
                         if (currentThreadItem.Rss != rss)
                         {
                             var copyItem = new RssModel();
                             copyItem.Id = rss;
                             copyItem.Name = name;
-                            copyItem.CreationTime = item.CreationTime;
+                            copyItem.CreationTime = currentThreadItem.CreationTime;
 
-                            var items = realm.All<RssMessageModel>().Where(w => w.Id == item.Id);
+                            var items = realm.All<RssMessageModel>().Where(w => w.Id == currentThreadItem.Id);
                             realm.RemoveRange(items);
 
-                            realm.Remove(item);
+                            realm.Remove(currentThreadItem);
                             realm.Add(copyItem, true);
                         }
                         else
                         {
-                            item.Name = name;
-                            _database.MainThreadRealm.Add(item, true);
+                            currentThreadItem.Name = name;
+                            realm.Add(currentThreadItem, true);
                         }
                         transaction.Commit();
                     }

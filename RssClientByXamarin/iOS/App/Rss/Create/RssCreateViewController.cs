@@ -42,10 +42,10 @@ namespace iOS.App.Rss.Create
 			_submitButton = UIButton.FromType(UIButtonType.System);
 			_submitButton.SetTitle("Create", UIControlState.Normal);
 			_submitButton.TranslatesAutoresizingMaskIntoConstraints = false;
-			_submitButton.AddGestureRecognizer(new UITapGestureRecognizer(() =>
+			_submitButton.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
 			{
 				var text = _urlField.Text;
-				_rssRepository.InsertByUrl(text);
+				await _rssRepository.InsertByUrl(text);
 
 				NavigationController?.PopViewController(true);
 			}));

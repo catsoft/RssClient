@@ -2,10 +2,11 @@
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Database.Rss;
 using iOS.App.Rss.RssUpdater;
-using Realms;
 using RssClient.App.Base;
+using RssClient.App.Rss.Edit;
 using Shared.App.Rss;
 using Shared.App.Rss.RssDatabase;
 
@@ -62,6 +63,30 @@ namespace RssClient.App.Rss.Detail
             //});
 
             await _rssUpdater.StartUpdateAllByInternet(_item);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            var inflater = MenuInflater;
+            inflater.Inflate(Resource.Menu.rss_detail_menu, menu);
+
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.rss_detail_menu_remove)
+            {
+                _rssRepository.Remove(_item);
+                Finish();
+            }
+            else if (item.ItemId == Resource.Id.rss_detail_menu_edit)
+            {
+                var intent = RssEditActivity.Create(this, _item.Id);
+                StartActivity(intent);
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

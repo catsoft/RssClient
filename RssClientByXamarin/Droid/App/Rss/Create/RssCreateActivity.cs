@@ -51,11 +51,11 @@ namespace RssClient.App.Rss.Create
             };
         }
 
-        private void SendButtonOnClick(object sender, EventArgs eventArgs)
+        private async void SendButtonOnClick(object sender, EventArgs eventArgs)
         {
             var url = _url.EditText.Text;
 
-			_rssRepository.InsertByUrl(url);
+			await _rssRepository.InsertByUrl(url);
 
 			Finish();
 		}
