@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Com.Bumptech.Glide;
 using Database.Rss;
 using Newtonsoft.Json;
 using RssClient.App.Rss.Detail;
@@ -37,8 +38,10 @@ namespace RssClient.App.Rss.List
             if (holder is RssListViewHolder rssListViewHolder)
             {
                 rssListViewHolder.TitleTextView.Text = item.Name;
-                rssListViewHolder.SubtitleTextView.Text = item.Rss;
+                rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
                 rssListViewHolder.Item = item;
+                rssListViewHolder.CountTextView.Text = item.CountMessages.ToString();
+                Glide.With(_activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
             }
         }
 
