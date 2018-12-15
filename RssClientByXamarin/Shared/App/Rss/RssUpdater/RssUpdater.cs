@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Database;
 using Database.Rss;
@@ -13,7 +14,6 @@ namespace iOS.App.Rss.RssUpdater
 		private static RssUpdater _instance;
 		public static RssUpdater Instance => _instance ?? (_instance = new RssUpdater());
 
-		private readonly object _locker = new object();
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;
 
@@ -31,15 +31,31 @@ namespace iOS.App.Rss.RssUpdater
 
             foreach (var rssModel in items)
             {
-                //if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
-                //{
+                if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                {
                     await StartUpdateAllByInternet(rssModel);
-                //}
+                }
             }
 
             items.SubscribeForNotifications(async (sender, changes, error) =>
             {
-                //await StartUpdateAllByInternet()
+                if (sender != null && changes != null)
+                {
+                    foreach (var changesInsertedIndex in changes.InsertedIndices)
+                    {
+                        var item = sender.ElementAt(changesInsertedIndex);
+                        await StartUpdateAllByInternet(item);
+                    }
+
+                    foreach (var changesInsertedIndex in changes.ModifiedIndices)
+                    {
+                        var item = sender.ElementAt(changesInsertedIndex);
+                        if (!item.UpdateTime.HasValue || (item.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                        {
+                            await StartUpdateAllByInternet(item);
+                        }
+                    }
+                }
             });
         }
 
@@ -47,7 +63,8 @@ namespace iOS.App.Rss.RssUpdater
 		public async Task StartUpdateAllByInternet(RssModel rssModel)
 		{
             var request = await _client.Update(rssModel);
-            await _repository.Update(rssModel.Id, request);
+            if(request != null)
+                await _repository.Update(rssModel.Id, request);
         }
 	}
 }
