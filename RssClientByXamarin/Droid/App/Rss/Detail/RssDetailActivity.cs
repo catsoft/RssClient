@@ -7,6 +7,7 @@ using Database.Rss;
 using iOS.App.Rss.RssUpdater;
 using RssClient.App.Base;
 using RssClient.App.Rss.Edit;
+using RssClient.App.Rss.List;
 using Shared.App.Rss;
 using Shared.App.Rss.RssDatabase;
 
@@ -16,6 +17,10 @@ namespace RssClient.App.Rss.Detail
     public class RssDetailActivity : ToolbarActivity
     {
         public const string ItemIntentId = "ItemIntentId";
+
+        private const string DeletePositiveTitle = "Yes";
+        private const string DeleteNegativeTitle = "No";
+        private const string DeleteTitle = "Ara you sure?";
 
         private RssMessagesRepository _rssMessagesRepository;
         private RssRepository _rssRepository;
@@ -77,16 +82,33 @@ namespace RssClient.App.Rss.Detail
         {
             if (item.ItemId == Resource.Id.rss_detail_menu_remove)
             {
-                _rssRepository.Remove(_item);
-                Finish();
+                DeleteItem(_item);
             }
             else if (item.ItemId == Resource.Id.rss_detail_menu_edit)
             {
-                var intent = RssEditActivity.Create(this, _item.Id);
-                StartActivity(intent);
+                EditItem(_item);
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void EditItem(RssModel holderItem)
+        {
+            var intent = RssEditActivity.Create(this, holderItem.Id);
+            StartActivityForResult(intent, RssListActivity.EditRequestCode);
+        }
+
+        private void DeleteItem(RssModel holderItem)
+        {
+            var builder = new AlertDialog.Builder(this);
+            builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
+            {
+                _rssRepository.Remove(holderItem);
+                Finish();
+            });
+            builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
+            builder.SetTitle(DeleteTitle);
+            builder.Show();
         }
     }
 }
