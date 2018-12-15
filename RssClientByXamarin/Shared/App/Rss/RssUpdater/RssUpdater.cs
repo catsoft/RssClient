@@ -17,10 +17,10 @@ namespace iOS.App.Rss.RssUpdater
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;
 
-		private RssUpdater()
+        private RssUpdater()
 		{
 			_client = RssApiClient.Instance;
-			_repository = RssRepository.Instance;
+            _repository = RssRepository.Instance;
 
             Init();
 		}
@@ -28,6 +28,18 @@ namespace iOS.App.Rss.RssUpdater
         private async void Init()
         {
             var items = _repository.GetList();
+
+            if (!items.Any())
+            {
+                _repository.InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                _repository.InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                _repository.InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                _repository.InsertByUrl("http://www.old-hard.ru/rss");
+                _repository.InsertByUrl("https://lenta.ru/rss/news");
+                _repository.InsertByUrl("https://lenta.ru/rss/articles");
+                _repository.InsertByUrl("https://lenta.ru/rss/top7");
+                _repository.InsertByUrl("https://lenta.ru/rss/news/russia");
+            }
 
             foreach (var rssModel in items)
             {

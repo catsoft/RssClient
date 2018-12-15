@@ -5,8 +5,8 @@ namespace Database.Rss
 {
     public class RssMessageModel : RealmObject
     {
-	    [PrimaryKey]
-	    public string Id { get; set; }
+        [PrimaryKey]
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
 		public string Title { get; set; }
         public DateTimeOffset CreationDate { get; set; }

@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Linq;
+using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -58,9 +59,14 @@ namespace RssClient.App.Rss.Detail
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(_item);
-            var adapter = new RssMessageAdapter(items, this);
+            var adapter = new RssMessageAdapter(items.ToList(), this);
             _list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
+
+            //_item.PropertyChanged += (sender, args) =>
+            //{
+            //    Recreate();
+            //};
 
             //items.SubscribeForNotifications((sender, changes, error) =>
             //{

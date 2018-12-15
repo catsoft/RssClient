@@ -29,7 +29,7 @@ namespace Shared.App.Rss
             {
                 var newItem = new RssModel()
                 {
-                    Id = url,
+                    Rss = url,
                     Name = url,
                     CreationTime = DateTime.Now,
                 };
@@ -55,24 +55,11 @@ namespace Shared.App.Rss
                     {
                         var currentThreadItem = realm.Find<RssModel>(rssId);
 
-                        if (currentThreadItem.Rss != rss)
-                        {
-                            var copyItem = new RssModel();
-                            copyItem.Id = rss;
-                            copyItem.Name = name;
-                            copyItem.CreationTime = currentThreadItem.CreationTime;
+                        // TODO удалить связанные объекты
+                        currentThreadItem.Rss = rss;
+                        currentThreadItem.Name = name;
+                        currentThreadItem.UpdateTime = null;
 
-                            var items = realm.All<RssMessageModel>().Where(w => w.Id == currentThreadItem.Id);
-                            realm.RemoveRange(items);
-
-                            realm.Remove(currentThreadItem);
-                            realm.Add(copyItem, true);
-                        }
-                        else
-                        {
-                            currentThreadItem.Name = name;
-                            realm.Add(currentThreadItem, true);
-                        }
                         transaction.Commit();
                     }
                 }
@@ -95,18 +82,6 @@ namespace Shared.App.Rss
 		public IQueryable<RssModel> GetList()
 		{
 			var items = _database.MainThreadRealm.All<RssModel>().OrderByDescending(w => w.CreationTime);
-
-			if (!items.Any())
-			{
-				InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-				InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-				InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-				InsertByUrl("http://www.old-hard.ru/rss");
-				InsertByUrl("https://lenta.ru/rss/news");
-				InsertByUrl("https://lenta.ru/rss/articles");
-				InsertByUrl("https://lenta.ru/rss/top7");
-				InsertByUrl("https://lenta.ru/rss/news/russia");
-			}
 
 			return items;
 		}

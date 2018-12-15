@@ -16,9 +16,9 @@ namespace RssClient.App.Rss.Detail
         private const string CreationDateFormat = "dd MMMM yyyy";
 
         private readonly Activity _activity;
-	    public IQueryable<RssMessageModel> Items { get; }
+	    public List<RssMessageModel> Items { get; }
 
-		public RssMessageAdapter(IQueryable<RssMessageModel> items, Activity activity)
+		public RssMessageAdapter(List<RssMessageModel> items, Activity activity)
         {
             _activity = activity;
 	        Items = items;
