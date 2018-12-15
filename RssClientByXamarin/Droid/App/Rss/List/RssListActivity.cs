@@ -26,7 +26,7 @@ namespace RssClient.App.Rss.List
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         protected override bool IsDisplayHomeAsUpEnable => false;
 
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -50,8 +50,6 @@ namespace RssClient.App.Rss.List
 	        {
 		        adapter.NotifyDataSetChanged();
 			});
-
-	        await _rssUpdater.StartUpdateAllByInternet();
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs)

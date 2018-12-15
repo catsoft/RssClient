@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using System.Threading.Tasks;
 using Database;
 using Database.Rss;
+using Realms;
 using Shared.App.Rss.RssDatabase;
 
 namespace Shared.App.Rss
@@ -96,23 +98,26 @@ namespace Shared.App.Rss
 			return items;
 		}
 
-		public void Update(RssModel item, SyndicationFeed feed)
+		public Task Update(RssModel item, SyndicationFeed feed)
 		{
 			if (feed == null)
-				return;
+				return null;
 
-			using (var transaction = item.Realm.BeginWrite())
-			{
-				item.Name = feed.Title?.Text;
-				item.UpdateTime = DateTime.Now;
-				item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
-				transaction.Commit();
-			}
+            return Task.Run(async () =>
+            {
+                using (var transaction = item.Realm.BeginWrite())
+                {
+                    item.Name = feed.Title?.Text;
+                    item.UpdateTime = DateTime.Now;
+                    item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+                    transaction.Commit();
+                }
 
-			foreach (var syndicationItem in feed.Items)
-			{
-				_rssMessagesRepository.AddItem(syndicationItem, item);
-			}
-		}
+                foreach (var syndicationItem in feed.Items)
+                {
+                    await _rssMessagesRepository.AddItem(syndicationItem, item);
+                }
+            });
+        }
 	}
 }

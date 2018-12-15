@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Database;
 using Database.Rss;
+using Realms;
 using Shared.App.Rss;
 using Shared.App.RssClient;
 
@@ -12,7 +14,6 @@ namespace iOS.App.Rss.RssUpdater
 		public static RssUpdater Instance => _instance ?? (_instance = new RssUpdater());
 
 		private readonly object _locker = new object();
-		private bool _isUpdateting;
 		private readonly RssApiClient _client;
 		private readonly RssRepository _repository;
 
@@ -20,50 +21,33 @@ namespace iOS.App.Rss.RssUpdater
 		{
 			_client = RssApiClient.Instance;
 			_repository = RssRepository.Instance;
+
+            Init();
 		}
 
-		public async Task StartUpdateByInternet(RssModel item)
+        private async void Init()
+        {
+            var items = _repository.GetList();
+
+            foreach (var rssModel in items)
+            {
+                //if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                //{
+                    await StartUpdateAllByInternet(rssModel);
+                //}
+            }
+
+            items.SubscribeForNotifications(async (sender, changes, error) =>
+            {
+                //await StartUpdateAllByInternet()
+            });
+        }
+
+
+		public async Task StartUpdateAllByInternet(RssModel rssModel)
 		{
-			lock (_locker)
-			{
-				if(_isUpdateting)
-					return;
-
-				SetLockedFlag(true);
-			}
-
-			var request = await _client.Update(item);
-			_repository.Update(item, request);
-
-			SetLockedFlag(false);
-		}
-
-		public async Task StartUpdateAllByInternet()
-		{
-			lock (_locker)
-			{
-				if (_isUpdateting)
-					return;
-
-				SetLockedFlag(true);
-			}
-
-			var items = _repository.GetList();
-			foreach (var rssModel in items)
-			{
-				var request = await _client.Update(rssModel);
-				_repository.Update(rssModel, request);
-			}
-
-			SetLockedFlag(false);
-		}
-
-		private void SetLockedFlag(bool value)
-		{
-			lock (_locker)
-			{
-				_isUpdateting = value;
-			}
-		}
+            var request = await _client.Update(rssModel);
+            await _repository.Update(rssModel, request);
+        }
 	}
 }
