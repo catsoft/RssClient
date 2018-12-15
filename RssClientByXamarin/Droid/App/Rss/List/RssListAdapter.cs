@@ -40,7 +40,7 @@ namespace RssClient.App.Rss.List
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
                 rssListViewHolder.Item = item;
-                rssListViewHolder.CountTextView.Text = item.CountMessages.ToString();
+                rssListViewHolder.CountTextView.Text = item.RssMessageModels.Count.ToString();
                 Glide.With(_activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
             }
         }
