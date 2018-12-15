@@ -47,7 +47,7 @@ namespace iOS.App.Rss.RssUpdater
 		public async Task StartUpdateAllByInternet(RssModel rssModel)
 		{
             var request = await _client.Update(rssModel);
-            await _repository.Update(rssModel, request);
+            await _repository.Update(rssModel.Id, request);
         }
 	}
 }

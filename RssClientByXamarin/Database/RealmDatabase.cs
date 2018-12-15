@@ -9,16 +9,18 @@ namespace Database
 
 		private const string DatabaseFilename = "librarydb.realm";
 
-		public Realm Realm { get; }
+		public Realm MainThreadRealm { get; }
 
 		private RealmDatabase()
 		{
-			Realm = Realm.GetInstance(DatabaseFilename);
+			MainThreadRealm = Realm.GetInstance(DatabaseFilename);
 		}
 
-		public void Dispose()
+        public Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
+
+        public void Dispose()
 		{
-			Realm.Dispose();
+			MainThreadRealm.Dispose();
 		}
 	}
 }

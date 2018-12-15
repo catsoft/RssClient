@@ -32,56 +32,67 @@ namespace Shared.App.Rss
 				CreationTime = DateTime.Now,
 			};
 
-			_database.Realm.Write(() =>
-			{
-				_database.Realm.Add(newItem, true);
-			});
+            using (var realm = _database.OpenDatabase)
+            {
+                realm.Write(() =>
+                {
+                    _database.MainThreadRealm.Add(newItem, true);
+                });
+            }
 		}
 
-		public void Update(RssModel item, string rss, string name)
-		{
-			if (item.Rss != rss)
-			{
-				var copyItem = new RssModel();
-				copyItem.Id = rss;
-				copyItem.Name = name;
-				copyItem.CreationTime = item.CreationTime;
+		public Task Update(RssModel item, string rss, string name)
+        {
+            var threadingId = item.Id;
 
-				_database.Realm.Write(() =>
-				{
-					var items = _database.Realm.All<RssMessageModel>().Where(w => w.Id == item.Id);
-					_database.Realm.RemoveRange(items);
+            return Task.Run(() =>
+            {
+                using (var realm = RealmDatabase.Instance.OpenDatabase)
+                {
+                    using (var transaction = realm.BeginWrite())
+                    {
+                        var currentThreadItem = realm.Find<RssModel>(threadingId);
 
-					_database.Realm.Remove(item);
-					_database.Realm.Add(copyItem, true);
-				});
-			}
-			else
-			{
-				_database.Realm.Write(() =>
-				{
-					item.Name = name;
-					_database.Realm.Add(item, true);
-				});
-			}
-		}
+                        if (currentThreadItem.Rss != rss)
+                        {
+                            var copyItem = new RssModel();
+                            copyItem.Id = rss;
+                            copyItem.Name = name;
+                            copyItem.CreationTime = item.CreationTime;
+
+                            var items = realm.All<RssMessageModel>().Where(w => w.Id == item.Id);
+                            realm.RemoveRange(items);
+
+                            realm.Remove(item);
+                            realm.Add(copyItem, true);
+                        }
+                        else
+                        {
+                            item.Name = name;
+                            _database.MainThreadRealm.Add(item, true);
+                        }
+                        transaction.Commit();
+                    }
+                }
+            });
+        }
 
 		public RssModel Find(string id)
 		{
-			return _database.Realm.Find<RssModel>(id);
+			return _database.MainThreadRealm.Find<RssModel>(id);
 		}
 
 		public void Remove(RssModel item)
 		{
-			_database.Realm.Write(() =>
+			_database.MainThreadRealm.Write(() =>
 			{
-				_database.Realm.Remove(item);
+				_database.MainThreadRealm.Remove(item);
 			});
 		}
 
 		public IQueryable<RssModel> GetList()
 		{
-			var items = _database.Realm.All<RssModel>().OrderByDescending(w => w.CreationTime);
+			var items = _database.MainThreadRealm.All<RssModel>().OrderByDescending(w => w.CreationTime);
 
 			if (!items.Any())
 			{
@@ -98,24 +109,29 @@ namespace Shared.App.Rss
 			return items;
 		}
 
-		public Task Update(RssModel item, SyndicationFeed feed)
+		public Task Update(string rssId, SyndicationFeed feed)
 		{
 			if (feed == null)
 				return null;
 
             return Task.Run(async () =>
             {
-                using (var transaction = item.Realm.BeginWrite())
+                using (var thread = RealmDatabase.Instance.OpenDatabase)
                 {
-                    item.Name = feed.Title?.Text;
-                    item.UpdateTime = DateTime.Now;
-                    item.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
-                    transaction.Commit();
-                }
+                    var currentItem = thread.Find<RssModel>(rssId);
 
-                foreach (var syndicationItem in feed.Items)
-                {
-                    await _rssMessagesRepository.AddItem(syndicationItem, item);
+                    using (var transaction = currentItem.Realm.BeginWrite())
+                    {
+                        currentItem.Name = feed.Title?.Text;
+                        currentItem.UpdateTime = DateTime.Now;
+                        currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+                        transaction.Commit();
+                    }
+
+                    foreach (var syndicationItem in feed.Items)
+                    {
+                        await _rssMessagesRepository.AddItem(syndicationItem, rssId);
+                    }
                 }
             });
         }
