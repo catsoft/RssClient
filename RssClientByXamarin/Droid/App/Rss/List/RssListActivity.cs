@@ -51,6 +51,8 @@ namespace RssClient.App.Rss.List
 		        adapter.NotifyDataSetChanged();
 			});
 
+	        await _rssUpdater.StartUpdateAllByInternet();
+
 	        await _rssUpdater.StartUpdateAllByInternet().ConfigureAwait(false);
         }
 

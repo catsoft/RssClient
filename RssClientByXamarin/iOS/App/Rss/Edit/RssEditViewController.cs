@@ -61,8 +61,9 @@ namespace iOS.App.Rss.Edit
 			{
 				var name = _nameTextField.Text;
 				var url = _urlField.Text;
+                var id = _item.Id;
 
-				_rssRepository.Update(_item, url, name);
+				await _rssRepository.Update(id, url, name);
 
 				NavigationController?.PopViewController(true);
 			}));

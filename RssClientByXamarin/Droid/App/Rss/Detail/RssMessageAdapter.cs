@@ -6,6 +6,7 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Net;
+using Com.Bumptech.Glide;
 using Database.Rss;
 
 namespace RssClient.App.Rss.Detail
@@ -15,9 +16,9 @@ namespace RssClient.App.Rss.Detail
         private const string CreationDateFormat = "dd MMMM yyyy";
 
         private readonly Activity _activity;
-	    public IQueryable<RssMessageModel> Items { get; }
+	    public List<RssMessageModel> Items { get; }
 
-		public RssMessageAdapter(IQueryable<RssMessageModel> items, Activity activity)
+		public RssMessageAdapter(List<RssMessageModel> items, Activity activity)
         {
             _activity = activity;
 	        Items = items;
@@ -33,6 +34,9 @@ namespace RssClient.App.Rss.Detail
                 rssMessageViewHolder.Text.Text = item.Text;
                 rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString(CreationDateFormat, CultureInfo.CurrentCulture);
                 rssMessageViewHolder.Item = item;
+
+                rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
+                Glide.With(_activity).Load(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
             }
         }
 

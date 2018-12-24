@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
@@ -25,6 +26,14 @@ namespace RssClient.App.Rss.Edit
 	    private RssRepository _rssRepository;
 
         protected override int ResourceView => Resource.Layout.activity_rss_edit;
+
+        public static Intent Create(Context context, string rssId)
+        {
+            var intent = new Intent(context, typeof(RssEditActivity));
+            intent.PutExtra(RssEditActivity.ItemIntentId, rssId);
+
+            return intent;
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -69,12 +78,13 @@ namespace RssClient.App.Rss.Edit
             _name.EditText.SetTextAndSetCursorToLast(_item.Name);
         }
 
-        private void SendButtonOnClick(object sender, EventArgs eventArgs)
+        private async void SendButtonOnClick(object sender, EventArgs eventArgs)
         {
             var name = _name.EditText.Text;
             var url = _url.EditText.Text;
+            var id = _item.Id;
 
-	        _rssRepository.Update(_item, url, name);
+	        await _rssRepository.Update(id, url, name);
 
 			Finish();
         }

@@ -1391,44 +1391,44 @@ namespace RssClient
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a0050
-			public const int abc_background_cache_hint_selector_material_dark = 2131361872;
-			
 			// aapt resource value: 0x7f0a0051
-			public const int abc_background_cache_hint_selector_material_light = 2131361873;
+			public const int abc_background_cache_hint_selector_material_dark = 2131361873;
 			
 			// aapt resource value: 0x7f0a0052
-			public const int abc_btn_colored_borderless_text_material = 2131361874;
+			public const int abc_background_cache_hint_selector_material_light = 2131361874;
 			
 			// aapt resource value: 0x7f0a0053
-			public const int abc_btn_colored_text_material = 2131361875;
+			public const int abc_btn_colored_borderless_text_material = 2131361875;
 			
 			// aapt resource value: 0x7f0a0054
-			public const int abc_color_highlight_material = 2131361876;
+			public const int abc_btn_colored_text_material = 2131361876;
 			
 			// aapt resource value: 0x7f0a0055
-			public const int abc_hint_foreground_material_dark = 2131361877;
+			public const int abc_color_highlight_material = 2131361877;
 			
 			// aapt resource value: 0x7f0a0056
-			public const int abc_hint_foreground_material_light = 2131361878;
+			public const int abc_hint_foreground_material_dark = 2131361878;
+			
+			// aapt resource value: 0x7f0a0057
+			public const int abc_hint_foreground_material_light = 2131361879;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int abc_input_method_navigation_guard = 2131361796;
 			
-			// aapt resource value: 0x7f0a0057
-			public const int abc_primary_text_disable_only_material_dark = 2131361879;
-			
 			// aapt resource value: 0x7f0a0058
-			public const int abc_primary_text_disable_only_material_light = 2131361880;
+			public const int abc_primary_text_disable_only_material_dark = 2131361880;
 			
 			// aapt resource value: 0x7f0a0059
-			public const int abc_primary_text_material_dark = 2131361881;
+			public const int abc_primary_text_disable_only_material_light = 2131361881;
 			
 			// aapt resource value: 0x7f0a005a
-			public const int abc_primary_text_material_light = 2131361882;
+			public const int abc_primary_text_material_dark = 2131361882;
 			
 			// aapt resource value: 0x7f0a005b
-			public const int abc_search_url_text = 2131361883;
+			public const int abc_primary_text_material_light = 2131361883;
+			
+			// aapt resource value: 0x7f0a005c
+			public const int abc_search_url_text = 2131361884;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int abc_search_url_text_normal = 2131361797;
@@ -1439,29 +1439,29 @@ namespace RssClient
 			// aapt resource value: 0x7f0a0007
 			public const int abc_search_url_text_selected = 2131361799;
 			
-			// aapt resource value: 0x7f0a005c
-			public const int abc_secondary_text_material_dark = 2131361884;
-			
 			// aapt resource value: 0x7f0a005d
-			public const int abc_secondary_text_material_light = 2131361885;
+			public const int abc_secondary_text_material_dark = 2131361885;
 			
 			// aapt resource value: 0x7f0a005e
-			public const int abc_tint_btn_checkable = 2131361886;
+			public const int abc_secondary_text_material_light = 2131361886;
 			
 			// aapt resource value: 0x7f0a005f
-			public const int abc_tint_default = 2131361887;
+			public const int abc_tint_btn_checkable = 2131361887;
 			
 			// aapt resource value: 0x7f0a0060
-			public const int abc_tint_edittext = 2131361888;
+			public const int abc_tint_default = 2131361888;
 			
 			// aapt resource value: 0x7f0a0061
-			public const int abc_tint_seek_thumb = 2131361889;
+			public const int abc_tint_edittext = 2131361889;
 			
 			// aapt resource value: 0x7f0a0062
-			public const int abc_tint_spinner = 2131361890;
+			public const int abc_tint_seek_thumb = 2131361890;
 			
 			// aapt resource value: 0x7f0a0063
-			public const int abc_tint_switch_track = 2131361891;
+			public const int abc_tint_spinner = 2131361891;
+			
+			// aapt resource value: 0x7f0a0064
+			public const int abc_tint_switch_track = 2131361892;
 			
 			// aapt resource value: 0x7f0a0008
 			public const int accent_material_dark = 2131361800;
@@ -1529,8 +1529,8 @@ namespace RssClient
 			// aapt resource value: 0x7f0a0040
 			public const int design_bottom_navigation_shadow_color = 2131361856;
 			
-			// aapt resource value: 0x7f0a0064
-			public const int design_error = 2131361892;
+			// aapt resource value: 0x7f0a0065
+			public const int design_error = 2131361893;
 			
 			// aapt resource value: 0x7f0a0041
 			public const int design_fab_shadow_end_color = 2131361857;
@@ -1556,8 +1556,8 @@ namespace RssClient
 			// aapt resource value: 0x7f0a0048
 			public const int design_snackbar_background_color = 2131361864;
 			
-			// aapt resource value: 0x7f0a0065
-			public const int design_tint_password_toggle = 2131361893;
+			// aapt resource value: 0x7f0a0066
+			public const int design_tint_password_toggle = 2131361894;
 			
 			// aapt resource value: 0x7f0a0016
 			public const int dim_foreground_disabled_material_dark = 2131361814;
@@ -1685,11 +1685,11 @@ namespace RssClient
 			// aapt resource value: 0x7f0a003a
 			public const int switch_thumb_disabled_material_light = 2131361850;
 			
-			// aapt resource value: 0x7f0a0066
-			public const int switch_thumb_material_dark = 2131361894;
-			
 			// aapt resource value: 0x7f0a0067
-			public const int switch_thumb_material_light = 2131361895;
+			public const int switch_thumb_material_dark = 2131361895;
+			
+			// aapt resource value: 0x7f0a0068
+			public const int switch_thumb_material_light = 2131361896;
 			
 			// aapt resource value: 0x7f0a003b
 			public const int switch_thumb_normal_material_dark = 2131361851;
@@ -1702,6 +1702,9 @@ namespace RssClient
 			
 			// aapt resource value: 0x7f0a003e
 			public const int tooltip_background_light = 2131361854;
+			
+			// aapt resource value: 0x7f0a0050
+			public const int white = 2131361872;
 			
 			static Color()
 			{
@@ -2458,26 +2461,26 @@ namespace RssClient
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020070
-			public const int avd_hide_password_1 = 2130837616;
-			
-			// aapt resource value: 0x7f020071
-			public const int avd_hide_password_2 = 2130837617;
-			
 			// aapt resource value: 0x7f020072
-			public const int avd_hide_password_3 = 2130837618;
+			public const int avd_hide_password_1 = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int avd_hide_password_2 = 2130837619;
+			
+			// aapt resource value: 0x7f020074
+			public const int avd_hide_password_3 = 2130837620;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f020073
-			public const int avd_show_password_1 = 2130837619;
-			
-			// aapt resource value: 0x7f020074
-			public const int avd_show_password_2 = 2130837620;
-			
 			// aapt resource value: 0x7f020075
-			public const int avd_show_password_3 = 2130837621;
+			public const int avd_show_password_1 = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int avd_show_password_2 = 2130837622;
+			
+			// aapt resource value: 0x7f020077
+			public const int avd_show_password_3 = 2130837623;
 			
 			// aapt resource value: 0x7f020055
 			public const int big_rss = 2130837589;
@@ -2504,64 +2507,70 @@ namespace RssClient
 			public const int ic_add = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_launcher_background = 2130837597;
+			public const int ic_delete = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_launcher_foreground = 2130837598;
-			
-			// aapt resource value: 0x7f020076
-			public const int ic_launcher_foreground_1 = 2130837622;
+			public const int ic_edit = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int launch_screen = 2130837599;
+			public const int ic_launcher_background = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int navigation_empty_icon = 2130837600;
+			public const int ic_launcher_foreground = 2130837600;
+			
+			// aapt resource value: 0x7f020078
+			public const int ic_launcher_foreground_1 = 2130837624;
 			
 			// aapt resource value: 0x7f020061
-			public const int notification_action_background = 2130837601;
+			public const int launch_screen = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int notification_bg = 2130837602;
+			public const int navigation_empty_icon = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int notification_bg_low = 2130837603;
+			public const int notification_action_background = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int notification_bg_low_normal = 2130837604;
+			public const int notification_bg = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int notification_bg_low_pressed = 2130837605;
+			public const int notification_bg_low = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int notification_bg_normal = 2130837606;
+			public const int notification_bg_low_normal = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int notification_bg_normal_pressed = 2130837607;
+			public const int notification_bg_low_pressed = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int notification_icon_background = 2130837608;
-			
-			// aapt resource value: 0x7f02006e
-			public const int notification_template_icon_bg = 2130837614;
-			
-			// aapt resource value: 0x7f02006f
-			public const int notification_template_icon_low_bg = 2130837615;
+			public const int notification_bg_normal = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int notification_tile_bg = 2130837609;
+			public const int notification_bg_normal_pressed = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int notify_panel_notification_icon_bg = 2130837610;
+			public const int notification_icon_background = 2130837610;
+			
+			// aapt resource value: 0x7f020070
+			public const int notification_template_icon_bg = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int notification_template_icon_low_bg = 2130837617;
 			
 			// aapt resource value: 0x7f02006b
-			public const int shimmer_view = 2130837611;
+			public const int notification_tile_bg = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int tooltip_frame_dark = 2130837612;
+			public const int notify_panel_notification_icon_bg = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int tooltip_frame_light = 2130837613;
+			public const int shimmer_view = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int tooltip_frame_dark = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int tooltip_frame_light = 2130837615;
 			
 			static Drawable()
 			{
@@ -2858,14 +2867,14 @@ namespace RssClient
 			// aapt resource value: 0x7f08006e
 			public const int list_item = 2131230830;
 			
-			// aapt resource value: 0x7f0800ce
-			public const int masked = 2131230926;
+			// aapt resource value: 0x7f0800d1
+			public const int masked = 2131230929;
 			
 			// aapt resource value: 0x7f0800b7
 			public const int media_actions = 2131230903;
 			
-			// aapt resource value: 0x7f0800cc
-			public const int message = 2131230924;
+			// aapt resource value: 0x7f0800cf
+			public const int message = 2131230927;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2942,11 +2951,20 @@ namespace RssClient
 			// aapt resource value: 0x7f0800bb
 			public const int right_side = 2131230907;
 			
+			// aapt resource value: 0x7f0800c8
+			public const int rss_count = 2131230920;
+			
 			// aapt resource value: 0x7f080099
 			public const int rss_create_button = 2131230873;
 			
 			// aapt resource value: 0x7f080098
 			public const int rss_create_rss = 2131230872;
+			
+			// aapt resource value: 0x7f0800d3
+			public const int rss_detail_menu_edit = 2131230931;
+			
+			// aapt resource value: 0x7f0800d2
+			public const int rss_detail_menu_remove = 2131230930;
 			
 			// aapt resource value: 0x7f08009b
 			public const int rss_details_recycler_view = 2131230875;
@@ -2963,17 +2981,20 @@ namespace RssClient
 			// aapt resource value: 0x7f08009d
 			public const int rss_edit_rss = 2131230877;
 			
-			// aapt resource value: 0x7f0800cf
-			public const int rss_item_edit_action = 2131230927;
+			// aapt resource value: 0x7f0800c5
+			public const int rss_image = 2131230917;
 			
-			// aapt resource value: 0x7f0800d0
-			public const int rss_item_remove_action = 2131230928;
+			// aapt resource value: 0x7f0800d4
+			public const int rss_item_edit_action = 2131230932;
+			
+			// aapt resource value: 0x7f0800d5
+			public const int rss_item_remove_action = 2131230933;
+			
+			// aapt resource value: 0x7f0800c7
+			public const int rss_item_subtitle = 2131230919;
 			
 			// aapt resource value: 0x7f0800c6
-			public const int rss_item_subtitle = 2131230918;
-			
-			// aapt resource value: 0x7f0800c5
-			public const int rss_item_title = 2131230917;
+			public const int rss_item_title = 2131230918;
 			
 			// aapt resource value: 0x7f0800c4
 			public const int rss_list_item_click_view = 2131230916;
@@ -2981,17 +3002,20 @@ namespace RssClient
 			// aapt resource value: 0x7f08009f
 			public const int rss_list_recycler_view = 2131230879;
 			
-			// aapt resource value: 0x7f0800c7
-			public const int rss_message_click_view = 2131230919;
-			
 			// aapt resource value: 0x7f0800c9
-			public const int rss_message_date = 2131230921;
+			public const int rss_message_click_view = 2131230921;
 			
 			// aapt resource value: 0x7f0800ca
-			public const int rss_message_text = 2131230922;
+			public const int rss_message_date = 2131230922;
 			
-			// aapt resource value: 0x7f0800c8
-			public const int rss_message_title = 2131230920;
+			// aapt resource value: 0x7f0800cd
+			public const int rss_message_image = 2131230925;
+			
+			// aapt resource value: 0x7f0800cc
+			public const int rss_message_text = 2131230924;
+			
+			// aapt resource value: 0x7f0800cb
+			public const int rss_message_title = 2131230923;
 			
 			// aapt resource value: 0x7f08000c
 			public const int save_image_matrix = 2131230732;
@@ -3152,8 +3176,8 @@ namespace RssClient
 			// aapt resource value: 0x7f08007c
 			public const int title_template = 2131230844;
 			
-			// aapt resource value: 0x7f0800cb
-			public const int toolbar = 2131230923;
+			// aapt resource value: 0x7f0800ce
+			public const int toolbar = 2131230926;
 			
 			// aapt resource value: 0x7f08003e
 			public const int top = 2131230782;
@@ -3191,8 +3215,8 @@ namespace RssClient
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800cd
-			public const int visible = 2131230925;
+			// aapt resource value: 0x7f0800d0
+			public const int visible = 2131230928;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
@@ -3477,7 +3501,10 @@ namespace RssClient
 		{
 			
 			// aapt resource value: 0x7f0e0000
-			public const int rss_list_item = 2131623936;
+			public const int rss_detail_menu = 2131623936;
+			
+			// aapt resource value: 0x7f0e0001
+			public const int rss_list_item = 2131623937;
 			
 			static Menu()
 			{
