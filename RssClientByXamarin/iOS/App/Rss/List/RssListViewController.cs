@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
 using iOS.App.Rss.Create;
 using iOS.App.Rss.Detail;
 using iOS.App.Styles;
+using Realms;
 using Shared.App.Rss;
 using UIKit;
 using Xamarin;
@@ -23,7 +23,7 @@ namespace iOS.App.Rss.List
 			_rssUpdater = RssUpdater.RssUpdater.Instance;
 		}
 
-		public override void ViewDidLoad()
+		public override async void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -59,6 +59,13 @@ namespace iOS.App.Rss.List
 			{
 				StatedDecorator.SetError(new ErrorData());
 			}
+
+			list.SubscribeForNotifications((sender, changes, error) =>
+			{
+				TableView.ReloadData();
+			});
+
+			await _rssUpdater.StartUpdateAllByInternet().ConfigureAwait(false);
 		}
 	}
 }

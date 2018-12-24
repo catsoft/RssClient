@@ -23,7 +23,7 @@ namespace iOS.App.Rss.Detail
 			_rssMessagesRepository = RssMessagesRepository.Instance;
 		}
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 

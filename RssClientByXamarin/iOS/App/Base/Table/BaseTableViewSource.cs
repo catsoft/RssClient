@@ -39,24 +39,32 @@ namespace iOS.App.Base.Table
 			var cellIdentifier = nameof(TTableCell);
 			var cell = (tableView.DequeueReusableCell(cellIdentifier) ?? _factory.Create()) as TTableCell;
 
-			var item = _items.ElementAt(indexPath.Row);
-
-			if (cell != null)
+			try
 			{
-				cell.ClipsToBounds = false;
-				cell.Layer.MasksToBounds = false;
+				var item = _items.ElementAt(indexPath.Row);
+				if (cell != null)
+				{
+					cell.ClipsToBounds = false;
+					cell.Layer.MasksToBounds = false;
 
-				cell.BindData(item);
+					cell.BindData(item);
 
-				cell.UpdateConstraints();
+					cell.UpdateConstraints();
+				}
+
+				return cell;
 			}
-
-			return cell;
+			catch (Exception e)
+			{
+				// TODO what the hell?
+				return cell;
+			}
 		}
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
-			ItemSelected?.Invoke(_items.ElementAt(indexPath.Row));
+			var item = _items.ElementAt(indexPath.Row);
+			ItemSelected?.Invoke(item);
 		}
 
 		public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
