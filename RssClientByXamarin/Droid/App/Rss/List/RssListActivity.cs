@@ -4,7 +4,6 @@ using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
-using iOS.App.Rss.RssUpdater;
 using Realms;
 using RssClient.App.Base;
 using RssClient.App.Rss.Create;
@@ -21,17 +20,15 @@ namespace RssClient.App.Rss.List
 
         private RecyclerView _recyclerView;
 	    private RssRepository _rssRepository;
-	    private RssUpdater _rssUpdater;
 
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         protected override bool IsDisplayHomeAsUpEnable => false;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
 	        _rssRepository = RssRepository.Instance;
-	        _rssUpdater = RssUpdater.Instance;
 
 			Title = TitleActivity;
 
@@ -50,10 +47,6 @@ namespace RssClient.App.Rss.List
 	        {
 		        adapter.NotifyDataSetChanged();
 			});
-
-	        await _rssUpdater.StartUpdateAllByInternet();
-
-	        await _rssUpdater.StartUpdateAllByInternet().ConfigureAwait(false);
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs)

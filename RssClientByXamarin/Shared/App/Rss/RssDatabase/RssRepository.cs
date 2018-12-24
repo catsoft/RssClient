@@ -4,6 +4,7 @@ using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using Database;
 using Database.Rss;
+using iOS.App.Rss.RssUpdater;
 using Realms;
 using Shared.App.Rss.RssDatabase;
 
@@ -16,16 +17,17 @@ namespace Shared.App.Rss
 
 		private readonly RealmDatabase _database;
 		private readonly RssMessagesRepository _rssMessagesRepository;
+        private RssUpdater _rssUpdater => RssUpdater.Instance;
 
 		private RssRepository()
 		{
 			_database = RealmDatabase.Instance;
-			_rssMessagesRepository = RssMessagesRepository.Instance;;
-		}
+			_rssMessagesRepository = RssMessagesRepository.Instance;
+        }
 
 		public Task InsertByUrl(string url)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 var newItem = new RssModel()
                 {
@@ -38,10 +40,12 @@ namespace Shared.App.Rss
                 {
                     using (var transaction = realm.BeginWrite())
                     {
-                        realm.Add(newItem, true);
+                        newItem = realm.Add(newItem, true);
                         transaction.Commit();
                     }
                 }
+
+                await _rssUpdater.StartUpdateAllByInternet(newItem);
             });
         }
 
@@ -107,7 +111,7 @@ namespace Shared.App.Rss
 
                     foreach (var syndicationItem in feed.Items)
                     {
-                        await _rssMessagesRepository.AddItem(syndicationItem, rssId);
+                        await _rssMessagesRepository.AddOrUpdateItem(syndicationItem, rssId);
                     }
                 }
             });

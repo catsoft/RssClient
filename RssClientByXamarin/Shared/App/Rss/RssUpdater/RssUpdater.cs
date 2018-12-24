@@ -31,14 +31,14 @@ namespace iOS.App.Rss.RssUpdater
 
             if (!items.Any())
             {
-                _repository.InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-                _repository.InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-                _repository.InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-                _repository.InsertByUrl("http://www.old-hard.ru/rss");
-                _repository.InsertByUrl("https://lenta.ru/rss/news");
-                _repository.InsertByUrl("https://lenta.ru/rss/articles");
-                _repository.InsertByUrl("https://lenta.ru/rss/top7");
-                _repository.InsertByUrl("https://lenta.ru/rss/news/russia");
+                await _repository.InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                await _repository.InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                await _repository.InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                await _repository.InsertByUrl("http://www.old-hard.ru/rss");
+                await _repository.InsertByUrl("https://lenta.ru/rss/news");
+                await _repository.InsertByUrl("https://lenta.ru/rss/articles");
+                await _repository.InsertByUrl("https://lenta.ru/rss/top7");
+                await _repository.InsertByUrl("https://lenta.ru/rss/news/russia");
             }
 
             foreach (var rssModel in items)
@@ -70,7 +70,6 @@ namespace iOS.App.Rss.RssUpdater
                 }
             });
         }
-
 
 		public async Task StartUpdateAllByInternet(RssModel rssModel)
 		{

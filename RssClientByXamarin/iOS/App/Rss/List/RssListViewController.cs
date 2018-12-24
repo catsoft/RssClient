@@ -23,7 +23,7 @@ namespace iOS.App.Rss.List
 			_rssUpdater = RssUpdater.RssUpdater.Instance;
 		}
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -64,8 +64,6 @@ namespace iOS.App.Rss.List
 			{
 				TableView.ReloadData();
 			});
-
-			await _rssUpdater.StartUpdateAllByInternet().ConfigureAwait(false);
 		}
 	}
 }

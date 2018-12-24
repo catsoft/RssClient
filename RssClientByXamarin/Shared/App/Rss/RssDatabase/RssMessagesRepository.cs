@@ -20,7 +20,7 @@ namespace Shared.App.Rss.RssDatabase
 			_localDatabase = RealmDatabase.Instance;
 		}
 
-		public Task AddItem(SyndicationItem syndicationItem, string rssModelId)
+		public Task AddOrUpdateItem(SyndicationItem syndicationItem, string rssModelId)
         {
             return Task.Run(() =>
             {
@@ -47,18 +47,14 @@ namespace Shared.App.Rss.RssDatabase
                 using (var realm = RealmDatabase.Instance.OpenDatabase)
                 {
                     var currentItem = realm.Find<RssModel>(rssModelId);
+                    var rssMessage = realm.All<RssMessageModel>().FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
+
+                    if (rssMessage != null)
+                        item.Id = rssMessage.Id;
 
                     realm.Write(() =>
                     {
-                        try
-                        {
-                            currentItem.RssMessageModels.Add(item);
-                        }
-                        catch (Exception e)
-                        {
-                            // TODO зная что упадет при нахождении такого же элемента можно воспользоваться, а вообще заменить на другое поведение
-                            // Также зная что много exceptions медленно работают, то точно нужно заменить
-                        }
+                        currentItem.RssMessageModels.Add(item);
                     });
                 }
             });
