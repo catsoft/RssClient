@@ -47,15 +47,23 @@ namespace Shared.App.Rss.RssDatabase
                 using (var realm = RealmDatabase.Instance.OpenDatabase)
                 {
                     var currentItem = realm.Find<RssModel>(rssModelId);
-                    var rssMessage = realm.All<RssMessageModel>().FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
+                    var rssMessage = currentItem.RssMessageModels.FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
 
                     if (rssMessage != null)
                         item.Id = rssMessage.Id;
 
-                    realm.Write(() =>
+                    using (var transaction = realm.BeginWrite())
                     {
-                        currentItem.RssMessageModels.Add(item);
-                    });
+                        if (rssMessage != null)
+                        {
+                            realm.Add(rssMessage, true);
+                        }
+                        else
+                        {
+                            currentItem.RssMessageModels.Add(item);
+                        }
+                        transaction.Commit();
+                    }
                 }
             });
         }

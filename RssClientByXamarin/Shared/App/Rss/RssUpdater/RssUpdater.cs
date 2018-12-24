@@ -21,53 +21,56 @@ namespace iOS.App.Rss.RssUpdater
 		{
 			_client = RssApiClient.Instance;
             _repository = RssRepository.Instance;
-
-            Init();
 		}
 
-        private async void Init()
+        public void Init()
         {
-            var items = _repository.GetList();
-
-            if (!items.Any())
+            Task.Run(async () =>
             {
-                await _repository.InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-                await _repository.InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-                await _repository.InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-                await _repository.InsertByUrl("http://www.old-hard.ru/rss");
-                await _repository.InsertByUrl("https://lenta.ru/rss/news");
-                await _repository.InsertByUrl("https://lenta.ru/rss/articles");
-                await _repository.InsertByUrl("https://lenta.ru/rss/top7");
-                await _repository.InsertByUrl("https://lenta.ru/rss/news/russia");
-            }
+                var items = _repository.GetList();
 
-            foreach (var rssModel in items)
-            {
-                if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                if (!items.Any())
                 {
-                    await StartUpdateAllByInternet(rssModel);
+                    await _repository.InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                    await _repository.InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                    await _repository.InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                    await _repository.InsertByUrl("http://www.old-hard.ru/rss");
+                    await _repository.InsertByUrl("https://lenta.ru/rss/news");
+                    await _repository.InsertByUrl("https://lenta.ru/rss/articles");
+                    await _repository.InsertByUrl("https://lenta.ru/rss/top7");
+                    await _repository.InsertByUrl("https://lenta.ru/rss/news/russia");
                 }
-            }
 
-            items.SubscribeForNotifications(async (sender, changes, error) =>
-            {
-                if (sender != null && changes != null)
+                foreach (var rssModel in items)
                 {
-                    foreach (var changesInsertedIndex in changes.InsertedIndices)
+                    if (!rssModel.UpdateTime.HasValue ||
+                        (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
                     {
-                        var item = sender.ElementAt(changesInsertedIndex);
-                        await StartUpdateAllByInternet(item);
+                        await StartUpdateAllByInternet(rssModel);
                     }
+                }
 
-                    foreach (var changesInsertedIndex in changes.ModifiedIndices)
+                items.SubscribeForNotifications(async (sender, changes, error) =>
+                {
+                    if (sender != null && changes != null)
                     {
-                        var item = sender.ElementAt(changesInsertedIndex);
-                        if (!item.UpdateTime.HasValue || (item.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                        foreach (var changesInsertedIndex in changes.InsertedIndices)
                         {
+                            var item = sender.ElementAt(changesInsertedIndex);
                             await StartUpdateAllByInternet(item);
                         }
+
+                        foreach (var changesInsertedIndex in changes.ModifiedIndices)
+                        {
+                            var item = sender.ElementAt(changesInsertedIndex);
+                            if (!item.UpdateTime.HasValue ||
+                                (item.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                            {
+                                await StartUpdateAllByInternet(item);
+                            }
+                        }
                     }
-                }
+                });
             });
         }
 
