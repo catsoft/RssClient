@@ -5,7 +5,6 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Database.Rss;
-using iOS.App.Rss.RssUpdater;
 using RssClient.App.Base;
 using RssClient.App.Rss.Edit;
 using RssClient.App.Rss.List;
@@ -25,7 +24,6 @@ namespace RssClient.App.Rss.Detail
 
         private RssMessagesRepository _rssMessagesRepository;
         private RssRepository _rssRepository;
-        private RssUpdater _rssUpdater;
 
         private RssModel _item;
         private RecyclerView _list;
@@ -39,7 +37,6 @@ namespace RssClient.App.Rss.Detail
 
             _rssMessagesRepository = RssMessagesRepository.Instance;
             _rssRepository = RssRepository.Instance;
-            _rssUpdater = RssUpdater.Instance;
 
             var idItem = Intent.GetStringExtra(ItemIntentId);
             _item = _rssRepository.Find(idItem);
@@ -54,7 +51,7 @@ namespace RssClient.App.Rss.Detail
             _refreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.rss_details_refresher);
             _refreshLayout.Refresh += async (sender, args) =>
             {
-                await _rssUpdater.StartUpdateAllByInternet(_item);
+                await _rssRepository.StartUpdateAllByInternet(_item);
                 _refreshLayout.Refreshing = false;
             };
 
@@ -73,7 +70,7 @@ namespace RssClient.App.Rss.Detail
             //    adapter.NotifyDataSetChanged();
             //});
 
-            await _rssUpdater.StartUpdateAllByInternet(_item);
+            await _rssRepository.StartUpdateAllByInternet(_item);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

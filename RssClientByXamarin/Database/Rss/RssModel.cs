@@ -13,7 +13,7 @@ namespace Database.Rss
 	    public string Rss { get; set; }
 	    public string UrlPreviewImage { get; set; }
         public DateTimeOffset CreationTime { get; set; }
-		public DateTimeOffset? UpdateTime { get; set; }
+        public DateTimeOffset? UpdateTime { get; set; } = null;
 
 		public long CountMessages { get; set; }
 

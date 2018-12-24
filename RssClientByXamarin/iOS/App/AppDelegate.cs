@@ -1,7 +1,6 @@
 ﻿using Analytics;
 using Foundation;
 using iOS.App.Rss.List;
-using iOS.App.Rss.RssUpdater;
 using iOS.App.Styles;
 using UIKit;
 
@@ -18,8 +17,6 @@ namespace iOS.App
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
 	        Instance = this;
-
-            RssUpdater.Instance.InitAsync();
 
 			InitNavigation();
 

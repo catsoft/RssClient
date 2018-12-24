@@ -15,12 +15,10 @@ namespace iOS.App.Rss.List
 	public class RssListViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
 		private readonly RssRepository _rssRepository;
-		private readonly RssUpdater.RssUpdater _rssUpdater;
 
 		public RssListViewController()
 		{
 			_rssRepository = RssRepository.Instance;
-			_rssUpdater = RssUpdater.RssUpdater.Instance;
 		}
 
 		public override void ViewDidLoad()

@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using Database;
 using Database.Rss;
-using iOS.App.Rss.RssUpdater;
 using Realms;
 using Shared.App.Rss.RssDatabase;
+using Shared.App.RssClient;
 
 namespace Shared.App.Rss
 {
@@ -17,15 +19,61 @@ namespace Shared.App.Rss
 
 		private readonly RealmDatabase _database;
 		private readonly RssMessagesRepository _rssMessagesRepository;
-        private RssUpdater _rssUpdater => RssUpdater.Instance;
-
+		private readonly RssApiClient _client;
 		private RssRepository()
 		{
 			_database = RealmDatabase.Instance;
 			_rssMessagesRepository = RssMessagesRepository.Instance;
+            _client = RssApiClient.Instance;
+
+            Init();
         }
 
-		public Task InsertByUrl(string url)
+        public async void Init()
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    using (var realm = _database.OpenDatabase)
+                    {
+                        var items = realm.All<RssModel>().OrderByDescending(w => w.CreationTime);
+
+                        if (!items.Any())
+                        {
+                            InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                            InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                            InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                            InsertByUrl("http://www.old-hard.ru/rss");
+                            InsertByUrl("https://lenta.ru/rss/news");
+                            InsertByUrl("https://lenta.ru/rss/articles");
+                            InsertByUrl("https://lenta.ru/rss/top7");
+                            InsertByUrl("https://lenta.ru/rss/news/russia");
+                        }
+
+                        foreach (var rssModel in items.ToList())
+                        {
+                            if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                            {
+                                await StartUpdateAllByInternet(rssModel);
+                            }
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                }
+            });
+        }
+
+        public async Task StartUpdateAllByInternet(RssModel rssModel)
+        {
+            var request = await _client.Update(rssModel);
+            if (request != null)
+                await Update(rssModel.Id, request);
+        }
+
+        public Task InsertByUrl(string url)
         {
             return Task.Run(async () =>
             {
@@ -45,7 +93,7 @@ namespace Shared.App.Rss
                     }
                 }
 
-                await _rssUpdater.StartUpdateAllByInternet(newItem);
+                await StartUpdateAllByInternet(newItem);
             });
         }
 
@@ -90,7 +138,7 @@ namespace Shared.App.Rss
 			return items;
 		}
 
-		public Task Update(string rssId, SyndicationFeed feed)
+        public Task Update(string rssId, SyndicationFeed feed)
 		{
 			if (feed == null)
 				return null;

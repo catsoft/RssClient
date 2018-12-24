@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -45,7 +46,25 @@ namespace RssClient.App.Rss.List
 
 	        items.SubscribeForNotifications((sender, changes, error) =>
 	        {
-		        adapter.NotifyDataSetChanged();
+                if (sender != null && changes != null)
+                {
+                    foreach (var changesInsertedIndex in changes.InsertedIndices)
+                    {
+                        adapter.NotifyItemInserted(changesInsertedIndex);
+                    }
+
+                    foreach (var changesInsertedIndex in changes.ModifiedIndices)
+                    {
+                        adapter.NotifyItemChanged(changesInsertedIndex);
+                    }
+
+                    foreach (var changesInsertedIndex in changes.DeletedIndices)
+                    {
+                        adapter.NotifyItemRemoved(changesInsertedIndex);
+                    }
+                }
+
+                adapter.NotifyDataSetChanged();
 			});
         }
 
