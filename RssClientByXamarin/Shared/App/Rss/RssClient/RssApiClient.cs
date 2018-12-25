@@ -19,11 +19,11 @@ namespace Shared.App.RssClient
 			_log = new Log();
 		}
 
-		public async Task<SyndicationFeed> Update(RssModel item)
+		public async Task<SyndicationFeed> Update(string rssUrl)
 		{
 			try
 			{
-				var response = await GetAsync(item.Rss);
+				var response = await GetAsync(rssUrl);
 
 				var stream = response.Content.ReadAsStreamAsync();
 				var xmlReader = XmlReader.Create(stream.Result);
