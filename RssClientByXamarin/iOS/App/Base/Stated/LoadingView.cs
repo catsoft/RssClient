@@ -10,8 +10,11 @@ namespace iOS.App.Base.Stated
             frame.X = 0;
             frame.Y = 0;
             Frame = frame;
-
-            BackgroundColor = UIColor.Red;
 		}
+
+        public void BindData(LoadingData data)
+        {
+            
+        }
 	}
 }

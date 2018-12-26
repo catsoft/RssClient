@@ -46,6 +46,7 @@ namespace Shared.App.Rss
                         await InsertByUrl("http://www.calend.ru/img/export/calend.rss");
                         await InsertByUrl("http://www.old-hard.ru/rss");
                         await InsertByUrl("https://lenta.ru/rss/news");
+                        await InsertByUrl("https://bad_link.sad");
                         await InsertByUrl("https://lenta.ru/rss/articles");
                         await InsertByUrl("https://lenta.ru/rss/top7");
                         await InsertByUrl("https://lenta.ru/rss/news/russia");
