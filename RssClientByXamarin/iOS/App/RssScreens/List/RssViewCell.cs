@@ -19,8 +19,9 @@ namespace iOS.App.RssScreens.List
 		private readonly UILabel _nameLabel;
 		private readonly UILabel _dataUpdateLabel;
 		private readonly UILabel _countMessages;
+        private NSLayoutConstraint _countMessageWidthConstraint;
 
-		public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
+        public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
             _rssMessagesRepository = RssMessagesRepository.Instance;
 
@@ -57,7 +58,7 @@ namespace iOS.App.RssScreens.List
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Font = UIFont.SystemFontOfSize(14),
                 Lines = 1,
-                LineBreakMode = UILineBreakMode.TailTruncation,
+                LineBreakMode = UILineBreakMode.HeadTruncation,
 			};
 
 			_countMessages = new UILabel()
@@ -104,6 +105,17 @@ namespace iOS.App.RssScreens.List
 
                 _shouldSetupConstraint = false;
 			}
-		}
+
+            _countMessages.SizeToFit();
+            var width = _countMessages.Frame.Width;
+
+            if (_countMessageWidthConstraint == null)
+            {
+                _countMessageWidthConstraint = _countMessages.WidthAnchor.ConstraintEqualTo(width);
+                _countMessageWidthConstraint.Active = true;
+            }
+
+            _countMessageWidthConstraint.Constant = width;
+        }
 	}
 }
