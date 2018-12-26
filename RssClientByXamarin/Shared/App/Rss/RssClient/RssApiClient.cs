@@ -4,7 +4,6 @@ using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
 using Analytics;
-using Database.Rss;
 
 namespace Shared.App.RssClient
 {

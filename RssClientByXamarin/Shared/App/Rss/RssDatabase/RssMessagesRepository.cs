@@ -5,7 +5,6 @@ using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using Database;
 using Database.Rss;
-using Realms;
 
 namespace Shared.App.Rss.RssDatabase
 {

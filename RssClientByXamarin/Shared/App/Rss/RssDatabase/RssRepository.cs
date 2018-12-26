@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
-using Android.Content;
 using Database;
 using Database.Rss;
-using Realms;
 using Shared.App.Rss.RssDatabase;
 using Shared.App.RssClient;
 
