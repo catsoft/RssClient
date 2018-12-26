@@ -72,7 +72,7 @@ namespace iOS.App.RssScreens.List
 		{
 			_nameLabel.Text = item.Name;
 			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
-			_countMessages.Text = item.CountMessages.ToString();
+            _countMessages.Text = item.RssMessageModels.Count.ToString();
 			var placeHolderImage = UIImage.FromBundle("EmptyImage").ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
 			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""), placeHolderImage);
 			_imagePreview.TintColor = Colors.PrimaryColor;

@@ -15,8 +15,6 @@ namespace Database.Rss
         public DateTimeOffset CreationTime { get; set; }
         public DateTimeOffset? UpdateTime { get; set; } = null;
 
-		public long CountMessages { get; set; }
-
 		public IList<RssMessageModel> RssMessageModels { get; }
     }
 }

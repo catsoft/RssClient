@@ -26,7 +26,7 @@ namespace iOS.App.RssScreens.Detail
 
 			if (NavigationItem != null)
 			{
-				NavigationItem.Title = _item?.Name;
+				NavigationItem.Title = _item.Name;
 
 				var editButton = new IQBarButtonItem();
 				editButton.Title = "Edit";
@@ -41,16 +41,30 @@ namespace iOS.App.RssScreens.Detail
 			var items = _rssMessagesRepository.GetMessagesForRss(_item);
 
 			Source.SetList(items);
-			TableView.ReloadData();
 
-			if (items.Any())
-			{
-				StatedDecorator.SetNormal(new NormalData());
-			}
-			else
-			{
-				StatedDecorator.SetError(new ErrorData());
-			}
-		}
-	}
+            DataSetChanges();
+
+            _item.PropertyChanged += (sender, args) =>
+            {
+                var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
+                Source.SetList(newItems);
+
+                DataSetChanges();
+            };
+        }
+
+        private void DataSetChanges()
+        {
+            TableView.ReloadData();
+
+            if (Source.ItemsCount > 0)
+            {
+                StatedDecorator.SetNormal(new NormalData());
+            }
+            else
+            {
+                StatedDecorator.SetError(new ErrorData());
+            }
+        }
+    }
 }
