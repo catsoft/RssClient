@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
@@ -22,7 +21,7 @@ namespace iOS.App.RssScreens.Detail
 			_rssMessagesRepository = RssMessagesRepository.Instance;
 		}
 
-		public override async void ViewDidLoad()
+		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
