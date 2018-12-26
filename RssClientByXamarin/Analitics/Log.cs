@@ -16,7 +16,7 @@ namespace Analytics
         public static void Init()
         {
             string apiKey;
-#if __DEBUG__
+#if DEBUG
     #if __ANDROID__
             apiKey = ApiKeyDebugAndroid;
     #else
