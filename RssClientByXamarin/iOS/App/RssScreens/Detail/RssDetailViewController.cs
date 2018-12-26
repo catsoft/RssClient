@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
@@ -8,7 +9,7 @@ using Xamarin;
 
 namespace iOS.App.RssScreens.Detail
 {
-	public class RssDetailViewController : BaseTableViewController<RssMessageViewCell, RssMessageModel>
+	public class RssDetailViewController : BaseTableViewController<RssMessageViewCell, RssMessageModel, IEnumerable<RssMessageModel>>
 	{
 		private readonly RssModel _item;
 		private readonly RssMessagesRepository _rssMessagesRepository;

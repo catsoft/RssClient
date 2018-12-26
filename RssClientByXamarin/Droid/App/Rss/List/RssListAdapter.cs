@@ -7,10 +7,10 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Com.Bumptech.Glide;
 using Database.Rss;
-using Newtonsoft.Json;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
 using Shared.App.Rss;
+using Shared.App.Rss.RssDatabase;
 
 namespace RssClient.App.Rss.List
 {
@@ -22,10 +22,13 @@ namespace RssClient.App.Rss.List
 
         private readonly Activity _activity;
 	    private readonly RssRepository _rssRepository;
+        private readonly RssMessagesRepository _rssMessagesRepository;
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity)
         {
 			_rssRepository = RssRepository.Instance;
+            _rssMessagesRepository = RssMessagesRepository.Instance;
+
             _activity = activity;
 	        Items = items;
         }
@@ -42,7 +45,7 @@ namespace RssClient.App.Rss.List
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
                 rssListViewHolder.Item = item;
-                rssListViewHolder.CountTextView.Text = item.RssMessageModels.Count.ToString();
+                rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
                 var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);
                 placeHolder.SetColorFilter(Color.Orange, PorterDuff.Mode.Add);
                 rssListViewHolder.IconView.SetImageDrawable(placeHolder);

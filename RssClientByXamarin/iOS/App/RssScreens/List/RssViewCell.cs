@@ -3,6 +3,7 @@ using Foundation;
 using iOS.App.Base.Table;
 using iOS.App.Styles;
 using SDWebImage;
+using Shared.App.Rss.RssDatabase;
 using UIKit;
 
 namespace iOS.App.RssScreens.List
@@ -10,6 +11,7 @@ namespace iOS.App.RssScreens.List
 	public class RssViewCell : BaseTableViewCell<RssModel>
 	{
 		private bool _shouldSetupConstraint = true;
+        private RssMessagesRepository _rssMessagesRepository;
 
 		private readonly UIStackView _rootStackView;
 		private readonly UIImageView _imagePreview;
@@ -20,7 +22,9 @@ namespace iOS.App.RssScreens.List
 
 		public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			_rootStackView = new UIStackView()
+            _rssMessagesRepository = RssMessagesRepository.Instance;
+
+            _rootStackView = new UIStackView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Spacing = 10,
@@ -38,18 +42,22 @@ namespace iOS.App.RssScreens.List
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Spacing = 5,
 				Axis = UILayoutConstraintAxis.Vertical,
+                Distribution = UIStackViewDistribution.FillProportionally
 			};
 
 			_nameLabel = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Font = UIFont.FromName("Helvetica-bold", 16),
+                Lines = 0,
 			};
 
 			_dataUpdateLabel = new UILabel()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Font = UIFont.SystemFontOfSize(14),
+                Lines = 1,
+                LineBreakMode = UILineBreakMode.TailTruncation,
 			};
 
 			_countMessages = new UILabel()
@@ -72,7 +80,7 @@ namespace iOS.App.RssScreens.List
 		{
 			_nameLabel.Text = item.Name;
 			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
-            _countMessages.Text = item.RssMessageModels.Count.ToString();
+            _countMessages.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
 			var placeHolderImage = UIImage.FromBundle("EmptyImage").ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
 			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""), placeHolderImage);
 			_imagePreview.TintColor = Colors.PrimaryColor;
@@ -92,7 +100,9 @@ namespace iOS.App.RssScreens.List
 				_imagePreview.HeightAnchor.ConstraintEqualTo(42).Active = true;
 				_imagePreview.WidthAnchor.ConstraintEqualTo(42).Active = true;
 
-				_shouldSetupConstraint = false;
+                _dataUpdateLabel.SetContentCompressionResistancePriority((int)UILayoutPriority.Required, UILayoutConstraintAxis.Horizontal);
+
+                _shouldSetupConstraint = false;
 			}
 		}
 	}

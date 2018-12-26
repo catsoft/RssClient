@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Database.Rss;
 using Foundation;
 using UIKit;
 
 namespace iOS.App.Base.Table
 {
-	public class BaseTableViewSource<TTableCell, TItem> : UITableViewSource
+	public class BaseTableViewSource<TTableCell, TItem, TItemsCollection> : UITableViewSource
 		where TTableCell : BaseTableViewCell<TItem>
-		where TItem : class
+        where TItemsCollection : IEnumerable<TItem>
+        where TItem : class
 	{
 		public event Action<TItem> ItemSelected;
-		private IQueryable<TItem> _items = new List<TItem>().AsQueryable();
+        private TItemsCollection _items;
 		private readonly FactoryTableViewCellFactory<TTableCell, TItem> _factory;
 
         public int ItemsCount => _items.Count();
@@ -21,10 +23,10 @@ namespace iOS.App.Base.Table
 			_factory = new FactoryTableViewCellFactory<TTableCell, TItem>(style);
 		}
 
-		public void SetList(IQueryable<TItem> list)
-		{
-			_items = list;
-		}
+		public void SetList(TItemsCollection list)
+        {
+            _items = list;
+        }
 
 		public override nint NumberOfSections(UITableView tableView)
 		{
@@ -39,28 +41,15 @@ namespace iOS.App.Base.Table
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
 			var cellIdentifier = nameof(TTableCell);
-			var cell = (tableView.DequeueReusableCell(cellIdentifier) ?? _factory.Create()) as TTableCell;
+			var cell = (TTableCell)tableView.DequeueReusableCell(cellIdentifier) ?? _factory.Create();
 
-			try
-			{
-				var item = _items.ElementAt(indexPath.Row);
-				if (cell != null)
-				{
-					cell.ClipsToBounds = false;
-					cell.Layer.MasksToBounds = false;
+			var item = _items.ElementAt(indexPath.Row);
 
-					cell.BindData(item);
+			cell.BindData(item);
 
-					cell.UpdateConstraints();
-				}
+			cell.UpdateConstraints();
 
-				return cell;
-			}
-			catch (Exception e)
-			{
-				// TODO what the hell?
-				return cell;
-			}
+			return cell;
 		}
 
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
@@ -81,17 +82,14 @@ namespace Shared.App.Rss.RssDatabase
 			return text?.Trim(' ', '\n', '\r');
 		}
 
-		public IQueryable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
+		public IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
 		{
-//			return _localDatabase.Realm.All<RssMessageModel>().Where(w => w.Rss == rssModel && !w.IsDeleted);
-
-			return rssModel.RssMessageModels.AsRealmCollection().AsQueryable();
-
-//			var items = rssModel.RssMessageModels.AsQueryable()
-//				.Where(w => w != null && !w.IsDeleted)
-//				.OrderByDescending(w => w.CreationDate);
-//
-//			return items;
+			return rssModel.RssMessageModels.ToList().Where(w => !w.IsDeleted);
 		}
-	}
+
+        public long GetCountForModel(RssModel rssModel)
+        {
+            return rssModel.RssMessageModels.Count(w => !w.IsDeleted);
+        }
+    }
 }

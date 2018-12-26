@@ -117,7 +117,7 @@ namespace iOS.App.RssScreens.Detail
 
 		private void InitAction()
 		{
-			DeleteClick += async (model) =>
+			DeleteClick += (model) =>
 			{
 				// TODO Сделать настоящее удаление
 				model.IsDeleted = true;
@@ -126,7 +126,7 @@ namespace iOS.App.RssScreens.Detail
 				_rssMessagesRepository.Update(model);
 			};
 
-			MarkAsReadClick += async (model) =>
+			MarkAsReadClick += (model) =>
 			{
 				model.IsRead = true;
 				BindData(model);
@@ -134,7 +134,7 @@ namespace iOS.App.RssScreens.Detail
 				_rssMessagesRepository.Update(model);
 			};
 
-			ReadClick += async (model) =>
+			ReadClick += (model) =>
 			{
 				model.IsRead = true;
 				BindData(model);

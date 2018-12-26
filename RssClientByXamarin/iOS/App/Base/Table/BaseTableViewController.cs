@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using iOS.App.Base.Stated;
 using iOS.App.Styles;
 using UIKit;
 
 namespace iOS.App.Base.Table
 {
-	public class BaseTableViewController<TTableCell, TItem> : UITableViewController
+	public class BaseTableViewController<TTableCell, TItem, TItemsCollection> : UITableViewController
 		where TTableCell : BaseTableViewCell<TItem>
-		where TItem : class
+        where TItemsCollection : IEnumerable<TItem>
+        where TItem : class
 	{
-		public BaseTableViewSource<TTableCell, TItem> Source { get; set; }
+		public BaseTableViewSource<TTableCell, TItem, TItemsCollection> Source { get; set; }
 		public StatedViewControllerDecorator StatedDecorator { get; private set; }
 
 		public event Action RefresherValueChanged;
@@ -18,7 +20,7 @@ namespace iOS.App.Base.Table
 		{
 			base.ViewDidLoad();
 
-			Source = new BaseTableViewSource<TTableCell, TItem>(UITableViewCellStyle.Default);
+			Source = new BaseTableViewSource<TTableCell, TItem, TItemsCollection>(UITableViewCellStyle.Default);
 
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 100;
