@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
+using Android.Content;
 using Database;
 using Database.Rss;
 using Realms;
@@ -70,8 +71,7 @@ namespace Shared.App.Rss
         public async Task StartUpdateAllByInternet(string url, string id)
         {
             var request = await _client.Update(url);
-            if (request != null)
-                await Update(id, request);
+            await Update(id, request);
         }
 
         public Task InsertByUrl(string url)
@@ -93,14 +93,14 @@ namespace Shared.App.Rss
                         transaction.Commit();
                     }
 
-                    await StartUpdateAllByInternet(newItem.Id, newItem.Rss);
+                    await StartUpdateAllByInternet(newItem.Rss, newItem.Id);
                 }
             });
         }
 
         public Task Update(string rssId, string rss, string name)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 using (var realm = RealmDatabase.Instance.OpenDatabase)
                 {
@@ -108,14 +108,18 @@ namespace Shared.App.Rss
                     {
                         var currentThreadItem = realm.Find<RssModel>(rssId);
 
-                        // TODO удалить связанные объекты
+                        currentThreadItem.RssMessageModels.Clear();
+
                         currentThreadItem.Rss = rss;
                         currentThreadItem.Name = name;
                         currentThreadItem.UpdateTime = null;
+                        currentThreadItem.UrlPreviewImage = null;
 
                         transaction.Commit();
                     }
                 }
+
+                await StartUpdateAllByInternet(rss, rssId);
             });
         }
 
@@ -138,11 +142,12 @@ namespace Shared.App.Rss
 
         public Task Update(string rssId, SyndicationFeed feed)
         {
-            if (feed == null)
-                return null;
-
-            return Task.Run(async () =>
+            return Task.Run(() =>
             {
+                // TODO Добавить обработку незагруженного состояния, может стоит очистить
+                if (feed == null)
+                    return;
+
                 using (var thread = RealmDatabase.Instance.OpenDatabase)
                 {
                     var currentItem = thread.Find<RssModel>(rssId);
@@ -151,8 +156,7 @@ namespace Shared.App.Rss
                     {
                         currentItem.Name = feed.Title?.Text;
                         currentItem.UpdateTime = DateTime.Now;
-                        currentItem.UrlPreviewImage =
-                            feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+                        currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
 
 
                         foreach (var syndicationItem in feed.Items)

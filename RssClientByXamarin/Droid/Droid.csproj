@@ -275,6 +275,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_edit.png" />
     <AndroidResource Include="Resources\menu\rss_detail_menu.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\no_image.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\no_image.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\no_image.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\no_image.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\no_image.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

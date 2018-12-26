@@ -77,7 +77,7 @@ namespace iOS.App.Rss.List
 			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""), placeHolderImage);
 			_imagePreview.TintColor = Colors.PrimaryColor;
 		}
-
+        
 		public override void UpdateConstraints()
 		{
 			base.UpdateConstraints();

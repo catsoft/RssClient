@@ -51,7 +51,7 @@ namespace RssClient.App.Rss.Detail
             _refreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.rss_details_refresher);
             _refreshLayout.Refresh += async (sender, args) =>
             {
-                await _rssRepository.StartUpdateAllByInternet(_item.Id, _item.Rss);
+                await _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);
                 _refreshLayout.Refreshing = false;
             };
 
@@ -60,17 +60,15 @@ namespace RssClient.App.Rss.Detail
             _list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
-            //_item.PropertyChanged += (sender, args) =>
-            //{
-            //    Recreate();
-            //};
+            _item.PropertyChanged += (sender, args) =>
+            {
+                adapter.Items.Clear();
+                var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
+                adapter.Items.AddRange(newItems);
+                adapter.NotifyDataSetChanged();
+            };
 
-            //items.SubscribeForNotifications((sender, changes, error) =>
-            //{
-            //    adapter.NotifyDataSetChanged();
-            //});
-
-            await _rssRepository.StartUpdateAllByInternet(_item.Id, _item.Rss);
+            await _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

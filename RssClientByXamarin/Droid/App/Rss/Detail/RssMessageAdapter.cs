@@ -5,8 +5,10 @@ using System.Globalization;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.Net;
 using Com.Bumptech.Glide;
+using Com.Bumptech.Glide.Request;
 using Database.Rss;
 
 namespace RssClient.App.Rss.Detail

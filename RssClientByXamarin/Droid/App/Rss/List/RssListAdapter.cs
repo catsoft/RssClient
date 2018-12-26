@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Com.Bumptech.Glide;
@@ -41,7 +43,12 @@ namespace RssClient.App.Rss.List
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = item.RssMessageModels.Count.ToString();
-                Glide.With(_activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
+                var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);
+                placeHolder.SetColorFilter(Color.Orange, PorterDuff.Mode.Add);
+                rssListViewHolder.IconView.SetImageDrawable(placeHolder);
+                //TODO Конкретнее обработать с placeholderом как в ios
+                if(!string.IsNullOrEmpty(item.UrlPreviewImage))
+                    Glide.With(_activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
             }
         }
 
