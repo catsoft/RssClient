@@ -5,7 +5,7 @@ using iOS.App.Styles;
 using Shared.App.Rss;
 using UIKit;
 
-namespace iOS.App.Rss.Create
+namespace iOS.App.RssScreens.Create
 {
 	public class RssCreateViewController : BaseViewController
 	{

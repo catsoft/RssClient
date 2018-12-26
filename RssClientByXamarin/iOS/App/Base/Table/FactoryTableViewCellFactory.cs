@@ -1,5 +1,5 @@
-﻿using iOS.App.Rss.Detail;
-using iOS.App.Rss.List;
+﻿using iOS.App.RssScreens.Detail;
+using iOS.App.RssScreens.List;
 using UIKit;
 
 namespace iOS.App.Base.Table

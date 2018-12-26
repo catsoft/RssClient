@@ -5,7 +5,7 @@ using iOS.App.Styles;
 using SDWebImage;
 using UIKit;
 
-namespace iOS.App.Rss.List
+namespace iOS.App.RssScreens.List
 {
 	public class RssViewCell : BaseTableViewCell<RssModel>
 	{

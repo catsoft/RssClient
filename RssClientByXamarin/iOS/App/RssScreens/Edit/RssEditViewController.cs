@@ -6,7 +6,7 @@ using iOS.App.Styles;
 using Shared.App.Rss;
 using UIKit;
 
-namespace iOS.App.Rss.Edit
+namespace iOS.App.RssScreens.Edit
 {
 	public class RssEditViewController : BaseViewController
 	{

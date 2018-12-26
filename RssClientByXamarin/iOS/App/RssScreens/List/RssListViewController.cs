@@ -1,16 +1,15 @@
-﻿using System.Linq;
-using Database.Rss;
+﻿using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
-using iOS.App.Rss.Create;
-using iOS.App.Rss.Detail;
+using iOS.App.RssScreens.Create;
+using iOS.App.RssScreens.Detail;
 using iOS.App.Styles;
 using Realms;
 using Shared.App.Rss;
 using UIKit;
 using Xamarin;
 
-namespace iOS.App.Rss.List
+namespace iOS.App.RssScreens.List
 {
 	public class RssListViewController : BaseTableViewController<RssViewCell, RssModel>
 	{
@@ -47,21 +46,23 @@ namespace iOS.App.Rss.List
 			var list = _rssRepository.GetList();
 			Source.SetList(list);
 
-			TableView.ReloadData();
+            DataSetChanges();
 
-			if (list.Any())
-			{
-				StatedDecorator.SetNormal(new NormalData());
-			}
-			else
-			{
-				StatedDecorator.SetError(new ErrorData());
-			}
-
-			list.SubscribeForNotifications((sender, changes, error) =>
-			{
-				TableView.ReloadData();
-			});
+			list.SubscribeForNotifications((sender, changes, error) => DataSetChanges());
 		}
-	}
+
+        private void DataSetChanges()
+        {
+            TableView.ReloadData();
+
+            if (Source.ItemsCount > 0)
+            {
+                StatedDecorator.SetNormal(new NormalData());
+            }
+            else
+            {
+                StatedDecorator.SetError(new ErrorData());
+            }
+        }
+    }
 }

@@ -9,7 +9,7 @@ using SDWebImage;
 using Shared.App.Rss.RssDatabase;
 using UIKit;
 
-namespace iOS.App.Rss.Detail
+namespace iOS.App.RssScreens.Detail
 {
 	public class RssMessageViewCell : BaseTableViewCell<RssMessageModel>
 	{

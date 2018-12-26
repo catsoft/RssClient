@@ -1,6 +1,6 @@
 ﻿using Analytics;
 using Foundation;
-using iOS.App.Rss.List;
+using iOS.App.RssScreens.List;
 using iOS.App.Styles;
 using UIKit;
 

@@ -14,6 +14,8 @@ namespace iOS.App.Base.Table
 		private IQueryable<TItem> _items = new List<TItem>().AsQueryable();
 		private readonly FactoryTableViewCellFactory<TTableCell, TItem> _factory;
 
+        public int ItemsCount => _items.Count();
+
 		public BaseTableViewSource(UITableViewCellStyle style)
 		{
 			_factory = new FactoryTableViewCellFactory<TTableCell, TItem>(style);

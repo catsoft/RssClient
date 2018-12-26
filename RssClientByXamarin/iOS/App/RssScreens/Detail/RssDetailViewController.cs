@@ -1,15 +1,12 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Database.Rss;
-using Foundation;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
-using iOS.App.Rss.Edit;
-using SafariServices;
+using iOS.App.RssScreens.Edit;
 using Shared.App.Rss.RssDatabase;
 using Xamarin;
 
-namespace iOS.App.Rss.Detail
+namespace iOS.App.RssScreens.Detail
 {
 	public class RssDetailViewController : BaseTableViewController<RssMessageViewCell, RssMessageModel>
 	{
