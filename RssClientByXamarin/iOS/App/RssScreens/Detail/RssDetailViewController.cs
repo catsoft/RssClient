@@ -4,6 +4,7 @@ using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
 using iOS.App.RssScreens.Edit;
+using Realms;
 using Shared.App.Rss.RssDatabase;
 using Xamarin;
 
@@ -21,7 +22,7 @@ namespace iOS.App.RssScreens.Detail
 			_rssMessagesRepository = RssMessagesRepository.Instance;
 		}
 
-		public override void ViewDidLoad()
+		public override async void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
@@ -52,6 +53,14 @@ namespace iOS.App.RssScreens.Detail
 
                 DataSetChanges();
             };
+
+            _item.RssMessageModels.SubscribeForNotifications((sender, changes, error) =>
+            {
+                var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
+                Source.SetList(newItems);
+
+                DataSetChanges();
+            });
         }
 
         private void DataSetChanges()

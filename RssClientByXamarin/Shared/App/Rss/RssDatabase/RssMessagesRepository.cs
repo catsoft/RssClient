@@ -69,7 +69,17 @@ namespace Shared.App.Rss.RssDatabase
             });
         }
 
-		public void Update(RssMessageModel rssMessageModel)
+        public void MarkAsDeleted(RssMessageModel rssMessageModel)
+        {
+            _localDatabase.DoInBackground(rssMessageModel, message => { message.IsDeleted = true; });
+        }
+
+        public void MarkAsRead(RssMessageModel rssMessageModel)
+        {
+            _localDatabase.DoInBackground(rssMessageModel, message => { message.IsRead = true; });
+        }
+
+        public void Update(RssMessageModel rssMessageModel)
 		{
 			_localDatabase.MainThreadRealm.Write(() =>
 			{

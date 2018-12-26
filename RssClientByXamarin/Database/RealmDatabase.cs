@@ -1,4 +1,7 @@
-﻿using Realms;
+﻿using System;
+using System.Threading.Tasks;
+using Database.Rss;
+using Realms;
 
 namespace Database
 {
@@ -22,5 +25,26 @@ namespace Database
 		{
 			MainThreadRealm.Dispose();
 		}
+
+        public async void DoInBackground<TModel>(TModel model, Action<TModel> action)
+        where TModel : RealmObject, IHaveId
+        {
+            var id = model.Id;
+
+            await Task.Run(() =>
+            {
+                using (var realm = OpenDatabase)
+                {
+                    var currentItem = realm.Find<TModel>(id);
+
+                    using (var transaction = realm.BeginWrite())
+                    {
+                        action?.Invoke(currentItem);
+
+                        transaction.Commit();
+                    }
+                }
+            });
+        }
 	}
 }

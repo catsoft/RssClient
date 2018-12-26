@@ -4,9 +4,14 @@ namespace iOS.App.Base.Stated
 {
 	public class LoadingView : UIView
 	{
-		public LoadingView(UIView parentView) : base(parentView.Frame)
+		public LoadingView(UIView parentView)
 		{
-			BackgroundColor = UIColor.Red;
+            var frame = parentView.Frame;
+            frame.X = 0;
+            frame.Y = 0;
+            Frame = frame;
+
+            BackgroundColor = UIColor.Red;
 		}
 	}
 }

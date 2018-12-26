@@ -4,7 +4,7 @@ using Realms;
 
 namespace Database.Rss
 {
-    public class RssModel : RealmObject
+    public class RssModel : RealmObject, IHaveId
     {
 		[PrimaryKey]
 		public string Id { get; set; } = Guid.NewGuid().ToString();

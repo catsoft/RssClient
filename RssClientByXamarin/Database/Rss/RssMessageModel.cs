@@ -3,7 +3,7 @@ using Realms;
 
 namespace Database.Rss
 {
-    public class RssMessageModel : RealmObject
+    public class RssMessageModel : RealmObject, IHaveId
     {
         [PrimaryKey]
         public string Id { get; set; } = Guid.NewGuid().ToString();

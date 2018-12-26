@@ -119,30 +119,20 @@ namespace iOS.App.RssScreens.Detail
 		{
 			DeleteClick += (model) =>
 			{
-				// TODO Сделать настоящее удаление
-				model.IsDeleted = true;
-				BindData(model);
-
-				_rssMessagesRepository.Update(model);
+				_rssMessagesRepository.MarkAsDeleted(model);
 			};
 
 			MarkAsReadClick += (model) =>
 			{
-				model.IsRead = true;
-				BindData(model);
-
-				_rssMessagesRepository.Update(model);
-			};
+                _rssMessagesRepository.MarkAsRead(model);
+            };
 
 			ReadClick += (model) =>
 			{
-				model.IsRead = true;
-				BindData(model);
+                _rssMessagesRepository.MarkAsRead(model);
 
-				// Совсем не очевидное название но открывает url (Если может)
-				CrossShare.Current.CanOpenUrl(model.Url ?? "");
-
-				_rssMessagesRepository.Update(model);
+                // Совсем не очевидное название но открывает url (Если может)
+                CrossShare.Current.CanOpenUrl(model.Url ?? "");
 			};
 
 			ShareClick += async model =>
@@ -158,8 +148,11 @@ namespace iOS.App.RssScreens.Detail
 		}
 
 		public override void BindData(RssMessageModel item)
-		{
-			_item = item;
+        {
+            _item = item;
+
+            _item.PropertyChanged += (sender, args) => PropertyChange();
+
 			_dateLabel.Text = item.CreationDate.ToString("g");
 			_titleLabel.Text = item.Title;
 			_contentLabel.Text = item.Text;
@@ -169,6 +162,11 @@ namespace iOS.App.RssScreens.Detail
 			_titleLabel.Enabled = !item.IsRead;
 			_contentLabel.Enabled = !item.IsRead;
 		}
+
+        private void PropertyChange()
+        {
+            BindData(_item);
+        }
 
 		public override void UpdateConstraints()
 		{

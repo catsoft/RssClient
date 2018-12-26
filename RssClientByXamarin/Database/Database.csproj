@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealmDatabase.cs" />
+    <Compile Include="Rss\IHaveId.cs" />
     <Compile Include="Rss\RssMessageModel.cs" />
     <Compile Include="Rss\RssModel.cs" />
   </ItemGroup>
