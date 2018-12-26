@@ -6,7 +6,6 @@ using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Database.Rss;
-using Newtonsoft.Json;
 using RssClient.App.Base;
 using Shared.App.Rss;
 

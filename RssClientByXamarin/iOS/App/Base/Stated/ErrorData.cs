@@ -1,6 +1,4 @@
-﻿using Metal;
-
-namespace iOS.App.Base.Stated
+﻿namespace iOS.App.Base.Stated
 {
 	public class ErrorData
     {

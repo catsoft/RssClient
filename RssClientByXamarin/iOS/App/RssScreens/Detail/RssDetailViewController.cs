@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Database.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
