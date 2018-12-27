@@ -1,4 +1,5 @@
-﻿using Android.OS;
+﻿using Analytics.Rss;
+using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 
@@ -22,6 +23,8 @@ namespace RssClient.App.Base
 
             var toolbar = SupportActionBar;
             toolbar?.SetDisplayHomeAsUpEnabled(IsDisplayHomeAsUpEnable);
+
+            ScreenLog.Instance.TrackScreenOpen(GetType());
         }
 
         public override bool OnSupportNavigateUp()

@@ -2,9 +2,9 @@
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
+using Analytics.Rss;
 using Database;
 using Database.Rss;
-using Shared.App.Rss.Log;
 using Shared.App.Rss.RssDatabase;
 using Shared.App.RssClient;
 
@@ -26,41 +26,37 @@ namespace Shared.App.Rss
             _rssMessagesRepository = RssMessagesRepository.Instance;
             _client = RssApiClient.Instance;
 
+            if (!_database.MainThreadRealm.All<RssModel>().Any())
+            {
+                InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                InsertByUrl("http://www.old-hard.ru/rss");
+                InsertByUrl("https://lenta.ru/rss/news");
+                InsertByUrl("https://bad_link.sad");
+                InsertByUrl("https://lenta.ru/rss/articles");
+                InsertByUrl("https://lenta.ru/rss/top7");
+                InsertByUrl("https://lenta.ru/rss/news/russia");
+            }
+
             Init();
         }
 
         public async void Init()
         {
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 using (var realm = _database.OpenDatabase)
                 {
                     var items = realm.All<RssModel>().OrderByDescending(w => w.CreationTime);
 
-                    if (!items.Any())
-                    {
-                        await InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-                        await InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-                        await InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-                        await InsertByUrl("http://www.old-hard.ru/rss");
-                        await InsertByUrl("https://lenta.ru/rss/news");
-                        await InsertByUrl("https://bad_link.sad");
-                        await InsertByUrl("https://lenta.ru/rss/articles");
-                        await InsertByUrl("https://lenta.ru/rss/top7");
-                        await InsertByUrl("https://lenta.ru/rss/news/russia");
-
-                        Init();
-                        return;
-                    }
-
                     var dataItems = items.ToList().Select(w => new {w.Id, w.Rss, w.UpdateTime}).ToList();
 
                     foreach (var rssModel in dataItems)
                     {
-                        if (!rssModel.UpdateTime.HasValue ||
-                            (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                        if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
                         {
-                            await StartUpdateAllByInternet(rssModel.Rss, rssModel.Id);
+                            StartUpdateAllByInternet(rssModel.Rss, rssModel.Id);
                         }
                     }
                 }

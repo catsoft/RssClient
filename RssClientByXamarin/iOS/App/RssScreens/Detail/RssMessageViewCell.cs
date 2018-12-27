@@ -1,4 +1,5 @@
 ﻿using System;
+using Analytics.Rss;
 using Database.Rss;
 using Foundation;
 using iOS.App.Base.Table;
@@ -14,6 +15,7 @@ namespace iOS.App.RssScreens.Detail
 	public class RssMessageViewCell : BaseTableViewCell<RssMessageModel>
 	{
 		private readonly RssMessagesRepository _rssMessagesRepository;
+        private RssMessageLog _log = RssMessageLog.Instance;
 		private bool _shouldSetupConstraint = true;
 		private readonly UIStackView _rootStackView;
 
@@ -119,16 +121,22 @@ namespace iOS.App.RssScreens.Detail
 		{
 			DeleteClick += (model) =>
 			{
-				_rssMessagesRepository.MarkAsDeleted(model);
+                _log.TrackMessageDelete(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+
+                _rssMessagesRepository.MarkAsDeleted(model);
 			};
 
 			MarkAsReadClick += (model) =>
 			{
+                _log.TrackMessageMarkAsRead(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+
                 _rssMessagesRepository.MarkAsRead(model);
             };
 
 			ReadClick += (model) =>
 			{
+                _log.TrackMessageReadMore(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+
                 _rssMessagesRepository.MarkAsRead(model);
 
                 // Совсем не очевидное название но открывает url (Если может)
@@ -137,7 +145,9 @@ namespace iOS.App.RssScreens.Detail
 
 			ShareClick += async model =>
 			{
-				var shareMessage = new ShareMessage()
+                _log.TrackMessageShare(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+
+                var shareMessage = new ShareMessage()
 				{
 					Text = "Rss link from RSS Client by \"Catsoft\"",
 					Title = "Share RSS link",

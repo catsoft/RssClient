@@ -25,17 +25,17 @@ namespace Analytics
         {
             string apiKey;
 #if DEBUG
-    #if __ANDROID__
-            apiKey = ApiKeyDebugAndroid;
-    #else
+#if __IOS__
             apiKey = ApiKeyDebugIos;
-    #endif
 #else
-    #if __ANDROID__
-            apiKey = ApiKeyBattleAndroid;
-    #else
+            apiKey = ApiKeyDebugAndroid;
+#endif
+#else
+#if __IOS__
             apiKey = ApiKeyBattleIos;
-    #endif
+#else
+            apiKey = ApiKeyBattleAndroid;
+#endif
 #endif
 
             Microsoft.AppCenter.AppCenter.Start(apiKey, typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Crashes));

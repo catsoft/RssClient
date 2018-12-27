@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Shared.App.Rss.Log
+namespace Analytics.Rss
 {
     public class RssLog
     {
@@ -20,7 +20,6 @@ namespace Shared.App.Rss.Log
             _log.TrackEvent(nameof(TrackRssInsert), new Dictionary<string, string>()
             {
                 {nameof(rss), rss},
-                {nameof(time), time.ToString("O")},
             });
         }
 
@@ -32,7 +31,6 @@ namespace Shared.App.Rss.Log
                 {nameof(newRss), newRss},
                 {nameof(oldName), oldName},
                 {nameof(newName), newName},
-                {nameof(time), time.ToString("O")},
             });
         }
 
@@ -41,7 +39,6 @@ namespace Shared.App.Rss.Log
             _log.TrackEvent(nameof(TrackRssDelete), new Dictionary<string, string>()
             {
                 {nameof(rss), rss},
-                {nameof(time), time.ToString("O")},
             });
         }
     }

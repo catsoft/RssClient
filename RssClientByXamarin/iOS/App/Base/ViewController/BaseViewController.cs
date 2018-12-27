@@ -1,4 +1,5 @@
-﻿using iOS.App.Base.Stated;
+﻿using Analytics.Rss;
+using iOS.App.Base.Stated;
 using iOS.App.Styles;
 using UIKit;
 
@@ -17,6 +18,8 @@ namespace iOS.App.Base.ViewController
 			base.ViewDidLoad();
 
 			View.BackgroundColor = Colors.CommonBack;
+
+            ScreenLog.Instance.TrackScreenOpen(GetType());
 		}
 	}
 }

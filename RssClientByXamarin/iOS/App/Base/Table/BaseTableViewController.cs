@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Analytics.Rss;
 using iOS.App.Base.Stated;
 using iOS.App.Styles;
 using UIKit;
@@ -35,6 +36,8 @@ namespace iOS.App.Base.Table
 
 			StatedDecorator = new StatedViewControllerDecorator(this);
 			StatedDecorator.SetNormal(new NormalData());
-		}
-	}
+
+            ScreenLog.Instance.TrackScreenOpen(GetType());
+        }
+    }
 }
