@@ -9,7 +9,10 @@ namespace iOS.App
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-	    public new static UIWindow Window { get; private set; }
+        private const string ApiKeyBattleIos = "9e54385d-f3a3-492d-a350-f538d59d742b";
+        private const string ApiKeyDebugIos = "a7eee657-65a4-4fa8-a318-1b367855334b";
+
+        public new static UIWindow Window { get; private set; }
 		public static AppDelegate Instance { get; private set; }
 
 	    public UINavigationController NavigationController { get; private set; }
@@ -24,8 +27,18 @@ namespace iOS.App
         }
 
 	    private void InitNavigation()
-	    {
-			Log.Init();
+        {
+            var log = Log.Instance;
+
+#if DEBUG
+            {
+                log.SetApiKey(ApiKeyDebugIos);
+            }
+#else
+{
+                log.SetApiKey(ApiKeyBattleIos);
+}
+#endif
 
 		    UINavigationBar.Appearance.BarTintColor = Colors.PrimaryColor;
 		    UINavigationBar.Appearance.BarStyle = UIBarStyle.Black;
