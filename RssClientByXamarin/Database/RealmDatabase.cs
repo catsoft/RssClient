@@ -26,25 +26,50 @@ namespace Database
 			MainThreadRealm.Dispose();
 		}
 
-        public async void DoInBackground<TModel>(TModel model, Action<TModel> action)
-        where TModel : RealmObject, IHaveId
+        public Task DoInBackground(Action<Realm> action)
         {
-            var id = model.Id;
-
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 using (var realm = OpenDatabase)
                 {
-                    var currentItem = realm.Find<TModel>(id);
-
                     using (var transaction = realm.BeginWrite())
                     {
-                        action?.Invoke(currentItem);
+                        action?.Invoke(realm);
 
                         transaction.Commit();
                     }
                 }
             });
         }
-	}
+
+        public Task UpdateInBackground<TModel>(string id, Action<TModel> action)
+        where TModel : RealmObject, IHaveId
+        {
+            return DoInBackground(realm =>
+            {
+                var currentItem = realm.Find<TModel>(id);
+
+                action?.Invoke(currentItem);
+            });
+        }
+
+        public async Task<string> InsertInBackground<TModel>(TModel model)
+            where TModel : RealmObject, IHaveId
+        {
+            return await Task.Run(() =>
+            {
+                using (var realm = OpenDatabase)
+                {
+                    using (var transaction = realm.BeginWrite())
+                    {
+                        var item = realm.Add(model);
+
+                        transaction.Commit();
+
+                        return item.Id;
+                    }
+                }
+            });
+        }
+    }
 }

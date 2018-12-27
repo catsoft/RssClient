@@ -7,11 +7,19 @@ namespace Analytics
 {
     public class Log : ILog
     {
+        private static Log _log;
+        public static Log Instance => _log ?? (_log = new Log()); 
+
         // TODO вынести его на сервер или типо того
         private const string ApiKeyDebugIos = "a7eee657-65a4-4fa8-a318-1b367855334b";
         private const string ApiKeyBattleIos = "9e54385d-f3a3-492d-a350-f538d59d742b";
         private const string ApiKeyDebugAndroid = "3a26d323-c850-4b9d-b9bd-f4402dcd9995";
         private const string ApiKeyBattleAndroid = "d6157339-63f5-4c0c-9df1-ffe26b8f851c";
+
+        public Log()
+        {
+            Init();
+        }
 
         public static void Init()
         {

@@ -4,6 +4,7 @@ using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using Database;
 using Database.Rss;
+using Shared.App.Rss.Log;
 using Shared.App.Rss.RssDatabase;
 using Shared.App.RssClient;
 
@@ -16,6 +17,7 @@ namespace Shared.App.Rss
 
         private readonly RealmDatabase _database;
         private readonly RssMessagesRepository _rssMessagesRepository;
+        private RssLog _log => RssLog.Instance;
         private readonly RssApiClient _client;
 
         private RssRepository()
@@ -82,41 +84,31 @@ namespace Shared.App.Rss
                     CreationTime = DateTime.Now,
                 };
 
-                using (var realm = _database.OpenDatabase)
-                {
-                    using (var transaction = realm.BeginWrite())
-                    {
-                        newItem = realm.Add(newItem, true);
-                        transaction.Commit();
-                    }
+                _log.TrackRssInsert(url, newItem.CreationTime);
 
-                    await StartUpdateAllByInternet(newItem.Rss, newItem.Id);
-                }
+                var itemId = await _database.InsertInBackground(newItem);
+
+                await StartUpdateAllByInternet(url, itemId);
             });
         }
 
-        public Task Update(string rssId, string rss, string name)
+        public Task Update(string id, string rss, string name)
         {
             return Task.Run(async () =>
             {
-                using (var realm = RealmDatabase.Instance.OpenDatabase)
+                await _database.UpdateInBackground<RssModel>(id, model =>
                 {
-                    using (var transaction = realm.BeginWrite())
-                    {
-                        var currentThreadItem = realm.Find<RssModel>(rssId);
+                    model.RssMessageModels.Clear();
 
-                        currentThreadItem.RssMessageModels.Clear();
+                    _log.TrackRssUpdate(model.Rss, rss, model.Name, name, DateTimeOffset.Now);
 
-                        currentThreadItem.Rss = rss;
-                        currentThreadItem.Name = name;
-                        currentThreadItem.UpdateTime = null;
-                        currentThreadItem.UrlPreviewImage = null;
+                    model.Rss = rss;
+                    model.Name = name;
+                    model.UpdateTime = null;
+                    model.UrlPreviewImage = null;
+                });
 
-                        transaction.Commit();
-                    }
-                }
-
-                await StartUpdateAllByInternet(rss, rssId);
+                await StartUpdateAllByInternet(rss, id);
             });
         }
 
@@ -125,16 +117,17 @@ namespace Shared.App.Rss
             return _database.MainThreadRealm.Find<RssModel>(id);
         }
 
-        public void Remove(RssModel item)
+        public Task Remove(RssModel item)
         {
-            _database.MainThreadRealm.Write(() => { _database.MainThreadRealm.Remove(item); });
+            _log.TrackRssDelete(item.Rss, DateTimeOffset.Now);
+            var id = item.Id;
+
+            return _database.DoInBackground(realm => realm.Remove(realm.Find<RssModel>(id)));
         }
 
         public IQueryable<RssModel> GetList()
         {
-            var items = _database.MainThreadRealm.All<RssModel>().OrderByDescending(w => w.CreationTime);
-
-            return items;
+            return _database.MainThreadRealm.All<RssModel>().OrderByDescending(w => w.CreationTime);
         }
 
         public Task Update(string rssId, SyndicationFeed feed)
@@ -145,54 +138,48 @@ namespace Shared.App.Rss
                 if (feed == null)
                     return;
 
-                using (var thread = RealmDatabase.Instance.OpenDatabase)
+                _database.DoInBackground(realm =>
                 {
-                    var currentItem = thread.Find<RssModel>(rssId);
+                    var currentItem = realm.Find<RssModel>(rssId);
 
-                    using (var transaction = currentItem.Realm.BeginWrite())
+                    currentItem.Name = feed.Title?.Text;
+                    currentItem.UpdateTime = DateTime.Now;
+                    currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+
+                    foreach (var syndicationItem in feed.Items)
                     {
-                        currentItem.Name = feed.Title?.Text;
-                        currentItem.UpdateTime = DateTime.Now;
-                        currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+                        var imageUri = syndicationItem.Links.FirstOrDefault(w =>
+                            w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
+                            w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
 
+                        var url = syndicationItem.Links.FirstOrDefault(w => w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
+                            ?.OriginalString;
 
-                        foreach (var syndicationItem in feed.Items)
+                        var item = new RssMessageModel()
                         {
-                            var imageUri = syndicationItem.Links.FirstOrDefault(w =>
-                                w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
-                                w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
+                            SyndicationId = syndicationItem.Id,
+                            Title = SafeTrim(syndicationItem.Title?.Text),
+                            Text = SafeTrim(syndicationItem.Summary.Text),
+                            //				CreationDate = syndicationItem.PublishDate.Date,
+                            Url = url,
+                            ImageUrl = imageUri,
+                        };
 
-                            var url = syndicationItem.Links.FirstOrDefault(w => w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
-                                ?.OriginalString;
+                        var rssMessage = currentItem.RssMessageModels.FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
 
-                            var item = new RssMessageModel()
-                            {
-                                SyndicationId = syndicationItem.Id,
-                                Title = SafeTrim(syndicationItem.Title?.Text),
-                                Text = SafeTrim(syndicationItem.Summary.Text),
-                                //				CreationDate = syndicationItem.PublishDate.Date,
-                                Url = url,
-                                ImageUrl = imageUri,
-                            };
+                        if (rssMessage != null)
+                            item.Id = rssMessage.Id;
 
-                            var rssMessage = currentItem.RssMessageModels.FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
-
-                            if (rssMessage != null)
-                                item.Id = rssMessage.Id;
-
-                            if (rssMessage != null)
-                            {
-                                thread.Add(rssMessage, true);
-                            }
-                            else
-                            {
-                                currentItem.RssMessageModels.Add(item);
-                            }
+                        if (rssMessage != null)
+                        {
+                            realm.Add(rssMessage, true);
                         }
-
-                        transaction.Commit();
+                        else
+                        {
+                            currentItem.RssMessageModels.Add(item);
+                        }
                     }
-                }
+                });
             });
         }
 
@@ -200,6 +187,5 @@ namespace Shared.App.Rss
         {
             return text?.Trim(' ', '\n', '\r');
         }
-
     }
 }

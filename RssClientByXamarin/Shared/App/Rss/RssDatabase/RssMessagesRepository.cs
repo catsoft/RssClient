@@ -70,12 +70,12 @@ namespace Shared.App.Rss.RssDatabase
 
         public void MarkAsDeleted(RssMessageModel rssMessageModel)
         {
-            _localDatabase.DoInBackground(rssMessageModel, message => { message.IsDeleted = true; });
+            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, message => { message.IsDeleted = true; });
         }
 
         public void MarkAsRead(RssMessageModel rssMessageModel)
         {
-            _localDatabase.DoInBackground(rssMessageModel, message => { message.IsRead = true; });
+            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, message => { message.IsRead = true; });
         }
 
         public void Update(RssMessageModel rssMessageModel)

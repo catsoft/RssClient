@@ -81,9 +81,8 @@ namespace RssClient.App.Rss.Edit
         {
             var name = _name.EditText.Text;
             var url = _url.EditText.Text;
-            var id = _item.Id;
 
-	        await _rssRepository.Update(id, url, name);
+	        await _rssRepository.Update(_item.Id, url, name);
 
 			Finish();
         }
