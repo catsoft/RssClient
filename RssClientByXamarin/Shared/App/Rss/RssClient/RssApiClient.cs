@@ -12,10 +12,9 @@ namespace Shared.App.RssClient
 		private static RssApiClient _instance;
 		public static RssApiClient Instance => _instance ?? (_instance = new RssApiClient());
 
-		private ILog _log;
+		private ILog _log = Log.Instance;
 		public RssApiClient()
 		{
-			_log = new Log();
 		}
 
 		public async Task<SyndicationFeed> Update(string rssUrl)
