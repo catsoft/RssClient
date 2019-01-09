@@ -24,5 +24,7 @@
     <string name="edit_titleActivity">Edit RSS</string>
 
     <string name="rssList_titleActivity">RSS Client</string>
+    <string name="rssList_notUpdated">Not updated</string>
+    <string name="rssList_updated">Updated: </string>
 
 </resources>

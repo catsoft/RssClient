@@ -19,8 +19,8 @@ namespace RssClient.App.Rss.List
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
         public RssModel Item { get; set; }
-        public ImageView IconView { get; set; }
-        public TextView CountTextView { get; set; }
-        public LinearLayout ClickView { get; set; }
+        public ImageView IconView { get; }
+        public TextView CountTextView { get; }
+        public LinearLayout ClickView { get; }
     }
 }

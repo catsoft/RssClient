@@ -3694,8 +3694,14 @@ namespace RssClient
 			// aapt resource value: 0x7f0b0029
 			public const int rssEdit_submitTitle = 2131427369;
 			
+			// aapt resource value: 0x7f0b0037
+			public const int rssList_notUpdated = 2131427383;
+			
 			// aapt resource value: 0x7f0b0036
 			public const int rssList_titleActivity = 2131427382;
+			
+			// aapt resource value: 0x7f0b0038
+			public const int rssList_updated = 2131427384;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int rss_linkHint = 2131427371;

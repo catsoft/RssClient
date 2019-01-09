@@ -79,6 +79,7 @@
     <Compile Include="App\Rss\List\RssListViewHolder.cs" />
     <Compile Include="App\Rss\Create\RssCreateActivity.cs" />
     <Compile Include="App\SplashScreen\SplashScreenActivity.cs" />
+    <Compile Include="Infrastructure\Locale\Locale.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -262,6 +262,7 @@
     <Compile Include="App\Styles\Colors.cs" />
     <Compile Include="App\Styles\Dimensions.cs" />
     <Compile Include="App\Styles\Strings.cs" />
+    <Compile Include="Infrastructure\Locale\Locale.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Analitics\Analytics.csproj">

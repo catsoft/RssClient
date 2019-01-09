@@ -41,7 +41,7 @@ namespace RssClient.App.Rss.Create
         private void InitUrlEditText() 
         {
             _url = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
-            _url.EditText.SetTextAndSetCursorToLast(Resources.GetText(Resource.String.create_urlDefault));
+            _url.EditText.SetTextAndSetCursorToLast(GetText(Resource.String.create_urlDefault));
             _url.EditText.EditorAction += (sender, args) =>
             {
                 if (args.ActionId == ImeAction.Done) _sendButton.CallOnClick();

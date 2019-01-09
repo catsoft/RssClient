@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -9,6 +10,7 @@ using Com.Bumptech.Glide;
 using Database.Rss;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
+using RssClient.Infrastructure.Locale;
 using Shared.App.Rss;
 using Shared.App.Rss.RssDatabase;
 
@@ -39,7 +41,9 @@ namespace RssClient.App.Rss.List
             if (holder is RssListViewHolder rssListViewHolder)
             {
                 rssListViewHolder.TitleTextView.Text = item.Name;
-                rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
+                rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
+                    ? _activity.GetText(Resource.String.rssList_notUpdated)
+                    : $"{_activity.GetText(Resource.String.rssList_notUpdated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(new Locale().GetCurrentLocaleId()))}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
                 var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);
@@ -93,12 +97,12 @@ namespace RssClient.App.Rss.List
         private void DeleteItem(RssModel holderItem)
 		{
             var builder = new AlertDialog.Builder(_activity);
-            builder.SetPositiveButton(_activity.Resources.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
+            builder.SetPositiveButton(_activity.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
             {
                 _rssRepository.Remove(holderItem);
             });
-            builder.SetNegativeButton(_activity.Resources.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
-            builder.SetTitle(_activity.Resources.GetText(Resource.String.rssDeleteDialog_Title));
+            builder.SetNegativeButton(_activity.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
+            builder.SetTitle(_activity.GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();
         }
 

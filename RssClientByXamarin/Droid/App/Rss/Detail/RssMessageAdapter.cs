@@ -8,14 +8,12 @@ using Android.Content;
 using Android.Net;
 using Com.Bumptech.Glide;
 using Database.Rss;
+using RssClient.Infrastructure.Locale;
 
 namespace RssClient.App.Rss.Detail
 {
 	public class RssMessageAdapter : RecyclerView.Adapter
     {
-        // TODO
-        private const string CreationDateFormat = "dd MMMM yyyy";
-
         private readonly Activity _activity;
 	    public List<RssMessageModel> Items { get; }
 
@@ -33,7 +31,7 @@ namespace RssClient.App.Rss.Detail
             {
                 rssMessageViewHolder.Title.Text = item.Title;
                 rssMessageViewHolder.Text.Text = item.Text;
-                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString(CreationDateFormat, CultureInfo.CurrentCulture);
+                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(new Locale().GetCurrentLocaleId()));
                 rssMessageViewHolder.Item = item;
 
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
