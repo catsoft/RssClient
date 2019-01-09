@@ -2,15 +2,16 @@
 
 0. (Solve)Расставить аналитику
 1. Попытаться заюзать FFImageLoading и перейти на svg картинки(иконки)(а может и не стоит)
-2. Вынести все тексты в отдельный кусок с локализацией
-3. Локализовать под русский\английский
-4. Вынести цвета, шрифты, размеры...(хз как с андройдом поступить)
-5. Втащить DI контейнер (https://autofac.readthedocs.io/en/latest/index.html)
-6. Втащить ретрофит, или что-то подобное
-7. (Опционально) Сделать удаление\пересортировку RSS согласно поттерну в IOS (https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/reorderable-cells/)
-8. Втащить реордеринг
-9. Написать тесты
-10. Дать кому-нить на ревью
+2. [Xamarin.Essintials](https://docs.microsoft.com/ru-ru/xamarin/essentials/) выглядит очень вкусно, втащить однозначно
+3. Вынести все тексты в отдельный кусок с локализацией
+4. Локализовать под русский\английский
+5. Вынести цвета, шрифты, размеры...(хз как с андройдом поступить)
+6. Втащить [DI контейнер](https://autofac.readthedocs.io/en/latest/index.html)
+7. Втащить ретрофит, или что-то подобное
+8. (Опционально) Сделать [удаление](https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/reorderable-cells/) RSS согласно паттерну в IOS 
+9. Втащить реордеринг
+10. Написать тесты
+11. Дать кому-нить на ревью
 
 # RssClient
 ![Alt Text](https://github.com/BallOfDestruction/RssClient/blob/master/SampleVideo/sample.gif)
