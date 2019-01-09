@@ -43,7 +43,7 @@ namespace RssClient.App.Rss.List
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
                     ? _activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{_activity.GetText(Resource.String.rssList_notUpdated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(new Locale().GetCurrentLocaleId()))}";
+                    : $"{_activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(new Locale().GetCurrentLocaleId()))}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
                 var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);
