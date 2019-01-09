@@ -11,7 +11,7 @@ using Shared.App.Rss;
 
 namespace RssClient.App.Rss.List
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssListActivity : ToolbarActivity
     {
         public const int EditRequestCode = 98;

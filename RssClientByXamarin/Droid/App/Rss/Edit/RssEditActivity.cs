@@ -11,7 +11,7 @@ using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Edit
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssEditActivity : ToolbarActivity
     {
         public const string ItemIntentId = "ItemIntentId";
