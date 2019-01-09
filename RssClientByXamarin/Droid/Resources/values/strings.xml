@@ -1,10 +1,10 @@
 <resources>
-  <string name="app_name">RSS client</string>
+  <string name="all_appName">RSS client</string>
 
-  <string name="activity_create_rss_send_button">Create</string>
-  <string name="activity_edit_rss_send_button">Edit</string>
+  <string name="rssCreate_createAction">Create</string>
+  <string name="rssEdit_editAction">Edit</string>
 
-  <string name="rss_name_edit_text">Name</string>
-  <string name="rss_link_edit_text">RSS</string>
+  <string name="rss_name">Name</string>
+  <string name="rss_link">RSS</string>
 
 </resources>

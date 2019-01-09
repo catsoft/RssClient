@@ -33,7 +33,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/rss_name_edit_text"
+                        android:hint="@string/rss_nameHint"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -46,7 +46,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/rss_link_edit_text"
+                        android:hint="@string/rss_nameHint"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -56,7 +56,7 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_edit_rss_send_button" />
+                    android:text="@string/rssEdit_submitTitle" />
 
             </LinearLayout>
 

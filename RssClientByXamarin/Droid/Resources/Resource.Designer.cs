@@ -3631,14 +3631,8 @@ namespace RssClient
 			// aapt resource value: 0x7f0b0010
 			public const int abc_toolbar_collapse_description = 2131427344;
 			
-			// aapt resource value: 0x7f0b0028
-			public const int activity_create_rss_send_button = 2131427368;
-			
-			// aapt resource value: 0x7f0b0029
-			public const int activity_edit_rss_send_button = 2131427369;
-			
 			// aapt resource value: 0x7f0b0027
-			public const int app_name = 2131427367;
+			public const int all_appName = 2131427367;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int appbar_scrolling_view_behavior = 2131427358;
@@ -3664,11 +3658,29 @@ namespace RssClient
 			// aapt resource value: 0x7f0b0025
 			public const int path_password_strike_through = 2131427365;
 			
+			// aapt resource value: 0x7f0b0028
+			public const int rssCreate_createAction = 2131427368;
+			
+			// aapt resource value: 0x7f0b002c
+			public const int rssCreate_submitTitle = 2131427372;
+			
+			// aapt resource value: 0x7f0b0029
+			public const int rssEdit_editAction = 2131427369;
+			
+			// aapt resource value: 0x7f0b002d
+			public const int rssEdit_submitTitle = 2131427373;
+			
 			// aapt resource value: 0x7f0b002b
-			public const int rss_link_edit_text = 2131427371;
+			public const int rss_link = 2131427371;
+			
+			// aapt resource value: 0x7f0b002f
+			public const int rss_linkHint = 2131427375;
 			
 			// aapt resource value: 0x7f0b002a
-			public const int rss_name_edit_text = 2131427370;
+			public const int rss_name = 2131427370;
+			
+			// aapt resource value: 0x7f0b002e
+			public const int rss_nameHint = 2131427374;
 			
 			// aapt resource value: 0x7f0b0011
 			public const int search_menu_title = 2131427345;
