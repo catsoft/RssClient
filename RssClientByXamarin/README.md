@@ -8,6 +8,7 @@
 5. Втащить DI контейнер (https://autofac.readthedocs.io/en/latest/index.html)
 6. Втащить ретрофит, или что-то подобное
 7. (Опционально) Сделать удаление\пересортировку RSS согласно поттерну в IOS (https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/reorderable-cells/)
+8. Втащить реордеринг
 8. Написать тесты
 9. Дать кому-нить на ревью
 
