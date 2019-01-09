@@ -1,3 +1,6 @@
+# Wiki
+[Click here right now!](https://github.com/BallOfDestruction/RssClient/wiki)
+
 # Roadmap
 
 0. (Solve)Расставить аналитику
