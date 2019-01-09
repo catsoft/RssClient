@@ -13,6 +13,7 @@ namespace RssClient.App.Rss.Detail
 {
 	public class RssMessageAdapter : RecyclerView.Adapter
     {
+        // TODO
         private const string CreationDateFormat = "dd MMMM yyyy";
 
         private readonly Activity _activity;

@@ -3649,6 +3649,15 @@ namespace RssClient
 			// aapt resource value: 0x7f0b002e
 			public const int contextMenuRssList_remove = 2131427374;
 			
+			// aapt resource value: 0x7f0b0034
+			public const int create_titleActivity = 2131427380;
+			
+			// aapt resource value: 0x7f0b0033
+			public const int create_urlDefault = 2131427379;
+			
+			// aapt resource value: 0x7f0b0035
+			public const int edit_titleActivity = 2131427381;
+			
 			// aapt resource value: 0x7f0b002d
 			public const int menuRssDetail_edit = 2131427373;
 			
@@ -3673,8 +3682,20 @@ namespace RssClient
 			// aapt resource value: 0x7f0b0028
 			public const int rssCreate_submitTitle = 2131427368;
 			
+			// aapt resource value: 0x7f0b0032
+			public const int rssDeleteDialog_Title = 2131427378;
+			
+			// aapt resource value: 0x7f0b0031
+			public const int rssDeleteDialog_negativeTitle = 2131427377;
+			
+			// aapt resource value: 0x7f0b0030
+			public const int rssDeleteDialog_positiveTitle = 2131427376;
+			
 			// aapt resource value: 0x7f0b0029
 			public const int rssEdit_submitTitle = 2131427369;
+			
+			// aapt resource value: 0x7f0b0036
+			public const int rssList_titleActivity = 2131427382;
 			
 			// aapt resource value: 0x7f0b002b
 			public const int rss_linkHint = 2131427371;

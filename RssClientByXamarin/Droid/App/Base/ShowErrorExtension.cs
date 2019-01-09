@@ -33,7 +33,6 @@ namespace RssClient.App.Base
             {
                 foreach (var textInput in textInputs)
                 {
-
                     textInput.ErrorEnabled = false;
                     textInput.Error = string.Empty;
                 }

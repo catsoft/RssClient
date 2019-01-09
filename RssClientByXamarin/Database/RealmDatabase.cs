@@ -16,8 +16,17 @@ namespace Database
 
 		private RealmDatabase()
 		{
-			MainThreadRealm = Realm.GetInstance(DatabaseFilename);
-		}
+            var config = new RealmConfiguration(DatabaseFilename);
+            try
+            {
+                MainThreadRealm = Realm.GetInstance(config);
+            }
+            catch (Realms.Exceptions.RealmMigrationNeededException e)
+            {
+                Realm.DeleteRealm(config);
+                MainThreadRealm = Realm.GetInstance(config);
+            }
+        }
 
         public Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
 

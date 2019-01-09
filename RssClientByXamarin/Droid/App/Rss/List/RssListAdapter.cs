@@ -16,10 +16,6 @@ namespace RssClient.App.Rss.List
 {
 	public class RssListAdapter : RecyclerView.Adapter
     {
-        private const string DeletePositiveTitle = "Yes";
-        private const string DeleteNegativeTitle = "No";
-        private const string DeleteTitle = "Ara you sure?";
-
         private readonly Activity _activity;
 	    private readonly RssRepository _rssRepository;
         private readonly RssMessagesRepository _rssMessagesRepository;
@@ -96,15 +92,15 @@ namespace RssClient.App.Rss.List
 
         private void DeleteItem(RssModel holderItem)
 		{
-			var builder = new AlertDialog.Builder(_activity);
-			builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
-			{
-				_rssRepository.Remove(holderItem);
-			});
-			builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
-			builder.SetTitle(DeleteTitle);
-			builder.Show();
-		}
+            var builder = new AlertDialog.Builder(_activity);
+            builder.SetPositiveButton(_activity.Resources.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
+            {
+                _rssRepository.Remove(holderItem);
+            });
+            builder.SetNegativeButton(_activity.Resources.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
+            builder.SetTitle(_activity.Resources.GetText(Resource.String.rssDeleteDialog_Title));
+            builder.Show();
+        }
 
         private void OpenDetailActivity(RssModel holderItem)
         {

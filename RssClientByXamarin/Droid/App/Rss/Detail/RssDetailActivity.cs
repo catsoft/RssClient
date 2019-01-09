@@ -18,10 +18,6 @@ namespace RssClient.App.Rss.Detail
     {
         public const string ItemIntentId = "ItemIntentId";
 
-        private const string DeletePositiveTitle = "Yes";
-        private const string DeleteNegativeTitle = "No";
-        private const string DeleteTitle = "Ara you sure?";
-
         private RssMessagesRepository _rssMessagesRepository;
         private RssRepository _rssRepository;
 
@@ -102,13 +98,13 @@ namespace RssClient.App.Rss.Detail
         private void DeleteItem(RssModel holderItem)
         {
             var builder = new AlertDialog.Builder(this);
-            builder.SetPositiveButton(DeletePositiveTitle, (sender, args) =>
+            builder.SetPositiveButton(Resources.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
             {
                 _rssRepository.Remove(holderItem);
                 Finish();
             });
-            builder.SetNegativeButton(DeleteNegativeTitle, (sender, args) => { });
-            builder.SetTitle(DeleteTitle);
+            builder.SetNegativeButton(Resources.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
+            builder.SetTitle(Resources.GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();
         }
     }

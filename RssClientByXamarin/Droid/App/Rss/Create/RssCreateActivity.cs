@@ -12,9 +12,6 @@ namespace RssClient.App.Rss.Create
 	[Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssCreateActivity : ToolbarActivity
     {
-        private const string UrlDefault = "http://";
-        private const string TitleActivity = "Create RSS";
-
         private TextInputLayout _url;
         private Button _sendButton;
 	    private RssRepository _rssRepository;
@@ -27,7 +24,7 @@ namespace RssClient.App.Rss.Create
 
 			base.OnCreate(savedInstanceState);
 
-            Title = TitleActivity;
+            Title = GetText(Resource.String.create_titleActivity);
 
             InitUrlEditText();
 
@@ -44,7 +41,7 @@ namespace RssClient.App.Rss.Create
         private void InitUrlEditText() 
         {
             _url = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
-            _url.EditText.SetTextAndSetCursorToLast(UrlDefault);
+            _url.EditText.SetTextAndSetCursorToLast(Resources.GetText(Resource.String.create_urlDefault));
             _url.EditText.EditorAction += (sender, args) =>
             {
                 if (args.ActionId == ImeAction.Done) _sendButton.CallOnClick();

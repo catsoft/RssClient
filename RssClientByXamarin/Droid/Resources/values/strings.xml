@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="all_appName">RSS client</string>
+    <string name="all_appName">RSS Client</string>
 
     <string name="rssCreate_submitTitle">Create</string>
     <string name="rssEdit_submitTitle">Edit</string>
@@ -13,5 +13,16 @@
 
     <string name="contextMenuRssList_remove">Remove</string>
     <string name="contextMenuRssList_edit">Edit</string>
+
+    <string name="rssDeleteDialog_positiveTitle">Yes</string>
+    <string name="rssDeleteDialog_negativeTitle">No</string>
+    <string name="rssDeleteDialog_Title">Are you sure?</string>
+
+    <string name="create_urlDefault">http://</string>
+    <string name="create_titleActivity">Create RSS</string>
+
+    <string name="edit_titleActivity">Edit RSS</string>
+
+    <string name="rssList_titleActivity">RSS Client</string>
 
 </resources>

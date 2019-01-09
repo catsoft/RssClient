@@ -15,7 +15,6 @@ namespace RssClient.App.Rss.Edit
     public class RssEditActivity : ToolbarActivity
     {
         public const string ItemIntentId = "ItemIntentId";
-        private const string TitleActivity = "Edit RSS";
 
         private TextInputLayout _name;
         private TextInputLayout _url;
@@ -40,7 +39,7 @@ namespace RssClient.App.Rss.Edit
 
 	        _rssRepository = RssRepository.Instance;
 
-			Title = TitleActivity;
+			Title = GetText(Resource.String.edit_titleActivity);
 
             var idItem = Intent.GetStringExtra(ItemIntentId);
 	        _item = _rssRepository.Find(idItem);

@@ -16,7 +16,6 @@ namespace RssClient.App.Rss.List
     {
         public const int EditRequestCode = 98;
         private const int CreateResultCode = 99;
-        private const string TitleActivity = "RSS client";
 
         private RecyclerView _recyclerView;
 	    private RssRepository _rssRepository;
@@ -30,7 +29,7 @@ namespace RssClient.App.Rss.List
 
 	        _rssRepository = RssRepository.Instance;
 
-			Title = TitleActivity;
+			Title = GetText(Resource.String.rssList_titleActivity);
 
             var fab = FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             fab.Click += FabOnClick;
