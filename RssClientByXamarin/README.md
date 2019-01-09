@@ -9,8 +9,8 @@
 6. Втащить ретрофит, или что-то подобное
 7. (Опционально) Сделать удаление\пересортировку RSS согласно поттерну в IOS (https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/reorderable-cells/)
 8. Втащить реордеринг
-8. Написать тесты
-9. Дать кому-нить на ревью
+9. Написать тесты
+10. Дать кому-нить на ревью
 
 # RssClient
 ![Alt Text](https://github.com/BallOfDestruction/RssClient/blob/master/SampleVideo/sample.gif)
