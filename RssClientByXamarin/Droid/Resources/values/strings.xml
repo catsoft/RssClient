@@ -5,6 +5,6 @@
   <string name="activity_edit_rss_send_button">Edit</string>
 
   <string name="rss_name_edit_text">Name</string>
-  <string name="rss_link_edit_text">Rss</string>
+  <string name="rss_link_edit_text">RSS</string>
 
 </resources>

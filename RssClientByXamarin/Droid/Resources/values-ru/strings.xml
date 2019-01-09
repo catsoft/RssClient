@@ -1,0 +1,10 @@
+<resources>
+  <string name="app_name">RSS клиент</string>
+
+  <string name="activity_create_rss_send_button">Создать</string>
+  <string name="activity_edit_rss_send_button">Редактировать</string>
+
+  <string name="rss_name_edit_text">Имя</string>
+  <string name="rss_link_edit_text">RSS</string>
+
+</resources>
