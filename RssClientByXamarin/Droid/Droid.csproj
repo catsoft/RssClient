@@ -222,7 +222,7 @@
     <AndroidResource Include="Resources\drawable\ic_launcher_background.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\rss_list_item.xml" />
+    <AndroidResource Include="Resources\menu\contextMenu_rssList.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\view_all_not_valid_data.axml">
@@ -285,7 +285,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_edit.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_edit.png" />
-    <AndroidResource Include="Resources\menu\rss_detail_menu.xml" />
+    <AndroidResource Include="Resources\menu\menu_rssDetail.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\no_image.png" />
     <AndroidResource Include="Resources\drawable-mdpi\no_image.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\no_image.png" />

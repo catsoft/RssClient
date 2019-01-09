@@ -1,4 +1,5 @@
 <resources>
+
     <string name="all_appName">RSS клиент</string>
 
     <string name="rssCreate_submitTitle">Создать</string>
@@ -6,5 +7,11 @@
 
     <string name="rss_nameHint">Название</string>
     <string name="rss_linkHint">RSS</string>
+
+    <string name="menuRssDetail_remove">Удалить</string>
+    <string name="menuRssDetail_edit">Редактировать</string>
+
+    <string name="contextMenuRssList_remove">Удалить</string>
+    <string name="contextMenuRssList_edit">Редактировать</string>
 
 </resources>

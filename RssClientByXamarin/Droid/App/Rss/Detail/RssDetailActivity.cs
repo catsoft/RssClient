@@ -74,18 +74,18 @@ namespace RssClient.App.Rss.Detail
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             var inflater = MenuInflater;
-            inflater.Inflate(Resource.Menu.rss_detail_menu, menu);
+            inflater.Inflate(Resource.Menu.menu_rssDetail, menu);
 
             return true;
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Resource.Id.rss_detail_menu_remove)
+            if (item.ItemId == Resource.Id.menuItem_rssDetail_remove)
             {
                 DeleteItem(_item);
             }
-            else if (item.ItemId == Resource.Id.rss_detail_menu_edit)
+            else if (item.ItemId == Resource.Id.menuItem_rssDetail_edit)
             {
                 EditItem(_item);
             }

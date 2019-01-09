@@ -71,7 +71,7 @@ namespace RssClient.App.Rss.List
         {
             var menu = new PopupMenu(_activity, sender as View, (int) GravityFlags.Right);
             menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
-            menu.Inflate(Resource.Menu.rss_list_item);
+            menu.Inflate(Resource.Menu.contextMenu_rssList);
             menu.Show();
         }
 
@@ -79,10 +79,10 @@ namespace RssClient.App.Rss.List
         {
             switch (eventArgs.Item.ItemId)
             {
-                case Resource.Id.rss_item_edit_action:
+                case Resource.Id.menuItem_rssList_contextEdit:
                     EditItem(holderItem);
                     break;
-                case Resource.Id.rss_item_remove_action:
+                case Resource.Id.menuItem_rssList_contextRemove:
                     DeleteItem(holderItem);
                     break;
             }
