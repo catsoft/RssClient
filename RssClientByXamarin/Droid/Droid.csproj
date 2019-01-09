@@ -169,7 +169,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\toolbar.axml">
+    <AndroidResource Include="Resources\layout\toolbar_all.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -205,12 +205,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\rss_list_item.axml">
+    <AndroidResource Include="Resources\layout\list_item_rss.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\rss_message_item.axml">
+    <AndroidResource Include="Resources\layout\list_item_rss_message.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -225,7 +225,7 @@
     <AndroidResource Include="Resources\menu\rss_list_item.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\not_valid_data.axml">
+    <AndroidResource Include="Resources\layout\view_all_not_valid_data.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

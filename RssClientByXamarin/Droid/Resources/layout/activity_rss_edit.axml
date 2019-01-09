@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout 
+
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,53 +8,56 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar_all" />
 
         <ScrollView
-            android:padding="24dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:padding="24dp">
 
             <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_width="match_parent">
+                android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rss_edit_name"
+                    android:id="@+id/textInputLayout_rssEdit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:inputType="text"
-                        android:hint="@string/rss_name_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:hint="@string/rss_name_edit_text"
+                        android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/rss_edit_rss"
+                    android:id="@+id/textInputLayout_rssEdit_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <EditText
-                        android:hint="@string/rss_link_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="@string/rss_link_edit_text"
                         android:inputType="text" />
+
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
-					style="@style/Widget.AppCompat.Button.Colored"
-                    android:id="@+id/rss_edit_button"
+                    android:id="@+id/button_rssEdit_submit"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_edit_rss_send_button" />
+
             </LinearLayout>
 
         </ScrollView>

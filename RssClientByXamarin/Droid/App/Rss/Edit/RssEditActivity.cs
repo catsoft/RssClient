@@ -57,13 +57,13 @@ namespace RssClient.App.Rss.Edit
 
         private void InitSendButton()
         {
-            _sendButton = FindViewById<Button>(Resource.Id.rss_edit_button);
+            _sendButton = FindViewById<Button>(Resource.Id.button_rssEdit_submit);
             _sendButton.Click += SendButtonOnClick;
         }
 
         private void InitUrlEditText()
         {
-            _url = FindViewById<TextInputLayout>(Resource.Id.rss_edit_rss);
+            _url = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
             _url.EditText.SetTextAndSetCursorToLast(_item.Rss);
             _url.EditText.EditorAction += (sender, args) =>
             {
@@ -73,7 +73,7 @@ namespace RssClient.App.Rss.Edit
 
         private void InitNameEditText()
         {
-            _name = FindViewById<TextInputLayout>(Resource.Id.rss_edit_name);
+            _name = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_name);
             _name.EditText.SetTextAndSetCursorToLast(_item.Name);
         }
 

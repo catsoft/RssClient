@@ -45,10 +45,10 @@ namespace RssClient.App.Rss.Detail
 
             Title = _item.Name;
 
-            _list = FindViewById<RecyclerView>(Resource.Id.rss_details_recycler_view);
+            _list = FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             _list.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
-            _refreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.rss_details_refresher);
+            _refreshLayout = FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
             _refreshLayout.Refresh += async (sender, args) =>
             {
                 await _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);

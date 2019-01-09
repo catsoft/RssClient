@@ -32,10 +32,10 @@ namespace RssClient.App.Rss.List
 
 			Title = TitleActivity;
 
-            var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            var fab = FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             fab.Click += FabOnClick;
 
-            _recyclerView = FindViewById<RecyclerView>(Resource.Id.rss_list_recycler_view);
+            _recyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView_rssList_list);
             _recyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
 	        var items = _rssRepository.GetList();

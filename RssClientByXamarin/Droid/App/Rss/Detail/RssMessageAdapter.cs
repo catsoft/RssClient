@@ -42,7 +42,7 @@ namespace RssClient.App.Rss.Detail
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.rss_message_item, parent, false);
+            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss_message, parent, false);
             var holder = new RssMessageViewHolder(view);
 
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };

@@ -18,7 +18,7 @@ namespace RssClient.App.Base
 
             SetContentView(ResourceView);
 
-            Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar_toolbarAll_toolbar);
             SetSupportActionBar(Toolbar);
 
             var toolbar = SupportActionBar;

@@ -37,13 +37,13 @@ namespace RssClient.App.Rss.Create
 
         private void InitSendButton()
         {
-            _sendButton = FindViewById<Button>(Resource.Id.rss_create_button);
+            _sendButton = FindViewById<Button>(Resource.Id.button_rssCreate_submit);
             _sendButton.Click += SendButtonOnClick;
         }
 
         private void InitUrlEditText() 
         {
-            _url = FindViewById<TextInputLayout>(Resource.Id.rss_create_rss);
+            _url = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
             _url.EditText.SetTextAndSetCursorToLast(UrlDefault);
             _url.EditText.EditorAction += (sender, args) =>
             {

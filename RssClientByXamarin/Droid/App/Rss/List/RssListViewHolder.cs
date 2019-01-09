@@ -9,11 +9,11 @@ namespace RssClient.App.Rss.List
     {
         public RssListViewHolder(View itemView) : base(itemView)
         {
-            TitleTextView = itemView.FindViewById<TextView>(Resource.Id.rss_item_title);
-            SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.rss_item_subtitle);
-            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.rss_list_item_click_view);
-            IconView = itemView.FindViewById<ImageView>(Resource.Id.rss_image);
-            CountTextView = itemView.FindViewById<TextView>(Resource.Id.rss_count);
+            TitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_title);
+            SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_subtitle);
+            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_listItemRss_content);
+            IconView = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemRss_rssIcon);
+            CountTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_rssCount);
         }
 
         public TextView TitleTextView { get; }

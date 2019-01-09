@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-	<LinearLayout
-		android:background="@null"
-		android:layout_height="match_parent"
-		android:layout_width="match_parent"
-		android:orientation="vertical">
-			<include
-				layout="@layout/toolbar" />
-			<LinearLayout
-				android:background="@null"
-				android:layout_height="match_parent"
-				android:layout_width="match_parent"
-				android:orientation="vertical">
-				<android.support.v7.widget.RecyclerView
-					android:id="@+id/rss_list_recycler_view"
-					android:layout_height="match_parent"
-					android:layout_width="match_parent"/>
-			</LinearLayout>
-	</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@null">
+
+        <include
+            layout="@layout/toolbar_all" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_rssList_list"
+                android:layout_width="match_parent" 
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_rssList_addRss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add" />
+
 </android.support.design.widget.CoordinatorLayout>

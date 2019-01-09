@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssDatabase\RssMessagesRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssEventName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssClient\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssDatabase\RssRepository.cs" />
   </ItemGroup>
