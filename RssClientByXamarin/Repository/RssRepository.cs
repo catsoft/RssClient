@@ -6,9 +6,11 @@ using Analytics.Rss;
 using Api;
 using Database;
 using Database.Rss;
+using Realms;
 
 namespace Repository
 {
+    [Preserve]
     public class RssRepository : IRssRepository
     {
         private readonly RealmDatabase _database;
@@ -21,20 +23,20 @@ namespace Repository
             _log = log;
             _database = database;
 
-            //if (!_database.MainThreadRealm.All<RssModel>().Any())
-            //{
-            //    InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-            //    InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-            //    InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-            //    InsertByUrl("http://www.old-hard.ru/rss");
-            //    InsertByUrl("https://lenta.ru/rss/news");
-            //    InsertByUrl("https://bad_link.sad");
-            //    InsertByUrl("https://lenta.ru/rss/articles");
-            //    InsertByUrl("https://lenta.ru/rss/top7");
-            //    InsertByUrl("https://lenta.ru/rss/news/russia");
-            //}
+            if (!_database.MainThreadRealm.All<RssModel>().Any())
+            {
+                InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+                InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+                InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+                InsertByUrl("http://www.old-hard.ru/rss");
+                InsertByUrl("https://lenta.ru/rss/news");
+                InsertByUrl("https://bad_link.sad");
+                InsertByUrl("https://lenta.ru/rss/articles");
+                InsertByUrl("https://lenta.ru/rss/top7");
+                InsertByUrl("https://lenta.ru/rss/news/russia");
+            }
 
-            //Init();
+            Init();
         }
 
         public async void Init()

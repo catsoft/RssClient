@@ -9,7 +9,10 @@ namespace Shared
 {
     public class App
     {
-        public static IContainer Container { get; private set; }
+        public static ILifetimeScope Container { get; private set; }
+
+        public static IContainer LifetimeScope { get; private set; }
+
 
         public static void Build(ContainerBuilder builder)
         {
@@ -24,7 +27,9 @@ namespace Shared
 
             builder.RegisterType<RssApiClient>().As<IRssApiClient>().SingleInstance();
 
-            Container = builder.Build();
+            LifetimeScope = builder.Build();
+
+            Container = LifetimeScope.BeginLifetimeScope();
         }
     }
 }
