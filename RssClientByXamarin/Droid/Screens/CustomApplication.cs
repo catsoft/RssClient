@@ -22,6 +22,8 @@ namespace RssClient.Screens
         {
             base.OnCreate();
 
+            App.Build(new ContainerBuilder());
+
             var log = App.Container.Resolve<ILog>();
 
 #if DEBUG

@@ -7,7 +7,7 @@ namespace Analytics.Rss
     {
         private readonly ILog _log;
 
-        private ScreenLog(ILog log)
+        public ScreenLog(ILog log)
         {
             _log = log;
         }

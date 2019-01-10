@@ -7,7 +7,7 @@ namespace Analytics.Rss
     {
         private readonly ILog _log;
 
-        private RssLog(ILog log)
+        public RssLog(ILog log)
         {
             _log = log;
         }

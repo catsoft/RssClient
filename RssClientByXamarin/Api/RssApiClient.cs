@@ -10,7 +10,7 @@ namespace Api
 	public class RssApiClient : HttpClient, IRssApiClient
     {
         private readonly ILog _log;
-		public RssApiClient(ILog log)
+		public RssApiClient(ILog log) : base()
         {
             _log = log;
         }

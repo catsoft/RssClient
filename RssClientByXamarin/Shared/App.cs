@@ -11,14 +11,9 @@ namespace Shared
     {
         public static IContainer Container { get; private set; }
 
-        static App()
-        {
-            Build(new ContainerBuilder());
-        }
-
         public static void Build(ContainerBuilder builder)
         {
-            builder.Register(c => new RealmDatabase()).AsSelf().SingleInstance();
+            builder.RegisterType<RealmDatabase>().AsSelf().SingleInstance();
             builder.RegisterType<RssRepository>().As<IRssRepository>().SingleInstance();
             builder.RegisterType<RssMessagesRepository>().As<IRssMessagesRepository>().SingleInstance();
 
