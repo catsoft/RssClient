@@ -9,9 +9,10 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)App\Locale\ILocale.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssDatabase\RssMessagesRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssClient\RssApiClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)App\Rss\RssDatabase\RssRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locale\ILocale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)DIContainer\" />
   </ItemGroup>
 </Project>

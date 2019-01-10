@@ -14,7 +14,7 @@ namespace Database
 
 		public Realm MainThreadRealm { get; }
 
-		private RealmDatabase()
+		public RealmDatabase()
 		{
             var config = new RealmConfiguration(DatabaseFilename);
             try

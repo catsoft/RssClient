@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using Shared.App.Locale;
+using iOS.Locale;
 
 namespace iOS.Infrastructure.Locale
 {

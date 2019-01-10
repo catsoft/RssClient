@@ -5,14 +5,11 @@ namespace Analytics.Rss
 {
     public class ScreenLog
     {
-        private static ScreenLog _instance;
-        public static ScreenLog Instance => _instance ?? (_instance = new ScreenLog());
+        private readonly ILog _log;
 
-        private readonly Analytics.Log _log;
-
-        private ScreenLog()
+        private ScreenLog(ILog log)
         {
-            _log = Analytics.Log.Instance;
+            _log = log;
         }
 
         public void TrackScreenOpen(Type screen)

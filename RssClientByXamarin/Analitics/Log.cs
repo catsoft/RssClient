@@ -7,13 +7,6 @@ namespace Analytics
 {
     public class Log : ILog
     {
-        private static Log _log;
-        public static Log Instance => _log ?? (_log = new Log()); 
-
-        private Log()
-        {
-        }
-
         public void SetApiKey(string apiKey)
         {
             Microsoft.AppCenter.AppCenter.Start(apiKey, typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Crashes));
