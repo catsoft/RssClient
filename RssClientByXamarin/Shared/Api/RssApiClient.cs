@@ -3,19 +3,17 @@ using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
-using Analytics;
+using Shared.Analytics;
 
-namespace Api
+namespace Shared.Api
 {
-	public class RssApiClient : HttpClient
-	{
-		private static RssApiClient _instance;
-		public static RssApiClient Instance => _instance ?? (_instance = new RssApiClient());
-
-		private ILog _log = Log.Instance;
-		public RssApiClient()
-		{
-		}
+	public class RssApiClient : HttpClient, IRssApiClient
+    {
+        private ILog _log;
+		public RssApiClient(ILog log)
+        {
+            _log = log;
+        }
 
 		public async Task<SyndicationFeed> Update(string rssUrl)
 		{

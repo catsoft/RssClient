@@ -1,9 +1,10 @@
 ﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Database.Rss;
+using RssClient;
+using Shared.Database.Rss;
 
-namespace RssClient.Screens.Rss.List
+namespace Droid.Screens.Rss.List
 {
 	public class RssListViewHolder : RecyclerView.ViewHolder
     {

@@ -1,6 +1,8 @@
-﻿using Analytics.Rss;
+﻿using Autofac;
 using iOS.Screens.Base.Stated;
 using iOS.Styles;
+using Shared;
+using Shared.Analytics.Rss;
 using UIKit;
 
 namespace iOS.Screens.Base.ViewController
@@ -19,7 +21,7 @@ namespace iOS.Screens.Base.ViewController
 
 			View.BackgroundColor = Colors.CommonBack;
 
-            ScreenLog.Instance.TrackScreenOpen(GetType());
+            App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
 		}
 	}
 }

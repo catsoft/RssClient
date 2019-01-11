@@ -1,9 +1,12 @@
-﻿using Analytics.Rss;
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Autofac;
+using RssClient;
+using Shared;
+using Shared.Analytics.Rss;
 
-namespace RssClient.Screens.Base
+namespace Droid.Screens.Base
 {
     public abstract class ToolbarActivity : AppCompatActivity
     {
@@ -24,7 +27,7 @@ namespace RssClient.Screens.Base
             var toolbar = SupportActionBar;
             toolbar?.SetDisplayHomeAsUpEnabled(IsDisplayHomeAsUpEnable);
 
-            ScreenLog.Instance.TrackScreenOpen(GetType());
+            App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }
 
         public override bool OnSupportNavigateUp()

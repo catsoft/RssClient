@@ -5,11 +5,14 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Database.Rss;
-using Repository;
-using RssClient.Screens.Base;
+using Autofac;
+using Droid.Screens.Base;
+using RssClient;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
 
-namespace RssClient.Screens.Rss.Edit
+namespace Droid.Screens.Rss.Edit
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssEditActivity : ToolbarActivity
@@ -21,14 +24,14 @@ namespace RssClient.Screens.Rss.Edit
         private Button _sendButton;
         private RssModel _item;
 
-	    private RssRepository _rssRepository;
+	    private IRssRepository _rssRepository;
 
         protected override int ResourceView => Resource.Layout.activity_rss_edit;
 
         public static Intent Create(Context context, string rssId)
         {
             var intent = new Intent(context, typeof(RssEditActivity));
-            intent.PutExtra(RssEditActivity.ItemIntentId, rssId);
+            intent.PutExtra(ItemIntentId, rssId);
 
             return intent;
         }
@@ -37,7 +40,7 @@ namespace RssClient.Screens.Rss.Edit
         {
             base.OnCreate(savedInstanceState);
 
-	        _rssRepository = RssRepository.Instance;
+	        _rssRepository = App.Container.Resolve<IRssRepository>();
 
 			Title = GetText(Resource.String.edit_titleActivity);
 

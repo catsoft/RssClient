@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
-using Database.Rss;
+using Autofac;
 using iOS.Screens.Base.Stated;
 using iOS.Screens.Base.Table;
 using iOS.Screens.Edit;
 using Realms;
-using Repository;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
+using Shared.Repository;
 using UIKit;
 using Xamarin;
 
@@ -13,15 +16,15 @@ namespace iOS.Screens.Detail
     public class RssDetailViewController : BaseTableViewController<RssMessageViewCell, RssMessageModel, IEnumerable<RssMessageModel>>
     {
         private readonly RssModel _item;
-        private readonly RssMessagesRepository _rssMessagesRepository;
-        private readonly RssRepository _repository;
+        private readonly IRssMessagesRepository _rssMessagesRepository;
+        private readonly IRssRepository _repository;
 
         public RssDetailViewController(RssModel item)
         {
             _item = item;
 
-            _rssMessagesRepository = RssMessagesRepository.Instance;
-            _repository = RssRepository.Instance;
+            _repository = App.Container.Resolve<IRssRepository>();
+            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
         }
 
         public override void ViewDidLoad()

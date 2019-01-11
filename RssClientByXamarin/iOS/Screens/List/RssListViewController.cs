@@ -1,12 +1,14 @@
 ﻿using System.Linq;
-using Database.Rss;
+using Autofac;
 using iOS.Screens.Base.Stated;
 using iOS.Screens.Base.Table;
 using iOS.Screens.Create;
 using iOS.Screens.Detail;
 using iOS.Styles;
 using Realms;
-using Repository;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
 using UIKit;
 using Xamarin;
 
@@ -14,11 +16,11 @@ namespace iOS.Screens.List
 {
 	public class RssListViewController : BaseTableViewController<RssViewCell, RssModel, IQueryable<RssModel>>
 	{
-		private readonly RssRepository _rssRepository;
+		private readonly IRssRepository _rssRepository;
 
 		public RssListViewController()
 		{
-			_rssRepository = RssRepository.Instance;
+			_rssRepository = App.Container.Resolve<IRssRepository>();
 		}
 
 		public override void ViewDidLoad()

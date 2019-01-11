@@ -1,9 +1,11 @@
-﻿using Database.Rss;
+﻿using Autofac;
 using Foundation;
 using iOS.Screens.Base.Table;
 using iOS.Styles;
-using Repository;
 using SDWebImage;
+using Shared;
+using Shared.Database.Rss;
+using Shared.Repository;
 using UIKit;
 
 namespace iOS.Screens.List
@@ -11,7 +13,7 @@ namespace iOS.Screens.List
 	public class RssViewCell : BaseTableViewCell<RssModel>
 	{
 		private bool _shouldSetupConstraint = true;
-        private RssMessagesRepository _rssMessagesRepository;
+        private IRssMessagesRepository _rssMessagesesRepository;
 
 		private readonly UIStackView _rootStackView;
 		private readonly UIImageView _imagePreview;
@@ -23,7 +25,7 @@ namespace iOS.Screens.List
 
         public RssViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-            _rssMessagesRepository = RssMessagesRepository.Instance;
+            _rssMessagesesRepository = App.Container.Resolve<IRssMessagesRepository>();
 
             _rootStackView = new UIStackView()
 			{
@@ -81,7 +83,7 @@ namespace iOS.Screens.List
 		{
 			_nameLabel.Text = item.Name;
 			_dataUpdateLabel.Text = item.UpdateTime == null ? "Не обновлено" : $"Обновлено: {item.UpdateTime.Value:g}";
-            _countMessages.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
+            _countMessages.Text = _rssMessagesesRepository.GetCountForModel(item).ToString();
 			var placeHolderImage = UIImage.FromBundle("EmptyImage").ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
 			_imagePreview.SetImage(new NSUrl(item.UrlPreviewImage ?? ""), placeHolderImage);
 			_imagePreview.TintColor = Colors.PrimaryColor;

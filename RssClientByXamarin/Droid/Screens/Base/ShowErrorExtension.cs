@@ -3,7 +3,7 @@ using Android.App;
 using Android.Support.Design.Widget;
 using Android.Widget;
 
-namespace RssClient.Screens.Base
+namespace Droid.Screens.Base
 {
 	public static class ShowErrorExtension
     {

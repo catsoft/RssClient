@@ -6,11 +6,14 @@ using Android.Content;
 using Android.Net;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Autofac;
 using Com.Bumptech.Glide;
-using Database.Rss;
-using RssClient.Services.Locale;
+using RssClient;
+using Shared;
+using Shared.Database.Rss;
+using Shared.Services.Locale;
 
-namespace RssClient.Screens.Rss.Detail
+namespace Droid.Screens.Rss.Detail
 {
 	public class RssMessageAdapter : RecyclerView.Adapter
     {
@@ -29,9 +32,11 @@ namespace RssClient.Screens.Rss.Detail
 
             if (holder is RssMessageViewHolder rssMessageViewHolder)
             {
+                var localeService = App.Container.Resolve<ILocale>();
+
                 rssMessageViewHolder.Title.Text = item.Title;
                 rssMessageViewHolder.Text.Text = item.Text;
-                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(new Locale().GetCurrentLocaleId()));
+                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 rssMessageViewHolder.Item = item;
 
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;

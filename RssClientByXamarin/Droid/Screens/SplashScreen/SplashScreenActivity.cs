@@ -2,9 +2,9 @@
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using RssClient.Screens.Rss.List;
+using Droid.Screens.Rss.List;
 
-namespace RssClient.Screens.SplashScreen
+namespace Droid.Screens.SplashScreen
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Launcher", MainLauncher = true)]
     public class SplashScreenActivity : AppCompatActivity

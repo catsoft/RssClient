@@ -1,6 +1,6 @@
 ﻿using Shared.Services.Locale;
 
-namespace RssClient.Services.Locale
+namespace Droid.Services.Locale
 {
     public class Locale : ILocale
     {

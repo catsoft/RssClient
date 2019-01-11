@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Analytics.Rss;
+using Autofac;
 using iOS.Screens.Base.Stated;
 using iOS.Styles;
+using Shared;
+using Shared.Analytics.Rss;
 using UIKit;
 
 namespace iOS.Screens.Base.Table
@@ -37,7 +39,7 @@ namespace iOS.Screens.Base.Table
 			StatedDecorator = new StatedViewControllerDecorator(this);
 			StatedDecorator.SetNormal(new NormalData());
 
-            ScreenLog.Instance.TrackScreenOpen(GetType());
+            App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }
     }
 }

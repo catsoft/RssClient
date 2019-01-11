@@ -2,26 +2,25 @@
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
-using Analytics.Rss;
-using Api;
-using Database;
-using Database.Rss;
+using RssClient.Repository;
+using Shared.Analitics.Rss;
+using Shared.Api;
+using Shared.Database;
+using Shared.Database.Rss;
 
-namespace Repository
+namespace Shared.Repository
 {
-    public class RssRepository
+    public class RssRepository : IRssRepository
     {
-        private static RssRepository _instance;
-        public static RssRepository Instance => _instance ?? (_instance = new RssRepository());
-
         private readonly RealmDatabase _database;
-        private RssLog _log => RssLog.Instance;
-        private readonly RssApiClient _client;
+        private readonly RssLog _log;
+        private readonly IRssApiClient _client;
 
-        private RssRepository()
+        public RssRepository(RealmDatabase database, IRssApiClient client, RssLog log)
         {
-            _database = RealmDatabase.Instance;
-            _client = RssApiClient.Instance;
+            _database = database;
+            _client = client;
+            _log = log;
 
             if (!_database.MainThreadRealm.All<RssModel>().Any())
             {

@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Views;
 using Android.Views.InputMethods;
 
-namespace RssClient.Screens.Base
+namespace Droid.Screens.Base
 {
     public static class KeyboardActivityExtension
     {

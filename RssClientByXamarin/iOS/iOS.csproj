@@ -77,6 +77,9 @@
     <Reference Include="AppCenter.Analytics.Metrics, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AppCenter.Analytics.Metrics.1.1.0\lib\netstandard1.0\AppCenter.Analytics.Metrics.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\netstandard1.1\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="IQKeyboardManager, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.IQKeyboardManager.1.4.1\lib\Xamarin.iOS10\IQKeyboardManager.dll</HintPath>
     </Reference>
@@ -242,6 +245,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container\Modules\PlatformModule.cs" />
+    <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="Screens\Base\Stated\ErrorData.cs" />
     <Compile Include="Screens\Base\Stated\ErrorView.cs" />
     <Compile Include="Screens\Base\Stated\LoadingData.cs" />

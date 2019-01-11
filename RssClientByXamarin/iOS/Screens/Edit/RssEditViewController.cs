@@ -1,9 +1,11 @@
-﻿using Database.Rss;
+﻿using Autofac;
 using iOS.CustomUI;
 using iOS.CustomUI.StyledView;
 using iOS.Screens.Base.ViewController;
 using iOS.Styles;
-using Repository;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
 using UIKit;
 
 namespace iOS.Screens.Edit
@@ -11,7 +13,7 @@ namespace iOS.Screens.Edit
 	public class RssEditViewController : BaseViewController
 	{
 		private readonly RssModel _item;
-		private readonly RssRepository _rssRepository;
+		private readonly IRssRepository _rssRepository;
 
 		private WrappedStackView _stackView;
 		private RoundTextField _nameTextField;
@@ -21,7 +23,7 @@ namespace iOS.Screens.Edit
 		public RssEditViewController(RssModel item)
 		{
 			_item = item;
-			_rssRepository = RssRepository.Instance;
+			_rssRepository = App.Container.Resolve<IRssRepository>();
 		}
 
 		public override void ViewDidLoad()

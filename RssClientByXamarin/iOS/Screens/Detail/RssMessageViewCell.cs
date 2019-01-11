@@ -1,21 +1,23 @@
 ﻿using System;
-using Analytics.Rss;
-using Database.Rss;
+using Autofac;
 using Foundation;
 using iOS.Screens.Base.Table;
 using iOS.Styles;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
-using Repository;
 using SDWebImage;
+using Shared;
+using Shared.Analytics.Rss;
+using Shared.Database.Rss;
+using Shared.Repository;
 using UIKit;
 
 namespace iOS.Screens.Detail
 {
 	public class RssMessageViewCell : BaseTableViewCell<RssMessageModel>
 	{
-		private readonly RssMessagesRepository _rssMessagesRepository;
-        private RssMessageLog _log = RssMessageLog.Instance;
+		private readonly IRssMessagesRepository _rssMessagesesRepository;
+        private RssMessageLog _log;
 		private bool _shouldSetupConstraint = true;
 		private readonly UIStackView _rootStackView;
 
@@ -38,9 +40,10 @@ namespace iOS.Screens.Detail
 
 		public RssMessageViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			_rssMessagesRepository = RssMessagesRepository.Instance;
+			_rssMessagesesRepository = App.Container.Resolve<IRssMessagesRepository>();
+            _log = App.Container.Resolve<RssMessageLog>();
 
-			_rootStackView= new UIStackView()
+            _rootStackView = new UIStackView()
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Axis = UILayoutConstraintAxis.Vertical,
@@ -123,21 +126,21 @@ namespace iOS.Screens.Detail
 			{
                 _log.TrackMessageDelete(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
 
-                _rssMessagesRepository.MarkAsDeleted(model);
+                _rssMessagesesRepository.MarkAsDeleted(model);
 			};
 
 			MarkAsReadClick += (model) =>
 			{
                 _log.TrackMessageMarkAsRead(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
 
-                _rssMessagesRepository.MarkAsRead(model);
+                _rssMessagesesRepository.MarkAsRead(model);
             };
 
 			ReadClick += (model) =>
 			{
                 _log.TrackMessageReadMore(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
 
-                _rssMessagesRepository.MarkAsRead(model);
+                _rssMessagesesRepository.MarkAsRead(model);
 
                 // Совсем не очевидное название но открывает url (Если может)
                 CrossShare.Current.CanOpenUrl(model.Url ?? "");

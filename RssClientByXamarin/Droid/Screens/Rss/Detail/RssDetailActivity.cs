@@ -4,21 +4,25 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Database.Rss;
-using Repository;
-using RssClient.Screens.Base;
-using RssClient.Screens.Rss.Edit;
-using RssClient.Screens.Rss.List;
+using Autofac;
+using Droid.Screens.Base;
+using Droid.Screens.Rss.Edit;
+using Droid.Screens.Rss.List;
+using RssClient;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
+using Shared.Repository;
 
-namespace RssClient.Screens.Rss.Detail
+namespace Droid.Screens.Rss.Detail
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssDetailActivity : ToolbarActivity
     {
         public const string ItemIntentId = "ItemIntentId";
 
-        private RssMessagesRepository _rssMessagesRepository;
-        private RssRepository _rssRepository;
+        private IRssMessagesRepository _rssMessagesRepository;
+        private IRssRepository _rssRepository;
 
         private RssModel _item;
         private RecyclerView _list;
@@ -30,8 +34,8 @@ namespace RssClient.Screens.Rss.Detail
         {
             base.OnCreate(savedInstanceState);
 
-            _rssMessagesRepository = RssMessagesRepository.Instance;
-            _rssRepository = RssRepository.Instance;
+            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
+            _rssRepository = App.Container.Resolve<IRssRepository>();
 
             var idItem = Intent.GetStringExtra(ItemIntentId);
             _item = _rssRepository.Find(idItem);

@@ -1,7 +1,7 @@
 ﻿using System;
 using Realms;
 
-namespace Database.Rss
+namespace Shared.Database.Rss
 {
     public class RssMessageModel : RealmObject, IHaveId
     {

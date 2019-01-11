@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Realms;
 
-namespace Database.Rss
+namespace Shared.Database.Rss
 {
     public class RssModel : RealmObject, IHaveId
     {

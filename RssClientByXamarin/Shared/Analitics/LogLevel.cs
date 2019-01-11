@@ -1,4 +1,4 @@
-﻿namespace Analytics
+﻿namespace Shared.Analytics
 {
 	public enum LogLevel
 	{

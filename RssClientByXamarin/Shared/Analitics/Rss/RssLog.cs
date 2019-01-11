@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Shared.Analytics;
 
-namespace Analytics.Rss
+namespace Shared.Analitics.Rss
 {
     public class RssLog
     {
-        private static RssLog _instance;
-        public static RssLog Instance => _instance ?? (_instance = new RssLog());
+        private readonly ILog _log;
 
-        private readonly Analytics.Log _log;
-
-        private RssLog()
+        public RssLog(ILog log)
         {
-            _log = Analytics.Log.Instance;
+            _log = log;
         }
 
         public void TrackRssInsert(string rss, DateTimeOffset time)

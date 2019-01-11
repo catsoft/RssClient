@@ -1,9 +1,12 @@
 ﻿using System;
-using Analytics;
 using Android.App;
 using Android.Runtime;
+using Autofac;
+using Droid.Container.Modules;
+using Shared;
+using Shared.Analytics;
 
-namespace RssClient
+namespace Droid
 {
 	[Application]
     public class CustomApplication : Application
@@ -20,7 +23,9 @@ namespace RssClient
         {
             base.OnCreate();
 
-            var log = Log.Instance;
+            App.Build(new PlatformModule());
+
+            var log = App.Container.Resolve<ILog>();
 
 #if DEBUG
             {

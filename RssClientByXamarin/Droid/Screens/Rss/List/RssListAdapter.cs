@@ -6,25 +6,29 @@ using Android.Graphics;
 using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Autofac;
 using Com.Bumptech.Glide;
-using Database.Rss;
-using Repository;
-using RssClient.Screens.Rss.Detail;
-using RssClient.Screens.Rss.Edit;
-using RssClient.Services.Locale;
+using Droid.Screens.Rss.Detail;
+using Droid.Screens.Rss.Edit;
+using RssClient;
+using RssClient.Repository;
+using Shared;
+using Shared.Database.Rss;
+using Shared.Repository;
+using Shared.Services.Locale;
 
-namespace RssClient.Screens.Rss.List
+namespace Droid.Screens.Rss.List
 {
 	public class RssListAdapter : RecyclerView.Adapter
     {
         private readonly Activity _activity;
-	    private readonly RssRepository _rssRepository;
-        private readonly RssMessagesRepository _rssMessagesRepository;
+	    private readonly IRssRepository _rssRepository;
+        private readonly IRssMessagesRepository _rssMessagesRepository;
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity)
         {
-			_rssRepository = RssRepository.Instance;
-            _rssMessagesRepository = RssMessagesRepository.Instance;
+			_rssRepository = App.Container.Resolve<IRssRepository>();
+            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
 
             _activity = activity;
 	        Items = items;
@@ -39,10 +43,12 @@ namespace RssClient.Screens.Rss.List
 
             if (holder is RssListViewHolder rssListViewHolder)
             {
+                var localeService = App.Container.Resolve<ILocale>();
+
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
                     ? _activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{_activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(new Locale().GetCurrentLocaleId()))}";
+                    : $"{_activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
                 var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);

@@ -4,23 +4,26 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Repository;
-using RssClient.Screens.Base;
+using Autofac;
+using Droid.Screens.Base;
+using RssClient;
+using RssClient.Repository;
+using Shared;
 
-namespace RssClient.Screens.Rss.Create
+namespace Droid.Screens.Rss.Create
 {
 	[Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssCreateActivity : ToolbarActivity
     {
         private TextInputLayout _url;
         private Button _sendButton;
-	    private RssRepository _rssRepository;
+	    private IRssRepository _rssRepository;
 
         protected override int ResourceView => Resource.Layout.activity_rss_create;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-	        _rssRepository = RssRepository.Instance;
+	        _rssRepository = App.Container.Resolve<IRssRepository>();
 
 			base.OnCreate(savedInstanceState);
 

@@ -1,21 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Database;
-using Database.Rss;
+using Shared.Database;
+using Shared.Database.Rss;
 
-namespace Repository
+namespace Shared.Repository
 {
-	public class RssMessagesRepository
-	{
-		private static RssMessagesRepository _instance;
-		public static RssMessagesRepository Instance => _instance ?? (_instance = new RssMessagesRepository());
-
+	public class RssMessagesRepository : IRssMessagesRepository
+    {
 		private readonly RealmDatabase _localDatabase;
 
-		public RssMessagesRepository()
-		{
-			_localDatabase = RealmDatabase.Instance;
-		}
+		public RssMessagesRepository(RealmDatabase localDatabase)
+        {
+            _localDatabase = localDatabase;
+        }
 
         public void MarkAsDeleted(RssMessageModel rssMessageModel)
         {

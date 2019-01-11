@@ -4,12 +4,15 @@ using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
+using Autofac;
+using Droid.Screens.Base;
+using Droid.Screens.Rss.Create;
 using Realms;
-using Repository;
-using RssClient.Screens.Base;
-using RssClient.Screens.Rss.Create;
+using RssClient;
+using RssClient.Repository;
+using Shared;
 
-namespace RssClient.Screens.Rss.List
+namespace Droid.Screens.Rss.List
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssListActivity : ToolbarActivity
@@ -18,7 +21,7 @@ namespace RssClient.Screens.Rss.List
         private const int CreateResultCode = 99;
 
         private RecyclerView _recyclerView;
-	    private RssRepository _rssRepository;
+	    private IRssRepository _rssRepository;
 
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         protected override bool IsDisplayHomeAsUpEnable => false;
@@ -27,7 +30,7 @@ namespace RssClient.Screens.Rss.List
         {
             base.OnCreate(savedInstanceState);
 
-	        _rssRepository = RssRepository.Instance;
+	        _rssRepository = App.Container.Resolve<IRssRepository>();
 
 			Title = GetText(Resource.String.rssList_titleActivity);
 

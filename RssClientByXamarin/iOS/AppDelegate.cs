@@ -1,7 +1,10 @@
-﻿using Analytics;
+﻿using Autofac;
 using Foundation;
+using iOS.Container.Modules;
 using iOS.Screens.List;
 using iOS.Styles;
+using Shared;
+using Shared.Analytics;
 using UIKit;
 
 namespace iOS
@@ -21,6 +24,8 @@ namespace iOS
         {
 	        Instance = this;
 
+            App.Build(new PlatformModule());
+
 			InitNavigation();
 
             return true;
@@ -28,7 +33,7 @@ namespace iOS
 
 	    private void InitNavigation()
         {
-            var log = Log.Instance;
+            var log = App.Container.Resolve<ILog>();
 
 #if DEBUG
             {

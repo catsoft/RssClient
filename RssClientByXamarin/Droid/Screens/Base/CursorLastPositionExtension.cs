@@ -1,6 +1,6 @@
 ﻿using Android.Widget;
 
-namespace RssClient.Screens.Base
+namespace Droid.Screens.Base
 {
     public static class CursorLastPositionExtension
     {
