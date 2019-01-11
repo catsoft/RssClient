@@ -46,10 +46,9 @@ namespace iOS.Screens.Edit
 
 		private void InitNameField()
 		{
-			_nameTextField = new RoundTextField();
-			_nameTextField.Text = _item.Name;
+            _nameTextField = new RoundTextField {Text = _item.Name};
 
-			_stackView.AddArrangedSubview(_nameTextField);
+            _stackView.AddArrangedSubview(_nameTextField);
 		}
 
 		private void InitSubmitButton()
@@ -73,10 +72,9 @@ namespace iOS.Screens.Edit
 
 		private void InitUrlField()
 		{
-			_urlField = new RoundTextField();
-			_urlField.Text = _item.Rss;
+            _urlField = new RoundTextField {Text = _item.Rss};
 
-			_stackView.AddArrangedSubview(_urlField);
+            _stackView.AddArrangedSubview(_urlField);
 		}
 	}
 }

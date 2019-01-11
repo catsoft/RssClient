@@ -55,11 +55,9 @@ namespace iOS.Screens.Create
 
 		private void InitUrlField()
 		{
-			_urlField = new RoundTextField();
-			_urlField.Placeholder = "Url";
-			_urlField.Text = "http://";
+            _urlField = new RoundTextField {Placeholder = "Url", Text = "http://"};
 
-			_stackView.AddArrangedSubview(_urlField);
+            _stackView.AddArrangedSubview(_urlField);
 		}
 	}
 }

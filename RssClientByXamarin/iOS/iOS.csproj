@@ -66,6 +66,13 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AppCenter.Analytics.Metrics, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AppCenter.Analytics.Metrics.1.1.0\lib\netstandard1.0\AppCenter.Analytics.Metrics.dll</HintPath>
@@ -263,24 +270,6 @@
     <Compile Include="Styles\Dimensions.cs" />
     <Compile Include="Styles\Strings.cs" />
     <Compile Include="Services\Locale\Locale.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Analitics\Analytics.csproj">
-      <Project>{af771ada-cefd-4869-b994-e7857e63e973}</Project>
-      <Name>Analytics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Api\Api.csproj">
-      <Project>{4c9d234f-92b0-4436-810e-066bbd6401ad}</Project>
-      <Name>Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Database\Database.csproj">
-      <Project>{45a776e4-5da5-4d03-9b35-9994627e8f2f}</Project>
-      <Name>Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{d99e293b-aac0-43c3-b2f2-f806bfb72da5}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

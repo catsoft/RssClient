@@ -15,14 +15,12 @@ namespace Repository
         public static RssRepository Instance => _instance ?? (_instance = new RssRepository());
 
         private readonly RealmDatabase _database;
-        private readonly RssMessagesRepository _rssMessagesRepository;
         private RssLog _log => RssLog.Instance;
         private readonly RssApiClient _client;
 
         private RssRepository()
         {
             _database = RealmDatabase.Instance;
-            _rssMessagesRepository = RssMessagesRepository.Instance;
             _client = RssApiClient.Instance;
 
             if (!_database.MainThreadRealm.All<RssModel>().Any())

@@ -9,6 +9,19 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\ILog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\Log.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\LogLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\RssLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\RssMessageLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\ScreenLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\RealmDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\IHaveId.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessagesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\ILocale.cs" />
   </ItemGroup>
   <ItemGroup>
