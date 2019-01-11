@@ -8,7 +8,7 @@ using Android.Content;
 using Android.Net;
 using Com.Bumptech.Glide;
 using Database.Rss;
-using RssClient.Infrastructure.Locale;
+using RssClient.Services.Locale;
 
 namespace RssClient.App.Rss.Detail
 {

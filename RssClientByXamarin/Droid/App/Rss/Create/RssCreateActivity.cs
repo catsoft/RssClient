@@ -4,8 +4,8 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using Android.Widget;
+using Repository;
 using RssClient.App.Base;
-using Shared.App.Rss;
 
 namespace RssClient.App.Rss.Create
 {

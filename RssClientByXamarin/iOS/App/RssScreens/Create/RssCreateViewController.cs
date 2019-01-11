@@ -2,7 +2,7 @@
 using iOS.App.Base.ViewController;
 using iOS.App.CustomUI;
 using iOS.App.Styles;
-using Shared.App.Rss;
+using Repository;
 using UIKit;
 
 namespace iOS.App.RssScreens.Create

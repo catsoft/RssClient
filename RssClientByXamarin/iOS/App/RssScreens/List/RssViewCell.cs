@@ -2,8 +2,8 @@
 using Foundation;
 using iOS.App.Base.Table;
 using iOS.App.Styles;
+using Repository;
 using SDWebImage;
-using Shared.App.Rss.RssDatabase;
 using UIKit;
 
 namespace iOS.App.RssScreens.List

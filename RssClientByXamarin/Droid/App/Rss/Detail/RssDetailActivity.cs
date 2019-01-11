@@ -5,11 +5,10 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Database.Rss;
+using Repository;
 using RssClient.App.Base;
 using RssClient.App.Rss.Edit;
 using RssClient.App.Rss.List;
-using Shared.App.Rss;
-using Shared.App.Rss.RssDatabase;
 
 namespace RssClient.App.Rss.Detail
 {

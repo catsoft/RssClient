@@ -8,11 +8,10 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Com.Bumptech.Glide;
 using Database.Rss;
+using Repository;
 using RssClient.App.Rss.Detail;
 using RssClient.App.Rss.Edit;
-using RssClient.Infrastructure.Locale;
-using Shared.App.Rss;
-using Shared.App.Rss.RssDatabase;
+using RssClient.Services.Locale;
 
 namespace RssClient.App.Rss.List
 {

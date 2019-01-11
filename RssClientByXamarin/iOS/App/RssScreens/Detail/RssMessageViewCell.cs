@@ -6,8 +6,8 @@ using iOS.App.Base.Table;
 using iOS.App.Styles;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
+using Repository;
 using SDWebImage;
-using Shared.App.Rss.RssDatabase;
 using UIKit;
 
 namespace iOS.App.RssScreens.Detail

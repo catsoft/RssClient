@@ -5,9 +5,9 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Realms;
+using Repository;
 using RssClient.App.Base;
 using RssClient.App.Rss.Create;
-using Shared.App.Rss;
 
 namespace RssClient.App.Rss.List
 {

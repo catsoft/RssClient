@@ -6,7 +6,7 @@ using iOS.App.RssScreens.Create;
 using iOS.App.RssScreens.Detail;
 using iOS.App.Styles;
 using Realms;
-using Shared.App.Rss;
+using Repository;
 using UIKit;
 using Xamarin;
 

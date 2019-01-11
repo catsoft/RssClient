@@ -4,8 +4,7 @@ using iOS.App.Base.Stated;
 using iOS.App.Base.Table;
 using iOS.App.RssScreens.Edit;
 using Realms;
-using Shared.App.Rss;
-using Shared.App.Rss.RssDatabase;
+using Repository;
 using UIKit;
 using Xamarin;
 
