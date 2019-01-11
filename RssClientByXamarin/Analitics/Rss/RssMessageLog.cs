@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Analytics.Rss
 {
     public class RssMessageLog
     {
-        private readonly ILog _log;
+        private static RssMessageLog _instance;
+        public static RssMessageLog Instance => _instance ?? (_instance = new RssMessageLog());
 
-        private RssMessageLog(ILog log)
+        private readonly Log _log;
+
+        private RssMessageLog()
         {
-            _log = log;
+            _log = Log.Instance;
         }
 
         public void TrackMessageDelete(string rssUrl, string idMessage, string titleMessage)

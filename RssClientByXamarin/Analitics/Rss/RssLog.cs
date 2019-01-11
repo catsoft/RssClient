@@ -5,11 +5,14 @@ namespace Analytics.Rss
 {
     public class RssLog
     {
-        private readonly ILog _log;
+        private static RssLog _instance;
+        public static RssLog Instance => _instance ?? (_instance = new RssLog());
 
-        public RssLog(ILog log)
+        private readonly Analytics.Log _log;
+
+        private RssLog()
         {
-            _log = log;
+            _log = Analytics.Log.Instance;
         }
 
         public void TrackRssInsert(string rss, DateTimeOffset time)

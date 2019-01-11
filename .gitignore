@@ -13,7 +13,3 @@
 /RssClientByXamarin/packages
 /RssClientByXamarin/iOS/iOS.csproj.user
 /RssClientByXamarin/*.user
-/RssClientByXamarin/Api/obj
-/RssClientByXamarin/Api/bin
-/RssClientByXamarin/Repository/obj
-/RssClientByXamarin/Repository/bin

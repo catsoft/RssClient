@@ -70,9 +70,6 @@
     <Reference Include="AppCenter.Analytics.Metrics, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AppCenter.Analytics.Metrics.1.1.0\lib\netstandard1.0\AppCenter.Analytics.Metrics.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.8.1\lib\netstandard1.1\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="IQKeyboardManager, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.IQKeyboardManager.1.4.1\lib\Xamarin.iOS10\IQKeyboardManager.dll</HintPath>
     </Reference>
@@ -238,33 +235,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Screens\Base\Stated\ErrorData.cs" />
-    <Compile Include="Screens\Base\Stated\ErrorView.cs" />
-    <Compile Include="Screens\Base\Stated\LoadingData.cs" />
-    <Compile Include="Screens\Base\Stated\LoadingView.cs" />
-    <Compile Include="Screens\Base\Stated\NormalData.cs" />
-    <Compile Include="Screens\Base\Stated\ScreenState.cs" />
-    <Compile Include="Screens\Base\Stated\StatedViewControllerDecorator.cs" />
-    <Compile Include="Screens\Base\Stated\UIViewControllerDecorator.cs" />
-    <Compile Include="Screens\Base\Table\BaseTableViewCell.cs" />
-    <Compile Include="Screens\Base\Table\BaseTableViewSource.cs" />
-    <Compile Include="Screens\Base\Table\FactoryTableViewCellFactory.cs" />
-    <Compile Include="Screens\Base\ViewController\BaseViewController.cs" />
-    <Compile Include="Screens\CustomUI\Divider.cs" />
-    <Compile Include="Screens\CustomUI\RoundTextField.cs" />
-    <Compile Include="Screens\Main.cs" />
-    <Compile Include="Screens\AppDelegate.cs" />
-    <Compile Include="Screens\Base\Table\BaseTableViewController.cs" />
-    <Compile Include="Screens\RssScreens\Create\RssCreateViewController.cs" />
-    <Compile Include="Screens\Base\StyledView\WrappedStackView.cs" />
-    <Compile Include="Screens\RssScreens\Detail\RssDetailViewController.cs" />
-    <Compile Include="Screens\RssScreens\Detail\RssMessageViewCell.cs" />
-    <Compile Include="Screens\RssScreens\Edit\RssEditViewController.cs" />
-    <Compile Include="Screens\RssScreens\List\RssListViewController.cs" />
-    <Compile Include="Screens\RssScreens\List\RssViewCell.cs" />
-    <Compile Include="Screens\Styles\Colors.cs" />
-    <Compile Include="Screens\Styles\Dimensions.cs" />
-    <Compile Include="Screens\Styles\Strings.cs" />
+    <Compile Include="App\Base\Stated\ErrorData.cs" />
+    <Compile Include="App\Base\Stated\ErrorView.cs" />
+    <Compile Include="App\Base\Stated\LoadingData.cs" />
+    <Compile Include="App\Base\Stated\LoadingView.cs" />
+    <Compile Include="App\Base\Stated\NormalData.cs" />
+    <Compile Include="App\Base\Stated\ScreenState.cs" />
+    <Compile Include="App\Base\Stated\StatedViewControllerDecorator.cs" />
+    <Compile Include="App\Base\Stated\UIViewControllerDecorator.cs" />
+    <Compile Include="App\Base\Table\BaseTableViewCell.cs" />
+    <Compile Include="App\Base\Table\BaseTableViewSource.cs" />
+    <Compile Include="App\Base\Table\FactoryTableViewCellFactory.cs" />
+    <Compile Include="App\Base\ViewController\BaseViewController.cs" />
+    <Compile Include="App\CustomUI\Divider.cs" />
+    <Compile Include="App\CustomUI\RoundTextField.cs" />
+    <Compile Include="App\Main.cs" />
+    <Compile Include="App\AppDelegate.cs" />
+    <Compile Include="App\Base\Table\BaseTableViewController.cs" />
+    <Compile Include="App\RssScreens\Create\RssCreateViewController.cs" />
+    <Compile Include="App\Base\StyledView\WrappedStackView.cs" />
+    <Compile Include="App\RssScreens\Detail\RssDetailViewController.cs" />
+    <Compile Include="App\RssScreens\Detail\RssMessageViewCell.cs" />
+    <Compile Include="App\RssScreens\Edit\RssEditViewController.cs" />
+    <Compile Include="App\RssScreens\List\RssListViewController.cs" />
+    <Compile Include="App\RssScreens\List\RssViewCell.cs" />
+    <Compile Include="App\Styles\Colors.cs" />
+    <Compile Include="App\Styles\Dimensions.cs" />
+    <Compile Include="App\Styles\Strings.cs" />
     <Compile Include="Infrastructure\Locale\Locale.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,17 +269,9 @@
       <Project>{af771ada-cefd-4869-b994-e7857e63e973}</Project>
       <Name>Analytics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Api\Api.csproj">
-      <Project>{FDD0B3AE-A8F6-4A38-9D1C-F3CE445BB322}</Project>
-      <Name>Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{45a776e4-5da5-4d03-9b35-9994627e8f2f}</Project>
       <Name>Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{063AEF69-A2B4-468D-9FA1-EC54022A07C4}</Project>
-      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

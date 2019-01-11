@@ -65,20 +65,20 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
-    <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
-    <Compile Include="Screens\Base\ShowErrorExtension.cs" />
-    <Compile Include="Screens\Base\ToolbarActivity.cs" />
-    <Compile Include="Screens\CustomApplication.cs" />
-    <Compile Include="Screens\Rss\Detail\RssDetailActivity.cs" />
-    <Compile Include="Screens\Rss\Detail\RssMessageAdapter.cs" />
-    <Compile Include="Screens\Rss\Detail\RssMessageViewHolder.cs" />
-    <Compile Include="Screens\Rss\Edit\RssEditActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssListActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssListAdapter.cs" />
-    <Compile Include="Screens\Rss\List\RssListViewHolder.cs" />
-    <Compile Include="Screens\Rss\Create\RssCreateActivity.cs" />
-    <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
+    <Compile Include="App\Base\CursorLastPositionExtension.cs" />
+    <Compile Include="App\Base\KeyboardActivityExtension.cs" />
+    <Compile Include="App\Base\ShowErrorExtension.cs" />
+    <Compile Include="App\Base\ToolbarActivity.cs" />
+    <Compile Include="App\CustomApplication.cs" />
+    <Compile Include="App\Rss\Detail\RssDetailActivity.cs" />
+    <Compile Include="App\Rss\Detail\RssMessageAdapter.cs" />
+    <Compile Include="App\Rss\Detail\RssMessageViewHolder.cs" />
+    <Compile Include="App\Rss\Edit\RssEditActivity.cs" />
+    <Compile Include="App\Rss\List\RssListActivity.cs" />
+    <Compile Include="App\Rss\List\RssListAdapter.cs" />
+    <Compile Include="App\Rss\List\RssListViewHolder.cs" />
+    <Compile Include="App\Rss\Create\RssCreateActivity.cs" />
+    <Compile Include="App\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Infrastructure\Locale\Locale.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,9 +119,6 @@
   <ItemGroup>
     <PackageReference Include="AppCenter.Analytics.Metrics">
       <Version>1.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac">
-      <Version>4.8.1</Version>
     </PackageReference>
     <PackageReference Include="Glide.Xamarin">
       <Version>4.1.1</Version>
@@ -272,17 +269,9 @@
       <Project>{af771ada-cefd-4869-b994-e7857e63e973}</Project>
       <Name>Analytics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Api\Api.csproj">
-      <Project>{FDD0B3AE-A8F6-4A38-9D1C-F3CE445BB322}</Project>
-      <Name>Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{45a776e4-5da5-4d03-9b35-9994627e8f2f}</Project>
       <Name>Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{063AEF69-A2B4-468D-9FA1-EC54022A07C4}</Project>
-      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

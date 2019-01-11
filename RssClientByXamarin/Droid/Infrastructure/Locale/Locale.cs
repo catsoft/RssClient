@@ -1,4 +1,4 @@
-﻿using iOS.Locale;
+﻿using Shared.App.Locale;
 
 namespace RssClient.Infrastructure.Locale
 {

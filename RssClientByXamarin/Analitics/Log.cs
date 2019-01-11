@@ -7,9 +7,11 @@ namespace Analytics
 {
     public class Log : ILog
     {
-        public Log()
-        {
+        private static Log _log;
+        public static Log Instance => _log ?? (_log = new Log()); 
 
+        private Log()
+        {
         }
 
         public void SetApiKey(string apiKey)

@@ -1,0 +1,16 @@
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\x86\e_sqlite3.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\x64\e_sqlite3.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Api.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Api.pdb
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Analytics.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\System.ServiceModel.Syndication.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Microsoft.AppCenter.Analytics.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Microsoft.AppCenter.Crashes.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Microsoft.AppCenter.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Analytics.pdb
+C:\Projects\RssClient\RssClientByXamarin\Api\bin\Debug\Analytics.dll.config
+C:\Projects\RssClient\RssClientByXamarin\Api\obj\Debug\Api.csprojAssemblyReference.cache
+C:\Projects\RssClient\RssClientByXamarin\Api\obj\Debug\Api.csproj.CoreCompileInputs.cache
+C:\Projects\RssClient\RssClientByXamarin\Api\obj\Debug\Api.csproj.CopyComplete
+C:\Projects\RssClient\RssClientByXamarin\Api\obj\Debug\Api.dll
+C:\Projects\RssClient\RssClientByXamarin\Api\obj\Debug\Api.pdb
