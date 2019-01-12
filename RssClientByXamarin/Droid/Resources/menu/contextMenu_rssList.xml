@@ -10,4 +10,8 @@
         android:id="@+id/menuItem_rssList_contextRemove"
         android:title="@string/contextMenuRssList_remove" />
 
+    <item
+        android:id="@+id/menuItem_rssList_contextShare"
+        android:title="@string/contextMenuRssList_share" />
+
 </menu>

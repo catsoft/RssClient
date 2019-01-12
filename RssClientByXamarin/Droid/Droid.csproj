@@ -77,8 +77,10 @@
     <Compile Include="Screens\Rss\Detail\RssMessageAdapter.cs" />
     <Compile Include="Screens\Rss\Detail\RssMessageViewHolder.cs" />
     <Compile Include="Screens\Rss\Edit\RssEditActivity.cs" />
+    <Compile Include="Screens\Rss\List\RssAllMessagesListFragment.cs" />
     <Compile Include="Screens\Rss\List\RssListActivity.cs" />
     <Compile Include="Screens\Rss\List\RssListAdapter.cs" />
+    <Compile Include="Screens\Rss\List\RssEditingListFragment.cs" />
     <Compile Include="Screens\Rss\List\RssListFragment.cs" />
     <Compile Include="Screens\Rss\List\RssListViewHolder.cs" />
     <Compile Include="Screens\Rss\Create\RssCreateActivity.cs" />
@@ -294,6 +296,29 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_rss_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_rss_editing_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\share_24.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\filter_list_24.png" />
+    <Content Include="Resources\drawable-hdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\filter_list_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\filter_list_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\filter_list_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\filter_list_24.png" />
+    <AndroidResource Include="Resources\drawable\filter_list_24.xml" />
+    <AndroidResource Include="Resources\menu\menu_rssList.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_all_messages_list.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

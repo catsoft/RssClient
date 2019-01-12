@@ -2,7 +2,6 @@
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Autofac;
-using RssClient;
 using Shared;
 using Shared.Analytics.Rss;
 

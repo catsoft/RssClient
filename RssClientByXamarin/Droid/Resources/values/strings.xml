@@ -10,9 +10,14 @@
 
     <string name="menuRssDetail_remove">Remove</string>
     <string name="menuRssDetail_edit">Edit</string>
+    <string name="menuRssDetail_share">Share</string>
+
+    <string name="menuRssList_edit">Edit</string>
+    <string name="menuRssList_change">Change list</string>
 
     <string name="contextMenuRssList_remove">Remove</string>
     <string name="contextMenuRssList_edit">Edit</string>
+    <string name="contextMenuRssList_share">Share</string>
 
     <string name="rssDeleteDialog_positiveTitle">Yes</string>
     <string name="rssDeleteDialog_negativeTitle">No</string>

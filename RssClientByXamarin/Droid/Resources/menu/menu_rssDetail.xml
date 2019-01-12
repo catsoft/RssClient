@@ -17,4 +17,11 @@
         android:icon="@drawable/ic_edit"
         app:showAsAction="ifRoom"
         app:iconTint="@color/white" />
+
+    <item
+        android:id="@+id/menuItem_rssDetail_share"
+        android:title="@string/menuRssDetail_share"
+        android:icon="@drawable/share_24"
+        app:showAsAction="ifRoom"
+        app:iconTint="@color/white" />
 </menu>

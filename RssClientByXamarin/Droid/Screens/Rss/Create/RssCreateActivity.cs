@@ -6,7 +6,6 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Autofac;
 using Droid.Screens.Base;
-using RssClient;
 using RssClient.Repository;
 using Shared;
 

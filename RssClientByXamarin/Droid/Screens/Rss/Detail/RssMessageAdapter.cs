@@ -8,7 +8,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Com.Bumptech.Glide;
-using RssClient;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;

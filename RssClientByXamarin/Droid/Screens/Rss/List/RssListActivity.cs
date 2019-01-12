@@ -1,17 +1,8 @@
-﻿using System;
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
-using Android.Widget;
-using Autofac;
+using Android.Views;
 using Droid.Screens.Base;
-using Droid.Screens.Rss.Create;
-using Realms;
-using RssClient;
-using RssClient.Repository;
-using Shared;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Screens.Rss.List
 {
@@ -29,15 +20,32 @@ namespace Droid.Screens.Rss.List
 
 			Title = GetText(Resource.String.rssList_titleActivity);
 
-            SetListFragment();
+            SetFragment(new RssListFragment());
         }
 
-        private void SetListFragment()
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.menuItem_rssList_change)
+            {
+                SetFragment(new RssAllMessagesListFragment());
+                return true;
+            }
+
+            if (item.ItemId == Resource.Id.menuItem_rssList_edit)
+            {
+                SetFragment(new RssEditingListFragment());
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
+        private void SetFragment(Fragment fragment)
         {
             var manager = SupportFragmentManager;
             var transaction = manager.BeginTransaction();
 
-            transaction.Add(_containerId, new RssListFragment());
+            transaction.Replace(_containerId, fragment);
 
             transaction.Commit();
         }

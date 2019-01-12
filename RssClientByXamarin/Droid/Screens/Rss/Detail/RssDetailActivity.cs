@@ -7,8 +7,6 @@ using Android.Views;
 using Autofac;
 using Droid.Screens.Base;
 using Droid.Screens.Rss.Edit;
-using Droid.Screens.Rss.List;
-using RssClient;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;

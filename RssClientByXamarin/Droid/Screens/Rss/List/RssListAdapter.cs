@@ -10,7 +10,6 @@ using Autofac;
 using Com.Bumptech.Glide;
 using Droid.Screens.Rss.Detail;
 using Droid.Screens.Rss.Edit;
-using RssClient;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
@@ -90,7 +89,15 @@ namespace Droid.Screens.Rss.List
                 case Resource.Id.menuItem_rssList_contextRemove:
                     DeleteItem(holderItem);
                     break;
+
+                case Resource.Id.menuItem_rssList_contextShare:
+                    ShareItem(holderItem);
+                    break;
             }
+        }
+
+        private void ShareItem(RssModel holderItem)
+        {
         }
 
         private void EditItem(RssModel holderItem)

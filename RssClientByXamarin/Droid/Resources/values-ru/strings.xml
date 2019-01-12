@@ -10,9 +10,14 @@
 
     <string name="menuRssDetail_remove">Удалить</string>
     <string name="menuRssDetail_edit">Редактировать</string>
+    <string name="menuRssDetail_share">Поделиться</string>
+
+    <string name="menuRssList_edit">Редактировать</string>
+    <string name="menuRssList_change">Изменить список</string>
 
     <string name="contextMenuRssList_remove">Удалить</string>
     <string name="contextMenuRssList_edit">Редактировать</string>
+    <string name="contextMenuRssList_share">Поделиться</string>
 
     <string name="rssDeleteDialog_positiveTitle">Да</string>
     <string name="rssDeleteDialog_negativeTitle">Нет</string>
