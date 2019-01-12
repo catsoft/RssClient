@@ -26,24 +26,25 @@
 
             <TextView
                 android:id="@+id/textView_messagesItem_date"
-                style="@style/Base.TextAppearance.AppCompat.Body2"
+                style="@style/TextView.Body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView_messagesItem_title"
-                style="@style/Base.TextAppearance.AppCompat.Title"
+                style="@style/TextView.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView_messagesItem_text"
-                style="@style/Base.TextAppearance.AppCompat.Body1"
+                style="@style/TextView.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/imageView_messagesItem_image"
+                style="@style/TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
