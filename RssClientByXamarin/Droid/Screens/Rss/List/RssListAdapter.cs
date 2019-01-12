@@ -96,7 +96,7 @@ namespace Droid.Screens.Rss.List
         private void EditItem(RssModel holderItem)
         {
             var intent = RssEditActivity.Create(_activity, holderItem.Id);
-            _activity.StartActivityForResult(intent, RssListActivity.EditRequestCode);
+            _activity.StartActivity(intent);
         }
 
         private void DeleteItem(RssModel holderItem)
