@@ -3,6 +3,7 @@ using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Screens.Rss.List.RssList;
 using Realms;
 using RssClient.Repository;
 using Shared;

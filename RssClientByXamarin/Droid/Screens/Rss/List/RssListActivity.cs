@@ -2,6 +2,8 @@
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Base;
+using Droid.Screens.Rss.List.RssAllMessagesList;
+using Droid.Screens.Rss.List.RssList;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Screens.Rss.List
@@ -10,6 +12,9 @@ namespace Droid.Screens.Rss.List
     public class RssListActivity : ToolbarActivity
     {
         private int _containerId = Resource.Id.linearLayout_rssList_fragmentContainer;
+        private Fragment _activeFragment;
+        private readonly RssListFragment _rssListFragment = new RssListFragment();
+        private readonly RssAllMessagesListFragment _rssAllMessagesListFragment = new RssAllMessagesListFragment();
 
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         protected override bool IsDisplayHomeAsUpEnable => false;
@@ -20,24 +25,30 @@ namespace Droid.Screens.Rss.List
 
 			Title = GetText(Resource.String.rssList_titleActivity);
 
-            SetFragment(new RssListFragment());
+            SetFragment(_rssListFragment);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (item.ItemId == Resource.Id.menuItem_rssList_change)
             {
-                SetFragment(new RssAllMessagesListFragment());
-                return true;
-            }
-
-            if (item.ItemId == Resource.Id.menuItem_rssList_edit)
-            {
-                SetFragment(new RssEditingListFragment());
+                ChangeFragment();
                 return true;
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void ChangeFragment()
+        {
+            var manager = SupportFragmentManager;
+            var transaction = manager.BeginTransaction();
+
+            var otherFragment = _activeFragment == _rssListFragment ? (Fragment)_rssAllMessagesListFragment : _rssListFragment;
+            _activeFragment = otherFragment;
+            transaction.Replace(_containerId, otherFragment);
+
+            transaction.Commit();
         }
 
         private void SetFragment(Fragment fragment)
@@ -45,7 +56,8 @@ namespace Droid.Screens.Rss.List
             var manager = SupportFragmentManager;
             var transaction = manager.BeginTransaction();
 
-            transaction.Replace(_containerId, fragment);
+            _activeFragment = fragment;
+            transaction.Add(_containerId, fragment);
 
             transaction.Commit();
         }

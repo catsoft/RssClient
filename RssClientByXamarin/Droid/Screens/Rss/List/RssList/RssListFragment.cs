@@ -11,7 +11,7 @@ using Realms;
 using RssClient.Repository;
 using Shared;
 
-namespace Droid.Screens.Rss.List
+namespace Droid.Screens.Rss.List.RssList
 {
     public class RssListFragment : Fragment
     {

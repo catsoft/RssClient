@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Shared.Database.Rss;
 
 namespace Shared.Repository
@@ -9,5 +10,6 @@ namespace Shared.Repository
         void MarkAsRead(RssMessageModel rssMessageModel);
         IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel);
         long GetCountForModel(RssModel rssModel);
+        IQueryable<RssMessageModel> GetAllMessages();
     }
 }

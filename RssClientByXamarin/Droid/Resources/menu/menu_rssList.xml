@@ -5,13 +5,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItem_rssList_edit"
-        android:title="@string/menuRssList_edit"
-        android:icon="@drawable/ic_edit"
-        app:showAsAction="ifRoom"
-        app:iconTint="@color/white" />
-
-    <item
         android:id="@+id/menuItem_rssList_change"
         android:title="@string/menuRssList_change"
         android:icon="@drawable/filter_list_24"

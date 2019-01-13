@@ -8,6 +8,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Com.Bumptech.Glide;
+using Droid.Screens.Base.Adapters;
 using Droid.Screens.Rss.Detail;
 using Droid.Screens.Rss.Edit;
 using RssClient.Repository;
@@ -16,25 +17,18 @@ using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Locale;
 
-namespace Droid.Screens.Rss.List
+namespace Droid.Screens.Rss.List.RssList
 {
-	public class RssListAdapter : RecyclerView.Adapter
+	public class RssListAdapter : WithItemsAdapter<RssModel, IQueryable<RssModel>>
     {
-        private readonly Activity _activity;
 	    private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
 
-        public RssListAdapter(IQueryable<RssModel> items, Activity activity)
+        public RssListAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
         {
 			_rssRepository = App.Container.Resolve<IRssRepository>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
-
-            _activity = activity;
-	        Items = items;
         }
-
-        public override int ItemCount => Items.Count();
-        public IQueryable<RssModel> Items { get; }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
@@ -46,16 +40,16 @@ namespace Droid.Screens.Rss.List
 
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
-                    ? _activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{_activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
+                    ? Activity.GetText(Resource.String.rssList_notUpdated)
+                    : $"{Activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
-                var placeHolder = ContextCompat.GetDrawable(_activity, Resource.Drawable.no_image);
+                var placeHolder = ContextCompat.GetDrawable(Activity, Resource.Drawable.no_image);
                 placeHolder.SetColorFilter(Color.Orange, PorterDuff.Mode.Add);
                 rssListViewHolder.IconView.SetImageDrawable(placeHolder);
                 //TODO Конкретнее обработать с placeholderом как в ios
                 if(!string.IsNullOrEmpty(item.UrlPreviewImage))
-                    Glide.With(_activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
+                    Glide.With(Activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
             }
         }
 
@@ -73,7 +67,7 @@ namespace Droid.Screens.Rss.List
 
         private void ItemLongClick(RssModel holderItem, object sender)
         {
-            var menu = new PopupMenu(_activity, sender as View, (int) GravityFlags.Right);
+            var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
             menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
             menu.Inflate(Resource.Menu.contextMenu_rssList);
             menu.Show();
@@ -102,27 +96,27 @@ namespace Droid.Screens.Rss.List
 
         private void EditItem(RssModel holderItem)
         {
-            var intent = RssEditActivity.Create(_activity, holderItem.Id);
-            _activity.StartActivity(intent);
+            var intent = RssEditActivity.Create(Activity, holderItem.Id);
+            Activity.StartActivity(intent);
         }
 
         private void DeleteItem(RssModel holderItem)
 		{
-            var builder = new AlertDialog.Builder(_activity);
-            builder.SetPositiveButton(_activity.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
+            var builder = new AlertDialog.Builder(Activity);
+            builder.SetPositiveButton(Activity.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
             {
                 _rssRepository.Remove(holderItem);
             });
-            builder.SetNegativeButton(_activity.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
-            builder.SetTitle(_activity.GetText(Resource.String.rssDeleteDialog_Title));
+            builder.SetNegativeButton(Activity.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
+            builder.SetTitle(Activity.GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();
         }
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var intent = new Intent(_activity, typeof(RssDetailActivity));
+            var intent = new Intent(Activity, typeof(RssDetailActivity));
             intent.PutExtra(RssDetailActivity.ItemIntentId, holderItem.Id);
-            _activity.StartActivity(intent);
+            Activity.StartActivity(intent);
         }
     }
 }

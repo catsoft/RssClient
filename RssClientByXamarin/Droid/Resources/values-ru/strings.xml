@@ -12,7 +12,6 @@
     <string name="menuRssDetail_edit">Редактировать</string>
     <string name="menuRssDetail_share">Поделиться</string>
 
-    <string name="menuRssList_edit">Редактировать</string>
     <string name="menuRssList_change">Изменить список</string>
 
     <string name="contextMenuRssList_remove">Удалить</string>

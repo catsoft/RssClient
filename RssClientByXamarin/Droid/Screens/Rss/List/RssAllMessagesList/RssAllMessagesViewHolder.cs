@@ -1,0 +1,28 @@
+﻿using Android.Support.V7.Widget;
+using Android.Views;
+using Android.Widget;
+using Shared.Database.Rss;
+
+namespace Droid.Screens.Rss.List.RssAllMessagesList
+{
+	public class RssAllMessagesViewHolder : RecyclerView.ViewHolder
+    {
+        public RssAllMessagesViewHolder(View itemView) : base(itemView)
+        {
+            Title = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_title);
+            Text = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_text);
+            CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_date);
+            Canal = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_canal);
+            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content);
+            ImageView = itemView.FindViewById<ImageView>(Resource.Id.imageView_allMessagesItem_image);
+        }
+
+        public TextView Title { get; }
+        public TextView Text { get; }
+        public TextView CreationDate { get; }
+        public TextView Canal { get; }
+        public ImageView ImageView { get; }
+        public LinearLayout ClickView { get; }
+        public RssMessageModel Item { get; set; }
+    }
+}

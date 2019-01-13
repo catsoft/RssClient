@@ -3,7 +3,7 @@ using Android.Views;
 using Android.Widget;
 using Shared.Database.Rss;
 
-namespace Droid.Screens.Rss.List
+namespace Droid.Screens.Rss.List.RssList
 {
 	public class RssListViewHolder : RecyclerView.ViewHolder
     {

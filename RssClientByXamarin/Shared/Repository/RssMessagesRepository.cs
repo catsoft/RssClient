@@ -33,5 +33,10 @@ namespace Shared.Repository
         {
             return rssModel.RssMessageModels.Count(w => !w.IsDeleted);
         }
+
+        public IQueryable<RssMessageModel> GetAllMessages()
+        {
+            return _localDatabase.MainThreadRealm.All<RssMessageModel>().Where(w => !w.IsDeleted).OrderBy(w => w.CreationDate);
+        }
     }
 }

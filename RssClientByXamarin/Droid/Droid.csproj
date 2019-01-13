@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
+    <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
+    <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
     <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
     <Compile Include="Screens\Base\ShowErrorExtension.cs" />
@@ -77,13 +79,15 @@
     <Compile Include="Screens\Rss\Detail\RssMessageAdapter.cs" />
     <Compile Include="Screens\Rss\Detail\RssMessageViewHolder.cs" />
     <Compile Include="Screens\Rss\Edit\RssEditActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssAllMessagesListFragment.cs" />
+    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesListFragment.cs" />
+    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesAdapter.cs" />
+    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesViewHolder.cs" />
     <Compile Include="Screens\Rss\List\RssListActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssListAdapter.cs" />
     <Compile Include="Screens\Rss\List\RssEditingListFragment.cs" />
-    <Compile Include="Screens\Rss\List\RssListFragment.cs" />
-    <Compile Include="Screens\Rss\List\RssListViewHolder.cs" />
     <Compile Include="Screens\Rss\Create\RssCreateActivity.cs" />
+    <Compile Include="Screens\Rss\List\RssList\RssListAdapter.cs" />
+    <Compile Include="Screens\Rss\List\RssList\RssListFragment.cs" />
+    <Compile Include="Screens\Rss\List\RssList\RssListViewHolder.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Services\Locale\Locale.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -327,6 +331,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_all_messages_list.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\list_item_all_rss_message.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
