@@ -11,7 +11,7 @@ using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
 
-namespace Droid.Screens.Rss.RssEdit
+namespace Droid.Screens.RssEdit
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssEditActivity : ToolbarActivity

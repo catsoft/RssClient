@@ -10,7 +10,7 @@ using Droid.Screens.Base;
 using RssClient.Repository;
 using Shared;
 
-namespace Droid.Screens.Rss.RssCreate
+namespace Droid.Screens.RssCreate
 {
 	[Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class RssCreateActivity : ToolbarActivity

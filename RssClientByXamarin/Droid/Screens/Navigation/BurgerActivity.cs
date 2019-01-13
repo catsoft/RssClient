@@ -3,11 +3,10 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
-using Droid.Screens.Base;
 
 namespace Droid.Screens.Navigation
 {
-    public abstract class BurgerActivity : ToolbarActivity, NavigationView.IOnNavigationItemSelectedListener
+    public abstract class BurgerActivity : FragmentActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         private ActionBarDrawerToggle _toggle;
 

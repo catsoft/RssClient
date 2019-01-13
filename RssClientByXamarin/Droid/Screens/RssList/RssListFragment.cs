@@ -1,19 +1,18 @@
 ﻿using System;
 using Android.OS;
 using Android.Support.Design.Widget;
-using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
-using Droid.Screens.Base;
-using Droid.Screens.Rss.RssCreate;
+using Droid.Screens.Navigation;
+using Droid.Screens.RssCreate;
 using Realms;
 using RssClient.Repository;
 using Shared;
 
-namespace Droid.Screens.Rss.RssList
+namespace Droid.Screens.RssList
 {
-    public class RssListFragment : Fragment, ITitle
+    public class RssListFragment : TitleFragment
     {
         private RecyclerView _recyclerView;
         private IRssRepository _rssRepository;
@@ -23,8 +22,6 @@ namespace Droid.Screens.Rss.RssList
             
         }
 
-        public string Title => Activity.GetText(Resource.String.rssList_title);
-
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_rssList, menu);
@@ -33,6 +30,8 @@ namespace Droid.Screens.Rss.RssList
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             _rssRepository = App.Container.Resolve<IRssRepository>();
+
+            Title = Activity?.GetText(Resource.String.rssList_title);
 
             HasOptionsMenu = true;
 

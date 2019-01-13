@@ -1,14 +1,13 @@
 ﻿using Android.App;
-using Shared.Database;
 using Shared.ViewModels;
 
 namespace Droid.Screens.Close
 {
-    public class CloseWay : CloseViewModel.CloseWay
+    public class CloseWay : CloseViewModel.Way
     {
         private readonly Activity _activity;
 
-        public CloseWay(RealmDatabase database, Activity activity) : base(database)
+        public CloseWay(Activity activity)
         {
             _activity = activity;
         }

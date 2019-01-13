@@ -19,7 +19,7 @@ namespace Droid.Infrastructure
 
         public void GoBack()
         {
-            var goBackWay = App.Container.Resolve<IWay<CloseViewModel, CloseViewModel.CloseWay.CloseWayData>>();
+            var goBackWay = App.Container.Resolve<IWay<CloseViewModel, CloseViewModel.Way.WayData>>();
             goBackWay.Go();
         }
     }

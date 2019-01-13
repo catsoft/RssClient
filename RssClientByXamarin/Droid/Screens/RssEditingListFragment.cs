@@ -1,16 +1,16 @@
 ﻿using Android.OS;
-using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
-using Droid.Screens.Rss.RssList;
+using Droid.Screens.Navigation;
+using Droid.Screens.RssList;
 using Realms;
 using RssClient.Repository;
 using Shared;
 
-namespace Droid.Screens.Rss
+namespace Droid.Screens
 {
-    public class RssEditingListFragment : Fragment
+    public class RssEditingListFragment : TitleFragment
     {
         private RecyclerView _recyclerView;
         private IRssRepository _rssRepository;

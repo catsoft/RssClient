@@ -37,4 +37,7 @@
     <string name="rssList_notUpdated">Not updated</string>
     <string name="rssList_updated">Updated: </string>
 
+    <string name="settings_title">Settings</string>
+    <string name="contacts_title">Contacts</string>
+
 </resources>

@@ -4577,6 +4577,9 @@ namespace Droid
 			// aapt resource value: 0x7f0c002b
 			public const int character_counter_pattern = 2131492907;
 			
+			// aapt resource value: 0x7f0c0050
+			public const int contacts_title = 2131492944;
+			
 			// aapt resource value: 0x7f0c0044
 			public const int contextMenuRssList_edit = 2131492932;
 			
@@ -4678,6 +4681,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0c001b
 			public const int search_menu_title = 2131492891;
+			
+			// aapt resource value: 0x7f0c004f
+			public const int settings_title = 2131492943;
 			
 			// aapt resource value: 0x7f0c0035
 			public const int status_bar_notification_info_overflow = 2131492917;

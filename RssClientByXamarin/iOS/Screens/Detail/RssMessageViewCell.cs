@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Autofac;
 using Foundation;
 using iOS.Screens.Base.Table;

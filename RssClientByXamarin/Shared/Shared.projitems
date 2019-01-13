@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
   </ItemGroup>
 </Project>

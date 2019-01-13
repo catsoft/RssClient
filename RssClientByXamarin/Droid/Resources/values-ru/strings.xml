@@ -36,4 +36,7 @@
     <string name="rssList_title">RSS Клиент</string>
     <string name="rssList_notUpdated">Не обновлено</string>
     <string name="rssList_updated">Обновлено: </string>
+
+    <string name="settings_title">Настройки</string>
+    <string name="contacts_title">Контакты</string>
 </resources>

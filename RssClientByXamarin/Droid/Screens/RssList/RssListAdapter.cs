@@ -1,13 +1,12 @@
 ﻿using System.Globalization;
 using System.Linq;
 using Android.App;
-using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Infrastructure;
 using Droid.Screens.Base.Adapters;
-using Droid.Screens.Rss.RssEdit;
-using Droid.Screens.Rss.RssItemDetail;
+using Droid.Screens.RssEdit;
 using FFImageLoading;
 using FFImageLoading.Work;
 using RssClient.Repository;
@@ -15,18 +14,22 @@ using Shared;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Locale;
+using Shared.Services.Navigator;
+using Shared.ViewModels;
 
-namespace Droid.Screens.Rss.RssList
+namespace Droid.Screens.RssList
 {
 	public class RssListAdapter : WithItemsAdapter<RssModel, IQueryable<RssModel>>
     {
 	    private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
+        private readonly INavigator _navigator;
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
         {
 			_rssRepository = App.Container.Resolve<IRssRepository>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
+            _navigator = App.Container.Resolve<INavigator>();
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -112,9 +115,9 @@ namespace Droid.Screens.Rss.RssList
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var intent = new Intent(Activity, typeof(RssDetailItemFragment));
-            intent.PutExtra(RssDetailItemFragment.ItemIntentId, holderItem.Id);
-            Activity.StartActivity(intent);
+            var way = App.Container.Resolve<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.DataModel>>();
+            way.Data = new RssItemDetailViewModel.Way.DataModel(holderItem);
+            _navigator.Go(way);
         }
     }
 }

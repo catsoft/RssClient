@@ -1,5 +1,4 @@
-﻿using Android.App;
-using Android.Support.V7.App;
+﻿using Android.Support.V7.App;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Screens.Base

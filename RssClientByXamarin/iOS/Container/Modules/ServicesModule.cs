@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using iOS.Services.Locale;
 using Shared.Services.Locale;
-using Shared.Services.Navigator;
 
 namespace iOS.Container.Modules
 {

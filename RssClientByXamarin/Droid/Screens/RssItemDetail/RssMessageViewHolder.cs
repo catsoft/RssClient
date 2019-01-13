@@ -4,7 +4,7 @@ using Android.Widget;
 using FFImageLoading.Views;
 using Shared.Database.Rss;
 
-namespace Droid.Screens.Rss.RssItemDetail
+namespace Droid.Screens.RssItemDetail
 {
 	public class RssMessageViewHolder : RecyclerView.ViewHolder
     {
