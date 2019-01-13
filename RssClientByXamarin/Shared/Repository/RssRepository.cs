@@ -84,18 +84,17 @@ namespace Shared.Repository
             });
         }
 
-        public Task Update(string id, string rss, string name)
+        public Task Update(string id, string rss)
         {
             return Task.Run(async () =>
             {
-                await _database.UpdateInBackground<RssModel>(id, model =>
+                await _database.UpdateInBackground<RssModel>(id, (model, realm) =>
                 {
                     model.RssMessageModels.Clear();
 
-                    _log.TrackRssUpdate(model.Rss, rss, model.Name, name, DateTimeOffset.Now);
+                    _log.TrackRssUpdate(model.Rss, rss, model.Name, DateTimeOffset.Now);
 
                     model.Rss = rss;
-                    model.Name = name;
                     model.UpdateTime = null;
                     model.UrlPreviewImage = null;
                 });

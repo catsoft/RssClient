@@ -32,6 +32,7 @@ namespace Droid.Screens.Rss.List.RssAllMessagesList
                 rssMessageViewHolder.Text.Text = item.Text;
                 rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 rssMessageViewHolder.Item = item;
+                rssMessageViewHolder.Canal.Text = item.RssLink;
 
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
                 Glide.With(Activity).Load(item.ImageUrl).Into(rssMessageViewHolder.ImageView);

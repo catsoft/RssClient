@@ -316,7 +316,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\share_24.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\filter_list_24.png" />
-    <Content Include="Resources\drawable-hdpi\share_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\share_24.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable-mdpi\share_24.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\share_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\share_24.png" />

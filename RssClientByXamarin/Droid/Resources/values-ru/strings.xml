@@ -5,7 +5,6 @@
     <string name="rssCreate_submitTitle">Создать</string>
     <string name="rssEdit_submitTitle">Редактировать</string>
 
-    <string name="rss_nameHint">Название</string>
     <string name="rss_linkHint">RSS</string>
 
     <string name="menuRssDetail_remove">Удалить</string>

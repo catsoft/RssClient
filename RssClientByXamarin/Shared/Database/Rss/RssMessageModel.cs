@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Realms;
 
 namespace Shared.Database.Rss
@@ -18,6 +19,13 @@ namespace Shared.Database.Rss
 		public bool IsRead { get; set; }
 	    public bool IsDeleted { get; set; }
 
-		public RssModel Rss { get; set; }
-	}
+        [Backlink(nameof(RssModel.RssMessageModels))]
+		public IQueryable<RssModel> RssParent { get; }
+
+        [Ignored]
+        public string RssLink => RssParent?.FirstOrDefault()?.Rss;
+
+        [Ignored]
+        public string RssName => RssParent?.FirstOrDefault()?.Name;
+    }
 }

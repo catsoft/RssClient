@@ -48,14 +48,14 @@ namespace Shared.Database
             });
         }
 
-        public Task UpdateInBackground<TModel>(string id, Action<TModel> action)
+        public Task UpdateInBackground<TModel>(string id, Action<TModel, Realm> action)
         where TModel : RealmObject, IHaveId
         {
             return DoInBackground(realm =>
             {
                 var currentItem = realm.Find<TModel>(id);
 
-                action?.Invoke(currentItem);
+                action?.Invoke(currentItem, realm);
             });
         }
 

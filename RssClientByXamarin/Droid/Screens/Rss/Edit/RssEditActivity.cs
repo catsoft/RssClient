@@ -18,7 +18,6 @@ namespace Droid.Screens.Rss.Edit
     {
         public const string ItemIntentId = "ItemIntentId";
 
-        private TextInputLayout _name;
         private TextInputLayout _url;
         private Button _sendButton;
         private RssModel _item;
@@ -49,8 +48,6 @@ namespace Droid.Screens.Rss.Edit
             if (_item == null)
                 return;
 
-            InitNameEditText();
-
             InitUrlEditText();
 
             InitSendButton();
@@ -72,18 +69,11 @@ namespace Droid.Screens.Rss.Edit
             };
         }
 
-        private void InitNameEditText()
-        {
-            _name = FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_name);
-            _name.EditText.SetTextAndSetCursorToLast(_item.Name);
-        }
-
         private async void SendButtonOnClick(object sender, EventArgs eventArgs)
         {
-            var name = _name.EditText.Text;
             var url = _url.EditText.Text;
 
-	        await _rssRepository.Update(_item.Id, url, name);
+	        await _rssRepository.Update(_item.Id, url);
 
 			Finish();
         }

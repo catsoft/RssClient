@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Autofac;
 using Foundation;
 using iOS.Screens.Base.Table;
@@ -124,21 +125,21 @@ namespace iOS.Screens.Detail
 		{
 			DeleteClick += (model) =>
 			{
-                _log.TrackMessageDelete(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+                _log.TrackMessageDelete(_item.RssLink, _item.SyndicationId, _item.Title);
 
                 _rssMessagesesRepository.MarkAsDeleted(model);
 			};
 
 			MarkAsReadClick += (model) =>
 			{
-                _log.TrackMessageMarkAsRead(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+                _log.TrackMessageMarkAsRead(_item.RssLink, _item.SyndicationId, _item.Title);
 
                 _rssMessagesesRepository.MarkAsRead(model);
             };
 
 			ReadClick += (model) =>
 			{
-                _log.TrackMessageReadMore(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+                _log.TrackMessageReadMore(_item.RssLink, _item.SyndicationId, _item.Title);
 
                 _rssMessagesesRepository.MarkAsRead(model);
 
@@ -148,11 +149,11 @@ namespace iOS.Screens.Detail
 
 			ShareClick += async model =>
 			{
-                _log.TrackMessageShare(_item.Rss?.Rss, _item.SyndicationId, _item.Title);
+                _log.TrackMessageShare(_item.RssLink, _item.SyndicationId, _item.Title);
 
                 var shareMessage = new ShareMessage()
 				{
-					Text = "Rss link from RSS Client by \"Catsoft\"",
+					Text = "RssParent link from RSS Client by \"Catsoft\"",
 					Title = "Share RSS link",
 					Url = model.Url ?? "",
 				};

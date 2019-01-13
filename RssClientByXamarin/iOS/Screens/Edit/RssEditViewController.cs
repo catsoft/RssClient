@@ -16,7 +16,6 @@ namespace iOS.Screens.Edit
 		private readonly IRssRepository _rssRepository;
 
 		private WrappedStackView _stackView;
-		private RoundTextField _nameTextField;
 		private RoundTextField _urlField;
 		private UIButton _submitButton;
 
@@ -37,20 +36,11 @@ namespace iOS.Screens.Edit
 
 			_stackView = new WrappedStackView(View);
 
-			InitNameField();
-
 			InitUrlField();
 
 			InitSubmitButton();
 
-			_nameTextField.BecomeFirstResponder();
-		}
-
-		private void InitNameField()
-		{
-            _nameTextField = new RoundTextField {Text = _item.Name};
-
-            _stackView.AddArrangedSubview(_nameTextField);
+			_urlField.BecomeFirstResponder();
 		}
 
 		private void InitSubmitButton()
@@ -60,11 +50,10 @@ namespace iOS.Screens.Edit
 			_submitButton.TranslatesAutoresizingMaskIntoConstraints = false;
 			_submitButton.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
 			{
-				var name = _nameTextField.Text;
 				var url = _urlField.Text;
                 var id = _item.Id;
 
-				await _rssRepository.Update(id, url, name);
+				await _rssRepository.Update(id, url);
 
 				NavigationController?.PopViewController(true);
 			}));

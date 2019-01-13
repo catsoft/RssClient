@@ -21,14 +21,13 @@ namespace Shared.Analitics.Rss
             });
         }
 
-        public void TrackRssUpdate(string oldRss, string newRss, string oldName, string newName, DateTimeOffset time)
+        public void TrackRssUpdate(string oldRss, string newRss, string name, DateTimeOffset time)
         {
             _log.TrackEvent(nameof(TrackRssUpdate), new Dictionary<string, string>()
             {
                 {nameof(oldRss), oldRss},
                 {nameof(newRss), newRss},
-                {nameof(oldName), oldName},
-                {nameof(newName), newName},
+                {nameof(name), name},
             });
         }
 

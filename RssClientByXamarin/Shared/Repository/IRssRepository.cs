@@ -9,7 +9,7 @@ namespace RssClient.Repository
     {
         Task StartUpdateAllByInternet(string url, string id);
         Task InsertByUrl(string url);
-        Task Update(string id, string rss, string name);
+        Task Update(string id, string rss);
         RssModel Find(string id);
         Task Remove(RssModel item);
         IQueryable<RssModel> GetList();

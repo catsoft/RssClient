@@ -16,12 +16,12 @@ namespace Shared.Repository
 
         public void MarkAsDeleted(RssMessageModel rssMessageModel)
         {
-            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, message => { message.IsDeleted = true; });
+            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsDeleted = true; });
         }
 
         public void MarkAsRead(RssMessageModel rssMessageModel)
         {
-            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, message => { message.IsRead = true; });
+            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsRead = true; });
         }
 
 		public IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
@@ -36,7 +36,7 @@ namespace Shared.Repository
 
         public IQueryable<RssMessageModel> GetAllMessages()
         {
-            return _localDatabase.MainThreadRealm.All<RssMessageModel>().Where(w => !w.IsDeleted).OrderBy(w => w.CreationDate);
+            return _localDatabase.MainThreadRealm.All<RssMessageModel>().Where(w => !w.IsDeleted).OrderByDescending(w => w.CreationDate);
         }
     }
 }
