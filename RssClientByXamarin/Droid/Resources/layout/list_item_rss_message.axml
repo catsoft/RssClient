@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ImageView
+            <FFImageLoading.Views.ImageViewAsync
                 android:id="@+id/imageView_messagesItem_image"
                 style="@style/TextView"
                 android:layout_width="match_parent"

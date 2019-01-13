@@ -7,10 +7,11 @@ using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
-using Com.Bumptech.Glide;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Rss.Detail;
 using Droid.Screens.Rss.Edit;
+using FFImageLoading;
+using FFImageLoading.Work;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
@@ -41,15 +42,14 @@ namespace Droid.Screens.Rss.List.RssList
                 rssListViewHolder.TitleTextView.Text = item.Name;
                 rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
                     ? Activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{Activity.GetText(Resource.String.rssList_updated)}{item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
+                    : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
                 rssListViewHolder.Item = item;
                 rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
-                var placeHolder = ContextCompat.GetDrawable(Activity, Resource.Drawable.no_image);
-                placeHolder.SetColorFilter(Color.Orange, PorterDuff.Mode.Add);
-                rssListViewHolder.IconView.SetImageDrawable(placeHolder);
-                //TODO Конкретнее обработать с placeholderом как в ios
-                if(!string.IsNullOrEmpty(item.UrlPreviewImage))
-                    Glide.With(Activity).Load(item.UrlPreviewImage).Into(rssListViewHolder.IconView);
+
+                ImageService.Instance.LoadUrl(item.UrlPreviewImage)
+                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
+                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
+                    .Into(rssListViewHolder.IconView);
             }
         }
 

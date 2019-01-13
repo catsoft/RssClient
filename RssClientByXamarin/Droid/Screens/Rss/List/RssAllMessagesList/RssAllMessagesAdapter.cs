@@ -5,8 +5,8 @@ using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
-using Com.Bumptech.Glide;
 using Droid.Screens.Base.Adapters;
+using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;
@@ -35,7 +35,9 @@ namespace Droid.Screens.Rss.List.RssAllMessagesList
                 rssMessageViewHolder.Canal.Text = item.RssLink;
 
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
-                Glide.With(Activity).Load(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
+
+                ImageService.Instance.LoadUrl(item.ImageUrl)
+                    .Into(rssMessageViewHolder.ImageView);
             }
         }
 

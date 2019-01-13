@@ -151,7 +151,7 @@ namespace Shared.Repository
                             SyndicationId = syndicationItem.Id,
                             Title = SafeTrim(syndicationItem.Title?.Text),
                             Text = SafeTrim(syndicationItem.Summary.Text),
-                            //				CreationDate = syndicationItem.PublishDate.Date,
+                            CreationDate = syndicationItem.PublishDate.Date,
                             Url = url,
                             ImageUrl = imageUri,
                         };

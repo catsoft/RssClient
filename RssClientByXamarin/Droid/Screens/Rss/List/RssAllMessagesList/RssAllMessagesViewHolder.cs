@@ -1,6 +1,7 @@
 ﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading.Views;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.Rss.List.RssAllMessagesList
@@ -14,14 +15,14 @@ namespace Droid.Screens.Rss.List.RssAllMessagesList
             CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_date);
             Canal = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_canal);
             ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content);
-            ImageView = itemView.FindViewById<ImageView>(Resource.Id.imageView_allMessagesItem_image);
+            ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_allMessagesItem_image);
         }
 
         public TextView Title { get; }
         public TextView Text { get; }
         public TextView CreationDate { get; }
         public TextView Canal { get; }
-        public ImageView ImageView { get; }
+        public ImageViewAsync ImageView { get; }
         public LinearLayout ClickView { get; }
         public RssMessageModel Item { get; set; }
     }

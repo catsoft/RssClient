@@ -21,7 +21,7 @@
             android:background="?attr/selectableItemBackground"
             android:orientation="horizontal">
 
-            <ImageView
+            <FFImageLoading.Views.ImageViewAsync
                 android:id="@+id/imageView_listItemRss_rssIcon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
