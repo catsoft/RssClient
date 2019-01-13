@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\AnalitycModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ApiModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\CrossServicesModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\DatabaseModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\RepositoryModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\RealmDatabase.cs" />
@@ -31,8 +32,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\ILocale.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\INavigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
   </ItemGroup>
 </Project>

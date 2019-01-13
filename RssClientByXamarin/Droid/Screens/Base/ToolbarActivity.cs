@@ -25,6 +25,7 @@ namespace Droid.Screens.Base
 
             var toolbar = SupportActionBar;
             toolbar?.SetDisplayHomeAsUpEnabled(IsDisplayHomeAsUpEnable);
+            toolbar?.SetHomeButtonEnabled(IsDisplayHomeAsUpEnable);
 
             App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }

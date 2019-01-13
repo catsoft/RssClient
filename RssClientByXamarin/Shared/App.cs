@@ -19,6 +19,7 @@ namespace Shared
             containerBuilder.RegisterModule(new DatabaseModule());
             containerBuilder.RegisterModule(new RepositoryModule());
             containerBuilder.RegisterModule(new ApiModule());
+            containerBuilder.RegisterModule(new CrossServicesModule());
 
             Container = containerBuilder.Build();
         }

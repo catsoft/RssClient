@@ -13,6 +13,13 @@
 
     <string name="menuRssList_change">Change list</string>
 
+    <string name="menuNavigation_main">Main</string>
+    <string name="menuNavigation_settings">Settings</string>
+    <string name="menuNavigation_contacts">Contacts</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
     <string name="contextMenuRssList_remove">Remove</string>
     <string name="contextMenuRssList_edit">Edit</string>
     <string name="contextMenuRssList_share">Share</string>
@@ -22,11 +29,11 @@
     <string name="rssDeleteDialog_Title">Are you sure?</string>
 
     <string name="create_urlDefault">http://</string>
-    <string name="create_titleActivity">Create RSS</string>
+    <string name="create_title">Create RSS</string>
 
-    <string name="edit_titleActivity">Edit RSS</string>
+    <string name="edit_title">Edit RSS</string>
 
-    <string name="rssList_titleActivity">RSS Client</string>
+    <string name="rssList_title">RSS Client</string>
     <string name="rssList_notUpdated">Not updated</string>
     <string name="rssList_updated">Updated: </string>
 

@@ -66,28 +66,35 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container\Modules\NavigatorModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
+    <Compile Include="Screens\Base\ActivityFragmentExtension.cs" />
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
     <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
+    <Compile Include="Screens\Base\ITitle.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
     <Compile Include="Screens\Base\ShowErrorExtension.cs" />
     <Compile Include="Screens\Base\ToolbarActivity.cs" />
     <Compile Include="CustomApplication.cs" />
-    <Compile Include="Screens\Rss\Detail\RssDetailActivity.cs" />
-    <Compile Include="Screens\Rss\Detail\RssMessageAdapter.cs" />
-    <Compile Include="Screens\Rss\Detail\RssMessageViewHolder.cs" />
-    <Compile Include="Screens\Rss\Edit\RssEditActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesListFragment.cs" />
-    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesAdapter.cs" />
-    <Compile Include="Screens\Rss\List\RssAllMessagesList\RssAllMessagesViewHolder.cs" />
-    <Compile Include="Screens\Rss\List\RssListActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssEditingListFragment.cs" />
-    <Compile Include="Screens\Rss\Create\RssCreateActivity.cs" />
-    <Compile Include="Screens\Rss\List\RssList\RssListAdapter.cs" />
-    <Compile Include="Screens\Rss\List\RssList\RssListFragment.cs" />
-    <Compile Include="Screens\Rss\List\RssList\RssListViewHolder.cs" />
+    <Compile Include="Screens\Close\CloseWay.cs" />
+    <Compile Include="Screens\Navigation\BurgerActivity.cs" />
+    <Compile Include="Screens\Rss\Contacts\ContactsFragment.cs" />
+    <Compile Include="Screens\Rss\RssItemDetail\RssDetailItemFragment.cs" />
+    <Compile Include="Screens\Rss\RssItemDetail\RssMessageAdapter.cs" />
+    <Compile Include="Screens\Rss\RssItemDetail\RssMessageViewHolder.cs" />
+    <Compile Include="Screens\Rss\RssEdit\RssEditActivity.cs" />
+    <Compile Include="Screens\Rss\RssAllMessagesList\RssAllMessagesListFragment.cs" />
+    <Compile Include="Screens\Rss\RssAllMessagesList\RssAllMessagesAdapter.cs" />
+    <Compile Include="Screens\Rss\RssAllMessagesList\RssAllMessagesViewHolder.cs" />
+    <Compile Include="Screens\Main\MainActivity.cs" />
+    <Compile Include="Screens\Rss\RssEditingListFragment.cs" />
+    <Compile Include="Screens\Rss\RssCreate\RssCreateActivity.cs" />
+    <Compile Include="Screens\Rss\RssList\RssListAdapter.cs" />
+    <Compile Include="Screens\Rss\RssList\RssListFragment.cs" />
+    <Compile Include="Screens\Rss\RssList\RssListViewHolder.cs" />
+    <Compile Include="Screens\Rss\Settings\SettingsFragment.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Services\Locale\Locale.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -338,6 +345,33 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\list_item_all_rss_message.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\navigation_view_all.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_navigation.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_contacts_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_home_24.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_contacts_black_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_home_black_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_settings_black_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\baseline_contacts_black_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\baseline_home_black_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\baseline_settings_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_contacts_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_home_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_settings_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_contacts_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_home_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_settings_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_contacts_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_home_black_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_settings_black_24.png" />
+    <AndroidResource Include="Resources\layout\fragment_settings.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_contacts.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

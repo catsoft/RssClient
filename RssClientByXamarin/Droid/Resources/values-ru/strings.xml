@@ -13,6 +13,13 @@
 
     <string name="menuRssList_change">Изменить список</string>
 
+    <string name="menuNavigation_main">Главная</string>
+    <string name="menuNavigation_settings">Настройки</string>
+    <string name="menuNavigation_contacts">Контакты</string>
+
+    <string name="navigation_drawer_open">Открыто</string>
+    <string name="navigation_drawer_close">Закрыто</string>
+
     <string name="contextMenuRssList_remove">Удалить</string>
     <string name="contextMenuRssList_edit">Редактировать</string>
     <string name="contextMenuRssList_share">Поделиться</string>
@@ -22,11 +29,11 @@
     <string name="rssDeleteDialog_Title">Вы уверены?</string>
 
     <string name="create_urlDefault">http://</string>
-    <string name="create_titleActivity">Создать RSS</string>
+    <string name="create_title">Создать RSS</string>
 
-    <string name="edit_titleActivity">Редактировать RSS</string>
+    <string name="edit_title">Редактировать RSS</string>
 
-    <string name="rssList_titleActivity">RSS Клиент</string>
+    <string name="rssList_title">RSS Клиент</string>
     <string name="rssList_notUpdated">Не обновлено</string>
     <string name="rssList_updated">Обновлено: </string>
 </resources>

@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using Droid.Screens.Rss.List;
+using Droid.Screens.Main;
 
 namespace Droid.Screens.SplashScreen
 {
@@ -13,9 +13,7 @@ namespace Droid.Screens.SplashScreen
         {
             base.OnCreate(savedInstanceState);
 
-            var intent = new Intent(this, typeof(RssListActivity));
-            StartActivity(intent);
-            Finish();
+            MainActivity.CreateActivity(this);
         }
     }
 }
