@@ -82,6 +82,7 @@
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
     <Compile Include="Screens\Navigation\TitleFragment.cs" />
+    <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssDetailItemFragment.cs" />
     <Compile Include="Screens\RssItemDetail\RssItemDetailWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssMessageAdapter.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Screens\RssList\RssListAdapter.cs" />
     <Compile Include="Screens\RssList\RssListFragment.cs" />
     <Compile Include="Screens\RssList\RssListViewHolder.cs" />
+    <Compile Include="Screens\RssList\RssListWay.cs" />
     <Compile Include="Screens\Settings\SettingsFragment.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Services\Locale\Locale.cs" />
@@ -263,7 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Screens\Rss\" />
+    <Folder Include="Resources\anim" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\launch_screen.xml" />

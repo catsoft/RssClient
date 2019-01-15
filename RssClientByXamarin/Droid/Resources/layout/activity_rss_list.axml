@@ -20,13 +20,12 @@
             <include 
                 layout="@layout/toolbar_all" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout_rssList_fragmentContainer"
+            <FrameLayout
+                android:id="@+id/frameLayout_rssList_fragmentContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-            </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 

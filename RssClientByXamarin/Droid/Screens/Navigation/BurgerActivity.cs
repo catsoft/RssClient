@@ -30,8 +30,6 @@ namespace Droid.Screens.Navigation
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
-
             if (DrawerLayout.IsDrawerOpen(DrawerGravity))
                 DrawerLayout.CloseDrawer(DrawerGravity);
             else

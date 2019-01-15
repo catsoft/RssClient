@@ -2,11 +2,17 @@
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Autofac;
+using Droid.Infrastructure;
 using Droid.Screens.Contacts;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssList;
 using Droid.Screens.Settings;
+using Java.Lang.Annotation;
+using Shared;
+using Shared.Services.Navigator;
+using Shared.ViewModels;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Screens.Main
@@ -20,10 +26,10 @@ namespace Droid.Screens.Main
 
         private readonly SettingsFragment _settingsFragment = new SettingsFragment();
         private readonly ContactsFragment _contactFragment = new ContactsFragment();
-        private readonly RssListFragment _rssListFragment = new RssListFragment();
-        private readonly RssAllMessagesListFragment _rssAllMessagesListFragment = new RssAllMessagesListFragment();
 
-        protected override int? ContainerId => Resource.Id.linearLayout_rssList_fragmentContainer;
+        private INavigator _navigator;
+
+        protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
         protected override int ResourceView => Resource.Layout.activity_rss_list;
         public static MainActivity Instance { get; private set; }
 
@@ -37,13 +43,20 @@ namespace Droid.Screens.Main
         {
             Instance = this;
 
+            _navigator = App.Container.Resolve<INavigator>();
+            
             base.OnCreate(savedInstanceState);
 
             Title = GetText(Resource.String.rssList_title);
 
-            AddFragment(_rssListFragment);
+            GoToRssList();
 
             NavigationView.SetCheckedItem(_mainId);
+        }
+
+        private void GoToRssList()
+        {
+            _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
         }
 
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
@@ -52,7 +65,7 @@ namespace Droid.Screens.Main
 
             if (menuItem.ItemId == _mainId)
             {
-                fragment = _rssListFragment;
+                GoToRssList();
             } else if (menuItem.ItemId == _settingsId)
             {
                 fragment = _settingsFragment;
@@ -62,25 +75,13 @@ namespace Droid.Screens.Main
                 fragment = _contactFragment;
             }
 
-            AddFragment(fragment);
+            AddFragment(fragment, CacheState.Old);
 
             menuItem.SetChecked(true);
 
             DrawerLayout.CloseDrawer(DrawerGravity);
 
             return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            if (item.ItemId == Resource.Id.menuItem_rssList_change)
-            {
-                var otherFragment = ActiveFragment == _rssListFragment ? (Fragment)_rssAllMessagesListFragment : _rssListFragment;
-                AddFragment(otherFragment);
-                return true;
-            }
-
-            return base.OnOptionsItemSelected(item);
         }
     }
 }

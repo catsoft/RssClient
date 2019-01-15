@@ -5,7 +5,7 @@ using Droid.Screens.Main;
 
 namespace Droid.Screens.SplashScreen
 {
-    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Launcher", MainLauncher = true)]
+    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Launcher", MainLauncher = true, NoHistory = true)]
     public class SplashScreenActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

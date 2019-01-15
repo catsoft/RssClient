@@ -3,11 +3,11 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssItemDetail
 {
-    public class Way : RssItemDetailViewModel.Way
+    public class RssItemDetailWay : RssItemDetailViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 
-        public Way(FragmentActivity fragmentActivity)
+        public RssItemDetailWay(FragmentActivity fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }
@@ -16,7 +16,7 @@ namespace Droid.Screens.RssItemDetail
         {
             var fragment = new RssDetailItemFragment(Data.RssModel.Id);
 
-            _fragmentActivity.AddFragment(fragment);
+            _fragmentActivity.AddFragment(fragment, CacheState.Replace);
         }
     }
 }

@@ -4,11 +4,15 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Infrastructure;
 using Droid.Screens.Navigation;
+using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
 using Realms;
 using RssClient.Repository;
 using Shared;
+using Shared.Services.Navigator;
+using Shared.ViewModels;
 
 namespace Droid.Screens.RssList
 {
@@ -16,6 +20,7 @@ namespace Droid.Screens.RssList
     {
         private RecyclerView _recyclerView;
         private IRssRepository _rssRepository;
+        private INavigator _navigator;
 
         public RssListFragment()
         {
@@ -30,6 +35,7 @@ namespace Droid.Screens.RssList
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             _rssRepository = App.Container.Resolve<IRssRepository>();
+            _navigator = App.Container.Resolve<INavigator>();
 
             Title = Activity?.GetText(Resource.String.rssList_title);
 
@@ -72,6 +78,16 @@ namespace Droid.Screens.RssList
             });
 
             return view;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.menuItem_rssList_change)
+            {
+                _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
+            }
+            
+            return base.OnOptionsItemSelected(item);
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs)
