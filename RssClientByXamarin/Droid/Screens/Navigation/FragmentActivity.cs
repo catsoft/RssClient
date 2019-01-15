@@ -23,15 +23,21 @@ namespace Droid.Screens.Navigation
                     case CacheState.Old:
                         var old = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
                         if (old == null)
+                        {
                             transaction.Add(ContainerId ?? 0, fragment);
+                            transaction.AddToBackStack(fragment.GetType().FullName);
+                        }
                         else
                             transaction.Show(old);
                         break;
                     case CacheState.Replace:
                         var oldReplace = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
                         if (oldReplace != null)
-                            transaction.Remove(oldReplace);
+                        {
+                            DoOrNo(fragmentTransaction => transaction.Remove(oldReplace));
+                        }
                         transaction.Add(ContainerId ?? 0, fragment);
+                        transaction.AddToBackStack(fragment.GetType().FullName);
                         break;
                 }
 

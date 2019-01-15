@@ -8,7 +8,7 @@ namespace Droid.Screens.Navigation
 {
     public abstract class BurgerActivity : FragmentActivity, NavigationView.IOnNavigationItemSelectedListener
     {
-        private ActionBarDrawerToggle _toggle;
+        public ActionBarDrawerToggle Toggle { get; private set; }
 
         protected DrawerLayout DrawerLayout { get; private set; }
         protected NavigationView NavigationView{ get; private set; }
@@ -20,10 +20,10 @@ namespace Droid.Screens.Navigation
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
-            _toggle = new ActionBarDrawerToggle(this, DrawerLayout, Toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
-            DrawerLayout.AddDrawerListener(_toggle);
-            _toggle.SyncState();
-
+            Toggle = new ActionBarDrawerToggle(this, DrawerLayout, Toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
+            DrawerLayout.AddDrawerListener(Toggle);
+            Toggle.SyncState();
+            
             NavigationView = FindViewById<NavigationView>(Resource.Id.navigation_view_all);
             NavigationView.SetNavigationItemSelectedListener(this);
         }

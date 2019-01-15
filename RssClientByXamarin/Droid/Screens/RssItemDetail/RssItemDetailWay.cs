@@ -17,6 +17,11 @@ namespace Droid.Screens.RssItemDetail
             var fragment = new RssDetailItemFragment(Data.RssModel.Id);
 
             _fragmentActivity.AddFragment(fragment, CacheState.Replace);
+
+            if (_fragmentActivity is BurgerActivity burgerActivity)
+            {
+                burgerActivity.Toggle.DrawerIndicatorEnabled = true;
+            }
         }
     }
 }
