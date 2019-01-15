@@ -80,6 +80,7 @@ namespace Droid.Screens.Navigation
             }
         }
 
+        // TODO добавить работу с title
         public override void OnBackPressed()
         {
             base.OnBackPressed();
