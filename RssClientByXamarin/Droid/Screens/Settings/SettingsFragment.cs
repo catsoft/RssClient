@@ -6,6 +6,8 @@ namespace Droid.Screens.Settings
 {
     public class SettingsFragment : TitleFragment
     {
+        public override bool RootFragment => true;
+        
         public SettingsFragment()
         {
             

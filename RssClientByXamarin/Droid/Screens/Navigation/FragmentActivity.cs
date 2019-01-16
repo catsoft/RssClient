@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Android.Animation;
 using Android.OS;
 using Android.Support.V4.App;
-using Android.Views.Animations;
-using Java.Lang;
 
 namespace Droid.Screens.Navigation
 {
@@ -75,27 +72,6 @@ namespace Droid.Screens.Navigation
             });
         }
 
-        private void UpdateDrawerState()
-        {
-            var isSubFragment = SupportFragmentManager.BackStackEntryCount > 1;
-
-            var from = isSubFragment ? 0 : 1;
-            var to = isSubFragment ? 1 : 0;
-            var anim = ValueAnimator.OfFloat(from, to);
-            anim.Update += (sender, args) =>
-            {
-                var offset = args.Animation.AnimatedValue as Float;
-                Toggle.OnDrawerSlide(DrawerLayout, offset.FloatValue());
-            };
-            anim.SetInterpolator(new LinearInterpolator());
-            anim.SetDuration(200);
-            anim.Start();
-
-            DrawerLayout.SetDrawerLockMode(isSubFragment
-                ? Android.Support.V4.Widget.DrawerLayout.LockModeLockedClosed
-                : Android.Support.V4.Widget.DrawerLayout.LockModeUnlocked);
-        }
-
         private void DoOrNo(Action<FragmentTransaction> doOrNow)
         {
             if (ContainerId.HasValue)
@@ -113,7 +89,7 @@ namespace Droid.Screens.Navigation
         {
             base.OnBackPressed();
 
-            if (SupportFragmentManager.Fragments.Count == 0)
+            if(IsHomeToggle)
                 Finish();
         }
     }

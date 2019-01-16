@@ -10,8 +10,6 @@ namespace Droid.Screens.Base
     public abstract class ToolbarActivity : AppCompatActivity
     {
         protected abstract int ResourceView { get; }
-        protected virtual bool IsDisplayHomeAsUpEnable => true;
-
         protected Toolbar Toolbar { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -22,10 +20,6 @@ namespace Droid.Screens.Base
 
             Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar_toolbarAll_toolbar);
             SetSupportActionBar(Toolbar);
-
-            var toolbar = SupportActionBar;
-            toolbar?.SetDisplayHomeAsUpEnabled(IsDisplayHomeAsUpEnable);
-            toolbar?.SetHomeButtonEnabled(IsDisplayHomeAsUpEnable);
 
             App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }

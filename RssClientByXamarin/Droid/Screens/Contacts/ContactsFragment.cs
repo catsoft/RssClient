@@ -6,6 +6,8 @@ namespace Droid.Screens.Contacts
 {
     public class ContactsFragment : TitleFragment
     {
+        public override bool RootFragment => true;
+        
         public ContactsFragment()
         {
             

@@ -15,6 +15,8 @@ namespace Droid.Screens
         private RecyclerView _recyclerView;
         private IRssRepository _rssRepository;
 
+        public override bool RootFragment => false;
+
         public RssEditingListFragment()
         {
             

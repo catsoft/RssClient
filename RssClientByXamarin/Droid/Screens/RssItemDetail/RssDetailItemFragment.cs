@@ -22,6 +22,8 @@ namespace Droid.Screens.RssItemDetail
     {
         private readonly string _itemId;
 
+        public override bool RootFragment => false;
+        
         public RssDetailItemFragment(string itemId)
         {
             _itemId = itemId;

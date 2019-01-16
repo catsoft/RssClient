@@ -22,6 +22,8 @@ namespace Droid.Screens.RssList
         private IRssRepository _rssRepository;
         private INavigator _navigator;
 
+        public override bool RootFragment => true;
+
         public RssListFragment()
         {
             

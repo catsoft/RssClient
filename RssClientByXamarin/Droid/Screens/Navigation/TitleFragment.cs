@@ -16,5 +16,7 @@ namespace Droid.Screens.Navigation
                     Activity.Title = _title;
             }
         }
+
+        public abstract bool RootFragment { get; }
     }
 }

@@ -17,6 +17,7 @@ namespace Droid.Screens.RssAllMessagesList
     public class RssAllMessagesListFragment : TitleFragment
     {
         private INavigator _navigator;
+        public override bool RootFragment => true;
         
         public RssAllMessagesListFragment()
         {
