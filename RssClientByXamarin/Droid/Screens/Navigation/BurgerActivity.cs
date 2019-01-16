@@ -3,10 +3,11 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
+using Droid.Screens.Base;
 
 namespace Droid.Screens.Navigation
 {
-    public abstract class BurgerActivity : FragmentActivity, NavigationView.IOnNavigationItemSelectedListener
+    public abstract class BurgerActivity : ToolbarActivity, NavigationView.IOnNavigationItemSelectedListener, View.IOnClickListener
     {
         public ActionBarDrawerToggle Toggle { get; private set; }
 
@@ -22,6 +23,7 @@ namespace Droid.Screens.Navigation
 
             Toggle = new ActionBarDrawerToggle(this, DrawerLayout, Toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             DrawerLayout.AddDrawerListener(Toggle);
+            Toolbar.SetNavigationOnClickListener(this);
             Toggle.SyncState();
             
             NavigationView = FindViewById<NavigationView>(Resource.Id.navigation_view_all);
@@ -37,5 +39,9 @@ namespace Droid.Screens.Navigation
         }
 
         public abstract bool OnNavigationItemSelected(IMenuItem menuItem);
+        public void OnClick(View v)
+        {
+            OnBackPressed();
+        }
     }
 }

@@ -1,13 +1,33 @@
 ﻿using System;
 using System.Linq;
+using Android.Animation;
+using Android.OS;
 using Android.Support.V4.App;
-using Droid.Screens.Base;
+using Android.Views.Animations;
+using Java.Lang;
 
 namespace Droid.Screens.Navigation
 {
-    public abstract class FragmentActivity : ToolbarActivity
+    public abstract class FragmentActivity : BurgerActivity
     {
         protected abstract int? ContainerId { get; }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            SupportFragmentManager.BackStackChanged += (sender, args) =>
+            {
+                var lastFragment = SupportFragmentManager.Fragments.LastOrDefault();
+                if (lastFragment is TitleFragment titleFragment)
+                {
+                    Title = titleFragment.Title;
+                }
+
+                UpdateDrawerState();
+            };
+        }
+
         public void AddFragment(Fragment fragment, CacheState cacheState = CacheState.New)
         {
             DoOrNo(transaction =>
@@ -17,18 +37,19 @@ namespace Droid.Screens.Navigation
                 switch (cacheState)
                 {
                     case CacheState.New:
-                        transaction.Add(ContainerId ?? 0, fragment);
+                        transaction.Replace(ContainerId ?? 0, fragment);
                         transaction.AddToBackStack(fragment.GetType().FullName);
                         break;
                     case CacheState.Old:
                         var old = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
                         if (old == null)
                         {
-                            transaction.Add(ContainerId ?? 0, fragment);
+                            transaction.Replace(ContainerId ?? 0, fragment);
                             transaction.AddToBackStack(fragment.GetType().FullName);
                         }
                         else
                             transaction.Show(old);
+
                         break;
                     case CacheState.Replace:
                         var oldReplace = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
@@ -36,20 +57,14 @@ namespace Droid.Screens.Navigation
                         {
                             DoOrNo(fragmentTransaction => transaction.Remove(oldReplace));
                         }
-                        transaction.Add(ContainerId ?? 0, fragment);
+
+                        transaction.Replace(ContainerId ?? 0, fragment);
                         transaction.AddToBackStack(fragment.GetType().FullName);
                         break;
                 }
-
-                transaction.SetCustomAnimations(FragmentTransaction.TransitFragmentOpen,FragmentTransaction.TransitFragmentClose);
-
-                if (fragment is TitleFragment titledFragment)
-                {
-                    Toolbar.Title = titledFragment.Title;
-                }
             });
         }
-        
+
         public void RemoveFragment(Fragment fragment)
         {
             DoOrNo(transaction =>
@@ -57,14 +72,28 @@ namespace Droid.Screens.Navigation
                 transaction.Remove(fragment);
 
                 transaction.AddToBackStack(fragment.GetType().Name);
-
-                transaction.SetTransition(FragmentTransaction.TransitFragmentOpen);
-
-                if (fragment is TitleFragment titledFragment)
-                {
-                    Toolbar.Title = titledFragment.Title;
-                }
             });
+        }
+
+        private void UpdateDrawerState()
+        {
+            var isSubFragment = SupportFragmentManager.BackStackEntryCount > 1;
+
+            var from = isSubFragment ? 0 : 1;
+            var to = isSubFragment ? 1 : 0;
+            var anim = ValueAnimator.OfFloat(from, to);
+            anim.Update += (sender, args) =>
+            {
+                var offset = args.Animation.AnimatedValue as Float;
+                Toggle.OnDrawerSlide(DrawerLayout, offset.FloatValue());
+            };
+            anim.SetInterpolator(new LinearInterpolator());
+            anim.SetDuration(200);
+            anim.Start();
+
+            DrawerLayout.SetDrawerLockMode(isSubFragment
+                ? Android.Support.V4.Widget.DrawerLayout.LockModeLockedClosed
+                : Android.Support.V4.Widget.DrawerLayout.LockModeUnlocked);
         }
 
         private void DoOrNo(Action<FragmentTransaction> doOrNow)
@@ -80,12 +109,11 @@ namespace Droid.Screens.Navigation
             }
         }
 
-        // TODO добавить работу с title
         public override void OnBackPressed()
         {
             base.OnBackPressed();
-            
-            if(SupportFragmentManager.Fragments.Count == 0)
+
+            if (SupportFragmentManager.Fragments.Count == 0)
                 Finish();
         }
     }
@@ -96,10 +124,12 @@ namespace Droid.Screens.Navigation
         /// Добавляет новый фрагмент
         /// </summary>
         New,
+
         /// <summary>
         /// Если есть в стеке, показывает его, если нет, создает новый
         /// </summary>
         Old,
+
         /// <summary>
         /// Если есть старый, удаляет, помещает в стек новый
         /// </summary>

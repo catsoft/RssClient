@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -19,11 +21,15 @@ namespace Droid.Screens.RssItemDetail
     public class RssDetailItemFragment : TitleFragment
     {
         private readonly string _itemId;
-        public const string ItemIntentId = "ItemIntentId";
 
         public RssDetailItemFragment(string itemId)
         {
             _itemId = itemId;
+        }
+
+        public RssDetailItemFragment()
+        {
+            
         }
 
         private IRssMessagesRepository _rssMessagesRepository;
@@ -33,6 +39,7 @@ namespace Droid.Screens.RssItemDetail
         private RssModel _item;
         private RecyclerView _list;
         private SwipeRefreshLayout _refreshLayout;
+        private RssMessageAdapter _adapter;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -50,28 +57,40 @@ namespace Droid.Screens.RssItemDetail
             _list.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
 
             _refreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
-            _refreshLayout.Refresh += async (sender, args) =>
-            {
-                await _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);
-                _refreshLayout.Refreshing = false;
-            };
+            _refreshLayout.Refresh += RefreshLayoutOnRefresh;
 
             var items = _rssMessagesRepository.GetMessagesForRss(_item);
-            var adapter = new RssMessageAdapter(items.ToList(), Activity);
-            _list.SetAdapter(adapter);
-            adapter.NotifyDataSetChanged();
+            _adapter = new RssMessageAdapter(items.ToList(), Activity);
+            _list.SetAdapter(_adapter);
+            _adapter.NotifyDataSetChanged();
 
-            _item.PropertyChanged += (sender, args) =>
-            {
-                adapter.Items.Clear();
-                var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
-                adapter.Items.AddRange(newItems);
-                adapter.NotifyDataSetChanged();
-            };
+            _item.PropertyChanged += ItemOnPropertyChanged;
 
             _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);
 
             return view;
+        }
+
+        private async void RefreshLayoutOnRefresh(object sender, EventArgs e)
+        {
+            await _rssRepository.StartUpdateAllByInternet(_item.Rss, _item.Id);
+            _refreshLayout.Refreshing = false;
+        }
+
+        private void ItemOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            _adapter.Items.Clear();
+            var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
+            _adapter.Items.AddRange(newItems);
+            _adapter.NotifyDataSetChanged();
+        }
+
+        public override void OnDetach()
+        {
+            base.OnDetach();
+
+            _item.PropertyChanged -= ItemOnPropertyChanged;
+            _refreshLayout.Refresh -= RefreshLayoutOnRefresh;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

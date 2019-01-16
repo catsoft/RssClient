@@ -18,7 +18,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 namespace Droid.Screens.Main
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
-    public class MainActivity : BurgerActivity
+    public class MainActivity : FragmentActivity
     {
         private readonly int _mainId = Resource.Id.menuItem_navigationMenu_main;
         private readonly int _settingsId = Resource.Id.menuItem_navigationMenu_settings;
@@ -61,21 +61,17 @@ namespace Droid.Screens.Main
 
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
         {
-            Fragment fragment = null;
-
             if (menuItem.ItemId == _mainId)
             {
                 GoToRssList();
             } else if (menuItem.ItemId == _settingsId)
             {
-                fragment = _settingsFragment;
+                AddFragment(_settingsFragment, CacheState.Old);
             }
             else if (menuItem.ItemId == _contactsId)
             {
-                fragment = _contactFragment;
+                AddFragment(_contactFragment, CacheState.Old);
             }
-
-            AddFragment(fragment, CacheState.Old);
 
             menuItem.SetChecked(true);
 
