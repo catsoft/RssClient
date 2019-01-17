@@ -83,8 +83,8 @@ namespace Droid.Screens.Navigation
                 anim.Start();
 
                 DrawerLayout.SetDrawerLockMode(isHome
-                    ? DrawerLayout.LockModeLockedClosed
-                    : DrawerLayout.LockModeUnlocked);
+                    ? DrawerLayout.LockModeUnlocked
+                    : DrawerLayout.LockModeLockedClosed);
             }
         }
     }

@@ -22,6 +22,7 @@ namespace Droid.Screens.RssList
         private IRssRepository _rssRepository;
         private INavigator _navigator;
 
+        protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool RootFragment => true;
 
         public RssListFragment()
@@ -43,7 +44,7 @@ namespace Droid.Screens.RssList
 
             HasOptionsMenu = true;
 
-            var view = inflater.Inflate(Resource.Layout.fragment_rss_list, container, false);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             fab.Click += FabOnClick;

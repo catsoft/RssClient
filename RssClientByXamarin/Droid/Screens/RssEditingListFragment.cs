@@ -15,6 +15,7 @@ namespace Droid.Screens
         private RecyclerView _recyclerView;
         private IRssRepository _rssRepository;
 
+        protected override int LayoutId => Resource.Layout.fragment_rss_editing_list;
         public override bool RootFragment => false;
 
         public RssEditingListFragment()
@@ -24,7 +25,7 @@ namespace Droid.Screens
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.fragment_rss_editing_list, container, false);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             _rssRepository = App.Container.Resolve<IRssRepository>();
 

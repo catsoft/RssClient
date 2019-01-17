@@ -2,11 +2,13 @@
 <resources>
     <color name="colorPrimary">#EA7819</color>
     <color name="colorPrimaryDark">#CF6415</color>
-    <color name="colorAccent">#3498db</color>
+    <color name="colorAccent">#3498DB</color>
 
     <color name="ic_launcher_background">#EA7819</color>
 
-    <color name="shimmer_background">#dddddd</color>
+    <color name="shimmer_background">#DDDDDD</color>
 
     <color name="white">#FFFFFF</color>
+
+    <color name="fragment_background">#F0F8FF</color>
 </resources>

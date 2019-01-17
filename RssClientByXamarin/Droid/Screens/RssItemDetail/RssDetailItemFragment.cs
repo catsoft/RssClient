@@ -22,6 +22,7 @@ namespace Droid.Screens.RssItemDetail
     {
         private readonly string _itemId;
 
+        protected override int LayoutId => Resource.Layout.activity_rss_detail;
         public override bool RootFragment => false;
         
         public RssDetailItemFragment(string itemId)
@@ -45,7 +46,7 @@ namespace Droid.Screens.RssItemDetail
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.activity_rss_detail, container, false);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
             _rssRepository = App.Container.Resolve<IRssRepository>();

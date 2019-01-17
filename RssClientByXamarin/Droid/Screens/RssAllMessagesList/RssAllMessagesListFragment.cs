@@ -17,6 +17,7 @@ namespace Droid.Screens.RssAllMessagesList
     public class RssAllMessagesListFragment : TitleFragment
     {
         private INavigator _navigator;
+        protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
         public override bool RootFragment => true;
         
         public RssAllMessagesListFragment()
@@ -32,8 +33,8 @@ namespace Droid.Screens.RssAllMessagesList
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             _navigator = App.Container.Resolve<INavigator>();
-            
-            var view = inflater.Inflate(Resource.Layout.fragment_all_messages_list, container, false);
+
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             Title = Activity.GetText(Resource.String.rssList_title);
 
