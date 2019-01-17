@@ -29,6 +29,8 @@ namespace Droid.Screens.Navigation
         {
             DoOrNo(transaction =>
             {
+                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
+                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
                 var type = fragment.GetType();
 
                 switch (cacheState)
