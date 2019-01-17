@@ -87,10 +87,10 @@ namespace Droid.Screens.Navigation
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
-
-            if(IsHomeToggle)
+            if (IsHomeToggle)
                 Finish();
+            else
+                base.OnBackPressed();
         }
     }
 
