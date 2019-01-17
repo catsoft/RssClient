@@ -386,6 +386,19 @@
     </AndroidResource>
     <AndroidResource Include="Resources\anim\exit_to_left.xml" />
     <AndroidResource Include="Resources\anim\enter_from_left.xml" />
+    <AndroidResource Include="Resources\layout\item_link_element_contacts.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-hdpi\telegram_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\telegram_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\telegram_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\telegram_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\telegram_48.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\email_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\email_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\email_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\email_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\email_48.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
