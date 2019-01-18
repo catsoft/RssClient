@@ -39,4 +39,6 @@
 
     <string name="settings_title">Настройки</string>
     <string name="contacts_title">Контакты</string>
+
+    <string name="copy_clipboard">Скопировано: </string>
 </resources>

@@ -69,6 +69,7 @@
     <Compile Include="Container\Modules\NavigatorModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
+    <Compile Include="NativeExtension\ContextExtension.cs" />
     <Compile Include="Screens\Base\ActivityFragmentExtension.cs" />
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
@@ -264,9 +265,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\launch_screen.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -399,6 +397,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\email_48.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\email_48.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\email_48.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\discord_48.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\linkedin_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\discord_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\linkedin_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\discord_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\linkedin_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\discord_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\linkedin_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\discord_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\linkedin_48.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
