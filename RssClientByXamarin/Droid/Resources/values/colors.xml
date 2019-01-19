@@ -11,4 +11,7 @@
     <color name="white">#FFFFFF</color>
 
     <color name="fragment_background">#F0F8FF</color>
+
+    <color name="divider">#777777</color>
+    
 </resources>

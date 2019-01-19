@@ -99,4 +99,9 @@
     <style name="Toolbar" parent="AppTheme.PopupOverlay">
         <item name="background">?attr/colorPrimary</item>
     </style>
+    
+    
+    <style name="Divider">
+        <item name="android:background">@color/divider</item>
+    </style>
 </resources>
