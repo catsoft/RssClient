@@ -4,7 +4,7 @@ namespace Shared.ViewModels
 {
     public class ContactsViewModel
     {
-        public abstract class Way : Way<RssListViewModel, Way.WayData>
+        public abstract class Way : Way<ContactsViewModel, Way.WayData>
         {
         
             public Way()

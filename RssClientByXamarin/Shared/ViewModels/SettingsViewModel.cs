@@ -4,7 +4,7 @@ namespace Shared.ViewModels
 {
     public class SettingsViewModel : ViewModel
     {
-        public abstract class Way : Way<RssListViewModel, Way.WayData>
+        public abstract class Way : Way<SettingsViewModel, Way.WayData>
         {
         
             public Way()
