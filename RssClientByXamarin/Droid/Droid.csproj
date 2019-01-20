@@ -70,6 +70,8 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
+    <Compile Include="Screens\About\AboutFragment.cs" />
+    <Compile Include="Screens\About\AboutWay.cs" />
     <Compile Include="Screens\Base\ActivityFragmentExtension.cs" />
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Screens\Base\ToolbarActivity.cs" />
     <Compile Include="CustomApplication.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
+    <Compile Include="Screens\Contacts\ContactsWay.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
@@ -99,6 +102,7 @@
     <Compile Include="Screens\RssList\RssListFragment.cs" />
     <Compile Include="Screens\RssList\RssListViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListWay.cs" />
+    <Compile Include="Screens\Settings\AboutWay.cs" />
     <Compile Include="Screens\Settings\SettingsFragment.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Services\Locale\Locale.cs" />
@@ -117,6 +121,10 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\divider_all.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_about.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -411,6 +419,11 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\linkedin_48.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\discord_48.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\linkedin_48.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\info_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\info_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\info_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\info_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\info_24.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -16,6 +16,7 @@
     <string name="menuNavigation_main">Главная</string>
     <string name="menuNavigation_settings">Настройки</string>
     <string name="menuNavigation_contacts">Контакты</string>
+    <string name="menuNavigation_about">О программе</string>
 
     <string name="navigation_drawer_open">Открыто</string>
     <string name="navigation_drawer_close">Закрыто</string>

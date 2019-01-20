@@ -1,4 +1,4 @@
-﻿using Droid.Infrastructure;
+﻿using Shared.Services.Navigator;
 
 namespace Shared.ViewModels
 {

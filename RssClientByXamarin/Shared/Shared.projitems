@@ -35,10 +35,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\INavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Way.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
   </ItemGroup>
 </Project>

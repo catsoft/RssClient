@@ -23,9 +23,7 @@ namespace Droid.Screens.Main
         private readonly int _mainId = Resource.Id.menuItem_navigationMenu_main;
         private readonly int _settingsId = Resource.Id.menuItem_navigationMenu_settings;
         private readonly int _contactsId = Resource.Id.menuItem_navigationMenu_contacts;
-
-        private readonly SettingsFragment _settingsFragment = new SettingsFragment();
-        private readonly ContactsFragment _contactFragment = new ContactsFragment();
+        private readonly int _aboutId = Resource.Id.menuItem_navigationMenu_about;
 
         private INavigator _navigator;
 
@@ -49,28 +47,27 @@ namespace Droid.Screens.Main
 
             Title = GetText(Resource.String.rssList_title);
 
-            GoToRssList();
-
-            NavigationView.SetCheckedItem(_mainId);
-        }
-
-        private void GoToRssList()
-        {
             _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+            
+            NavigationView.SetCheckedItem(_mainId);
         }
 
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
         {
             if (menuItem.ItemId == _mainId)
             {
-                GoToRssList();
+                _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
             } else if (menuItem.ItemId == _settingsId)
             {
-                AddFragment(_settingsFragment, CacheState.Old);
+                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>());
             }
             else if (menuItem.ItemId == _contactsId)
             {
-                AddFragment(_contactFragment, CacheState.Old);
+                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel, ContactsViewModel.Way.WayData>>());
+            }
+            else if (menuItem.ItemId == _aboutId)
+            {
+                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel, AboutViewModel.Way.WayData>>());
             }
 
             menuItem.SetChecked(true);
