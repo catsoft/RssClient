@@ -4,7 +4,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.Contacts
 {
-    public class ContactsWay : RssItemDetailViewModel.Way
+    public class ContactsWay : ContactsViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 

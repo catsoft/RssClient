@@ -3,7 +3,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.About
 {
-    public class AboutWay : RssItemDetailViewModel.Way
+    public class AboutWay : AboutViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 

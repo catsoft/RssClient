@@ -4,7 +4,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsWay : RssItemDetailViewModel.Way
+    public class SettingsWay : SettingsViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 
