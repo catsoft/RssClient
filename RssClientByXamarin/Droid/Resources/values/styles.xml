@@ -59,8 +59,8 @@
     <style name="TextView" parent="Base.TextAppearance.AppCompat">
 
     </style>
-
-
+    
+    
     <style name="TextView.Title" parent="Base.TextAppearance.AppCompat.Title">
 
     </style>

@@ -25,7 +25,6 @@ namespace Droid.Repository
                     var newsList = new List<RssRecommendationModel>()
                     {
                         new RssRecommendationModel("http://online.wsj.com/xml/rss/3_7011.xml"),
-                        new RssRecommendationModel("http://feeds.foxnews.com/foxnews/scitech"),
                         new RssRecommendationModel("http://rss.cnn.com/rss/cnn_topstories.rss"),
                         new RssRecommendationModel("http://feeds.feedburner.com/time/topstories"),
                         new RssRecommendationModel("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"),
@@ -131,6 +130,7 @@ namespace Droid.Repository
 
                     var gamingList = new List<RssRecommendationModel>()
                     {
+                        new RssRecommendationModel("https://old-hard.ru/rss"),
                         new RssRecommendationModel("https://www.gamespot.com/feeds/mashup/"),
                         new RssRecommendationModel("http://www.nintendolife.com/feeds/latest"),
                         new RssRecommendationModel("http://www.joystiq.com/rss.xml"),
