@@ -19,6 +19,8 @@ namespace Droid.Screens.About
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            Title = GetText(Resource.String.about_title);
+            
             return view;
         }
     }

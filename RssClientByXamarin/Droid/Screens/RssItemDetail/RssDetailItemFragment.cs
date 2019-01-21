@@ -14,6 +14,7 @@ using Shared;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Navigator;
+using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemDetail
 {
@@ -23,16 +24,17 @@ namespace Droid.Screens.RssItemDetail
         private readonly string _itemId;
 
         protected override int LayoutId => Resource.Layout.activity_rss_detail;
+        
         public override bool RootFragment => false;
+        
+        public RssDetailItemFragment()
+        {
+            
+        }
         
         public RssDetailItemFragment(string itemId)
         {
             _itemId = itemId;
-        }
-
-        public RssDetailItemFragment()
-        {
-            
         }
 
         private IRssMessagesRepository _rssMessagesRepository;
@@ -47,6 +49,8 @@ namespace Droid.Screens.RssItemDetail
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+
+            HasOptionsMenu = true;
 
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
             _rssRepository = App.Container.Resolve<IRssRepository>();
@@ -111,8 +115,17 @@ namespace Droid.Screens.RssItemDetail
             {
                 EditItem(_item);
             }
+            else if (item.ItemId == Resource.Id.menuItem_rssDetail_share)
+            {
+                ShareItem(_item);
+            }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        private async void ShareItem(RssModel item)
+        {
+            await Share.RequestAsync(item.Rss);
         }
 
         private void EditItem(RssModel holderItem)

@@ -16,6 +16,7 @@ using Shared.Repository;
 using Shared.Services.Locale;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
+using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
@@ -91,8 +92,9 @@ namespace Droid.Screens.RssList
             }
         }
 
-        private void ShareItem(RssModel holderItem)
+        private async void ShareItem(RssModel holderItem)
         {
+            await Share.RequestAsync(holderItem.Rss);
         }
 
         private void EditItem(RssModel holderItem)
