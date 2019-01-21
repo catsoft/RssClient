@@ -20,11 +20,6 @@ namespace Droid.Screens.Main
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class MainActivity : FragmentActivity
     {
-        private readonly int _mainId = Resource.Id.menuItem_navigationMenu_main;
-        private readonly int _settingsId = Resource.Id.menuItem_navigationMenu_settings;
-        private readonly int _contactsId = Resource.Id.menuItem_navigationMenu_contacts;
-        private readonly int _aboutId = Resource.Id.menuItem_navigationMenu_about;
-
         private INavigator _navigator;
 
         protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
@@ -49,23 +44,28 @@ namespace Droid.Screens.Main
 
             _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
             
-            NavigationView.SetCheckedItem(_mainId);
+            NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
         }
 
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
         {
-            if (menuItem.ItemId == _mainId)
+            if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_main)
             {
                 _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
-            } else if (menuItem.ItemId == _settingsId)
+            } 
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
+            {
+                _navigator.Go(App.Container.Resolve<IWay<RecommendationViewModel, RecommendationViewModel.Way.WayData>>());
+            }
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
                 _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>());
             }
-            else if (menuItem.ItemId == _contactsId)
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
                 _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel, ContactsViewModel.Way.WayData>>());
             }
-            else if (menuItem.ItemId == _aboutId)
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {
                 _navigator.Go(App.Container.Resolve<IWay<AboutViewModel, AboutViewModel.Way.WayData>>());
             }

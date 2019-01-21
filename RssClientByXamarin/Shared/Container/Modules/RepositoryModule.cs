@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Droid.Repository;
 using RssClient.Repository;
 using Shared.Repository;
 
@@ -12,6 +13,7 @@ namespace Shared.Container.Modules
 
             builder.RegisterType<RssRepository>().As<IRssRepository>().SingleInstance();
             builder.RegisterType<RssMessagesRepository>().As<IRssMessagesRepository>().SingleInstance();
+            builder.RegisterType<RssRecommendedRepository>().As<IRssRecommendedRepository>().SingleInstance();
         }
     }
 }

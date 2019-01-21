@@ -4,6 +4,7 @@ using Droid.Screens.Close;
 using Droid.Screens.Contacts;
 using Droid.Screens.Main;
 using Droid.Screens.Navigation;
+using Droid.Screens.RecommendedRssList;
 using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssItemDetail;
 using Droid.Screens.RssList;
@@ -24,6 +25,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssItemDetailWay>().As<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.DataModel>>();
             builder.RegisterType<RssAllMessagesListWay>().As<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>();
             builder.RegisterType<RssListWay>().As<IWay<RssListViewModel, RssListViewModel.Way.WayData>>();
+            builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendationViewModel, RecommendationViewModel.Way.WayData>>();
             
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel, AboutViewModel.Way.WayData>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>();

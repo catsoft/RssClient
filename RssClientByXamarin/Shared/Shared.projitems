@@ -27,9 +27,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\IHaveId.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssRecommendationModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssMessagesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssRecommendedRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessagesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommendedRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\ILocale.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\INavigator.cs" />
@@ -39,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecomendationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListViewModel.cs" />

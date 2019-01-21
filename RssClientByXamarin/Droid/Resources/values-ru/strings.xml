@@ -14,6 +14,7 @@
     <string name="menuRssList_change">Изменить список</string>
 
     <string name="menuNavigation_main">Главная</string>
+    <string name="menuNavigation_recommended">Рекомендуемое</string>
     <string name="menuNavigation_settings">Настройки</string>
     <string name="menuNavigation_contacts">Контакты</string>
     <string name="menuNavigation_about">О программе</string>
@@ -40,6 +41,8 @@
 
     <string name="settings_title">Настройки</string>
     <string name="contacts_title">Контакты</string>
+    <string name="about_title">О программе</string>
+    <string name="recommended_title">Рекомендации</string>
 
     <string name="copy_clipboard">Скопировано: </string>
 </resources>

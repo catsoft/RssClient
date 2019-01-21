@@ -86,6 +86,9 @@
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
     <Compile Include="Screens\Navigation\TitleFragment.cs" />
+    <Compile Include="Screens\RecommendedRssList\RecommendedRssListAdapter.cs" />
+    <Compile Include="Screens\RecommendedRssList\RecommendedRssListFragment.cs" />
+    <Compile Include="Screens\RecommendedRssList\RecommendedRssListWay.cs" />
     <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssDetailItemFragment.cs" />
     <Compile Include="Screens\RssItemDetail\RssItemDetailWay.cs" />
@@ -125,6 +128,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_about.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_recommended.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -424,6 +431,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\info_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info_24.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\info_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\recommended_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\recommended_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\recommended_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\recommended_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\recommended_24.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
