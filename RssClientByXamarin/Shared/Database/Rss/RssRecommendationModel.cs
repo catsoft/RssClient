@@ -9,7 +9,15 @@ namespace Shared.Database.Rss
         public string Id { get; set; } = Guid.NewGuid().ToString();
         
         public string Rss { get; set; }
-        public string Category { get; set; }
+
+        private int _category;
+        
+        [Ignored]
+        public Categories Category
+        {
+            get => (Categories) _category;
+            set => _category = (int) value;
+        }
         
         public int Position { get; set; }
 
@@ -18,7 +26,7 @@ namespace Shared.Database.Rss
             
         }
 
-        public RssRecommendationModel(string rss, string category = null, int position = 0)
+        public RssRecommendationModel(string rss, Categories category = Categories.None, int position = 0)
         {
             Rss = rss;
             Category = category;

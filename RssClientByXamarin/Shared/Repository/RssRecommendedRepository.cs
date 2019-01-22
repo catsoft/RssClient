@@ -43,7 +43,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("http://www.dailymail.co.uk/articles.rss"),
                         new RssRecommendationModel("https://nypost.com/feed/"),
                     };
-                    newsList.ForEach(w => w.Category = "News");
+                    newsList.ForEach(w => w.Category = Categories.News);
 
                     var sportsList = new List<RssRecommendationModel>()
                     {
@@ -63,7 +63,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("https://www.triathlonmag.com.au/rss"),
                         new RssRecommendationModel("https://www.issf-sports.org/rss/news.html"),
                     };
-                    sportsList.ForEach(w => w.Category = "Sport");
+                    sportsList.ForEach(w => w.Category = Categories.Sport);
 
                     var technologyList = new List<RssRecommendationModel>()
                     {
@@ -88,7 +88,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("http://www.cnet.com/rss/news"),
                         new RssRecommendationModel("http://feeds.howtogeek.com/HowToGeek"),
                     };
-                    technologyList.ForEach(w => w.Category = "Technology");
+                    technologyList.ForEach(w => w.Category = Categories.Technology);
 
                     var businessList = new List<RssRecommendationModel>()
                     {
@@ -108,7 +108,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("http://feeds.feedburner.com/CalculatedRisk"),
                         new RssRecommendationModel("https://www.huffingtonpost.com/section/business/feed"),
                     };
-                    businessList.ForEach(w => w.Category = "Business");
+                    businessList.ForEach(w => w.Category = Categories.Business);
 
                     var politicsList = new List<RssRecommendationModel>()
                     {
@@ -126,7 +126,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("https://www.politico.com/rss/politics.xml"),
                         new RssRecommendationModel("https://www.realwire.com/rss/feeds.asp?cat=Politics"),
                     };
-                    politicsList.ForEach(w => w.Category = "Politics");
+                    politicsList.ForEach(w => w.Category = Categories.Politics);
 
                     var gamingList = new List<RssRecommendationModel>()
                     {
@@ -150,7 +150,7 @@ namespace Droid.Repository
                         new RssRecommendationModel("http://feeds.videogamer.com/rss/allupdates.xml"),
                         new RssRecommendationModel("http://www.pushsquare.com/feeds/latest"),
                     };
-                    gamingList.ForEach(w => w.Category = "Gaming");
+                    gamingList.ForEach(w => w.Category = Categories.Gaming);
 
                     var allList = new List<RssRecommendationModel>();
                     allList.AddRange(newsList);
@@ -171,6 +171,11 @@ namespace Droid.Repository
         public IQueryable<RssRecommendationModel> GetAll()
         {
             return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position);
+        }
+
+        public IQueryable<Categories> GetCategories()
+        {
+            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).Select(w => w.Category).Distinct();
         }
     }
 }

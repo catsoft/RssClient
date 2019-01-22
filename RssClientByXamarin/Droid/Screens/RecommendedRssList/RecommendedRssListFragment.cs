@@ -30,7 +30,7 @@ namespace Droid.Screens.RecommendedRssList
 
             var repository = App.Container.Resolve<IRssRecommendedRepository>();
             var items = repository.GetAll();
-            var adapter = new RecommendedRssListAdapter(items);
+            var adapter = new RecommendedRssListAdapter(items, Activity);
             list.SetAdapter(adapter);
 
             return view;

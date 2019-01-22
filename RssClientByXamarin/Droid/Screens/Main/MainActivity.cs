@@ -55,7 +55,7 @@ namespace Droid.Screens.Main
             } 
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RecommendationViewModel, RecommendationViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way.WayData>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
