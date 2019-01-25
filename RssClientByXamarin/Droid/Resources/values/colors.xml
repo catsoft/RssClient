@@ -14,6 +14,6 @@
 
     <color name="divider">#777777</color>
     
-    <color name="header_background">#777777</color>
+    <color name="category_item_background">#EEEEEE</color>
     
 </resources>

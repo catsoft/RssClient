@@ -1925,6 +1925,9 @@ namespace Droid
 			// aapt resource value: 0x7f0b0003
 			public const int cardview_shadow_start_color = 2131427331;
 			
+			// aapt resource value: 0x7f0b0062
+			public const int category_item_background = 2131427426;
+			
 			// aapt resource value: 0x7f0b005c
 			public const int colorAccent = 2131427420;
 			
@@ -2002,9 +2005,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0b0060
 			public const int fragment_background = 2131427424;
-			
-			// aapt resource value: 0x7f0b0062
-			public const int header_background = 2131427426;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int highlighted_text_material_dark = 2131427358;
