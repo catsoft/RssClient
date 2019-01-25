@@ -8,6 +8,7 @@ using Autofac;
 using Droid.Repository;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Navigation;
+using Droid.Services.Helpers;
 using Shared;
 using Shared.Database.Rss;
 
@@ -31,7 +32,7 @@ namespace Droid.Screens.RecommendedRssList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            Title = _categories.ToString();
+            Title = _categories.ToLocaleString(Context);
 
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 

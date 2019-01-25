@@ -55,4 +55,13 @@
     <string name="contacts_discordLink">asura#0938</string>
 
     <string name="copy_clipboard">copy: </string>
+    <string name="recommended_rss_add_rss_toast">Added:</string>
+
+    <string name="category_news">News</string>
+    <string name="category_sport">Sport</string>
+    <string name="category_technology">Technology</string>
+    <string name="category_business">Business</string>
+    <string name="category_politics">Politics</string>
+    <string name="category_gaming">Gaming</string>
+
 </resources>

@@ -4670,6 +4670,24 @@ namespace Droid
 			// aapt resource value: 0x7f0c0029
 			public const int bottom_sheet_behavior = 2131492905;
 			
+			// aapt resource value: 0x7f0c0062
+			public const int category_business = 2131492962;
+			
+			// aapt resource value: 0x7f0c0064
+			public const int category_gaming = 2131492964;
+			
+			// aapt resource value: 0x7f0c005f
+			public const int category_news = 2131492959;
+			
+			// aapt resource value: 0x7f0c0063
+			public const int category_politics = 2131492963;
+			
+			// aapt resource value: 0x7f0c0060
+			public const int category_sport = 2131492960;
+			
+			// aapt resource value: 0x7f0c0061
+			public const int category_technology = 2131492961;
+			
 			// aapt resource value: 0x7f0c002a
 			public const int character_counter_content_description = 2131492906;
 			
@@ -4783,6 +4801,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0c0034
 			public const int path_password_strike_through = 2131492916;
+			
+			// aapt resource value: 0x7f0c005e
+			public const int recommended_rss_add_rss_toast = 2131492958;
 			
 			// aapt resource value: 0x7f0c0054
 			public const int recommended_title = 2131492948;

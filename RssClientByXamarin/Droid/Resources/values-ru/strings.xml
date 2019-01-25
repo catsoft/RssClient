@@ -45,4 +45,13 @@
     <string name="recommended_title">Рекомендации</string>
 
     <string name="copy_clipboard">Скопировано: </string>
+    <string name="recommended_rss_add_rss_toast">Добавлено:</string>
+
+    <string name="category_news">Новости</string>
+    <string name="category_sport">Спорт</string>
+    <string name="category_technology">Технологии</string>
+    <string name="category_business">Бизнес</string>
+    <string name="category_politics">Политика</string>
+    <string name="category_gaming">Игры</string>
+    
 </resources>

@@ -5,6 +5,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
+using Droid.Services.Helpers;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Navigator;
@@ -24,7 +25,7 @@ namespace Droid.Screens.RecommendedCategoryList
             {
                 var item = Items.ElementAt(position);
                 recommendedHeaderViewHolder.Categories = item;
-                recommendedHeaderViewHolder.TitleView.Text = item.ToString();
+                recommendedHeaderViewHolder.TitleView.Text = item.ToLocaleString(Activity);
             }
         }
 

@@ -31,7 +31,7 @@ namespace Droid.Screens.RecommendedRssList
         {
             if (holder is RssRecommendedViewHolder itemViewHolder)
             {
-                var item = Items.ElementAt(position) as RssRecommendationModel;
+                var item = Items.ElementAt(position);
                 itemViewHolder.TitleView.Text = item.Rss;
                 itemViewHolder.RssUrl = item.Rss;
                 
@@ -57,7 +57,7 @@ namespace Droid.Screens.RecommendedRssList
             {
                 var rssRepository = App.Container.Resolve<IRssRepository>();
                 rssRepository.InsertByUrl(viewHolder.RssUrl);
-                this.Activity.Toast("Added " + viewHolder.RssUrl);
+                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.RssUrl);
             };
             
             return viewHolder;
