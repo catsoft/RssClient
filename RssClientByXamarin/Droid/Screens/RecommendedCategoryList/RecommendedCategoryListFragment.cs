@@ -37,9 +37,9 @@ namespace Droid.Screens.RecommendedCategoryList
         }
     }
 
-    public class RecommendedCategoriesRssListAdapter : WithItemsAdapter<Categories, IQueryable<Categories>>
+    public class RecommendedCategoriesRssListAdapter : WithItemsAdapter<Categories, IEnumerable<Categories>>
     {
-        public RecommendedCategoriesRssListAdapter(IQueryable<Categories> items, Activity activity) : base(items, activity)
+        public RecommendedCategoriesRssListAdapter(IEnumerable<Categories> items, Activity activity) : base(items, activity)
         {
         }
 
@@ -47,7 +47,7 @@ namespace Droid.Screens.RecommendedCategoryList
         {
             if (holder is RssRecommendedCategoryViewHolder recommendedHeaderViewHolder)
             {
-                var item = Items.ElementAt(position);
+                var item = (Categories)Items.ElementAt(position);
                 recommendedHeaderViewHolder.TitleView.Text = item.ToString();
             }
         }

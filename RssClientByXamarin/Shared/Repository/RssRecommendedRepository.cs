@@ -173,9 +173,9 @@ namespace Droid.Repository
             return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position);
         }
 
-        public IQueryable<Categories> GetCategories()
+        public IEnumerable<Categories> GetCategories()
         {
-            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).Select(w => w.Category).Distinct();
+            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).ToList().Select(w => w.Category).Distinct();
         }
     }
 }

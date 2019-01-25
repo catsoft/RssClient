@@ -10,13 +10,13 @@ namespace Shared.Database.Rss
         
         public string Rss { get; set; }
 
-        private int _category;
+        public int CategoryInt { get; set; }
         
         [Ignored]
         public Categories Category
         {
-            get => (Categories) _category;
-            set => _category = (int) value;
+            get => (Categories) CategoryInt;
+            set => CategoryInt = (int) value;
         }
         
         public int Position { get; set; }

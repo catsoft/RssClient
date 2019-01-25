@@ -10,7 +10,7 @@ namespace Droid.Screens.RecommendedCategoryList
         
         public RssRecommendedCategoryViewHolder(View itemView) : base(itemView)
         {
-            TitleView = itemView.FindViewById<TextView>(Resource.Id.recyclerView_rssRecommendedCategoryList_list);
+            TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_headerRecommendedRssList_title);
         }
     }
 }
