@@ -1,17 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Repository;
-using Droid.Screens.Base.Adapters;
 using Droid.Screens.Navigation;
 using Droid.Screens.RecommendedRssList;
 using Java.Util;
 using Shared;
-using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedCategoryList
 {
@@ -22,6 +17,8 @@ namespace Droid.Screens.RecommendedCategoryList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            Title = GetText(Resource.String.recommended_title);
+            
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssRecommendedCategoryList_list);
@@ -34,29 +31,6 @@ namespace Droid.Screens.RecommendedCategoryList
             list.SetAdapter(adapter);
             
             return view;
-        }
-    }
-
-    public class RecommendedCategoriesRssListAdapter : WithItemsAdapter<Categories, IEnumerable<Categories>>
-    {
-        public RecommendedCategoriesRssListAdapter(IEnumerable<Categories> items, Activity activity) : base(items, activity)
-        {
-        }
-
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        {
-            if (holder is RssRecommendedCategoryViewHolder recommendedHeaderViewHolder)
-            {
-                var item = (Categories)Items.ElementAt(position);
-                recommendedHeaderViewHolder.TitleView.Text = item.ToString();
-            }
-        }
-
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-        {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_recommended_category_rss, parent,false);
-            
-            return new RssRecommendedCategoryViewHolder(view);
         }
     }
 }

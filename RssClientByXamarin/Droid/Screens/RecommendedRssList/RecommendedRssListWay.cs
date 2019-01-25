@@ -3,7 +3,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class RecommendedRssListWay : RecommendationViewModel.Way
+    public class RecommendedRssListWay : RecommendedViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -14,7 +14,7 @@ namespace Droid.Screens.RecommendedRssList
         
         public override void Go()
         {
-            _fragmentActivity.AddFragment(new RecommendedRssListFragment(), CacheState.Replace);
+            _fragmentActivity.AddFragment(new RecommendedRssListFragment(Data.Categories), CacheState.Replace);
         }
     }
 }

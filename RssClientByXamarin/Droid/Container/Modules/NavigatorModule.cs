@@ -27,7 +27,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssAllMessagesListWay>().As<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>();
             builder.RegisterType<RssListWay>().As<IWay<RssListViewModel, RssListViewModel.Way.WayData>>();
             builder.RegisterType<RecommendedCategoryListWay>().As<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way.WayData>>();
-            builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendationViewModel, RecommendationViewModel.Way.WayData>>();
+            builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendedViewModel, RecommendedViewModel.Way.WayData>>();
             
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel, AboutViewModel.Way.WayData>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>();

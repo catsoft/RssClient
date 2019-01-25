@@ -7,6 +7,7 @@ namespace Droid.Repository
     public interface IRssRecommendedRepository
     {
         IQueryable<RssRecommendationModel> GetAll();
+        IQueryable<RssRecommendationModel> GetAllByCategory(Categories categories);
         IEnumerable<Categories> GetCategories();
     }
 }

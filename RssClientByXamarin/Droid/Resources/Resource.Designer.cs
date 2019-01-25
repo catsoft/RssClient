@@ -3632,6 +3632,9 @@ namespace Droid
 			// aapt resource value: 0x7f09007b
 			public const int image = 2131296379;
 			
+			// aapt resource value: 0x7f0900d5
+			public const int imageButton_rssRecommendedItem_add = 2131296469;
+			
 			// aapt resource value: 0x7f0900d1
 			public const int imageView_allMessagesItem_image = 2131296465;
 			
@@ -3643,9 +3646,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0900df
 			public const int imageView_messagesItem_image = 2131296479;
-			
-			// aapt resource value: 0x7f0900d5
-			public const int imageView_rssRecommendedItem_add = 2131296469;
 			
 			// aapt resource value: 0x7f0900d3
 			public const int imageView_rssRecommendedItem_rssIcon = 2131296467;

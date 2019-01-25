@@ -5,17 +5,18 @@ using FFImageLoading.Views;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class RssRecommendedItemViewHolder : RecyclerView.ViewHolder
+    public class RssRecommendedViewHolder : RecyclerView.ViewHolder
     {
         public ImageViewAsync RssIcon { get; }
         public TextView TitleView { get; }
-        public ImageView AddImageView { get; }
+        public ImageButton AddImageView { get; }
+        public string RssUrl { get; set; }
         
-        public RssRecommendedItemViewHolder(View itemView) : base(itemView)
+        public RssRecommendedViewHolder(View itemView) : base(itemView)
         {
             RssIcon = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_rssRecommendedItem_rssIcon);
             TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_rssRecommendedItem_title);
-            AddImageView = itemView.FindViewById<ImageView>(Resource.Id.imageView_rssRecommendedItem_add);
+            AddImageView = itemView.FindViewById<ImageButton>(Resource.Id.imageButton_rssRecommendedItem_add);
         }
     }
 }

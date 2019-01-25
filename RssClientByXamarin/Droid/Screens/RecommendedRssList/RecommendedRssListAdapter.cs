@@ -6,11 +6,13 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.RecommendedCategoryList;
 using FFImageLoading;
 using FFImageLoading.Work;
 using Realms;
+using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Navigator;
@@ -27,10 +29,11 @@ namespace Droid.Screens.RecommendedRssList
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            if (holder is RssRecommendedItemViewHolder itemViewHolder)
+            if (holder is RssRecommendedViewHolder itemViewHolder)
             {
                 var item = Items.ElementAt(position) as RssRecommendationModel;
                 itemViewHolder.TitleView.Text = item.Rss;
+                itemViewHolder.RssUrl = item.Rss;
                 
                 var uri = new Uri(item.Rss);
                 var favicon = $"{uri.Scheme}://{uri.Host}/favicon.ico";
@@ -48,14 +51,16 @@ namespace Droid.Screens.RecommendedRssList
             
             var view = inflater.Inflate(Resource.Layout.list_item_recommended_rss, parent, false);
 
-            view.Click += (sender, args) =>
+            var viewHolder = new RssRecommendedViewHolder(view);
+
+            viewHolder.AddImageView.Click += (sender, args) =>
             {
-                var navigator = App.Container.Resolve<INavigator>();
-                var way = App.Container.Resolve<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way>>();
-                navigator.Go(way);
+                var rssRepository = App.Container.Resolve<IRssRepository>();
+                rssRepository.InsertByUrl(viewHolder.RssUrl);
+                this.Activity.Toast("Added " + viewHolder.RssUrl);
             };
             
-            return new RssRecommendedItemViewHolder(view);
+            return viewHolder;
         }
     }
 }

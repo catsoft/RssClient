@@ -86,13 +86,14 @@
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
     <Compile Include="Screens\Navigation\TitleFragment.cs" />
+    <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoriesRssListAdapter.cs" />
     <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoryListFragment.cs" />
     <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoryListWay.cs" />
     <Compile Include="Screens\RecommendedCategoryList\RssRecommendedCategoryViewHolder.cs" />
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListAdapter.cs" />
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListFragment.cs" />
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListWay.cs" />
-    <Compile Include="Screens\RecommendedRssList\RssRecommendedItemViewHolder.cs" />
+    <Compile Include="Screens\RecommendedRssList\RssRecommendedViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssDetailItemFragment.cs" />
     <Compile Include="Screens\RssItemDetail\RssItemDetailWay.cs" />
