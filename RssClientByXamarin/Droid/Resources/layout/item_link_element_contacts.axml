@@ -24,9 +24,10 @@
             android:id="@+id/textView_linkElementContacts_title"
             style="@style/TextView.Title"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="left"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:layout_margin="16dp"/>
 
     </LinearLayout>
 
