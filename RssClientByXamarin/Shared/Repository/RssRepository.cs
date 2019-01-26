@@ -22,23 +22,24 @@ namespace Shared.Repository
             _client = client;
             _log = log;
 
-            if (!_database.MainThreadRealm.All<RssModel>().Any())
-            {
-                InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-                InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-                InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-                InsertByUrl("http://www.old-hard.ru/rss");
-                InsertByUrl("https://lenta.ru/rss/news");
-                InsertByUrl("https://bad_link.sad");
-                InsertByUrl("https://lenta.ru/rss/articles");
-                InsertByUrl("https://lenta.ru/rss/top7");
-                InsertByUrl("https://lenta.ru/rss/news/russia");
-            }
+            // Test array
+//            if (!_database.MainThreadRealm.All<RssModel>().Any())
+//            {
+//                InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
+//                InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
+//                InsertByUrl("http://www.calend.ru/img/export/calend.rss");
+//                InsertByUrl("http://www.old-hard.ru/rss");
+//                InsertByUrl("https://lenta.ru/rss/news");
+//                InsertByUrl("https://bad_link.sad");
+//                InsertByUrl("https://lenta.ru/rss/articles");
+//                InsertByUrl("https://lenta.ru/rss/top7");
+//                InsertByUrl("https://lenta.ru/rss/news/russia");
+//            }
 
-            Init();
+            Update();
         }
 
-        public async void Init()
+        public async void Update()
         {
             await Task.Run(() =>
             {

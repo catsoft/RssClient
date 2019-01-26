@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Container;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Droid.Screens.RecommendedRssList;
@@ -12,6 +13,9 @@ namespace Droid.Screens.RecommendedCategoryList
 {
     public class RecommendedCategoryListFragment : TitleFragment
     {
+        [Inject]
+        private IRssRecommendedRepository _repository;
+
         protected override int LayoutId => Resource.Layout.fragment_recommended_category_list;
         public override bool RootFragment => true;
 
@@ -25,8 +29,7 @@ namespace Droid.Screens.RecommendedCategoryList
             list.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
 
-            var repository = App.Container.Resolve<IRssRecommendedRepository>();
-            var items = repository.GetCategories();
+            var items = _repository.GetCategories();
             var adapter = new RecommendedCategoriesRssListAdapter(items, Activity);
             list.SetAdapter(adapter);
             

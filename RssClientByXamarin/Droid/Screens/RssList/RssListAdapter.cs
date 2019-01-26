@@ -99,8 +99,10 @@ namespace Droid.Screens.RssList
 
         private void EditItem(RssModel holderItem)
         {
-            var intent = RssEditActivity.StartActivity(Activity, holderItem.Id);
-            Activity.StartActivity(intent);
+            var navigator = App.Container.Resolve<INavigator>();
+            var editWay = App.Container.Resolve<IWay<RssEditViewModel, RssEditViewModel.Way.WayData>>();
+            editWay.Data = new RssEditViewModel.Way.WayData(holderItem.Id);
+            navigator.Go(editWay);
         }
 
         private void DeleteItem(RssModel holderItem)
@@ -117,8 +119,8 @@ namespace Droid.Screens.RssList
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var way = App.Container.Resolve<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.DataModel>>();
-            way.Data = new RssItemDetailViewModel.Way.DataModel(holderItem);
+            var way = App.Container.Resolve<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.WayData>>();
+            way.Data = new RssItemDetailViewModel.Way.WayData(holderItem);
             _navigator.Go(way);
         }
     }

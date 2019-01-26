@@ -25,9 +25,9 @@ namespace Droid.Screens.Contacts
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-
             Title = Activity.GetString(Resource.String.contacts_title);
+            
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var root = view.FindViewById<LinearLayout>(Resource.Id.linearLayout_contacts_root);
 

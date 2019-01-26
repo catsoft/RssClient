@@ -4,6 +4,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Container;
 using Droid.Infrastructure;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessagesList;
@@ -18,8 +19,10 @@ namespace Droid.Screens.RssList
 {
     public class RssListFragment : TitleFragment
     {
-        private RecyclerView _recyclerView;
+        [Inject]
         private IRssRepository _rssRepository;
+        
+        [Inject]
         private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
@@ -29,7 +32,7 @@ namespace Droid.Screens.RssList
         {
             
         }
-
+        
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_rssList, menu);
@@ -37,9 +40,6 @@ namespace Droid.Screens.RssList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            _rssRepository = App.Container.Resolve<IRssRepository>();
-            _navigator = App.Container.Resolve<INavigator>();
-
             Title = Activity?.GetText(Resource.String.rssList_title);
 
             HasOptionsMenu = true;
@@ -49,12 +49,12 @@ namespace Droid.Screens.RssList
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             fab.Click += FabOnClick;
 
-            _recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssList_list);
-            _recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
+            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssList_list);
+            recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
 
             var items = _rssRepository.GetList();
             var adapter = new RssListAdapter(items, Activity);
-            _recyclerView.SetAdapter(adapter);
+            recyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
             items.SubscribeForNotifications((sender, changes, error) =>
@@ -95,7 +95,8 @@ namespace Droid.Screens.RssList
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            RssCreateActivity.StartActivity(Activity);
+            var createWay = App.Container.Resolve<IWay<RssCreateViewModel,RssCreateViewModel.Way.WayData>>();
+            _navigator.Go(createWay);
         }
     }
 }

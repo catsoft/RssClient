@@ -1,12 +1,12 @@
-﻿using Android.Graphics;
+﻿using System;
+using Android.Graphics;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Views;
 
 namespace Droid.Screens.Navigation
 {
-    public abstract class TitleFragment : Fragment
+    public abstract class TitleFragment : InjectFragment
     {
         protected abstract int LayoutId { get; }
 

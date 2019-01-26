@@ -1,12 +1,9 @@
-using System.Linq;
-using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
 using Autofac;
+using Droid.Container;
 using Droid.Repository;
-using Droid.Screens.Base.Adapters;
 using Droid.Screens.Navigation;
 using Droid.Services.Helpers;
 using Shared;
@@ -16,7 +13,11 @@ namespace Droid.Screens.RecommendedRssList
 {
     public class RecommendedRssListFragment : TitleFragment
     {
-        private readonly Categories _categories;
+        [Inject]
+        private IRssRecommendedRepository _repository;        
+        
+        private Categories _categories;
+        
         protected override int LayoutId => Resource.Layout.fragment_recommended;
         public override bool RootFragment => false;
 
@@ -29,6 +30,23 @@ namespace Droid.Screens.RecommendedRssList
         {
             _categories = categories;
         }
+        
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            
+            outState.PutInt(nameof(_categories), (int)_categories);
+        }
+
+        public override void OnViewStateRestored(Bundle savedInstanceState)
+        {
+            base.OnViewStateRestored(savedInstanceState);
+
+            if (savedInstanceState != null)
+            {
+                _categories = (Categories)savedInstanceState.GetInt(nameof(_categories));
+            }
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -40,8 +58,7 @@ namespace Droid.Screens.RecommendedRssList
             list.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
 
-            var repository = App.Container.Resolve<IRssRecommendedRepository>();
-            var items = repository.GetAllByCategory(_categories);
+            var items = _repository.GetAllByCategory(_categories);
             var adapter = new RecommendedRssListAdapter(items, Activity);
             list.SetAdapter(adapter);
 

@@ -4,6 +4,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Container;
 using Droid.Infrastructure;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssCreate;
@@ -16,7 +17,12 @@ namespace Droid.Screens.RssAllMessagesList
 {
     public class RssAllMessagesListFragment : TitleFragment
     {
+        [Inject]
         private INavigator _navigator;
+        
+        [Inject]
+        private IRssMessagesRepository _rssMessagesRepository;
+
         protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
         public override bool RootFragment => true;
         
@@ -32,17 +38,13 @@ namespace Droid.Screens.RssAllMessagesList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            _navigator = App.Container.Resolve<INavigator>();
-
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-
             Title = Activity.GetText(Resource.String.rssList_title);
+            
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             HasOptionsMenu = true;
 
-            var rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
-
-            var items = rssMessagesRepository.GetAllMessages();
+            var items = _rssMessagesRepository.GetAllMessages();
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             var adapter = new RssAllMessagesListAdapter(items, Activity);
@@ -66,7 +68,8 @@ namespace Droid.Screens.RssAllMessagesList
 
         private void OnFabClick(object sender, EventArgs e)
         {
-            RssCreateActivity.StartActivity(Activity);
+            var createWay = App.Container.Resolve<IWay<RssCreateViewModel,RssCreateViewModel.Way.WayData>>();
+            _navigator.Go(createWay);
         }
     }
 }

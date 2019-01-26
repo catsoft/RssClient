@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Autofac;
+using Droid.Container;
 using Droid.Infrastructure;
 using Droid.Screens.Contacts;
 using Droid.Screens.Navigation;
@@ -20,10 +21,11 @@ namespace Droid.Screens.Main
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
     public class MainActivity : FragmentActivity
     {
+        [Inject]
         private INavigator _navigator;
 
         protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
-        protected override int ResourceView => Resource.Layout.activity_rss_list;
+        protected override int ResourceView => Resource.Layout.activity_main;
         public static MainActivity Instance { get; private set; }
 
         public static void CreateActivity(Activity activity)
@@ -35,16 +37,17 @@ namespace Droid.Screens.Main
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Instance = this;
+            this.Inject();
 
-            _navigator = App.Container.Resolve<INavigator>();
-            
             base.OnCreate(savedInstanceState);
 
             Title = GetText(Resource.String.rssList_title);
 
-            _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
-            
-            NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
+            if (savedInstanceState == null)
+            {
+                _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
+            }
         }
 
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
