@@ -130,7 +130,7 @@ namespace Droid.Repository
 
                     var gamingList = new List<RssRecommendationModel>()
                     {
-                        new RssRecommendationModel("https://old-hard.ru/rss"),
+                        new RssRecommendationModel("http://old-hard.ru/rss"),
                         new RssRecommendationModel("https://www.gamespot.com/feeds/mashup/"),
                         new RssRecommendationModel("http://www.nintendolife.com/feeds/latest"),
                         new RssRecommendationModel("http://www.joystiq.com/rss.xml"),
