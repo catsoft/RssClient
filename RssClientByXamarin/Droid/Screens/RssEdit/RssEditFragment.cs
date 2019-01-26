@@ -49,23 +49,18 @@ namespace Droid.Screens.RssEdit
             outState.PutString(nameof(_itemId), _itemId);
         }
 
-        public override void OnViewStateRestored(Bundle savedInstanceState)
+        protected override void RestoreState(Bundle saved)
         {
-            base.OnViewStateRestored(savedInstanceState);
-
-            if (savedInstanceState != null)
-            {
-                _itemId = savedInstanceState.GetString(nameof(_itemId));
-            }
+            _itemId = saved.GetString(nameof(_itemId));
         }
-        
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            
             Title = GetText(Resource.String.edit_title);
 
             var item = _rssRepository.Find(_itemId);
-
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var sendButton = view.FindViewById<Button>(Resource.Id.button_rssEdit_submit);
             sendButton.Click += SendButtonOnClick;

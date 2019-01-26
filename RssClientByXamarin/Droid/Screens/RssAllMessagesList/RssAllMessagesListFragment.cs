@@ -30,18 +30,18 @@ namespace Droid.Screens.RssAllMessagesList
         {
             
         }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        
+        protected override void RestoreState(Bundle saved)
         {
-            inflater.Inflate(Resource.Menu.menu_rssList, menu);
+            
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            Title = Activity.GetText(Resource.String.rssList_title);
-            
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            Title = Activity.GetText(Resource.String.rssList_title);
+            
             HasOptionsMenu = true;
 
             var items = _rssMessagesRepository.GetAllMessages();
@@ -54,6 +54,11 @@ namespace Droid.Screens.RssAllMessagesList
             fab.Click += OnFabClick;
 
             return view;
+        }
+        
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.menu_rssList, menu);
         }
         
         public override bool OnOptionsItemSelected(IMenuItem item)

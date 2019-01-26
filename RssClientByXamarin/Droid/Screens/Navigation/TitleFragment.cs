@@ -8,6 +8,7 @@ namespace Droid.Screens.Navigation
 {
     public abstract class TitleFragment : InjectFragment
     {
+        protected abstract void RestoreState(Bundle saved);
         protected abstract int LayoutId { get; }
 
         private string _title;
@@ -27,6 +28,9 @@ namespace Droid.Screens.Navigation
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            if(savedInstanceState != null)
+                RestoreState(savedInstanceState);
+            
             var view = inflater.Inflate(LayoutId, container, false);
 
             var color = ContextCompat.GetColor(Context, Resource.Color.fragment_background);

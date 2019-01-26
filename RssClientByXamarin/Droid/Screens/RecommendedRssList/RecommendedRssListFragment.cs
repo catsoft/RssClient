@@ -17,7 +17,7 @@ namespace Droid.Screens.RecommendedRssList
         private IRssRecommendedRepository _repository;        
         
         private Categories _categories;
-        
+
         protected override int LayoutId => Resource.Layout.fragment_recommended;
         public override bool RootFragment => false;
 
@@ -38,21 +38,17 @@ namespace Droid.Screens.RecommendedRssList
             outState.PutInt(nameof(_categories), (int)_categories);
         }
 
-        public override void OnViewStateRestored(Bundle savedInstanceState)
+        
+        protected override void RestoreState(Bundle saved)
         {
-            base.OnViewStateRestored(savedInstanceState);
-
-            if (savedInstanceState != null)
-            {
-                _categories = (Categories)savedInstanceState.GetInt(nameof(_categories));
-            }
+            _categories = (Categories)saved.GetInt(nameof(_categories));
         }
-
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            Title = _categories.ToLocaleString(Context);
-
             var view = base.OnCreateView(inflater, container, savedInstanceState);
+            
+            Title = _categories.ToLocaleString(Context);
 
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssRecommendedList_list);
             list.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));

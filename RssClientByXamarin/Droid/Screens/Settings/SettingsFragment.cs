@@ -14,6 +14,11 @@ namespace Droid.Screens.Settings
             
         }
 
+        protected override void RestoreState(Bundle saved)
+        {
+            
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);

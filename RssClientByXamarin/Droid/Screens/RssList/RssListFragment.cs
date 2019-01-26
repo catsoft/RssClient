@@ -33,11 +33,11 @@ namespace Droid.Screens.RssList
             
         }
         
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        protected override void RestoreState(Bundle saved)
         {
-            inflater.Inflate(Resource.Menu.menu_rssList, menu);
+            
         }
-
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Title = Activity?.GetText(Resource.String.rssList_title);
@@ -81,6 +81,11 @@ namespace Droid.Screens.RssList
             });
 
             return view;
+        }
+        
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.menu_rssList, menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

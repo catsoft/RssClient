@@ -31,6 +31,11 @@ namespace Droid.Screens.RssCreate
         {
             
         }
+        
+        protected override void RestoreState(Bundle saved)
+        {
+            
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

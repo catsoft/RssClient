@@ -19,6 +19,15 @@ namespace Droid.Screens.RecommendedCategoryList
         protected override int LayoutId => Resource.Layout.fragment_recommended_category_list;
         public override bool RootFragment => true;
 
+        public RecommendedCategoryListFragment()
+        {
+            
+        }
+        
+        protected override void RestoreState(Bundle saved)
+        {
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Title = GetText(Resource.String.recommended_title);

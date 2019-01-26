@@ -36,7 +36,6 @@ namespace Droid.Screens.RssItemDetail
         private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
-        
         public override bool RootFragment => false;
         
         public RssDetailItemFragment()
@@ -56,14 +55,9 @@ namespace Droid.Screens.RssItemDetail
             outState.PutString(nameof(_itemId), _itemId);
         }
 
-        public override void OnViewStateRestored(Bundle savedInstanceState)
+        protected override void RestoreState(Bundle saved)
         {
-            base.OnViewStateRestored(savedInstanceState);
-
-            if (savedInstanceState != null)
-            {
-                _itemId = savedInstanceState.GetString(nameof(_itemId));
-            }
+            _itemId = saved.GetString(nameof(_itemId));
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
