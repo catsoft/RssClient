@@ -15,7 +15,7 @@ namespace Droid.Screens.Navigation
     public abstract class BurgerActivity : ToolbarActivity, NavigationView.IOnNavigationItemSelectedListener,
         View.IOnClickListener
     {
-        protected bool IsHomeToggle = true;
+        protected bool IsHomeToggle { get; set; } = true;
         
         public ActionBarDrawerToggle Toggle { get; private set; }
 
@@ -23,9 +23,21 @@ namespace Droid.Screens.Navigation
         protected NavigationView NavigationView { get; private set; }
         protected int DrawerGravity { get; } = (int) GravityFlags.Start;
 
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            
+            outState.PutBoolean(nameof(IsHomeToggle), IsHomeToggle);
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            if (savedInstanceState != null)
+            {
+                IsHomeToggle = savedInstanceState.GetBoolean(nameof(IsHomeToggle));
+            }
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
@@ -37,6 +49,8 @@ namespace Droid.Screens.Navigation
 
             NavigationView = FindViewById<NavigationView>(Resource.Id.navigation_view_all);
             NavigationView.SetNavigationItemSelectedListener(this);
+            
+            Toggle.OnDrawerSlide(DrawerLayout, IsHomeToggle ? 0 : 1);
         }
 
         public override void OnBackPressed()
