@@ -12,6 +12,7 @@ using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;
+using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemDetail
 {
@@ -46,8 +47,32 @@ namespace Droid.Screens.RssItemDetail
             var holder = new RssMessageViewHolder(view);
 
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
-
+            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
+            
             return holder;
+        }
+
+        private void ItemLongClick(RssMessageModel holderItem, object sender)
+        {
+            var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
+            menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
+            menu.Inflate(Resource.Menu.contextMenu_rssDetailList);
+            menu.Show();
+        }
+
+        private void MenuClick(RssMessageModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
+        {
+            switch (eventArgs.Item.ItemId)
+            {
+                case Resource.Id.menuItem_rssDetailList_contextShare:
+                    ShareItem(holderItem);
+                    break;
+            }   
+        }
+
+        private async void ShareItem(RssMessageModel holderItem)
+        {
+            await Share.RequestAsync(holderItem.Url);
         }
 
         private void OpenContentActivity(RssMessageModel item)

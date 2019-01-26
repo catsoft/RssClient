@@ -26,6 +26,8 @@
     <string name="contextMenuRssList_edit">Редактировать</string>
     <string name="contextMenuRssList_share">Поделиться</string>
 
+    <string name="contextMenuRssDetailList_share">Поделиться</string>
+
     <string name="rssDeleteDialog_positiveTitle">Да</string>
     <string name="rssDeleteDialog_negativeTitle">Нет</string>
     <string name="rssDeleteDialog_Title">Вы уверены?</string>

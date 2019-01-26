@@ -26,6 +26,8 @@
     <string name="contextMenuRssList_edit">Edit</string>
     <string name="contextMenuRssList_share">Share</string>
 
+    <string name="contextMenuRssDetailList_share">Share</string>
+
     <string name="rssDeleteDialog_positiveTitle">Yes</string>
     <string name="rssDeleteDialog_negativeTitle">No</string>
     <string name="rssDeleteDialog_Title">Are you sure?</string>
