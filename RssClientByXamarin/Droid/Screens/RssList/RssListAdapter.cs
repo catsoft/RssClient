@@ -6,6 +6,7 @@ using Android.Views;
 using Autofac;
 using Droid.Infrastructure;
 using Droid.Screens.Base.Adapters;
+using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.RssEdit;
 using FFImageLoading;
 using FFImageLoading.Work;
@@ -20,11 +21,18 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-	public class RssListAdapter : WithItemsAdapter<RssModel, IQueryable<RssModel>>
+	public class RssListAdapter : SwipeListAdapter<RssModel, IQueryable<RssModel>>
     {
 	    private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly INavigator _navigator;
+
+        public override void OnItemDismiss(int position)
+        {
+            var item = Items.ElementAt(position);
+            _rssRepository.Remove(item);
+            NotifyItemRemoved(position);
+        }
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
         {
@@ -65,7 +73,6 @@ namespace Droid.Screens.RssList
 
             return holder;
         }
-
 
         private void ItemLongClick(RssModel holderItem, object sender)
         {

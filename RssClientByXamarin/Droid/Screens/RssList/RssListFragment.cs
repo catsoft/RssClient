@@ -2,10 +2,12 @@
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
+using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
 using Droid.Infrastructure;
+using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
@@ -57,6 +59,10 @@ namespace Droid.Screens.RssList
             recyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
+            var callback = new SwipeTouchHelperCallback(adapter);
+            var touchHelper = new ItemTouchHelper(callback);
+            touchHelper.AttachToRecyclerView(recyclerView);
+            
             items.SubscribeForNotifications((sender, changes, error) =>
             {
                 if (sender != null && changes != null)

@@ -79,6 +79,10 @@
     <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
     <Compile Include="Screens\Base\ShowErrorExtension.cs" />
+    <Compile Include="Screens\Base\SwipeRecyclerView\SwipeListAdapter.cs" />
+    <Compile Include="Screens\Base\SwipeRecyclerView\SwipeTouchHelperCallback.cs" />
+    <Compile Include="Screens\Base\SwipeRecyclerView\IItemTouchHelperAdapter.cs" />
+    <Compile Include="Screens\Base\SwipeRecyclerView\TouchListener.cs" />
     <Compile Include="Screens\Base\ToolbarActivity.cs" />
     <Compile Include="CustomApplication.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
