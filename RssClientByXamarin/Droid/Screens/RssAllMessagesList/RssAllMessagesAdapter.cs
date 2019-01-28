@@ -10,6 +10,8 @@ using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;
+using Shared.Services.Navigator;
+using Shared.ViewModels;
 using Uri = Android.Net.Uri;
 
 namespace Droid.Screens.RssAllMessagesList
@@ -53,11 +55,10 @@ namespace Droid.Screens.RssAllMessagesList
 
         private void OpenContentActivity(RssMessageModel item)
         {
-            if (!string.IsNullOrEmpty(item.Url))
-            {
-                var intent = new Intent(Intent.ActionView, Uri.Parse(item.Url));
-                Activity.StartActivity(intent);
-            }
+            var navigator = App.Container.Resolve<INavigator>();
+            var way = App.Container.Resolve<IWay<RssMessageViewModel, RssMessageViewModel.Way.WayData>>();
+            way.Data = new RssMessageViewModel.Way.WayData(item);
+            navigator.Go(way);
         }
     }
 }

@@ -119,6 +119,8 @@
     <Compile Include="Screens\RssList\RssListFragment.cs" />
     <Compile Include="Screens\RssList\RssListViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListWay.cs" />
+    <Compile Include="Screens\RssMessage\RssMessageFragment.cs" />
+    <Compile Include="Screens\RssMessage\RssMessageWay.cs" />
     <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
     <Compile Include="Screens\Settings\SettingsRssDetailFragment.cs" />
     <Compile Include="Screens\Settings\SettingsStartPageFragment.cs" />
@@ -155,6 +157,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_recommended_category_list.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_rss_message.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>

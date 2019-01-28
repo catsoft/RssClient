@@ -6,6 +6,7 @@ namespace Shared.Repository
 {
     public interface IRssMessagesRepository
     {
+        RssMessageModel FindById(string id);
         void MarkAsDeleted(RssMessageModel rssMessageModel);
         void MarkAsRead(RssMessageModel rssMessageModel);
         IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel);

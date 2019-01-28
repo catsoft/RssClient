@@ -14,6 +14,11 @@ namespace Shared.Repository
             _localDatabase = localDatabase;
         }
 
+        public RssMessageModel FindById(string id)
+        {
+            return _localDatabase.MainThreadRealm.Find<RssMessageModel>(id);
+        }
+
         public void MarkAsDeleted(RssMessageModel rssMessageModel)
         {
             _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsDeleted = true; });

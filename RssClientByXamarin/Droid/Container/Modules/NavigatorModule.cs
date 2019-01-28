@@ -11,6 +11,7 @@ using Droid.Screens.RssCreate;
 using Droid.Screens.RssEdit;
 using Droid.Screens.RssItemDetail;
 using Droid.Screens.RssList;
+using Droid.Screens.RssMessage;
 using Droid.Screens.Settings;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
@@ -32,6 +33,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssEditWay>().As<IWay<RssEditViewModel, RssEditViewModel.Way.WayData>>();
             builder.RegisterType<RecommendedCategoryListWay>().As<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way.WayData>>();
             builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendedViewModel, RecommendedViewModel.Way.WayData>>();
+            builder.RegisterType<RssMessageWay>().As<IWay<RssMessageViewModel, RssMessageViewModel.Way.WayData>>();
             
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel, AboutViewModel.Way.WayData>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>();

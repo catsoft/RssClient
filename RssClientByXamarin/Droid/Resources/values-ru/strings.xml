@@ -58,4 +58,12 @@
     
     <string name="navigation_drawer_header_title">Rss Клиент</string>
 
+    <string name="settings_start_page_header">Начальная страница</string>
+    <string name="settings_start_page_rssListSwitch">RSS список</string>
+    <string name="settings_start_page_allMessagesSwitch">Все сообщения</string>
+
+    <string name="settings_rss_detail_header">Открывать сообщения</string>
+    <string name="settings_rss_detail_inApp">В приложении</string>
+    <string name="settings_rss_detail_inBrowser">В браузере</string>
+
 </resources>

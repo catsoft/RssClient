@@ -71,5 +71,9 @@
     <string name="settings_start_page_header">Start page</string>
     <string name="settings_start_page_rssListSwitch">Rss list</string>
     <string name="settings_start_page_allMessagesSwitch">All messages</string>
+    
+    <string name="settings_rss_detail_header">Open messages</string>
+    <string name="settings_rss_detail_inApp">In application</string>
+    <string name="settings_rss_detail_inBrowser">In browser</string>
 
 </resources>

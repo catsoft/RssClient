@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AppConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\MessagesViewer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\StartPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\AnalitycModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ApiModule.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
   </ItemGroup>
