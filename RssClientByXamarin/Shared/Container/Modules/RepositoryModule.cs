@@ -14,6 +14,7 @@ namespace Shared.Container.Modules
             builder.RegisterType<RssRepository>().As<IRssRepository>().SingleInstance();
             builder.RegisterType<RssMessagesRepository>().As<IRssMessagesRepository>().SingleInstance();
             builder.RegisterType<RssRecommendedRepository>().As<IRssRecommendedRepository>().SingleInstance();
+            builder.RegisterType<ConfigurationRepository>().As<IConfigurationRepository>().SingleInstance();
         }
     }
 }

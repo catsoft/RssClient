@@ -18,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\IRssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\AppConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\StartPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\AnalitycModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ApiModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\CrossServicesModule.cs" />
@@ -29,6 +31,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssRecommendationModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\ConfigurationRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\IConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssRecommendedRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IRssRepository.cs" />

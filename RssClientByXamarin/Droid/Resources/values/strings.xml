@@ -67,5 +67,9 @@
     <string name="category_gaming">Gaming</string>
     
     <string name="navigation_drawer_header_title">Rss Client</string>
+    
+    <string name="settings_start_page_header">Start page</string>
+    <string name="settings_start_page_rssListSwitch">Rss list</string>
+    <string name="settings_start_page_allMessagesSwitch">All messages</string>
 
 </resources>
