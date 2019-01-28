@@ -1,6 +1,4 @@
-﻿using Droid.Infrastructure;
-
-namespace Shared.Services.Navigator
+﻿namespace Shared.Services.Navigator
 {
     public interface INavigator
     {

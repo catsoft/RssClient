@@ -1,4 +1,3 @@
-using System;
 using Android.OS;
 using Android.Views;
 using Android.Webkit;
@@ -49,7 +48,17 @@ namespace Droid.Screens.RssMessage
             Title = message.Title;
             
             var webView = view.FindViewById<WebView>(Resource.Id.webView_rssMessage_mainView);
+
+            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;  
+            webView.ScrollbarFadingEnabled = false;  
+
+            var settings = webView.Settings;
+            settings.JavaScriptEnabled = true;
+            settings.BuiltInZoomControls = true;  
+            settings.SetSupportZoom(true);  
             
+            var client = new WebViewClient();
+            webView.SetWebViewClient(client);
             webView.LoadUrl(message.Url);
 
             return view;

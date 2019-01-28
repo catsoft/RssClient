@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
 using Android.App;
-using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
@@ -12,7 +11,6 @@ using Shared.Database.Rss;
 using Shared.Services.Locale;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
-using Uri = Android.Net.Uri;
 
 namespace Droid.Screens.RssAllMessagesList
 {

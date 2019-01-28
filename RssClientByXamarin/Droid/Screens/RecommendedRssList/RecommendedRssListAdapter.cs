@@ -1,23 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Android.App;
-using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
-using Droid.Screens.RecommendedCategoryList;
 using FFImageLoading;
 using FFImageLoading.Work;
-using Realms;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
-using Xamarin.Essentials;
 
 namespace Droid.Screens.RecommendedRssList
 {

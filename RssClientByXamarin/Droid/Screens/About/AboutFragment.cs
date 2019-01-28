@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
-using Java.Lang;
 
 namespace Droid.Screens.About
 {

@@ -1,4 +1,3 @@
-using System;
 using Android.Content;
 using Shared.Database.Rss;
 

@@ -1,13 +1,9 @@
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Autofac;
 using Droid.Container;
 using Droid.Repository;
 using Droid.Screens.Navigation;
-using Droid.Screens.RecommendedRssList;
-using Java.Util;
-using Shared;
 
 namespace Droid.Screens.RecommendedCategoryList
 {

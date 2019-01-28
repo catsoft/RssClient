@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using Android.Content;
-using Android.Graphics;
-using Android.Net;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
 using Xamarin.Essentials;
-using Uri = Android.Net.Uri;
 
 namespace Droid.Screens.Contacts
 {

@@ -1,4 +1,3 @@
-using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;

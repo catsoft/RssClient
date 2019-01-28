@@ -4,19 +4,12 @@ using Android.OS;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.Infrastructure;
 using Droid.Repository;
-using Droid.Screens.Contacts;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssAllMessagesList;
-using Droid.Screens.RssList;
-using Droid.Screens.Settings;
-using Java.Lang.Annotation;
 using Shared;
 using Shared.Configuration;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
-using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Screens.Main
 {
@@ -50,6 +43,7 @@ namespace Droid.Screens.Main
 
             if (savedInstanceState == null)
             {
+                // TODO Вынести в отдельный роут
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
                 
                 if(appConfiguration.StartPage == StartPage.RssList)
@@ -65,7 +59,13 @@ namespace Droid.Screens.Main
         {
             if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_main)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                // TODO Вынести в отдельный роут
+                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
+                if(appConfiguration.StartPage == StartPage.RssList)
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                else if(appConfiguration.StartPage == StartPage.AllMessages)
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
             } 
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
             {

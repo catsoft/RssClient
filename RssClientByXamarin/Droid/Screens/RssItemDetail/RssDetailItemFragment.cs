@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -9,8 +7,6 @@ using Android.Views;
 using Autofac;
 using Droid.Container;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssEdit;
-using FFImageLoading.Views;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;

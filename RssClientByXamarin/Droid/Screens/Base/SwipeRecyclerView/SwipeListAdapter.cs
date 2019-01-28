@@ -1,9 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Android.App;
-using Android.Support.V7.Widget;
-using Android.Support.V7.Widget.Helper;
-using Android.Views;
 using Droid.Screens.Base.Adapters;
 
 namespace Droid.Screens.Base.SwipeRecyclerView

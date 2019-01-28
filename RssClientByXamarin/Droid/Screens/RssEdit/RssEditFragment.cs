@@ -1,21 +1,14 @@
 ﻿using System;
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Autofac;
 using Droid.Container;
 using Droid.Screens.Base;
-using Droid.Screens.Close;
 using Droid.Screens.Navigation;
 using RssClient.Repository;
-using Shared;
-using Shared.Database.Rss;
 using Shared.Services.Navigator;
-using Shared.ViewModels;
 
 namespace Droid.Screens.RssEdit
 {

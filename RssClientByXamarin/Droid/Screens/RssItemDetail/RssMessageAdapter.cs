@@ -2,8 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using Android.App;
-using Android.Content;
-using Android.Net;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;

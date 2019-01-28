@@ -1,12 +1,10 @@
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Autofac;
 using Droid.Container;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Droid.Services.Helpers;
-using Shared;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList

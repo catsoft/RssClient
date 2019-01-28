@@ -1,5 +1,4 @@
-﻿using Droid.Screens.About;
-using Droid.Screens.Navigation;
+﻿using Droid.Screens.Navigation;
 using Shared.ViewModels;
 
 namespace Droid.Screens.Settings
