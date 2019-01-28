@@ -56,4 +56,6 @@
     <string name="category_politics">Политика</string>
     <string name="category_gaming">Игры</string>
     
+    <string name="navigation_drawer_header_title">Rss Клиент</string>
+
 </resources>

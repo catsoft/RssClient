@@ -65,5 +65,7 @@
     <string name="category_business">Business</string>
     <string name="category_politics">Politics</string>
     <string name="category_gaming">Gaming</string>
+    
+    <string name="navigation_drawer_header_title">Rss Client</string>
 
 </resources>

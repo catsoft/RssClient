@@ -8,4 +8,5 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
     app:itemIconTint="@color/colorPrimary"
-    app:menu="@menu/menu_navigation" />
+    app:menu="@menu/menu_navigation"
+    app:headerLayout="@layout/navigation_header_view_all"/>

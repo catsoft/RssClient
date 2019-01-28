@@ -160,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\navigation_header_view_all.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\contextMenu_rssDetailList.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -467,6 +471,12 @@
     <AndroidResource Include="Resources\drawable-xhdpi\arrow_right_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\arrow_right_24.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_right_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rss_56.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\rss_56.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\rss_56.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\rss_56.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\rss_56.png" />
+    <AndroidResource Include="Resources\drawable\circle_72.xml" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
