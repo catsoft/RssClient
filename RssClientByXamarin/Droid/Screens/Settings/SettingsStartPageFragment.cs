@@ -30,16 +30,34 @@ namespace Droid.Screens.Settings
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsStartPage_main);
-
+            var rssListRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_rssList);
+            var allMessagesRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
+            
             var configuration = _configurationRepository.GetSettings<AppConfiguration>();
 
             if (configuration.StartPage == StartPage.RssList)
             {
-                radioGroup.CheckedRadioButtonId = Resource.Id.radioButton_settingsStartPage_rssList;
+                rssListRadioButton.Checked = true;
             } else if (configuration.StartPage == StartPage.AllMessages)
             {
-                
+                allMessagesRadioButton.Checked = true;
             }
+            
+            radioGroup.CheckedChange += (sender, args) =>
+            {
+                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
+                if (args.CheckedId == Resource.Id.radioButton_settingsStartPage_rssList)
+                {
+                    appConfiguration.StartPage = StartPage.RssList;
+                } 
+                else if (args.CheckedId == Resource.Id.radioButton_settingsStartPage_messagesList)
+                {
+                    appConfiguration.StartPage = StartPage.AllMessages;
+                }
+                
+                _configurationRepository.SaveSetting(appConfiguration);
+            };
             
             return view;
         }

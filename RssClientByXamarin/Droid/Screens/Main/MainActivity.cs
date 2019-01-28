@@ -5,6 +5,7 @@ using Android.Views;
 using Autofac;
 using Droid.Container;
 using Droid.Infrastructure;
+using Droid.Repository;
 using Droid.Screens.Contacts;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessagesList;
@@ -12,6 +13,7 @@ using Droid.Screens.RssList;
 using Droid.Screens.Settings;
 using Java.Lang.Annotation;
 using Shared;
+using Shared.Configuration;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -23,6 +25,9 @@ namespace Droid.Screens.Main
     {
         [Inject]
         private INavigator _navigator;
+
+        [Inject] 
+        private IConfigurationRepository _configurationRepository;
 
         protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
         protected override int ResourceView => Resource.Layout.activity_main;
@@ -45,7 +50,13 @@ namespace Droid.Screens.Main
 
             if (savedInstanceState == null)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+                
+                if(appConfiguration.StartPage == StartPage.RssList)
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                else if(appConfiguration.StartPage == StartPage.AllMessages)
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
+                
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
         }
