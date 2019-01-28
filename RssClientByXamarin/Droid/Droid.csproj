@@ -87,10 +87,12 @@
     <Compile Include="CustomApplication.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
+    <Compile Include="Screens\Navigation\BaseFragment.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
     <Compile Include="Screens\Navigation\InjectFragment.cs" />
+    <Compile Include="Screens\Navigation\SubFragment.cs" />
     <Compile Include="Screens\Navigation\TitleFragment.cs" />
     <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoriesRssListAdapter.cs" />
     <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoryListFragment.cs" />
@@ -117,7 +119,11 @@
     <Compile Include="Screens\RssList\RssListFragment.cs" />
     <Compile Include="Screens\RssList\RssListViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListWay.cs" />
-    <Compile Include="Screens\Settings\AboutWay.cs" />
+    <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsRssDetailFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsStartPageFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsThemeFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsWay.cs" />
     <Compile Include="Screens\Settings\SettingsFragment.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
     <Compile Include="Services\Helpers\CategoriesExtension.cs" />
@@ -149,6 +155,22 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_recommended_category_list.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_animation.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_rss_detail.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_start_page.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_theme.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
