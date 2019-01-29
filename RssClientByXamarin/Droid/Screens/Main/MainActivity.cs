@@ -13,7 +13,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.Main
 {
-    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.NoActionBar")]
+    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Light.NoActionBar")]
     public class MainActivity : FragmentActivity
     {
         [Inject]
@@ -35,6 +35,8 @@ namespace Droid.Screens.Main
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Instance = this;
+
+            SetTheme(Resource.Style.AppTheme_Dark_NoActionBar);
 
             base.OnCreate(savedInstanceState);
 

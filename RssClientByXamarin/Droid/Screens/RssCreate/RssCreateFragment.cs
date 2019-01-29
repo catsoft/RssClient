@@ -20,7 +20,7 @@ namespace Droid.Screens.RssCreate
         private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
-        public override bool RootFragment => true;
+        public override bool RootFragment => false;
 
         public RssCreateFragment()
         {

@@ -1,31 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-
-    <style name="AppTheme.Launcher" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/launch_screen</item>
-    </style>
-
-
     <style name="Button.Submit" parent="Widget.AppCompat.Button.Colored">
 
     </style>
@@ -86,17 +60,17 @@
     </style>
 
 
-    <style name="AppBarLayout" parent="AppTheme.AppBarOverlay">
+    <style name="AppBarLayout" parent="AppTheme.Light.AppBarOverlay">
 
     </style>
 
 
-    <style name="Popup" parent="AppTheme.PopupOverlay">
+    <style name="Popup" parent="AppTheme.Light.PopupOverlay">
 
     </style>
 
 
-    <style name="Toolbar" parent="AppTheme.PopupOverlay">
+    <style name="Toolbar" parent="AppTheme.Light.PopupOverlay">
         <item name="background">?attr/colorPrimary</item>
     </style>
     
