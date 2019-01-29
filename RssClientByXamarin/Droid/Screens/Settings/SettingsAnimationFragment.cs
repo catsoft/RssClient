@@ -35,11 +35,13 @@ namespace Droid.Screens.Settings
             var animationSpeeds = new List<AnimationSpeed>
             {
                 AnimationSpeed.x0_25,
+                AnimationSpeed.x0_33,
                 AnimationSpeed.x0_5,
                 AnimationSpeed.x,
                 AnimationSpeed.x2,
+                AnimationSpeed.x3,
                 AnimationSpeed.x4,
-                AnimationSpeed.x8
+                AnimationSpeed.max,
             };
 
             var animationTypes = new List<AnimationType>
@@ -49,6 +51,8 @@ namespace Droid.Screens.Settings
                 AnimationType.ExitFadeEnterFromBottom,
                 AnimationType.ExitToBottomEnterFade,
                 AnimationType.ExitToBottomEnterFromBottom,
+                AnimationType.FromLeftToRight,
+                AnimationType.FromRightToLeft,
             };
             
             speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item,

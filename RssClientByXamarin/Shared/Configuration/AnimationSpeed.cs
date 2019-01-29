@@ -4,9 +4,11 @@ namespace Shared.Configuration
     {
         x0_25,
         x0_5,
+        x0_33,
         x,
         x2,
+        x3,
         x4,
-        x8
+        max
     }
 }

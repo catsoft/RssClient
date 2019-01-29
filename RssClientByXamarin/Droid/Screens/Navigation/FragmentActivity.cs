@@ -3,6 +3,7 @@ using System.Linq;
 using Android.OS;
 using Android.Support.Transitions;
 using Android.Support.V4.App;
+using Android.Views;
 using Droid.Container;
 using Droid.Repository;
 using Shared.Configuration;
@@ -98,6 +99,12 @@ namespace Droid.Screens.Navigation
                 case AnimationType.ExitFadeEnterFromBottom:
                     EnterAnimateExitFadeEnterFromBottom(previousFragment, fragment, time);
                     break;
+                case AnimationType.FromLeftToRight:
+                    EnterAnimateFromLeftToRight(previousFragment, fragment, time);
+                    break;
+                case AnimationType.FromRightToLeft:
+                    EnterAnimateFromRightToLeft(previousFragment, fragment, time);
+                    break;
             }
         }
 
@@ -123,6 +130,20 @@ namespace Droid.Screens.Navigation
         private void EnterAnimateExitFadeEnterFromBottom(Fragment previousFragment, Fragment fragment, int time)
         {
             CommonAnimate(previousFragment, fragment, time, new Fade(), new Slide());
+        }
+        
+        private void EnterAnimateFromLeftToRight(Fragment previousFragment, Fragment fragment, int time)
+        {
+            var enter = new Slide() {SlideEdge = (int) GravityFlags.Right};
+            var exit = new Slide() {SlideEdge = (int) GravityFlags.Left};
+            CommonAnimate(previousFragment, fragment, time, exit, enter);
+        }
+        
+        private void EnterAnimateFromRightToLeft(Fragment previousFragment, Fragment fragment, int time)
+        {
+            var enter = new Slide() {SlideEdge = (int) GravityFlags.Left};
+            var exit = new Slide() {SlideEdge = (int) GravityFlags.Right};
+            CommonAnimate(previousFragment, fragment, time, exit, enter);
         }
 
         // TODO Разобраться, почему же при onbackpress нет анимации 

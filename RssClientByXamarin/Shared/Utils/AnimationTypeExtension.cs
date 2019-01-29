@@ -9,7 +9,6 @@ namespace Shared.Utils
         {
             switch (animationType)
             {
-                // TODO вернуть до удобочитаемого вида
                 case AnimationType.None:
                     return "None";
                 case AnimationType.OnlyFade:
@@ -20,6 +19,10 @@ namespace Shared.Utils
                     return "Slide";
                 case AnimationType.ExitToBottomEnterFade:
                     return "Exit to bottom enter fade";
+                case AnimationType.FromLeftToRight:
+                    return "From left to right";
+                case AnimationType.FromRightToLeft:
+                    return "From right to left";
             }
             
             throw new NotImplementedException(nameof(AnimationTypeExtension) + nameof(ToLocaleString));

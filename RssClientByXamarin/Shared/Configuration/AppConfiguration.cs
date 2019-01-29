@@ -21,17 +21,21 @@ namespace Shared.Configuration
             switch (AnimationSpeed)
             {
                 case AnimationSpeed.x0_25:
-                    return defaultTime * 20;
+                    return defaultTime * 4;
+                case AnimationSpeed.x0_33:
+                    return defaultTime * 3;
                 case AnimationSpeed.x0_5:
                     return defaultTime * 2;
                 case AnimationSpeed.x:
                     return defaultTime;
                 case AnimationSpeed.x2:
                     return defaultTime / 2;
+                case AnimationSpeed.x3:
+                    return defaultTime / 3;
                 case AnimationSpeed.x4:
                     return defaultTime / 4;
-                case AnimationSpeed.x8:
-                    return defaultTime / 8;
+                case AnimationSpeed.max:
+                    return 0;
             }
             
             throw new NotImplementedException(nameof(AppConfiguration) + nameof(GetCalculationAnimationTime));

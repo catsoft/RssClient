@@ -7,5 +7,7 @@ namespace Shared.Configuration
         ExitFadeEnterFromBottom,
         ExitToBottomEnterFromBottom,
         ExitToBottomEnterFade,
+        FromLeftToRight,
+        FromRightToLeft
     }
 }
