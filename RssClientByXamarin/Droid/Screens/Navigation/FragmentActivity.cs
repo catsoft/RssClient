@@ -86,17 +86,17 @@ namespace Droid.Screens.Navigation
                 case AnimationType.None:
                     AnimateNone(previousFragment, fragment, time);
                     break;
-                case AnimationType.Fade:
-                    AnimateFade(previousFragment, fragment, time);
+                case AnimationType.OnlyFade:
+                    AnimateOnlyFade(previousFragment, fragment, time);
                     break;
-                case AnimationType.From_left:
-                    AnimateFromLeft(previousFragment, fragment, time);
+                case AnimationType.ExitToBottomEnterFromBottom:
+                    AnimateOnlySlide(previousFragment, fragment, time);
                     break;
-                case AnimationType.From_right:
-                    AnimateFromRight(previousFragment, fragment, time);
+                case AnimationType.ExitToBottomEnterFade:
+                    AnimateExitToBottomEnterFade(previousFragment, fragment, time);
                     break;
-                case AnimationType.From_bottom:
-                    AnimateFromBottom(previousFragment, fragment, time);
+                case AnimationType.ExitFadeEnterFromBottom:
+                    AnimateExitFadeEnterFromBottom(previousFragment, fragment, time);
                     break;
             }
         }
@@ -105,34 +105,84 @@ namespace Droid.Screens.Navigation
         {
         }
 
-        private void AnimateFade(Fragment previousFragment, Fragment fragment, int time)
+        private void AnimateOnlyFade(Fragment previousFragment, Fragment fragment, int time)
         {
             if (previousFragment != null)
             {
-                var fade = new Fade();
-                fade.SetDuration(time);
-                previousFragment.ExitTransition = fade;
+                var exitTransition = new Fade();
+                exitTransition.Mode = Fade.ModeOut;
+                exitTransition.SetDuration(time);
+                previousFragment.ExitTransition = exitTransition;
+                fragment.ExitTransition = exitTransition;
             }
             
-            var enterFade = new Fade();
-            enterFade.SetStartDelay(time);
-            enterFade.SetDuration(time);
-            fragment.EnterTransition = enterFade;
+            var enterTransition = new Fade();
+            enterTransition.Mode = Fade.ModeOut;
+            enterTransition.SetDuration(time);
+            fragment.EnterTransition = enterTransition;
         }
 
-        private void AnimateFromLeft(Fragment previousFragment, Fragment fragment, int time)
+        private void AnimateOnlySlide(Fragment previousFragment, Fragment fragment, int time)
         {
+            if (previousFragment != null)
+            {
+                var exitTransition = new Slide();
+                exitTransition.Mode = Slide.ModeOut;
+                exitTransition.SetDuration(time);
+                previousFragment.ExitTransition = exitTransition;
+                
+                var enter = new Slide();
+                enter.Mode = Slide.ModeOut;
+                enter.SetDuration(time);
+                enter.SetStartDelay(time);
+                previousFragment.EnterTransition = enter;
+            }
             
+            var enterTransition = new Slide();
+            enterTransition.Mode = Slide.ModeIn;
+            enterTransition.SetStartDelay(time);
+            enterTransition.SetDuration(time);
+            fragment.EnterTransition = enterTransition;
+            
+            
+            var exitTransition2 = new Slide();
+            exitTransition2.Mode = Slide.ModeIn;
+            exitTransition2.SetDuration(time);
+            fragment.ExitTransition = exitTransition2;
         }
 
-        private void AnimateFromRight(Fragment previousFragment, Fragment fragment, int time)
+        private void AnimateExitToBottomEnterFade(Fragment previousFragment, Fragment fragment, int time)
         {
+            if (previousFragment != null)
+            {
+                var exitTransition = new Slide();
+                exitTransition.Mode = Slide.ModeOut;
+                exitTransition.SetDuration(time);
+                previousFragment.ExitTransition = exitTransition;
+            }
             
+            var enterTransition = new Slide();
+            enterTransition.Mode = Slide.ModeOut;
+            enterTransition.SetStartDelay(time);
+            enterTransition.SetDuration(time);
+            fragment.EnterTransition = enterTransition;
         }
 
-        private void AnimateFromBottom(Fragment previousFragment, Fragment fragment, int time)
+        private void AnimateExitFadeEnterFromBottom(Fragment previousFragment, Fragment fragment, int time)
         {
+            if (previousFragment != null)
+            {
+                var exitTransition = new Fade();
+                exitTransition.Mode = Fade.ModeOut;
+                exitTransition.SetDuration(time);
+                previousFragment.ExitTransition = exitTransition;
+            }
             
+            var enterTransition = new Fade();
+            enterTransition.Mode = Fade.ModeOut;
+            enterTransition.SetStartDelay(time);
+            enterTransition.SetDuration(time);
+            fragment.EnterTransition = enterTransition;
         }
 
         public void RemoveFragment(Fragment fragment)

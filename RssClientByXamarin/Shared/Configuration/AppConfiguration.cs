@@ -13,7 +13,7 @@ namespace Shared.Configuration
         public int DefaultAnimationTime { get; set; } = 200;
 
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.x;
-        public AnimationType AnimationType { get; set; } = AnimationType.From_left;
+        public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
 
         public int GetCalculationAnimationTime()
         {
@@ -21,7 +21,7 @@ namespace Shared.Configuration
             switch (AnimationSpeed)
             {
                 case AnimationSpeed.x0_25:
-                    return defaultTime * 4;
+                    return defaultTime * 20;
                 case AnimationSpeed.x0_5:
                     return defaultTime * 2;
                 case AnimationSpeed.x:

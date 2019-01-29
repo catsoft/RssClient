@@ -45,10 +45,10 @@ namespace Droid.Screens.Settings
             var animationTypes = new List<AnimationType>
             {
                 AnimationType.None,
-                AnimationType.Fade,
-                AnimationType.From_left,
-                AnimationType.From_right,
-                AnimationType.From_bottom
+                AnimationType.OnlyFade,
+                AnimationType.ExitFadeEnterFromBottom,
+                AnimationType.ExitToBottomEnterFade,
+                AnimationType.ExitToBottomEnterFromBottom,
             };
             
             speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item,
