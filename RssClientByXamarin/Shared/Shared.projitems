@@ -18,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\IRssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\AnimationSpeed.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\AnimationType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AppConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\MessagesViewer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\StartPage.cs" />
