@@ -37,7 +37,7 @@ namespace Droid.Screens.Navigation
             DoOrNo(transaction =>
             {
                 var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
-                SetCustomAnimation(previousFragment, fragment);
+                SetEnterAnimation(previousFragment, fragment);
                 
 //                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
 //                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
@@ -74,7 +74,7 @@ namespace Droid.Screens.Navigation
             });
         }
 
-        private void SetCustomAnimation(Fragment previousFragment, Fragment fragment)
+        private void SetEnterAnimation(Fragment previousFragment, Fragment fragment)
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
@@ -84,107 +84,66 @@ namespace Droid.Screens.Navigation
             switch (animationType)
             {
                 case AnimationType.None:
-                    AnimateNone(previousFragment, fragment, time);
+                    EnterAnimateNone(previousFragment, fragment, time);
                     break;
                 case AnimationType.OnlyFade:
-                    AnimateOnlyFade(previousFragment, fragment, time);
+                    EnterAnimateOnlyFade(previousFragment, fragment, time);
                     break;
                 case AnimationType.ExitToBottomEnterFromBottom:
-                    AnimateOnlySlide(previousFragment, fragment, time);
+                    EnterAnimateOnlySlide(previousFragment, fragment, time);
                     break;
                 case AnimationType.ExitToBottomEnterFade:
-                    AnimateExitToBottomEnterFade(previousFragment, fragment, time);
+                    EnterAnimateExitToBottomEnterFade(previousFragment, fragment, time);
                     break;
                 case AnimationType.ExitFadeEnterFromBottom:
-                    AnimateExitFadeEnterFromBottom(previousFragment, fragment, time);
+                    EnterAnimateExitFadeEnterFromBottom(previousFragment, fragment, time);
                     break;
             }
         }
 
-        private void AnimateNone(Fragment previousFragment, Fragment fragment, int time)
+        private void EnterAnimateNone(Fragment previousFragment, Fragment fragment, int time)
         {
         }
 
-        private void AnimateOnlyFade(Fragment previousFragment, Fragment fragment, int time)
+        private void EnterAnimateOnlyFade(Fragment previousFragment, Fragment fragment, int time)
         {
-            if (previousFragment != null)
+            CommonAnimate(previousFragment, fragment, time, new Fade(), new Fade());
+        }
+
+        private void EnterAnimateOnlySlide(Fragment previousFragment, Fragment fragment, int time)
+        {
+            CommonAnimate(previousFragment, fragment, time, new Slide(), new Slide());
+        }
+
+        private void EnterAnimateExitToBottomEnterFade(Fragment previousFragment, Fragment fragment, int time)
+        {
+            CommonAnimate(previousFragment, fragment, time, new Slide(), new Fade());
+        }
+
+        private void EnterAnimateExitFadeEnterFromBottom(Fragment previousFragment, Fragment fragment, int time)
+        {
+            CommonAnimate(previousFragment, fragment, time, new Fade(), new Slide());
+        }
+
+        // TODO Разобраться, почему же при onbackpress нет анимации 
+        private void CommonAnimate(Fragment previousFragment, Fragment fragment, int time, Visibility exit, Visibility enter)
+        {
+            var isFirstFragment = previousFragment == null;
+            
+            if (!isFirstFragment)
             {
-                var exitTransition = new Fade();
-                exitTransition.Mode = Fade.ModeOut;
-                exitTransition.SetDuration(time);
-                previousFragment.ExitTransition = exitTransition;
-                fragment.ExitTransition = exitTransition;
+                exit.Mode = Visibility.ModeOut;
+                exit.SetDuration(time);
+                previousFragment.ExitTransition = exit;
             }
             
-            var enterTransition = new Fade();
-            enterTransition.Mode = Fade.ModeOut;
-            enterTransition.SetDuration(time);
-            fragment.EnterTransition = enterTransition;
-        }
-
-        private void AnimateOnlySlide(Fragment previousFragment, Fragment fragment, int time)
-        {
-            if (previousFragment != null)
-            {
-                var exitTransition = new Slide();
-                exitTransition.Mode = Slide.ModeOut;
-                exitTransition.SetDuration(time);
-                previousFragment.ExitTransition = exitTransition;
-                
-                var enter = new Slide();
-                enter.Mode = Slide.ModeOut;
-                enter.SetDuration(time);
+            enter.Mode = Visibility.ModeIn;
+            if(!isFirstFragment)
                 enter.SetStartDelay(time);
-                previousFragment.EnterTransition = enter;
-            }
-            
-            var enterTransition = new Slide();
-            enterTransition.Mode = Slide.ModeIn;
-            enterTransition.SetStartDelay(time);
-            enterTransition.SetDuration(time);
-            fragment.EnterTransition = enterTransition;
-            
-            
-            var exitTransition2 = new Slide();
-            exitTransition2.Mode = Slide.ModeIn;
-            exitTransition2.SetDuration(time);
-            fragment.ExitTransition = exitTransition2;
+            enter.SetDuration(isFirstFragment ? time : 2 * time);
+            fragment.EnterTransition = enter;
         }
-
-        private void AnimateExitToBottomEnterFade(Fragment previousFragment, Fragment fragment, int time)
-        {
-            if (previousFragment != null)
-            {
-                var exitTransition = new Slide();
-                exitTransition.Mode = Slide.ModeOut;
-                exitTransition.SetDuration(time);
-                previousFragment.ExitTransition = exitTransition;
-            }
-            
-            var enterTransition = new Slide();
-            enterTransition.Mode = Slide.ModeOut;
-            enterTransition.SetStartDelay(time);
-            enterTransition.SetDuration(time);
-            fragment.EnterTransition = enterTransition;
-        }
-
-        private void AnimateExitFadeEnterFromBottom(Fragment previousFragment, Fragment fragment, int time)
-        {
-            if (previousFragment != null)
-            {
-                var exitTransition = new Fade();
-                exitTransition.Mode = Fade.ModeOut;
-                exitTransition.SetDuration(time);
-                previousFragment.ExitTransition = exitTransition;
-            }
-            
-            var enterTransition = new Fade();
-            enterTransition.Mode = Fade.ModeOut;
-            enterTransition.SetStartDelay(time);
-            enterTransition.SetDuration(time);
-            fragment.EnterTransition = enterTransition;
-        }
-
+        
         public void RemoveFragment(Fragment fragment)
         {
             DoOrNo(transaction =>
@@ -210,10 +169,15 @@ namespace Droid.Screens.Navigation
 
         public override void OnBackPressed()
         {
-            if (IsHomeToggle)
-                Finish();
+            if (DrawerLayout.IsDrawerOpen(DrawerGravity))
+                DrawerLayout.CloseDrawer(DrawerGravity);
             else
-                base.OnBackPressed();
+            {
+                if (IsHomeToggle)
+                    Finish();
+                else
+                    base.OnBackPressed();
+            }
         }
     }
 

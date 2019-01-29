@@ -53,14 +53,6 @@ namespace Droid.Screens.Navigation
             Toggle.OnDrawerSlide(DrawerLayout, IsHomeToggle ? 0 : 1);
         }
 
-        public override void OnBackPressed()
-        {
-            if (DrawerLayout.IsDrawerOpen(DrawerGravity))
-                DrawerLayout.CloseDrawer(DrawerGravity);
-            else
-                base.OnBackPressed();
-        }
-
         public abstract bool OnNavigationItemSelected(IMenuItem menuItem);
 
         public void OnClick(View v)

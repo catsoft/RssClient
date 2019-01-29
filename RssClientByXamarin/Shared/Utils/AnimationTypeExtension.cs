@@ -13,13 +13,13 @@ namespace Shared.Utils
                 case AnimationType.None:
                     return "None";
                 case AnimationType.OnlyFade:
-                    return "OnlyFade";
+                    return "Fade";
                 case AnimationType.ExitFadeEnterFromBottom:
-                    return "ExitFade_EnterFromBottom";
+                    return "Exit fade enter from bottom";
                 case AnimationType.ExitToBottomEnterFromBottom:
-                    return "OnlySlide";
+                    return "Slide";
                 case AnimationType.ExitToBottomEnterFade:
-                    return "ExitToBottom_EnterFade";
+                    return "Exit to bottom enter fade";
             }
             
             throw new NotImplementedException(nameof(AnimationTypeExtension) + nameof(ToLocaleString));
