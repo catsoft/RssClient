@@ -75,5 +75,9 @@
     <string name="settings_rss_detail_header">Open messages</string>
     <string name="settings_rss_detail_inApp">In application</string>
     <string name="settings_rss_detail_inBrowser">In browser</string>
+    
+    <string name="settings_animation_header">Transition animation</string>
+    <string name="settings_animation_speedAnimation">Speed animation</string>
+    <string name="settings_animation_typeAnimation">Type animation</string>
 
 </resources>

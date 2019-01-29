@@ -66,4 +66,8 @@
     <string name="settings_rss_detail_inApp">В приложении</string>
     <string name="settings_rss_detail_inBrowser">В браузере</string>
 
+    <string name="settings_animation_header">Анимация перехода</string>
+    <string name="settings_animation_speedAnimation">Скорость анимации</string>
+    <string name="settings_animation_typeAnimation">Тип анимации</string>
+
 </resources>
