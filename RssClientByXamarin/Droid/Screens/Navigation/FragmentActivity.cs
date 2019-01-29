@@ -39,7 +39,7 @@ namespace Droid.Screens.Navigation
             {
                 var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
                 SetEnterAnimation(previousFragment, fragment);
-                
+
 //                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
 //                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
                 var type = fragment.GetType();
@@ -131,14 +131,14 @@ namespace Droid.Screens.Navigation
         {
             CommonAnimate(previousFragment, fragment, time, new Fade(), new Slide());
         }
-        
+
         private void EnterAnimateFromLeftToRight(Fragment previousFragment, Fragment fragment, int time)
         {
             var enter = new Slide() {SlideEdge = (int) GravityFlags.Right};
             var exit = new Slide() {SlideEdge = (int) GravityFlags.Left};
             CommonAnimate(previousFragment, fragment, time, exit, enter);
         }
-        
+
         private void EnterAnimateFromRightToLeft(Fragment previousFragment, Fragment fragment, int time)
         {
             var enter = new Slide() {SlideEdge = (int) GravityFlags.Left};
@@ -147,24 +147,25 @@ namespace Droid.Screens.Navigation
         }
 
         // TODO Разобраться, почему же при onbackpress нет анимации 
-        private void CommonAnimate(Fragment previousFragment, Fragment fragment, int time, Visibility exit, Visibility enter)
+        private void CommonAnimate(Fragment previousFragment, Fragment fragment, int time, Visibility exit,
+            Visibility enter)
         {
             var isFirstFragment = previousFragment == null;
-            
+
             if (!isFirstFragment)
             {
                 exit.Mode = Visibility.ModeOut;
                 exit.SetDuration(time);
                 previousFragment.ExitTransition = exit;
             }
-            
+
             enter.Mode = Visibility.ModeIn;
-            if(!isFirstFragment)
+            if (!isFirstFragment)
                 enter.SetStartDelay(time);
             enter.SetDuration(isFirstFragment ? time : 2 * time);
             fragment.EnterTransition = enter;
         }
-        
+
         public void RemoveFragment(Fragment fragment)
         {
             DoOrNo(transaction =>
