@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Navigation;
+using Shared.Configuration;
+using Shared.Utils;
 
 namespace Droid.Screens.Settings
 {
@@ -27,24 +30,24 @@ namespace Droid.Screens.Settings
             var speedSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.appCompatSpinner_settingsStartPage_speedAnimation);
             var typeSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.appCompatSpinner_settingsStartPage_typeAnimation);
             
-            speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item, new List<string>()
+            speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item, new List<AnimationSpeed>()
             {
-                "0.25x",
-                "0.5x",
-                "1x",
-                "2x",
-                "4x",
-                "8x"
-            });
+                AnimationSpeed.x0_25,
+                AnimationSpeed.x0_5,
+                AnimationSpeed.x,
+                AnimationSpeed.x2,
+                AnimationSpeed.x4,
+                AnimationSpeed.x8,
+            }.Select(w => w.ToLocaleString()).ToList());
             
-            typeSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item, new List<string>()
+            typeSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item, new List<AnimationType>()
             {
-                "None",
-                "Fade",
-                "From left",
-                "From right",
-                "From bottom"
-            });
+                AnimationType.None,
+                AnimationType.Fade,
+                AnimationType.From_left,
+                AnimationType.From_right,
+                AnimationType.From_bottom,
+            }.Select(w => w.ToLocaleString()).ToList());
             
             return view;
         }

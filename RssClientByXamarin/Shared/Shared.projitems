@@ -48,6 +48,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Way.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationSpeedExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationTypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
