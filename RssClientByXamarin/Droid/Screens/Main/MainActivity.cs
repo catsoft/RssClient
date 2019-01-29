@@ -35,7 +35,6 @@ namespace Droid.Screens.Main
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Instance = this;
-            this.Inject();
 
             base.OnCreate(savedInstanceState);
 

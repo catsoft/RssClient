@@ -7,7 +7,7 @@ namespace Droid.Screens.Navigation
     {
         protected InjectFragment()
         {
-            this.Inject();
+            this.Inject(true);
         }
     }
 }

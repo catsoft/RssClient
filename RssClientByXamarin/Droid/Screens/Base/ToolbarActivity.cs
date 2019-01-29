@@ -1,5 +1,4 @@
 ﻿using Android.OS;
-using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Autofac;
 using Shared;
@@ -7,7 +6,7 @@ using Shared.Analytics.Rss;
 
 namespace Droid.Screens.Base
 {
-    public abstract class ToolbarActivity : AppCompatActivity
+    public abstract class ToolbarActivity : InjectActivity
     {
         protected abstract int ResourceView { get; }
         protected Toolbar Toolbar { get; private set; }

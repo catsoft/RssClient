@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Linq;
 using Android.OS;
+using Android.Support.Transitions;
 using Android.Support.V4.App;
+using Droid.Container;
+using Droid.Repository;
+using Shared.Configuration;
 
 namespace Droid.Screens.Navigation
 {
     public abstract class FragmentActivity : BurgerActivity
     {
+        [Inject]
+        private IConfigurationRepository _configurationRepository;
+        
         protected abstract int? ContainerId { get; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -29,8 +36,11 @@ namespace Droid.Screens.Navigation
         {
             DoOrNo(transaction =>
             {
-                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
-                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
+                var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
+                SetCustomAnimation(previousFragment, fragment);
+                
+//                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
+//                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
                 var type = fragment.GetType();
 
                 switch (cacheState)
@@ -62,6 +72,67 @@ namespace Droid.Screens.Navigation
                         break;
                 }
             });
+        }
+
+        private void SetCustomAnimation(Fragment previousFragment, Fragment fragment)
+        {
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
+            var time = appConfiguration.GetCalculationAnimationTime();
+            var animationType = appConfiguration.AnimationType;
+
+            switch (animationType)
+            {
+                case AnimationType.None:
+                    AnimateNone(previousFragment, fragment, time);
+                    break;
+                case AnimationType.Fade:
+                    AnimateFade(previousFragment, fragment, time);
+                    break;
+                case AnimationType.From_left:
+                    AnimateFromLeft(previousFragment, fragment, time);
+                    break;
+                case AnimationType.From_right:
+                    AnimateFromRight(previousFragment, fragment, time);
+                    break;
+                case AnimationType.From_bottom:
+                    AnimateFromBottom(previousFragment, fragment, time);
+                    break;
+            }
+        }
+
+        private void AnimateNone(Fragment previousFragment, Fragment fragment, int time)
+        {
+        }
+
+        private void AnimateFade(Fragment previousFragment, Fragment fragment, int time)
+        {
+            if (previousFragment != null)
+            {
+                var fade = new Fade();
+                fade.SetDuration(time);
+                previousFragment.ExitTransition = fade;
+            }
+            
+            var enterFade = new Fade();
+            enterFade.SetStartDelay(time);
+            enterFade.SetDuration(time);
+            fragment.EnterTransition = enterFade;
+        }
+
+        private void AnimateFromLeft(Fragment previousFragment, Fragment fragment, int time)
+        {
+            
+        }
+
+        private void AnimateFromRight(Fragment previousFragment, Fragment fragment, int time)
+        {
+            
+        }
+
+        private void AnimateFromBottom(Fragment previousFragment, Fragment fragment, int time)
+        {
+            
         }
 
         public void RemoveFragment(Fragment fragment)
