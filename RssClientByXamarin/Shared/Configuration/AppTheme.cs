@@ -4,5 +4,6 @@ namespace Shared.Configuration
     {
         Light,
         Dark,
+        Default
     }
 }

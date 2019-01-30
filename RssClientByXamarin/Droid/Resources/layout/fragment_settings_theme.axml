@@ -39,6 +39,13 @@
                 android:gravity="center|left"
                 android:text="@string/settings_theme_light"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                style="@style/TextView.Body1"
+                android:gravity="center|left"
+                android:text="@string/settings_theme_default"/>
+
         </LinearLayout>
 
         <RadioGroup
@@ -54,6 +61,11 @@
 
             <RadioButton
                 android:id="@+id/radioButton_settingsTheme_light"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_settingsTheme_default"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"/>
 

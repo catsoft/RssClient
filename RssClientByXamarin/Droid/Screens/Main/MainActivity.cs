@@ -13,7 +13,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.Main
 {
-    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Light.NoActionBar")]
+    [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Default.NoActionBar")]
     public class MainActivity : FragmentActivity
     {
         [Inject]

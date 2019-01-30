@@ -31,9 +31,11 @@ namespace Droid.Screens.Settings
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var appTheme = appConfiguration.AppTheme;
             
+            // TODO сделать один элемент с параметрами, устал уже так жить
             var radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsTheme_main);
             var darkRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_dark);
             var lightRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_light);
+            var defaultRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_default);
             
             if (appTheme == AppTheme.Dark)
             {
@@ -41,6 +43,9 @@ namespace Droid.Screens.Settings
             } else if (appTheme == AppTheme.Light)
             {
                 lightRadioButton.Checked = true;
+            } else if (appTheme == AppTheme.Default)
+            {
+                defaultRadioButton.Checked = true;
             }
             
             radioGroup.SetOnCheckedChangeListener(this);
@@ -57,10 +62,12 @@ namespace Droid.Screens.Settings
             if (checkedId == Resource.Id.radioButton_settingsTheme_dark)
             {
                 nextAppTheme = AppTheme.Dark;
-            } 
-            else if (checkedId == Resource.Id.radioButton_settingsTheme_light)
+            } else if (checkedId == Resource.Id.radioButton_settingsTheme_light)
             {
                 nextAppTheme = AppTheme.Light;
+            } else if (checkedId == Resource.Id.radioButton_settingsTheme_default)
+            {
+                nextAppTheme = AppTheme.Default;
             }
 
             if (nextAppTheme != appConfiguration.AppTheme)

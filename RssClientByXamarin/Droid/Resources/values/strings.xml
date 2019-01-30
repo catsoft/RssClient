@@ -82,5 +82,6 @@
     <string name="settings_theme_header">Theme</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_default">Default</string>
 
 </resources>
