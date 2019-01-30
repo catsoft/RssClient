@@ -54,7 +54,7 @@ namespace Droid.Screens.RssAllMessagesList
         private void OpenContentActivity(RssMessageModel item)
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var way = App.Container.Resolve<IWay<RssMessageViewModel, RssMessageViewModel.Way.WayData>>();
+            var way = App.Container.Resolve<IWay<RssMessageViewModel.Way.WayData>>();
             way.Data = new RssMessageViewModel.Way.WayData(item);
             navigator.Go(way);
         }

@@ -12,8 +12,8 @@ namespace iOS
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-        private const string ApiKeyBattleIos = "9e54385d-f3a3-492d-a350-f538d59d742b";
-        private const string ApiKeyDebugIos = "a7eee657-65a4-4fa8-a318-1b367855334b";
+        private const string KeyBattleIos = "9e54385d-f3a3-492d-a350-f538d59d742b";
+        private const string KeyDebugIos = "a7eee657-65a4-4fa8-a318-1b367855334b";
 
         public new static UIWindow Window { get; private set; }
 		public static AppDelegate Instance { get; private set; }
@@ -37,7 +37,7 @@ namespace iOS
 
 #if DEBUG
             {
-                log.SetApiKey(ApiKeyDebugIos);
+                log.SetApiKey(KeyDebugIos);
             }
 #else
 {

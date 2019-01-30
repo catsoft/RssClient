@@ -34,14 +34,14 @@ namespace Droid.Screens.Settings
 
             var animationSpeeds = new List<AnimationSpeed>
             {
-                AnimationSpeed.x0_25,
-                AnimationSpeed.x0_33,
-                AnimationSpeed.x0_5,
-                AnimationSpeed.x,
-                AnimationSpeed.x2,
-                AnimationSpeed.x3,
-                AnimationSpeed.x4,
-                AnimationSpeed.max,
+                AnimationSpeed.X025,
+                AnimationSpeed.X033,
+                AnimationSpeed.X05,
+                AnimationSpeed.X,
+                AnimationSpeed.X2,
+                AnimationSpeed.X3,
+                AnimationSpeed.X4,
+                AnimationSpeed.Max,
             };
 
             var animationTypes = new List<AnimationType>

@@ -12,7 +12,7 @@ namespace Shared.Configuration
         /// </summary>
         public int DefaultAnimationTime { get; set; } = 200;
 
-        public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.x;
+        public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.X;
         public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
 
         public AppTheme AppTheme { get; set; } = AppTheme.Light;
@@ -22,21 +22,21 @@ namespace Shared.Configuration
             var defaultTime = DefaultAnimationTime;
             switch (AnimationSpeed)
             {
-                case AnimationSpeed.x0_25:
+                case AnimationSpeed.X025:
                     return defaultTime * 4;
-                case AnimationSpeed.x0_33:
+                case AnimationSpeed.X033:
                     return defaultTime * 3;
-                case AnimationSpeed.x0_5:
+                case AnimationSpeed.X05:
                     return defaultTime * 2;
-                case AnimationSpeed.x:
+                case AnimationSpeed.X:
                     return defaultTime;
-                case AnimationSpeed.x2:
+                case AnimationSpeed.X2:
                     return defaultTime / 2;
-                case AnimationSpeed.x3:
+                case AnimationSpeed.X3:
                     return defaultTime / 3;
-                case AnimationSpeed.x4:
+                case AnimationSpeed.X4:
                     return defaultTime / 4;
-                case AnimationSpeed.max:
+                case AnimationSpeed.Max:
                     return 0;
             }
             

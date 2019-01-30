@@ -12,14 +12,14 @@ namespace Droid.Infrastructure
             way.Go();
         }
 
-        public void Go<T, TD>(IWay<T, TD> way)
+        public void Go<T>(IWay<T> way)
         {
             way.Go();
         }
 
         public void GoBack()
         {
-            var goBackWay = App.Container.Resolve<IWay<CloseViewModel, CloseViewModel.Way.WayData>>();
+            var goBackWay = App.Container.Resolve<IWay<CloseViewModel.Way.WayData>>();
             goBackWay.Go();
         }
     }

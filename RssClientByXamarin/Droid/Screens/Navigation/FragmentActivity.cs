@@ -37,6 +37,8 @@ namespace Droid.Screens.Navigation
         {
             DoOrNo(transaction =>
             {
+                if(!ContainerId.HasValue) return;
+                
                 var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
                 SetEnterAnimation(previousFragment, fragment);
 
@@ -85,7 +87,7 @@ namespace Droid.Screens.Navigation
             switch (animationType)
             {
                 case AnimationType.None:
-                    EnterAnimateNone(previousFragment, fragment, time);
+                    EnterAnimateNone();
                     break;
                 case AnimationType.OnlyFade:
                     EnterAnimateOnlyFade(previousFragment, fragment, time);
@@ -108,7 +110,7 @@ namespace Droid.Screens.Navigation
             }
         }
 
-        private void EnterAnimateNone(Fragment previousFragment, Fragment fragment, int time)
+        private void EnterAnimateNone()
         {
         }
 

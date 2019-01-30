@@ -18,7 +18,7 @@ namespace iOS.Screens.Base.Stated
 
         private void InitErrorLabel()
         {
-            _errorLabel = new UILabel()
+            _errorLabel = new UILabel
             {
                 TranslatesAutoresizingMaskIntoConstraints = false,
             };

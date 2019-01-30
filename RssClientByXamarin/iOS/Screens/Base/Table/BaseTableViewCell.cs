@@ -14,7 +14,7 @@ namespace iOS.Screens.Base.Table
 
 		protected BaseTableViewCell(UITableViewCellStyle @default, string cellIdentifier) : base(@default, cellIdentifier)
 		{
-			RootView = new UIView()
+			RootView = new UIView
 			{
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};

@@ -46,9 +46,9 @@ namespace Droid.Screens.Main
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
                 
                 if(appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel.Way.WayData>>());
                 else if(appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
                 
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
@@ -62,25 +62,25 @@ namespace Droid.Screens.Main
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
                 if(appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel, RssListViewModel.Way.WayData>>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel.Way.WayData>>());
                 else if(appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
             } 
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<RecommendedCategoryListViewModel.Way.WayData>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
-                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel.Way.WayData>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
-                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel, ContactsViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel.Way.WayData>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {
-                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel, AboutViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel.Way.WayData>>());
             }
 
             menuItem.SetChecked(true);

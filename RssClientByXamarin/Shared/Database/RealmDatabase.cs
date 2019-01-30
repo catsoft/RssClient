@@ -18,7 +18,7 @@ namespace Shared.Database
             {
                 MainThreadRealm = Realm.GetInstance(config);
             }
-            catch (Realms.Exceptions.RealmMigrationNeededException e)
+            catch (Realms.Exceptions.RealmMigrationNeededException)
             {
                 Realm.DeleteRealm(config);
                 MainThreadRealm = Realm.GetInstance(config);

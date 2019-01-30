@@ -2,13 +2,13 @@ namespace Shared.Configuration
 {
     public enum AnimationSpeed
     {
-        x0_25,
-        x0_5,
-        x0_33,
-        x,
-        x2,
-        x3,
-        x4,
-        max
+        X025,
+        X05,
+        X033,
+        X,
+        X2,
+        X3,
+        X4,
+        Max
     }
 }

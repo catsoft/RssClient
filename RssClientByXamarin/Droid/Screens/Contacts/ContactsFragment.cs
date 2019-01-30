@@ -39,7 +39,7 @@ namespace Droid.Screens.Contacts
             return view;
         }
 
-        private View InflateAndFill(LayoutInflater inflater, ViewGroup container, int imageId, int titleId, Action action)
+        private void InflateAndFill(LayoutInflater inflater, ViewGroup container, int imageId, int titleId, Action action)
         {
             var linkView = inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false);
 
@@ -53,8 +53,6 @@ namespace Droid.Screens.Contacts
             title.Text = text;
 
             container.AddView(linkView);
-
-            return linkView;
         }
 
         private async void CopyToClipboard(int linkId)

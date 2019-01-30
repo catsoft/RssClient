@@ -4,17 +4,11 @@ namespace Shared.ViewModels
 {
     public class RssEditViewModel : ViewModel
     {
-        public abstract class Way : Way<RssEditViewModel, Way.WayData>
+        public abstract class Way : Way<Way.WayData>
         {
-
-            public Way()
-            {
-                
-            }
-            
             public class WayData
             {
-                public string RssId { get; set; }
+                public string RssId { get; }
 
                 public WayData(string rssId)
                 {

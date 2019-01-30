@@ -38,7 +38,7 @@ namespace Droid.Screens.RecommendedCategoryList
             view.Click += (sender, args) =>
             {
                 var navigator = App.Container.Resolve<INavigator>();
-                var way = App.Container.Resolve<IWay<RecommendedViewModel, RecommendedViewModel.Way.WayData>>();
+                var way = App.Container.Resolve<IWay<RecommendedViewModel.Way.WayData>>();
                 way.Data = new RecommendedViewModel.Way.WayData(viewHolder.Categories);
                 navigator.Go(way);
             };

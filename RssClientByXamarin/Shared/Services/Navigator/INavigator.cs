@@ -3,7 +3,7 @@
     public interface INavigator
     {
         void Go(IWay way);
-        void Go<T, TD>(IWay<T, TD> way);
+        void Go<T>(IWay<T> way);
         void GoBack();
     }
 }

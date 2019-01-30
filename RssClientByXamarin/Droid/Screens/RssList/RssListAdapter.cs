@@ -104,7 +104,7 @@ namespace Droid.Screens.RssList
         private void EditItem(RssModel holderItem)
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var editWay = App.Container.Resolve<IWay<RssEditViewModel, RssEditViewModel.Way.WayData>>();
+            var editWay = App.Container.Resolve<IWay<RssEditViewModel.Way.WayData>>();
             editWay.Data = new RssEditViewModel.Way.WayData(holderItem.Id);
             navigator.Go(editWay);
         }
@@ -123,7 +123,7 @@ namespace Droid.Screens.RssList
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var way = App.Container.Resolve<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.WayData>>();
+            var way = App.Container.Resolve<IWay<RssItemDetailViewModel.Way.WayData>>();
             way.Data = new RssItemDetailViewModel.Way.WayData(holderItem);
             _navigator.Go(way);
         }

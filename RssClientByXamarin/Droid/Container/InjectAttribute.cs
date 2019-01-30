@@ -11,10 +11,6 @@ namespace Droid.Container
 {
     public class InjectAttribute : Attribute
     {
-        public InjectAttribute()
-        {
-            
-        }
     }
 
     public static class InjectExtension

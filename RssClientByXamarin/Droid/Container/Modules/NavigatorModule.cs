@@ -24,20 +24,20 @@ namespace Droid.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<CloseWay>().As<IWay<CloseViewModel, CloseViewModel.Way.WayData>>();
+            builder.RegisterType<CloseWay>().As<IWay<CloseViewModel.Way.WayData>>();
             
-            builder.RegisterType<RssItemDetailWay>().As<IWay<RssItemDetailViewModel, RssItemDetailViewModel.Way.WayData>>();
-            builder.RegisterType<RssAllMessagesListWay>().As<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>();
-            builder.RegisterType<RssListWay>().As<IWay<RssListViewModel, RssListViewModel.Way.WayData>>();
-            builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel, RssCreateViewModel.Way.WayData>>();
-            builder.RegisterType<RssEditWay>().As<IWay<RssEditViewModel, RssEditViewModel.Way.WayData>>();
-            builder.RegisterType<RecommendedCategoryListWay>().As<IWay<RecommendedCategoryListViewModel, RecommendedCategoryListViewModel.Way.WayData>>();
-            builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendedViewModel, RecommendedViewModel.Way.WayData>>();
-            builder.RegisterType<RssMessageWay>().As<IWay<RssMessageViewModel, RssMessageViewModel.Way.WayData>>();
+            builder.RegisterType<RssItemDetailWay>().As<IWay<RssItemDetailViewModel.Way.WayData>>();
+            builder.RegisterType<RssAllMessagesListWay>().As<IWay<RssAllMessagesViewModel.Way.WayData>>();
+            builder.RegisterType<RssListWay>().As<IWay<RssListViewModel.Way.WayData>>();
+            builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel.Way.WayData>>();
+            builder.RegisterType<RssEditWay>().As<IWay<RssEditViewModel.Way.WayData>>();
+            builder.RegisterType<RecommendedCategoryListWay>().As<IWay<RecommendedCategoryListViewModel.Way.WayData>>();
+            builder.RegisterType<RecommendedRssListWay>().As<IWay<RecommendedViewModel.Way.WayData>>();
+            builder.RegisterType<RssMessageWay>().As<IWay<RssMessageViewModel.Way.WayData>>();
             
-            builder.RegisterType<AboutWay>().As<IWay<AboutViewModel, AboutViewModel.Way.WayData>>();
-            builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel, SettingsViewModel.Way.WayData>>();
-            builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel, ContactsViewModel.Way.WayData>>();
+            builder.RegisterType<AboutWay>().As<IWay<AboutViewModel.Way.WayData>>();
+            builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel.Way.WayData>>();
+            builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel.Way.WayData>>();
 
             
             builder.Register((c) => MainActivity.Instance).AsSelf();

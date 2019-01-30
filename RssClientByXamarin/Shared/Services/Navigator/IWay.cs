@@ -5,7 +5,7 @@
         void Go();
     }
 
-    public interface IWay<TModel, TData>
+    public interface IWay<TData>
     {
         void Go();
         TData Data { get; set; }

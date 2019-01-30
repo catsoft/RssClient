@@ -95,7 +95,7 @@ namespace Droid.Screens.RssList
         {
             if (item.ItemId == Resource.Id.menuItem_rssList_change)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel, RssAllMessagesViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
             }
             
             return base.OnOptionsItemSelected(item);
@@ -103,7 +103,7 @@ namespace Droid.Screens.RssList
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            var createWay = App.Container.Resolve<IWay<RssCreateViewModel,RssCreateViewModel.Way.WayData>>();
+            var createWay = App.Container.Resolve<IWay<RssCreateViewModel.Way.WayData>>();
             _navigator.Go(createWay);
         }
     }

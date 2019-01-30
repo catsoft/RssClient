@@ -5,16 +5,11 @@ namespace Shared.ViewModels
 {
     public class RssItemDetailViewModel : ViewModel
     {
-        public abstract class Way : Way<RssItemDetailViewModel, Way.WayData>
+        public abstract class Way : Way<Way.WayData>
         {
-            public Way()
-            {
-
-            }
-
             public class WayData
             {
-                public RssModel RssModel { get; set; }
+                public RssModel RssModel { get; }
 
                 public WayData(RssModel rssModel)
                 {
