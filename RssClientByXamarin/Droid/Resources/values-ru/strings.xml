@@ -70,4 +70,9 @@
     <string name="settings_animation_speedAnimation">Скорость анимации</string>
     <string name="settings_animation_typeAnimation">Тип анимации</string>
 
+    <string name="settings_theme_header">Тема</string>
+    <string name="settings_theme_light">Светлая</string>
+    <string name="settings_theme_dark">Темная</string>
+    <string name="settings_theme_default">Основная</string>
+
 </resources>

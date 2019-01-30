@@ -79,10 +79,10 @@
     <string name="settings_animation_header">Transition animation</string>
     <string name="settings_animation_speedAnimation">Speed animation</string>
     <string name="settings_animation_typeAnimation">Type animation</string>
+    
     <string name="settings_theme_header">Theme</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_default">Default</string>
-    <string name="settings_theme_daynight">Day-Night</string>
 
 </resources>
