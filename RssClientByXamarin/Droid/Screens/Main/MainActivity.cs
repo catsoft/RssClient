@@ -36,8 +36,6 @@ namespace Droid.Screens.Main
         {
             Instance = this;
 
-            SetTheme(Resource.Style.AppTheme_Dark_NoActionBar);
-
             base.OnCreate(savedInstanceState);
 
             Title = GetText(Resource.String.rssList_title);

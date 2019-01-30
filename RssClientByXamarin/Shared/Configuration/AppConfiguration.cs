@@ -14,6 +14,8 @@ namespace Shared.Configuration
 
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.x;
         public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
+
+        public AppTheme AppTheme { get; set; } = AppTheme.Light;
         
         public int GetCalculationAnimationTime()
         {

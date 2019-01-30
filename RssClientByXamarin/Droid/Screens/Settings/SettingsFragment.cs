@@ -1,5 +1,6 @@
 ﻿using Android.OS;
 using Android.Views;
+using Android.Widget;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Settings
@@ -25,6 +26,9 @@ namespace Droid.Screens.Settings
 
             Title = Activity.GetString(Resource.String.settings_title);
 
+            var scrollView = view.FindViewById<ScrollView>(Resource.Id.scrollView_settings_main);
+            scrollView.SaveEnabled = true;
+            
             return view;
         }
     }

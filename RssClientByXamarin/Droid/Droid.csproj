@@ -76,6 +76,7 @@
     <Compile Include="Screens\Base\ActivityFragmentExtension.cs" />
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
+    <Compile Include="Screens\Base\AppThemeActivity.cs" />
     <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
     <Compile Include="Screens\Base\InjectActivity.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />

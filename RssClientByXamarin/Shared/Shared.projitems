@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AnimationSpeed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AnimationType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AppConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\AppTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\MessagesViewer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\StartPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\AnalitycModule.cs" />
