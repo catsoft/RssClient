@@ -515,6 +515,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable\circle_72.xml" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\launch_image_text.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
