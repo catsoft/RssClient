@@ -3245,7 +3245,7 @@ namespace Droid
 			public const int info_24 = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int lauch_image_text = 2130837616;
+			public const int launch_image_text = 2130837616;
 			
 			// aapt resource value: 0x7f020071
 			public const int launch_screen = 2130837617;
