@@ -8,20 +8,17 @@
         android:id="@+id/menuItem_rssDetail_remove"
         android:title="@string/menuRssDetail_remove"
         android:icon="@drawable/ic_delete"
-        app:showAsAction="ifRoom"
-        app:iconTint="@color/white" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menuItem_rssDetail_edit"
         android:title="@string/menuRssDetail_edit"
         android:icon="@drawable/ic_edit"
-        app:showAsAction="ifRoom"
-        app:iconTint="@color/white" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menuItem_rssDetail_share"
         android:title="@string/menuRssDetail_share"
         android:icon="@drawable/share_24"
-        app:showAsAction="ifRoom"
-        app:iconTint="@color/white" />
+        app:showAsAction="ifRoom" />
 </menu>

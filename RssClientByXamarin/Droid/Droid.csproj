@@ -383,9 +383,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\shimmer_view.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_delete.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_edit.png" />

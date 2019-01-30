@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EA7819</color>
-    <color name="colorPrimaryDark">#CF6415</color>
-    <color name="colorAccent">#3498DB</color>
+    <!--<color name="colorPrimary">#EA7819</color>-->
+    <!--<color name="colorPrimaryDark">#CF6415</color>-->
+    <!--<color name="colorAccent">#3498DB</color>-->
 
+    <color name="orange">#EA7819</color>
+    
     <color name="ic_launcher_background">#EA7819</color>
 
-    <color name="shimmer_background">#DDDDDD</color>
-
-    <color name="white">#FFFFFF</color>
-
-    <color name="fragment_background">#F0F8FF</color>
-
     <color name="divider">#777777</color>
-    
-    <color name="category_item_background">#EEEEEE</color>
     
 </resources>

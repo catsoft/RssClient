@@ -17,6 +17,6 @@
         android:bottom="16dp"/>
 
     <solid
-        android:color="@color/colorPrimaryDark"/>
+        android:color="?attr/colorPrimaryDark"/>
 
 </shape>

@@ -17,7 +17,7 @@ namespace Droid.Screens.Navigation
             
             var view = inflater.Inflate(LayoutId, container, false);
 
-            var color = ContextCompat.GetColor(Context, Resource.Color.fragment_background);
+            var color = ContextCompat.GetColor(Context, Resource.Attribute.background);
             view.SetBackgroundColor(new Color(color));
 
             return view;
