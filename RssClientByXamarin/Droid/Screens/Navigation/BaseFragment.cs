@@ -1,6 +1,8 @@
+using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.Content;
+using Android.Util;
 using Android.Views;
 
 namespace Droid.Screens.Navigation
@@ -17,8 +19,10 @@ namespace Droid.Screens.Navigation
             
             var view = inflater.Inflate(LayoutId, container, false);
 
-            var color = ContextCompat.GetColor(Context, Resource.Attribute.background);
-            view.SetBackgroundColor(new Color(color));
+            var value = new TypedValue();
+            Activity.Theme.ResolveAttribute(Resource.Attribute.background,value, true);
+            var intAttr = (int) value.Float;
+            view.SetBackgroundColor(new Color(intAttr));
 
             return view;
         }

@@ -36,7 +36,6 @@
         android:padding="16dp"
         android:src="@drawable/ic_add"
         android:background="@android:color/transparent"
-        android:tint="?attr/colorPrimary"
         android:gravity="center"/>
 
 </LinearLayout>
