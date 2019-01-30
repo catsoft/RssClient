@@ -9,13 +9,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
-    <style name="AppTheme.Light.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-
-    <style name="AppTheme.Light.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-
     <style name="AppTheme.Light.Launcher" parent="AppTheme.Light">
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>

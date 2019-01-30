@@ -1,3 +1,4 @@
+using System;
 using Android.OS;
 using Droid.Container;
 using Droid.Repository;
@@ -16,7 +17,7 @@ namespace Droid.Screens.Base
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var appTheme = appConfiguration.AppTheme;
 
-            var themeId = 0;
+            int themeId;
 
             switch (appTheme)
             {
@@ -26,6 +27,11 @@ namespace Droid.Screens.Base
                 case AppTheme.Dark:
                     themeId = Resource.Style.AppTheme_Dark_NoActionBar;
                     break;
+                case AppTheme.Default:
+                    themeId = Resource.Style.AppTheme_Default_NoActionBar;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             
             SetTheme(themeId);

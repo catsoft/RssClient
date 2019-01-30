@@ -10,12 +10,6 @@
     </style>
 
 
-    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat" />
-
-
-    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat" />
-
-
     <style name="AppTheme.Dark.Launcher" parent="AppTheme.Dark">
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>

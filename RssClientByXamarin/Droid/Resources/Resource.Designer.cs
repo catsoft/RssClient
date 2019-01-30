@@ -1787,44 +1787,44 @@ namespace Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b005d
-			public const int abc_background_cache_hint_selector_material_dark = 2131427421;
-			
 			// aapt resource value: 0x7f0b005e
-			public const int abc_background_cache_hint_selector_material_light = 2131427422;
+			public const int abc_background_cache_hint_selector_material_dark = 2131427422;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int abc_btn_colored_borderless_text_material = 2131427423;
+			public const int abc_background_cache_hint_selector_material_light = 2131427423;
 			
 			// aapt resource value: 0x7f0b0060
-			public const int abc_btn_colored_text_material = 2131427424;
+			public const int abc_btn_colored_borderless_text_material = 2131427424;
 			
 			// aapt resource value: 0x7f0b0061
-			public const int abc_color_highlight_material = 2131427425;
+			public const int abc_btn_colored_text_material = 2131427425;
 			
 			// aapt resource value: 0x7f0b0062
-			public const int abc_hint_foreground_material_dark = 2131427426;
+			public const int abc_color_highlight_material = 2131427426;
 			
 			// aapt resource value: 0x7f0b0063
-			public const int abc_hint_foreground_material_light = 2131427427;
+			public const int abc_hint_foreground_material_dark = 2131427427;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int abc_hint_foreground_material_light = 2131427428;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int abc_input_method_navigation_guard = 2131427332;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int abc_primary_text_disable_only_material_dark = 2131427428;
-			
 			// aapt resource value: 0x7f0b0065
-			public const int abc_primary_text_disable_only_material_light = 2131427429;
+			public const int abc_primary_text_disable_only_material_dark = 2131427429;
 			
 			// aapt resource value: 0x7f0b0066
-			public const int abc_primary_text_material_dark = 2131427430;
+			public const int abc_primary_text_disable_only_material_light = 2131427430;
 			
 			// aapt resource value: 0x7f0b0067
-			public const int abc_primary_text_material_light = 2131427431;
+			public const int abc_primary_text_material_dark = 2131427431;
 			
 			// aapt resource value: 0x7f0b0068
-			public const int abc_search_url_text = 2131427432;
+			public const int abc_primary_text_material_light = 2131427432;
+			
+			// aapt resource value: 0x7f0b0069
+			public const int abc_search_url_text = 2131427433;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int abc_search_url_text_normal = 2131427333;
@@ -1835,29 +1835,29 @@ namespace Droid
 			// aapt resource value: 0x7f0b0007
 			public const int abc_search_url_text_selected = 2131427335;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int abc_secondary_text_material_dark = 2131427433;
-			
 			// aapt resource value: 0x7f0b006a
-			public const int abc_secondary_text_material_light = 2131427434;
+			public const int abc_secondary_text_material_dark = 2131427434;
 			
 			// aapt resource value: 0x7f0b006b
-			public const int abc_tint_btn_checkable = 2131427435;
+			public const int abc_secondary_text_material_light = 2131427435;
 			
 			// aapt resource value: 0x7f0b006c
-			public const int abc_tint_default = 2131427436;
+			public const int abc_tint_btn_checkable = 2131427436;
 			
 			// aapt resource value: 0x7f0b006d
-			public const int abc_tint_edittext = 2131427437;
+			public const int abc_tint_default = 2131427437;
 			
 			// aapt resource value: 0x7f0b006e
-			public const int abc_tint_seek_thumb = 2131427438;
+			public const int abc_tint_edittext = 2131427438;
 			
 			// aapt resource value: 0x7f0b006f
-			public const int abc_tint_spinner = 2131427439;
+			public const int abc_tint_seek_thumb = 2131427439;
 			
 			// aapt resource value: 0x7f0b0070
-			public const int abc_tint_switch_track = 2131427440;
+			public const int abc_tint_spinner = 2131427440;
+			
+			// aapt resource value: 0x7f0b0071
+			public const int abc_tint_switch_track = 2131427441;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int accent_material_dark = 2131427336;
@@ -1934,8 +1934,8 @@ namespace Droid
 			// aapt resource value: 0x7f0b0043
 			public const int design_default_color_primary_dark = 2131427395;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int design_error = 2131427441;
+			// aapt resource value: 0x7f0b0072
+			public const int design_error = 2131427442;
 			
 			// aapt resource value: 0x7f0b0044
 			public const int design_fab_shadow_end_color = 2131427396;
@@ -1961,8 +1961,8 @@ namespace Droid
 			// aapt resource value: 0x7f0b004b
 			public const int design_snackbar_background_color = 2131427403;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int design_tint_password_toggle = 2131427442;
+			// aapt resource value: 0x7f0b0073
+			public const int design_tint_password_toggle = 2131427443;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int dim_foreground_disabled_material_dark = 2131427350;
@@ -2036,71 +2036,71 @@ namespace Droid
 			// aapt resource value: 0x7f0b002b
 			public const int material_grey_900 = 2131427371;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int mtrl_bottom_nav_colored_item_tint = 2131427443;
-			
 			// aapt resource value: 0x7f0b0074
-			public const int mtrl_bottom_nav_item_tint = 2131427444;
+			public const int mtrl_bottom_nav_colored_item_tint = 2131427444;
+			
+			// aapt resource value: 0x7f0b0075
+			public const int mtrl_bottom_nav_item_tint = 2131427445;
 			
 			// aapt resource value: 0x7f0b004c
 			public const int mtrl_btn_bg_color_disabled = 2131427404;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int mtrl_btn_bg_color_selector = 2131427445;
-			
 			// aapt resource value: 0x7f0b0076
-			public const int mtrl_btn_ripple_color = 2131427446;
+			public const int mtrl_btn_bg_color_selector = 2131427446;
 			
 			// aapt resource value: 0x7f0b0077
-			public const int mtrl_btn_stroke_color_selector = 2131427447;
+			public const int mtrl_btn_ripple_color = 2131427447;
 			
 			// aapt resource value: 0x7f0b0078
-			public const int mtrl_btn_text_btn_ripple_color = 2131427448;
+			public const int mtrl_btn_stroke_color_selector = 2131427448;
+			
+			// aapt resource value: 0x7f0b0079
+			public const int mtrl_btn_text_btn_ripple_color = 2131427449;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int mtrl_btn_text_color_disabled = 2131427405;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int mtrl_btn_text_color_selector = 2131427449;
+			// aapt resource value: 0x7f0b007a
+			public const int mtrl_btn_text_color_selector = 2131427450;
 			
 			// aapt resource value: 0x7f0b004e
 			public const int mtrl_btn_transparent_bg_color = 2131427406;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int mtrl_chip_background_color = 2131427450;
-			
 			// aapt resource value: 0x7f0b007b
-			public const int mtrl_chip_close_icon_tint = 2131427451;
+			public const int mtrl_chip_background_color = 2131427451;
 			
 			// aapt resource value: 0x7f0b007c
-			public const int mtrl_chip_ripple_color = 2131427452;
+			public const int mtrl_chip_close_icon_tint = 2131427452;
 			
 			// aapt resource value: 0x7f0b007d
-			public const int mtrl_chip_text_color = 2131427453;
+			public const int mtrl_chip_ripple_color = 2131427453;
 			
 			// aapt resource value: 0x7f0b007e
-			public const int mtrl_fab_ripple_color = 2131427454;
+			public const int mtrl_chip_text_color = 2131427454;
+			
+			// aapt resource value: 0x7f0b007f
+			public const int mtrl_fab_ripple_color = 2131427455;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int mtrl_scrim_color = 2131427407;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int mtrl_tabs_colored_ripple_color = 2131427455;
-			
 			// aapt resource value: 0x7f0b0080
-			public const int mtrl_tabs_icon_color_selector = 2131427456;
+			public const int mtrl_tabs_colored_ripple_color = 2131427456;
 			
 			// aapt resource value: 0x7f0b0081
-			public const int mtrl_tabs_icon_color_selector_colored = 2131427457;
+			public const int mtrl_tabs_icon_color_selector = 2131427457;
 			
 			// aapt resource value: 0x7f0b0082
-			public const int mtrl_tabs_legacy_text_color_selector = 2131427458;
+			public const int mtrl_tabs_icon_color_selector_colored = 2131427458;
 			
 			// aapt resource value: 0x7f0b0083
-			public const int mtrl_tabs_ripple_color = 2131427459;
+			public const int mtrl_tabs_legacy_text_color_selector = 2131427459;
 			
 			// aapt resource value: 0x7f0b0084
-			public const int mtrl_text_btn_text_color_selector = 2131427460;
+			public const int mtrl_tabs_ripple_color = 2131427460;
+			
+			// aapt resource value: 0x7f0b0085
+			public const int mtrl_text_btn_text_color_selector = 2131427461;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int mtrl_textinput_default_box_stroke_color = 2131427408;
@@ -2156,6 +2156,9 @@ namespace Droid
 			// aapt resource value: 0x7f0b0035
 			public const int ripple_material_light = 2131427381;
 			
+			// aapt resource value: 0x7f0b005d
+			public const int rss_header = 2131427421;
+			
 			// aapt resource value: 0x7f0b0036
 			public const int secondary_text_default_material_dark = 2131427382;
 			
@@ -2174,11 +2177,11 @@ namespace Droid
 			// aapt resource value: 0x7f0b003b
 			public const int switch_thumb_disabled_material_light = 2131427387;
 			
-			// aapt resource value: 0x7f0b0085
-			public const int switch_thumb_material_dark = 2131427461;
-			
 			// aapt resource value: 0x7f0b0086
-			public const int switch_thumb_material_light = 2131427462;
+			public const int switch_thumb_material_dark = 2131427462;
+			
+			// aapt resource value: 0x7f0b0087
+			public const int switch_thumb_material_light = 2131427463;
 			
 			// aapt resource value: 0x7f0b003c
 			public const int switch_thumb_normal_material_dark = 2131427388;
@@ -4934,6 +4937,9 @@ namespace Droid
 			// aapt resource value: 0x7f0c0072
 			public const int settings_theme_dark = 2131492978;
 			
+			// aapt resource value: 0x7f0c0074
+			public const int settings_theme_daynight = 2131492980;
+			
 			// aapt resource value: 0x7f0c0073
 			public const int settings_theme_default = 2131492979;
 			
@@ -4980,53 +4986,32 @@ namespace Droid
 			// aapt resource value: 0x7f0a0162
 			public const int Animation_Design_BottomSheetDialog = 2131362146;
 			
-			// aapt resource value: 0x7f0a0200
-			public const int AppBarLayout = 2131362304;
+			// aapt resource value: 0x7f0a0201
+			public const int AppTheme_Dark = 2131362305;
+			
+			// aapt resource value: 0x7f0a0203
+			public const int AppTheme_Dark_Launcher = 2131362307;
+			
+			// aapt resource value: 0x7f0a0202
+			public const int AppTheme_Dark_NoActionBar = 2131362306;
 			
 			// aapt resource value: 0x7f0a0204
-			public const int AppTheme_Dark = 2131362308;
+			public const int AppTheme_Default = 2131362308;
 			
 			// aapt resource value: 0x7f0a0206
-			public const int AppTheme_Dark_AppBarOverlay = 2131362310;
-			
-			// aapt resource value: 0x7f0a0208
-			public const int AppTheme_Dark_Launcher = 2131362312;
+			public const int AppTheme_Default_Launcher = 2131362310;
 			
 			// aapt resource value: 0x7f0a0205
-			public const int AppTheme_Dark_NoActionBar = 2131362309;
+			public const int AppTheme_Default_NoActionBar = 2131362309;
 			
 			// aapt resource value: 0x7f0a0207
-			public const int AppTheme_Dark_PopupOverlay = 2131362311;
+			public const int AppTheme_Light = 2131362311;
 			
 			// aapt resource value: 0x7f0a0209
-			public const int AppTheme_Default = 2131362313;
+			public const int AppTheme_Light_Launcher = 2131362313;
 			
-			// aapt resource value: 0x7f0a020b
-			public const int AppTheme_Default_AppBarOverlay = 2131362315;
-			
-			// aapt resource value: 0x7f0a020d
-			public const int AppTheme_Default_Launcher = 2131362317;
-			
-			// aapt resource value: 0x7f0a020a
-			public const int AppTheme_Default_NoActionBar = 2131362314;
-			
-			// aapt resource value: 0x7f0a020c
-			public const int AppTheme_Default_PopupOverlay = 2131362316;
-			
-			// aapt resource value: 0x7f0a020e
-			public const int AppTheme_Light = 2131362318;
-			
-			// aapt resource value: 0x7f0a0210
-			public const int AppTheme_Light_AppBarOverlay = 2131362320;
-			
-			// aapt resource value: 0x7f0a0212
-			public const int AppTheme_Light_Launcher = 2131362322;
-			
-			// aapt resource value: 0x7f0a020f
-			public const int AppTheme_Light_NoActionBar = 2131362319;
-			
-			// aapt resource value: 0x7f0a0211
-			public const int AppTheme_Light_PopupOverlay = 2131362321;
+			// aapt resource value: 0x7f0a0208
+			public const int AppTheme_Light_NoActionBar = 2131362312;
 			
 			// aapt resource value: 0x7f0a0092
 			public const int Base_AlertDialog_AppCompat = 2131361938;
@@ -5604,8 +5589,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a0003
 			public const int CardView_Light = 2131361795;
 			
-			// aapt resource value: 0x7f0a0203
-			public const int Divider = 2131362307;
+			// aapt resource value: 0x7f0a0200
+			public const int Divider = 2131362304;
 			
 			// aapt resource value: 0x7f0a01f5
 			public const int EditText = 2131362293;
@@ -5654,9 +5639,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0a00c6
 			public const int Platform_Widget_AppCompat_Spinner = 2131361990;
-			
-			// aapt resource value: 0x7f0a0201
-			public const int Popup = 2131362305;
 			
 			// aapt resource value: 0x7f0a01f8
 			public const int RecyclerView = 2131362296;
@@ -6188,9 +6170,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0a01be
 			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131362238;
-			
-			// aapt resource value: 0x7f0a0202
-			public const int Toolbar = 2131362306;
 			
 			// aapt resource value: 0x7f0a010e
 			public const int Widget_AppCompat_ActionBar = 2131362062;

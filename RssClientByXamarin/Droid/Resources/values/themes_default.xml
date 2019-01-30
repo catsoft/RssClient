@@ -4,18 +4,14 @@
         <item name="colorPrimary">#EA7819</item>
         <item name="colorPrimaryDark">#CF6415</item>
         <item name="colorAccent">#3498DB</item>
+
+        <!--<item name="toolbarStyle">@style/Theme.AppCompat</item>-->
     </style>
 
     <style name="AppTheme.Default.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-
-    <style name="AppTheme.Default.AppBarOverlay" parent="ThemeOverlay.AppCompat" />
-
-
-    <style name="AppTheme.Default.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
     <style name="AppTheme.Default.Launcher" parent="AppTheme.Default">

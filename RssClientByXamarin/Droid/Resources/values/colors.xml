@@ -10,4 +10,6 @@
 
     <color name="divider">#777777</color>
     
+    <color name="rss_header">#FFFFFF</color>
+    
 </resources>

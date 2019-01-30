@@ -47,7 +47,7 @@ namespace Droid.Screens.Settings
             {
                 defaultRadioButton.Checked = true;
             }
-            
+
             radioGroup.SetOnCheckedChangeListener(this);
             
             return view;

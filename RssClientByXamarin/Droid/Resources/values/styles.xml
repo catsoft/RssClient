@@ -33,8 +33,8 @@
     <style name="TextView" parent="Base.TextAppearance.AppCompat">
 
     </style>
-    
-    
+
+
     <style name="TextView.Title" parent="Base.TextAppearance.AppCompat.Title">
 
     </style>
@@ -60,21 +60,6 @@
     </style>
 
 
-    <style name="AppBarLayout" parent="AppTheme.Light.AppBarOverlay">
-
-    </style>
-
-
-    <style name="Popup" parent="AppTheme.Light.PopupOverlay">
-
-    </style>
-
-
-    <style name="Toolbar" parent="AppTheme.Light.PopupOverlay">
-        <item name="background">?attr/colorPrimary</item>
-    </style>
-    
-    
     <style name="Divider">
         <item name="android:background">@color/divider</item>
     </style>

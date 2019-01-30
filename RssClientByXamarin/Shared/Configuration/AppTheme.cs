@@ -4,6 +4,7 @@ namespace Shared.Configuration
     {
         Light,
         Dark,
-        Default
+        Default,
+        DayNight
     }
 }
