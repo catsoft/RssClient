@@ -18,25 +18,23 @@ namespace Droid.Screens.RssList
 {
     public class RssListFragment : TitleFragment
     {
-        [Inject]
-        private IRssRepository _rssRepository;
-        
-        [Inject]
-        private INavigator _navigator;
+        [Inject] private IRssRepository _rssRepository;
+
+        [Inject] private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool RootFragment => true;
 
         public RssListFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
-            
+
         }
-        
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Title = Activity?.GetText(Resource.String.rssList_title);
@@ -59,7 +57,7 @@ namespace Droid.Screens.RssList
             var callback = new SwipeTouchHelperCallback(adapter);
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(recyclerView);
-            
+
             items.SubscribeForNotifications((sender, changes, error) =>
             {
                 if (sender != null && changes != null)
@@ -85,7 +83,7 @@ namespace Droid.Screens.RssList
 
             return view;
         }
-        
+
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_rssList, menu);
@@ -95,15 +93,15 @@ namespace Droid.Screens.RssList
         {
             if (item.ItemId == Resource.Id.menuItem_rssList_change)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
             }
-            
+
             return base.OnOptionsItemSelected(item);
         }
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            var createWay = App.Container.Resolve<IWay<RssCreateViewModel.Way.WayData>>();
+            var createWay = App.Container.Resolve<RssCreateViewModel.Way>();
             _navigator.Go(createWay);
         }
     }

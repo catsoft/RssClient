@@ -15,13 +15,11 @@ namespace Droid.Repository
 
         public void SaveSetting<T>(T obj)
         {
-            _database.DoInBackground(realm =>
+            RealmDatabase.DoInBackground(realm =>
             {
                 var key = typeof(T).FullName;
                 var value = JsonConvert.SerializeObject(obj);
-                var item = realm.All<SettingsModel>().FirstOrDefault(w => w.Key == key);
-                if (item == null)
-                    item = new SettingsModel(key);
+                var item = realm.All<SettingsModel>().FirstOrDefault(w => w.Key == key) ?? new SettingsModel(key);
                 item.JsonValue = value;
 
                 realm.Add(item, true);
@@ -29,7 +27,7 @@ namespace Droid.Repository
         }
 
         public T GetSettings<T>()
-        where T : new()
+            where T : new()
         {
             var key = typeof(T).FullName;
             var item = _database.MainThreadRealm.All<SettingsModel>().FirstOrDefault(w => w.Key == key);

@@ -9,14 +9,14 @@ namespace Droid.Screens.Base
     {
         public static void ShowKeyboard(this Activity activity, View view)
         {
-            var manager = (InputMethodManager)activity.GetSystemService(Context.InputMethodService);
+            var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);
             manager?.ShowSoftInput(view, 0);
         }
 
         public static void HideKeyboard(this Activity activity)
         {
             var focus = activity.CurrentFocus;
-            var manager = (InputMethodManager)activity.GetSystemService(Context.InputMethodService);
+            var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);
             manager?.HideSoftInputFromWindow(focus.WindowToken, 0);
         }
     }

@@ -12,9 +12,8 @@ namespace Droid.Screens.Navigation
 {
     public abstract class FragmentActivity : BurgerActivity
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-        
+        [Inject] private IConfigurationRepository _configurationRepository;
+
         protected abstract int? ContainerId { get; }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -37,15 +36,13 @@ namespace Droid.Screens.Navigation
         {
             DoOrNo(transaction =>
             {
-                if(!ContainerId.HasValue) return;
-                
+                if (!ContainerId.HasValue) return;
+
                 var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
-                SetEnterAnimation(previousFragment, fragment);
+                SetAnimation(previousFragment, fragment);
 
-//                transaction.SetCustomAnimations(Resource.Animation.enter_from_right, Resource.Animation.exit_to_left,
-//                    Resource.Animation.enter_from_left, Resource.Animation.exit_to_right);
                 var type = fragment.GetType();
-
+                //TODO подумать и убрать?
                 switch (cacheState)
                 {
                     case CacheState.New:
@@ -77,7 +74,7 @@ namespace Droid.Screens.Navigation
             });
         }
 
-        private void SetEnterAnimation(Fragment previousFragment, Fragment fragment)
+        private void SetAnimation(Fragment previousFragment, Fragment fragment)
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
@@ -107,6 +104,8 @@ namespace Droid.Screens.Navigation
                 case AnimationType.FromRightToLeft:
                     EnterAnimateFromRightToLeft(previousFragment, fragment, time);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

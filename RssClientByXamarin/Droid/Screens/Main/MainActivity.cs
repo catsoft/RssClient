@@ -16,11 +16,9 @@ namespace Droid.Screens.Main
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Default.NoActionBar")]
     public class MainActivity : FragmentActivity
     {
-        [Inject]
-        private INavigator _navigator;
+        [Inject] private INavigator _navigator;
 
-        [Inject] 
-        private IConfigurationRepository _configurationRepository;
+        [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
         protected override int ResourceView => Resource.Layout.activity_main;
@@ -44,12 +42,12 @@ namespace Droid.Screens.Main
             {
                 // TODO Вынести в отдельный роут
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-                
-                if(appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel.Way.WayData>>());
-                else if(appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
-                
+
+                if (appConfiguration.StartPage == StartPage.RssList)
+                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                else if (appConfiguration.StartPage == StartPage.AllMessages)
+                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
         }
@@ -61,26 +59,26 @@ namespace Droid.Screens.Main
                 // TODO Вынести в отдельный роут
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
-                if(appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel.Way.WayData>>());
-                else if(appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel.Way.WayData>>());
-            } 
+                if (appConfiguration.StartPage == StartPage.RssList)
+                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                else if (appConfiguration.StartPage == StartPage.AllMessages)
+                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+            }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RecommendedCategoryListViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<RecommendedCategoryListViewModel.Way>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
-                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<SettingsViewModel.Way>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
-                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<ContactsViewModel.Way>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {
-                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel.Way.WayData>>());
+                _navigator.Go(App.Container.Resolve<AboutViewModel.Way>());
             }
 
             menuItem.SetChecked(true);

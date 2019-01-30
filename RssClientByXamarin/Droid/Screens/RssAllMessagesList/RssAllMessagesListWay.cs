@@ -11,7 +11,7 @@ namespace Droid.Screens.RssAllMessagesList
         {
             _activity = activity;
         }
-        
+
         public override void Go()
         {
             _activity.AddFragment(new RssAllMessagesListFragment(), CacheState.Old);

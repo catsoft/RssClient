@@ -22,20 +22,6 @@ namespace Shared.Repository
             _client = client;
             _log = log;
 
-            // Test array
-//            if (!_database.MainThreadRealm.All<RssModel>().Any())
-//            {
-//                InsertByUrl("https://meteoinfo.ru/rss/forecasts/index.php?s=28440");
-//                InsertByUrl("https://acomics.ru/~depth-of-delusion/rss");
-//                InsertByUrl("http://www.calend.ru/img/export/calend.rss");
-//                InsertByUrl("http://www.old-hard.ru/rss");
-//                InsertByUrl("https://lenta.ru/rss/news");
-//                InsertByUrl("https://bad_link.sad");
-//                InsertByUrl("https://lenta.ru/rss/articles");
-//                InsertByUrl("https://lenta.ru/rss/top7");
-//                InsertByUrl("https://lenta.ru/rss/news/russia");
-//            }
-
             Update();
         }
 
@@ -43,7 +29,7 @@ namespace Shared.Repository
         {
             await Task.Run(() =>
             {
-                using (var realm = _database.OpenDatabase)
+                using (var realm = RealmDatabase.OpenDatabase)
                 {
                     var items = realm.All<RssModel>().OrderByDescending(w => w.CreationTime);
 
@@ -51,7 +37,8 @@ namespace Shared.Repository
 
                     foreach (var rssModel in dataItems)
                     {
-                        if (!rssModel.UpdateTime.HasValue || (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
+                        if (!rssModel.UpdateTime.HasValue ||
+                            (rssModel.UpdateTime.Value.Date - DateTime.Now).TotalMinutes > 5)
                         {
                             StartUpdateAllByInternet(rssModel.Rss, rssModel.Id);
                         }
@@ -79,7 +66,7 @@ namespace Shared.Repository
 
                 _log.TrackRssInsert(url, newItem.CreationTime);
 
-                var itemId = await _database.InsertInBackground(newItem);
+                var itemId = await RealmDatabase.InsertInBackground(newItem);
 
                 await StartUpdateAllByInternet(url, itemId);
             });
@@ -89,7 +76,7 @@ namespace Shared.Repository
         {
             return Task.Run(async () =>
             {
-                await _database.UpdateInBackground<RssModel>(id, (model, realm) =>
+                await RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
                 {
                     model.RssMessageModels.Clear();
 
@@ -114,7 +101,7 @@ namespace Shared.Repository
             _log.TrackRssDelete(item.Rss, DateTimeOffset.Now);
             var id = item.Id;
 
-            return _database.DoInBackground(realm => realm.Remove(realm.Find<RssModel>(id)));
+            return RealmDatabase.DoInBackground(realm => realm.Remove(realm.Find<RssModel>(id)));
         }
 
         public IQueryable<RssModel> GetList()
@@ -130,21 +117,24 @@ namespace Shared.Repository
                 if (feed == null)
                     return;
 
-                _database.DoInBackground(realm =>
+                RealmDatabase.DoInBackground(realm =>
                 {
                     var currentItem = realm.Find<RssModel>(rssId);
 
                     currentItem.Name = feed.Title?.Text;
                     currentItem.UpdateTime = DateTime.Now;
+                    //TODO сюда запихнуть фавикон
                     currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
 
                     foreach (var syndicationItem in feed.Items)
                     {
                         var imageUri = syndicationItem.Links.FirstOrDefault(w =>
-                            w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true &&
-                            w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri?.OriginalString;
+                                w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) ==
+                                true && w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
+                                ?.Uri?.OriginalString;
 
-                        var url = syndicationItem.Links.FirstOrDefault(w => w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
+                        var url = syndicationItem.Links.FirstOrDefault(w =>
+                                w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
                             ?.OriginalString;
 
                         var item = new RssMessageModel()

@@ -1,5 +1,4 @@
-﻿using System;
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V7.Widget;
 using Autofac;
 using Shared;

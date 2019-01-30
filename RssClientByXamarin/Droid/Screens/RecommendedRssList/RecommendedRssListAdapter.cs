@@ -14,9 +14,11 @@ using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class RecommendedRssListAdapter : WithItemsAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>>
+    public class
+        RecommendedRssListAdapter : WithItemsAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>>
     {
-        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity) : base(items, activity)
+        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity) : base(items,
+            activity)
         {
         }
 
@@ -27,21 +29,23 @@ namespace Droid.Screens.RecommendedRssList
                 var item = Items.ElementAt(position);
                 itemViewHolder.TitleView.Text = item.Rss;
                 itemViewHolder.RssUrl = item.Rss;
-                
+
+                // TODO вынести крутую генерацию фавикона в другое место
                 var uri = new Uri(item.Rss);
                 var favicon = $"{uri.Scheme}://{uri.Host}/favicon.ico";
-                
+
+                // TODO плейсхолдер должен зависить от темы
                 ImageService.Instance.LoadUrl(favicon)
                     .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
                     .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
                     .Into(itemViewHolder.RssIcon);
             }
         }
-        
+
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var inflater = LayoutInflater.From(parent.Context);
-            
+
             var view = inflater.Inflate(Resource.Layout.list_item_recommended_rss, parent, false);
 
             var viewHolder = new RssRecommendedViewHolder(view);
@@ -52,7 +56,7 @@ namespace Droid.Screens.RecommendedRssList
                 rssRepository.InsertByUrl(viewHolder.RssUrl);
                 Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.RssUrl);
             };
-            
+
             return viewHolder;
         }
     }

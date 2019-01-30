@@ -8,7 +8,7 @@ using Shared.Analytics;
 
 namespace Droid
 {
-	[Application]
+    [Application]
     public class CustomApplication : Application
     {
         // TODO вынести его на сервер или типо того

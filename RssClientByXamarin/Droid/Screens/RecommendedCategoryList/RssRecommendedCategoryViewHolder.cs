@@ -9,7 +9,7 @@ namespace Droid.Screens.RecommendedCategoryList
     {
         public TextView TitleView { get; }
         public Categories Categories { get; set; }
-        
+
         public RssRecommendedCategoryViewHolder(View itemView) : base(itemView)
         {
             TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_headerRecommendedRssList_title);

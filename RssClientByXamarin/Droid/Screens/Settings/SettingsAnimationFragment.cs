@@ -14,10 +14,14 @@ namespace Droid.Screens.Settings
 {
     public class SettingsAnimationFragment : SubFragment
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-        
+        [Inject] private IConfigurationRepository _configurationRepository;
+
         protected override int LayoutId => Resource.Layout.fragment_settings_animation;
+
+        public SettingsAnimationFragment()
+        {
+            
+        }
 
         protected override void RestoreState(Bundle saved)
         {
@@ -28,7 +32,7 @@ namespace Droid.Screens.Settings
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            
+
             var speedSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.appCompatSpinner_settingsStartPage_speedAnimation);
             var typeSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.appCompatSpinner_settingsStartPage_typeAnimation);
 
@@ -54,7 +58,7 @@ namespace Droid.Screens.Settings
                 AnimationType.FromLeftToRight,
                 AnimationType.FromRightToLeft,
             };
-            
+
             speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item,
                 animationSpeeds.Select(w => w.ToLocaleString()).ToList());
 
@@ -63,7 +67,7 @@ namespace Droid.Screens.Settings
 
             speedSpinner.SetSelection(animationSpeeds.IndexOf(appConfiguration.AnimationSpeed));
             typeSpinner.SetSelection(animationTypes.IndexOf(appConfiguration.AnimationType));
-            
+
             speedSpinner.ItemSelected += (sender, args) =>
             {
                 var configuration = _configurationRepository.GetSettings<AppConfiguration>();
@@ -74,10 +78,10 @@ namespace Droid.Screens.Settings
             typeSpinner.ItemSelected += (sender, args) =>
             {
                 var configuration = _configurationRepository.GetSettings<AppConfiguration>();
-                configuration.AnimationType= animationTypes[args.Position];
+                configuration.AnimationType = animationTypes[args.Position];
                 _configurationRepository.SaveSetting(configuration);
             };
-            
+
             return view;
         }
     }

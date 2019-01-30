@@ -9,9 +9,8 @@ namespace Droid.Screens.RssMessage
 {
     public class RssMessageFragment : TitleFragment
     {
-        [Inject]
-        private IRssMessagesRepository _rssMessagesRepository;
-        
+        [Inject] private IRssMessagesRepository _rssMessagesRepository;
+
         private string _rssMessageId;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_message;
@@ -19,9 +18,9 @@ namespace Droid.Screens.RssMessage
 
         public RssMessageFragment()
         {
-            
+
         }
-        
+
         public RssMessageFragment(string rssMessageId)
         {
             _rssMessageId = rssMessageId;
@@ -46,17 +45,17 @@ namespace Droid.Screens.RssMessage
             var message = _rssMessagesRepository.FindById(_rssMessageId);
 
             Title = message.Title;
-            
+
             var webView = view.FindViewById<WebView>(Resource.Id.webView_rssMessage_mainView);
 
-            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;  
-            webView.ScrollbarFadingEnabled = false;  
+            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;
+            webView.ScrollbarFadingEnabled = false;
 
             var settings = webView.Settings;
             settings.JavaScriptEnabled = true;
-            settings.BuiltInZoomControls = true;  
-            settings.SetSupportZoom(true);  
-            
+            settings.BuiltInZoomControls = true;
+            settings.SetSupportZoom(true);
+
             var client = new WebViewClient();
             webView.SetWebViewClient(client);
             webView.LoadUrl(message.Url);

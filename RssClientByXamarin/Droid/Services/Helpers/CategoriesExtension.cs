@@ -1,3 +1,4 @@
+using System;
 using Android.Content;
 using Shared.Database.Rss;
 
@@ -21,9 +22,12 @@ namespace Droid.Services.Helpers
                     return context.GetText(Resource.String.category_politics);
                 case Categories.Gaming:
                     return context.GetText(Resource.String.category_gaming);
+                case Categories.None:
+                    return "None";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(categories), categories, null);
             }
-
-            return "";
         }
     }
 }

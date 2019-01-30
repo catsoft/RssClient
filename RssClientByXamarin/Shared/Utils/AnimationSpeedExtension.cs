@@ -25,9 +25,9 @@ namespace Shared.Utils
                     return "4x";
                 case AnimationSpeed.Max:
                     return "max";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(animationSpeed), animationSpeed, null);
             }
-            
-            throw new NotImplementedException(nameof(AnimationSpeedExtension) + nameof(ToLocaleString));
         }
     }
 }

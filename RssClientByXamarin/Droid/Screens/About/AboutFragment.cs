@@ -11,12 +11,12 @@ namespace Droid.Screens.About
 
         public AboutFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -24,7 +24,7 @@ namespace Droid.Screens.About
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             Title = GetText(Resource.String.about_title);
-            
+
             return view;
         }
     }

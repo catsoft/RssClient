@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Android.Animation;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -7,16 +6,21 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
+using Droid.Container;
+using Droid.Repository;
 using Droid.Screens.Base;
 using Java.Lang;
+using Shared.Configuration;
 
 namespace Droid.Screens.Navigation
 {
     public abstract class BurgerActivity : ToolbarActivity, NavigationView.IOnNavigationItemSelectedListener,
         View.IOnClickListener
     {
+        [Inject] private IConfigurationRepository _configurationRepository;
+
         protected bool IsHomeToggle { get; set; } = true;
-        
+
         public ActionBarDrawerToggle Toggle { get; private set; }
 
         protected DrawerLayout DrawerLayout { get; private set; }
@@ -26,7 +30,7 @@ namespace Droid.Screens.Navigation
         protected override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
-            
+
             outState.PutBoolean(nameof(IsHomeToggle), IsHomeToggle);
         }
 
@@ -49,7 +53,7 @@ namespace Droid.Screens.Navigation
 
             NavigationView = FindViewById<NavigationView>(Resource.Id.navigation_view_all);
             NavigationView.SetNavigationItemSelectedListener(this);
-            
+
             Toggle.OnDrawerSlide(DrawerLayout, IsHomeToggle ? 0 : 1);
         }
 
@@ -73,19 +77,20 @@ namespace Droid.Screens.Navigation
             if (IsHomeToggle != isHome)
             {
                 IsHomeToggle = !IsHomeToggle;
-                    
+
+                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+                var time = appConfiguration.GetCalculationAnimationTime();
+
                 var from = !isHome ? 0 : 1;
                 var to = !isHome ? 1 : 0;
                 var anim = ValueAnimator.OfFloat(from, to);
                 anim.Update += (sender, args) =>
                 {
-                    var offset = args.Animation.AnimatedValue as Float;
-                    var value = offset.FloatValue();
-                    Console.WriteLine(value);
-                    Toggle.OnDrawerSlide(DrawerLayout, value);
+                    var offset = (args.Animation.AnimatedValue as Float)?.FloatValue() ?? 0;
+                    Toggle.OnDrawerSlide(DrawerLayout, offset);
                 };
                 anim.SetInterpolator(new LinearInterpolator());
-                anim.SetDuration(500);
+                anim.SetDuration(time);
                 anim.Start();
 
                 DrawerLayout.SetDrawerLockMode(isHome

@@ -5,11 +5,11 @@ using Shared.Database.Rss;
 
 namespace Shared.Repository
 {
-	public class RssMessagesRepository : IRssMessagesRepository
+    public class RssMessagesRepository : IRssMessagesRepository
     {
-		private readonly RealmDatabase _localDatabase;
+        private readonly RealmDatabase _localDatabase;
 
-		public RssMessagesRepository(RealmDatabase localDatabase)
+        public RssMessagesRepository(RealmDatabase localDatabase)
         {
             _localDatabase = localDatabase;
         }
@@ -21,18 +21,18 @@ namespace Shared.Repository
 
         public void MarkAsDeleted(RssMessageModel rssMessageModel)
         {
-            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsDeleted = true; });
+            RealmDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id,(message, realm) => { message.IsDeleted = true; });
         }
 
         public void MarkAsRead(RssMessageModel rssMessageModel)
         {
-            _localDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsRead = true; });
+            RealmDatabase.UpdateInBackground<RssMessageModel>(rssMessageModel.Id, (message, realm) => { message.IsRead = true; });
         }
 
-		public IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
-		{
-			return rssModel.RssMessageModels.ToList().Where(w => !w.IsDeleted);
-		}
+        public IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
+        {
+            return rssModel.RssMessageModels.ToList().Where(w => !w.IsDeleted);
+        }
 
         public long GetCountForModel(RssModel rssModel)
         {

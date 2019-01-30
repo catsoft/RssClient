@@ -5,11 +5,11 @@ namespace Shared.ViewModels
 {
     public class RecommendedViewModel : ViewModel
     {
-        public abstract class Way : Way<Way.WayData>
+        public abstract class Way : DataWay<Way.WayData>
         {
             public class WayData
             {
-                public Categories Categories { get; set; }
+                public Categories Categories { get; }
 
                 public WayData(Categories categories)
                 {

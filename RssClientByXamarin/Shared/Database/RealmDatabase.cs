@@ -25,14 +25,14 @@ namespace Shared.Database
             }
         }
 
-        public Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
+        public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
 
         public void Dispose()
 		{
 			MainThreadRealm.Dispose();
 		}
 
-        public Task DoInBackground(Action<Realm> action)
+        public static Task DoInBackground(Action<Realm> action)
         {
             return Task.Run(() =>
             {
@@ -48,7 +48,7 @@ namespace Shared.Database
             });
         }
 
-        public Task UpdateInBackground<TModel>(string id, Action<TModel, Realm> action)
+        public static Task UpdateInBackground<TModel>(string id, Action<TModel, Realm> action)
         where TModel : RealmObject, IHaveId
         {
             return DoInBackground(realm =>
@@ -59,7 +59,7 @@ namespace Shared.Database
             });
         }
 
-        public async Task<string> InsertInBackground<TModel>(TModel model)
+        public static async Task<string> InsertInBackground<TModel>(TModel model)
             where TModel : RealmObject, IHaveId
         {
             return await Task.Run(() =>

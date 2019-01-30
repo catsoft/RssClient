@@ -4,7 +4,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssEdit
 {
-    public class RssEditWay : Way<RssEditViewModel.Way.WayData>
+    public class RssEditWay : DataWay<RssEditViewModel.Way.WayData>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +12,7 @@ namespace Droid.Screens.RssEdit
         {
             _fragmentActivity = fragmentActivity;
         }
-        
+
         public override void Go()
         {
             _fragmentActivity.AddFragment(new RssEditFragment(Data.RssId));

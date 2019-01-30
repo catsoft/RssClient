@@ -1,6 +1,6 @@
 namespace Shared.Services.Navigator
 {
-    public abstract class Way<TData> : IWay<TData>
+    public abstract class DataWay<TData> : IWay
     {
         public abstract void Go();
         public TData Data { get; set; }

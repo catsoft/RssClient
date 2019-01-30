@@ -22,32 +22,29 @@ namespace Droid.Screens.RssItemDetail
         private string _itemId;
         private RssModel Item => _rssRepository.Find(_itemId);
 
-        [Inject]
-        private IRssMessagesRepository _rssMessagesRepository;
-        
-        [Inject]
-        private IRssRepository _rssRepository;
-        
-        [Inject]
-        private INavigator _navigator;
+        [Inject] private IRssMessagesRepository _rssMessagesRepository;
+
+        [Inject] private IRssRepository _rssRepository;
+
+        [Inject] private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
         public override bool RootFragment => false;
-        
+
         public RssDetailItemFragment()
         {
-            
+
         }
-        
+
         public RssDetailItemFragment(string itemId)
         {
             _itemId = itemId;
         }
-        
+
         public override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
-            
+
             outState.PutString(nameof(_itemId), _itemId);
         }
 
@@ -64,11 +61,12 @@ namespace Droid.Screens.RssItemDetail
 
             var item = Item;
             Title = item.Name;
-            
+
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             list.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
 
-            var refreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
+            var refreshLayout =
+                view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
             refreshLayout.Refresh += async (sender, args) =>
             {
                 await _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
@@ -100,17 +98,17 @@ namespace Droid.Screens.RssItemDetail
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Resource.Id.menuItem_rssDetail_remove)
+            switch (item.ItemId)
             {
-                DeleteItem();
-            }
-            else if (item.ItemId == Resource.Id.menuItem_rssDetail_edit)
-            {
-                EditItem();
-            }
-            else if (item.ItemId == Resource.Id.menuItem_rssDetail_share)
-            {
-                ShareItem();
+                case Resource.Id.menuItem_rssDetail_remove:
+                    DeleteItem();
+                    break;
+                case Resource.Id.menuItem_rssDetail_edit:
+                    EditItem();
+                    break;
+                case Resource.Id.menuItem_rssDetail_share:
+                    ShareItem();
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);
@@ -124,7 +122,7 @@ namespace Droid.Screens.RssItemDetail
         private void EditItem()
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var editWay = App.Container.Resolve<IWay<RssEditViewModel.Way.WayData>>();
+            var editWay = App.Container.Resolve<RssEditViewModel.Way>();
             editWay.Data = new RssEditViewModel.Way.WayData(_itemId);
             navigator.Go(editWay);
         }

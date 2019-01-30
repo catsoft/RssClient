@@ -13,7 +13,7 @@ namespace Droid.Screens.Base
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var appTheme = appConfiguration.AppTheme;
 
@@ -33,7 +33,7 @@ namespace Droid.Screens.Base
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            
+
             SetTheme(themeId);
         }
     }

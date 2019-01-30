@@ -11,7 +11,7 @@ namespace Droid.Screens.RecommendedCategoryList
         {
             _fragmentActivity = fragmentActivity;
         }
-        
+
         public override void Go()
         {
             _fragmentActivity.AddFragment(new RecommendedCategoryListFragment(), CacheState.Replace);

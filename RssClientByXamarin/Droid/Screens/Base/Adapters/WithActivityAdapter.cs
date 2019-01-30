@@ -6,9 +6,9 @@ namespace Droid.Screens.Base.Adapters
     public abstract class WithActivityAdapter : RecyclerView.Adapter
     {
         protected Activity Activity { get; }
-        
 
-        public WithActivityAdapter(Activity activity)
+
+        protected WithActivityAdapter(Activity activity)
         {
             Activity = activity;
         }

@@ -10,16 +10,15 @@ namespace Droid.Screens.Settings
 {
     public class SettingsStartPageFragment : SubFragment
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-        
+        [Inject] private IConfigurationRepository _configurationRepository;
+
         protected override int LayoutId => Resource.Layout.fragment_settings_start_page;
 
         public SettingsStartPageFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
         }
@@ -30,34 +29,38 @@ namespace Droid.Screens.Settings
 
             var radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsStartPage_main);
             var rssListRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_rssList);
-            var allMessagesRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
-            
+            var allMessagesRadioButton =
+                view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
+
             var configuration = _configurationRepository.GetSettings<AppConfiguration>();
 
-            if (configuration.StartPage == StartPage.RssList)
+            switch (configuration.StartPage)
             {
-                rssListRadioButton.Checked = true;
-            } else if (configuration.StartPage == StartPage.AllMessages)
-            {
-                allMessagesRadioButton.Checked = true;
+                case StartPage.RssList:
+                    rssListRadioButton.Checked = true;
+                    break;
+                case StartPage.AllMessages:
+                    allMessagesRadioButton.Checked = true;
+                    break;
             }
-            
+
             radioGroup.CheckedChange += (sender, args) =>
             {
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
-                if (args.CheckedId == Resource.Id.radioButton_settingsStartPage_rssList)
+                switch (args.CheckedId)
                 {
-                    appConfiguration.StartPage = StartPage.RssList;
-                } 
-                else if (args.CheckedId == Resource.Id.radioButton_settingsStartPage_messagesList)
-                {
-                    appConfiguration.StartPage = StartPage.AllMessages;
+                    case Resource.Id.radioButton_settingsStartPage_rssList:
+                        appConfiguration.StartPage = StartPage.RssList;
+                        break;
+                    case Resource.Id.radioButton_settingsStartPage_messagesList:
+                        appConfiguration.StartPage = StartPage.AllMessages;
+                        break;
                 }
-                
+
                 _configurationRepository.SaveSetting(appConfiguration);
             };
-            
+
             return view;
         }
     }

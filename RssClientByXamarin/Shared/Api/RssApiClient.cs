@@ -8,12 +8,13 @@ using Shared.Analytics;
 namespace Shared.Api
 {
 	public class RssApiClient : HttpClient, IRssApiClient
-    {
-        private ILog _log;
+	{
+		private readonly ILog _log;
+
 		public RssApiClient(ILog log)
-        {
-            _log = log;
-        }
+		{
+			_log = log;
+		}
 
 		public async Task<SyndicationFeed> Update(string rssUrl)
 		{

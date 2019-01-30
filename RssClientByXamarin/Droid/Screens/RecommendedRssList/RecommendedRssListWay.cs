@@ -11,7 +11,7 @@ namespace Droid.Screens.RecommendedRssList
         {
             _fragmentActivity = fragmentActivity;
         }
-        
+
         public override void Go()
         {
             _fragmentActivity.AddFragment(new RecommendedRssListFragment(Data.Categories), CacheState.Replace);

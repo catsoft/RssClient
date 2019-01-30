@@ -31,18 +31,18 @@ namespace Droid.Screens.RecommendedCategoryList
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_recommended_category_rss, parent,false);
+            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_recommended_category_rss, parent, false);
 
             var viewHolder = new RssRecommendedCategoryViewHolder(view);
-            
+
             view.Click += (sender, args) =>
             {
                 var navigator = App.Container.Resolve<INavigator>();
-                var way = App.Container.Resolve<IWay<RecommendedViewModel.Way.WayData>>();
+                var way = App.Container.Resolve<RecommendedViewModel.Way>();
                 way.Data = new RecommendedViewModel.Way.WayData(viewHolder.Categories);
                 navigator.Go(way);
             };
-            
+
             return viewHolder;
         }
     }

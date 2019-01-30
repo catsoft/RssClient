@@ -20,7 +20,7 @@ namespace Droid.Repository
         {
             if (!GetAll().Any())
             {
-                _realmDatabase.DoInBackground(realm =>
+                RealmDatabase.DoInBackground(realm =>
                 {
                     var newsList = new List<RssRecommendationModel>()
                     {
@@ -52,7 +52,8 @@ namespace Droid.Repository
                         new RssRecommendationModel("http://www.nba.com/rss/nba_rss.xml"),
                         new RssRecommendationModel("http://www.nfl.com/rss/rsslanding?searchString=home"),
                         new RssRecommendationModel("https://www.yahoo.com/news/rss/sports"),
-                        new RssRecommendationModel("http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"),
+                        new RssRecommendationModel(
+                            "http://newsrss.bbc.co.uk/rss/sportonline_world_edition/front_page/rss.xml"),
                         new RssRecommendationModel("https://www.westhesportsguy.com/feeds/posts/default"),
                         new RssRecommendationModel("https://api.foxsports.com/v1/rss"),
                         new RssRecommendationModel("https://talksport.com/rss/sports-news/all/feed"),
@@ -112,7 +113,8 @@ namespace Droid.Repository
 
                     var politicsList = new List<RssRecommendationModel>()
                     {
-                        new RssRecommendationModel("http://www.slate.com/articles/news_and_politics/politics.teaser.all.10.rss/"),
+                        new RssRecommendationModel(
+                            "http://www.slate.com/articles/news_and_politics/politics.teaser.all.10.rss/"),
                         new RssRecommendationModel("http://www.worldaffairsjournal.org/essay-feed.xml"),
                         new RssRecommendationModel("http://feeds.foxnews.com/foxnews/politics"),
                         new RssRecommendationModel("http://rss.cnn.com/rss/cnn_allpolitics.rss"),
@@ -162,7 +164,7 @@ namespace Droid.Repository
 
                     for (var i = 0; i < allList.Count; i++)
                         allList[i].Position = i;
-                    
+
                     allList.ForEach(w => realm.Add(w));
                 });
             }
@@ -175,7 +177,7 @@ namespace Droid.Repository
 
         public IQueryable<RssRecommendationModel> GetAllByCategory(Categories categories)
         {
-            var category = (int)categories;
+            var category = (int) categories;
             return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().Where(w => w.CategoryInt == category).OrderBy(w => w.Position);
         }
 

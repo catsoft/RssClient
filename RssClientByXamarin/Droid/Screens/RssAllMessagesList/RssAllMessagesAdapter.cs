@@ -14,9 +14,9 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-	public class RssAllMessagesListAdapter : WithItemsAdapter<RssMessageModel, IQueryable<RssMessageModel>>
+    public class RssAllMessagesListAdapter : WithItemsAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
-		public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
+        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
         {
         }
 
@@ -46,17 +46,15 @@ namespace Droid.Screens.RssAllMessagesList
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_all_rss_message, parent, false);
             var holder = new RssAllMessagesViewHolder(view);
 
-            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
+            holder.ClickView.Click += (sender, args) =>
+            {
+                var navigator = App.Container.Resolve<INavigator>();
+                var way = App.Container.Resolve<RssMessageViewModel.Way>();
+                way.Data = new RssMessageViewModel.Way.WayData(holder.Item);
+                navigator.Go(way);       
+            };
 
             return holder;
-        }
-
-        private void OpenContentActivity(RssMessageModel item)
-        {
-            var navigator = App.Container.Resolve<INavigator>();
-            var way = App.Container.Resolve<IWay<RssMessageViewModel.Way.WayData>>();
-            way.Data = new RssMessageViewModel.Way.WayData(item);
-            navigator.Go(way);
         }
     }
 }

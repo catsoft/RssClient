@@ -4,10 +4,4 @@
     {
         void Go();
     }
-
-    public interface IWay<TData>
-    {
-        void Go();
-        TData Data { get; set; }
-    }
 }

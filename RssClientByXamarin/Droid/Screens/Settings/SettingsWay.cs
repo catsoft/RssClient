@@ -15,7 +15,7 @@ namespace Droid.Screens.Settings
         public override void Go()
         {
             var fragment = new SettingsFragment();
-            
+
             _fragmentActivity.AddFragment(fragment, CacheState.Replace);
         }
     }

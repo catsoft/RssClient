@@ -6,7 +6,7 @@ using Shared.Database.Rss;
 
 namespace Droid.Screens.RssItemDetail
 {
-	public class RssMessageViewHolder : RecyclerView.ViewHolder
+    public class RssMessageViewHolder : RecyclerView.ViewHolder
     {
         public RssMessageViewHolder(View itemView) : base(itemView)
         {

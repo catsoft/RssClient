@@ -15,7 +15,7 @@ namespace Droid.Container
 
     public static class InjectExtension
     {
-        private static List<Type> _stopList = new List<Type>()
+        private static readonly List<Type> StopList = new List<Type>()
         {
             // TODO разделить на android ios
             typeof(InjectActivity),
@@ -34,7 +34,7 @@ namespace Droid.Container
             }
             else
             {
-                while (type != null && !_stopList.Contains(type))
+                while (type != null && !StopList.Contains(type))
                 {
                     items = items.Concat(type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)).ToList();
                 

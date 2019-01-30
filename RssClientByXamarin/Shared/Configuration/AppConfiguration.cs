@@ -5,7 +5,7 @@ namespace Shared.Configuration
     public class AppConfiguration
     {
         public StartPage StartPage { get; set; } = StartPage.RssList;
-        public MessagesViewer MessagesViewer { get; set; } = MessagesViewer.Browser;
+        public MessagesViewer MessagesViewer { get; set; } = MessagesViewer.App;
 
         /// <summary>
         ///  In millisecond
@@ -15,8 +15,8 @@ namespace Shared.Configuration
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.X;
         public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
 
-        public AppTheme AppTheme { get; set; } = AppTheme.Light;
-        
+        public AppTheme AppTheme { get; set; } = AppTheme.Default;
+
         public int GetCalculationAnimationTime()
         {
             var defaultTime = DefaultAnimationTime;
@@ -38,9 +38,9 @@ namespace Shared.Configuration
                     return defaultTime / 4;
                 case AnimationSpeed.Max:
                     return 0;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            
-            throw new NotImplementedException(nameof(AppConfiguration) + nameof(GetCalculationAnimationTime));
         }
     }
 }

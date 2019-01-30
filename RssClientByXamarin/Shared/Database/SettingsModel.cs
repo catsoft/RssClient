@@ -9,9 +9,9 @@ namespace Shared.Database
 
         public SettingsModel()
         {
-            
+
         }
-        
+
         public SettingsModel(string key, string jsonValue = null)
         {
             Key = key;

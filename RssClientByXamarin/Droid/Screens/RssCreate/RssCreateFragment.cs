@@ -5,31 +5,28 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Droid.Container;
 using Droid.Screens.Base;
-using Droid.Screens.Navigation;
 using RssClient.Repository;
 using Shared.Services.Navigator;
 
 namespace Droid.Screens.RssCreate
 {
-    public class RssCreateFragment : TitleFragment
+    public class RssCreateFragment : WithKeyboardFragment
     {
-        [Inject]
-	    private IRssRepository _rssRepository;
-        
-        [Inject]
-        private INavigator _navigator;
+        [Inject] private IRssRepository _rssRepository;
+
+        [Inject] private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
         public override bool RootFragment => false;
 
         public RssCreateFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -47,14 +44,16 @@ namespace Droid.Screens.RssCreate
 
                 _navigator.GoBack();
             };
-            
+
             var urlView = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
             urlView.EditText.SetTextAndSetCursorToLast(GetText(Resource.String.create_urlDefault));
             urlView.EditText.EditorAction += (sender, args) =>
             {
                 if (args.ActionId == ImeAction.Done) sendButton.CallOnClick();
             };
-            
+
+            Activity.ShowKeyboard(urlView.EditText);
+
             return view;
         }
     }

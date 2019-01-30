@@ -9,7 +9,7 @@ namespace Droid.Screens.Base
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
+
             this.Inject(true);
         }
     }

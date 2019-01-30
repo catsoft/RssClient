@@ -1,3 +1,4 @@
+using System;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Shared.Configuration;
@@ -16,17 +17,21 @@ namespace Droid.Screens.RssMessage
             _activity = activity;
             _configurationRepository = configurationRepository;
         }
-        
+
         public override void Go()
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            if (appConfiguration.MessagesViewer == MessagesViewer.Browser)
+            
+            switch (appConfiguration.MessagesViewer)
             {
-                Browser.OpenAsync(Data.RssMessageModel.Url);
-            }
-            else if (appConfiguration.MessagesViewer == MessagesViewer.App)
-            {
-                _activity.AddFragment(new RssMessageFragment(Data.RssMessageModel.Id));
+                case MessagesViewer.Browser:
+                    Browser.OpenAsync(Data.RssMessageModel.Url);
+                    break;
+                case MessagesViewer.App:
+                    _activity.AddFragment(new RssMessageFragment(Data.RssMessageModel.Id));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

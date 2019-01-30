@@ -7,10 +7,10 @@
         public string Title
         {
             get => _title;
-            set
+            protected set
             {
                 _title = value;
-                if(Activity != null)
+                if (Activity != null)
                     Activity.Title = _title;
             }
         }

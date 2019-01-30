@@ -3,7 +3,7 @@ using Android.Support.V7.Widget.Helper;
 
 namespace Droid.Screens.Base.SwipeRecyclerView
 {
-	public class SwipeTouchHelperCallback: ItemTouchHelper.Callback
+	public class SwipeTouchHelperCallback : ItemTouchHelper.Callback
 	{
 		private readonly IItemTouchHelperAdapter _adapter;
 
@@ -17,12 +17,12 @@ namespace Droid.Screens.Base.SwipeRecyclerView
 
 		public override int GetMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder)
 		{
-			var dragFlags = ItemTouchHelper.Up | ItemTouchHelper.Down;
-			var swipeFlags = ItemTouchHelper.Start | ItemTouchHelper.End;
+			const int dragFlags = ItemTouchHelper.Up | ItemTouchHelper.Down;
+			const int swipeFlags = ItemTouchHelper.Start | ItemTouchHelper.End;
 			return MakeMovementFlags(dragFlags, swipeFlags);
 		}
 
-		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)
+		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder holder, RecyclerView.ViewHolder target)
 		{
 			return false;
 		}

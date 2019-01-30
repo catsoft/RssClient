@@ -23,9 +23,9 @@ namespace Shared.Utils
                     return "From left to right";
                 case AnimationType.FromRightToLeft:
                     return "From right to left";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(animationType), animationType, null);
             }
-            
-            throw new NotImplementedException(nameof(AnimationTypeExtension) + nameof(ToLocaleString));
         }
     }
 }

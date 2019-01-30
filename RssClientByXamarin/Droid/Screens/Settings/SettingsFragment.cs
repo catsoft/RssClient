@@ -9,15 +9,15 @@ namespace Droid.Screens.Settings
     {
         protected override int LayoutId => Resource.Layout.fragment_settings;
         public override bool RootFragment => true;
-        
+
         public SettingsFragment()
         {
-            
+
         }
 
         protected override void RestoreState(Bundle saved)
         {
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -28,7 +28,7 @@ namespace Droid.Screens.Settings
 
             var scrollView = view.FindViewById<ScrollView>(Resource.Id.scrollView_settings_main);
             scrollView.SaveEnabled = true;
-            
+
             return view;
         }
     }

@@ -12,15 +12,15 @@ namespace Droid.Screens.Contacts
     {
         protected override int LayoutId => Resource.Layout.fragment_contacts;
         public override bool RootFragment => true;
-        
+
         public ContactsFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
-            
+
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -31,15 +31,20 @@ namespace Droid.Screens.Contacts
 
             var root = view.FindViewById<LinearLayout>(Resource.Id.linearLayout_contacts_root);
 
-            InflateAndFill(inflater, root, Resource.Drawable.telegram_48, Resource.String.contacts_telegram, () => OpenLink(Resource.String.contacts_telegramLink));
-            InflateAndFill(inflater, root, Resource.Drawable.email_48, Resource.String.contacts_mail, () => OpenLink(Resource.String.contacts_mailLink));
-            InflateAndFill(inflater, root, Resource.Drawable.linkedin_48, Resource.String.contacts_linkedIn, () => OpenLink(Resource.String.contacts_linkedInLink));
-            InflateAndFill(inflater, root, Resource.Drawable.discord_48, Resource.String.contacts_discord, () => CopyToClipboard(Resource.String.contacts_discordLink));
+            InflateAndFill(inflater, root, Resource.Drawable.telegram_48, Resource.String.contacts_telegram,
+                () => OpenLink(Resource.String.contacts_telegramLink));
+            InflateAndFill(inflater, root, Resource.Drawable.email_48, Resource.String.contacts_mail,
+                () => OpenLink(Resource.String.contacts_mailLink));
+            InflateAndFill(inflater, root, Resource.Drawable.linkedin_48, Resource.String.contacts_linkedIn,
+                () => OpenLink(Resource.String.contacts_linkedInLink));
+            InflateAndFill(inflater, root, Resource.Drawable.discord_48, Resource.String.contacts_discord,
+                () => CopyToClipboard(Resource.String.contacts_discordLink));
 
             return view;
         }
 
-        private void InflateAndFill(LayoutInflater inflater, ViewGroup container, int imageId, int titleId, Action action)
+        private void InflateAndFill(LayoutInflater inflater, ViewGroup container, int imageId, int titleId,
+            Action action)
         {
             var linkView = inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false);
 
@@ -59,7 +64,7 @@ namespace Droid.Screens.Contacts
         {
             var text = Activity.GetText(linkId);
             await Clipboard.SetTextAsync(text);
-            
+
             Context.ToastClipboard(text);
         }
 

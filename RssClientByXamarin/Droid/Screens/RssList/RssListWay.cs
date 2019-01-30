@@ -11,7 +11,7 @@ namespace Droid.Screens.RssList
         {
             _fragmentActivity = fragmentActivity;
         }
-        
+
         public override void Go()
         {
             _fragmentActivity.AddFragment(new RssListFragment(), CacheState.Old);

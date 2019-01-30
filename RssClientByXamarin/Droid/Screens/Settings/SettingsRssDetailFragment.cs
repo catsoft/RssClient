@@ -10,16 +10,15 @@ namespace Droid.Screens.Settings
 {
     public class SettingsRssDetailFragment : SubFragment
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-        
+        [Inject] private IConfigurationRepository _configurationRepository;
+
         protected override int LayoutId => Resource.Layout.fragment_settings_rss_detail;
 
         public SettingsRssDetailFragment()
         {
-            
+
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
         }
@@ -30,35 +29,38 @@ namespace Droid.Screens.Settings
 
             var radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_detail_main);
             var inAppRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inApp);
-            var inBrowserRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inBrowser);
-            
+            var inBrowserRadioButton =
+                view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inBrowser);
+
             var configuration = _configurationRepository.GetSettings<AppConfiguration>();
 
-            if (configuration.MessagesViewer == MessagesViewer.App)
+            switch (configuration.MessagesViewer)
             {
-                inAppRadioButton.Checked = true;
-            } 
-            else if (configuration.MessagesViewer == MessagesViewer.Browser)
-            {
-                inBrowserRadioButton.Checked = true;
+                case MessagesViewer.App:
+                    inAppRadioButton.Checked = true;
+                    break;
+                case MessagesViewer.Browser:
+                    inBrowserRadioButton.Checked = true;
+                    break;
             }
-            
+
             radioGroup.CheckedChange += (sender, args) =>
             {
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
-                if (args.CheckedId == Resource.Id.radioButton_settingsRssDetail_inApp)
+                switch (args.CheckedId)
                 {
-                    appConfiguration.MessagesViewer = MessagesViewer.App;
-                } 
-                else if (args.CheckedId == Resource.Id.radioButton_settingsRssDetail_inBrowser)
-                {
-                    appConfiguration.MessagesViewer = MessagesViewer.Browser;
+                    case Resource.Id.radioButton_settingsRssDetail_inApp:
+                        appConfiguration.MessagesViewer = MessagesViewer.App;
+                        break;
+                    case Resource.Id.radioButton_settingsRssDetail_inBrowser:
+                        appConfiguration.MessagesViewer = MessagesViewer.Browser;
+                        break;
                 }
-                
+
                 _configurationRepository.SaveSetting(appConfiguration);
             };
-            
+
             return view;
         }
     }

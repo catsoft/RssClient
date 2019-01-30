@@ -11,7 +11,7 @@ namespace Droid.Screens.RecommendedRssList
         public TextView TitleView { get; }
         public ImageButton AddImageView { get; }
         public string RssUrl { get; set; }
-        
+
         public RssRecommendedViewHolder(View itemView) : base(itemView)
         {
             RssIcon = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_rssRecommendedItem_rssIcon);

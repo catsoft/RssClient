@@ -18,9 +18,9 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-	public class RssListAdapter : SwipeListAdapter<RssModel, IQueryable<RssModel>>
+    public class RssListAdapter : SwipeListAdapter<RssModel, IQueryable<RssModel>>
     {
-	    private readonly IRssRepository _rssRepository;
+        private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly INavigator _navigator;
 
@@ -33,14 +33,14 @@ namespace Droid.Screens.RssList
 
         public RssListAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
         {
-			_rssRepository = App.Container.Resolve<IRssRepository>();
+            _rssRepository = App.Container.Resolve<IRssRepository>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
             _navigator = App.Container.Resolve<INavigator>();
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-	        var item = Items.ElementAt(position);
+            var item = Items.ElementAt(position);
 
             if (holder is RssListViewHolder rssListViewHolder)
             {
@@ -104,26 +104,25 @@ namespace Droid.Screens.RssList
         private void EditItem(RssModel holderItem)
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var editWay = App.Container.Resolve<IWay<RssEditViewModel.Way.WayData>>();
+            var editWay = App.Container.Resolve<RssEditViewModel.Way>();
             editWay.Data = new RssEditViewModel.Way.WayData(holderItem.Id);
             navigator.Go(editWay);
         }
 
         private void DeleteItem(RssModel holderItem)
-		{
+        {
             var builder = new AlertDialog.Builder(Activity);
-            builder.SetPositiveButton(Activity.GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
-            {
-                _rssRepository.Remove(holderItem);
-            });
-            builder.SetNegativeButton(Activity.GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
+            builder.SetPositiveButton(Activity.GetText(Resource.String.rssDeleteDialog_positiveTitle),
+                (sender, args) => { _rssRepository.Remove(holderItem); });
+            builder.SetNegativeButton(Activity.GetText(Resource.String.rssDeleteDialog_negativeTitle),
+                (sender, args) => { });
             builder.SetTitle(Activity.GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();
         }
 
         private void OpenDetailActivity(RssModel holderItem)
         {
-            var way = App.Container.Resolve<IWay<RssItemDetailViewModel.Way.WayData>>();
+            var way = App.Container.Resolve<RssItemDetailViewModel.Way>();
             way.Data = new RssItemDetailViewModel.Way.WayData(holderItem);
             _navigator.Go(way);
         }

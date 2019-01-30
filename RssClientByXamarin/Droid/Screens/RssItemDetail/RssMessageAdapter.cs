@@ -16,9 +16,9 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemDetail
 {
-	public class RssMessageAdapter : WithItemsAdapter<RssMessageModel, List<RssMessageModel>>
+    public class RssMessageAdapter : WithItemsAdapter<RssMessageModel, List<RssMessageModel>>
     {
-		public RssMessageAdapter(List<RssMessageModel> items, Activity activity) : base(items, activity)
+        public RssMessageAdapter(List<RssMessageModel> items, Activity activity) : base(items, activity)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Droid.Screens.RssItemDetail
 
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
-            
+
             return holder;
         }
 
@@ -67,7 +67,7 @@ namespace Droid.Screens.RssItemDetail
                 case Resource.Id.menuItem_rssDetailList_contextShare:
                     ShareItem(holderItem);
                     break;
-            }   
+            }
         }
 
         private async void ShareItem(RssMessageModel holderItem)
@@ -78,7 +78,7 @@ namespace Droid.Screens.RssItemDetail
         private void OpenContentActivity(RssMessageModel item)
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var way = App.Container.Resolve<IWay<RssMessageViewModel.Way.WayData>>();
+            var way = App.Container.Resolve<RssMessageViewModel.Way>();
             way.Data = new RssMessageViewModel.Way.WayData(item);
             navigator.Go(way);
         }
