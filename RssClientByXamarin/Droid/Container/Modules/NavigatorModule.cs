@@ -9,6 +9,7 @@ using Droid.Screens.RecommendedRssList;
 using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
 using Droid.Screens.RssEdit;
+using Droid.Screens.RssEditList;
 using Droid.Screens.RssItemDetail;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
@@ -29,6 +30,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssItemDetailWay>().As<RssItemDetailViewModel.Way>();
             builder.RegisterType<RssAllMessagesListWay>().As<RssAllMessagesViewModel.Way>();
             builder.RegisterType<RssListWay>().As<RssListViewModel.Way>();
+            builder.RegisterType<RssListEditWay>().As<RssListEditViewModel.Way>();
             builder.RegisterType<RssCreateWay>().As<RssCreateViewModel.Way>();
             builder.RegisterType<RssEditWay>().As<RssEditViewModel.Way>();
             builder.RegisterType<RecommendedCategoryListWay>().As<RecommendedCategoryListViewModel.Way>();

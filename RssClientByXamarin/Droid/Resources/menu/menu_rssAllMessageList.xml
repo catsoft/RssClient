@@ -5,15 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItem_rssList_change"
+        android:id="@+id/menuItem_rssAllMessageList_change"
         android:title="@string/menuRssList_change"
         android:icon="@drawable/filter_list_24"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/menuItem_rssList_editMode"
-        android:title="@string/menuRssList_editMode"
-        android:icon="@drawable/mode_edit_24"
-        app:showAsAction="ifRoom" />
-    
 </menu>

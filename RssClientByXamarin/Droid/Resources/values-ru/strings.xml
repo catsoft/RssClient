@@ -41,6 +41,8 @@
     <string name="rssList_notUpdated">Не обновлено</string>
     <string name="rssList_updated">Обновлено: </string>
 
+    <string name="rssEditList_title">Редактирование списка RSS</string>
+
     <string name="settings_title">Настройки</string>
     <string name="contacts_title">Контакты</string>
     <string name="about_title">О программе</string>

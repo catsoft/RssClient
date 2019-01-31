@@ -4,7 +4,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssCreate
 {
-    public class RssCreateWay : DataWay<RssCreateViewModel.Way.WayData>
+    public class RssCreateWay : RssCreateViewModel.Way
     {
         private readonly FragmentActivity _fragmentActivity;
 

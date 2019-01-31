@@ -41,6 +41,8 @@
     <string name="rssList_notUpdated">Not updated</string>
     <string name="rssList_updated">Updated: </string>
 
+    <string name="rssEditList_title">Edit RSS list</string>
+    
     <string name="settings_title">Settings</string>
     <string name="contacts_title">Contacts</string>
     <string name="about_title">About</string>
@@ -84,5 +86,6 @@
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_default">Default</string>
+    <string name="menuRssList_editMode">Edit mode</string>
 
 </resources>

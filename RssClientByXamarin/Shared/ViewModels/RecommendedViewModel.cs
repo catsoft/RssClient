@@ -5,7 +5,7 @@ namespace Shared.ViewModels
 {
     public class RecommendedViewModel : ViewModel
     {
-        public abstract class Way : DataWay<Way.WayData>
+        public abstract class Way : DataWay<RecommendedViewModel, Way.WayData>
         {
             public class WayData
             {

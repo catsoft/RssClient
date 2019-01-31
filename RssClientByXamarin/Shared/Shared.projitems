@@ -60,6 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />

@@ -91,9 +91,15 @@ namespace Droid.Screens.RssList
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Resource.Id.menuItem_rssList_change)
+            switch (item.ItemId)
             {
-                _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+                case Resource.Id.menuItem_rssList_change:
+                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+                    break;
+                
+                case Resource.Id.menuItem_rssList_editMode:
+                    _navigator.Go(App.Container.Resolve<RssListEditViewModel.Way>());
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);

@@ -54,12 +54,12 @@ namespace Droid.Screens.RssAllMessagesList
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            inflater.Inflate(Resource.Menu.menu_rssList, menu);
+            inflater.Inflate(Resource.Menu.menu_rssAllMessageList, menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Resource.Id.menuItem_rssList_change)
+            if (item.ItemId == Resource.Id.menuItem_rssAllMessageList_change)
             {
                 _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
             }

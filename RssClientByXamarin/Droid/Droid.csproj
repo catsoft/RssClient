@@ -104,6 +104,10 @@
     <Compile Include="Screens\RecommendedRssList\RssRecommendedViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
+    <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
+    <Compile Include="Screens\RssEditList\RssListEditWay.cs" />
+    <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
+    <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssDetailItemFragment.cs" />
     <Compile Include="Screens\RssItemDetail\RssItemDetailWay.cs" />
@@ -160,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_rss_edit_list.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_rss_message.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -188,11 +196,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\list_item_rss_edit.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\navigation_header_view_all.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\contextMenu_rssDetailList.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_rssAllMessageList.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -515,6 +531,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable\circle_72.xml" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\launch_image_text.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\mode_edit_24.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\mode_edit_24.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\mode_edit_24.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\mode_edit_24.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\mode_edit_24.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
