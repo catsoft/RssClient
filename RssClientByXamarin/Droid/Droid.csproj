@@ -536,6 +536,16 @@
     <AndroidResource Include="Resources\drawable-xhdpi\mode_edit_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\mode_edit_24.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\mode_edit_24.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\delete_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\delete_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\delete_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\delete_48.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\reorder_48.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\reorder_48.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\reorder_48.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\reorder_48.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\reorder_48.png" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
