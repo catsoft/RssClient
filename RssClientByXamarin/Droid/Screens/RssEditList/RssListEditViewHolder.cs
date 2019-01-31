@@ -12,12 +12,15 @@ namespace Droid.Screens.RssEditList
         {
             TitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemEditRss_title);
             SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemEditRss_subtitle);
-            IconView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_listItemEditRss_rssIcon);
+
+            DeleteImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_delete);
+            ReorderImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_reorder);
         }
 
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
         public RssModel Item { get; set; }
-        public ImageViewAsync IconView { get; }
+        public ImageView DeleteImage { get; set; }
+        public ImageView ReorderImage { get; set; }
     }
 }

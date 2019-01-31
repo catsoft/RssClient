@@ -4,12 +4,14 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading;
 using FFImageLoading.Work;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;
+using Shared.ViewModels;
 
 namespace Droid.Screens.RssEditList
 {
@@ -32,11 +34,6 @@ namespace Droid.Screens.RssEditList
                     ? Activity.GetText(Resource.String.rssList_notUpdated)
                     : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
                 rssListEditViewHolder.Item = item;
-
-                ImageService.Instance.LoadUrl(item.UrlPreviewImage)
-                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .Into(rssListEditViewHolder.IconView);
             }
         }
 
@@ -44,7 +41,19 @@ namespace Droid.Screens.RssEditList
         {
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss_edit, parent, false);
 
-            return new RssListEditViewHolder(view);
+            var viewHolder = new RssListEditViewHolder(view);
+
+            viewHolder.DeleteImage.Click += (sender, args) =>
+            {
+                Activity.Toast("DeleteImage");
+            };
+
+            viewHolder.ReorderImage.Click += (sender, args) =>
+            {
+                Activity.Toast("ReorderImage");
+            };
+            
+            return viewHolder;
         }
     }
 }
