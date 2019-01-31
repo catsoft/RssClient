@@ -1,13 +1,20 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Android.App;
+using Android.Content;
+using Android.Support.V4.View;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
+using Droid.Screens.Base.DragRecyclerView;
 using FFImageLoading;
 using FFImageLoading.Work;
+using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Locale;
@@ -15,10 +22,29 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditAdapter : WithItemsAdapter<RssModel, IQueryable<RssModel>>
+    public class RssListEditAdapter : ReorderRecyclerViewAdapter<RssModel, List<RssModel>>
     {
-        public RssListEditAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
+        public event Action<RecyclerView.ViewHolder> OnStartDrag;
+        private readonly IRssRepository _rssRepository;
+        
+        public RssListEditAdapter(IEnumerable<RssModel> items, Activity activity, IRssRepository rssRepository) : base(items.ToList(), activity)
         {
+            _rssRepository = rssRepository;
+        }
+
+        public override void OnMove(int fromPosition, int toPosition)
+        {
+            var item = Items[fromPosition];
+            Items.RemoveAt(fromPosition);
+            Items.Insert(toPosition, item);
+
+            for (var i = 0; i < Items.Count; i++)
+            {
+                var localItem = Items[i];
+                _rssRepository.UpdatePosition(localItem, i);
+            }
+            
+            NotifyItemMoved(fromPosition, toPosition);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -45,12 +71,18 @@ namespace Droid.Screens.RssEditList
 
             viewHolder.DeleteImage.Click += (sender, args) =>
             {
-                Activity.Toast("DeleteImage");
+                var position = viewHolder.AdapterPosition;
+                _rssRepository.Remove(viewHolder.Item);
+                Items.RemoveAt(position);
+                NotifyItemRemoved(position);
             };
 
-            viewHolder.ReorderImage.Click += (sender, args) =>
+            viewHolder.ReorderImage.Touch += (sender, args) =>
             {
-                Activity.Toast("ReorderImage");
+                if (args.Event.Action == MotionEventActions.Up || args.Event.Action == MotionEventActions.Down)
+                {
+                    OnStartDrag?.Invoke(viewHolder);
+                }
             };
             
             return viewHolder;

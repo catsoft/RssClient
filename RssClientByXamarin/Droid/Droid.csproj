@@ -77,6 +77,7 @@
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
     <Compile Include="Screens\Base\AppThemeActivity.cs" />
     <Compile Include="Screens\Base\CursorLastPositionExtension.cs" />
+    <Compile Include="Screens\Base\DragRecyclerView\ReorderHelperCallback.cs" />
     <Compile Include="Screens\Base\InjectActivity.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
     <Compile Include="Screens\Base\SwipeRecyclerView\SwipeListAdapter.cs" />

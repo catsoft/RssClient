@@ -4,10 +4,12 @@ using System.Runtime.Serialization;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
+using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Android.Widget;
 using Autofac;
 using Droid.Container;
+using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssList;
 using RssClient.Repository;
@@ -55,8 +57,14 @@ namespace Droid.Screens.RssEditList
             fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<RssCreateViewModel.Way>()); };
 
             var items = _rssRepository.GetList();
-            var adapter = new RssListEditAdapter(items, Activity);
+            var adapter = new RssListEditAdapter(items, Activity, _rssRepository);
             recyclerView.SetAdapter(adapter);
+
+            var callBack = new ReorderHelperCallback(adapter);
+            var helper = new ItemTouchHelper(callBack);
+            helper.AttachToRecyclerView(recyclerView);
+
+            adapter.OnStartDrag += holder => { helper.StartDrag(holder); };
             
             return view;
         }

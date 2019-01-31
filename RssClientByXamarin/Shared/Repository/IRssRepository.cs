@@ -14,5 +14,6 @@ namespace RssClient.Repository
         Task Remove(RssModel item);
         IQueryable<RssModel> GetList();
         Task Update(string rssId, SyndicationFeed feed);
+        void UpdatePosition(RssModel model, int position);
     }
 }

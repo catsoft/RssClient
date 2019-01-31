@@ -106,7 +106,7 @@ namespace Shared.Repository
 
         public IQueryable<RssModel> GetList()
         {
-            return _database.MainThreadRealm.All<RssModel>().OrderByDescending(w => w.CreationTime);
+            return _database.MainThreadRealm.All<RssModel>().OrderBy(w => w.Position).ThenByDescending(w => w.CreationTime);
         }
 
         public Task Update(string rssId, SyndicationFeed feed)
@@ -162,6 +162,15 @@ namespace Shared.Repository
                         }
                     }
                 });
+            });
+        }
+
+        public void UpdatePosition(RssModel model, int position)
+        {
+            _database.MainThreadRealm.Write(() =>
+            {
+                model.Position = position;
+                _database.MainThreadRealm.Add(model, true);
             });
         }
 
