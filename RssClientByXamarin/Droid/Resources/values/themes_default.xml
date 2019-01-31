@@ -5,9 +5,18 @@
         <item name="colorPrimaryDark">#CF6415</item>
         <item name="colorAccent">#3498DB</item>
 
-        <!--<item name="toolbarStyle">@style/Theme.AppCompat</item>-->
+        <item name="image_tint_color">#EA7819</item>
+        <item name="icon_tint_color">#EA7819</item>
+        
     </style>
 
+    <style name="MyToolbarStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:textColorPrimaryInverse">#fff</item>
+        <item name="android:textColorSecondary">#fff</item>
+        <item name="actionMenuTextColor">#fff</item>
+    </style>
+    
     <style name="AppTheme.Default.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

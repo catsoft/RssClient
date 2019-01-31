@@ -1,6 +1,9 @@
 <resources>
 
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        
+        <item name="image_tint_color">#000000</item>
+
     </style>
 
 

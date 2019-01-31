@@ -1,6 +1,9 @@
 <resources>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
+
+        <item name="image_tint_color">#777777</item>
+
     </style>
 
 

@@ -900,11 +900,17 @@ namespace Droid
 			// aapt resource value: 0x7f0100db
 			public const int iconTintMode = 2130772187;
 			
+			// aapt resource value: 0x7f010217
+			public const int icon_tint_color = 2130772503;
+			
 			// aapt resource value: 0x7f0100e3
 			public const int iconifiedByDefault = 2130772195;
 			
 			// aapt resource value: 0x7f01008d
 			public const int imageButtonStyle = 2130772109;
+			
+			// aapt resource value: 0x7f010216
+			public const int image_tint_color = 2130772502;
 			
 			// aapt resource value: 0x7f010027
 			public const int indeterminateProgressStyle = 2130772007;
@@ -5049,20 +5055,20 @@ namespace Droid
 			// aapt resource value: 0x7f0a0204
 			public const int AppTheme_Default = 2131362308;
 			
-			// aapt resource value: 0x7f0a0206
-			public const int AppTheme_Default_Launcher = 2131362310;
-			
-			// aapt resource value: 0x7f0a0205
-			public const int AppTheme_Default_NoActionBar = 2131362309;
-			
 			// aapt resource value: 0x7f0a0207
-			public const int AppTheme_Light = 2131362311;
+			public const int AppTheme_Default_Launcher = 2131362311;
 			
-			// aapt resource value: 0x7f0a0209
-			public const int AppTheme_Light_Launcher = 2131362313;
+			// aapt resource value: 0x7f0a0206
+			public const int AppTheme_Default_NoActionBar = 2131362310;
 			
 			// aapt resource value: 0x7f0a0208
-			public const int AppTheme_Light_NoActionBar = 2131362312;
+			public const int AppTheme_Light = 2131362312;
+			
+			// aapt resource value: 0x7f0a020a
+			public const int AppTheme_Light_Launcher = 2131362314;
+			
+			// aapt resource value: 0x7f0a0209
+			public const int AppTheme_Light_NoActionBar = 2131362313;
 			
 			// aapt resource value: 0x7f0a0092
 			public const int Base_AlertDialog_AppCompat = 2131361938;
@@ -5648,6 +5654,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0a01f9
 			public const int Fab = 2131362297;
+			
+			// aapt resource value: 0x7f0a0205
+			public const int MyToolbarStyle = 2131362309;
 			
 			// aapt resource value: 0x7f0a0073
 			public const int Platform_AppCompat = 2131361907;

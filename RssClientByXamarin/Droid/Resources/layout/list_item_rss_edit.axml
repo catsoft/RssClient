@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:src="@drawable/delete_48"/>
+            android:src="@drawable/delete_48"
+            android:tint="?attr/image_tint_color"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:src="@drawable/reorder_48"/>
+            android:src="@drawable/reorder_48"
+            android:tint="?attr/image_tint_color"/>
         
     </LinearLayout>
 

@@ -20,6 +20,9 @@ namespace Droid.Screens.Base
             Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar_toolbarAll_toolbar);
             SetSupportActionBar(Toolbar);
 
+            // TODO вот тут стиль применить
+            Toolbar.SetTitleTextColor(Resource.Color.divider);
+            
             App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }
 

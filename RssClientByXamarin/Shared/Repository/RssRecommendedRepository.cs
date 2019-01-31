@@ -20,7 +20,7 @@ namespace Droid.Repository
         {
             if (!GetAll().Any())
             {
-                RealmDatabase.DoInBackground(realm =>
+                _realmDatabase.MainThreadRealm.Write(() =>
                 {
                     var newsList = new List<RssRecommendationModel>()
                     {
@@ -165,7 +165,8 @@ namespace Droid.Repository
                     for (var i = 0; i < allList.Count; i++)
                         allList[i].Position = i;
 
-                    allList.ForEach(w => realm.Add(w));
+                    allList.ForEach(w => _realmDatabase.MainThreadRealm.Add(w));
+                    
                 });
             }
         }

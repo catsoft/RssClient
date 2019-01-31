@@ -41,7 +41,7 @@ namespace iOS
             }
 #else
 {
-                log.SetApiKey(ApiKeyBattleIos);
+                log.SetApiKey(KeyBattleIos);
 }
 #endif
 

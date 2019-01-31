@@ -33,7 +33,7 @@ namespace Droid
             }
 #else
 {
-                log.SetApiKey(ApiKeyBattleAndroid);
+                log.SetApiKey(KeyBattleAndroid);
 }
 #endif
         }

@@ -7,27 +7,32 @@
         <item
             android:id="@+id/menuItem_navigationMenu_main"
             android:icon="@drawable/baseline_home_black_24"
-            android:title="@string/menuNavigation_main"/>
+            android:title="@string/menuNavigation_main"
+            android:iconTint="?attr/icon_tint_color"/>
 
         <item
             android:id="@+id/menuItem_navigationMenu_recommended"
             android:icon="@drawable/recommended_24"
-            android:title="@string/menuNavigation_recommended"/>
+            android:title="@string/menuNavigation_recommended"
+            android:iconTint="?attr/icon_tint_color"/>
         
         <item
             android:id="@+id/menuItem_navigationMenu_settings"
             android:icon="@drawable/baseline_settings_black_24"
-            android:title="@string/menuNavigation_settings"/>
+            android:title="@string/menuNavigation_settings"
+            android:iconTint="?attr/icon_tint_color"/>
 
         <item
             android:id="@+id/menuItem_navigationMenu_contacts"
             android:icon="@drawable/baseline_contacts_black_24"
-            android:title="@string/menuNavigation_contacts"/>
+            android:title="@string/menuNavigation_contacts"
+            android:iconTint="?attr/icon_tint_color"/>
 
         <item
             android:id="@+id/menuItem_navigationMenu_about"
             android:icon="@drawable/info_24"
-            android:title="@string/menuNavigation_about"/>
+            android:title="@string/menuNavigation_about"
+            android:iconTint="?attr/icon_tint_color"/>
         
     </group>
 
