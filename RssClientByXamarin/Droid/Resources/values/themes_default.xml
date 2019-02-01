@@ -7,7 +7,8 @@
 
         <item name="image_tint_color">#EA7819</item>
         <item name="icon_tint_color">#EA7819</item>
-        
+        <item name="navigation_color">#FFFFFF</item>
+
     </style>
 
     <style name="MyToolbarStyle" parent="Theme.AppCompat.Light">

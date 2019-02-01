@@ -9,7 +9,7 @@ using Droid.Repository;
 using Shared.Configuration;
 
 namespace Droid.Screens.Navigation
-{
+{   
     public abstract class FragmentActivity : BurgerActivity
     {
         [Inject] private IConfigurationRepository _configurationRepository;

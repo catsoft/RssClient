@@ -3,5 +3,6 @@
 
     <attr name="image_tint_color" format="color"/>
     <attr name="icon_tint_color" format="color"/>
+    <attr name="navigation_color" format="color"/>
     
 </resources>

@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Android.App;
+using Autofac;
 using Droid.Screens.About;
 using Droid.Screens.Close;
 using Droid.Screens.Contacts;
@@ -42,7 +43,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<ContactsWay>().As<ContactsViewModel.Way>();
 
 
-            builder.Register((c) => MainActivity.Instance).AsSelf();
+            builder.Register((c) => MainActivity.Instance).As<Activity>();
             builder.Register((c) => MainActivity.Instance).As<FragmentActivity>();
         }
     }
