@@ -105,7 +105,10 @@ namespace Shared.Repository
             {
                 var backgroundRssItem = realm.Find<RssModel>(id);
                 var messages = backgroundRssItem.RssMessageModels;
-                messages.Clear();
+                
+                foreach (var rssMessageModel in messages)
+                    realm.Remove(rssMessageModel);
+                
                 realm.Remove(backgroundRssItem);
             });
         }
