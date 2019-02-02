@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -78,17 +79,27 @@ namespace Droid.Screens.RssItemDetail
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
-            item.PropertyChanged += (sender, args) =>
-            {
-                adapter.Items.Clear();
-                var newItems = _rssMessagesRepository.GetMessagesForRss(item);
-                adapter.Items.AddRange(newItems);
-                adapter.NotifyDataSetChanged();
-            };
+            item.PropertyChanged += ItemOnPropertyChanged;
 
+            OnDetachEvent += () => item.PropertyChanged -= ItemOnPropertyChanged;
+            
             _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
 
             return view;
+        }
+
+        private void ItemOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
+            var adapter = list.GetAdapter();
+
+            if (adapter is RssMessageAdapter rssMessageAdapter)
+            {
+                rssMessageAdapter.Items.Clear();
+                var newItems = _rssMessagesRepository.GetMessagesForRss(Item);
+                rssMessageAdapter.Items.AddRange(newItems);
+                rssMessageAdapter.NotifyDataSetChanged();
+            }
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

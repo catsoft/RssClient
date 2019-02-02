@@ -101,7 +101,13 @@ namespace Shared.Repository
             _log.TrackRssDelete(item.Rss, DateTimeOffset.Now);
             var id = item.Id;
 
-            return RealmDatabase.DoInBackground(realm => realm.Remove(realm.Find<RssModel>(id)));
+            return RealmDatabase.DoInBackground(realm =>
+            {
+                var backgroundRssItem = realm.Find<RssModel>(id);
+                var messages = backgroundRssItem.RssMessageModels;
+                messages.Clear();
+                realm.Remove(backgroundRssItem);
+            });
         }
 
         public IQueryable<RssModel> GetList()
