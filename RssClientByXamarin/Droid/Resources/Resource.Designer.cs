@@ -3146,10 +3146,7 @@ namespace Droid
 			public const int abc_vector_test = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int arrow_right_24 = 2130837588;
-			
-			// aapt resource value: 0x7f020055
-			public const int avd_hide_password = 2130837589;
+			public const int avd_hide_password = 2130837588;
 			
 			// aapt resource value: 0x7f02008a
 			public const int avd_hide_password_1 = 2130837642;
@@ -3160,8 +3157,8 @@ namespace Droid
 			// aapt resource value: 0x7f02008c
 			public const int avd_hide_password_3 = 2130837644;
 			
-			// aapt resource value: 0x7f020056
-			public const int avd_show_password = 2130837590;
+			// aapt resource value: 0x7f020055
+			public const int avd_show_password = 2130837589;
 			
 			// aapt resource value: 0x7f02008d
 			public const int avd_show_password_1 = 2130837645;
@@ -3172,8 +3169,11 @@ namespace Droid
 			// aapt resource value: 0x7f02008f
 			public const int avd_show_password_3 = 2130837647;
 			
+			// aapt resource value: 0x7f020056
+			public const int baseline_add_24 = 2130837590;
+			
 			// aapt resource value: 0x7f020057
-			public const int baseline_add_24 = 2130837591;
+			public const int baseline_chevron_right_24 = 2130837591;
 			
 			// aapt resource value: 0x7f020058
 			public const int baseline_contacts_24 = 2130837592;
