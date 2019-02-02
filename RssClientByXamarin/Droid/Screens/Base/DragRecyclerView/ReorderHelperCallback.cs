@@ -1,31 +1,8 @@
-﻿using System.Collections.Generic;
-using Android.App;
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
-using Droid.Screens.Base.Adapters;
 
 namespace Droid.Screens.Base.DragRecyclerView
 {
-	public interface IDragListener
-	{
-		void OnStartDrag(RecyclerView.ViewHolder holder);
-	}
-	
-	public abstract class ReorderRecyclerViewAdapter<TItems, TCollection> : WithItemsAdapter<TItems, TCollection>, IReorderListHelperAdapter
-		where TCollection : IEnumerable<TItems>
-	{
-		protected ReorderRecyclerViewAdapter(TCollection items, Activity activity) : base(items, activity)
-		{
-		}
-
-		public abstract void OnMove(int fromPosition, int toPosition);
-	}
-	
-	public interface IReorderListHelperAdapter
-	{
-		void OnMove(int fromPosition, int toPosition);
-	}
-	
 	public class ReorderHelperCallback : ItemTouchHelper.Callback
 	{
 		private readonly IReorderListHelperAdapter _adapter;
