@@ -52,20 +52,10 @@ namespace Droid.Screens.RssAllMessagesList
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);
             fab.Click += OnFabClick;
 
-            var callback = new SwipeButtonTouchHelperCallback(adapter);
+            var callback = new SwipeButtonTouchHelperCallback();
             var helper = new ItemTouchHelper(callback);
             helper.AttachToRecyclerView(recyclerView);
 
-            adapter.LeftButtonAction += () =>
-            {
-                Activity.Toast("LeftButtonAction");
-            };
-            
-            adapter.RightButtonAction += () =>
-            {
-                Activity.Toast("RightButtonAction");
-            };
-            
             return view;
         }
 

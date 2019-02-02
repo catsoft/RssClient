@@ -2,7 +2,7 @@ using System;
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {
-    public interface ISwipeButtonItemTouchHelperAdapter
+    public interface ISwipeButtonItemTouchHelperViewHolder
     {
         bool IsLeftButton { get; }
         bool IsRightButton { get; }

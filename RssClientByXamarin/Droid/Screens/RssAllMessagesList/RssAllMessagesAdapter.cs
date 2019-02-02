@@ -5,6 +5,7 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.NativeExtension;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using FFImageLoading;
 using Shared;
@@ -17,11 +18,6 @@ namespace Droid.Screens.RssAllMessagesList
 {
     public class RssAllMessagesListAdapter : SwipeButtonListAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
-        public override bool IsLeftButton => true;
-        public override bool IsRightButton => true;
-        public override string LeftButtonText => "Delete";
-        public override string RightButtonText => "Favorite";
-
         public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
         {
         }
@@ -60,7 +56,21 @@ namespace Droid.Screens.RssAllMessagesList
                 navigator.Go(way);       
             };
 
+            holder.LeftButtonAction += () => { ReadItem(holder.Item); };
+
+            holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
+            
             return holder;
+        }
+
+        private void InFavoriteItem(RssMessageModel holderItem)
+        {
+            Activity.Toast("InFavoriteItem");
+        }
+
+        private void ReadItem(RssMessageModel holderItem)
+        {
+            Activity.Toast("ReadItem");
         }
     }
 }

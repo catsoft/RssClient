@@ -10,16 +10,10 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {
 	public class SwipeButtonTouchHelperCallback : ItemTouchHelper.Callback
 	{
-		private readonly ISwipeButtonItemTouchHelperAdapter _swipeButtonTouchHelperAdapter;
 		private bool _swipeBack;
 		private bool _isActionInvoke;
 
 		private const float ButtonWidth = 300;
-
-		public SwipeButtonTouchHelperCallback(ISwipeButtonItemTouchHelperAdapter swipeButtonTouchHelperAdapter)
-		{
-			_swipeButtonTouchHelperAdapter = swipeButtonTouchHelperAdapter;
-		}
 
 		public override bool IsLongPressDragEnabled => false;
 		public override bool IsItemViewSwipeEnabled => true;
@@ -59,56 +53,60 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 				SetTouchListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 			}
 
-			if (dX != 0)
+			if (viewHolder is SwipeButtonViewHolder swipeViewHolder)
 			{
-				DrawButtons(c, viewHolder);
-			}
-			else
-			{
-				_isActionInvoke = false;
-			}
-
-			if (dX < -ButtonWidth)
-			{
-				if (!_isActionInvoke)
+				
+				if (dX != 0)
 				{
-					_swipeButtonTouchHelperAdapter.OnRightButton();
-					_isActionInvoke = true;
+					DrawButtons(c, swipeViewHolder);
+				}
+				else
+				{
+					_isActionInvoke = false;
+				}
+
+				if (dX < -ButtonWidth)
+				{
+					if (!_isActionInvoke)
+					{
+						swipeViewHolder.OnRightButton();
+						_isActionInvoke = true;
+					}
+				}
+
+				if (dX > ButtonWidth)
+				{
+					if (!_isActionInvoke)
+					{
+						swipeViewHolder.OnLeftButton();
+						_isActionInvoke = true;
+					}
 				}
 			}
 
-			if (dX > ButtonWidth)
-			{
-				if (!_isActionInvoke)
-				{
-					_swipeButtonTouchHelperAdapter.OnLeftButton();
-					_isActionInvoke = true;
-				}
-			}
 
 			base.OnChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 		}
 
-		private void DrawButtons(Canvas c, RecyclerView.ViewHolder viewHolder)
+		private void DrawButtons(Canvas c, SwipeButtonViewHolder viewHolder)
 		{
 			var itemView = viewHolder.ItemView;
 			var p = new Paint();
 
-			if (_swipeButtonTouchHelperAdapter.IsLeftButton)
+			if (viewHolder.IsLeftButton)
 			{
 				var leftButton = new RectF(itemView.Left, itemView.Top, itemView.Left + ButtonWidth, itemView.Bottom);
 				p.Color = Color.Blue;
 				c.DrawRoundRect(leftButton, 0, 0, p);
-				DrawText(_swipeButtonTouchHelperAdapter.LeftButtonText, c, leftButton, p);
+				DrawText(viewHolder.LeftButtonText, c, leftButton, p);
 			}
 
-			if (_swipeButtonTouchHelperAdapter.IsRightButton)
+			if (viewHolder.IsRightButton)
 			{
-				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right,
-					itemView.Bottom);
+				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right, itemView.Bottom);
 				p.Color = Color.Red;
 				c.DrawRoundRect(rightButton, 0, 0, p);
-				DrawText(_swipeButtonTouchHelperAdapter.RightButtonText, c, rightButton, p);
+				DrawText(viewHolder.RightButtonText, c, rightButton, p);
 			}
 		}
 

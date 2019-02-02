@@ -1,13 +1,19 @@
 ﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Droid.Screens.Base.SwipeButtonRecyclerView;
 using FFImageLoading.Views;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesViewHolder : RecyclerView.ViewHolder
+    public class RssAllMessagesViewHolder : SwipeButtonViewHolder
     {
+        public override bool IsLeftButton => true;
+        public override bool IsRightButton => true;
+        public override string LeftButtonText => "Read";
+        public override string RightButtonText => "Favorite";
+        
         public RssAllMessagesViewHolder(View itemView) : base(itemView)
         {
             Title = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_title);
