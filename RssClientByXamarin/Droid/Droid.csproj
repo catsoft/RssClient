@@ -462,11 +462,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\info_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info_24.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\info_24.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\recommended_24.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\recommended_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\recommended_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\recommended_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\recommended_24.png" />
     <AndroidResource Include="Resources\drawable-hdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable-mdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\rss_56.png" />
@@ -481,6 +476,7 @@
     <AndroidResource Include="Resources\drawable\baseline_delete_forever_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_reorder_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_chevron_right_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_list_alt_24.xml" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
