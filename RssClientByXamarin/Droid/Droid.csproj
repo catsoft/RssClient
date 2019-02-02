@@ -82,7 +82,6 @@
     <Compile Include="Screens\Base\DragRecyclerView\ReorderRecyclerViewAdapter.cs" />
     <Compile Include="Screens\Base\InjectActivity.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
-    <Compile Include="Screens\Base\SwipeButtonRecyclerView\ButtonsState.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\ISwipeButtonItemTouchHelperViewHolder.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonListAdapter.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonTouchHelperCallback.cs" />

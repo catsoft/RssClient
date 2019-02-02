@@ -64,7 +64,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 					_isActionInvoke = false;
 				}
 
-				if (dX < 0)
+				if (dX < -ButtonWidth)
 				{
 					if (!_isActionInvoke)
 					{
@@ -73,7 +73,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 					}
 				}
 
-				if (dX > 0)
+				if (dX > ButtonWidth)
 				{
 					if (!_isActionInvoke)
 					{
@@ -92,7 +92,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 			var itemView = viewHolder.ItemView;
 			var p = new Paint();
 
-			if (viewHolder.IsLeftButton && dX > ButtonWidth)
+			if (viewHolder.IsLeftButton && dX > 0)
 			{
 				var leftButton = new RectF(itemView.Left, itemView.Top, itemView.Left + ButtonWidth, itemView.Bottom);
 				p.Color = Color.Blue;
@@ -100,7 +100,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 				DrawText(viewHolder.LeftButtonText, c, leftButton, p);
 			}
 
-			if (viewHolder.IsRightButton && dX < -ButtonWidth)
+			if (viewHolder.IsRightButton && dX < -0)
 			{
 				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right, itemView.Bottom);
 				p.Color = Color.Red;
