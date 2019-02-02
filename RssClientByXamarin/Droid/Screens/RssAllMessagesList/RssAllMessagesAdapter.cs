@@ -5,6 +5,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
+using Droid.Screens.Base.SwipeButtonRecyclerView;
 using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
@@ -14,7 +15,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesListAdapter : WithItemsAdapter<RssMessageModel, IQueryable<RssMessageModel>>
+    public class RssAllMessagesListAdapter : SwipeButtonListAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
         public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
         {

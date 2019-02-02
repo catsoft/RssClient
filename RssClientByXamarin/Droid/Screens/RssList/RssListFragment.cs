@@ -6,6 +6,7 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using Realms;
@@ -57,8 +58,8 @@ namespace Droid.Screens.RssList
             var callback = new SwipeTouchHelperCallback(adapter);
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(recyclerView);
-
-            items.SubscribeForNotifications((sender, changes, error) =>
+            
+            var subscribe = items.SubscribeForNotifications((sender, changes, error) =>
             {
                 if (sender != null && changes != null)
                 {
@@ -77,10 +78,12 @@ namespace Droid.Screens.RssList
                         adapter.NotifyItemRemoved(changesInsertedIndex);
                     }
                 }
-
+                
                 adapter.NotifyDataSetChanged();
             });
 
+            OnDetachEvent += () => subscribe?.Dispose();
+            
             return view;
         }
 

@@ -2,6 +2,5 @@
 {
 	public interface ISwipeButtonItemTouchHelperAdapter
 	{
-		void OnItemDismiss(int position);
 	}
 }

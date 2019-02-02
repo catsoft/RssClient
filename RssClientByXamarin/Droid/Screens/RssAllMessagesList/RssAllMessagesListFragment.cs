@@ -2,9 +2,11 @@
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
+using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Repository;
@@ -48,6 +50,10 @@ namespace Droid.Screens.RssAllMessagesList
 
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);
             fab.Click += OnFabClick;
+
+            var callback = new SwipeButtonTouchHelperCallback(adapter);
+            var helper = new ItemTouchHelper(callback);
+            helper.AttachToRecyclerView(recyclerView);
 
             return view;
         }

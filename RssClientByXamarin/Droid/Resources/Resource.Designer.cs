@@ -3761,8 +3761,8 @@ namespace Droid
 			// aapt resource value: 0x7f09011d
 			public const int menuItem_rssDetail_share = 2131296541;
 			
-			// aapt resource value: 0x7f09011e
-			public const int menuItem_rssList_change = 2131296542;
+			// aapt resource value: 0x7f09011f
+			public const int menuItem_rssList_change = 2131296543;
 			
 			// aapt resource value: 0x7f090112
 			public const int menuItem_rssList_contextEdit = 2131296530;
@@ -3773,8 +3773,8 @@ namespace Droid
 			// aapt resource value: 0x7f090114
 			public const int menuItem_rssList_contextShare = 2131296532;
 			
-			// aapt resource value: 0x7f09011f
-			public const int menuItem_rssList_editMode = 2131296543;
+			// aapt resource value: 0x7f09011e
+			public const int menuItem_rssList_editMode = 2131296542;
 			
 			// aapt resource value: 0x7f0900a9
 			public const int message = 2131296425;
