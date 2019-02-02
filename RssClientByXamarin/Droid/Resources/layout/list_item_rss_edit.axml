@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:src="@drawable/delete_48"
+            android:src="@drawable/baseline_delete_forever_24"
             android:tint="?attr/image_tint_color"/>
 
         <LinearLayout
