@@ -395,8 +395,8 @@
     <AndroidResource Include="Resources\layout\fragment_rss_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\share_24.xml" />
-    <AndroidResource Include="Resources\drawable\filter_list_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_share_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_filter_list_24.xml" />
     <AndroidResource Include="Resources\menu\menu_rssList.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>

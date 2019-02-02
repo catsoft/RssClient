@@ -7,7 +7,7 @@
     <item
         android:id="@+id/menuItem_rssList_change"
         android:title="@string/menuRssList_change"
-        android:icon="@drawable/filter_list_24"
+        android:icon="@drawable/baseline_filter_list_24"
         app:showAsAction="ifRoom" />
 
     <item
