@@ -17,7 +17,7 @@ namespace Shared.Database.Rss
         public string Url { get; set; }
 		public string ImageUrl { get; set; }
 		public bool IsRead { get; set; }
-	    public bool IsDeleted { get; set; }
+	    public bool IsFavorite { get; set; }
 
         [Backlink(nameof(RssModel.RssMessageModels))]
 		public IQueryable<RssModel> RssParent { get; }

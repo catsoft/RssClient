@@ -122,12 +122,13 @@ namespace iOS.Screens.Detail
 
 		private void InitAction()
 		{
-			DeleteClick += (model) =>
-			{
-                _log.TrackMessageDelete(_item.RssLink, _item.SyndicationId, _item.Title);
-
-                _rssMessagesesRepository.MarkAsDeleted(model);
-			};
+			// TODO воскресить?
+//			DeleteClick += (model) =>
+//			{
+//                _log.TrackMessageDelete(_item.RssLink, _item.SyndicationId, _item.Title);
+//
+//                _rssMessagesesRepository.MarkAsDeleted(model);
+//			};
 
 			MarkAsReadClick += (model) =>
 			{

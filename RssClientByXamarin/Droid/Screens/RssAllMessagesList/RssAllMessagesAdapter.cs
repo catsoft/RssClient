@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Android.App;
+using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
@@ -10,6 +11,7 @@ using Droid.Screens.Base.SwipeButtonRecyclerView;
 using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
+using Shared.Repository;
 using Shared.Services.Locale;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
@@ -18,8 +20,11 @@ namespace Droid.Screens.RssAllMessagesList
 {
     public class RssAllMessagesListAdapter : SwipeButtonListAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
-        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
+        private readonly IRssMessagesRepository _rssMessagesRepository;
+        
+        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
+            _rssMessagesRepository = rssMessagesRepository;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -38,8 +43,9 @@ namespace Droid.Screens.RssAllMessagesList
 
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
 
-                ImageService.Instance.LoadUrl(item.ImageUrl)
-                    .Into(rssMessageViewHolder.ImageView);
+                ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
+                
+                rssMessageViewHolder.ItemView.SetBackgroundColor(item.IsRead ? Color.Gray : Color.White);
             }
         }
 
@@ -65,12 +71,12 @@ namespace Droid.Screens.RssAllMessagesList
 
         private void InFavoriteItem(RssMessageModel holderItem)
         {
-            Activity.Toast("InFavoriteItem");
+            _rssMessagesRepository.ChangeIsFavorite(holderItem);
         }
 
         private void ReadItem(RssMessageModel holderItem)
         {
-            Activity.Toast("ReadItem");
+            _rssMessagesRepository.ChangeIsRead(holderItem);
         }
     }
 }

@@ -7,8 +7,10 @@ namespace Shared.Repository
     public interface IRssMessagesRepository
     {
         RssMessageModel FindById(string id);
-        void MarkAsDeleted(RssMessageModel rssMessageModel);
+        void MarkAsFavorite(RssMessageModel rssMessageModel);
         void MarkAsRead(RssMessageModel rssMessageModel);
+        void ChangeIsFavorite(RssMessageModel rssMessageModel);
+        void ChangeIsRead(RssMessageModel rssMessageModel);
         IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel);
         long GetCountForModel(RssModel rssModel);
         IQueryable<RssMessageModel> GetAllMessages();

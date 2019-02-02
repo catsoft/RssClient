@@ -46,7 +46,8 @@ namespace Droid.Screens.RssAllMessagesList
             var items = _rssMessagesRepository.GetAllMessages();
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
-            var adapter = new RssAllMessagesListAdapter(items, Activity);
+            recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
+            var adapter = new RssAllMessagesListAdapter(items, Activity, _rssMessagesRepository);
             recyclerView.SetAdapter(adapter);
 
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);
