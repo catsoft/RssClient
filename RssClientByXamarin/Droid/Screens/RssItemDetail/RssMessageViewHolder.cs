@@ -21,6 +21,8 @@ namespace Droid.Screens.RssItemDetail
             CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_date);
             ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_content);
             ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
+            CardView = itemView.FindViewById<CardView>(Resource.Id.cardView_messagesItem_card);
+            Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
         }
 
         public TextView Title { get; }
@@ -29,5 +31,7 @@ namespace Droid.Screens.RssItemDetail
         public ImageViewAsync ImageView { get; }
         public LinearLayout ClickView { get; }
         public RssMessageModel Item { get; set; }
+        public CardView CardView { get; }
+        public LinearLayout Background { get; }
     }
 }

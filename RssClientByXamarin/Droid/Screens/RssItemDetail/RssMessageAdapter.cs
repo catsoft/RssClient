@@ -21,10 +21,15 @@ namespace Droid.Screens.RssItemDetail
     public class RssMessageAdapter : WithItemsAdapter<RssMessageModel, List<RssMessageModel>>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
+        private readonly Color _color;
+        private readonly Color _selectableColor;
 
         public RssMessageAdapter(List<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
+            
+            _color = new Color(0, 0, 0, 0);
+            _selectableColor = new Color(0, 0, 0, 95);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -39,12 +44,10 @@ namespace Droid.Screens.RssItemDetail
                 rssMessageViewHolder.Text.Text = item.Text;
                 rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 rssMessageViewHolder.Item = item;
-
+                rssMessageViewHolder.Background.SetBackgroundColor(item.IsRead ? _selectableColor : _color);
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
 
                 ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
-                
-                rssMessageViewHolder.ItemView.SetBackgroundColor(item.IsRead ? Color.Gray : Color.White);
             }
         }
 
@@ -57,7 +60,6 @@ namespace Droid.Screens.RssItemDetail
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
 
             holder.LeftButtonAction += () => { ReadItem(holder.Item); };
-
             holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
             
             return holder;

@@ -4,6 +4,7 @@ using System.Linq;
 using Android.App;
 using Android.Graphics;
 using Android.Support.V7.Widget;
+using Android.Util;
 using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
@@ -21,10 +22,16 @@ namespace Droid.Screens.RssAllMessagesList
     public class RssAllMessagesListAdapter : SwipeButtonListAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
+
+        private readonly Color _selectableColor;
+        private readonly Color _color;
         
         public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
+
+            _color = new Color(0, 0, 0, 0);
+            _selectableColor = new Color(0, 0, 0, 95);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -40,12 +47,10 @@ namespace Droid.Screens.RssAllMessagesList
                 rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 rssMessageViewHolder.Item = item;
                 rssMessageViewHolder.Canal.Text = item.RssLink;
-
+                rssMessageViewHolder.Background.SetBackgroundColor(item.IsRead ? _selectableColor : _color);
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
-
-                ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
                 
-                rssMessageViewHolder.ItemView.SetBackgroundColor(item.IsRead ? Color.Gray : Color.White);
+                ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
             }
         }
 
