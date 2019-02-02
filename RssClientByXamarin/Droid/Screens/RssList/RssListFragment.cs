@@ -78,8 +78,6 @@ namespace Droid.Screens.RssList
                         adapter.NotifyItemRemoved(changesInsertedIndex);
                     }
                 }
-                
-                adapter.NotifyDataSetChanged();
             });
 
             OnDetachEvent += () => subscribe?.Dispose();

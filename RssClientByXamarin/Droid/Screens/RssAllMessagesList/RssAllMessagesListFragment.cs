@@ -10,6 +10,7 @@ using Droid.Container;
 using Droid.NativeExtension;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
+using Realms;
 using Shared;
 using Shared.Repository;
 using Shared.Services.Navigator;
@@ -57,7 +58,6 @@ namespace Droid.Screens.RssAllMessagesList
             var callback = new SwipeButtonTouchHelperCallback();
             var helper = new ItemTouchHelper(callback);
             helper.AttachToRecyclerView(recyclerView);
-
             return view;
         }
 

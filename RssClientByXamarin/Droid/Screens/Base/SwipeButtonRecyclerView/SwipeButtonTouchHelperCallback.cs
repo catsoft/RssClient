@@ -25,7 +25,8 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 			return MakeMovementFlags(dragFlags, swipeFlags);
 		}
 
-		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder holder, RecyclerView.ViewHolder target)
+		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder holder,
+			RecyclerView.ViewHolder target)
 		{
 			return false;
 		}
@@ -55,14 +56,10 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 
 			if (viewHolder is SwipeButtonViewHolder swipeViewHolder)
 			{
-				if (dX != 0)
-				{
-					DrawButtons(c, swipeViewHolder, (int) dX);
-				}
-				else
-				{
+				DrawButtons(c, swipeViewHolder, (int) dX);
+
+				if (Math.Abs(dX) < 5)
 					_isActionInvoke = false;
-				}
 
 				if (dX < -ButtonWidth)
 				{
@@ -83,7 +80,6 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 				}
 			}
 
-
 			base.OnChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 		}
 
@@ -92,7 +88,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 			var itemView = viewHolder.ItemView;
 			var p = new Paint();
 
-			if (viewHolder.IsLeftButton && dX > 0)
+			if (viewHolder.IsLeftButton && dX > 5)
 			{
 				var leftButton = new RectF(itemView.Left, itemView.Top, itemView.Left + ButtonWidth, itemView.Bottom);
 				p.Color = Color.Blue;
@@ -100,9 +96,10 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 				DrawText(viewHolder.LeftButtonText, c, leftButton, p);
 			}
 
-			if (viewHolder.IsRightButton && dX < -0)
+			if (viewHolder.IsRightButton && dX < -5)
 			{
-				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right, itemView.Bottom);
+				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right,
+					itemView.Bottom);
 				p.Color = Color.Red;
 				c.DrawRoundRect(rightButton, 0, 0, p);
 				DrawText(viewHolder.RightButtonText, c, rightButton, p);
