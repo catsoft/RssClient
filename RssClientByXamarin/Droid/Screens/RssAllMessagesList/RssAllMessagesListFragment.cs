@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;

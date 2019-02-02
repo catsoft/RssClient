@@ -117,6 +117,7 @@
     <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
     <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
+    <Compile Include="Screens\RssItemDetail\BaseRssMessageAdapter.cs" />
     <Compile Include="Screens\RssItemDetail\RssDetailItemFragment.cs" />
     <Compile Include="Screens\RssItemDetail\RssItemDetailWay.cs" />
     <Compile Include="Screens\RssItemDetail\RssMessageAdapter.cs" />
