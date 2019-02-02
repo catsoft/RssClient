@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Android.App;
+using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
@@ -9,6 +10,7 @@ using Droid.Screens.Base.Adapters;
 using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
+using Shared.Repository;
 using Shared.Services.Locale;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
@@ -18,8 +20,11 @@ namespace Droid.Screens.RssItemDetail
 {
     public class RssMessageAdapter : WithItemsAdapter<RssMessageModel, List<RssMessageModel>>
     {
-        public RssMessageAdapter(List<RssMessageModel> items, Activity activity) : base(items, activity)
+        private readonly IRssMessagesRepository _rssMessagesRepository;
+
+        public RssMessageAdapter(List<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
+            _rssMessagesRepository = rssMessagesRepository;
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -38,6 +43,8 @@ namespace Droid.Screens.RssItemDetail
                 rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
 
                 ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
+                
+                rssMessageViewHolder.ItemView.SetBackgroundColor(item.IsRead ? Color.Gray : Color.White);
             }
         }
 
@@ -49,9 +56,23 @@ namespace Droid.Screens.RssItemDetail
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
 
+            holder.LeftButtonAction += () => { ReadItem(holder.Item); };
+
+            holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
+            
             return holder;
         }
 
+        private void InFavoriteItem(RssMessageModel holderItem)
+        {
+            _rssMessagesRepository.ChangeIsFavorite(holderItem);
+        }
+
+        private void ReadItem(RssMessageModel holderItem)
+        {
+            _rssMessagesRepository.ChangeIsRead(holderItem);
+        }
+        
         private void ItemLongClick(RssMessageModel holderItem, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);

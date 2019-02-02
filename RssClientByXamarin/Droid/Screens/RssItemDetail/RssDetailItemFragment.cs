@@ -4,9 +4,11 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using RssClient.Repository;
 using Shared;
@@ -65,9 +67,9 @@ namespace Droid.Screens.RssItemDetail
 
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             list.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
+            list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
 
-            var refreshLayout =
-                view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
+            var refreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
             refreshLayout.Refresh += async (sender, args) =>
             {
                 await _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
@@ -75,9 +77,13 @@ namespace Droid.Screens.RssItemDetail
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(item);
-            var adapter = new RssMessageAdapter(items.ToList(), Activity);
+            var adapter = new RssMessageAdapter(items.ToList(), Activity, _rssMessagesRepository);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
+
+            var callback = new SwipeButtonTouchHelperCallback();
+            var touchHelper = new ItemTouchHelper(callback);
+            touchHelper.AttachToRecyclerView(list);
 
             item.PropertyChanged += ItemOnPropertyChanged;
 

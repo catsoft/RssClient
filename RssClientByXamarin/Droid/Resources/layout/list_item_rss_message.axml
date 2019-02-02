@@ -1,58 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        android:id="@+id/linearLayout_messagesItem_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/linearLayout_messagesItem_content"
+        <TextView
+            android:id="@+id/textView_messagesItem_date"
+            style="@style/TextView.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_messagesItem_title"
+            style="@style/TextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_messagesItem_text"
+            style="@style/TextView.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FFImageLoading.Views.ImageViewAsync
+            android:id="@+id/imageView_messagesItem_image"
+            style="@style/TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
-            android:orientation="vertical">
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/textView_messagesItem_date"
-                style="@style/TextView.Body2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_messagesItem_title"
-                style="@style/TextView.Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView_messagesItem_text"
-                style="@style/TextView.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <FFImageLoading.Views.ImageViewAsync
-                android:id="@+id/imageView_messagesItem_image"
-                style="@style/TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+</FrameLayout>
