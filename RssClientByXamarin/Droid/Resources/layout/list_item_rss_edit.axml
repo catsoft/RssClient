@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:src="@drawable/reorder_48"
+            android:src="@drawable/baseline_reorder_24"
             android:tint="?attr/image_tint_color"/>
         
     </LinearLayout>
