@@ -18,9 +18,9 @@ using Shared.Services.Navigator;
 using Shared.ViewModels;
 using Xamarin.Essentials;
 
-namespace Droid.Screens.RssItemDetail
+namespace Droid.Screens.RssItemMessage
 {
-    public class RssDetailItemFragment : TitleFragment
+    public class RssItemDetailFragment : TitleFragment
     {
         private string _itemId;
         private RssModel Item => _rssRepository.Find(_itemId);
@@ -34,12 +34,12 @@ namespace Droid.Screens.RssItemDetail
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
         public override bool RootFragment => false;
 
-        public RssDetailItemFragment()
+        public RssItemDetailFragment()
         {
 
         }
 
-        public RssDetailItemFragment(string itemId)
+        public RssItemDetailFragment(string itemId)
         {
             _itemId = itemId;
         }
@@ -77,7 +77,7 @@ namespace Droid.Screens.RssItemDetail
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(item);
-            var adapter = new RssMessageAdapter(items.ToList(), Activity, _rssMessagesRepository);
+            var adapter = new RssItemMessageAdapter(items.ToList(), Activity, _rssMessagesRepository);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
@@ -99,7 +99,7 @@ namespace Droid.Screens.RssItemDetail
             var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             var adapter = list.GetAdapter();
 
-            if (adapter is RssMessageAdapter rssMessageAdapter)
+            if (adapter is RssItemMessageAdapter rssMessageAdapter)
             {
                 rssMessageAdapter.Items.Clear();
                 var newItems = _rssMessagesRepository.GetMessagesForRss(Item);

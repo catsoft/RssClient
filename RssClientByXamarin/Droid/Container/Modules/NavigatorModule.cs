@@ -11,7 +11,7 @@ using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
 using Droid.Screens.RssEdit;
 using Droid.Screens.RssEditList;
-using Droid.Screens.RssItemDetail;
+using Droid.Screens.RssItemMessage;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
 using Droid.Screens.Settings;

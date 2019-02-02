@@ -13,20 +13,10 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RecommendedCategoryList
 {
-    public class RecommendedCategoriesRssListAdapter : WithItemsAdapter<Categories, IEnumerable<Categories>>
+    public class RecommendedCategoriesRssListAdapter : DataBindAdapter<Categories, IEnumerable<Categories>, RssRecommendedCategoryViewHolder>
     {
         public RecommendedCategoriesRssListAdapter(IEnumerable<Categories> items, Activity activity) : base(items, activity)
         {
-        }
-
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        {
-            if (holder is RssRecommendedCategoryViewHolder recommendedHeaderViewHolder)
-            {
-                var item = Items.ElementAt(position);
-                recommendedHeaderViewHolder.Categories = item;
-                recommendedHeaderViewHolder.TitleView.Text = item.ToLocaleString(Activity);
-            }
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -39,7 +29,7 @@ namespace Droid.Screens.RecommendedCategoryList
             {
                 var navigator = App.Container.Resolve<INavigator>();
                 var way = App.Container.Resolve<RecommendedViewModel.Way>();
-                way.Data = new RecommendedViewModel.Way.WayData(viewHolder.Categories);
+                way.Data = new RecommendedViewModel.Way.WayData(viewHolder.Item);
                 navigator.Go(way);
             };
 

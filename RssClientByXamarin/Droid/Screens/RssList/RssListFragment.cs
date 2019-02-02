@@ -61,23 +61,7 @@ namespace Droid.Screens.RssList
             
             var subscribe = items.SubscribeForNotifications((sender, changes, error) =>
             {
-                if (sender != null && changes != null)
-                {
-                    foreach (var changesInsertedIndex in changes.InsertedIndices)
-                    {
-                        adapter.NotifyItemInserted(changesInsertedIndex);
-                    }
-
-                    foreach (var changesInsertedIndex in changes.ModifiedIndices)
-                    {
-                        adapter.NotifyItemChanged(changesInsertedIndex);
-                    }
-
-                    foreach (var changesInsertedIndex in changes.DeletedIndices)
-                    {
-                        adapter.NotifyItemRemoved(changesInsertedIndex);
-                    }
-                }
+                adapter.NotifyDataSetChanged();
             });
 
             OnDetachEvent += () => subscribe?.Dispose();

@@ -14,32 +14,10 @@ using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class
-        RecommendedRssListAdapter : WithItemsAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>>
+    public class RecommendedRssListAdapter : DataBindAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>, RssRecommendedViewHolder>
     {
-        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity) : base(items,
-            activity)
+        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity) : base(items, activity)
         {
-        }
-
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        {
-            if (holder is RssRecommendedViewHolder itemViewHolder)
-            {
-                var item = Items.ElementAt(position);
-                itemViewHolder.TitleView.Text = item.Rss;
-                itemViewHolder.RssUrl = item.Rss;
-
-                // TODO вынести крутую генерацию фавикона в другое место
-                var uri = new Uri(item.Rss);
-                var favicon = $"{uri.Scheme}://{uri.Host}/favicon.ico";
-
-                // TODO плейсхолдер должен зависить от темы
-                ImageService.Instance.LoadUrl(favicon)
-                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .Into(itemViewHolder.RssIcon);
-            }
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -53,8 +31,8 @@ namespace Droid.Screens.RecommendedRssList
             viewHolder.AddImageView.Click += (sender, args) =>
             {
                 var rssRepository = App.Container.Resolve<IRssRepository>();
-                rssRepository.InsertByUrl(viewHolder.RssUrl);
-                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.RssUrl);
+                rssRepository.InsertByUrl(viewHolder.Item.Rss);
+                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.Item.Rss);
             };
 
             return viewHolder;

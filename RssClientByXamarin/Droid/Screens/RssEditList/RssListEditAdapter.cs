@@ -22,7 +22,7 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditAdapter : ReorderRecyclerViewAdapter<RssModel, List<RssModel>>
+    public class RssListEditAdapter : DataBindAdapter<RssModel, List<RssModel>, RssListEditViewHolder>, IReorderListHelperAdapter
     {
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
         private readonly IRssRepository _rssRepository;
@@ -32,7 +32,7 @@ namespace Droid.Screens.RssEditList
             _rssRepository = rssRepository;
         }
 
-        public override void OnMove(int fromPosition, int toPosition)
+        public void OnMove(int fromPosition, int toPosition)
         {
             var item = Items[fromPosition];
             Items.RemoveAt(fromPosition);
@@ -47,20 +47,16 @@ namespace Droid.Screens.RssEditList
             NotifyItemMoved(fromPosition, toPosition);
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        protected override void BindData(RssListEditViewHolder holder, RssModel item)
         {
-            if (holder is RssListEditViewHolder rssListEditViewHolder)
-            {
-                var item = Items.ElementAt(position);
-                
-                var localeService = App.Container.Resolve<ILocale>();
+            base.BindData(holder, item);
+            
+            var localeService = App.Container.Resolve<ILocale>();
 
-                rssListEditViewHolder.TitleTextView.Text = item.Name;
-                rssListEditViewHolder.SubtitleTextView.Text = item.UpdateTime == null
-                    ? Activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
-                rssListEditViewHolder.Item = item;
-            }
+            holder.TitleTextView.Text = item.Name;
+            holder.SubtitleTextView.Text = item.UpdateTime == null
+                ? Activity.GetText(Resource.String.rssList_notUpdated)
+                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

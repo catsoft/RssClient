@@ -1,7 +1,7 @@
 ﻿using Droid.Screens.Navigation;
 using Shared.ViewModels;
 
-namespace Droid.Screens.RssItemDetail
+namespace Droid.Screens.RssItemMessage
 {
     public class RssItemDetailWay : RssItemDetailViewModel.Way
     {
@@ -14,7 +14,7 @@ namespace Droid.Screens.RssItemDetail
 
         public override void Go()
         {
-            var fragment = new RssDetailItemFragment(Data.RssModel.Id);
+            var fragment = new RssItemDetailFragment(Data.RssModel.Id);
 
             _fragmentActivity.AddFragment(fragment, CacheState.Replace);
         }

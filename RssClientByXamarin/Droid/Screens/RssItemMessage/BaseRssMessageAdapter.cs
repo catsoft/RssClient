@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Android.App;
-using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
@@ -12,22 +11,17 @@ using Shared.Services.Navigator;
 using Shared.ViewModels;
 using Xamarin.Essentials;
 
-namespace Droid.Screens.RssItemDetail
+namespace Droid.Screens.RssItemMessage
 {
-    public abstract class BaseRssMessageAdapter<TCollection> : WithItemsAdapter<RssMessageModel, TCollection>
-    where TCollection : IEnumerable<RssMessageModel>
+    public abstract class BaseRssMessageAdapter<TCollection, TViewHolder> : DataBindAdapter<RssMessageModel, TCollection, TViewHolder>
+        where TCollection : IEnumerable<RssMessageModel>
+        where TViewHolder : RecyclerView.ViewHolder, IDataBind<RssMessageModel>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
-        
-        protected readonly Color BackgroundItemColor;
-        protected readonly Color BackgroundItemSelectColor;
         
         protected BaseRssMessageAdapter(TCollection items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
-            
-            BackgroundItemColor = new Color(0, 0, 0, 0);
-            BackgroundItemSelectColor = new Color(0, 0, 0, 95);
         }
         
         protected void InFavoriteItem(RssMessageModel holderItem)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Android.App;
@@ -10,7 +11,7 @@ using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
-using Droid.Screens.RssItemDetail;
+using Droid.Screens.RssItemMessage;
 using FFImageLoading;
 using Shared;
 using Shared.Database.Rss;
@@ -21,30 +22,10 @@ using Shared.ViewModels;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IQueryable<RssMessageModel>>
+    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IEnumerable<RssMessageModel>, RssAllMessagesViewHolder>
     {
-        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity, rssMessagesRepository)
+        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items.ToList(), activity, rssMessagesRepository)
         {
-        }
-        
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-        {
-            var item = Items.ElementAt(position);
-
-            if (holder is RssAllMessagesViewHolder rssMessageViewHolder)
-            {
-                var localeService = App.Container.Resolve<ILocale>();
-
-                rssMessageViewHolder.Title.Text = item.Title;
-                rssMessageViewHolder.Text.Text = item.Text;
-                rssMessageViewHolder.CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
-                rssMessageViewHolder.Item = item;
-                rssMessageViewHolder.Canal.Text = item.RssLink;
-                rssMessageViewHolder.Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
-                rssMessageViewHolder.ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
-                
-                ImageService.Instance.LoadUrl(item.ImageUrl).Into(rssMessageViewHolder.ImageView);
-            }
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

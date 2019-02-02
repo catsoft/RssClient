@@ -4,6 +4,7 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
 using FFImageLoading;
 using FFImageLoading.Work;
@@ -18,13 +19,13 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListAdapter : SwipeListAdapter<RssModel, IQueryable<RssModel>>
+    public class RssListAdapter : DataBindAdapter<RssModel, IQueryable<RssModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
         private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly INavigator _navigator;
 
-        public override void OnItemDismiss(int position)
+        public void OnItemDismiss(int position)
         {
             var item = Items.ElementAt(position);
             _rssRepository.Remove(item);
@@ -38,26 +39,16 @@ namespace Droid.Screens.RssList
             _navigator = App.Container.Resolve<INavigator>();
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        protected override void BindData(RssListViewHolder holder, RssModel item)
         {
-            var item = Items.ElementAt(position);
+            base.BindData(holder, item);
 
-            if (holder is RssListViewHolder rssListViewHolder)
-            {
-                var localeService = App.Container.Resolve<ILocale>();
+            var localeService = App.Container.Resolve<ILocale>();
 
-                rssListViewHolder.TitleTextView.Text = item.Name;
-                rssListViewHolder.SubtitleTextView.Text = item.UpdateTime == null
-                    ? Activity.GetText(Resource.String.rssList_notUpdated)
-                    : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
-                rssListViewHolder.Item = item;
-                rssListViewHolder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
-
-                ImageService.Instance.LoadUrl(item.UrlPreviewImage)
-                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .Into(rssListViewHolder.IconView);
-            }
+            holder.SubtitleTextView.Text = item.UpdateTime == null
+                ? Activity.GetText(Resource.String.rssList_notUpdated)
+                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
+            holder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
