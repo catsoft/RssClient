@@ -1,6 +1,7 @@
 ﻿using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
+using Android.Util;
 using Autofac;
 using Shared;
 using Shared.Analytics.Rss;
@@ -22,7 +23,9 @@ namespace Droid.Screens.Base
             SetSupportActionBar(Toolbar);
 
             // TODO вот тут стиль применить
-            Toolbar.SetTitleTextColor(Resource.Attribute.navigation_color);
+            var navigationColor = new TypedValue();
+            this.Theme.ResolveAttribute(Resource.Attribute.navigation_color, navigationColor, true);
+            Toolbar.SetTitleTextColor(navigationColor.Data);
             
             App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }

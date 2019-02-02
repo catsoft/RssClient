@@ -431,18 +431,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\share_24.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\filter_list_24.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\share_24.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\share_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\share_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\share_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\share_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\filter_list_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\filter_list_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\filter_list_24.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\filter_list_24.png" />
     <AndroidResource Include="Resources\drawable\filter_list_24.xml" />
     <AndroidResource Include="Resources\menu\menu_rssList.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
