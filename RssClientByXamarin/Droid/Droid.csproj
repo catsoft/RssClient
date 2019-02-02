@@ -328,31 +328,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_add.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_add.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_add.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\list_item_rss.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -407,16 +382,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_delete.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_edit.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_delete.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_edit.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_delete.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_edit.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_delete.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_edit.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_delete.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_edit.png" />
     <AndroidResource Include="Resources\menu\menu_rssDetail.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\no_image.png" />
     <AndroidResource Include="Resources\drawable-mdpi\no_image.png" />
@@ -450,20 +415,10 @@
     <AndroidResource Include="Resources\menu\menu_navigation.xml" />
     <AndroidResource Include="Resources\drawable\baseline_contacts_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_home_24.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\baseline_contacts_black_24.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\baseline_home_black_24.png" />
     <AndroidResource Include="Resources\drawable-hdpi\baseline_settings_black_24.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\baseline_contacts_black_24.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\baseline_home_black_24.png" />
     <AndroidResource Include="Resources\drawable-mdpi\baseline_settings_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\baseline_contacts_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\baseline_home_black_24.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\baseline_settings_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_contacts_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_home_black_24.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\baseline_settings_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_contacts_black_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_home_black_24.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_settings_black_24.png" />
     <AndroidResource Include="Resources\layout\fragment_settings.axml">
       <SubType>Designer</SubType>
@@ -524,11 +479,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\rss_56.png" />
     <AndroidResource Include="Resources\drawable\circle_72.xml" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\launch_image_text.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\mode_edit_24.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\mode_edit_24.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\mode_edit_24.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\mode_edit_24.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\mode_edit_24.png" />
     <AndroidResource Include="Resources\drawable-hdpi\delete_48.png" />
     <AndroidResource Include="Resources\drawable-mdpi\delete_48.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\delete_48.png" />
@@ -540,6 +490,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\reorder_48.png" />
     <AndroidResource Include="Resources\drawable-mdpi\reorder_48.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\launch_image_beta.png" />
+    <AndroidResource Include="Resources\drawable\baseline_delete_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_edit_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_add_24.xml" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

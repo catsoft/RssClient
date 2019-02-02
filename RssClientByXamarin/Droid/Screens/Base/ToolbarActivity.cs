@@ -22,11 +22,6 @@ namespace Droid.Screens.Base
             Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar_toolbarAll_toolbar);
             SetSupportActionBar(Toolbar);
 
-            // TODO вот тут стиль применить
-            var navigationColor = new TypedValue();
-            this.Theme.ResolveAttribute(Resource.Attribute.navigation_color, navigationColor, true);
-            Toolbar.SetTitleTextColor(navigationColor.Data);
-            
             App.Container.Resolve<ScreenLog>().TrackScreenOpen(GetType());
         }
 

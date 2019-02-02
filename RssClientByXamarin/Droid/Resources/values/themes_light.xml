@@ -4,6 +4,8 @@
         
         <item name="image_tint_color">#000000</item>
 
+        <item name="toolbarThemeOverlay">@style/ThemeOverlay.AppCompat.Light</item>
+
     </style>
 
 

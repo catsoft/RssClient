@@ -4,6 +4,8 @@
 
         <item name="image_tint_color">#777777</item>
 
+        <item name="toolbarThemeOverlay">@style/ThemeOverlay.AppCompat.ActionBar</item>
+
     </style>
 
 
