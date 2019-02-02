@@ -27,6 +27,8 @@
     <string name="contextMenuRssList_share">Поделиться</string>
 
     <string name="contextMenuRssDetailList_share">Поделиться</string>
+    <string name="contextMenuRssDetailList_read">Прочитать</string>
+    <string name="contextMenuRssDetailList_favorite">В избранное</string>
 
     <string name="rssDeleteDialog_positiveTitle">Да</string>
     <string name="rssDeleteDialog_negativeTitle">Нет</string>

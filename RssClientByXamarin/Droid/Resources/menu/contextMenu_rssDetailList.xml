@@ -6,4 +6,12 @@
         android:id="@+id/menuItem_rssDetailList_contextShare"
         android:title="@string/contextMenuRssDetailList_share" />
 
+    <item
+        android:id="@+id/menuItem_rssDetailList_contextRead"
+        android:title="@string/contextMenuRssDetailList_read" />
+
+    <item
+        android:id="@+id/menuItem_rssDetailList_contextFavorite"
+        android:title="@string/contextMenuRssDetailList_favorite" />
+    
 </menu>

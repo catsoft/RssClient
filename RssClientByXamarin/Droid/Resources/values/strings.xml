@@ -27,6 +27,8 @@
     <string name="contextMenuRssList_share">Share</string>
 
     <string name="contextMenuRssDetailList_share">Share</string>
+    <string name="contextMenuRssDetailList_read">Read</string>
+    <string name="contextMenuRssDetailList_favorite">Favorite</string>
 
     <string name="rssDeleteDialog_positiveTitle">Yes</string>
     <string name="rssDeleteDialog_negativeTitle">No</string>

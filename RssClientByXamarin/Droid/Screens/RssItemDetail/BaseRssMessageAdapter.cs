@@ -55,6 +55,12 @@ namespace Droid.Screens.RssItemDetail
                 case Resource.Id.menuItem_rssDetailList_contextShare:
                     ShareItem(holderItem);
                     break;
+                case Resource.Id.menuItem_rssDetailList_contextRead:
+                    ReadItem(holderItem);
+                    break;
+                case Resource.Id.menuItem_rssDetailList_contextFavorite:
+                    InFavoriteItem(holderItem);
+                    break;
             }
         }
 
