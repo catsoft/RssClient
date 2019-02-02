@@ -17,7 +17,9 @@
         <ImageView
             android:id="@+id/imageView_linkElementContacts_icon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="left"
             android:layout_margin="8dp"/>
 
         <TextView
@@ -25,9 +27,19 @@
             style="@style/TextView.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="left"
             android:layout_gravity="center_vertical"
             android:layout_margin="16dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_chevron_right_24"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="16dp"
+            android:tint="?attr/image_tint_color"/>
 
     </LinearLayout>
 
