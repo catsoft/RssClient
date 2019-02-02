@@ -1,10 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
-using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using FFImageLoading;
 using Shared;
@@ -17,6 +17,11 @@ namespace Droid.Screens.RssAllMessagesList
 {
     public class RssAllMessagesListAdapter : SwipeButtonListAdapter<RssMessageModel, IQueryable<RssMessageModel>>
     {
+        public override bool IsLeftButton => true;
+        public override bool IsRightButton => true;
+        public override string LeftButtonText => "Delete";
+        public override string RightButtonText => "Favorite";
+
         public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity) : base(items, activity)
         {
         }

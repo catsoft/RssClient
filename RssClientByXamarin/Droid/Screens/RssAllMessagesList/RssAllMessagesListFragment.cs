@@ -6,6 +6,7 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.NativeExtension;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
@@ -55,6 +56,16 @@ namespace Droid.Screens.RssAllMessagesList
             var helper = new ItemTouchHelper(callback);
             helper.AttachToRecyclerView(recyclerView);
 
+            adapter.LeftButtonAction += () =>
+            {
+                Activity.Toast("LeftButtonAction");
+            };
+            
+            adapter.RightButtonAction += () =>
+            {
+                Activity.Toast("RightButtonAction");
+            };
+            
             return view;
         }
 

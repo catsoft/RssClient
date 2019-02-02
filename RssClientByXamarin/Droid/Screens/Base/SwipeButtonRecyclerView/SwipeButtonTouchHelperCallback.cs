@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
@@ -9,11 +10,15 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {
 	public class SwipeButtonTouchHelperCallback : ItemTouchHelper.Callback
 	{
-		private readonly RecyclerView.Adapter _adapter;
+		private readonly ISwipeButtonItemTouchHelperAdapter _swipeButtonTouchHelperAdapter;
+		private bool _swipeBack;
+		private bool _isActionInvoke;
 
-		public SwipeButtonTouchHelperCallback(RecyclerView.Adapter adapter)
+		private const float ButtonWidth = 300;
+
+		public SwipeButtonTouchHelperCallback(ISwipeButtonItemTouchHelperAdapter swipeButtonTouchHelperAdapter)
 		{
-			_adapter = adapter;
+			_swipeButtonTouchHelperAdapter = swipeButtonTouchHelperAdapter;
 		}
 
 		public override bool IsLongPressDragEnabled => false;
@@ -26,8 +31,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 			return MakeMovementFlags(dragFlags, swipeFlags);
 		}
 
-		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder holder,
-			RecyclerView.ViewHolder target)
+		public override bool OnMove(RecyclerView recyclerView, RecyclerView.ViewHolder holder, RecyclerView.ViewHolder target)
 		{
 			return false;
 		}
@@ -35,8 +39,6 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 		public override void OnSwiped(RecyclerView.ViewHolder viewHolder, int direction)
 		{
 		}
-
-		private bool _swipeBack = false;
 
 		public override int ConvertToAbsoluteDirection(int flags, int layoutDirection)
 		{
@@ -57,17 +59,77 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 				SetTouchListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 			}
 
+			if (dX != 0)
+			{
+				DrawButtons(c, viewHolder);
+			}
+			else
+			{
+				_isActionInvoke = false;
+			}
+
+			if (dX < -ButtonWidth)
+			{
+				if (!_isActionInvoke)
+				{
+					_swipeButtonTouchHelperAdapter.OnRightButton();
+					_isActionInvoke = true;
+				}
+			}
+
+			if (dX > ButtonWidth)
+			{
+				if (!_isActionInvoke)
+				{
+					_swipeButtonTouchHelperAdapter.OnLeftButton();
+					_isActionInvoke = true;
+				}
+			}
+
 			base.OnChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 		}
 
-		private void SetTouchListener(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, 
-			int actionState, bool isCurrentlyActive)
+		private void DrawButtons(Canvas c, RecyclerView.ViewHolder viewHolder)
 		{
-			
-			recyclerView.SetOnTouchListener(new TouchList((value) => _swipeBack = value));
+			var itemView = viewHolder.ItemView;
+			var p = new Paint();
 
+			if (_swipeButtonTouchHelperAdapter.IsLeftButton)
+			{
+				var leftButton = new RectF(itemView.Left, itemView.Top, itemView.Left + ButtonWidth, itemView.Bottom);
+				p.Color = Color.Blue;
+				c.DrawRoundRect(leftButton, 0, 0, p);
+				DrawText(_swipeButtonTouchHelperAdapter.LeftButtonText, c, leftButton, p);
+			}
+
+			if (_swipeButtonTouchHelperAdapter.IsRightButton)
+			{
+				var rightButton = new RectF(itemView.Right - ButtonWidth, itemView.Top, itemView.Right,
+					itemView.Bottom);
+				p.Color = Color.Red;
+				c.DrawRoundRect(rightButton, 0, 0, p);
+				DrawText(_swipeButtonTouchHelperAdapter.RightButtonText, c, rightButton, p);
+			}
 		}
-		
+
+		private void DrawText(string text, Canvas c, RectF button, Paint p)
+		{
+			const float textSize = 60;
+			p.Color = Color.White;
+			p.AntiAlias = true;
+			p.TextSize = textSize;
+
+			var textWidth = p.MeasureText(text);
+			c.DrawText(text, button.CenterX() - (textWidth / 2), button.CenterY() + (textSize / 2), p);
+		}
+
+
+		private void SetTouchListener(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX,
+			float dY, int actionState, bool isCurrentlyActive)
+		{
+			recyclerView.SetOnTouchListener(new TouchList((value) => _swipeBack = value));
+		}
+
 		private class TouchList : Java.Lang.Object, View.IOnTouchListener
 		{
 			private readonly Action<bool> _action;
