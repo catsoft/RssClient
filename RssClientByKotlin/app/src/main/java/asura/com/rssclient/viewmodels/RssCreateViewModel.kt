@@ -19,7 +19,7 @@ class RssCreateViewModel : ViewModel() {
     }
 
     fun addItem(name: String, url: String) {
-        val item = RssItem(url, name, "date2", "date")
+        val item = RssItem(url, name, "date2", "date", "date3")
         repository.insertItem(item)
     }
 }
