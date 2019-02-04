@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -12,10 +13,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.transition.Slide
 import asura.com.rssclient.R
 import asura.com.rssclient.databinding.ActivityRssBinding
 
-class RssActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var navController : NavController
@@ -37,13 +39,22 @@ class RssActivity : AppCompatActivity() {
         binding.navigationView.setupWithNavController(navController)
     }
 
+    override fun onBackPressed() {
+        if(drawerLayout.isDrawerOpen(drawerLayoutGravity))
+            drawerLayout.closeDrawer(drawerLayoutGravity)
+        else
+            onSupportNavigateUp()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appbarConfiguration) || super.onSupportNavigateUp()
     }
 
     companion object {
         fun newIntent(context: Context) : Intent {
-            return Intent(context, RssActivity::class.java)
+            return Intent(context, MainActivity::class.java)
         }
+
+        private const val drawerLayoutGravity : Int = GravityCompat.START
     }
 }
