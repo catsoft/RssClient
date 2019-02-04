@@ -9,4 +9,6 @@
     <color name="gray">#9E9E9E</color>
 
     <color name="orange">#EA7819</color>
+
+    <color name="divider">#777777</color>
 </resources>

@@ -45,4 +45,71 @@
 
     <style name="LoadText" parent="TextAppearance.AppCompat.Large"/>
 
+
+    <style name="Button.Submit" parent="Widget.AppCompat.Button.Colored">
+
+    </style>
+
+
+    <style name="EditText">
+
+    </style>
+
+
+    <style name="TextInputLayout">
+
+    </style>
+
+
+    <style name="Refresher">
+
+    </style>
+
+
+    <style name="RecyclerView">
+
+    </style>
+
+
+    <style name="Fab">
+
+    </style>
+
+
+    <style name="TextView" parent="Base.TextAppearance.AppCompat">
+
+    </style>
+
+
+    <style name="TextView.Title" parent="Base.TextAppearance.AppCompat.Title">
+
+    </style>
+
+
+    <style name="TextView.Subhead" parent="Base.TextAppearance.AppCompat.Subhead">
+
+    </style>
+
+
+    <style name="TextView.Body1" parent="Base.TextAppearance.AppCompat.Body1">
+
+    </style>
+
+
+    <style name="TextView.Body2" parent="Base.TextAppearance.AppCompat.Body2">
+
+    </style>
+
+
+    <style name="TextView.Large" parent="Base.TextAppearance.AppCompat.Large">
+
+    </style>
+
+
+    <style name="Divider">
+        <item name="android:background">@color/divider</item>
+    </style>
+
+
+
 </resources>

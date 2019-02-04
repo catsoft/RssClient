@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">RssClient</string>
-    <string name="rss_list_title">Rss list</string>
-    <string name="rss_detail_title">Rss detail</string>
-    <string name="navigation_drawer_header_content_description">Header desctiption</string>
-    <string name="navigation_drawer_header_title">Header Title</string>
+    <string name="app_name">RSS Client</string>
+    <string name="rss_list_title">RSS list</string>
+    <string name="rss_detail_title">RSS detail</string>
+    <string name="navigation_drawer_header_content_description">RSS Client</string>
+    <string name="navigation_drawer_header_title">RSS Client</string>
     <string name="rss_list_empty">No items</string>
-    <string name="rss_create_title">Rss create</string>
+    <string name="rss_create_title">RSS create</string>
     <string name="create_button">Create</string>
     <string name="create_url_hint">Url</string>
     <string name="create_name_hint">Name</string>
@@ -13,7 +13,7 @@
     <string name="context_menu_remove">Remove</string>
     <string name="context_menu_edit">Edit</string>
     <string name="edit_button">Edit</string>
-    <string name="rss_edit_title">Rss edit</string>
+    <string name="rss_edit_title">RSS edit</string>
     <string name="rss_detail_menu_edit">Edit</string>
     <string name="rss_detail_menu_remove">Remove</string>
     <string name="rss_detail_menu_share">Share</string>
