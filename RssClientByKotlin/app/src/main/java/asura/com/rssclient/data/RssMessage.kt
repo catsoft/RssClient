@@ -23,5 +23,6 @@ data class RssMessage(
     @ColumnInfo(name = "rss_id")
     val rssId: Long,
 
-    val isViewed: Boolean = false
+    val isViewed: Boolean = false,
+    val isFavorite: Boolean = false
 )

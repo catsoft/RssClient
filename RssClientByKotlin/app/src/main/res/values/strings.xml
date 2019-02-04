@@ -16,4 +16,7 @@
     <string name="rss_edit_title">Rss edit</string>
     <string name="rss_detail_menu_edit">Edit</string>
     <string name="rss_detail_menu_remove">Remove</string>
+    <string name="rss_detail_menu_share">Share</string>
+    <string name="context_menu_share">Share</string>
+    <string name="send_to">Send to</string>
 </resources>

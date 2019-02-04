@@ -9,7 +9,8 @@ data class RssItem(
     val url: String,
     val name: String,
     val lastOpenDate: String,
-    val createDate: String
+    val createDate: String,
+    val updateDate : String
 ) {
     @ColumnInfo(name = "rss_id")
     @PrimaryKey(autoGenerate = true)

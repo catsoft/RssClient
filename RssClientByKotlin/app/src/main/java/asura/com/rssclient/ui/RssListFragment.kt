@@ -1,5 +1,6 @@
 package asura.com.rssclient.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
@@ -53,12 +54,19 @@ class RssListFragment : Fragment() {
             val rssItem = adapter.getRssItem(castMenuInfo.position)
 
             when(item.itemId){
-                R.id.context_menu_edit -> {
+                R.id.context_menu_rss_list_edit -> {
                     val direction = RssListFragmentDirections.ActionRssListFragmentToRssEditFragment(rssItem.rssId)
                     findNavController().navigate(direction)
                 }
-                R.id.context_menu_remove -> {
+                R.id.context_menu_rss_list_remove -> {
                     viewModel.removeItem(rssItem)
+                }
+                R.id.context_menu_rss_list_share -> {
+                    val shareIntent = Intent()
+                    shareIntent.action = Intent.ACTION_SEND
+                    shareIntent.type = "text/plain"
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, rssItem.url)
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.send_to)))
                 }
             }
         }
