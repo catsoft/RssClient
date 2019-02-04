@@ -15,7 +15,7 @@ import asura.com.rssclient.ui.RssListFragmentDirections
 /**
  * Adapter for the [RecyclerView] in [RssListFragment].
  */
-class RssItemAdapter : ListAdapter<RssItem, RssItemAdapter.RssItemViewHolder>(RssItemDiffCallback()) {
+class RssListAdapter : ListAdapter<RssItem, RssListAdapter.RssItemViewHolder>(RssItemDiffCallback()) {
 
     override fun onBindViewHolder(holder: RssItemViewHolder, position: Int) {
         val item = getItem(position)

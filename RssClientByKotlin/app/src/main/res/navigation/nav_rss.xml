@@ -36,7 +36,7 @@
 
     <fragment
             android:id="@+id/rss_detail_fragment"
-            android:name="asura.com.rssclient.ui.RssDetailFragment"
+            android:name="asura.com.rssclient.ui.RssMessageInRssListFragment"
             android:label="@string/rss_detail_title"
             tools:layout="@layout/fragment_rss_detail">
 

@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.R
-import asura.com.rssclient.adapters.RssItemAdapter
+import asura.com.rssclient.adapters.RssListAdapter
 import asura.com.rssclient.databinding.FragmentRssListBinding
 import asura.com.rssclient.ui.recyclerview.LongClickRecyclerView
 import asura.com.rssclient.viewmodels.RssListViewModel
@@ -17,14 +17,14 @@ import asura.com.rssclient.viewmodels.RssListViewModel
 class RssListFragment : Fragment() {
 
     private lateinit var viewModel: RssListViewModel
-    private lateinit var adapter: RssItemAdapter
+    private lateinit var adapter: RssListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentRssListBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProviders.of(this).get(RssListViewModel::class.java)
 
-        adapter = RssItemAdapter()
+        adapter = RssListAdapter()
         binding.rssList.adapter = adapter
         subscribeAdapter(adapter)
         subscribeEmptyView(binding.noItems)
@@ -66,7 +66,7 @@ class RssListFragment : Fragment() {
         return super.onContextItemSelected(item)
     }
 
-    private fun subscribeAdapter(adapter: RssItemAdapter) {
+    private fun subscribeAdapter(adapter: RssListAdapter) {
         viewModel.getRssList().observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 adapter.submitList(it.toMutableList())

@@ -8,14 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import asura.com.rssclient.data.RssMessage
 import asura.com.rssclient.databinding.ListRssMessagesItemBinding
-import asura.com.rssclient.ui.RssDetailFragment
+import asura.com.rssclient.ui.RssMessageInRssListFragment
 import asura.com.rssclient.viewmodels.RssDetailViewModel
-import org.jetbrains.anko.browse
 
 /**
- * Adapter for the [RecyclerView] in [RssDetailFragment].
+ * Adapter for the [RecyclerView] in [RssMessageInRssListFragment].
  */
-class RssMessageAdapter(private val viewModel : RssDetailViewModel) : ListAdapter<RssMessage, RssMessageAdapter.RssMessageViewHolder>(RssMessageAdapter.RssItemDiffCallback()) {
+class RssMessageListAdapter(private val viewModel : RssDetailViewModel) : ListAdapter<RssMessage, RssMessageListAdapter.RssMessageViewHolder>(RssMessageListAdapter.RssItemDiffCallback()) {
 
     override fun onBindViewHolder(holder: RssMessageViewHolder, position: Int) {
         val item = getItem(position)
@@ -24,7 +23,7 @@ class RssMessageAdapter(private val viewModel : RssDetailViewModel) : ListAdapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RssMessageViewHolder {
         val binding = ListRssMessagesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RssMessageAdapter.RssMessageViewHolder(binding, viewModel)
+        return RssMessageListAdapter.RssMessageViewHolder(binding, viewModel)
     }
 
     class RssMessageViewHolder(private val binding : ListRssMessagesItemBinding,

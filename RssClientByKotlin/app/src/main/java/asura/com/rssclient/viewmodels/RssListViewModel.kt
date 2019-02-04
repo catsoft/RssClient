@@ -4,10 +4,8 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
-import asura.com.rssclient.ui.RssApplication
+import asura.com.rssclient.ui.App
 import asura.com.rssclient.ui.RssListFragment
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -20,7 +18,7 @@ class RssListViewModel : ViewModel() {
     private val rssList = MediatorLiveData<List<RssItem>>()
 
     init {
-        RssApplication.appComponent.inject(this)
+        App.appComponent.inject(this)
 
         rssList.addSource(repository.getItems(), rssList::setValue)
     }

@@ -2,7 +2,6 @@ package asura.com.rssclient.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import asura.com.rssclient.api.RssApiService
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
@@ -12,11 +11,10 @@ import asura.com.rssclient.stated.InvalidStateData
 import asura.com.rssclient.stated.LoadStateData
 import asura.com.rssclient.stated.NormalStateData
 import asura.com.rssclient.stated.StatedViewModel
-import asura.com.rssclient.ui.RssApplication
+import asura.com.rssclient.ui.App
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import me.toptas.rssconverter.RssFeed
 import org.jetbrains.anko.browse
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -38,7 +36,7 @@ class RssDetailViewModel(val rssItemId: Long) : StatedViewModel() {
     var rssMessages: LiveData<List<RssMessage>>
 
     init {
-        RssApplication.appComponent.inject(this)
+        App.appComponent.inject(this)
         rssItem = repository.getItemById(rssItemId)
 
         rssMessages = rssMessageRepository.getItems(rssItemId)

@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import asura.com.rssclient.data.RssItem
 import asura.com.rssclient.data.RssItemRepository
-import asura.com.rssclient.ui.RssApplication
+import asura.com.rssclient.ui.App
 import asura.com.rssclient.ui.RssEditFragment
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -20,7 +18,7 @@ class RssEditViewModel(rssId: Long) : ViewModel() {
     var rssItem : LiveData<RssItem>
 
     init {
-        RssApplication.appComponent.inject(this)
+        App.appComponent.inject(this)
 
         rssItem = repository.getItemById(rssId)
     }

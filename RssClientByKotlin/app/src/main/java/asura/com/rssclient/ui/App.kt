@@ -3,7 +3,7 @@ package asura.com.rssclient.ui
 import android.app.Application
 import asura.com.rssclient.dagger.*
 
-class RssApplication : Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()

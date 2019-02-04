@@ -4,25 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
-import androidx.core.view.isGone
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.R
-import asura.com.rssclient.adapters.RssMessageAdapter
-import asura.com.rssclient.data.RssMessage
+import asura.com.rssclient.adapters.RssMessageListAdapter
 import asura.com.rssclient.databinding.FragmentRssDetailBinding
 import asura.com.rssclient.stated.StatedFragment
 import asura.com.rssclient.viewmodels.RssDetailViewModel
 import asura.com.rssclient.viewmodels.RssDetailViewModelFactory
 
-class RssDetailFragment : StatedFragment() {
+class RssMessageInRssListFragment : StatedFragment() {
 
     private lateinit var webView : WebView
     private lateinit var viewModel: RssDetailViewModel
     private lateinit var args: RssEditFragmentArgs
-    private lateinit var adapter : RssMessageAdapter
+    private lateinit var adapter : RssMessageListAdapter
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,7 +35,7 @@ class RssDetailFragment : StatedFragment() {
         webView.settings.javaScriptEnabled = true
         (binding.root as ViewGroup).addView(webView)
 
-        adapter = RssMessageAdapter(viewModel)
+        adapter = RssMessageListAdapter(viewModel)
         binding.recyclerView.adapter = adapter
 
         viewModel.rssMessages.observe(viewLifecycleOwner, Observer {
