@@ -3,6 +3,7 @@ package asura.com.rssclient.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -16,8 +17,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.transition.Slide
 import asura.com.rssclient.R
 import asura.com.rssclient.databinding.ActivityRssBinding
+import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_rss.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var navController : NavController
@@ -37,6 +40,31 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appbarConfiguration)
 
         binding.navigationView.setupWithNavController(navController)
+
+        navigation_view.setNavigationItemSelectedListener(this)
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+
+        when (p0.itemId) {
+            R.id.menu_navigation_home -> {
+
+            }
+            R.id.menu_navigation_recommendation -> {
+
+            }
+            R.id.menu_navigation_settings -> {
+
+            }
+            R.id.menu_navigation_contacts -> {
+
+            }
+            R.id.menu_navigation_about -> {
+
+            }
+        }
+
+        return true
     }
 
     override fun onBackPressed() {
@@ -49,6 +77,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appbarConfiguration) || super.onSupportNavigateUp()
     }
+
 
     companion object {
         fun newIntent(context: Context) : Intent {
