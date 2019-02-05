@@ -61,6 +61,13 @@ namespace Droid.Screens.RssAllMessagesList
             return view;
         }
 
+        public override void OnDestroyView()
+        {
+            var recyclerView = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
+            recyclerView.SetAdapter(null);
+            base.OnDestroyView();
+        }
+
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_rssAllMessageList, menu);

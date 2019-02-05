@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Java.Lang;
 using Shared.Database.Rss;
 using Shared.Repository;
 
@@ -23,8 +24,18 @@ namespace Droid.Screens.RssItemMessage
 
             holder.LeftButtonAction += () => { ReadItem(holder.Item); };
             holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
-            
+             
             return holder;
+        }
+
+        public override void OnViewDetachedFromWindow(Object holder)
+        {
+            if (holder is RssItemMessageViewHolder rssItemMessageViewHolder && rssItemMessageViewHolder.Item != null)
+            {
+                rssItemMessageViewHolder.Item.PropertyChanged -= rssItemMessageViewHolder.UpdateHimself;
+            }
+            
+            base.OnViewDetachedFromWindow(holder);
         }
     }
 }

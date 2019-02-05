@@ -53,7 +53,7 @@ namespace Droid.Screens.RssItemMessage
             item.PropertyChanged += UpdateHimself;
         }
 
-        private void UpdateHimself(object sender, PropertyChangedEventArgs e)
+        public void UpdateHimself(object sender, PropertyChangedEventArgs e)
         {
             BindData(Item);
         }
