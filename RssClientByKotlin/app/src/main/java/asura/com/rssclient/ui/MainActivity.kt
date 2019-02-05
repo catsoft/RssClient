@@ -3,7 +3,6 @@ package asura.com.rssclient.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -16,10 +15,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import asura.com.rssclient.R
 import asura.com.rssclient.databinding.ActivityRssBinding
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_rss.*
+import java.util.HashSet
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var navController : NavController
@@ -33,47 +31,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout = binding.drawerLayout
 
         navController = Navigation.findNavController(this, R.id.rss_list_nav_fragment)
-        appbarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+
+        val topLevelDestination = HashSet<Int>()
+        topLevelDestination.add(R.id.rss_list_fragment)
+        topLevelDestination.add(R.id.recommendation_categories_list_fragment)
+        topLevelDestination.add(R.id.settings_fragment)
+        topLevelDestination.add(R.id.contacts_fragment)
+        topLevelDestination.add(R.id.about_fragment)
+
+        appbarConfiguration = AppBarConfiguration(topLevelDestination, drawerLayout)
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appbarConfiguration)
 
         binding.navigationView.setupWithNavController(navController)
-
-        navigation_view.setNavigationItemSelectedListener(this)
-        navigation_view.setCheckedItem(R.id.menu_navigation_home)
-    }
-
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-
-        when (p0.itemId) {
-            R.id.menu_navigation_home -> {
-
-            }
-            R.id.menu_navigation_recommendation -> {
-
-            }
-            R.id.menu_navigation_settings -> {
-
-            }
-            R.id.menu_navigation_contacts -> {
-
-            }
-            R.id.menu_navigation_about -> {
-
-            }
-        }
-
-        navigation_view.setCheckedItem(p0.itemId)
-
-        return true
     }
 
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(drawerLayoutGravity))
             drawerLayout.closeDrawer(drawerLayoutGravity)
         else
-            onSupportNavigateUp()
+            super.onBackPressed()
     }
 
     override fun onSupportNavigateUp(): Boolean {

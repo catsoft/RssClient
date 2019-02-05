@@ -5,27 +5,27 @@
     <group>
 
         <item
-            android:id="@+id/menu_navigation_home"
+            android:id="@+id/rss_list_fragment"
             android:icon="@drawable/baseline_home_24"
             android:title="@string/menu_navigation_home" />
 
         <item
-            android:id="@+id/menu_navigation_recommendation"
+            android:id="@+id/recommendation_categories_list_fragment"
             android:icon="@drawable/baseline_list_alt_24"
             android:title="@string/menu_navigation_recommendation" />
 
         <item
-            android:id="@+id/menu_navigation_settings"
+            android:id="@+id/settings_fragment"
             android:icon="@drawable/baseline_settings_black_24"
             android:title="@string/menu_navigation_settings" />
 
         <item
-            android:id="@+id/menu_navigation_contacts"
+            android:id="@+id/contacts_fragment"
             android:icon="@drawable/baseline_contacts_24"
             android:title="@string/menu_navigation_contacts" />
 
         <item
-            android:id="@+id/menu_navigation_about"
+            android:id="@+id/about_fragment"
             android:icon="@drawable/info_24"
             android:title="@string/menu_navigation_about" />
 
