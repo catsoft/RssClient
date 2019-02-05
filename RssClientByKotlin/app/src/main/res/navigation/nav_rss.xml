@@ -3,6 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             app:startDestination="@+id/rss_list_fragment">
+
     <fragment
             android:id="@+id/rss_list_fragment"
             android:name="asura.com.rssclient.ui.RssListFragment"
@@ -51,6 +52,12 @@
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/all_messages_fragment"
+        android:name="asura.com.rssclient.ui.AllMessagesFragment"
+        android:label="@string/all_messages_title"
+        tools:layout="@layout/fragment_all_messages"/>
 
     <fragment
             android:id="@+id/rss_create_fragment"

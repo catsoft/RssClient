@@ -8,6 +8,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import asura.com.rssclient.R
 import asura.com.rssclient.adapters.RssListAdapter
@@ -37,7 +38,29 @@ class RssListFragment : Fragment() {
 
         registerForContextMenu(binding.rssList)
 
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val menuInflater = this.activity?.menuInflater ?: throw NullPointerException("Not found menuInflater")
+        menuInflater.inflate(R.menu.rss_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.let {
+            when (item.itemId) {
+                R.id.rss_list_menu_change-> {
+                    view?.findNavController()?.navigate(R.id.all_messages_fragment)
+                }
+                else -> { }
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
      override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {

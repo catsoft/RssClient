@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         topLevelDestination.add(R.id.settings_fragment)
         topLevelDestination.add(R.id.contacts_fragment)
         topLevelDestination.add(R.id.about_fragment)
+        topLevelDestination.add(R.id.all_messages_fragment)
 
         appbarConfiguration = AppBarConfiguration(topLevelDestination, drawerLayout)
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RSS Client</string>
-    <string name="rss_list_title">RSS list</string>
+    <string name="rss_list_title">RSS Client</string>
     <string name="rss_detail_title">RSS detail</string>
     <string name="navigation_drawer_header_content_description">RSS Client</string>
     <string name="navigation_drawer_header_title">RSS Client</string>
@@ -28,4 +28,6 @@
     <string name="recommendation_categories_list_title">Categories</string>
     <string name="contacts_title">Contacts</string>
     <string name="about_title">About</string>
+    <string name="all_messages_title">RSS Client</string>
+    <string name="rss_list_menu_change">Change</string>
 </resources>
