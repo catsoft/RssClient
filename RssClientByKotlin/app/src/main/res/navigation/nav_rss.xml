@@ -1,103 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/rss_list_fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/all_messages_fragment">
 
     <fragment
-            android:id="@+id/rss_list_fragment"
-            android:name="asura.com.rssclient.ui.RssListFragment"
-            android:label="@string/rss_list_title"
-            tools:layout="@layout/fragment_rss_list">
+        android:id="@+id/rss_list_fragment"
+        android:name="asura.com.rssclient.ui.RssListFragment"
+        android:label="@string/rss_list_title"
+        tools:layout="@layout/fragment_rss_list">
 
         <action
-                android:id="@+id/action_rss_list_fragment_to_rss_detail_fragment"
-                app:destination="@id/rss_detail_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_rss_list_fragment_to_rss_detail_fragment"
+            app:destination="@id/rss_detail_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
         <action
-                android:id="@+id/action_rss_list_fragment_to_rss_create_fragment"
-                app:destination="@id/rss_create_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_rss_list_fragment_to_rss_create_fragment"
+            app:destination="@id/rss_create_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
         <action
-                android:id="@+id/action_rss_list_fragment_to_rss_edit_fragment"
-                app:destination="@id/rss_edit_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_rss_list_fragment_to_rss_edit_fragment"
+            app:destination="@id/rss_edit_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
-            android:id="@+id/rss_detail_fragment"
-            android:name="asura.com.rssclient.ui.RssMessageInRssListFragment"
-            android:label="@string/rss_detail_title"
-            tools:layout="@layout/fragment_rss_messages_list">
+        android:id="@+id/rss_detail_fragment"
+        android:name="asura.com.rssclient.ui.RssMessageInRssListFragment"
+        android:label="@string/rss_detail_title"
+        tools:layout="@layout/fragment_rss_messages_list">
 
         <argument
-                android:name="rssItemId"
-                app:argType="long"/>
+            android:name="rssItemId"
+            app:argType="long" />
 
-        <action android:id="@+id/action_rss_detail_fragment_to_rss_edit_fragment"
-                app:destination="@id/rss_edit_fragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_rss_detail_fragment_to_rss_edit_fragment"
+            app:destination="@id/rss_edit_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/all_messages_fragment"
         android:name="asura.com.rssclient.ui.AllMessagesFragment"
         android:label="@string/all_messages_title"
-        tools:layout="@layout/fragment_all_messages"/>
+        tools:layout="@layout/fragment_all_messages" >
+        <action
+            android:id="@+id/action_all_messages_fragment_to_rss_list_fragment"
+            app:destination="@id/rss_list_fragment" />
+    </fragment>
 
     <fragment
-            android:id="@+id/rss_create_fragment"
-            android:name="asura.com.rssclient.ui.RssCreateFragment"
-            android:label="@string/rss_create_title"
-            tools:layout="@layout/fragment_rss_create"/>
+        android:id="@+id/rss_create_fragment"
+        android:name="asura.com.rssclient.ui.RssCreateFragment"
+        android:label="@string/rss_create_title"
+        tools:layout="@layout/fragment_rss_create" />
 
     <fragment
-            android:id="@+id/rss_edit_fragment"
-            android:name="asura.com.rssclient.ui.RssEditFragment"
-            android:label="@string/rss_edit_title"
-            tools:layout="@layout/fragment_rss_edit">
+        android:id="@+id/rss_edit_fragment"
+        android:name="asura.com.rssclient.ui.RssEditFragment"
+        android:label="@string/rss_edit_title"
+        tools:layout="@layout/fragment_rss_edit">
 
         <argument
-                android:name="rssItemId"
-                app:argType="long"/>
+            android:name="rssItemId"
+            app:argType="long" />
     </fragment>
 
     <fragment
         android:id="@+id/recommendation_categories_list_fragment"
         android:name="asura.com.rssclient.ui.RecommendationCategoriesListFragment"
         android:label="@string/recommendation_categories_list_title"
-        tools:layout="@layout/fragment_recommendation_categories_list"/>
+        tools:layout="@layout/fragment_recommendation_categories_list" />
 
     <fragment
         android:id="@+id/settings_fragment"
         android:name="asura.com.rssclient.ui.SettingsFragment"
         android:label="@string/settings_title"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/contacts_fragment"
         android:name="asura.com.rssclient.ui.ContactsFragment"
         android:label="@string/contacts_title"
-        tools:layout="@layout/fragment_contacts"/>
+        tools:layout="@layout/fragment_contacts" />
 
     <fragment
         android:id="@+id/about_fragment"
         android:name="asura.com.rssclient.ui.AboutFragment"
         android:label="@string/about_title"
-        tools:layout="@layout/fragment_about"/>
+        tools:layout="@layout/fragment_about" />
 
 </navigation>

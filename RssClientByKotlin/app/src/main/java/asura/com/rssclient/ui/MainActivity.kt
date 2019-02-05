@@ -15,7 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import asura.com.rssclient.R
 import asura.com.rssclient.databinding.ActivityRssBinding
-import java.util.HashSet
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,12 +33,11 @@ class MainActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.rss_list_nav_fragment)
 
         val topLevelDestination = HashSet<Int>()
-        topLevelDestination.add(R.id.rss_list_fragment)
+        topLevelDestination.add(R.id.all_messages_fragment)
         topLevelDestination.add(R.id.recommendation_categories_list_fragment)
         topLevelDestination.add(R.id.settings_fragment)
         topLevelDestination.add(R.id.contacts_fragment)
         topLevelDestination.add(R.id.about_fragment)
-        topLevelDestination.add(R.id.all_messages_fragment)
 
         appbarConfiguration = AppBarConfiguration(topLevelDestination, drawerLayout)
 
