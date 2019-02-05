@@ -14,7 +14,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.transition.Slide
 import asura.com.rssclient.R
 import asura.com.rssclient.databinding.ActivityRssBinding
 import com.google.android.material.navigation.NavigationView
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navigationView.setupWithNavController(navController)
 
         navigation_view.setNavigationItemSelectedListener(this)
+        navigation_view.setCheckedItem(R.id.menu_navigation_home)
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
         }
+
+        navigation_view.setCheckedItem(p0.itemId)
 
         return true
     }

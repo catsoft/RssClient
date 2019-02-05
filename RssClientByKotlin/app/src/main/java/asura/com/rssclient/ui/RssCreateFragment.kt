@@ -14,19 +14,19 @@ import asura.com.rssclient.viewmodels.RssCreateViewModel
 
 class RssCreateFragment : Fragment() {
 
-    private lateinit var viewModel : RssCreateViewModel
+    private lateinit var viewModel: RssCreateViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentRssCreateBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProviders.of(this).get(RssCreateViewModel::class.java)
 
-        binding.createListener = View.OnClickListener{
+        binding.createListener = View.OnClickListener {
             viewModel.addItem(binding.nameTextInput.text.toString(), binding.urlTextInput.text.toString())
             findNavController().navigateUp()
         }
 
-        showKeyboard(binding.nameTextInput )
+        showKeyboard(binding.nameTextInput)
 
         return binding.root
     }

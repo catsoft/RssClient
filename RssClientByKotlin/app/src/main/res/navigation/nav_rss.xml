@@ -68,4 +68,29 @@
                 android:name="rssItemId"
                 app:argType="long"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/recommendation_categories_list_fragment"
+        android:name="asura.com.rssclient.ui.RecommendationCategoriesListFragment"
+        android:label="@string/recommendation_categories_list_title"
+        tools:layout="@layout/fragment_recommendation_categories_list"/>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="asura.com.rssclient.ui.SettingsFragment"
+        android:label="@string/settings_title"
+        tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/contacts_fragment"
+        android:name="asura.com.rssclient.ui.ContactsFragment"
+        android:label="@string/contacts_title"
+        tools:layout="@layout/fragment_contacts"/>
+
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="asura.com.rssclient.ui.AboutFragment"
+        android:label="@string/about_title"
+        tools:layout="@layout/fragment_about"/>
+
 </navigation>
