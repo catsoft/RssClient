@@ -16,8 +16,11 @@ namespace Droid.Screens.Base
         public static void HideKeyboard(this Activity activity)
         {
             var focus = activity.CurrentFocus;
-            var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);
-            manager?.HideSoftInputFromWindow(focus.WindowToken, 0);
+            if (focus != null)
+            {
+                var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);
+                manager?.HideSoftInputFromWindow(focus.WindowToken, 0);   
+            }
         }
     }
 }

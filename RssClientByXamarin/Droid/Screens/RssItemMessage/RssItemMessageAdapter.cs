@@ -27,15 +27,5 @@ namespace Droid.Screens.RssItemMessage
              
             return holder;
         }
-
-        public override void OnViewDetachedFromWindow(Object holder)
-        {
-            if (holder is RssItemMessageViewHolder rssItemMessageViewHolder && rssItemMessageViewHolder.Item != null)
-            {
-                rssItemMessageViewHolder.Item.PropertyChanged -= rssItemMessageViewHolder.UpdateHimself;
-            }
-            
-            base.OnViewDetachedFromWindow(holder);
-        }
     }
 }

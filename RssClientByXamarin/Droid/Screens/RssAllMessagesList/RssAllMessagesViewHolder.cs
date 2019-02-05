@@ -43,23 +43,30 @@ namespace Droid.Screens.RssAllMessagesList
                 Item.PropertyChanged -= UpdateHimself;
             
             Item = item;
-            
-            var localeService = App.Container.Resolve<ILocale>();
 
-            Title.Text = item.Title;
-            Text.Text = item.Text;
-            CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
-            Canal.Text = item.RssLink;
-            ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
+            if (Item.IsValid)
+            {
+                var localeService = App.Container.Resolve<ILocale>();
 
-            Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+                Title.Text = item.Title;
+                Text.Text = item.Text;
+                CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
+                Canal.Text = item.RssLink;
+                ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
 
-            ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
+                Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
 
-            item.PropertyChanged += UpdateHimself;
+                ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
+                
+                item.PropertyChanged += UpdateHimself;
+            }
+            else
+            {
+                item.PropertyChanged -= UpdateHimself;
+            }
         }
         
-        public void UpdateHimself(object sender, PropertyChangedEventArgs e)
+        private void UpdateHimself(object sender, PropertyChangedEventArgs e)
         {
             BindData(Item);
         }

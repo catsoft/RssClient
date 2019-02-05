@@ -94,13 +94,6 @@ namespace Droid.Screens.RssItemMessage
             return view;
         }
 
-        public override void OnDestroyView()
-        {
-            var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
-            list.SetAdapter(null);
-            base.OnDestroyView();
-        }
-
         private void ItemOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);

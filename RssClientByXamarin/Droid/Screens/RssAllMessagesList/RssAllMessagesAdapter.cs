@@ -41,15 +41,5 @@ namespace Droid.Screens.RssAllMessagesList
             
             return holder;
         }
-
-        public override void OnViewDetachedFromWindow(Java.Lang.Object holder)
-        {
-            if (holder is RssAllMessagesViewHolder rssAllMessagesViewHolder && rssAllMessagesViewHolder.Item != null)
-            {
-                rssAllMessagesViewHolder.Item.PropertyChanged -= rssAllMessagesViewHolder.UpdateHimself;
-            }
-            
-            base.OnViewDetachedFromWindow(holder);
-        }
     }
 }
