@@ -82,4 +82,8 @@
     <string name="settings_theme_default">Основная</string>
     <string name="menuRssList_editMode">Режим редактирования</string>
 
+    <string name="settings_read_messages_header">Прочитанные сообщения</string>
+    <string name="settings_read_messages_hide">Скрывать</string>
+
+
 </resources>

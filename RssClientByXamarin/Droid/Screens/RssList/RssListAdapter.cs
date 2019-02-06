@@ -48,7 +48,7 @@ namespace Droid.Screens.RssList
             holder.SubtitleTextView.Text = item.UpdateTime == null
                 ? Activity.GetText(Resource.String.rssList_notUpdated)
                 : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
-            holder.CountTextView.Text = _rssMessagesRepository.GetCountForRss(item).ToString();
+            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item).ToString();
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

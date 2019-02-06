@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Droid.Repository;
+using Shared.Configuration;
 using Shared.Database;
 using Shared.Database.Rss;
 
@@ -8,10 +10,12 @@ namespace Shared.Repository
     public class RssMessagesRepository : IRssMessagesRepository
     {
         private readonly RealmDatabase _localDatabase;
+        private readonly IConfigurationRepository _configurationRepository;
 
-        public RssMessagesRepository(RealmDatabase localDatabase)
+        public RssMessagesRepository(RealmDatabase localDatabase, IConfigurationRepository configurationRepository)
         {
             _localDatabase = localDatabase;
+            _configurationRepository = configurationRepository;
         }
 
         public RssMessageModel FindById(string id)
@@ -41,17 +45,34 @@ namespace Shared.Repository
 
         public IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel)
         {
-            return rssModel.RssMessageModels.ToList();
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            var hideReadMessages = appConfiguration.HideReadMessages;
+            IEnumerable<RssMessageModel> messages = rssModel.RssMessageModels;
+            if (hideReadMessages)
+                messages = messages.Where(w => !w.IsRead);
+            return messages.OrderBy(w => w.CreationDate);
         }
 
-        public long GetCountForRss(RssModel rssModel)
+        public long GetCountNewMessagesForModel(RssModel rssModel)
+        {
+            return rssModel.RssMessageModels.Count(w => !w.IsRead);
+        }
+        
         {
             return rssModel.RssMessageModels.Count(w => !w.IsRead);
         }
 
         public IQueryable<RssMessageModel> GetAllMessages()
         {
-            return _localDatabase.MainThreadRealm.All<RssMessageModel>().OrderByDescending(w => w.CreationDate);
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            var hideReadMessages = appConfiguration.HideReadMessages;
+            IQueryable<RssMessageModel> messages = _localDatabase.MainThreadRealm.All<RssMessageModel>()
+                .OrderByDescending(w => w.CreationDate);
+
+            if (hideReadMessages)
+                messages = messages.Where(w => !w.IsRead);
+
+            return messages;
         }
     }
 }

@@ -17,6 +17,28 @@
             android:orientation="vertical">
 
             <fragment
+                android:id="@+id/fragment_settings_theme"
+                class="Droid.Screens.Settings.SettingsThemeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <fragment
+                android:id="@+id/fragment_settings_read_messages"
+                class="Droid.Screens.Settings.SettingsReadMessagesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+            
+            <fragment
                 android:id="@+id/fragment_settings_startPage"
                 class="Droid.Screens.Settings.SettingsStartPageFragment"
                 android:layout_width="match_parent"
@@ -49,16 +71,6 @@
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray"/>
 
-            <fragment
-                android:id="@+id/fragment_settings_theme"
-                class="Droid.Screens.Settings.SettingsThemeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
 
         </LinearLayout>
 

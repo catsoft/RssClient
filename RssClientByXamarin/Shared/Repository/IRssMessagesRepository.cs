@@ -12,7 +12,8 @@ namespace Shared.Repository
         void ChangeIsFavorite(RssMessageModel rssMessageModel);
         void ChangeIsRead(RssMessageModel rssMessageModel);
         IEnumerable<RssMessageModel> GetMessagesForRss(RssModel rssModel);
-        long GetCountForRss(RssModel rssModel);
+        long GetCountNewMessagesForModel(RssModel rssModel);
+        long GetCountForModel(RssModel rssModel);
         IQueryable<RssMessageModel> GetAllMessages();
     }
 }
