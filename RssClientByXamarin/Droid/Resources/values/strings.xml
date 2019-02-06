@@ -89,5 +89,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_default">Default</string>
     <string name="menuRssList_editMode">Edit mode</string>
+    <string name="settings_read_messages_header">Readed messages</string>
+    <string name="settings_read_messages_hide">Hide</string>
 
 </resources>

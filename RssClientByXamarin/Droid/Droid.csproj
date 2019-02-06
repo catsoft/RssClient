@@ -135,6 +135,7 @@
     <Compile Include="Screens\RssMessage\RssMessageFragment.cs" />
     <Compile Include="Screens\RssMessage\RssMessageWay.cs" />
     <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsReadMessagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsRssDetailFragment.cs" />
     <Compile Include="Screens\Settings\SettingsStartPageFragment.cs" />
     <Compile Include="Screens\Settings\SettingsThemeFragment.cs" />
@@ -182,6 +183,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings_animation.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_read_messages.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>

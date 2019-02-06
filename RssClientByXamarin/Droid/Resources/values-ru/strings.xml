@@ -79,4 +79,8 @@
     <string name="settings_theme_dark">Темная</string>
     <string name="settings_theme_default">Основная</string>
 
+    <string name="settings_read_messages_header">Прочитанные сообщения</string>
+    <string name="settings_read_messages_hide">Скрывать</string>
+
+
 </resources>
