@@ -86,7 +86,6 @@ namespace Droid.Screens.RssItemMessage
             touchHelper.AttachToRecyclerView(list);
 
             item.PropertyChanged += ItemOnPropertyChanged;
-
             OnDetachEvent += () => item.PropertyChanged -= ItemOnPropertyChanged;
             
             _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
@@ -96,15 +95,18 @@ namespace Droid.Screens.RssItemMessage
 
         private void ItemOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
-            var adapter = list.GetAdapter();
-
-            if (adapter is RssItemMessageAdapter rssMessageAdapter)
+            if (View != null && Item.IsValid)
             {
-                rssMessageAdapter.Items.Clear();
-                var newItems = _rssMessagesRepository.GetMessagesForRss(Item);
-                rssMessageAdapter.Items.AddRange(newItems);
-                rssMessageAdapter.NotifyDataSetChanged();
+                var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
+                var adapter = list.GetAdapter();
+
+                if (adapter is RssItemMessageAdapter rssMessageAdapter)
+                {
+                    rssMessageAdapter.Items.Clear();
+                    var newItems = _rssMessagesRepository.GetMessagesForRss(Item);
+                    rssMessageAdapter.Items.AddRange(newItems);
+                    rssMessageAdapter.NotifyDataSetChanged();
+                }
             }
         }
 
