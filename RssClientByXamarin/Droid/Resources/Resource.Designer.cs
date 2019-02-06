@@ -1230,6 +1230,9 @@ namespace Droid
 			// aapt resource value: 0x7f010107
 			public const int navigationContentDescription = 2130772231;
 			
+			// aapt resource value: 0x7f010219
+			public const int navigationHeaderTextStyle = 2130772505;
+			
 			// aapt resource value: 0x7f010106
 			public const int navigationIcon = 2130772230;
 			
@@ -5067,32 +5070,47 @@ namespace Droid
 			// aapt resource value: 0x7f0a0200
 			public const int AppTheme_Dark = 2131362304;
 			
+			// aapt resource value: 0x7f0a0203
+			public const int AppTheme_Dark_FabStyle = 2131362307;
+			
 			// aapt resource value: 0x7f0a0202
 			public const int AppTheme_Dark_Launcher = 2131362306;
+			
+			// aapt resource value: 0x7f0a0204
+			public const int AppTheme_Dark_NavigationHeaderTextStyle = 2131362308;
 			
 			// aapt resource value: 0x7f0a0201
 			public const int AppTheme_Dark_NoActionBar = 2131362305;
 			
-			// aapt resource value: 0x7f0a0203
-			public const int AppTheme_Default = 2131362307;
-			
-			// aapt resource value: 0x7f0a0206
-			public const int AppTheme_Default_FabStyle = 2131362310;
-			
 			// aapt resource value: 0x7f0a0205
-			public const int AppTheme_Default_Launcher = 2131362309;
-			
-			// aapt resource value: 0x7f0a0204
-			public const int AppTheme_Default_NoActionBar = 2131362308;
-			
-			// aapt resource value: 0x7f0a0207
-			public const int AppTheme_Light = 2131362311;
-			
-			// aapt resource value: 0x7f0a0209
-			public const int AppTheme_Light_Launcher = 2131362313;
+			public const int AppTheme_Default = 2131362309;
 			
 			// aapt resource value: 0x7f0a0208
-			public const int AppTheme_Light_NoActionBar = 2131362312;
+			public const int AppTheme_Default_FabStyle = 2131362312;
+			
+			// aapt resource value: 0x7f0a0207
+			public const int AppTheme_Default_Launcher = 2131362311;
+			
+			// aapt resource value: 0x7f0a0209
+			public const int AppTheme_Default_NavigationHeaderTextStyle = 2131362313;
+			
+			// aapt resource value: 0x7f0a0206
+			public const int AppTheme_Default_NoActionBar = 2131362310;
+			
+			// aapt resource value: 0x7f0a020a
+			public const int AppTheme_Light = 2131362314;
+			
+			// aapt resource value: 0x7f0a020d
+			public const int AppTheme_Light_FabStyle = 2131362317;
+			
+			// aapt resource value: 0x7f0a020c
+			public const int AppTheme_Light_Launcher = 2131362316;
+			
+			// aapt resource value: 0x7f0a020e
+			public const int AppTheme_Light_NavigationHeaderTextStyle = 2131362318;
+			
+			// aapt resource value: 0x7f0a020b
+			public const int AppTheme_Light_NoActionBar = 2131362315;
 			
 			// aapt resource value: 0x7f0a0092
 			public const int Base_AlertDialog_AppCompat = 2131361938;

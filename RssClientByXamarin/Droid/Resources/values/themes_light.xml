@@ -6,6 +6,10 @@
 
         <item name="toolbarThemeOverlay">@style/ThemeOverlay.AppCompat.Light</item>
 
+        <item name="fabStyle">@style/AppTheme.Light.FabStyle</item>
+
+        <item name="navigationHeaderTextStyle">@style/AppTheme.Light.NavigationHeaderTextStyle</item>
+
     </style>
 
 
@@ -16,6 +20,14 @@
 
     <style name="AppTheme.Light.Launcher" parent="AppTheme.Light">
         <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+
+    <style name="AppTheme.Light.FabStyle" parent="Widget.Design.FloatingActionButton">
+    </style>
+
+
+    <style name="AppTheme.Light.NavigationHeaderTextStyle" parent="TextView.Large">
     </style>
 
 </resources>

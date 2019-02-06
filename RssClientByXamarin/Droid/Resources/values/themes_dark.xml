@@ -6,6 +6,10 @@
 
         <item name="toolbarThemeOverlay">@style/ThemeOverlay.AppCompat.ActionBar</item>
 
+        <item name="fabStyle">@style/AppTheme.Dark.FabStyle</item>
+
+        <item name="navigationHeaderTextStyle">@style/AppTheme.Dark.NavigationHeaderTextStyle</item>
+
     </style>
 
 
@@ -18,5 +22,16 @@
     <style name="AppTheme.Dark.Launcher" parent="AppTheme.Dark">
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
+
+
+    <style name="AppTheme.Dark.FabStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="android:tint">#FFFFFF</item>
+    </style>
+
+
+    <style name="AppTheme.Dark.NavigationHeaderTextStyle" parent="TextView.Large">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 
 </resources>

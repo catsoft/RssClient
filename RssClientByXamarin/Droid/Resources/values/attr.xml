@@ -7,4 +7,6 @@
     
     <attr name="fabStyle" format="reference"/>
     
+    <attr name="navigationHeaderTextStyle" format="reference"/>
+    
 </resources>

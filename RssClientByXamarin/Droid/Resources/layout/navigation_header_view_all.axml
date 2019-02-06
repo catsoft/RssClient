@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|bottom"
             android:text="@string/navigation_drawer_header_title"
-            android:textAppearance="@style/TextView.Large"
+            style="?attr/navigationHeaderTextStyle"
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>
