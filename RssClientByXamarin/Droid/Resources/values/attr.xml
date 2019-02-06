@@ -5,4 +5,6 @@
     
     <attr name="toolbarThemeOverlay" format="reference"/>
     
+    <attr name="fabStyle" format="reference"/>
+    
 </resources>

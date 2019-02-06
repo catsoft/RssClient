@@ -9,6 +9,8 @@
 
         <item name="toolbarThemeOverlay">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         
+        <item name="fabStyle">@style/AppTheme.Default.FabStyle</item>
+        
     </style>
 
     
@@ -22,4 +24,9 @@
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
+    
+    <style name="AppTheme.Default.FabStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="android:tint">#FFFFFF</item>
+    </style>
+    
 </resources>

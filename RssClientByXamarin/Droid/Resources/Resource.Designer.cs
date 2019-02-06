@@ -771,6 +771,9 @@ namespace Droid
 			// aapt resource value: 0x7f010177
 			public const int fabSize = 2130772343;
 			
+			// aapt resource value: 0x7f010218
+			public const int fabStyle = 2130772504;
+			
 			// aapt resource value: 0x7f010004
 			public const int fastScrollEnabled = 2130771972;
 			
@@ -5061,23 +5064,26 @@ namespace Droid
 			// aapt resource value: 0x7f0a0162
 			public const int Animation_Design_BottomSheetDialog = 2131362146;
 			
-			// aapt resource value: 0x7f0a0201
-			public const int AppTheme_Dark = 2131362305;
-			
-			// aapt resource value: 0x7f0a0203
-			public const int AppTheme_Dark_Launcher = 2131362307;
+			// aapt resource value: 0x7f0a0200
+			public const int AppTheme_Dark = 2131362304;
 			
 			// aapt resource value: 0x7f0a0202
-			public const int AppTheme_Dark_NoActionBar = 2131362306;
+			public const int AppTheme_Dark_Launcher = 2131362306;
 			
-			// aapt resource value: 0x7f0a0204
-			public const int AppTheme_Default = 2131362308;
+			// aapt resource value: 0x7f0a0201
+			public const int AppTheme_Dark_NoActionBar = 2131362305;
+			
+			// aapt resource value: 0x7f0a0203
+			public const int AppTheme_Default = 2131362307;
 			
 			// aapt resource value: 0x7f0a0206
-			public const int AppTheme_Default_Launcher = 2131362310;
+			public const int AppTheme_Default_FabStyle = 2131362310;
 			
 			// aapt resource value: 0x7f0a0205
-			public const int AppTheme_Default_NoActionBar = 2131362309;
+			public const int AppTheme_Default_Launcher = 2131362309;
+			
+			// aapt resource value: 0x7f0a0204
+			public const int AppTheme_Default_NoActionBar = 2131362308;
 			
 			// aapt resource value: 0x7f0a0207
 			public const int AppTheme_Light = 2131362311;
@@ -5664,14 +5670,11 @@ namespace Droid
 			// aapt resource value: 0x7f0a0003
 			public const int CardView_Light = 2131361795;
 			
-			// aapt resource value: 0x7f0a0200
-			public const int Divider = 2131362304;
+			// aapt resource value: 0x7f0a01ff
+			public const int Divider = 2131362303;
 			
 			// aapt resource value: 0x7f0a01f5
 			public const int EditText = 2131362293;
-			
-			// aapt resource value: 0x7f0a01f9
-			public const int Fab = 2131362297;
 			
 			// aapt resource value: 0x7f0a0073
 			public const int Platform_AppCompat = 2131361907;
@@ -6027,23 +6030,23 @@ namespace Droid
 			// aapt resource value: 0x7f0a01f6
 			public const int TextInputLayout = 2131362294;
 			
-			// aapt resource value: 0x7f0a01fa
-			public const int TextView = 2131362298;
-			
-			// aapt resource value: 0x7f0a01fd
-			public const int TextView_Body1 = 2131362301;
-			
-			// aapt resource value: 0x7f0a01fe
-			public const int TextView_Body2 = 2131362302;
-			
-			// aapt resource value: 0x7f0a01ff
-			public const int TextView_Large = 2131362303;
+			// aapt resource value: 0x7f0a01f9
+			public const int TextView = 2131362297;
 			
 			// aapt resource value: 0x7f0a01fc
-			public const int TextView_Subhead = 2131362300;
+			public const int TextView_Body1 = 2131362300;
+			
+			// aapt resource value: 0x7f0a01fd
+			public const int TextView_Body2 = 2131362301;
+			
+			// aapt resource value: 0x7f0a01fe
+			public const int TextView_Large = 2131362302;
 			
 			// aapt resource value: 0x7f0a01fb
-			public const int TextView_Title = 2131362299;
+			public const int TextView_Subhead = 2131362299;
+			
+			// aapt resource value: 0x7f0a01fa
+			public const int TextView_Title = 2131362298;
 			
 			// aapt resource value: 0x7f0a00f9
 			public const int Theme_AppCompat = 2131362041;

@@ -25,11 +25,6 @@
     </style>
 
 
-    <style name="Fab">
-
-    </style>
-
-
     <style name="TextView" parent="Base.TextAppearance.AppCompat">
 
     </style>
