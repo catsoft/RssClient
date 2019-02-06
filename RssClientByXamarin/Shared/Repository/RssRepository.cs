@@ -15,12 +15,14 @@ namespace Shared.Repository
         private readonly RealmDatabase _database;
         private readonly RssLog _log;
         private readonly IRssApiClient _client;
+        private readonly IRssMessagesRepository _rssMessagesRepository;
 
-        public RssRepository(RealmDatabase database, IRssApiClient client, RssLog log)
+        public RssRepository(RealmDatabase database, IRssApiClient client, RssLog log, IRssMessagesRepository rssMessagesRepository)
         {
             _database = database;
             _client = client;
             _log = log;
+            _rssMessagesRepository = rssMessagesRepository;
 
             Update();
         }
@@ -181,6 +183,14 @@ namespace Shared.Repository
                 model.Position = position;
                 _database.MainThreadRealm.Add(model, true);
             });
+        }
+
+        public void ReadAllMessages(RssModel holderItem)
+        {
+            foreach (var holderItemRssMessageModel in holderItem.RssMessageModels)
+            {
+                _rssMessagesRepository.MarkAsRead(holderItemRssMessageModel);
+            }
         }
 
         private string SafeTrim(string text)

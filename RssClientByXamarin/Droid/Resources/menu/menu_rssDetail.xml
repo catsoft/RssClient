@@ -21,4 +21,9 @@
         android:title="@string/menuRssDetail_share"
         android:icon="@drawable/baseline_share_24"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuItem_rssDetail_readAllMessages"
+        android:title="@string/menuRssDetail_readAllMessages"
+        android:icon="@drawable/baseline_share_24" />
 </menu>

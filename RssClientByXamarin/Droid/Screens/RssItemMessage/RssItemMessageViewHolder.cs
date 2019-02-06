@@ -41,6 +41,7 @@ namespace Droid.Screens.RssItemMessage
             
             Item = item;
 
+            // TODO бывает что диспознутое. Когда тыкаешь и тыкаешь.
             if (Item.IsValid)
             {
                 var localeService = App.Container.Resolve<ILocale>();

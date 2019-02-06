@@ -48,7 +48,7 @@ namespace Droid.Screens.RssList
             holder.SubtitleTextView.Text = item.UpdateTime == null
                 ? Activity.GetText(Resource.String.rssList_notUpdated)
                 : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
-            holder.CountTextView.Text = _rssMessagesRepository.GetCountForModel(item).ToString();
+            holder.CountTextView.Text = _rssMessagesRepository.GetCountForRss(item).ToString();
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -80,11 +80,18 @@ namespace Droid.Screens.RssList
                 case Resource.Id.menuItem_rssList_contextRemove:
                     DeleteItem(holderItem);
                     break;
-
                 case Resource.Id.menuItem_rssList_contextShare:
                     ShareItem(holderItem);
                     break;
+                case Resource.Id.menuItem_rssList_contextReadAllMessages:
+                    ReadAll(holderItem);
+                    break;
             }
+        }
+
+        private void ReadAll(RssModel holderItem)
+        {
+            _rssRepository.ReadAllMessages(holderItem);
         }
 
         private async void ShareItem(RssModel holderItem)

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -128,9 +129,17 @@ namespace Droid.Screens.RssItemMessage
                 case Resource.Id.menuItem_rssDetail_share:
                     ShareItem();
                     break;
+                case Resource.Id.menuItem_rssDetail_readAllMessages:
+                    ReadAllMessages();
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void ReadAllMessages()
+        {
+            _rssRepository.ReadAllMessages(Item);
         }
 
         private async void ShareItem()

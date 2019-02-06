@@ -44,9 +44,9 @@ namespace Shared.Repository
             return rssModel.RssMessageModels.ToList();
         }
 
-        public long GetCountForModel(RssModel rssModel)
+        public long GetCountForRss(RssModel rssModel)
         {
-            return rssModel.RssMessageModels.Count();
+            return rssModel.RssMessageModels.Count(w => !w.IsRead);
         }
 
         public IQueryable<RssMessageModel> GetAllMessages()

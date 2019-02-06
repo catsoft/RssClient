@@ -15,5 +15,6 @@ namespace RssClient.Repository
         IQueryable<RssModel> GetList();
         Task Update(string rssId, SyndicationFeed feed);
         void UpdatePosition(RssModel model, int position);
+        void ReadAllMessages(RssModel holderItem);
     }
 }

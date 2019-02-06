@@ -10,6 +10,7 @@
     <string name="menuRssDetail_remove">Удалить</string>
     <string name="menuRssDetail_edit">Редактировать</string>
     <string name="menuRssDetail_share">Поделиться</string>
+    <string name="menuRssDetail_readAllMessages">Прочитать все сообщения</string>
 
     <string name="menuRssList_change">Изменить список</string>
 
@@ -25,6 +26,7 @@
     <string name="contextMenuRssList_remove">Удалить</string>
     <string name="contextMenuRssList_edit">Редактировать</string>
     <string name="contextMenuRssList_share">Поделиться</string>
+    <string name="contextMenuRssList_readAll">Прочитать все сообщения</string>
 
     <string name="contextMenuRssDetailList_share">Поделиться</string>
     <string name="contextMenuRssDetailList_read">Прочитать</string>
@@ -78,5 +80,6 @@
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Темная</string>
     <string name="settings_theme_default">Основная</string>
+    <string name="menuRssList_editMode">Режим редактирования</string>
 
 </resources>

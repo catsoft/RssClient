@@ -10,6 +10,7 @@
     <string name="menuRssDetail_remove">Remove</string>
     <string name="menuRssDetail_edit">Edit</string>
     <string name="menuRssDetail_share">Share</string>
+    <string name="menuRssDetail_readAllMessages">Read all messages</string>
 
     <string name="menuRssList_change">Change list</string>
 
@@ -25,6 +26,7 @@
     <string name="contextMenuRssList_remove">Remove</string>
     <string name="contextMenuRssList_edit">Edit</string>
     <string name="contextMenuRssList_share">Share</string>
+    <string name="contextMenuRssList_readAll">Read all messages</string>
 
     <string name="contextMenuRssDetailList_share">Share</string>
     <string name="contextMenuRssDetailList_read">Read</string>
@@ -50,15 +52,15 @@
     <string name="about_title">About</string>
     <string name="recommended_title">Recommendation</string>
     
-    <string name="contacts_telegram">asura_pro</string>
-    <string name="contacts_mail">asuraprog@gmail.com (Recommended)</string>
-    <string name="contacts_linkedIn">asurapro</string>
-    <string name="contacts_discord">asura</string>
+    <string name="contacts_telegram" translatable="false">asura_pro</string>
+    <string name="contacts_mail" translatable="false">asuraprog@gmail.com (Recommended)</string>
+    <string name="contacts_linkedIn" translatable="false">asurapro</string>
+    <string name="contacts_discord" translatable="false">asura</string>
     
-    <string name="contacts_telegramLink">https://t.me/asura_pro</string>
-    <string name="contacts_mailLink">mailto:asuraprog@gmail.com</string>
-    <string name="contacts_linkedInLink">http://www.linkedin.com/in/asurapro</string>
-    <string name="contacts_discordLink">asura#0938</string>
+    <string name="contacts_telegramLink" translatable="false">https://t.me/asura_pro</string>
+    <string name="contacts_mailLink" translatable="false">mailto:asuraprog@gmail.com</string>
+    <string name="contacts_linkedInLink" translatable="false">http://www.linkedin.com/in/asurapro</string>
+    <string name="contacts_discordLink" translatable="false">asura#0938</string>
 
     <string name="copy_clipboard">copy: </string>
     <string name="recommended_rss_add_rss_toast">Added:</string>
