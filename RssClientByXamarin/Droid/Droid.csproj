@@ -111,6 +111,8 @@
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListFragment.cs" />
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListWay.cs" />
     <Compile Include="Screens\RecommendedRssList\RssRecommendedViewHolder.cs" />
+    <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />
+    <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
     <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
@@ -154,6 +156,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_all_messages_filter.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_rss_create.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>

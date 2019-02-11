@@ -95,5 +95,6 @@
     <string name="settings_read_messages_hide">Hide</string>
     <string name="settings_load_images_header">Images</string>
     <string name="settings_read_messages_load">Load and show</string>
+    <string name="menuRssList_filter">Filter</string>
 
 </resources>

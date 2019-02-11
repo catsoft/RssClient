@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecommendedViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecommendedCategoryListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEditViewModel.cs" />

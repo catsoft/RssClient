@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
@@ -7,11 +6,9 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.NativeExtension;
 using Droid.Repository;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
-using Realms;
 using Shared;
 using Shared.Configuration;
 using Shared.Repository;
@@ -74,9 +71,14 @@ namespace Droid.Screens.RssAllMessagesList
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Resource.Id.menuItem_rssAllMessageList_change)
+            switch (item.ItemId)
             {
-                _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                case Resource.Id.menuItem_rssAllMessageList_change:
+                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                    break;
+                case Resource.Id.menuItem_rssAllMessageList_filter:
+                    _navigator.Go(App.Container.Resolve<RssAllMessagesFilterViewModel.Way>());
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);

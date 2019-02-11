@@ -3779,8 +3779,11 @@ namespace Droid
 			// aapt resource value: 0x7f090122
 			public const int menuItem_navigationMenu_settings = 2131296546;
 			
+			// aapt resource value: 0x7f090126
+			public const int menuItem_rssAllMessageList_change = 2131296550;
+			
 			// aapt resource value: 0x7f090125
-			public const int menuItem_rssAllMessageList_change = 2131296549;
+			public const int menuItem_rssAllMessageList_filter = 2131296549;
 			
 			// aapt resource value: 0x7f09011b
 			public const int menuItem_rssDetailList_contextFavorite = 2131296539;
@@ -3791,20 +3794,20 @@ namespace Droid
 			// aapt resource value: 0x7f090119
 			public const int menuItem_rssDetailList_contextShare = 2131296537;
 			
+			// aapt resource value: 0x7f090128
+			public const int menuItem_rssDetail_edit = 2131296552;
+			
+			// aapt resource value: 0x7f09012a
+			public const int menuItem_rssDetail_readAllMessages = 2131296554;
+			
 			// aapt resource value: 0x7f090127
-			public const int menuItem_rssDetail_edit = 2131296551;
+			public const int menuItem_rssDetail_remove = 2131296551;
 			
 			// aapt resource value: 0x7f090129
-			public const int menuItem_rssDetail_readAllMessages = 2131296553;
+			public const int menuItem_rssDetail_share = 2131296553;
 			
-			// aapt resource value: 0x7f090126
-			public const int menuItem_rssDetail_remove = 2131296550;
-			
-			// aapt resource value: 0x7f090128
-			public const int menuItem_rssDetail_share = 2131296552;
-			
-			// aapt resource value: 0x7f09012b
-			public const int menuItem_rssList_change = 2131296555;
+			// aapt resource value: 0x7f09012c
+			public const int menuItem_rssList_change = 2131296556;
 			
 			// aapt resource value: 0x7f09011c
 			public const int menuItem_rssList_contextEdit = 2131296540;
@@ -3818,8 +3821,8 @@ namespace Droid
 			// aapt resource value: 0x7f09011e
 			public const int menuItem_rssList_contextShare = 2131296542;
 			
-			// aapt resource value: 0x7f09012a
-			public const int menuItem_rssList_editMode = 2131296554;
+			// aapt resource value: 0x7f09012b
+			public const int menuItem_rssList_editMode = 2131296555;
 			
 			// aapt resource value: 0x7f0900a9
 			public const int message = 2131296425;
@@ -4488,151 +4491,154 @@ namespace Droid
 			public const int fragment_about = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int fragment_all_messages_list = 2130968623;
+			public const int fragment_all_messages_filter = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int fragment_contacts = 2130968624;
+			public const int fragment_all_messages_list = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int fragment_recommended = 2130968625;
+			public const int fragment_contacts = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int fragment_recommended_category_list = 2130968626;
+			public const int fragment_recommended = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int fragment_rss_create = 2130968627;
+			public const int fragment_recommended_category_list = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int fragment_rss_detail = 2130968628;
+			public const int fragment_rss_create = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int fragment_rss_edit = 2130968629;
+			public const int fragment_rss_detail = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int fragment_rss_edit_list = 2130968630;
+			public const int fragment_rss_edit = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int fragment_rss_list = 2130968631;
+			public const int fragment_rss_edit_list = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int fragment_rss_message = 2130968632;
+			public const int fragment_rss_list = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int fragment_settings = 2130968633;
+			public const int fragment_rss_message = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int fragment_settings_animation = 2130968634;
+			public const int fragment_settings = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int fragment_settings_load_images = 2130968635;
+			public const int fragment_settings_animation = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int fragment_settings_read_messages = 2130968636;
+			public const int fragment_settings_load_images = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int fragment_settings_rss_detail = 2130968637;
+			public const int fragment_settings_read_messages = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int fragment_settings_start_page = 2130968638;
+			public const int fragment_settings_rss_detail = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int fragment_settings_theme = 2130968639;
+			public const int fragment_settings_start_page = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int item_link_element_contacts = 2130968640;
+			public const int fragment_settings_theme = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int list_item_all_rss_message = 2130968641;
+			public const int item_link_element_contacts = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int list_item_recommended_category_rss = 2130968642;
+			public const int list_item_all_rss_message = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int list_item_recommended_rss = 2130968643;
+			public const int list_item_recommended_category_rss = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int list_item_rss = 2130968644;
+			public const int list_item_recommended_rss = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int list_item_rss_edit = 2130968645;
+			public const int list_item_rss = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int list_item_rss_message = 2130968646;
+			public const int list_item_rss_edit = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int mtrl_layout_snackbar = 2130968647;
+			public const int list_item_rss_message = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int mtrl_layout_snackbar_include = 2130968648;
+			public const int mtrl_layout_snackbar = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int navigation_header_view_all = 2130968649;
+			public const int mtrl_layout_snackbar_include = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int navigation_view_all = 2130968650;
+			public const int navigation_header_view_all = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int notification_action = 2130968651;
+			public const int navigation_view_all = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int notification_action_tombstone = 2130968652;
+			public const int notification_action = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int notification_media_action = 2130968653;
+			public const int notification_action_tombstone = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int notification_media_cancel_action = 2130968654;
+			public const int notification_media_action = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int notification_template_big_media = 2130968655;
+			public const int notification_media_cancel_action = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int notification_template_big_media_custom = 2130968656;
+			public const int notification_template_big_media = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int notification_template_big_media_narrow = 2130968657;
+			public const int notification_template_big_media_custom = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int notification_template_big_media_narrow_custom = 2130968658;
+			public const int notification_template_big_media_narrow = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int notification_template_custom_big = 2130968659;
+			public const int notification_template_big_media_narrow_custom = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int notification_template_icon_group = 2130968660;
+			public const int notification_template_custom_big = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int notification_template_lines_media = 2130968661;
+			public const int notification_template_icon_group = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int notification_template_media = 2130968662;
+			public const int notification_template_lines_media = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int notification_template_media_custom = 2130968663;
+			public const int notification_template_media = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int notification_template_part_chronometer = 2130968664;
+			public const int notification_template_media_custom = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int notification_template_part_time = 2130968665;
+			public const int notification_template_part_chronometer = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int select_dialog_item_material = 2130968666;
+			public const int notification_template_part_time = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int select_dialog_multichoice_material = 2130968667;
+			public const int select_dialog_item_material = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int select_dialog_singlechoice_material = 2130968668;
+			public const int select_dialog_multichoice_material = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int support_simple_spinner_dropdown_item = 2130968669;
+			public const int select_dialog_singlechoice_material = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int toolbar_all = 2130968670;
+			public const int support_simple_spinner_dropdown_item = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int view_all_not_valid_data = 2130968671;
+			public const int toolbar_all = 2130968671;
+			
+			// aapt resource value: 0x7f040060
+			public const int view_all_not_valid_data = 2130968672;
 			
 			static Layout()
 			{
@@ -4954,6 +4960,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0c0079
 			public const int menuRssList_editMode = 2131492985;
+			
+			// aapt resource value: 0x7f0c007e
+			public const int menuRssList_filter = 2131492990;
 			
 			// aapt resource value: 0x7f0c002f
 			public const int mtrl_chip_close_icon_content_description = 2131492911;
