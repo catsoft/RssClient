@@ -17,7 +17,8 @@ namespace Shared.Configuration
 
         public AppTheme AppTheme { get; set; } = AppTheme.Default;
 
-        public bool HideReadMessages { get; set; } = false;
+        public bool HideReadMessages { get; set; }
+        public bool LoadAndShowImages { get; set; } = true;
 
         public int GetCalculationAnimationTime()
         {

@@ -8,10 +8,12 @@ using Android.Views;
 using Autofac;
 using Droid.Container;
 using Droid.NativeExtension;
+using Droid.Repository;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Realms;
 using Shared;
+using Shared.Configuration;
 using Shared.Repository;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
@@ -23,6 +25,8 @@ namespace Droid.Screens.RssAllMessagesList
         [Inject] private INavigator _navigator;
 
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
+
+        [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
         public override bool RootFragment => true;
@@ -45,11 +49,13 @@ namespace Droid.Screens.RssAllMessagesList
 
             HasOptionsMenu = true;
 
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
             var items = _rssMessagesRepository.GetAllMessages();
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
-            var adapter = new RssAllMessagesListAdapter(items, Activity, _rssMessagesRepository);
+            var adapter = new RssAllMessagesListAdapter(items, Activity, _rssMessagesRepository, appConfiguration);
             recyclerView.SetAdapter(adapter);
 
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);

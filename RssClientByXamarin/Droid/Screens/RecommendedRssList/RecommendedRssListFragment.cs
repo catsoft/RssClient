@@ -5,6 +5,7 @@ using Droid.Container;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Droid.Services.Helpers;
+using Shared.Configuration;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList
@@ -12,6 +13,8 @@ namespace Droid.Screens.RecommendedRssList
     public class RecommendedRssListFragment : TitleFragment
     {
         [Inject] private IRssRecommendedRepository _repository;
+
+        [Inject] private IConfigurationRepository _configurationRepository;
 
         private Categories _categories;
 
@@ -46,12 +49,14 @@ namespace Droid.Screens.RecommendedRssList
 
             Title = _categories.ToLocaleString(Context);
 
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssRecommendedList_list);
             list.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
 
             var items = _repository.GetAllByCategory(_categories);
-            var adapter = new RecommendedRssListAdapter(items, Activity);
+            var adapter = new RecommendedRssListAdapter(items, Activity, appConfiguration);
             list.SetAdapter(adapter);
 
             return view;

@@ -14,6 +14,7 @@ using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.RssItemMessage;
 using FFImageLoading;
 using Shared;
+using Shared.Configuration;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Locale;
@@ -24,14 +25,17 @@ namespace Droid.Screens.RssAllMessagesList
 {
     public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IEnumerable<RssMessageModel>, RssAllMessagesViewHolder>
     {
-        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items.ToList(), activity, rssMessagesRepository)
+        private readonly AppConfiguration _appConfiguration;
+        
+        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
         {
+            _appConfiguration = appConfiguration;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_all_rss_message, parent, false);
-            var holder = new RssAllMessagesViewHolder(view);
+            var holder = new RssAllMessagesViewHolder(view, _appConfiguration.LoadAndShowImages);
 
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };

@@ -6,12 +6,14 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.Repository;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using Realms;
 using RssClient.Repository;
 using Shared;
+using Shared.Configuration;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 
@@ -22,6 +24,8 @@ namespace Droid.Screens.RssList
         [Inject] private IRssRepository _rssRepository;
 
         [Inject] private INavigator _navigator;
+
+        [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool RootFragment => true;
@@ -38,12 +42,14 @@ namespace Droid.Screens.RssList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            
             Title = Activity?.GetText(Resource.String.rssList_title);
 
             HasOptionsMenu = true;
 
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             fab.Click += FabOnClick;
 
@@ -51,7 +57,7 @@ namespace Droid.Screens.RssList
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
 
             var items = _rssRepository.GetList();
-            var adapter = new RssListAdapter(items, Activity);
+            var adapter = new RssListAdapter(items, Activity, appConfiguration);
             recyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 

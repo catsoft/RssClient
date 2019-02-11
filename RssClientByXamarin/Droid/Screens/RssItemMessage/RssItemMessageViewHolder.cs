@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
+using Android.Media;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Autofac;
+using Droid.NativeExtension;
+using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
 using Shared;
@@ -12,8 +15,10 @@ using Shared.Services.Locale;
 
 namespace Droid.Screens.RssItemMessage
 {
-    public class RssItemMessageViewHolder : BaseRssMessageViewHolder
+    public class RssItemMessageViewHolder : BaseRssMessageViewHolder, IShowAndLoadImage
     {
+        public bool IsShowAndLoadImages { get; }
+        
         public TextView Title { get; }
         public TextView Text { get; }
         public TextView CreationDate { get; }
@@ -23,8 +28,9 @@ namespace Droid.Screens.RssItemMessage
         public CardView CardView { get; }
         public LinearLayout Background { get; }
         
-        public RssItemMessageViewHolder(View itemView) : base(itemView)
+        public RssItemMessageViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
         {
+            IsShowAndLoadImages = isShowAndLoadImages;
             Title = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_title);
             Text = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_text);
             CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_date);
@@ -32,6 +38,8 @@ namespace Droid.Screens.RssItemMessage
             ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
             CardView = itemView.FindViewById<CardView>(Resource.Id.cardView_messagesItem_card);
             Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
+
+            ImageView.Visibility = isShowAndLoadImages.ToVisibility();
         }
         
         public override void BindData(RssMessageModel item)
@@ -50,9 +58,13 @@ namespace Droid.Screens.RssItemMessage
                 Text.Text = item.Text;
                 CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
-                ImageView.Visibility = string.IsNullOrEmpty(item.Url) ? ViewStates.Gone : ViewStates.Visible;
-                ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
 
+                if (IsShowAndLoadImages)
+                {
+                    ImageView.Visibility = string.IsNullOrEmpty(item.Url).ToVisibility();
+                    ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
+                }
+                
                 item.PropertyChanged += UpdateHimself;
             }
             else

@@ -85,5 +85,7 @@
     <string name="settings_read_messages_header">Прочитанные сообщения</string>
     <string name="settings_read_messages_hide">Скрывать</string>
 
+    <string name="settings_load_images_header">Изображения</string>
+    <string name="settings_read_messages_load">Загружать и показывать</string>
 
 </resources>

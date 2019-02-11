@@ -10,14 +10,18 @@ using FFImageLoading;
 using FFImageLoading.Work;
 using RssClient.Repository;
 using Shared;
+using Shared.Configuration;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList
 {
     public class RecommendedRssListAdapter : DataBindAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>, RssRecommendedViewHolder>
     {
-        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity) : base(items, activity)
+        private readonly AppConfiguration _appConfiguration;
+        
+        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
         {
+            _appConfiguration = appConfiguration;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -26,7 +30,7 @@ namespace Droid.Screens.RecommendedRssList
 
             var view = inflater.Inflate(Resource.Layout.list_item_recommended_rss, parent, false);
 
-            var viewHolder = new RssRecommendedViewHolder(view);
+            var viewHolder = new RssRecommendedViewHolder(view, _appConfiguration.LoadAndShowImages);
 
             viewHolder.AddImageView.Click += (sender, args) =>
             {

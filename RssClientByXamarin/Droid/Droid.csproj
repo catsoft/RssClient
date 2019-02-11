@@ -71,6 +71,7 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
+    <Compile Include="NativeExtension\ViewExtension.cs" />
     <Compile Include="Screens\About\AboutFragment.cs" />
     <Compile Include="Screens\About\AboutWay.cs" />
     <Compile Include="Screens\Base\Adapters\DataBindAdapter.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Screens\Base\DragRecyclerView\IReorderListHelperAdapter.cs" />
     <Compile Include="Screens\Base\DragRecyclerView\ReorderHelperCallback.cs" />
     <Compile Include="Screens\Base\InjectActivity.cs" />
+    <Compile Include="Screens\Base\IShowAndLoadImage.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\ISwipeButtonItemTouchHelperViewHolder.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonListAdapter.cs" />
@@ -135,6 +137,7 @@
     <Compile Include="Screens\RssMessage\RssMessageFragment.cs" />
     <Compile Include="Screens\RssMessage\RssMessageWay.cs" />
     <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsLoadImagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsReadMessagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsRssDetailFragment.cs" />
     <Compile Include="Screens\Settings\SettingsStartPageFragment.cs" />
@@ -183,6 +186,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings_animation.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_load_images.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>

@@ -4,12 +4,15 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Droid.Repository;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
 using FFImageLoading;
 using FFImageLoading.Work;
+using Realms;
 using RssClient.Repository;
 using Shared;
+using Shared.Configuration;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Locale;
@@ -24,6 +27,7 @@ namespace Droid.Screens.RssList
         private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly INavigator _navigator;
+        private readonly AppConfiguration _appConfiguration;
 
         public void OnItemDismiss(int position)
         {
@@ -32,8 +36,9 @@ namespace Droid.Screens.RssList
             NotifyItemRemoved(position);
         }
 
-        public RssListAdapter(IQueryable<RssModel> items, Activity activity) : base(items, activity)
+        public RssListAdapter(IQueryable<RssModel> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
         {
+            _appConfiguration = appConfiguration;
             _rssRepository = App.Container.Resolve<IRssRepository>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
             _navigator = App.Container.Resolve<INavigator>();
@@ -54,8 +59,7 @@ namespace Droid.Screens.RssList
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss, parent, false);
-            var holder = new RssListViewHolder(view);
-
+            var holder = new RssListViewHolder(view, _appConfiguration.LoadAndShowImages);
             holder.ClickView.Click += (sender, args) => { OpenDetailActivity(holder.Item); };
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
 

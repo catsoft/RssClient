@@ -93,5 +93,7 @@
     <string name="menuRssList_editMode">Edit mode</string>
     <string name="settings_read_messages_header">Readed messages</string>
     <string name="settings_read_messages_hide">Hide</string>
+    <string name="settings_load_images_header">Images</string>
+    <string name="settings_read_messages_load">Load and show</string>
 
 </resources>

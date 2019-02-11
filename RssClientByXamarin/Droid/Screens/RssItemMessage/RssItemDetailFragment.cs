@@ -9,10 +9,12 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.Repository;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using RssClient.Repository;
 using Shared;
+using Shared.Configuration;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Navigator;
@@ -26,6 +28,8 @@ namespace Droid.Screens.RssItemMessage
         private string _itemId;
         private RssModel Item => _rssRepository.Find(_itemId);
 
+        [Inject] private IConfigurationRepository _configurationRepository;
+        
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
         [Inject] private IRssRepository _rssRepository;
@@ -66,6 +70,8 @@ namespace Droid.Screens.RssItemMessage
             var item = Item;
             Title = item.Name;
 
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             list.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
             list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
@@ -78,7 +84,7 @@ namespace Droid.Screens.RssItemMessage
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(item);
-            var adapter = new RssItemMessageAdapter(items.ToList(), Activity, _rssMessagesRepository);
+            var adapter = new RssItemMessageAdapter(items.ToList(), Activity, _rssMessagesRepository, appConfiguration);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
