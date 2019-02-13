@@ -56,7 +56,7 @@ namespace Droid.Screens.RssAllMessagesList
                 var localeService = App.Container.Resolve<ILocale>();
 
                 Title.Text = item.Title;
-                Text.Text = item.Text;
+                Text.SetTextAsHtml(item.Text);
                 CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 Canal.Text = item.RssLink;
                 

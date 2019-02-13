@@ -24,7 +24,6 @@ namespace Droid.Screens.RssItemMessage
         public TextView CreationDate { get; }
         public ImageViewAsync ImageView { get; }
         public LinearLayout ClickView { get; }
-        public RssMessageModel Item { get; set; }
         public CardView CardView { get; }
         public LinearLayout Background { get; }
         
@@ -55,7 +54,7 @@ namespace Droid.Screens.RssItemMessage
                 var localeService = App.Container.Resolve<ILocale>();
 
                 Title.Text = item.Title;
-                Text.Text = item.Text;
+                Text.SetTextAsHtml(item.Text);
                 CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
                 Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
 

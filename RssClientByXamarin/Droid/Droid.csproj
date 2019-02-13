@@ -111,9 +111,12 @@
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListFragment.cs" />
     <Compile Include="Screens\RecommendedRssList\RecommendedRssListWay.cs" />
     <Compile Include="Screens\RecommendedRssList\RssRecommendedViewHolder.cs" />
+    <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
+    <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssAllMessagesList\RssAllMessagesListWay.cs" />
+    <Compile Include="Screens\Base\TextViewExtension.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
     <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
     <Compile Include="Screens\RssEditList\RssListEditWay.cs" />
@@ -504,7 +507,16 @@
     <AndroidResource Include="Resources\drawable\baseline_chevron_right_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_list_alt_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_change.xml" />
+    <AndroidResource Include="Resources\layout\fragment_all_messages_filter_sub.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_all_messages_order_sub.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
