@@ -30,9 +30,9 @@ namespace Droid.Screens.RssAllMessagesFilter.Order
 
             var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
 
-            var rootRadioGroup =  View.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_order_main);
-            var newestRadioButton = View.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_newest);
-            var oldestRadioButton = View.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_oldest);
+            var rootRadioGroup =  view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_order_main);
+            var newestRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_newest);
+            var oldestRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_oldest);
             
             switch (filterConfiguration.Sort)
             {
