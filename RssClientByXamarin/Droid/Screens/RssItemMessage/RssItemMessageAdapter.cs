@@ -4,6 +4,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Java.Lang;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 using Shared.Repository;
 

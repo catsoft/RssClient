@@ -1,6 +1,6 @@
 using System;
 
-namespace Shared.Configuration
+namespace Shared.Configuration.Settings
 {
     public class AppConfiguration
     {

@@ -96,5 +96,15 @@
     <string name="settings_load_images_header">Images</string>
     <string name="settings_read_messages_load">Load and show</string>
     <string name="menuRssList_filter">Filter</string>
+    <string name="rss_all_messages_order_sub_header">Orders</string>
+    <string name="rss_all_messages_order_newest_switch">New at the beginning</string>
+    <string name="rss_all_messages_order_oldest_switch">Old at the beginning</string>
+    <string name="all_messages_filter_header">Filters</string>
+    <string name="all_messages_filter_unread">Unread</string>
+    <string name="all_messages_filter_read">Read</string>
+    <string name="all_messages_filter_favorite">Favorite</string>
+    <string name="all_messages_filter_date_from">From</string>
+    <string name="all_messages_filter_date_to">To</string>
+    <string name="all_messages_filter_title">Filters</string>
 
 </resources>

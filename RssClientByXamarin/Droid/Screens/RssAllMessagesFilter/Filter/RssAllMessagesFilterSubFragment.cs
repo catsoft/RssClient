@@ -1,11 +1,17 @@
 ﻿using Android.OS;
 using Android.Views;
+using Droid.Container;
+using Droid.Repository;
 using Droid.Screens.Navigation;
+using Shared.Configuration.Settings;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {
     public class RssAllMessagesFilterSubFragment : SubFragment
     {
+        [Inject]
+        private IConfigurationRepository _configurationRepository;
+        
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter_sub;
 
         public RssAllMessagesFilterSubFragment()
@@ -21,6 +27,8 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+            
             return view;
         }
     }

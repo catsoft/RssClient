@@ -22,6 +22,7 @@ namespace Droid.Screens.RssAllMessagesFilter
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            Title = GetText(Resource.String.all_messages_filter_title);
             
             return view;
         }

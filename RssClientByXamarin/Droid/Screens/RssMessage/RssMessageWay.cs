@@ -2,6 +2,7 @@ using System;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.ViewModels;
 using Xamarin.Essentials;
 

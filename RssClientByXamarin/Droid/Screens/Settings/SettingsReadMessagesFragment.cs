@@ -8,6 +8,7 @@ using Droid.Container;
 using Droid.Repository;
 using Droid.Screens.Navigation;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Utils;
 
 namespace Droid.Screens.Settings

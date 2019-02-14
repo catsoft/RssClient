@@ -11,6 +11,7 @@ using FFImageLoading.Work;
 using RssClient.Repository;
 using Shared;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList

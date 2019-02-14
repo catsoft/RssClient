@@ -6,6 +6,7 @@ using Droid.Repository;
 using Droid.Screens.Navigation;
 using Droid.Services.Helpers;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 
 namespace Droid.Screens.RecommendedRssList

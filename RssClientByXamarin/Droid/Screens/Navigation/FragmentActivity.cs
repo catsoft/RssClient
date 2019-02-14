@@ -7,6 +7,7 @@ using Android.Views;
 using Droid.Container;
 using Droid.Repository;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Navigation
 {   

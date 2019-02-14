@@ -1,4 +1,4 @@
-namespace Shared.Configuration
+namespace Shared.Configuration.Settings
 {
     public enum AnimationSpeed
     {

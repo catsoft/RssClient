@@ -8,6 +8,7 @@ using Droid.Repository;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 

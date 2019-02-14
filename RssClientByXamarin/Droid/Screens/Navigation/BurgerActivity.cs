@@ -11,6 +11,7 @@ using Droid.Repository;
 using Droid.Screens.Base;
 using Java.Lang;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Navigation
 {

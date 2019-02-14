@@ -15,6 +15,7 @@ using Droid.Screens.Navigation;
 using RssClient.Repository;
 using Shared;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 using Shared.Repository;
 using Shared.Services.Navigator;

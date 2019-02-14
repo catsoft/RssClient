@@ -11,6 +11,7 @@ using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Repository;
 using Shared.Services.Navigator;
 using Shared.ViewModels;

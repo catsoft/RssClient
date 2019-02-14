@@ -2,6 +2,7 @@
 using System.Linq;
 using Droid.Repository;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Database;
 using Shared.Database.Rss;
 
@@ -67,11 +68,16 @@ namespace Shared.Repository
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var hideReadMessages = appConfiguration.HideReadMessages;
-            IQueryable<RssMessageModel> messages = _localDatabase.MainThreadRealm.All<RssMessageModel>()
-                .OrderByDescending(w => w.CreationDate);
+            var messages = _localDatabase.MainThreadRealm.All<RssMessageModel>();
 
             if (hideReadMessages)
                 messages = messages.Where(w => !w.IsRead);
+
+            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+
+            messages = filter.ApplyFilter(messages);
+            messages = filter.ApplyDateFilter(messages);
+            messages = filter.ApplySort(messages);
 
             return messages;
         }

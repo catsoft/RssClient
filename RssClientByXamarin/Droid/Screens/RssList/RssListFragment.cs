@@ -14,6 +14,7 @@ using Realms;
 using RssClient.Repository;
 using Shared;
 using Shared.Configuration;
+using Shared.Configuration.Settings;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 
