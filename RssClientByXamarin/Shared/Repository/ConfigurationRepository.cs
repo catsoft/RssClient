@@ -33,5 +33,18 @@ namespace Droid.Repository
             var item = _database.MainThreadRealm.All<SettingsModel>().FirstOrDefault(w => w.Key == key);
             return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue);
         }
+
+        public void DeleteSetting<T>()
+        {
+            RealmDatabase.DoInBackground(realm =>
+            {
+                var key = typeof(T).FullName;
+                var item = realm.All<SettingsModel>().FirstOrDefault(w => w.Key == key);
+                if (item != null)
+                {
+                    realm.Remove(item);
+                }
+            });
+        }
     }
 }

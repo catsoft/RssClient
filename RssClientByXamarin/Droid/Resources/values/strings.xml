@@ -107,5 +107,6 @@
     <string name="all_messages_filter_date_to">To</string>
     <string name="all_messages_filter_title">Filters</string>
     <string name="all_messages_filter_all">All</string>
+    <string name="allMessagesFilter_clear">Clear</string>
 
 </resources>

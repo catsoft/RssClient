@@ -238,6 +238,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_allMessagesFilter.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_rssAllMessageList.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -515,6 +519,7 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\baseline_clear_24.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
