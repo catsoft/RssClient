@@ -24,7 +24,6 @@ namespace Droid.Screens.RssItemMessage
         public TextView CreationDate { get; }
         public ImageViewAsync ImageView { get; }
         public LinearLayout ClickView { get; }
-        public CardView CardView { get; }
         public LinearLayout Background { get; }
         public RatingBar RatingBar { get; }
         
@@ -36,7 +35,6 @@ namespace Droid.Screens.RssItemMessage
             CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_date);
             ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_content);
             ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
-            CardView = itemView.FindViewById<CardView>(Resource.Id.cardView_messagesItem_card);
             Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
             RatingBar = itemView.FindViewById<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
             
