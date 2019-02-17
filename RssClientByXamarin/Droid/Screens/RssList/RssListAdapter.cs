@@ -49,11 +49,9 @@ namespace Droid.Screens.RssList
         {
             base.BindData(holder, item);
 
-            var localeService = App.Container.Resolve<ILocale>();
-
             holder.SubtitleTextView.Text = item.UpdateTime == null
                 ? Activity.GetText(Resource.String.rssList_notUpdated)
-                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToString("g", new CultureInfo(localeService.GetCurrentLocaleId()))}";
+                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
             holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item).ToString();
         }
 

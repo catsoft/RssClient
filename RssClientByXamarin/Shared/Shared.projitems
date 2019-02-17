@@ -48,6 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommendedRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\ILocale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\LocaleDateTimeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\INavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />

@@ -53,11 +53,9 @@ namespace Droid.Screens.RssAllMessagesList
 
             if (Item.IsValid)
             {
-                var localeService = App.Container.Resolve<ILocale>();
-
                 Title.Text = item.Title;
                 Text.SetTextAsHtml(item.Text);
-                CreationDate.Text = item.CreationDate.ToString("d", new CultureInfo(localeService.GetCurrentLocaleId()));
+                CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
                 Canal.Text = item.RssLink;
                 
                 Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);

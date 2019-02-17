@@ -10,6 +10,7 @@ using Shared;
 using Shared.Analytics.Rss;
 using Shared.Database.Rss;
 using Shared.Repository;
+using Shared.Services.Locale;
 using UIKit;
 
 namespace iOS.Screens.Detail
@@ -167,7 +168,7 @@ namespace iOS.Screens.Detail
 
             _item.PropertyChanged += (sender, args) => PropertyChange();
 
-			_dateLabel.Text = item.CreationDate.ToString("g");
+            _dateLabel.Text = item.CreationDate.ToShortGeneralLocaleString();
 			_titleLabel.Text = item.Title;
 			_contentLabel.Text = item.Text;
 			_imageContentView.SetImage(new NSUrl(item.ImageUrl ?? ""));

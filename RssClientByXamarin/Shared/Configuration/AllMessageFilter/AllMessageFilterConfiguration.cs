@@ -51,13 +51,13 @@ namespace Shared.Configuration.Settings
             if (From.HasValue)
             {
                 var fromDate = From.Value;
-                filterMessages = messages.Where(w => w.CreationDate >= fromDate);
+                filterMessages = filterMessages.Where(w => w.CreationDate >= fromDate);
             }
             
             if (To.HasValue)
             {
                 var toDate = To.Value;
-                filterMessages = messages.Where(w => w.CreationDate <= toDate);
+                filterMessages = filterMessages.Where(w => w.CreationDate <= toDate);
             }
             
             return filterMessages;
