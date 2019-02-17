@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 
 namespace Shared.Repository
@@ -15,5 +16,6 @@ namespace Shared.Repository
         long GetCountNewMessagesForModel(RssModel rssModel);
         long GetCountForModel(RssModel rssModel);
         IQueryable<RssMessageModel> GetAllMessages();
+        IQueryable<RssMessageModel> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration);
     }
 }

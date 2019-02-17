@@ -7,15 +7,10 @@ namespace Shared.Configuration.Settings
     public class AllMessageFilterConfiguration
     {
         public Sort Sort { get; set; } = Sort.Newest;
-
-        // Учитывается фильтр только если включен хотя бы один
-        public bool IsFavorite { get; set; }
-        public bool IsRead { get; set; }
-        public bool IsUnread { get; set; }
+        public MessageFilterType MessageFilterType { get; set; } = MessageFilterType.None;
 
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
-        
 
         public IQueryable<RssMessageModel> ApplySort(IQueryable<RssMessageModel> messages)
         {
@@ -34,15 +29,19 @@ namespace Shared.Configuration.Settings
         {
             var filterMessages = messages;
 
-            if (IsFavorite || IsRead || IsUnread)
+            switch (MessageFilterType)
             {
-                filterMessages = filterMessages.Where(w =>
-                    (!IsFavorite || IsFavorite && w.IsFavorite) &&
-                    (!IsRead || IsRead && w.IsRead) &&
-                    (!IsUnread || IsUnread && !w.IsRead));
+                case MessageFilterType.None:
+                    return filterMessages;
+                case MessageFilterType.Favorite:
+                    return filterMessages.Where(w => w.IsFavorite);
+                case MessageFilterType.Read:
+                    return filterMessages.Where(w => w.IsRead);
+                case MessageFilterType.Unread:
+                    return filterMessages.Where(w => !w.IsRead);
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
-            return filterMessages;
         }
 
         public IQueryable<RssMessageModel> ApplyDateFilter(IQueryable<RssMessageModel> messages)

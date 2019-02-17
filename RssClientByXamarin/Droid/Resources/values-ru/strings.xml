@@ -93,11 +93,12 @@
     <string name="rss_all_messages_order_newest_switch">Сначала новые</string>
     <string name="rss_all_messages_order_oldest_switch">Сначала старые</string>
     <string name="all_messages_filter_header">Фильтры</string>
-    <string name="all_messages_filter_unread">Непрочитанные</string>
-    <string name="all_messages_filter_read">Прочитанные</string>
-    <string name="all_messages_filter_favorite">Любимые</string>
+    <string name="all_messages_filter_unread">Только непрочитанные</string>
+    <string name="all_messages_filter_read">Только прочитанные</string>
+    <string name="all_messages_filter_favorite">Только избранные</string>
     <string name="all_messages_filter_date_from">От</string>
     <string name="all_messages_filter_date_to">До</string>
     <string name="all_messages_filter_title">Фильтры</string>
-    
+    <string name="all_messages_filter_all">Все</string>
+
 </resources>

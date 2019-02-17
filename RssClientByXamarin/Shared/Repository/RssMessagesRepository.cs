@@ -51,7 +51,7 @@ namespace Shared.Repository
             IEnumerable<RssMessageModel> messages = rssModel.RssMessageModels;
             if (hideReadMessages)
                 messages = messages.Where(w => !w.IsRead);
-            return messages.OrderBy(w => w.CreationDate);
+            return messages.OrderByDescending(w => w.CreationDate);
         }
 
         public long GetCountNewMessagesForModel(RssModel rssModel)
@@ -74,10 +74,18 @@ namespace Shared.Repository
                 messages = messages.Where(w => !w.IsRead);
 
             var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
-            messages = filter.ApplyFilter(messages);
-            messages = filter.ApplyDateFilter(messages);
+            
             messages = filter.ApplySort(messages);
+
+            return messages;
+        }
+
+        public IQueryable<RssMessageModel> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration)
+        {
+            var messages = GetAllMessages();
+
+            messages = filterConfiguration.ApplyFilter(messages);
+            messages = filterConfiguration.ApplyDateFilter(messages);
 
             return messages;
         }

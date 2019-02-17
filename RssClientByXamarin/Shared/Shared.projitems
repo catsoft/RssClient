@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AllMessageFilter\AllMessageFilterConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\AllMessageFilter\MessageFilterType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\AllMessageFilter\Sort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\Settings\AnimationSpeed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\Settings\AnimationType.cs" />

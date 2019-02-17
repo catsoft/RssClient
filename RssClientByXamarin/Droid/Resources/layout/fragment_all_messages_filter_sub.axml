@@ -17,72 +17,76 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
+                style="@style/TextView.Body1"
+                android:gravity="center|left"
+                android:text="@string/all_messages_filter_all"/>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
                 style="@style/TextView.Body1"
                 android:gravity="center|left"
                 android:text="@string/all_messages_filter_favorite"/>
 
-            <CheckBox
-                android:id="@+id/checkBox_AllMessagesFilter_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                style="@style/TextView.Body1"
-                android:gravity="center|left"
-                android:text="@string/all_messages_filter_unread"/>
-
-            <CheckBox
-                android:id="@+id/checkBox_AllMessagesFilter_unread"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_weight="1"
                 style="@style/TextView.Body1"
                 android:gravity="center|left"
                 android:text="@string/all_messages_filter_read"/>
 
-            <CheckBox
-                android:id="@+id/checkBox_AllMessagesFilter_read"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_height="48dp"
+                style="@style/TextView.Body1"
+                android:gravity="center|left"
+                android:text="@string/all_messages_filter_unread"/>
 
         </LinearLayout>
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/radioGroup_rss_all_messages_filter_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioButton_rss_all_messages_filter_all"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_rss_all_messages_filter_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"/>
+
+
+            <RadioButton
+                android:id="@+id/radioButton_rss_all_messages_filter_read"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"/>
+
+            <RadioButton
+                android:id="@+id/radioButton_rss_all_messages_filter_unread"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"/>
+            
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -102,7 +106,5 @@
                 android:text="@string/all_messages_filter_date_to"/>
             
         </LinearLayout>
-        
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,4 +1,5 @@
-﻿using Android.OS;
+﻿using System;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidX.Browser.BrowserActions;
@@ -9,7 +10,7 @@ using Shared.Configuration.Settings;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {
-    public class RssAllMessagesFilterSubFragment : SubFragment
+    public class RssAllMessagesFilterSubFragment : SubFragment, RadioGroup.IOnCheckedChangeListener
     {
         [Inject]
         private IConfigurationRepository _configurationRepository;
@@ -31,39 +32,60 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
 
             var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
 
-            var favoriteCheckBox = view.FindViewById<CheckBox>(Resource.Id.checkBox_AllMessagesFilter_favorite);
-            var readCheckBox = view.FindViewById<CheckBox>(Resource.Id.checkBox_AllMessagesFilter_read);
-            var unreadCheckBox = view.FindViewById<CheckBox>(Resource.Id.checkBox_AllMessagesFilter_unread);
+            var rootRadioGroup =  view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_filter_main);
+            var allRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_all);
+            var favoriteRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_favorite);
+            var readRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_read);
+            var unreadRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_unread);
+            
+            switch (filterConfiguration.MessageFilterType)
+            {
+                case MessageFilterType.None:
+                    allRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Favorite:
+                    favoriteRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Read:
+                    readRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Unread:
+                    unreadRadioButton.Checked = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            rootRadioGroup.SetOnCheckedChangeListener(this);
+            
             // TODO добавить исчо дату
             var fromButton = view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateFrom);
             var toButton= view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateTo);
-
-            favoriteCheckBox.Checked = filterConfiguration.IsFavorite;
-            readCheckBox.Checked = filterConfiguration.IsRead;
-            unreadCheckBox.Checked = filterConfiguration.IsUnread;
-
-            favoriteCheckBox.CheckedChange += (sender, args) =>
-            {
-                var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-                filter.IsFavorite = args.IsChecked;
-                _configurationRepository.SaveSetting(filter);
-            };
-            
-            readCheckBox.CheckedChange += (sender, args) =>
-            {
-                var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-                filter.IsRead = args.IsChecked;
-                _configurationRepository.SaveSetting(filter);
-            };
-            
-            unreadCheckBox.CheckedChange += (sender, args) =>
-            {
-                var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-                filter.IsUnread = args.IsChecked;
-                _configurationRepository.SaveSetting(filter);
-            };
-            
+        
             return view;
+        }
+
+        public void OnCheckedChanged(RadioGroup @group, int checkedId)
+        {
+            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+
+            switch (checkedId)
+            {
+                case Resource.Id.radioButton_rss_all_messages_filter_all:
+                    filterConfiguration.MessageFilterType = MessageFilterType.None;
+                    break;
+                case Resource.Id.radioButton_rss_all_messages_filter_favorite:
+                    filterConfiguration.MessageFilterType = MessageFilterType.Favorite;
+                    break;
+                case Resource.Id.radioButton_rss_all_messages_filter_read:
+                    filterConfiguration.MessageFilterType = MessageFilterType.Read;
+                    break;
+                case Resource.Id.radioButton_rss_all_messages_filter_unread:
+                    filterConfiguration.MessageFilterType = MessageFilterType.Unread;
+                    break;
+            }
+            
+            _configurationRepository.SaveSetting(filterConfiguration);
         }
     }
 }

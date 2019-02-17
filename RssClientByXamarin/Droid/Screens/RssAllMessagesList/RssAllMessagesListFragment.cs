@@ -26,6 +26,8 @@ namespace Droid.Screens.RssAllMessagesList
 
         [Inject] private IConfigurationRepository _configurationRepository;
 
+        private AllMessageFilterConfiguration _filterConfiguration;
+
         protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
         public override bool RootFragment => true;
 
@@ -49,7 +51,9 @@ namespace Droid.Screens.RssAllMessagesList
 
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
-            var items = _rssMessagesRepository.GetAllMessages();
+            _filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+            
+            var items = _rssMessagesRepository.GetAllFilterMessages(_filterConfiguration);
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
