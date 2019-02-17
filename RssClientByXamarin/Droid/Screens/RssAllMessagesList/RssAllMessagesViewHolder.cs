@@ -58,7 +58,7 @@ namespace Droid.Screens.RssAllMessagesList
                 Title.Text = item.Title;
                 Text.SetTextAsHtml(item.Text);
                 CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-                Canal.Text = item.RssLink;
+                Canal.Text = item.RssName;
                 RatingBar.Rating = item.IsFavorite ? 1 : 0;
                 Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
 
