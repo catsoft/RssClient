@@ -26,6 +26,7 @@ namespace Droid.Screens.RssItemMessage
         public LinearLayout ClickView { get; }
         public CardView CardView { get; }
         public LinearLayout Background { get; }
+        public RatingBar RatingBar { get; }
         
         public RssItemMessageViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
         {
@@ -37,7 +38,8 @@ namespace Droid.Screens.RssItemMessage
             ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
             CardView = itemView.FindViewById<CardView>(Resource.Id.cardView_messagesItem_card);
             Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
-
+            RatingBar = itemView.FindViewById<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
+            
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
         }
         
@@ -55,7 +57,8 @@ namespace Droid.Screens.RssItemMessage
                 Text.SetTextAsHtml(item.Text);
                 CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
                 Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
-
+                RatingBar.Rating = item.IsFavorite ? 1 : 0;
+                
                 if (IsShowAndLoadImages)
                 {
                     ImageView.Visibility = string.IsNullOrEmpty(item.Url).ToVisibility();
