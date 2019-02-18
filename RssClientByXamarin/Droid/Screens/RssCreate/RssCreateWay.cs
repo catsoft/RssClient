@@ -1,5 +1,4 @@
 using Droid.Screens.Navigation;
-using Shared.Services.Navigator;
 using Shared.ViewModels;
 
 namespace Droid.Screens.RssCreate

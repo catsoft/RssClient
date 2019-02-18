@@ -3,8 +3,8 @@ using iOS.CustomUI;
 using iOS.CustomUI.StyledView;
 using iOS.Screens.Base.ViewController;
 using iOS.Styles;
-using RssClient.Repository;
 using Shared;
+using Shared.Repository.Rss;
 using UIKit;
 
 namespace iOS.Screens.Create

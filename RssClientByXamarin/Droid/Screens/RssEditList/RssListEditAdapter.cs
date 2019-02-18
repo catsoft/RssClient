@@ -1,33 +1,23 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Android.App;
-using Android.Content;
-using Android.Support.V4.View;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Autofac;
-using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.DragRecyclerView;
-using FFImageLoading;
-using FFImageLoading.Work;
-using RssClient.Repository;
-using Shared;
 using Shared.Database.Rss;
+using Shared.Repository.Rss;
 using Shared.Services.Locale;
-using Shared.ViewModels;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditAdapter : DataBindAdapter<RssModel, List<RssModel>, RssListEditViewHolder>, IReorderListHelperAdapter
+    public class RssListEditAdapter : DataBindAdapter<RssData, List<RssData>, RssListEditViewHolder>, IReorderListHelperAdapter
     {
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
         private readonly IRssRepository _rssRepository;
         
-        public RssListEditAdapter(IEnumerable<RssModel> items, Activity activity, IRssRepository rssRepository) : base(items.ToList(), activity)
+        public RssListEditAdapter(IEnumerable<RssData> items, Activity activity, IRssRepository rssRepository) : base(items.ToList(), activity)
         {
             _rssRepository = rssRepository;
         }
@@ -41,13 +31,13 @@ namespace Droid.Screens.RssEditList
             for (var i = 0; i < Items.Count; i++)
             {
                 var localItem = Items[i];
-                _rssRepository.UpdatePosition(localItem, i);
+                _rssRepository.UpdatePosition(localItem.Id, i);
             }
             
             NotifyItemMoved(fromPosition, toPosition);
         }
 
-        protected override void BindData(RssListEditViewHolder holder, RssModel item)
+        protected override void BindData(RssListEditViewHolder holder, RssData item)
         {
             base.BindData(holder, item);
             
@@ -66,7 +56,7 @@ namespace Droid.Screens.RssEditList
             viewHolder.DeleteImage.Click += (sender, args) =>
             {
                 var position = viewHolder.AdapterPosition;
-                _rssRepository.Remove(viewHolder.Item);
+                _rssRepository.Remove(viewHolder.Item.Id);
                 Items.RemoveAt(position);
                 NotifyItemRemoved(position);
             };

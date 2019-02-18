@@ -16,7 +16,6 @@ using Droid.Screens.RssItemMessage;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
 using Droid.Screens.Settings;
-using Shared.Services.Navigator;
 using Shared.ViewModels;
 
 namespace Droid.Container.Modules

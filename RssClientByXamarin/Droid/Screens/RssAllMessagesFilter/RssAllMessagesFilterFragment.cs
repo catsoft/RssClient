@@ -1,7 +1,7 @@
 using Android.OS;
 using Android.Views;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Services.Navigator;

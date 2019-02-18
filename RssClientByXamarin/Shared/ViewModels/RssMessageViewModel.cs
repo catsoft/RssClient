@@ -1,4 +1,5 @@
 using Shared.Database.Rss;
+using Shared.Repository.RssMessage;
 using Shared.Services.Navigator;
 
 namespace Shared.ViewModels
@@ -9,9 +10,9 @@ namespace Shared.ViewModels
         {
             public class WayData
             {
-                public RssMessageModel RssMessageModel { get; }
+                public RssMessageData RssMessageModel { get; }
 
-                public WayData(RssMessageModel rssMessageModel)
+                public WayData(RssMessageData rssMessageModel)
                 {
                     RssMessageModel = rssMessageModel;
                 }

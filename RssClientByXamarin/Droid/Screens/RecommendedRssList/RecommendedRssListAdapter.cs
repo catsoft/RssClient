@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
@@ -6,21 +6,19 @@ using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
-using FFImageLoading;
-using FFImageLoading.Work;
-using RssClient.Repository;
 using Shared;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
+using Shared.Repository.Rss;
+using Shared.Repository.RssRecommended;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class RecommendedRssListAdapter : DataBindAdapter<RssRecommendationModel, IQueryable<RssRecommendationModel>, RssRecommendedViewHolder>
+    public class RecommendedRssListAdapter : DataBindAdapter<RssRecommendedData, IEnumerable<RssRecommendedData>, RssRecommendedViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
         
-        public RecommendedRssListAdapter(IQueryable<RssRecommendationModel> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
+        public RecommendedRssListAdapter(IEnumerable<RssRecommendedData> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
         {
             _appConfiguration = appConfiguration;
         }

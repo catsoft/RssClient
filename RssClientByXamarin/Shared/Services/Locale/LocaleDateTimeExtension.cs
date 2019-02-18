@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using Autofac;
-using Shared.Services.Locale;
 
 namespace Shared.Services.Locale
 {

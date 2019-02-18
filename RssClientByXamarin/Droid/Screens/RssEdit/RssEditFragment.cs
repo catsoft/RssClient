@@ -6,8 +6,7 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Droid.Container;
 using Droid.Screens.Base;
-using Droid.Screens.Navigation;
-using RssClient.Repository;
+using Shared.Repository.Rss;
 using Shared.Services.Navigator;
 
 namespace Droid.Screens.RssEdit

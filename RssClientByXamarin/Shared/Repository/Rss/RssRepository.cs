@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
-using RssClient.Repository;
 using Shared.Analitics.Rss;
 using Shared.Api;
 using Shared.Database;
 using Shared.Database.Rss;
+using Shared.Repository.RssMessage;
+using Shared.Utils;
 
-namespace Shared.Repository
+namespace Shared.Repository.Rss
 {
     public class RssRepository : IRssRepository
     {
@@ -16,13 +18,15 @@ namespace Shared.Repository
         private readonly RssLog _log;
         private readonly IRssApiClient _client;
         private readonly IRssMessagesRepository _rssMessagesRepository;
+        private readonly IMapper<RssModel, RssData> _mapper;
 
-        public RssRepository(RealmDatabase database, IRssApiClient client, RssLog log, IRssMessagesRepository rssMessagesRepository)
+        public RssRepository(RealmDatabase database, IRssApiClient client, RssLog log, IRssMessagesRepository rssMessagesRepository, IMapper<RssModel, RssData> mapper)
         {
             _database = database;
             _client = client;
             _log = log;
             _rssMessagesRepository = rssMessagesRepository;
+            _mapper = mapper;
 
             Update();
         }
@@ -93,19 +97,19 @@ namespace Shared.Repository
             });
         }
 
-        public RssModel Find(string id)
+        public RssData Find(string id)
         {
-            return _database.MainThreadRealm.Find<RssModel>(id);
+            return _mapper.Transform(_database.MainThreadRealm.Find<RssModel>(id));
         }
 
-        public Task Remove(RssModel item)
+        public Task Remove(string id)
         {
-            _log.TrackRssDelete(item.Rss, DateTimeOffset.Now);
-            var id = item.Id;
-
             return RealmDatabase.DoInBackground(realm =>
             {
                 var backgroundRssItem = realm.Find<RssModel>(id);
+                
+                _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
+                
                 var messages = backgroundRssItem.RssMessageModels;
                 
                 foreach (var rssMessageModel in messages)
@@ -115,9 +119,9 @@ namespace Shared.Repository
             });
         }
 
-        public IQueryable<RssModel> GetList()
+        public IEnumerable<RssData> GetList()
         {
-            return _database.MainThreadRealm.All<RssModel>().OrderBy(w => w.Position).ThenByDescending(w => w.CreationTime);
+            return _database.MainThreadRealm.All<RssModel>().OrderBy(w => w.Position).ThenByDescending(w => w.CreationTime).ToList().Select(_mapper.Transform);
         }
 
         public Task Update(string rssId, SyndicationFeed feed)
@@ -151,8 +155,8 @@ namespace Shared.Repository
                         var item = new RssMessageModel()
                         {
                             SyndicationId = syndicationItem.Id,
-                            Title = SafeTrim(syndicationItem.Title?.Text),
-                            Text = SafeTrim(syndicationItem.Summary.Text),
+                            Title = syndicationItem.Title?.Text?.SafeTrim(),
+                            Text = syndicationItem.Summary.Text?.SafeTrim(),
                             CreationDate = syndicationItem.PublishDate.Date,
                             Url = url,
                             ImageUrl = imageUri,
@@ -176,26 +180,24 @@ namespace Shared.Repository
             });
         }
 
-        public void UpdatePosition(RssModel model, int position)
+        public void UpdatePosition(string id, int position)
         {
-            _database.MainThreadRealm.Write(() =>
+            RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
             {
                 model.Position = position;
-                _database.MainThreadRealm.Add(model, true);
+                realm.Add(model, true);
             });
         }
 
-        public void ReadAllMessages(RssModel holderItem)
+        public void ReadAllMessages(string id)
         {
-            foreach (var holderItemRssMessageModel in holderItem.RssMessageModels)
+            RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
             {
-                _rssMessagesRepository.MarkAsRead(holderItemRssMessageModel);
-            }
-        }
-
-        private string SafeTrim(string text)
-        {
-            return text?.Trim(' ', '\n', '\r');
+                foreach (var holderItemRssMessageModel in model.RssMessageModels)
+                {
+                    _rssMessagesRepository.MarkAsRead(holderItemRssMessageModel.Id);
+                }
+            });
         }
     }
 }

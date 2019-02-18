@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Globalization;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using AndroidX.Browser.BrowserActions;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
-using Shared.Services;
 using Shared.Services.Locale;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter

@@ -1,8 +1,7 @@
 using System;
 using Android.OS;
 using Droid.Container;
-using Droid.Repository;
-using Shared.Configuration;
+using Droid.Repository.Configuration;
 using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Base

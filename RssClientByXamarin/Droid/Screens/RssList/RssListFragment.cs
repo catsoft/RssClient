@@ -6,15 +6,12 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.Repository;
-using Droid.Screens.Base.SwipeButtonRecyclerView;
+using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
-using Realms;
-using RssClient.Repository;
 using Shared;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
+using Shared.Repository.Rss;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 
@@ -65,13 +62,6 @@ namespace Droid.Screens.RssList
             var callback = new SwipeTouchHelperCallback(adapter);
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(recyclerView);
-            
-            var subscribe = items.SubscribeForNotifications((sender, changes, error) =>
-            {
-                adapter.NotifyDataSetChanged();
-            });
-
-            OnDetachEvent += () => subscribe?.Dispose();
             
             return view;
         }

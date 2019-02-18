@@ -3,11 +3,12 @@ using System.Linq;
 using Shared.Database;
 using Shared.Database.Rss;
 
-namespace Droid.Repository
+namespace Shared.Repository.RssRecommended
 {
     public class RssRecommendedRepository : IRssRecommendedRepository
     {
         private readonly RealmDatabase _realmDatabase;
+        private readonly IMapper<RssRecommendationModel, RssRecommendedData> _mapper;
 
         public RssRecommendedRepository(RealmDatabase realmDatabase)
         {
@@ -166,25 +167,28 @@ namespace Droid.Repository
                         allList[i].Position = i;
 
                     allList.ForEach(w => _realmDatabase.MainThreadRealm.Add(w));
-                    
+
                 });
             }
         }
 
-        public IQueryable<RssRecommendationModel> GetAll()
+        public IEnumerable<RssRecommendedData> GetAll()
         {
-            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position);
+            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).ToList()
+                .Select(_mapper.Transform);
         }
 
-        public IQueryable<RssRecommendationModel> GetAllByCategory(Categories categories)
+        public IEnumerable<RssRecommendedData> GetAllByCategory(Categories categories)
         {
             var category = (int) categories;
-            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().Where(w => w.CategoryInt == category).OrderBy(w => w.Position);
+            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().Where(w => w.CategoryInt == category)
+                .OrderBy(w => w.Position).ToList().Select(_mapper.Transform);
         }
 
         public IEnumerable<Categories> GetCategories()
         {
-            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).ToList().Select(w => w.Category).Distinct();
+            return _realmDatabase.MainThreadRealm.All<RssRecommendationModel>().OrderBy(w => w.Position).ToList()
+                .Select(w => w.Category).Distinct();
         }
     }
 }

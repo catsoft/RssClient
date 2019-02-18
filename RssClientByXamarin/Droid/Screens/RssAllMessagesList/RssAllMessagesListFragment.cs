@@ -6,13 +6,12 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
-using Shared.Repository;
+using Shared.Repository.RssMessage;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 

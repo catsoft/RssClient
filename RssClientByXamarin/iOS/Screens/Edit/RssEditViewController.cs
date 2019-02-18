@@ -6,6 +6,7 @@ using iOS.Styles;
 using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
+using Shared.Repository.Rss;
 using UIKit;
 
 namespace iOS.Screens.Edit

@@ -5,8 +5,7 @@ using Android.Support.Transitions;
 using Android.Support.V4.App;
 using Android.Views;
 using Droid.Container;
-using Droid.Repository;
-using Shared.Configuration;
+using Droid.Repository.Configuration;
 using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Navigation

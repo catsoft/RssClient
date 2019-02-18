@@ -2,14 +2,14 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Base.Adapters;
-using FFImageLoading.Views;
 using Shared.Database.Rss;
+using Shared.Repository.Rss;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditViewHolder : RecyclerView.ViewHolder, IDataBind<RssModel>
+    public class RssListEditViewHolder : RecyclerView.ViewHolder, IDataBind<RssData>
     {
-        public RssModel Item { get; set; }
+        public RssData Item { get; set; }
         
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
@@ -25,7 +25,7 @@ namespace Droid.Screens.RssEditList
             ReorderImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_reorder);
         }
 
-        public void BindData(RssModel item)
+        public void BindData(RssData item)
         {
             Item = item;
         }

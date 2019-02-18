@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using Android.App;
-using Android.Runtime;
 using Droid.Screens.Base.Adapters;
-using Droid.Screens.RssList;
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {

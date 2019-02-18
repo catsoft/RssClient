@@ -1,20 +1,14 @@
-using System;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Android.Widget;
 using Autofac;
 using Droid.Container;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssList;
-using RssClient.Repository;
 using Shared;
-using Shared.Repository;
+using Shared.Repository.Rss;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 

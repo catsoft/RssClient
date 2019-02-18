@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
-using Droid.Services.Helpers;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Services.Navigator;

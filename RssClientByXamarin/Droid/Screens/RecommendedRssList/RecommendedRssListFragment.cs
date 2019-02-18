@@ -2,12 +2,12 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Droid.Services.Helpers;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
+using Shared.Repository.RssRecommended;
 
 namespace Droid.Screens.RecommendedRssList
 {

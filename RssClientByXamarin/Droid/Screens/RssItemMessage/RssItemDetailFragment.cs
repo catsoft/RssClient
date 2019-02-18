@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -9,15 +8,14 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
-using RssClient.Repository;
 using Shared;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
-using Shared.Repository;
+using Shared.Repository.Rss;
+using Shared.Repository.RssMessage;
 using Shared.Services.Navigator;
 using Shared.ViewModels;
 using Xamarin.Essentials;
@@ -27,7 +25,7 @@ namespace Droid.Screens.RssItemMessage
     public class RssItemDetailFragment : TitleFragment
     {
         private string _itemId;
-        private RssModel Item => _rssRepository.Find(_itemId);
+        private RssData Item => _rssRepository.Find(_itemId);
 
         [Inject] private IConfigurationRepository _configurationRepository;
         
@@ -84,7 +82,7 @@ namespace Droid.Screens.RssItemMessage
                 refreshLayout.Refreshing = false;
             };
 
-            var items = _rssMessagesRepository.GetMessagesForRss(item);
+            var items = _rssMessagesRepository.GetMessagesForRss(item.Id);
             var adapter = new RssItemMessageAdapter(items.ToList(), Activity, _rssMessagesRepository, appConfiguration);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
@@ -93,29 +91,9 @@ namespace Droid.Screens.RssItemMessage
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(list);
 
-            item.PropertyChanged += ItemOnPropertyChanged;
-            OnDetachEvent += () => item.PropertyChanged -= ItemOnPropertyChanged;
-            
             _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
 
             return view;
-        }
-
-        private void ItemOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (View != null && Item.IsValid)
-            {
-                var list = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
-                var adapter = list.GetAdapter();
-
-                if (adapter is RssItemMessageAdapter rssMessageAdapter)
-                {
-                    rssMessageAdapter.Items.Clear();
-                    var newItems = _rssMessagesRepository.GetMessagesForRss(Item);
-                    rssMessageAdapter.Items.AddRange(newItems);
-                    rssMessageAdapter.NotifyDataSetChanged();
-                }
-            }
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -146,7 +124,7 @@ namespace Droid.Screens.RssItemMessage
 
         private void ReadAllMessages()
         {
-            _rssRepository.ReadAllMessages(Item);
+            _rssRepository.ReadAllMessages(Item.Id);
         }
 
         private async void ShareItem()
@@ -167,7 +145,7 @@ namespace Droid.Screens.RssItemMessage
             var builder = new AlertDialog.Builder(Activity);
             builder.SetPositiveButton(GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
             {
-                _rssRepository.Remove(Item);
+                _rssRepository.Remove(Item.Id);
                 _navigator.GoBack();
             });
             builder.SetNegativeButton(GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });

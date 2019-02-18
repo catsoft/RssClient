@@ -1,4 +1,4 @@
-namespace Droid.Repository
+namespace Droid.Repository.Configuration
 {
     public interface IConfigurationRepository
     {

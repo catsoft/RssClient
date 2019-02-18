@@ -2,7 +2,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Shared.Database;
 
-namespace Droid.Repository
+namespace Droid.Repository.Configuration
 {
     public class ConfigurationRepository : IConfigurationRepository
     {

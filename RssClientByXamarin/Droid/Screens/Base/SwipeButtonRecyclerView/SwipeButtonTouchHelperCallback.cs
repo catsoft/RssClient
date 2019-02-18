@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Droid.Screens.Base.SwipeRecyclerView;
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {

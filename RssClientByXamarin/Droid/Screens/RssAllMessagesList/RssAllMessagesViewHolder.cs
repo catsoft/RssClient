@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel;
-using System.Globalization;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.RssItemMessage;
 using FFImageLoading;
 using FFImageLoading.Views;
-using Shared;
 using Shared.Database.Rss;
+using Shared.Repository.RssMessage;
 using Shared.Services.Locale;
 
 namespace Droid.Screens.RssAllMessagesList
@@ -44,39 +41,22 @@ namespace Droid.Screens.RssAllMessagesList
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        public override void BindData(RssMessageModel item)
+        public override void BindData(RssMessageData item)
         {
-            if (Item != null)
-                Item.PropertyChanged -= UpdateHimself;
-            
             Item = item;
 
-            if (Item.IsValid)
-            {
-                Title.Text = item.Title;
-                Text.SetTextAsHtml(item.Text);
-                CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-                Canal.Text = item.RssName;
-                RatingBar.Rating = item.IsFavorite ? 1 : 0;
-                Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+            Title.Text = item.Title;
+            Text.SetTextAsHtml(item.Text);
+            CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
+            Canal.Text = item.RssParent.Name;
+            RatingBar.Rating = item.IsFavorite ? 1 : 0;
+            Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
 
-                if (IsShowAndLoadImages)
-                {
-                    ImageView.Visibility = string.IsNullOrEmpty(item.Url).ToVisibility();
-                    ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
-                }
-                
-                item.PropertyChanged += UpdateHimself;
-            }
-            else
+            if (IsShowAndLoadImages)
             {
-                item.PropertyChanged -= UpdateHimself;
+                ImageView.Visibility = string.IsNullOrEmpty(item.Url).ToVisibility();
+                ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
             }
-        }
-        
-        private void UpdateHimself(object sender, PropertyChangedEventArgs e)
-        {
-            BindData(Item);
         }
     }
 }

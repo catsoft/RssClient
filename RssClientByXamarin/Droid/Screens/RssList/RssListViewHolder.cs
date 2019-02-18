@@ -1,27 +1,22 @@
-﻿using System.Globalization;
-using Android.App;
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
-using Java.Security;
-using Shared;
 using Shared.Database.Rss;
-using Shared.Services.Locale;
+using Shared.Repository.Rss;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListViewHolder : RecyclerView.ViewHolder, IDataBind<RssModel>, IShowAndLoadImage
+    public class RssListViewHolder : RecyclerView.ViewHolder, IDataBind<RssData>, IShowAndLoadImage
     {
         public bool IsShowAndLoadImages { get; }
         
-        public RssModel Item { get; set; }
+        public RssData Item { get; set; }
         
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
@@ -42,7 +37,7 @@ namespace Droid.Screens.RssList
             IconView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
         
-        public void BindData(RssModel item)
+        public void BindData(RssData item)
         {
             TitleTextView.Text = item.Name;
             Item = item;

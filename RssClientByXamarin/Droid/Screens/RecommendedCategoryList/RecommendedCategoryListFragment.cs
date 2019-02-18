@@ -2,8 +2,8 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Container;
-using Droid.Repository;
 using Droid.Screens.Navigation;
+using Shared.Repository.RssRecommended;
 
 namespace Droid.Screens.RecommendedCategoryList
 {

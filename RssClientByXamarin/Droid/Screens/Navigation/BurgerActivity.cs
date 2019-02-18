@@ -7,10 +7,9 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
 using Droid.Container;
-using Droid.Repository;
+using Droid.Repository.Configuration;
 using Droid.Screens.Base;
 using Java.Lang;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Navigation

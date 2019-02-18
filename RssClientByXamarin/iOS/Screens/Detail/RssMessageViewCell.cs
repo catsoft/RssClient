@@ -10,6 +10,7 @@ using Shared;
 using Shared.Analytics.Rss;
 using Shared.Database.Rss;
 using Shared.Repository;
+using Shared.Repository.RssMessage;
 using Shared.Services.Locale;
 using UIKit;
 
@@ -135,14 +136,14 @@ namespace iOS.Screens.Detail
 			{
                 _log.TrackMessageMarkAsRead(_item.RssLink, _item.SyndicationId, _item.Title);
 
-                _rssMessagesesRepository.MarkAsRead(model);
+                _rssMessagesesRepository.MarkAsRead(model.Id);
             };
 
 			ReadClick += (model) =>
 			{
                 _log.TrackMessageReadMore(_item.RssLink, _item.SyndicationId, _item.Title);
 
-                _rssMessagesesRepository.MarkAsRead(model);
+                _rssMessagesesRepository.MarkAsRead(model.Id);
 
                 // Совсем не очевидное название но открывает url (Если может)
                 CrossShare.Current.CanOpenUrl(model.Url ?? "");

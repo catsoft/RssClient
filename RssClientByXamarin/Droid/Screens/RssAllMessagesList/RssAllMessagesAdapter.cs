@@ -4,18 +4,17 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Screens.RssItemMessage;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
-using Shared.Repository;
+using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IEnumerable<RssMessageModel>, RssAllMessagesViewHolder>
+    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IEnumerable<RssMessageData>, RssAllMessagesViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
         
-        public RssAllMessagesListAdapter(IQueryable<RssMessageModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
+        public RssAllMessagesListAdapter(IEnumerable<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
         {
             _appConfiguration = appConfiguration;
         }

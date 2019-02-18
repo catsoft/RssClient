@@ -9,14 +9,15 @@ using FFImageLoading;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
 using Shared.Database.Rss;
+using Shared.Repository.RssRecommended;
 
 namespace Droid.Screens.RecommendedRssList
 {
-    public class RssRecommendedViewHolder : RecyclerView.ViewHolder, IDataBind<RssRecommendationModel>, IShowAndLoadImage
+    public class RssRecommendedViewHolder : RecyclerView.ViewHolder, IDataBind<RssRecommendedData>, IShowAndLoadImage
     {
         public bool IsShowAndLoadImages { get; }
         
-        public RssRecommendationModel Item { get; set; }
+        public RssRecommendedData Item { get; set; }
         
         public ImageViewAsync RssIcon { get; }
         public TextView TitleView { get; }
@@ -33,7 +34,7 @@ namespace Droid.Screens.RecommendedRssList
             RssIcon.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        public void BindData(RssRecommendationModel item)
+        public void BindData(RssRecommendedData item)
         {
             Item = item;
             

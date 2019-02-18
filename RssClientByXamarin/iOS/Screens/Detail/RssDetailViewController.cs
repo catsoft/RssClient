@@ -4,10 +4,11 @@ using iOS.Screens.Base.Stated;
 using iOS.Screens.Base.Table;
 using iOS.Screens.Edit;
 using Realms;
-using RssClient.Repository;
 using Shared;
 using Shared.Database.Rss;
 using Shared.Repository;
+using Shared.Repository.Rss;
+using Shared.Repository.RssMessage;
 using UIKit;
 using Xamarin;
 
@@ -41,7 +42,7 @@ namespace iOS.Screens.Detail
                 var deleteButton = new IQBarButtonItem {Title = "Delete"};
                 deleteButton.Clicked += (sender, args) =>
                 {
-                    _repository.Remove(_item);
+                    _repository.Remove(_item.Id);
                     NavigationController?.PopViewController(true);
                 };
 
@@ -67,7 +68,7 @@ namespace iOS.Screens.Detail
         {
             if (_item.IsValid)
             {
-                var newItems = _rssMessagesRepository.GetMessagesForRss(_item);
+                var newItems = _rssMessagesRepository.GetMessagesForRss(_item.Id);
                 Source.SetList(newItems);
 
                 TableView.ReloadData();

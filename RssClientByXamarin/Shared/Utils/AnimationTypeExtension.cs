@@ -1,5 +1,4 @@
 using System;
-using Shared.Configuration;
 using Shared.Configuration.Settings;
 
 namespace Shared.Utils
