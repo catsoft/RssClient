@@ -54,6 +54,12 @@
 
     </style>
 
+    
+    <style name="AboutTextView" parent="TextView.Body1">
+        <item name="android:linksClickable">true</item>
+        <item name="android:autoLink">all</item>
+    </style>
+
 
     <style name="Divider">
         <item name="android:background">@color/divider</item>

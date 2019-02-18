@@ -100,5 +100,12 @@
     <string name="all_messages_filter_date_to">До</string>
     <string name="all_messages_filter_title">Фильтры</string>
     <string name="all_messages_filter_all">Все</string>
+    
+    <string name="about_by">Это приложение разработано в рамках проекта "Catsoft"</string>
+    <string name="about_tech">Разработано при использовании технологии "Xamarin.Android"</string>
+    <string name="about_offer">Обо всех предложениях можно писать мне в любое средство связи со страницы "Контакты". Возможна заказная(бесплатная) реализация</string>
+    <string name="about_link">Тут можно посмотреть стек задач: https://trello.com/b/RVEWDCsG/rss-client-offers</string>
+    <string name="about_design">Сам я программист. Если предложите адекватный дизайн или тему, то реализация не заставит себя ждать</string>
+    <string name="about_language">Возможно кто-то захочет сделать перевод приложения на другие языки. Предоставлю текстовые данные</string>
 
 </resources>

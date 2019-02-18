@@ -4868,6 +4868,24 @@ namespace Droid
 			// aapt resource value: 0x7f0c001a
 			public const int abc_toolbar_collapse_description = 2131492890;
 			
+			// aapt resource value: 0x7f0c008b
+			public const int about_by = 2131493003;
+			
+			// aapt resource value: 0x7f0c008f
+			public const int about_design = 2131493007;
+			
+			// aapt resource value: 0x7f0c0090
+			public const int about_language = 2131493008;
+			
+			// aapt resource value: 0x7f0c008e
+			public const int about_link = 2131493006;
+			
+			// aapt resource value: 0x7f0c008d
+			public const int about_offer = 2131493005;
+			
+			// aapt resource value: 0x7f0c008c
+			public const int about_tech = 2131493004;
+			
 			// aapt resource value: 0x7f0c0059
 			public const int about_title = 2131492953;
 			
