@@ -10,9 +10,10 @@ namespace Shared.Repository.RssRecommended
         private readonly RealmDatabase _realmDatabase;
         private readonly IMapper<RssRecommendationModel, RssRecommendedData> _mapper;
 
-        public RssRecommendedRepository(RealmDatabase realmDatabase)
+        public RssRecommendedRepository(RealmDatabase realmDatabase, IMapper<RssRecommendationModel, RssRecommendedData> mapper)
         {
             _realmDatabase = realmDatabase;
+            _mapper = mapper;
 
             InitIfEmpty();
         }

@@ -195,7 +195,7 @@ namespace Shared.Repository.Rss
             {
                 foreach (var holderItemRssMessageModel in model.RssMessageModels)
                 {
-                    _rssMessagesRepository.MarkAsRead(holderItemRssMessageModel.Id);
+                    _rssMessagesRepository.MarkAsReadAsync(holderItemRssMessageModel.Id);
                 }
             });
         }

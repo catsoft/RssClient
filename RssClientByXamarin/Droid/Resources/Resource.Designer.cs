@@ -3686,8 +3686,8 @@ namespace Droid
 			// aapt resource value: 0x7f0900f9
 			public const int imageButton_rssRecommendedItem_add = 2131296505;
 			
-			// aapt resource value: 0x7f0900f4
-			public const int imageView_allMessagesItem_image = 2131296500;
+			// aapt resource value: 0x7f0900f5
+			public const int imageView_allMessagesItem_image = 2131296501;
 			
 			// aapt resource value: 0x7f0900ec
 			public const int imageView_linkElementContacts_icon = 2131296492;
@@ -3701,8 +3701,8 @@ namespace Droid
 			// aapt resource value: 0x7f0900fb
 			public const int imageView_listItemRss_rssIcon = 2131296507;
 			
-			// aapt resource value: 0x7f090108
-			public const int imageView_messagesItem_image = 2131296520;
+			// aapt resource value: 0x7f090109
+			public const int imageView_messagesItem_image = 2131296521;
 			
 			// aapt resource value: 0x7f0900f7
 			public const int imageView_rssRecommendedItem_rssIcon = 2131296503;
@@ -3959,11 +3959,11 @@ namespace Droid
 			// aapt resource value: 0x7f0900e8
 			public const int radioGroup_settingsTheme_main = 2131296488;
 			
-			// aapt resource value: 0x7f0900f5
-			public const int ratingBar_allMessagesItem_favorite = 2131296501;
+			// aapt resource value: 0x7f0900f3
+			public const int ratingBar_allMessagesItem_favorite = 2131296499;
 			
-			// aapt resource value: 0x7f090109
-			public const int ratingBar_messagesItem_favorite = 2131296521;
+			// aapt resource value: 0x7f090107
+			public const int ratingBar_messagesItem_favorite = 2131296519;
 			
 			// aapt resource value: 0x7f0900c7
 			public const int recyclerView_allMessages_list = 2131296455;
@@ -4166,8 +4166,8 @@ namespace Droid
 			// aapt resource value: 0x7f0900f0
 			public const int textView_allMessagesItem_date = 2131296496;
 			
-			// aapt resource value: 0x7f0900f3
-			public const int textView_allMessagesItem_text = 2131296499;
+			// aapt resource value: 0x7f0900f4
+			public const int textView_allMessagesItem_text = 2131296500;
 			
 			// aapt resource value: 0x7f0900f2
 			public const int textView_allMessagesItem_title = 2131296498;
@@ -4196,8 +4196,8 @@ namespace Droid
 			// aapt resource value: 0x7f090105
 			public const int textView_messagesItem_date = 2131296517;
 			
-			// aapt resource value: 0x7f090107
-			public const int textView_messagesItem_text = 2131296519;
+			// aapt resource value: 0x7f090108
+			public const int textView_messagesItem_text = 2131296520;
 			
 			// aapt resource value: 0x7f090106
 			public const int textView_messagesItem_title = 2131296518;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Droid.Repository.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database;
@@ -24,24 +25,24 @@ namespace Shared.Repository.RssMessage
             return _mapper.Transform(_localDatabase.MainThreadRealm.Find<RssMessageModel>(id));
         }
 
-        public void MarkAsFavorite(string id)
+        public async Task MarkAsFavoriteAsync(string id)
         {
-            RealmDatabase.UpdateInBackground<RssMessageModel>(id,(message, realm) => { message.IsFavorite = true; });
+            await RealmDatabase.UpdateInBackground<RssMessageModel>(id,(message, realm) => { message.IsFavorite = true; });
         }
 
-        public void MarkAsRead(string id)
+        public async Task MarkAsReadAsync(string id)
         {
-            RealmDatabase.UpdateInBackground<RssMessageModel>(id, (message, realm) => { message.IsRead = true; });
+            await RealmDatabase.UpdateInBackground<RssMessageModel>(id, (message, realm) => { message.IsRead = true; });
         }
 
-        public void ChangeIsFavorite(string id)
+        public async Task ChangeIsFavoriteAsync(string id)
         {
-            RealmDatabase.UpdateInBackground<RssMessageModel>(id,(message, realm) => { message.IsFavorite = !message.IsFavorite; });
+            await RealmDatabase.UpdateInBackground<RssMessageModel>(id,(message, realm) => { message.IsFavorite = !message.IsFavorite; });
         }
 
-        public void ChangeIsRead(string id)
+        public async Task ChangeIsReadAsync(string id)
         {
-            RealmDatabase.UpdateInBackground<RssMessageModel>(id, (message, realm) => { message.IsRead = !message.IsRead; });
+            await RealmDatabase.UpdateInBackground<RssMessageModel>(id, (message, realm) => { message.IsRead = !message.IsRead; });
         }
 
         public IEnumerable<RssMessageData> GetMessagesForRss(string rssId)

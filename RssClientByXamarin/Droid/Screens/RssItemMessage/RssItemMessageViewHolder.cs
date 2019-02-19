@@ -46,10 +46,11 @@ namespace Droid.Screens.RssItemMessage
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
+            RatingBar.Visibility = item.IsFavorite.ToVisibility();
             
             if (IsShowAndLoadImages)
             {
-                ImageView.Visibility = string.IsNullOrEmpty(item.Url).ToVisibility();
+                ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
                 ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
             }
         }

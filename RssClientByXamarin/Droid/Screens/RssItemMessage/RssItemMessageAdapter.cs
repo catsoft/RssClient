@@ -2,13 +2,14 @@
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Droid.Screens.Base.Adapters;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssItemMessage
 {
-    public class RssItemMessageAdapter : BaseRssMessageAdapter<List<RssMessageData>, RssItemMessageViewHolder>
+    public class RssItemMessageAdapter : BaseRssMessageAdapter<RssItemMessageViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
         
@@ -22,11 +23,11 @@ namespace Droid.Screens.RssItemMessage
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss_message, parent, false);
             var holder = new RssItemMessageViewHolder(view, _appConfiguration.LoadAndShowImages);
 
-            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
-            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
+            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder); };
+            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder, sender); };
 
-            holder.LeftButtonAction += () => { ReadItem(holder.Item); };
-            holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
+            holder.LeftButtonAction += () => { ReadItem(holder); };
+            holder.RightButtonAction += () => { InFavoriteItem(holder); };
              
             return holder;
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Android.App;
+using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
@@ -13,61 +14,70 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemMessage
 {
-    public abstract class BaseRssMessageAdapter<TCollection, TViewHolder> : DataBindAdapter<RssMessageData, TCollection, TViewHolder>
-        where TCollection : IEnumerable<RssMessageData>
+    public abstract class BaseRssMessageAdapter<TViewHolder> : DataBindAdapter<RssMessageData, List<RssMessageData>, TViewHolder>
         where TViewHolder : RecyclerView.ViewHolder, IDataBind<RssMessageData>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
         
-        protected BaseRssMessageAdapter(TCollection items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
+        protected BaseRssMessageAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
         }
         
-        protected void InFavoriteItem(RssMessageData holderItem)
+        protected async void InFavoriteItem(IDataBind<RssMessageData> holder)
         {
-            _rssMessagesRepository.ChangeIsFavorite(holderItem.Id);
+            await _rssMessagesRepository.ChangeIsFavoriteAsync(holder.Item.Id);
+            UpdateHimself(holder);
         }
 
-        protected void ReadItem(RssMessageData holderItem)
+        private void UpdateHimself(IDataBind<RssMessageData> holder)
         {
-            _rssMessagesRepository.ChangeIsRead(holderItem.Id);
+            var position = Items.IndexOf(holder.Item);
+            var newItem = _rssMessagesRepository.FindById(holder.Item.Id);
+            Items[position] = newItem;
+            holder.BindData(newItem);
+        }
+
+        protected async void ReadItem(IDataBind<RssMessageData> holder)
+        {
+            await _rssMessagesRepository.ChangeIsReadAsync(holder.Item.Id);
+            UpdateHimself(holder);
         }
         
-        protected void ItemLongClick(RssMessageData holderItem, object sender)
+        protected void ItemLongClick(IDataBind<RssMessageData> holder, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
-            menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
+            menu.MenuItemClick += (o, eventArgs) => MenuClick(holder, eventArgs);
             menu.Inflate(Resource.Menu.contextMenu_rssDetailList);
             menu.Show();
         }
 
-        protected void MenuClick(RssMessageData holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
+        protected void MenuClick(IDataBind<RssMessageData> holder, PopupMenu.MenuItemClickEventArgs eventArgs)
         {
             switch (eventArgs.Item.ItemId)
             {
                 case Resource.Id.menuItem_rssDetailList_contextShare:
-                    ShareItem(holderItem);
+                    ShareItem(holder);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextRead:
-                    ReadItem(holderItem);
+                    ReadItem(holder);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextFavorite:
-                    InFavoriteItem(holderItem);
+                    InFavoriteItem(holder);
                     break;
             }
         }
 
-        protected async void ShareItem(RssMessageData holderItem)
+        protected async void ShareItem(IDataBind<RssMessageData> holder)
         {
-            await Share.RequestAsync(holderItem.Url);
+            await Share.RequestAsync(holder.Item.Url);
         }
 
-        protected void OpenContentActivity(RssMessageData item)
+        protected void OpenContentActivity(IDataBind<RssMessageData> holder)
         {
             var navigator = App.Container.Resolve<INavigator>();
             var way = App.Container.Resolve<RssMessageViewModel.Way>();
-            way.Data = new RssMessageViewModel.Way.WayData(item);
+            way.Data = new RssMessageViewModel.Way.WayData(holder.Item);
             navigator.Go(way);
         }
     }

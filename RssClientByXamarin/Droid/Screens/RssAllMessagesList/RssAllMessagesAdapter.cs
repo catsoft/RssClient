@@ -10,7 +10,7 @@ using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<IEnumerable<RssMessageData>, RssAllMessagesViewHolder>
+    public class RssAllMessagesListAdapter : BaseRssMessageAdapter<RssAllMessagesViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
         
@@ -24,11 +24,11 @@ namespace Droid.Screens.RssAllMessagesList
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_all_rss_message, parent, false);
             var holder = new RssAllMessagesViewHolder(view, _appConfiguration.LoadAndShowImages);
 
-            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder.Item); };
-            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
+            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder); };
+            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder, sender); };
 
-            holder.LeftButtonAction += () => { ReadItem(holder.Item); };
-            holder.RightButtonAction += () => { InFavoriteItem(holder.Item); };
+            holder.LeftButtonAction += () => { ReadItem(holder); };
+            holder.RightButtonAction += () => { InFavoriteItem(holder); };
             
             return holder;
         }
