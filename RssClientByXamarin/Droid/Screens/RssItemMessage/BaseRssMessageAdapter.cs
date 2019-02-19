@@ -73,8 +73,11 @@ namespace Droid.Screens.RssItemMessage
             await Share.RequestAsync(holder.Item.Url);
         }
 
-        protected void OpenContentActivity(IDataBind<RssMessageData> holder)
+        protected async void OpenContentActivity(IDataBind<RssMessageData> holder)
         {
+            await _rssMessagesRepository.MarkAsReadAsync(holder.Item.Id);
+            UpdateHimself(holder);
+            
             var navigator = App.Container.Resolve<INavigator>();
             var way = App.Container.Resolve<RssMessageViewModel.Way>();
             way.Data = new RssMessageViewModel.Way.WayData(holder.Item);
