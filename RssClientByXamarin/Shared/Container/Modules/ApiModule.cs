@@ -10,6 +10,7 @@ namespace Shared.Container.Modules
             base.Load(builder);
 
             builder.RegisterType<RssApiClient>().As<IRssApiClient>().SingleInstance();
+            builder.RegisterType<FeedlyCloudApiClient>().As<IFeedlyCloudApiClient>().SingleInstance();
         }
     }
 }

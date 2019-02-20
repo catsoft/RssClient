@@ -96,6 +96,8 @@
     <Compile Include="Screens\Base\WithKeyboardFragment.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlyRssAdapter.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
     <Compile Include="Screens\Navigation\BaseFragment.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
@@ -170,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_feedly_search.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_rss_create.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -225,6 +231,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\list_item_feedly_rss.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\list_item_recommended_category_rss.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -246,6 +256,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_allMessagesFilter.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_feedlySearch.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -529,6 +543,7 @@
     <AndroidResource Include="Resources\drawable\baseline_clear_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_favorite_border_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_stars_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_search_24.xml" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

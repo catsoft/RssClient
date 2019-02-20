@@ -1,3 +1,4 @@
+using Droid.Screens.FeedlySearch;
 using Droid.Screens.Navigation;
 using Shared.ViewModels;
 
@@ -14,7 +15,7 @@ namespace Droid.Screens.RecommendedCategoryList
 
         public override void Go()
         {
-            _fragmentActivity.AddFragment(new RecommendedCategoryListFragment(), CacheState.Replace);
+            _fragmentActivity.AddFragment(new FeedlySearchFragment(), CacheState.Replace);
         }
     }
 }

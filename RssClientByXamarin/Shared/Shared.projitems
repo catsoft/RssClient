@@ -15,6 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\RssLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\RssMessageLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\ScreenLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\FeedlyCloudApiClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\FeedlyRss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\FeedlyRssResponce.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\IFeedlyCloudApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\IRssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\RssApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
