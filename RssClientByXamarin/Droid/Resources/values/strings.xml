@@ -15,6 +15,7 @@
     <string name="menuRssList_change">Change list</string>
 
     <string name="menuNavigation_main">Main</string>
+    <string name="menuNavigation_favorite">Favorite</string>
     <string name="menuNavigation_recommended">Recommendation</string>
     <string name="menuNavigation_settings">Settings</string>
     <string name="menuNavigation_contacts">Contacts</string>
@@ -44,6 +45,8 @@
     <string name="rssList_title">RSS Client</string>
     <string name="rssList_notUpdated">Not updated</string>
     <string name="rssList_updated">Updated: </string>
+
+    <string name="rssFavoriteMessages_title">Favorite</string>
 
     <string name="rssEditList_title">Edit RSS list</string>
     

@@ -15,6 +15,7 @@ namespace Shared.Repository.RssMessage
         long GetCountNewMessagesForModel(string rssId);
         long GetCountForModel(string rssId);
         IEnumerable<RssMessageData> GetAllMessages();
+        IEnumerable<RssMessageData> GetFavoriteMessages();
         IEnumerable<RssMessageData> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration);
     }
 }

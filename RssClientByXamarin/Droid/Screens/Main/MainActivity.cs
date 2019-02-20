@@ -68,6 +68,10 @@ namespace Droid.Screens.Main
             {
                 _navigator.Go(App.Container.Resolve<RecommendedCategoryListViewModel.Way>());
             }
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_favorite)
+            {
+                _navigator.Go(App.Container.Resolve<RssFavoriteMessagesViewModel.Way>());
+            }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
                 _navigator.Go(App.Container.Resolve<SettingsViewModel.Way>());

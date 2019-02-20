@@ -73,6 +73,11 @@ namespace Shared.Repository.RssMessage
             return GetAllMessagesInner().ToList().Select(_mapper.Transform);
         }
 
+        public IEnumerable<RssMessageData> GetFavoriteMessages()
+        {
+            return GetAllMessagesInner().Where(w => w.IsFavorite).ToList().Select(_mapper.Transform);
+        }
+
         private IQueryable<RssMessageModel> GetAllMessagesInner()
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();

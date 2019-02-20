@@ -15,6 +15,7 @@
     <string name="menuRssList_change">Изменить список</string>
 
     <string name="menuNavigation_main">Главная</string>
+    <string name="menuNavigation_favorite">Избранное</string>
     <string name="menuNavigation_recommended">Рекомендуемое</string>
     <string name="menuNavigation_settings">Настройки</string>
     <string name="menuNavigation_contacts">Контакты</string>
@@ -38,6 +39,8 @@
 
     <string name="create_urlDefault">http://</string>
     <string name="create_title">Создать RSS</string>
+
+    <string name="rssFavoriteMessages_title">Избранное</string>
 
     <string name="edit_title">Редактировать RSS</string>
 

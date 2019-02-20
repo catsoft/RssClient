@@ -123,6 +123,8 @@
     <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
     <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
+    <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragment.cs" />
+    <Compile Include="Screens\RssFavoriteMessagesList\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssItemMessage\BaseRssMessageAdapter.cs" />
     <Compile Include="Screens\RssItemMessage\RssItemDetailFragment.cs" />
     <Compile Include="Screens\RssItemMessage\RssItemDetailWay.cs" />
@@ -160,6 +162,10 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_all_messages_filter.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_favorite_messages_list.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -520,8 +526,8 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\baseline_clear_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_favorite_border_24.xml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
