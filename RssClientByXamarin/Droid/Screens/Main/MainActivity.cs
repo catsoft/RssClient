@@ -6,6 +6,7 @@ using Autofac;
 using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
+using Droid.Services;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Services.Navigator;
@@ -79,6 +80,10 @@ namespace Droid.Screens.Main
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
                 _navigator.Go(App.Container.Resolve<ContactsViewModel.Way>());
+            }
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_rate)
+            {
+                this.RateInMarket();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {

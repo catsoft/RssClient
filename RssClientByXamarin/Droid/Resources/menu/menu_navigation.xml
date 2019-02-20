@@ -30,6 +30,11 @@
             android:title="@string/menuNavigation_contacts"/>
 
         <item
+            android:id="@+id/menuItem_navigationMenu_rate"
+            android:icon="@drawable/baseline_stars_24"
+            android:title="@string/menuNavigation_rate"/>
+
+        <item
             android:id="@+id/menuItem_navigationMenu_about"
             android:icon="@drawable/info_24"
             android:title="@string/menuNavigation_about"/>
