@@ -3959,11 +3959,11 @@ namespace Droid
 			// aapt resource value: 0x7f0900e8
 			public const int radioGroup_settingsTheme_main = 2131296488;
 			
-			// aapt resource value: 0x7f0900f3
-			public const int ratingBar_allMessagesItem_favorite = 2131296499;
+			// aapt resource value: 0x7f0900f2
+			public const int ratingBar_allMessagesItem_favorite = 2131296498;
 			
-			// aapt resource value: 0x7f090107
-			public const int ratingBar_messagesItem_favorite = 2131296519;
+			// aapt resource value: 0x7f090106
+			public const int ratingBar_messagesItem_favorite = 2131296518;
 			
 			// aapt resource value: 0x7f0900c7
 			public const int recyclerView_allMessages_list = 2131296455;
@@ -4169,8 +4169,8 @@ namespace Droid
 			// aapt resource value: 0x7f0900f4
 			public const int textView_allMessagesItem_text = 2131296500;
 			
-			// aapt resource value: 0x7f0900f2
-			public const int textView_allMessagesItem_title = 2131296498;
+			// aapt resource value: 0x7f0900f3
+			public const int textView_allMessagesItem_title = 2131296499;
 			
 			// aapt resource value: 0x7f0900f6
 			public const int textView_headerRecommendedRssList_title = 2131296502;
@@ -4199,8 +4199,8 @@ namespace Droid
 			// aapt resource value: 0x7f090108
 			public const int textView_messagesItem_text = 2131296520;
 			
-			// aapt resource value: 0x7f090106
-			public const int textView_messagesItem_title = 2131296518;
+			// aapt resource value: 0x7f090107
+			public const int textView_messagesItem_title = 2131296519;
 			
 			// aapt resource value: 0x7f090120
 			public const int textView_notValid_text = 2131296544;

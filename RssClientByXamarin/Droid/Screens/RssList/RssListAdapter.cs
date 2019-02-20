@@ -18,7 +18,7 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListAdapter : DataBindAdapter<RssData, IEnumerable<RssData>, RssListViewHolder>, IItemTouchHelperAdapter
+    public class RssListAdapter : DataBindAdapter<RssData, List<RssData>, RssListViewHolder>, IItemTouchHelperAdapter
     {
         private readonly IRssRepository _rssRepository;
         private readonly IRssMessagesRepository _rssMessagesRepository;
@@ -29,10 +29,11 @@ namespace Droid.Screens.RssList
         {
             var item = Items.ElementAt(position);
             _rssRepository.Remove(item.Id);
+            Items.RemoveAt(position);
             NotifyItemRemoved(position);
         }
 
-        public RssListAdapter(IEnumerable<RssData> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
+        public RssListAdapter(List<RssData> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
         {
             _appConfiguration = appConfiguration;
             _rssRepository = App.Container.Resolve<IRssRepository>();
