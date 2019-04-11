@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Core;
+using Droid.Screens.RssAllMessagesFilter.Order;
 using Shared.Infrastructure.ViewModels;
 using Shared.ViewModels.About;
 using Shared.ViewModels.Close;
@@ -34,6 +35,10 @@ namespace Shared.Container.Modules
             builder.RegisterType<FeedlySearchViewModel>().AsSelf();
             builder.RegisterType<RssAllMessagesViewModel>().AsSelf();
             builder.RegisterType<RssAllMessagesFilterViewModel>().AsSelf();
+
+            builder.RegisterType<RssAllMessagesFilterFilterViewModel>().AsSelf();
+            builder.RegisterType<RssAllMessagesOrderFilterViewModel>().AsSelf();
+            
             builder.RegisterType<RssCreateViewModel>().AsSelf();
             builder.RegisterType<RssEditViewModel>().AsSelf();
             builder.RegisterType<RssFavoriteMessagesViewModel>().AsSelf();
@@ -42,6 +47,13 @@ namespace Shared.Container.Modules
             builder.RegisterType<RssListEditViewModel>().AsSelf();
             builder.RegisterType<RssMessageViewModel>().AsSelf();
             builder.RegisterType<SettingsViewModel>().AsSelf();
+
+            builder.RegisterType<SettingsAnimationViewModel>().AsSelf();
+            builder.RegisterType<SettingsLoadImagesViewModel>().AsSelf();
+            builder.RegisterType<SettingsReadMessagesViewModel>().AsSelf();
+            builder.RegisterType<SettingsRssDetailViewModel>().AsSelf();
+            builder.RegisterType<SettingsStartPageViewModel>().AsSelf();
+            builder.RegisterType<SettingsThemeViewModel>().AsSelf();
         }
     }
 }

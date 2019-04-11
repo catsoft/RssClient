@@ -68,7 +68,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Close\CloseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Contacts\ContactsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FeedlySearch\FeedlySearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesOrderFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreate\RssCreateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
@@ -77,7 +79,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsLoadImagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsReadMessagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsRssDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsStartPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsThemeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsAnimationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\About" />

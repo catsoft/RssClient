@@ -5,15 +5,18 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsRssDetailFragment : SubFragment
+    public class SettingsRssDetailFragment : BaseFragment<SettingsRssDetailViewModel>
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_settings_rss_detail;
 
+        public override bool IsRoot => false;
+        
         public SettingsRssDetailFragment()
         {
 

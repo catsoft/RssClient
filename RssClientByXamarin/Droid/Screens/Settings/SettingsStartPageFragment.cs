@@ -5,14 +5,17 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsStartPageFragment : SubFragment
+    public class SettingsStartPageFragment : BaseFragment<SettingsStartPageViewModel>
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_settings_start_page;
+
+        public override bool IsRoot => false;
 
         public SettingsStartPageFragment()
         {

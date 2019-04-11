@@ -5,15 +5,18 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsReadMessagesFragment : SubFragment
+    public class SettingsReadMessagesFragment : BaseFragment<SettingsReadMessagesViewModel>
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_settings_read_messages;
 
+        public override bool IsRoot => false;
+        
         public SettingsReadMessagesFragment()
         {
             

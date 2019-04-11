@@ -9,15 +9,18 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Utils;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsAnimationFragment : SubFragment
+    public class SettingsAnimationFragment : BaseFragment<SettingsAnimationViewModel>
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_settings_animation;
 
+        public override bool IsRoot => false;
+        
         public SettingsAnimationFragment()
         {
             

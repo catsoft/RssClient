@@ -107,7 +107,6 @@
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
     <Compile Include="Screens\Navigation\IRoot.cs" />
     <Compile Include="Screens\Navigation\ITitle.cs" />
-    <Compile Include="Screens\Navigation\SubFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />

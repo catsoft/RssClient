@@ -5,15 +5,18 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter.Order
 {
-    public class RssAllMessagesOrderFragment : SubFragment, RadioGroup.IOnCheckedChangeListener
+    public class RssAllMessagesOrderFragment : BaseFragment<RssAllMessagesOrderFilterViewModel>, RadioGroup.IOnCheckedChangeListener
     {
         [Inject]
         private IConfigurationRepository _configurationRepository;
         
         protected override int LayoutId => Resource.Layout.fragment_all_messages_order_sub;
+
+        public override bool IsRoot => false;
 
         public RssAllMessagesOrderFragment()
         {

@@ -8,16 +8,19 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Locale;
+using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {
-    public class RssAllMessagesFilterSubFragment : SubFragment, RadioGroup.IOnCheckedChangeListener
+    public class RssAllMessagesFilterSubFragment : BaseFragment<RssAllMessagesFilterFilterViewModel>, RadioGroup.IOnCheckedChangeListener
     {
         [Inject]
         private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter_sub;
 
+        public override bool IsRoot => false;
+        
         public RssAllMessagesFilterSubFragment()
         {
             

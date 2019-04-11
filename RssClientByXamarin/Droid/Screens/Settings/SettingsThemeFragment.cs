@@ -5,15 +5,18 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsThemeFragment : SubFragment, RadioGroup.IOnCheckedChangeListener
+    public class SettingsThemeFragment : BaseFragment<SettingsThemeViewModel>, RadioGroup.IOnCheckedChangeListener
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_settings_theme;
 
+        public override bool IsRoot => false;
+        
         public SettingsThemeFragment()
         {
 
