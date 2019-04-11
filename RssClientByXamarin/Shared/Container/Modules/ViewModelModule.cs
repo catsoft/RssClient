@@ -26,20 +26,22 @@ namespace Shared.Container.Modules
 
             builder.RegisterType<ViewModelProvider>().AsSelf().SingleInstance();
 
-            builder.RegisterType<AboutViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<CloseViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<ContactsViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<FeedlySearchViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssAllMessagesViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssAllMessagesFilterViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssCreateViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssEditViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssFavoriteMessagesViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssItemDetailViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssListViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssListEditViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RssMessageViewModel>().AsSelf().InstancePerRequest();
-            builder.RegisterType<SettingsViewModel>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ViewModel>().AsSelf().InstancePerRequest();
+            
+            builder.RegisterType<AboutViewModel>().AsSelf();
+            builder.RegisterType<CloseViewModel>().AsSelf();
+            builder.RegisterType<ContactsViewModel>().AsSelf();
+            builder.RegisterType<FeedlySearchViewModel>().AsSelf();
+            builder.RegisterType<RssAllMessagesViewModel>().AsSelf();
+            builder.RegisterType<RssAllMessagesFilterViewModel>().AsSelf();
+            builder.RegisterType<RssCreateViewModel>().AsSelf();
+            builder.RegisterType<RssEditViewModel>().AsSelf();
+            builder.RegisterType<RssFavoriteMessagesViewModel>().AsSelf();
+            builder.RegisterType<RssItemDetailViewModel>().AsSelf();
+            builder.RegisterType<RssListViewModel>().AsSelf();
+            builder.RegisterType<RssListEditViewModel>().AsSelf();
+            builder.RegisterType<RssMessageViewModel>().AsSelf();
+            builder.RegisterType<SettingsViewModel>().AsSelf();
         }
     }
 }

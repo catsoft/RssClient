@@ -5,10 +5,12 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
+using Shared.ViewModels.RssAllMessages;
+using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter
 {
-    public class RssAllMessagesFilterFragment : TitleFragment
+    public class RssAllMessagesFilterFragment : BaseFragment<RssAllMessagesFilterViewModel>
     {
         [Inject]
         private IConfigurationRepository _configurationRepository;
@@ -17,7 +19,7 @@ namespace Droid.Screens.RssAllMessagesFilter
         private INavigator _navigator;
     
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
         
         protected override void RestoreState(Bundle saved)
         {

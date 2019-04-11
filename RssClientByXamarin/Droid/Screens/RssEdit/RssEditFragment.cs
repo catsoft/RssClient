@@ -6,12 +6,14 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Droid.Container;
 using Droid.Screens.Base;
+using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
+using Shared.ViewModels.RssEdit;
 
 namespace Droid.Screens.RssEdit
 {
-    public class RssEditFragment : WithKeyboardFragment
+    public class RssEditFragment : BaseFragment<RssEditViewModel>
     {
         [Inject] private IRssRepository _rssRepository;
 
@@ -20,7 +22,7 @@ namespace Droid.Screens.RssEdit
         private string _itemId;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
 
         public RssEditFragment()
         {

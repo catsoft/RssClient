@@ -10,10 +10,11 @@ using Droid.Screens.RssAllMessagesList;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;
+using Shared.ViewModels.RssFavoriteMessages;
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {
-    public class RssFavoriteMessagesListFragment : TitleFragment
+    public class RssFavoriteMessagesListFragment : BaseFragment<RssFavoriteMessagesViewModel>
     {
         [Inject] private INavigator _navigator;
 
@@ -22,7 +23,7 @@ namespace Droid.Screens.RssFavoriteMessagesList
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_favorite_messages_list;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public RssFavoriteMessagesListFragment()
         {

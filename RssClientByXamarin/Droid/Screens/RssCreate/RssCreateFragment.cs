@@ -5,19 +5,21 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Droid.Container;
 using Droid.Screens.Base;
+using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
+using Shared.ViewModels.RssCreate;
 
 namespace Droid.Screens.RssCreate
 {
-    public class RssCreateFragment : WithKeyboardFragment
+    public class RssCreateFragment : BaseFragment<RssCreateViewModel>
     {
         [Inject] private IRssRepository _rssRepository;
 
         [Inject] private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
 
         public RssCreateFragment()
         {

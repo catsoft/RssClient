@@ -4,17 +4,18 @@ using Android.Webkit;
 using Droid.Container;
 using Droid.Screens.Navigation;
 using Shared.Repository.RssMessage;
+using Shared.ViewModels.RssMessage;
 
 namespace Droid.Screens.RssMessage
 {
-    public class RssMessageFragment : TitleFragment
+    public class RssMessageFragment : BaseFragment<RssMessageViewModel>
     {
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
         private string _rssMessageId;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_message;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
 
         public RssMessageFragment()
         {

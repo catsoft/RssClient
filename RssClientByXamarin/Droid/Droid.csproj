@@ -94,7 +94,7 @@
     <Compile Include="Screens\Base\SwipeRecyclerView\IItemTouchHelperAdapter.cs" />
     <Compile Include="Screens\Base\ToolbarActivity.cs" />
     <Compile Include="CustomApplication.cs" />
-    <Compile Include="Screens\Base\WithKeyboardFragment.cs" />
+    <Compile Include="Screens\Base\ViewModelFragment.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlyRssAdapter.cs" />
@@ -105,9 +105,9 @@
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
-    <Compile Include="Screens\Navigation\InjectFragment.cs" />
+    <Compile Include="Screens\Navigation\IRoot.cs" />
+    <Compile Include="Screens\Navigation\ITitle.cs" />
     <Compile Include="Screens\Navigation\SubFragment.cs" />
-    <Compile Include="Screens\Navigation\TitleFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />

@@ -16,11 +16,12 @@ using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssCreate;
+using Shared.ViewModels.RssList;
 using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListFragment : TitleFragment
+    public class RssListFragment : BaseFragment<RssListViewModel>
     {
         [Inject] private IRssRepository _rssRepository;
 
@@ -29,7 +30,7 @@ namespace Droid.Screens.RssList
         [Inject] private IConfigurationRepository _configurationRepository;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public RssListFragment()
         {

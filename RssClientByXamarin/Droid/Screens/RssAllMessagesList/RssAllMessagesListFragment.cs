@@ -13,13 +13,14 @@ using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;
+using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssAllMessagesFilter;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
 
 namespace Droid.Screens.RssAllMessagesList
 {
-    public class RssAllMessagesListFragment : TitleFragment
+    public class RssAllMessagesListFragment : BaseFragment<RssAllMessagesViewModel>
     {
         [Inject] private INavigator _navigator;
 
@@ -30,7 +31,7 @@ namespace Droid.Screens.RssAllMessagesList
         private AllMessageFilterConfiguration _filterConfiguration;
 
         protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public RssAllMessagesListFragment()
         {

@@ -1,13 +1,14 @@
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
+using Shared.ViewModels.About;
 
 namespace Droid.Screens.About
 {
-    public class AboutFragment : TitleFragment
+    public class AboutFragment : BaseFragment<AboutViewModel>
     {
         protected override int LayoutId => Resource.Layout.fragment_about;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public AboutFragment()
         {

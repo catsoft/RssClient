@@ -4,14 +4,15 @@ using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
+using Shared.ViewModels.Contacts;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.Contacts
 {
-    public class ContactsFragment : TitleFragment
+    public class ContactsFragment : BaseFragment<ContactsViewModel>
     {
         protected override int LayoutId => Resource.Layout.fragment_contacts;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public ContactsFragment()
         {

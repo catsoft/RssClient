@@ -6,6 +6,7 @@ using Autofac;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
 using Shared;
+using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Container
 {
@@ -19,7 +20,7 @@ namespace Droid.Container
         {
             // TODO разделить на android ios
             typeof(InjectActivity),
-            typeof(InjectFragment)
+            typeof(BaseFragment<>)
         };
         
         public static void Inject(this object obj, bool searchInDeep = false)

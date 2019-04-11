@@ -15,7 +15,7 @@ namespace Droid.Screens.Base
 
         public static void HideKeyboard(this Activity activity)
         {
-            var focus = activity.CurrentFocus;
+            var focus = activity?.CurrentFocus;
             if (focus != null)
             {
                 var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);

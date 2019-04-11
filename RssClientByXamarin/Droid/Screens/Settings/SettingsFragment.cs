@@ -2,13 +2,14 @@
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Navigation;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsFragment : TitleFragment
+    public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
         protected override int LayoutId => Resource.Layout.fragment_settings;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public SettingsFragment()
         {

@@ -16,11 +16,12 @@ using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
 using Shared.ViewModels.RssEdit;
+using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemMessage
 {
-    public class RssItemDetailFragment : TitleFragment
+    public class RssItemDetailFragment : BaseFragment<RssItemDetailViewModel>
     {
         private string _itemId;
         private RssData Item => _rssRepository.Find(_itemId);
@@ -34,7 +35,7 @@ namespace Droid.Screens.RssItemMessage
         [Inject] private INavigator _navigator;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
 
         public RssItemDetailFragment()
         {

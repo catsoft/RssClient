@@ -8,10 +8,11 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Api;
 using Shared.Configuration.Settings;
+using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {
-    public class FeedlySearchFragment : TitleFragment
+    public class FeedlySearchFragment : BaseFragment<FeedlySearchViewModel>
     {
         [Inject]
         private IFeedlyCloudApiClient _feedlyCloudApiClient;
@@ -19,7 +20,7 @@ namespace Droid.Screens.FeedlySearch
         [Inject] private IConfigurationRepository _configurationRepository;
         
         protected override int LayoutId => Resource.Layout.fragment_feedly_search;
-        public override bool RootFragment => true;
+        public override bool IsRoot => true;
 
         public FeedlySearchFragment()
         {

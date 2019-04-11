@@ -7,6 +7,7 @@ using Android.Views;
 using Droid.Container;
 using Droid.Repository.Configuration;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {   
@@ -23,7 +24,7 @@ namespace Droid.Screens.Navigation
             SupportFragmentManager.BackStackChanged += (sender, args) =>
             {
                 var lastFragment = SupportFragmentManager.Fragments.LastOrDefault();
-                if (lastFragment is TitleFragment titleFragment)
+                if (lastFragment is ITitle titleFragment)
                 {
                     Title = titleFragment.Title;
                 }

@@ -11,10 +11,11 @@ using Shared;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.ViewModels.RssCreate;
+using Shared.ViewModels.RssEdit;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssEditListFragment : TitleFragment
+    public class RssEditListFragment : BaseFragment<RssEditViewModel>
     {
         [Inject]
         private INavigator _navigator;
@@ -23,7 +24,7 @@ namespace Droid.Screens.RssEditList
         private IRssRepository _rssRepository;
         
         protected override int LayoutId => Resource.Layout.fragment_rss_edit_list;
-        public override bool RootFragment => false;
+        public override bool IsRoot => false;
         
         public RssEditListFragment()
         {

@@ -11,6 +11,7 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Base;
 using Java.Lang;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {
@@ -72,7 +73,7 @@ namespace Droid.Screens.Navigation
 
         protected void UpdateDrawerState()
         {
-            var isHome = (SupportFragmentManager.Fragments.LastOrDefault() as TitleFragment)?.RootFragment == true;
+            var isHome = (SupportFragmentManager.Fragments.LastOrDefault() as IRoot)?.IsRoot== true;
 
             if (IsHomeToggle != isHome)
             {
