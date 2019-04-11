@@ -8,12 +8,12 @@ using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Shared;
 using Shared.Configuration.Settings;
-using Shared.Database.Rss;
+using Shared.Infrastructure.Locale;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
-using Shared.Services.Locale;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.ViewModels.RssEdit;
+using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList

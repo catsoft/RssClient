@@ -2,7 +2,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Base.Adapters;
-using Shared.Database.Rss;
 using Shared.Repository.Rss;
 
 namespace Droid.Screens.RssEditList

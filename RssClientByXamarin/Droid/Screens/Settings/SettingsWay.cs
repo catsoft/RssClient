@@ -1,5 +1,5 @@
 ﻿using Droid.Screens.Navigation;
-using Shared.ViewModels;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {

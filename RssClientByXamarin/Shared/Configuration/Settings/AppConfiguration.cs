@@ -13,11 +13,13 @@ namespace Shared.Configuration.Settings
         public int DefaultAnimationTime { get; set; } = 200;
 
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.X;
+        
         public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
 
         public AppTheme AppTheme { get; set; } = AppTheme.Default;
 
         public bool HideReadMessages { get; set; }
+        
         public bool LoadAndShowImages { get; set; } = true;
 
         public int GetCalculationAnimationTime()

@@ -5,7 +5,6 @@ using Android.Views;
 using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
-using Java.Util.Zip;
 using Shared;
 using Shared.Api;
 using Shared.Configuration.Settings;

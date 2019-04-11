@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using Android.App;
-using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
 using Shared;
-using Shared.Database.Rss;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.ViewModels.RssMessage;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemMessage

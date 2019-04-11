@@ -25,10 +25,6 @@ namespace Shared.Database
             }
         }
 
-        public void DoInMainThread(Action action)
-        {
-        }
-
         public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
 
         public void Dispose()

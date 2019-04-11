@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -37,12 +37,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\DatabaseModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\RepositoryModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\RealmDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\Categories.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\IHaveId.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssRecommendationModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\ConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\IConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IMapper.cs" />
@@ -50,37 +49,48 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessagesRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommended\IRssRecommendedRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommended\RssRecommendedData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommended\RssRecommendedMapper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssRecommended\RssRecommendedRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\IRssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\ILocale.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Locale\LocaleDateTimeExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\INavigator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\IWay.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\Navigator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Navigator\DataWay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Locale\ILocale.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Locale\LocaleDateTimeExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\INavigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\IWay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\Navigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\DataWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationSpeedExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationTypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\StringTrimExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CloseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FeedlySearchViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilterViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreateViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEditViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessagesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetailViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEditViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\About\AboutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Close\CloseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Contacts\ContactsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FeedlySearch\FeedlySearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssAllMessagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreate\RssCreateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Services\About" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Close\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Contacts\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\FeedlySearch\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssAllMessagesFilter\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssAllMessages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssCreate\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssEdit\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssFavoriteMessages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssItemDetail\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssListEdit\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssList\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\RssMessage\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Settings\" />
   </ItemGroup>
 </Project>

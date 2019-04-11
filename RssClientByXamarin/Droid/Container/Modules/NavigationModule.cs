@@ -16,7 +16,20 @@ using Droid.Screens.RssItemMessage;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
 using Droid.Screens.Settings;
-using Shared.ViewModels;
+using Shared.ViewModels.About;
+using Shared.ViewModels.Close;
+using Shared.ViewModels.Contacts;
+using Shared.ViewModels.FeedlySearch;
+using Shared.ViewModels.RssAllMessages;
+using Shared.ViewModels.RssAllMessagesFilter;
+using Shared.ViewModels.RssCreate;
+using Shared.ViewModels.RssEdit;
+using Shared.ViewModels.RssFavoriteMessages;
+using Shared.ViewModels.RssItemDetail;
+using Shared.ViewModels.RssList;
+using Shared.ViewModels.RssListEdit;
+using Shared.ViewModels.RssMessage;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Container.Modules
 {

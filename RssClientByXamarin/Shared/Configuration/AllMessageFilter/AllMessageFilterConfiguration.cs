@@ -10,6 +10,7 @@ namespace Shared.Configuration.Settings
         public MessageFilterType MessageFilterType { get; set; } = MessageFilterType.None;
 
         public DateTime? From { get; set; }
+        
         public DateTime? To { get; set; }
 
         public IQueryable<RssMessageModel> ApplySort(IQueryable<RssMessageModel> messages)

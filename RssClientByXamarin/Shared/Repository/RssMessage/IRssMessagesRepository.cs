@@ -7,15 +7,25 @@ namespace Shared.Repository.RssMessage
     public interface IRssMessagesRepository
     {
         RssMessageData FindById(string id);
+        
         Task MarkAsFavoriteAsync(string id);
+        
         Task MarkAsReadAsync(string id);
+        
         Task ChangeIsFavoriteAsync(string id);
+        
         Task ChangeIsReadAsync(string id);
+        
         IEnumerable<RssMessageData> GetMessagesForRss(string rssId);
+        
         long GetCountNewMessagesForModel(string rssId);
+        
         long GetCountForModel(string rssId);
+        
         IEnumerable<RssMessageData> GetAllMessages();
+        
         IEnumerable<RssMessageData> GetFavoriteMessages();
+        
         IEnumerable<RssMessageData> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration);
     }
 }

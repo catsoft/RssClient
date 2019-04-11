@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -13,11 +12,10 @@ using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Configuration.Settings;
-using Shared.Database.Rss;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.ViewModels.RssEdit;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssItemMessage

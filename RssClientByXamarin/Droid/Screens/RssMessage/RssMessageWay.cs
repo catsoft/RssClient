@@ -2,7 +2,7 @@ using System;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
-using Shared.ViewModels;
+using Shared.ViewModels.RssMessage;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssMessage

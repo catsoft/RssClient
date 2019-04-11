@@ -1,5 +1,5 @@
 using Droid.Screens.Navigation;
-using Shared.ViewModels;
+using Shared.ViewModels.RssList;
 
 namespace Droid.Screens.RssList
 {

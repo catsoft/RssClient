@@ -4,7 +4,7 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
-using Shared.Services.Navigator;
+using Shared.Infrastructure.Navigation;
 
 namespace Droid.Screens.RssAllMessagesFilter
 {

@@ -1,15 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
-using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Droid.Container;
 using Droid.Repository.Configuration;
-using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssList;
 using Shared.Api;
 using Shared.Configuration.Settings;
 

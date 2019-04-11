@@ -71,6 +71,7 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
+    <Compile Include="NativeExtension\RateExtension.cs" />
     <Compile Include="NativeExtension\ViewExtension.cs" />
     <Compile Include="Screens\About\AboutFragment.cs" />
     <Compile Include="Screens\About\AboutWay.cs" />
@@ -148,11 +149,9 @@
     <Compile Include="Screens\Settings\SettingsWay.cs" />
     <Compile Include="Screens\Settings\SettingsFragment.cs" />
     <Compile Include="Screens\SplashScreen\SplashScreenActivity.cs" />
-    <Compile Include="Services\Helpers\CategoriesExtension.cs" />
-    <Compile Include="Services\Locale\Locale.cs" />
+    <Compile Include="Infrastructure\Locale\Locale.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\RateExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

@@ -2,7 +2,6 @@ using Android.Graphics;
 using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
-using Shared.Database.Rss;
 using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssItemMessage

@@ -1,6 +1,5 @@
 ﻿using Autofac;
-using Droid.Infrastructure;
-using Shared.Services.Navigator;
+using Shared.Infrastructure.Navigation;
 
 namespace Shared.Container.Modules
 {

@@ -12,9 +12,11 @@ using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.ViewModels.RssAllMessages;
+using Shared.ViewModels.RssCreate;
+using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssList
 {

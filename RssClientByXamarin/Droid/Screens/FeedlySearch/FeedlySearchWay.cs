@@ -1,6 +1,5 @@
 using Droid.Screens.Navigation;
-using Droid.Screens.RssAllMessagesFilter;
-using Shared.ViewModels;
+using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {

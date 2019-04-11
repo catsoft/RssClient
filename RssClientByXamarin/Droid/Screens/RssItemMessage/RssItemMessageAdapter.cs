@@ -2,9 +2,7 @@
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Droid.Screens.Base.Adapters;
 using Shared.Configuration.Settings;
-using Shared.Database.Rss;
 using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssItemMessage

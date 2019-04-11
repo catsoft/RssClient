@@ -1,5 +1,5 @@
 using Droid.Screens.Navigation;
-using Shared.ViewModels;
+using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter
 {

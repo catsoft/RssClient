@@ -1,6 +1,5 @@
 using Droid.Screens.Navigation;
-using Droid.Screens.RssAllMessagesList;
-using Shared.ViewModels;
+using Shared.ViewModels.RssFavoriteMessages;
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {

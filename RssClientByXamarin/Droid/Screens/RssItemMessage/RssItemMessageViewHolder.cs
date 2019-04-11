@@ -1,13 +1,11 @@
-﻿using System.ComponentModel;
-using Android.Views;
+﻿using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
-using Shared.Database.Rss;
+using Shared.Infrastructure.Locale;
 using Shared.Repository.RssMessage;
-using Shared.Services.Locale;
 
 namespace Droid.Screens.RssItemMessage
 {

@@ -7,7 +7,7 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
-using Shared.Services.Locale;
+using Shared.Infrastructure.Locale;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {

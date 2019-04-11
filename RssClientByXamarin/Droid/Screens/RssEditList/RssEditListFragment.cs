@@ -8,9 +8,9 @@ using Droid.Container;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.ViewModels.RssCreate;
 
 namespace Droid.Screens.RssEditList
 {

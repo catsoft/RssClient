@@ -1,20 +1,15 @@
-﻿using System;
-using Android.OS;
-using Android.Support.Design.Widget;
+﻿using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Autofac;
 using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessagesList;
-using Shared;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {

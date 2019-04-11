@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using Droid.Services.Locale;
-using Shared.Services.Locale;
+using Droid.Infrastructure.Locale;
+using Shared.Infrastructure.Locale;
 
 namespace Droid.Container.Modules
 {

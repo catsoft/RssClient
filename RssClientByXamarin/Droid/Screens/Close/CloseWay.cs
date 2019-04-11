@@ -1,5 +1,5 @@
 ﻿using Android.App;
-using Shared.ViewModels;
+using Shared.ViewModels.Close;
 
 namespace Droid.Screens.Close
 {

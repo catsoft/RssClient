@@ -6,9 +6,8 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.DragRecyclerView;
-using Shared.Database.Rss;
+using Shared.Infrastructure.Locale;
 using Shared.Repository.Rss;
-using Shared.Services.Locale;
 
 namespace Droid.Screens.RssEditList
 {

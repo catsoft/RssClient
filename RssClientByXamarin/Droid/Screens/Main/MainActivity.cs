@@ -9,8 +9,14 @@ using Droid.Screens.Navigation;
 using Droid.Services;
 using Shared;
 using Shared.Configuration.Settings;
-using Shared.Services.Navigator;
-using Shared.ViewModels;
+using Shared.Infrastructure.Navigation;
+using Shared.ViewModels.About;
+using Shared.ViewModels.Contacts;
+using Shared.ViewModels.FeedlySearch;
+using Shared.ViewModels.RssAllMessages;
+using Shared.ViewModels.RssFavoriteMessages;
+using Shared.ViewModels.RssList;
+using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Main
 {
