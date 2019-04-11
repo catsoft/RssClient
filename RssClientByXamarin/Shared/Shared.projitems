@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -36,12 +36,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\CrossServicesModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\DatabaseModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\RepositoryModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ViewModelModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\RealmDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\IHaveId.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\ConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\IConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IMapper.cs" />
