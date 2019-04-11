@@ -3,10 +3,9 @@ using Autofac;
 using Droid.Screens.About;
 using Droid.Screens.Close;
 using Droid.Screens.Contacts;
+using Droid.Screens.FeedlySearch;
 using Droid.Screens.Main;
 using Droid.Screens.Navigation;
-using Droid.Screens.RecommendedCategoryList;
-using Droid.Screens.RecommendedRssList;
 using Droid.Screens.RssAllMessagesFilter;
 using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
@@ -21,7 +20,7 @@ using Shared.ViewModels;
 
 namespace Droid.Container.Modules
 {
-    public class NavigatorModule : Module
+    public class NavigationModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -37,15 +36,14 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssListEditWay>().As<RssListEditViewModel.Way>();
             builder.RegisterType<RssCreateWay>().As<RssCreateViewModel.Way>();
             builder.RegisterType<RssEditWay>().As<RssEditViewModel.Way>();
-            builder.RegisterType<RecommendedCategoryListWay>().As<RecommendedCategoryListViewModel.Way>();
-            builder.RegisterType<RecommendedRssListWay>().As<RecommendedViewModel.Way>();
             builder.RegisterType<RssMessageWay>().As<RssMessageViewModel.Way>();
 
             builder.RegisterType<AboutWay>().As<AboutViewModel.Way>();
             builder.RegisterType<SettingsWay>().As<SettingsViewModel.Way>();
             builder.RegisterType<ContactsWay>().As<ContactsViewModel.Way>();
 
-
+            builder.RegisterType<FeedlySearchWay>().As<FeedlySearchViewModel.Way>();
+            
             builder.Register((c) => MainActivity.Instance).As<Activity>();
             builder.Register((c) => MainActivity.Instance).As<FragmentActivity>();
         }

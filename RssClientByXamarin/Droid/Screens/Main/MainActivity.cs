@@ -65,9 +65,9 @@ namespace Droid.Screens.Main
                 else if (appConfiguration.StartPage == StartPage.AllMessages)
                     _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
             }
-            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_recommended)
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_feedlySearch)
             {
-                _navigator.Go(App.Container.Resolve<RecommendedCategoryListViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<FeedlySearchViewModel.Way>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_favorite)
             {

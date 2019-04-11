@@ -39,6 +39,8 @@ namespace Droid.Screens.FeedlySearch
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             HasOptionsMenu = true;
+
+            Title = GetText(Resource.String.feedly_title);
             
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_feedlySearch_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
@@ -52,30 +54,33 @@ namespace Droid.Screens.FeedlySearch
             inflater.Inflate(Resource.Menu.menu_feedlySearch, menu);
 
             var searchItem = menu?.FindItem(Resource.Id.menuItem_feedlySearch_search);
-            var actionView = searchItem.ActionView as SearchView;
-            actionView.QueryTextChange += async (sender, args) =>
-            {
-                var text = args.NewText;
-                var configuration = _configurationRepository.GetSettings<AppConfiguration>();
-                var recyclerView = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_feedlySearch_list);
 
-                FeedlyRssAdapter adapter;
-                
-                if (!string.IsNullOrEmpty(text))
+            if (searchItem.ActionView is SearchView actionView)
+            {
+                actionView.QueryTextChange += async (sender, args) =>
                 {
-                    var result = await _feedlyCloudApiClient.FindByQuery(text);
-            
-                    adapter = new FeedlyRssAdapter(result.Results.ToList(), Activity, configuration);
-                }
-                else
-                {
-                    adapter = new FeedlyRssAdapter(new List<FeedlyRss>(), Activity, configuration);
-                }
-                
-                recyclerView.SetAdapter(adapter);
-                adapter.NotifyDataSetChanged();   
-            };
-            
+                    var text = args.NewText;
+                    var configuration = _configurationRepository.GetSettings<AppConfiguration>();
+                    var recyclerView = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_feedlySearch_list);
+
+                    FeedlyRssAdapter adapter;
+
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        var result = await _feedlyCloudApiClient.FindByQuery(text);
+
+                        adapter = new FeedlyRssAdapter(result.Results.ToList(), Activity, configuration);
+                    }
+                    else
+                    {
+                        adapter = new FeedlyRssAdapter(new List<FeedlyRss>(), Activity, configuration);
+                    }
+
+                    recyclerView.SetAdapter(adapter);
+                    adapter.NotifyDataSetChanged();
+                };
+            }
+
             base.OnCreateOptionsMenu(menu, inflater);
         }
     }

@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\InjectAttribute.cs" />
-    <Compile Include="Container\Modules\NavigatorModule.cs" />
+    <Compile Include="Container\Modules\NavigationModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
@@ -97,7 +97,9 @@
     <Compile Include="Screens\Close\CloseWay.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlyRssAdapter.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlyRssViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlySearchWay.cs" />
     <Compile Include="Screens\Navigation\BaseFragment.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
@@ -105,14 +107,6 @@
     <Compile Include="Screens\Navigation\InjectFragment.cs" />
     <Compile Include="Screens\Navigation\SubFragment.cs" />
     <Compile Include="Screens\Navigation\TitleFragment.cs" />
-    <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoriesRssListAdapter.cs" />
-    <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoryListFragment.cs" />
-    <Compile Include="Screens\RecommendedCategoryList\RecommendedCategoryListWay.cs" />
-    <Compile Include="Screens\RecommendedCategoryList\RssRecommendedCategoryViewHolder.cs" />
-    <Compile Include="Screens\RecommendedRssList\RecommendedRssListAdapter.cs" />
-    <Compile Include="Screens\RecommendedRssList\RecommendedRssListFragment.cs" />
-    <Compile Include="Screens\RecommendedRssList\RecommendedRssListWay.cs" />
-    <Compile Include="Screens\RecommendedRssList\RssRecommendedViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />

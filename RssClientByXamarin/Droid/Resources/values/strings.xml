@@ -16,7 +16,7 @@
 
     <string name="menuNavigation_main">Main</string>
     <string name="menuNavigation_favorite">Favorite</string>
-    <string name="menuNavigation_recommended">Recommendation</string>
+    <string name="menuNavigation_feedlySearch">Feedly search</string>
     <string name="menuNavigation_settings">Settings</string>
     <string name="menuNavigation_contacts">Contacts</string>
     <string name="menuNavigation_rate">Rate us</string>
@@ -54,7 +54,6 @@
     <string name="settings_title">Settings</string>
     <string name="contacts_title">Contacts</string>
     <string name="about_title">About</string>
-    <string name="recommended_title">Recommendation</string>
     
     <string name="contacts_telegram" translatable="false">asura_pro</string>
     <string name="contacts_mail" translatable="false">asuraprog@gmail.com (Recommended)</string>
@@ -121,4 +120,6 @@
     <string name="about_language">Someone may want to translate applications into other languages. I will provide text data</string>
     <string name="menuFeedlySearch_search">Search</string>
 
+    <string name="feedly_title">Feedly search</string>
+    
 </resources>

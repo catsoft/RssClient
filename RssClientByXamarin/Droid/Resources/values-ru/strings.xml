@@ -16,7 +16,7 @@
 
     <string name="menuNavigation_main">Главная</string>
     <string name="menuNavigation_favorite">Избранное</string>
-    <string name="menuNavigation_recommended">Рекомендуемое</string>
+    <string name="menuNavigation_feedlySearch">Feedly поиск</string>
     <string name="menuNavigation_settings">Настройки</string>
     <string name="menuNavigation_contacts">Контакты</string>
     <string name="menuNavigation_rate">Оценить приложение</string>
@@ -54,7 +54,6 @@
     <string name="settings_title">Настройки</string>
     <string name="contacts_title">Контакты</string>
     <string name="about_title">О программе</string>
-    <string name="recommended_title">Рекомендации</string>
 
     <string name="copy_clipboard">Скопировано: </string>
     <string name="recommended_rss_add_rss_toast">Добавлено:</string>
@@ -112,4 +111,6 @@
     <string name="about_design">Сам я программист. Если предложите адекватный дизайн или тему, то реализация не заставит себя ждать</string>
     <string name="about_language">Возможно кто-то захочет сделать перевод приложения на другие языки. Предоставлю текстовые данные</string>
 
+    <string name="feedly_title">Feedly поиск</string>
+    
 </resources>

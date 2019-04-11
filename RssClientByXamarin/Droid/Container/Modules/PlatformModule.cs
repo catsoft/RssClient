@@ -9,7 +9,7 @@ namespace Droid.Container.Modules
             base.Load(builder);
 
             builder.RegisterModule(new ServicesModule());
-            builder.RegisterModule(new NavigatorModule());
+            builder.RegisterModule(new NavigationModule());
         }
     }
 }

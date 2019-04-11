@@ -15,9 +15,9 @@
             android:title="@string/menuNavigation_favorite"/>
         
         <item
-            android:id="@+id/menuItem_navigationMenu_recommended"
+            android:id="@+id/menuItem_navigationMenu_feedlySearch"
             android:icon="@drawable/baseline_list_alt_24"
-            android:title="@string/menuNavigation_recommended"/>
+            android:title="@string/menuNavigation_feedlySearch"/>
         
         <item
             android:id="@+id/menuItem_navigationMenu_settings"
