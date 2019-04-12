@@ -1,6 +1,4 @@
 using Autofac;
-using Autofac.Core;
-using Droid.Screens.RssAllMessagesFilter.Order;
 using Shared.Infrastructure.ViewModels;
 using Shared.ViewModels.About;
 using Shared.ViewModels.Close;

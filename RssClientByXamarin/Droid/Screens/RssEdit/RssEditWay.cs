@@ -1,7 +1,6 @@
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssEdit;
-using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.RssEdit
 {

@@ -1,8 +1,5 @@
-using Android.App;
 using Android.OS;
-using Android.Support.V4.App;
 using Autofac;
-using ReactiveUI;
 using Shared;
 using Shared.Infrastructure.ViewModels;
 

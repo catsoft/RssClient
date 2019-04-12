@@ -1,18 +1,14 @@
 ﻿using System;
-using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Droid.Container;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
-using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
 using Shared.ViewModels.RssEdit;
 
 namespace Droid.Screens.RssEdit

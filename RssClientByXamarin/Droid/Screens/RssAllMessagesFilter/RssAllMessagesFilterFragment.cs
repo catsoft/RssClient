@@ -5,7 +5,6 @@ using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter

@@ -1,5 +1,4 @@
-﻿using Shared.Infrastructure.Navigation;
-using Shared.Infrastructure.ViewModels;
+﻿using Shared.Infrastructure.ViewModels;
 
 namespace Shared.ViewModels.Close
 {

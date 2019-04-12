@@ -6,7 +6,6 @@ using Autofac;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
 using Shared;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Container
 {

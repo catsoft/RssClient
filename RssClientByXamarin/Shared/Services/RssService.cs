@@ -13,6 +13,9 @@ namespace Shared.Services
             _rssRepository = rssRepository;
         }
 
+        public Task Create(string url, CancellationToken cancellationToken = default) =>
+            _rssRepository.InsertByUrl(url, cancellationToken);
+
         public Task<RssData> Find(string id, CancellationToken cancellationToken = default) => _rssRepository.Find(id);
 
         public Task Update(string id, string value, CancellationToken cancellationToken = default) =>

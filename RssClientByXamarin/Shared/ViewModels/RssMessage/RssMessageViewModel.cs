@@ -1,6 +1,4 @@
-using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
-using Shared.ViewModels.RssAllMessages;
 
 namespace Shared.ViewModels.RssMessage
 {

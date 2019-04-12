@@ -1,22 +1,22 @@
-﻿using Android.OS;
+﻿using System;
+using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using Droid.Container;
+using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
-using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
+using ReactiveUI;
+using Shared.Extensions;
 using Shared.ViewModels.RssCreate;
 
 namespace Droid.Screens.RssCreate
 {
     public class RssCreateFragment : BaseFragment<RssCreateViewModel>
     {
-        [Inject] private IRssRepository _rssRepository;
-
-        [Inject] private INavigator _navigator;
+        private Button _sendButton;
+        private TextInputLayout _urlTextInputLayout;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
         public override bool IsRoot => false;
@@ -37,24 +37,26 @@ namespace Droid.Screens.RssCreate
 
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var sendButton = view.FindViewById<Button>(Resource.Id.button_rssCreate_submit);
-            sendButton.Click += async (sender, args) =>
+            _sendButton = view.FindViewById<Button>(Resource.Id.button_rssCreate_submit);
+            _urlTextInputLayout = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
+
+            OnActivation(disposable =>
             {
-                var url = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
+                this.Bind(ViewModel, model => model.Url, fragment => fragment._urlTextInputLayout.EditText.Text)
+                    .AddTo(disposable);
 
-                await _rssRepository.InsertByUrl(url.EditText.Text);
+                ViewModel.Url.WhenAnyValue(s => s)
+                    .Subscribe(s => _urlTextInputLayout.EditText.SetTextAndSetCursorToLast(s))
+                    .AddTo(disposable);
 
-                _navigator.GoBack();
-            };
-
-            var urlView = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
-            urlView.EditText.SetTextAndSetCursorToLast(GetText(Resource.String.create_urlDefault));
-            urlView.EditText.EditorAction += (sender, args) =>
-            {
-                if (args.ActionId == ImeAction.Done) sendButton.CallOnClick();
-            };
-
-            Activity.ShowKeyboard(urlView.EditText);
+                _urlTextInputLayout.EditText.GetEditorAction().Subscribe(action =>
+                {
+                    if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
+                });
+                
+                this.BindCommand(ViewModel, model => model.CreateCommand,
+                    fragment => fragment._sendButton.Events()).AddTo(disposable);
+            });
 
             return view;
         }
