@@ -5,7 +5,7 @@ namespace Shared.ViewModels.RssEdit
 {
     public class RssEditViewModel : ViewModelWithParameter<RssEditParameterses>
     {
-        public RssEditViewModel(RssEditParameterses parameterse) : base(parameterse)
+        public RssEditViewModel(RssEditParameterses parameters) : base(parameters)
         {
         }
     }

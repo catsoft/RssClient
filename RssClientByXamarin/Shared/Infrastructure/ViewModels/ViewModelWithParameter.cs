@@ -3,11 +3,11 @@ namespace Shared.Infrastructure.ViewModels
     public class ViewModelWithParameter<TParameter> : ViewModel
     where TParameter : ViewModelParameters
     {
-        public TParameter Parameterse { get; }
+        public TParameter Parameters { get; }
         
-        public ViewModelWithParameter(TParameter parameterse)
+        public ViewModelWithParameter(TParameter parameters)
         {
-            Parameterse = parameterse;
+            Parameters = parameters;
         }
     }
 }

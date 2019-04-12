@@ -5,7 +5,7 @@ namespace Shared.ViewModels.RssItemDetail
 {
     public class RssItemDetailViewModel : ViewModelWithParameter<RssItemDetailParameterses>
     {
-        public RssItemDetailViewModel(RssItemDetailParameterses parameterse) : base(parameterse)
+        public RssItemDetailViewModel(RssItemDetailParameterses parameters) : base(parameters)
         {
         }
     }

@@ -322,6 +322,15 @@
     <PackageReference Include="Plugin.Share">
       <Version>7.1.1</Version>
     </PackageReference>
+    <PackageReference Include="ReactiveUI.AndroidSupport">
+      <Version>10.0.0-preview.3</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Events">
+      <Version>10.0.0-preview.3</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Fody">
+      <Version>10.0.0-preview.3</Version>
+    </PackageReference>
     <PackageReference Include="Realm">
       <Version>3.4.0</Version>
     </PackageReference>
