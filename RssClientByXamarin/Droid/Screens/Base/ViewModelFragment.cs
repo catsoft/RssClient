@@ -1,21 +1,21 @@
+using Android.App;
 using Android.OS;
 using Android.Support.V4.App;
 using Autofac;
+using ReactiveUI;
 using Shared;
 using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Base
 {
-    public class ViewModelFragment<TViewModel> : Fragment
+    public class ViewModelFragment<TViewModel> : LifeCycleFragment<TViewModel>
         where TViewModel : ViewModel
     {
         private ViewModelParameters _parameters;
-        
-        public TViewModel ViewModel { get; private set; }
-        
+
         public ViewModelFragment()
         {
-            
+
         }
 
         public void SetParameters(ViewModelParameters parameters)

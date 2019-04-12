@@ -59,7 +59,7 @@ namespace Droid.Screens.RssList
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
 
             var items = _rssRepository.GetList();
-            var adapter = new RssListAdapter(items.ToList(), Activity, appConfiguration);
+            var adapter = new RssListAdapter(items.Result.ToList(), Activity, appConfiguration);
             recyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 

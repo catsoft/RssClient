@@ -1,12 +1,16 @@
 ﻿using System;
+using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Droid.Container;
+using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
+using ReactiveUI;
+using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.ViewModels.RssEdit;
@@ -15,11 +19,9 @@ namespace Droid.Screens.RssEdit
 {
     public class RssEditFragment : BaseFragment<RssEditViewModel>
     {
-        [Inject] private IRssRepository _rssRepository;
-
-        [Inject] private INavigator _navigator;
-
         private string _itemId;
+        private TextInputLayout _urlEditText;
+        private Button _sendButton;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
         public override bool IsRoot => false;
@@ -52,32 +54,30 @@ namespace Droid.Screens.RssEdit
 
             Title = GetText(Resource.String.edit_title);
 
-            var item = _rssRepository.Find(_itemId);
+            _sendButton = view.FindViewById<Button>(Resource.Id.button_rssEdit_submit);
+            _urlEditText = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
+            
+            OnActivation(compositeDisposable =>
+                {
+                    this.Bind(ViewModel, model => model.Url, fragment => fragment._urlEditText.EditText.Text).AddTo(compositeDisposable);
 
-            var sendButton = view.FindViewById<Button>(Resource.Id.button_rssEdit_submit);
-            sendButton.Click += SendButtonOnClick;
+                    ViewModel.Url.WhenAnyValue(s => s)
+                        .Subscribe(s => _urlEditText.EditText.SetTextAndSetCursorToLast(s))
+                        .AddTo(compositeDisposable);
 
-            var urlEditText = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
-            urlEditText.EditText.SetTextAndSetCursorToLast(item.Rss);
-            urlEditText.EditText.EditorAction += (sender, args) =>
-            {
-                if (args.ActionId == ImeAction.Done) sendButton.CallOnClick();
-            };
+                    _urlEditText.EditText.GetEditorAction().Subscribe(action =>
+                    {
+                        if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
+                    });
 
-            Activity.ShowKeyboard(urlEditText.EditText);
-
+                    this.BindCommand(ViewModel, model => model.UpdateCommand, activity => activity._sendButton)
+                        .AddTo(compositeDisposable);
+                    
+                    ViewModel.LoadCommand.ExecuteNow().AddTo(compositeDisposable);
+                }
+            );
+            
             return view;
-        }
-
-        private async void SendButtonOnClick(object sender, EventArgs eventArgs)
-        {
-            var urlView = View.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
-
-            var url = urlView.EditText.Text;
-
-            await _rssRepository.Update(_itemId, url);
-
-            _navigator.GoBack();
         }
     }
 }

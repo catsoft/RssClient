@@ -36,12 +36,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\CrossServicesModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\DatabaseModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\RepositoryModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ServicesModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container\Modules\ViewModelModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\RealmDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\IHaveId.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ReactiveExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelProvider.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\DataWay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IRssService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RssService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationSpeedExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationTypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\StringTrimExtension.cs" />
@@ -75,7 +79,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesOrderFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreate\RssCreateViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameterses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameterses.cs" />
@@ -91,21 +95,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsThemeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsAnimationViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Services\About" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\Close\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\Contacts\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\FeedlySearch\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssAllMessagesFilter\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssAllMessages\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssCreate\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssEdit\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssFavoriteMessages\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssItemDetail\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssListEdit\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssList\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\RssMessage\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\Settings\" />
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -71,6 +72,7 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
+    <Compile Include="NativeExtension\EventsExtension.cs" />
     <Compile Include="NativeExtension\RateExtension.cs" />
     <Compile Include="NativeExtension\ViewExtension.cs" />
     <Compile Include="Screens\About\AboutFragment.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Screens\Base\InjectActivity.cs" />
     <Compile Include="Screens\Base\IShowAndLoadImage.cs" />
     <Compile Include="Screens\Base\KeyboardActivityExtension.cs" />
+    <Compile Include="Screens\Base\LifeCycleFragment.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\ISwipeButtonItemTouchHelperViewHolder.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonListAdapter.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonTouchHelperCallback.cs" />

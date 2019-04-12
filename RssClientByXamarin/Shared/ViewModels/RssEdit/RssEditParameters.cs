@@ -2,11 +2,11 @@ using Shared.Infrastructure.ViewModels;
 
 namespace Shared.ViewModels.RssEdit
 {
-    public class RssEditParameterses : ViewModelParameters
+    public class RssEditParameters : ViewModelParameters
     {
         public string RssId { get; }
 
-        public RssEditParameterses(string rssId)
+        public RssEditParameters(string rssId)
         {
             RssId = rssId;
         }

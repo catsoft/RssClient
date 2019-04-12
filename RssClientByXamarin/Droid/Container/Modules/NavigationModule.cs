@@ -49,7 +49,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssListWay>().As<IWay<RssListViewModel>>();
             builder.RegisterType<RssListEditWay>().As<IWay<RssListEditViewModel>>();
             builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel>>();
-            builder.RegisterType<RssEditWay>().As<IWayWithParameters<RssEditViewModel, RssEditParameterses>>();
+            builder.RegisterType<RssEditWay>().As<IWayWithParameters<RssEditViewModel, RssEditParameters>>();
             builder.RegisterType<RssMessageWay>().As<IWayWithParameters<RssMessageViewModel, RssMessageParameterses>>();
 
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();

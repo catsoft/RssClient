@@ -1,6 +1,8 @@
-﻿namespace Shared.Infrastructure.ViewModels
+﻿using ReactiveUI;
+
+namespace Shared.Infrastructure.ViewModels
 {
-    public class ViewModel
+    public class ViewModel : ReactiveObject
     {
     }
 }

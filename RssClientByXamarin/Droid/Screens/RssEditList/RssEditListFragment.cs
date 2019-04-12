@@ -51,7 +51,7 @@ namespace Droid.Screens.RssEditList
 
             fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); };
 
-            var items = _rssRepository.GetList();
+            var items = _rssRepository.GetList().Result;
             var adapter = new RssListEditAdapter(items, Activity, _rssRepository);
             recyclerView.SetAdapter(adapter);
 

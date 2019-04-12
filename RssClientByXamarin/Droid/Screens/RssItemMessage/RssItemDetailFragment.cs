@@ -24,7 +24,7 @@ namespace Droid.Screens.RssItemMessage
     public class RssItemDetailFragment : BaseFragment<RssItemDetailViewModel>
     {
         private string _itemId;
-        private RssData Item => _rssRepository.Find(_itemId);
+        private RssData Item => _rssRepository.Find(_itemId).Result;
 
         [Inject] private IConfigurationRepository _configurationRepository;
         
@@ -90,6 +90,8 @@ namespace Droid.Screens.RssItemMessage
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(list);
 
+            // TODO аааа асинхрощина
+            
             _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
 
             return view;
@@ -134,9 +136,9 @@ namespace Droid.Screens.RssItemMessage
         private void EditItem()
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var parameter = new RssEditParameterses(_itemId);
+            var parameter = new RssEditParameters(_itemId);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameterses>>(typedParameter);
+            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter);
             navigator.Go(editWay);
         }
 

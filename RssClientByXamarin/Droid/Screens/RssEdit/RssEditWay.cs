@@ -5,12 +5,12 @@ using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.RssEdit
 {
-    public class RssEditWay : IWayWithParameters<RssEditViewModel, RssEditParameterses>
+    public class RssEditWay : IWayWithParameters<RssEditViewModel, RssEditParameters>
     {
         private readonly FragmentActivity _fragmentActivity;
-        private readonly RssEditParameterses _parameters;
+        private readonly RssEditParameters _parameters;
 
-        public RssEditWay(FragmentActivity fragmentActivity, RssEditParameterses parameters)
+        public RssEditWay(FragmentActivity fragmentActivity, RssEditParameters parameters)
         {
             _fragmentActivity = fragmentActivity;
             _parameters = parameters;

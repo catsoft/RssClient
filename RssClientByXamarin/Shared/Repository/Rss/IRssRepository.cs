@@ -1,27 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel.Syndication;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Shared.Repository.Rss
 {
     public interface IRssRepository
     {
-        Task StartUpdateAllByInternet(string url, string id);
+        Task StartUpdateAllByInternet(string url, string id, CancellationToken token = default);
         
-        Task InsertByUrl(string url);
+        Task InsertByUrl(string url, CancellationToken token = default);
         
-        Task Update(string id, string rss);
+        Task Update(string id, string rss, CancellationToken token = default);
         
-        RssData Find(string id);
+        Task<RssData> Find(string id, CancellationToken token = default);
         
-        Task Remove(string id);
+        Task Remove(string id, CancellationToken token = default);
         
-        IEnumerable<RssData> GetList();
+        Task<IEnumerable<RssData>> GetList(CancellationToken token = default);
         
-        Task Update(string rssId, SyndicationFeed feed);
+        Task Update(string rssId, SyndicationFeed feed, CancellationToken token = default);
         
-        void UpdatePosition(string id, int position);
+        Task UpdatePosition(string id, int position, CancellationToken token = default);
         
-        void ReadAllMessages(string id);
+        Task ReadAllMessages(string id, CancellationToken token = default);
     }
 }

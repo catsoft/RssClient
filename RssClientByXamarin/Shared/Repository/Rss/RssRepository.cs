@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using System.Threading;
 using System.Threading.Tasks;
 using Shared.Analitics.Rss;
 using Shared.Api;
@@ -31,9 +32,9 @@ namespace Shared.Repository.Rss
             Update();
         }
 
-        public async void Update()
+        public Task Update(CancellationToken token = default)
         {
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 using (var realm = RealmDatabase.OpenDatabase)
                 {
@@ -50,16 +51,16 @@ namespace Shared.Repository.Rss
                         }
                     }
                 }
-            });
+            }, token);
         }
 
-        public async Task StartUpdateAllByInternet(string url, string id)
+        public async Task StartUpdateAllByInternet(string url, string id, CancellationToken token = default)
         {
             var request = await _client.Update(url);
-            await Update(id, request);
+            await Update(id, request, token);
         }
 
-        public Task InsertByUrl(string url)
+        public Task InsertByUrl(string url, CancellationToken token = default)
         {
             return Task.Run(async () =>
             {
@@ -74,11 +75,11 @@ namespace Shared.Repository.Rss
 
                 var itemId = await RealmDatabase.InsertInBackground(newItem);
 
-                await StartUpdateAllByInternet(url, itemId);
-            });
+                await StartUpdateAllByInternet(url, itemId, token);
+            }, token);
         }
 
-        public Task Update(string id, string rss)
+        public Task Update(string id, string rss, CancellationToken token = default)
         {
             return Task.Run(async () =>
             {
@@ -93,16 +94,21 @@ namespace Shared.Repository.Rss
                     model.UrlPreviewImage = null;
                 });
 
-                await StartUpdateAllByInternet(rss, id);
-            });
-        }
+                await StartUpdateAllByInternet(rss, id, token);
+            }, token);
+        } 
 
-        public RssData Find(string id)
+        //TODO async to do
+        public async Task<RssData> Find(string id, CancellationToken token = default)
         {
-            return _mapper.Transform(_database.MainThreadRealm.Find<RssModel>(id));
+            var rssData = _mapper.Transform(_database.MainThreadRealm.Find<RssModel>(id));
+
+            await Task.Delay(1,token);
+
+            return rssData;
         }
 
-        public Task Remove(string id)
+        public Task Remove(string id, CancellationToken token = default)
         {
             return RealmDatabase.DoInBackground(realm =>
             {
@@ -119,12 +125,16 @@ namespace Shared.Repository.Rss
             });
         }
 
-        public IEnumerable<RssData> GetList()
+        //TODO async to do
+        public Task<IEnumerable<RssData>> GetList(CancellationToken token = default)
         {
-            return _database.MainThreadRealm.All<RssModel>().OrderBy(w => w.Position).ThenByDescending(w => w.CreationTime).ToList().Select(_mapper.Transform);
+            var items = _database.MainThreadRealm.All<RssModel>().OrderBy(w => w.Position)
+                .ThenByDescending(w => w.CreationTime).ToList().Select(_mapper.Transform);
+            
+            return Task.FromResult(items);
         }
 
-        public Task Update(string rssId, SyndicationFeed feed)
+        public Task Update(string rssId, SyndicationFeed feed, CancellationToken token = default)
         {
             return Task.Run(() =>
             {
@@ -177,19 +187,21 @@ namespace Shared.Repository.Rss
                         }
                     }
                 });
-            });
+            }, token);
         }
 
-        public void UpdatePosition(string id, int position)
+        public Task UpdatePosition(string id, int position, CancellationToken token = default)
         {
             RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
             {
                 model.Position = position;
                 realm.Add(model, true);
             });
+            
+            return Task.CompletedTask;
         }
 
-        public void ReadAllMessages(string id)
+        public Task ReadAllMessages(string id, CancellationToken token = default)
         {
             RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
             {
@@ -198,6 +210,8 @@ namespace Shared.Repository.Rss
                     _rssMessagesRepository.MarkAsReadAsync(holderItemRssMessageModel.Id);
                 }
             });
+            
+            return Task.CompletedTask;
         }
     }
 }

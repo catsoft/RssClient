@@ -101,9 +101,9 @@ namespace Droid.Screens.RssList
         private void EditItem(RssData holderItem)
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var parameter = new RssEditParameterses(holderItem.Id);
+            var parameter = new RssEditParameters(holderItem.Id);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameterses>>(typedParameter);
+            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter);
             navigator.Go(editWay);
         }
 
