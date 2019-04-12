@@ -23,12 +23,10 @@ namespace Droid.Screens.RssCreate
 
         public RssCreateFragment()
         {
-
         }
 
         protected override void RestoreState(Bundle saved)
         {
-
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -55,7 +53,7 @@ namespace Droid.Screens.RssCreate
                 });
                 
                 this.BindCommand(ViewModel, model => model.CreateCommand,
-                    fragment => fragment._sendButton.Events()).AddTo(disposable);
+                    fragment => fragment._sendButton).AddTo(disposable);
             });
 
             return view;

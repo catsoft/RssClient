@@ -28,7 +28,7 @@ namespace Shared.Repository.Rss
             _log = log;
             _rssMessagesRepository = rssMessagesRepository;
             _mapper = mapper;
-
+            
             Update();
         }
 

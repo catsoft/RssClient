@@ -71,6 +71,7 @@
     <Compile Include="Container\Modules\NavigationModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
+    <Compile Include="EmbeddedResourse\Strings.Designer.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
     <Compile Include="NativeExtension\EventsExtension.cs" />
     <Compile Include="NativeExtension\RateExtension.cs" />
@@ -548,6 +549,9 @@
     <AndroidResource Include="Resources\drawable\baseline_favorite_border_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_stars_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_search_24.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResourse\Strings.resx" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

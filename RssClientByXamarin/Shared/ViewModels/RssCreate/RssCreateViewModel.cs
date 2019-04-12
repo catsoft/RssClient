@@ -1,5 +1,6 @@
 using System;
 using System.Reactive;
+using Droid.EmbeddedResourse;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Infrastructure.Navigation;
@@ -22,6 +23,8 @@ namespace Shared.ViewModels.RssCreate
         {
             _service = service;
             _navigator = navigator;
+
+            Url = Strings.CreateRssUrlDefault;
 
             CreateCommand = ReactiveCommand.CreateFromTask(() => _service.Create(Url));
             CreateCommand.Subscribe(_ => _navigator.GoBack());
