@@ -1,22 +1,12 @@
 ﻿using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
-using Shared.Repository.Rss;
 
 namespace Shared.ViewModels.RssItemDetail
 {
-    public class RssItemDetailViewModel : ViewModel
+    public class RssItemDetailViewModel : ViewModelWithParameter<RssItemDetailParameterses>
     {
-        public abstract class Way : DataWay<RssItemDetailViewModel, Way.WayData>
+        public RssItemDetailViewModel(RssItemDetailParameterses parameterse) : base(parameterse)
         {
-            public class WayData
-            {
-                public RssData RssModel { get; }
-
-                public WayData(RssData rssModel)
-                {
-                    RssModel = rssModel;
-                }
-            }
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Droid.Screens.RssEditList
 
             var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssEditList_addRss);
 
-            fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<RssCreateViewModel.Way>()); };
+            fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); };
 
             var items = _rssRepository.GetList();
             var adapter = new RssListEditAdapter(items, Activity, _rssRepository);

@@ -1,9 +1,10 @@
 using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter
 {
-    public class RssAllMessagesFilterWay : RssAllMessagesFilterViewModel.Way
+    public class RssAllMessagesFilterWay : IWay<RssAllMessagesFilterViewModel>
     {
         private readonly FragmentActivity _activity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.RssAllMessagesFilter
             _activity = activity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _activity.AddFragment(new RssAllMessagesFilterFragment(), CacheState.Old);
         }

@@ -6,8 +6,8 @@ using Droid.Screens.Contacts;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.Main;
 using Droid.Screens.Navigation;
+using Droid.Screens.RssAllMessages;
 using Droid.Screens.RssAllMessagesFilter;
-using Droid.Screens.RssAllMessagesList;
 using Droid.Screens.RssCreate;
 using Droid.Screens.RssEdit;
 using Droid.Screens.RssEditList;
@@ -16,6 +16,7 @@ using Droid.Screens.RssItemMessage;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
 using Droid.Screens.Settings;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.About;
 using Shared.ViewModels.Close;
 using Shared.ViewModels.Contacts;
@@ -39,23 +40,23 @@ namespace Droid.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<CloseWay>().As<CloseViewModel.Way>();
+            builder.RegisterType<CloseWay>().As<IWay<CloseViewModel>>();
 
-            builder.RegisterType<RssItemDetailWay>().As<RssItemDetailViewModel.Way>();
-            builder.RegisterType<RssAllMessagesListWay>().As<RssAllMessagesViewModel.Way>();
-            builder.RegisterType<RssFavoriteMessagesListWay>().As<RssFavoriteMessagesViewModel.Way>();
-            builder.RegisterType<RssAllMessagesFilterWay>().As<RssAllMessagesFilterViewModel.Way>();
-            builder.RegisterType<RssListWay>().As<RssListViewModel.Way>();
-            builder.RegisterType<RssListEditWay>().As<RssListEditViewModel.Way>();
-            builder.RegisterType<RssCreateWay>().As<RssCreateViewModel.Way>();
-            builder.RegisterType<RssEditWay>().As<RssEditViewModel.Way>();
-            builder.RegisterType<RssMessageWay>().As<RssMessageViewModel.Way>();
+            builder.RegisterType<RssItemDetailWay>().As<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameterses>>();
+            builder.RegisterType<RssAllMessagesWay>().As<IWay<RssAllMessagesViewModel>>();
+            builder.RegisterType<RssFavoriteMessagesListWay>().As<IWay<RssFavoriteMessagesViewModel>>();
+            builder.RegisterType<RssAllMessagesFilterWay>().As<IWay<RssAllMessagesFilterViewModel>>();
+            builder.RegisterType<RssListWay>().As<IWay<RssListViewModel>>();
+            builder.RegisterType<RssListEditWay>().As<IWay<RssListEditViewModel>>();
+            builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel>>();
+            builder.RegisterType<RssEditWay>().As<IWayWithParameters<RssEditViewModel, RssEditParameterses>>();
+            builder.RegisterType<RssMessageWay>().As<IWayWithParameters<RssMessageViewModel, RssMessageParameterses>>();
 
-            builder.RegisterType<AboutWay>().As<AboutViewModel.Way>();
-            builder.RegisterType<SettingsWay>().As<SettingsViewModel.Way>();
-            builder.RegisterType<ContactsWay>().As<ContactsViewModel.Way>();
+            builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
+            builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();
+            builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel>>();
 
-            builder.RegisterType<FeedlySearchWay>().As<FeedlySearchViewModel.Way>();
+            builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
             
             builder.Register((c) => MainActivity.Instance).As<Activity>();
             builder.Register((c) => MainActivity.Instance).As<FragmentActivity>();

@@ -6,7 +6,7 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssAllMessagesList;
+using Droid.Screens.RssAllMessages;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;

@@ -3,7 +3,9 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
+using Autofac.Core;
 using Droid.Screens.Base.Adapters;
+using Mono.CodeGeneration;
 using Shared;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;
@@ -77,8 +79,9 @@ namespace Droid.Screens.RssItemMessage
             UpdateHimself(holder);
             
             var navigator = App.Container.Resolve<INavigator>();
-            var way = App.Container.Resolve<RssMessageViewModel.Way>();
-            way.Data = new RssMessageViewModel.Way.WayData(holder.Item);
+            var parameter = new RssMessageParameterses(holder.Item);
+            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
+            var way = App.Container.Resolve<IWayWithParameters<RssMessageViewModel, RssMessageParameterses>>(typedParameter);
             navigator.Go(way);
         }
     }

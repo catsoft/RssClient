@@ -5,12 +5,6 @@ namespace Shared.ViewModels.RssAllMessages
 {
     public class RssAllMessagesViewModel : ViewModel
     {
-        public abstract class Way : DataWay<RssAllMessagesViewModel, Way.WayData>
-        {
-            public class WayData
-            {
-            
-            }
-        }
+
     }
 }

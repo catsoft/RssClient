@@ -1,9 +1,10 @@
 using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {
-    public class FeedlySearchWay : FeedlySearchViewModel.Way
+    public class FeedlySearchWay : IWay<FeedlySearchViewModel>
     {
         private readonly FragmentActivity _activity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.FeedlySearch
             _activity = activity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _activity.AddFragment(new FeedlySearchFragment(), CacheState.Old);
         }

@@ -1,9 +1,10 @@
 using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssList;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListWay : RssListViewModel.Way
+    public class RssListWay : IWay<RssListViewModel>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.RssList
             _fragmentActivity = fragmentActivity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _fragmentActivity.AddFragment(new RssListFragment(), CacheState.Old);
         }

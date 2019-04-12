@@ -80,11 +80,11 @@ namespace Droid.Screens.RssList
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_change:
-                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
                     break;
                 
                 case Resource.Id.menuItem_rssList_editMode:
-                    _navigator.Go(App.Container.Resolve<RssListEditViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListEditViewModel>>());
                     break;
             }
 
@@ -93,7 +93,7 @@ namespace Droid.Screens.RssList
 
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            var createWay = App.Container.Resolve<RssCreateViewModel.Way>();
+            var createWay = App.Container.Resolve<IWay<RssCreateViewModel>>();
             _navigator.Go(createWay);
         }
     }

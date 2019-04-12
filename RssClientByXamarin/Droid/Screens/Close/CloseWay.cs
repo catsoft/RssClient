@@ -1,9 +1,10 @@
 ﻿using Android.App;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Close;
 
 namespace Droid.Screens.Close
 {
-    public class CloseWay : CloseViewModel.Way
+    public class CloseWay : IWay<CloseViewModel>
     {
         private readonly Activity _activity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.Close
             _activity = activity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _activity.OnBackPressed();
         }

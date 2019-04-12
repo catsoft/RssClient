@@ -1,9 +1,10 @@
 ﻿using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {
-    public class SettingsWay : SettingsViewModel.Way
+    public class SettingsWay : IWay<SettingsViewModel>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.Settings
             _fragmentActivity = fragmentActivity;
         }
 
-        public override void Go()
+        public void Go()
         {
             var fragment = new SettingsFragment();
 

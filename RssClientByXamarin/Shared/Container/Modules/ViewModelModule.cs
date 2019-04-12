@@ -26,9 +26,7 @@ namespace Shared.Container.Modules
             base.Load(builder);
 
             builder.RegisterType<ViewModelProvider>().AsSelf().SingleInstance();
-//TODO нужно еще подфрагментики сделать
-            builder.RegisterType<ViewModel>().AsSelf().InstancePerRequest();
-            // TODO они сейчас возможно синглтоны
+            
             builder.RegisterType<AboutViewModel>().AsSelf();
             builder.RegisterType<CloseViewModel>().AsSelf();
             builder.RegisterType<ContactsViewModel>().AsSelf();

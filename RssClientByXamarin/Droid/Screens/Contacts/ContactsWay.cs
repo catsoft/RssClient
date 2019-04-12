@@ -1,9 +1,10 @@
 ﻿using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Contacts;
 
 namespace Droid.Screens.Contacts
 {
-    public class ContactsWay : ContactsViewModel.Way
+    public class ContactsWay : IWay<ContactsViewModel>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.Contacts
             _fragmentActivity = fragmentActivity;
         }
 
-        public override void Go()
+        public void Go()
         {
             var fragment = new ContactsFragment();
 

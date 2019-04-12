@@ -51,9 +51,9 @@ namespace Droid.Screens.Main
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
                 if (appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>());
                 else if (appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
 
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
@@ -67,25 +67,25 @@ namespace Droid.Screens.Main
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
                 if (appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>());
                 else if (appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<RssAllMessagesViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_feedlySearch)
             {
-                _navigator.Go(App.Container.Resolve<FeedlySearchViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<IWay<FeedlySearchViewModel>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_favorite)
             {
-                _navigator.Go(App.Container.Resolve<RssFavoriteMessagesViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<IWay<RssFavoriteMessagesViewModel>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
             {
-                _navigator.Go(App.Container.Resolve<SettingsViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
-                _navigator.Go(App.Container.Resolve<ContactsViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel>>());
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_rate)
             {
@@ -93,7 +93,7 @@ namespace Droid.Screens.Main
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {
-                _navigator.Go(App.Container.Resolve<AboutViewModel.Way>());
+                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel>>());
             }
 
             menuItem.SetChecked(true);

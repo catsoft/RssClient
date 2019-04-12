@@ -3,19 +3,10 @@ using Shared.Infrastructure.ViewModels;
 
 namespace Shared.ViewModels.RssEdit
 {
-    public class RssEditViewModel : ViewModel
+    public class RssEditViewModel : ViewModelWithParameter<RssEditParameterses>
     {
-        public abstract class Way : DataWay<RssEditViewModel, Way.WayData>
+        public RssEditViewModel(RssEditParameterses parameterse) : base(parameterse)
         {
-            public class WayData
-            {
-                public string RssId { get; }
-
-                public WayData(string rssId)
-                {
-                    RssId = rssId;
-                }
-            }
         }
     }
 }

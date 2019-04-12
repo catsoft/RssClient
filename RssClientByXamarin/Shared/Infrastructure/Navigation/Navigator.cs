@@ -12,7 +12,7 @@ namespace Shared.Infrastructure.Navigation
 
         public void GoBack()
         {
-            var goBackWay = App.Container.Resolve<CloseViewModel.Way>();
+            var goBackWay = App.Container.Resolve<IWay<CloseViewModel>>();
             goBackWay.Go();
         }
     }

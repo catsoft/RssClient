@@ -9,8 +9,14 @@ namespace Shared.Infrastructure.ViewModels
             
         }
 
-        public TViewModel Resolve<TViewModel>()
+        public TViewModel Resolve<TViewModel>(ViewModelParameters parameters)
         {
+            if (parameters != null)
+            {
+                var typedParameter = new TypedParameter(parameters.GetType(), parameters);
+                return App.Container.Resolve<TViewModel>(typedParameter);
+            }
+            
             return App.Container.Resolve<TViewModel>();
         }
     }

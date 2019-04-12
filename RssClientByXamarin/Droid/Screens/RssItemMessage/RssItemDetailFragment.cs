@@ -134,8 +134,9 @@ namespace Droid.Screens.RssItemMessage
         private void EditItem()
         {
             var navigator = App.Container.Resolve<INavigator>();
-            var editWay = App.Container.Resolve<RssEditViewModel.Way>();
-            editWay.Data = new RssEditViewModel.Way.WayData(_itemId);
+            var parameter = new RssEditParameterses(_itemId);
+            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
+            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameterses>>(typedParameter);
             navigator.Go(editWay);
         }
 

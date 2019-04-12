@@ -43,7 +43,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelWithParameter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\ConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\IConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\IMapper.cs" />
@@ -73,11 +75,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesOrderFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreate\RssCreateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameterses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameterses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageParameterses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsLoadImagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsReadMessagesViewModel.cs" />

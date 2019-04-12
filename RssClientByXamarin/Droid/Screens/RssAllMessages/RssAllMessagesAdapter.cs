@@ -7,7 +7,7 @@ using Droid.Screens.RssItemMessage;
 using Shared.Configuration.Settings;
 using Shared.Repository.RssMessage;
 
-namespace Droid.Screens.RssAllMessagesList
+namespace Droid.Screens.RssAllMessages
 {
     public class RssAllMessagesListAdapter : BaseRssMessageAdapter<RssAllMessagesViewHolder>
     {

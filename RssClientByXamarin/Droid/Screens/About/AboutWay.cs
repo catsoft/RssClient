@@ -1,9 +1,10 @@
 ﻿using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.About;
 
 namespace Droid.Screens.About
 {
-    public class AboutWay : AboutViewModel.Way
+    public class AboutWay : IWay<AboutViewModel>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.About
             _fragmentActivity = fragmentActivity;
         }
 
-        public override void Go()
+        public void Go()
         {
             var fragment = new AboutFragment();
 

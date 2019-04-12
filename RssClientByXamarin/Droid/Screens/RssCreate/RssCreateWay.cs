@@ -1,9 +1,10 @@
 using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssCreate;
 
 namespace Droid.Screens.RssCreate
 {
-    public class RssCreateWay : RssCreateViewModel.Way
+    public class RssCreateWay : IWay<RssCreateViewModel>
     {
         private readonly FragmentActivity _fragmentActivity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.RssCreate
             _fragmentActivity = fragmentActivity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _fragmentActivity.AddFragment(new RssCreateFragment());
         }

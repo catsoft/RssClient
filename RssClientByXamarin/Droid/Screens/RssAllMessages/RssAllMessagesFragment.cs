@@ -18,9 +18,9 @@ using Shared.ViewModels.RssAllMessagesFilter;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
 
-namespace Droid.Screens.RssAllMessagesList
+namespace Droid.Screens.RssAllMessages
 {
-    public class RssAllMessagesListFragment : BaseFragment<RssAllMessagesViewModel>
+    public class RssAllMessagesFragment : BaseFragment<RssAllMessagesViewModel>
     {
         [Inject] private INavigator _navigator;
 
@@ -33,7 +33,7 @@ namespace Droid.Screens.RssAllMessagesList
         protected override int LayoutId => Resource.Layout.fragment_all_messages_list;
         public override bool IsRoot => true;
 
-        public RssAllMessagesListFragment()
+        public RssAllMessagesFragment()
         {
 
         }
@@ -81,10 +81,10 @@ namespace Droid.Screens.RssAllMessagesList
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssAllMessageList_change:
-                    _navigator.Go(App.Container.Resolve<RssListViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>());
                     break;
                 case Resource.Id.menuItem_rssAllMessageList_filter:
-                    _navigator.Go(App.Container.Resolve<RssAllMessagesFilterViewModel.Way>());
+                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesFilterViewModel>>());
                     break;
             }
 
@@ -93,7 +93,7 @@ namespace Droid.Screens.RssAllMessagesList
 
         private void OnFabClick(object sender, EventArgs e)
         {
-            var createWay = App.Container.Resolve<RssCreateViewModel.Way>();
+            var createWay = App.Container.Resolve<IWay<RssCreateViewModel>>();
             _navigator.Go(createWay);
         }
     }

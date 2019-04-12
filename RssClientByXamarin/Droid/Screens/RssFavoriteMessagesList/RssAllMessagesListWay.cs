@@ -1,9 +1,10 @@
 using Droid.Screens.Navigation;
+using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssFavoriteMessages;
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {
-    public class RssFavoriteMessagesListWay : RssFavoriteMessagesViewModel.Way
+    public class RssFavoriteMessagesListWay : IWay<RssFavoriteMessagesViewModel>
     {
         private readonly FragmentActivity _activity;
 
@@ -12,7 +13,7 @@ namespace Droid.Screens.RssFavoriteMessagesList
             _activity = activity;
         }
 
-        public override void Go()
+        public void Go()
         {
             _activity.AddFragment(new RssFavoriteMessagesListFragment(), CacheState.Old);
         }

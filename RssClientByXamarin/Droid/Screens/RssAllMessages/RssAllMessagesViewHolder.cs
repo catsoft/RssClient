@@ -8,7 +8,7 @@ using FFImageLoading.Views;
 using Shared.Infrastructure.Locale;
 using Shared.Repository.RssMessage;
 
-namespace Droid.Screens.RssAllMessagesList
+namespace Droid.Screens.RssAllMessages
 {
     public class RssAllMessagesViewHolder : BaseRssMessageViewHolder, IShowAndLoadImage
     {
