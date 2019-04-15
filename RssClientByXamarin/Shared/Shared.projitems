@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ReactiveExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Mappers\IMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelProvider.cs" />
@@ -54,13 +55,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\IFeedlyRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\IMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\IRssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\IRssRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssDomainModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\RssRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Locale\ILocale.cs" />
@@ -69,10 +69,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\IWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\Navigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\DataWay.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\FeedlyService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IFeedlyService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IRssService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\RssService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Feedly\FeedlyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Feedly\IFeedlyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\IRssService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\RssService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\RssServiceModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationSpeedExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AnimationTypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\StringTrimExtension.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameterses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />

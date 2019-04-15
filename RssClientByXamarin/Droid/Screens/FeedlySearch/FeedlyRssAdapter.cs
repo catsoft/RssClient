@@ -31,7 +31,7 @@ namespace Droid.Screens.FeedlySearch
             viewHolder.AddImageView.Click += (sender, args) =>
             {
                 var rssRepository = App.Container.Resolve<IRssRepository>();
-                rssRepository.InsertByUrl(viewHolder.Item.FeedId);
+                rssRepository.AddAsync(viewHolder.Item.FeedId);
                 Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.Item.Title);
             };
             

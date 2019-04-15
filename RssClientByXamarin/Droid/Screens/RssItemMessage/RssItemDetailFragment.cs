@@ -15,6 +15,7 @@ using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
+using Shared.Services.Rss;
 using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
@@ -24,13 +25,15 @@ namespace Droid.Screens.RssItemMessage
     public class RssItemDetailFragment : BaseFragment<RssItemDetailViewModel>
     {
         private string _itemId;
-        private RssData Item => _rssRepository.Find(_itemId).Result;
+        private RssDomainModel Item => _rssRepository.GetAsync(_itemId).Result;
 
         [Inject] private IConfigurationRepository _configurationRepository;
         
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
         [Inject] private IRssRepository _rssRepository;
+        
+        [Inject] private IRssService _rssService;
 
         [Inject] private INavigator _navigator;
 
@@ -77,7 +80,7 @@ namespace Droid.Screens.RssItemMessage
             var refreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
             refreshLayout.Refresh += async (sender, args) =>
             {
-                await _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
+                await _rssService.LoadAndUpdateAsync(item.Rss);
                 refreshLayout.Refreshing = false;
             };
 
@@ -89,10 +92,6 @@ namespace Droid.Screens.RssItemMessage
             var callback = new SwipeButtonTouchHelperCallback();
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(list);
-
-            // TODO аааа асинхрощина
-            
-            _rssRepository.StartUpdateAllByInternet(item.Rss, item.Id);
 
             return view;
         }
@@ -125,7 +124,7 @@ namespace Droid.Screens.RssItemMessage
 
         private void ReadAllMessages()
         {
-            _rssRepository.ReadAllMessages(Item.Id);
+            _rssService.ReadAllMessagesAsync(Item.Id);
         }
 
         private async void ShareItem()
@@ -147,7 +146,7 @@ namespace Droid.Screens.RssItemMessage
             var builder = new AlertDialog.Builder(Activity);
             builder.SetPositiveButton(GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
             {
-                _rssRepository.Remove(Item.Id);
+                _rssRepository.RemoveAsync(Item.Id);
                 _navigator.GoBack();
             });
             builder.SetNegativeButton(GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });

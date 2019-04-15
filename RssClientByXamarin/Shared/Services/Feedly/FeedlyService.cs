@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Shared.Repository.Feedly;
 
-namespace Shared.Services
+namespace Shared.Services.Feedly
 {
     public class FeedlyService : IFeedlyService
     {
@@ -15,6 +15,6 @@ namespace Shared.Services
         }
 
         public Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string query, CancellationToken token = default) =>
-            _feedlyRepository.FindByQueryAsync(query, token);
+            _feedlyRepository.SearchByQueryAsync(query, token);
     }
 }

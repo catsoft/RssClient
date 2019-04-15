@@ -6,6 +6,6 @@ namespace Shared.Api.Rss
 {
     public interface IRssApiClient
     {
-        Task<SyndicationFeed> Update(string rssUrl, CancellationToken token = default);
+        Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default);
     }
 }

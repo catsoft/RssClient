@@ -6,9 +6,9 @@ using Shared.Repository.Rss;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditViewHolder : RecyclerView.ViewHolder, IDataBind<RssData>
+    public class RssListEditViewHolder : RecyclerView.ViewHolder, IDataBind<RssDomainModel>
     {
-        public RssData Item { get; set; }
+        public RssDomainModel Item { get; set; }
         
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
@@ -24,7 +24,7 @@ namespace Droid.Screens.RssEditList
             ReorderImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_reorder);
         }
 
-        public void BindData(RssData item)
+        public void BindData(RssDomainModel item)
         {
             Item = item;
         }

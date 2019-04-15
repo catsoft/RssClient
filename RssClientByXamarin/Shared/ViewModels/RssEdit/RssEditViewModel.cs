@@ -1,11 +1,14 @@
 using System;
 using System.Reactive;
+using System.Threading;
+using System.Threading.Tasks;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repository.Rss;
 using Shared.Services;
+using Shared.Services.Rss;
 
 namespace Shared.ViewModels.RssEdit
 {
@@ -19,21 +22,28 @@ namespace Shared.ViewModels.RssEdit
             _rssService = rssService;
             _navigator = navigator;
 
-            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssData>((s, token) => _rssService.Find(parameters.RssId, token));
-            LoadCommand.ToPropertyEx(this, x => x.RssData);
+            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssServiceModel>((s, token) => _rssService.GetAsync(parameters.RssId, token));
+            LoadCommand.ToPropertyEx(this, x => x.RssServiceModel);
             
-            UpdateCommand = ReactiveCommand.CreateFromTask(token => _rssService.Update(RssData.Id, Url, token));
+            UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl);
             UpdateCommand.Subscribe(_ => _navigator.GoBack());
 
-            this.WhenAnyValue(w => w.RssData).Subscribe(w => Url = w?.Rss);
+            this.WhenAnyValue(w => w.RssServiceModel).Subscribe(w => Url = w?.Rss);
+        }
+
+        private Task UpdateRssUrl(CancellationToken token)
+        {
+            var model = RssServiceModel;
+            model.Rss = Url;
+            return _rssService.UpdateAsync(model, token);
         }
 
         [Reactive]
         public string Url { get; set; }
 
-        public extern RssData RssData { [ObservableAsProperty] get; }
+        public extern RssServiceModel RssServiceModel { [ObservableAsProperty] get; }
 
-        public ReactiveCommand<Unit, RssData> LoadCommand { get; }
+        public ReactiveCommand<Unit, RssServiceModel> LoadCommand { get; }
         
         public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
     }

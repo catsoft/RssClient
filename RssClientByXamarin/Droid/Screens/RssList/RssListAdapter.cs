@@ -12,15 +12,17 @@ using Shared.Infrastructure.Locale;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
+using Shared.Services.Rss;
 using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListAdapter : DataBindAdapter<RssData, List<RssData>, RssListViewHolder>, IItemTouchHelperAdapter
+    public class RssListAdapter : DataBindAdapter<RssServiceModel, List<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
         private readonly IRssRepository _rssRepository;
+        private readonly IRssService _rssService;
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly INavigator _navigator;
         private readonly AppConfiguration _appConfiguration;
@@ -28,20 +30,21 @@ namespace Droid.Screens.RssList
         public void OnItemDismiss(int position)
         {
             var item = Items.ElementAt(position);
-            _rssRepository.Remove(item.Id);
+            _rssRepository.RemoveAsync(item.Id);
             Items.RemoveAt(position);
             NotifyItemRemoved(position);
         }
 
-        public RssListAdapter(List<RssData> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
+        public RssListAdapter(List<RssServiceModel> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
         {
             _appConfiguration = appConfiguration;
             _rssRepository = App.Container.Resolve<IRssRepository>();
+            _rssService = App.Container.Resolve<IRssService>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
             _navigator = App.Container.Resolve<INavigator>();
         }
 
-        protected override void BindData(RssListViewHolder holder, RssData item)
+        protected override void BindData(RssListViewHolder holder, RssServiceModel item)
         {
             base.BindData(holder, item);
 
@@ -61,7 +64,7 @@ namespace Droid.Screens.RssList
             return holder;
         }
 
-        private void ItemLongClick(RssData holderItem, object sender)
+        private void ItemLongClick(RssServiceModel holderItem, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
             menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
@@ -69,7 +72,7 @@ namespace Droid.Screens.RssList
             menu.Show();
         }
 
-        private void MenuClick(RssData holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
+        private void MenuClick(RssServiceModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
         {
             switch (eventArgs.Item.ItemId)
             {
@@ -88,17 +91,17 @@ namespace Droid.Screens.RssList
             }
         }
 
-        private void ReadAll(RssData holderItem)
+        private void ReadAll(RssServiceModel holderItem)
         {
-            _rssRepository.ReadAllMessages(holderItem.Id);
+            _rssService.ReadAllMessagesAsync(holderItem.Id);
         }
 
-        private async void ShareItem(RssData holderItem)
+        private async void ShareItem(RssServiceModel holderItem)
         {
             await Share.RequestAsync(holderItem.Rss);
         }
 
-        private void EditItem(RssData holderItem)
+        private void EditItem(RssServiceModel holderItem)
         {
             var navigator = App.Container.Resolve<INavigator>();
             var parameter = new RssEditParameters(holderItem.Id);
@@ -107,22 +110,22 @@ namespace Droid.Screens.RssList
             navigator.Go(editWay);
         }
 
-        private void DeleteItem(RssData holderItem)
+        private void DeleteItem(RssServiceModel holderItem)
         {
             var builder = new AlertDialog.Builder(Activity);
             builder.SetPositiveButton(Activity.GetText(Resource.String.rssDeleteDialog_positiveTitle),
-                (sender, args) => { _rssRepository.Remove(holderItem.Id); });
+                (sender, args) => { _rssRepository.RemoveAsync(holderItem.Id); });
             builder.SetNegativeButton(Activity.GetText(Resource.String.rssDeleteDialog_negativeTitle),
                 (sender, args) => { });
             builder.SetTitle(Activity.GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();
         }
 
-        private void OpenDetailActivity(RssData holderItem)
+        private void OpenDetailActivity(RssServiceModel holderItem)
         {
-            var parameter = new RssItemDetailParameterses(holderItem);
+            var parameter = new RssItemDetailParameters(holderItem);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);            
-            var way = App.Container.Resolve<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameterses>>(typedParameter);
+            var way = App.Container.Resolve<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>(typedParameter);
             _navigator.Go(way);
         }
     }

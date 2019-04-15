@@ -1,14 +1,15 @@
 using System.Linq;
 using Shared.Database.Rss;
+using Shared.Infrastructure.Mappers;
 using Shared.Repository.Rss;
 
 namespace Shared.Repository.RssMessage
 {
     public class RssMessageMapper : IMapper<RssMessageModel, RssMessageData>
     {
-        private readonly IMapper<RssModel, RssData> _rssMapper;
+        private readonly IMapper<RssModel, RssDomainModel> _rssMapper;
         
-        public RssMessageMapper(IMapper<RssModel, RssData> rssMapper)
+        public RssMessageMapper(IMapper<RssModel, RssDomainModel> rssMapper)
         {
             _rssMapper = rssMapper;
         }

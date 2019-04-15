@@ -6,6 +6,7 @@ using ReactiveUI.Fody.Helpers;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services;
+using Shared.Services.Rss;
 
 namespace Shared.ViewModels.RssCreate
 {
@@ -21,7 +22,7 @@ namespace Shared.ViewModels.RssCreate
 
             Url = Strings.CreateRssUrlDefault;
 
-            CreateCommand = ReactiveCommand.CreateFromTask(token => _service.Create(Url, token));
+            CreateCommand = ReactiveCommand.CreateFromTask(token => _service.AddAsync(Url, token));
             CreateCommand.Subscribe(_ => _navigator.GoBack());
         }
         

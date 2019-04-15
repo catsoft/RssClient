@@ -6,6 +6,7 @@ using Droid.Repository.Configuration;
 using Shared.Configuration.Settings;
 using Shared.Database;
 using Shared.Database.Rss;
+using Shared.Infrastructure.Mappers;
 
 namespace Shared.Repository.RssMessage
 {

@@ -24,6 +24,6 @@ namespace Shared.Repository.RssMessage
         
         public bool IsFavorite { get; set; }
         
-        public RssData RssParent { get; set; }
+        public RssDomainModel RssParent { get; set; }
     }
 }

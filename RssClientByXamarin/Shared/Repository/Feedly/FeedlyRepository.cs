@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Shared.Api.Feedly;
+using Shared.Infrastructure.Mappers;
 
 namespace Shared.Repository.Feedly
 {
@@ -17,7 +18,7 @@ namespace Shared.Repository.Feedly
             _mapper = mapper;
         }
         
-        public async Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string query, CancellationToken token)
+        public async Task<IEnumerable<FeedlyRss>> SearchByQueryAsync(string query, CancellationToken token = default)
         {
             var items = await _feedlyCloudApiClient.FindByQueryAsync(query, token);
 

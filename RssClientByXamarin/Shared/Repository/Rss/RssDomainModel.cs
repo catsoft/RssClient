@@ -3,7 +3,7 @@ using Shared.Database;
 
 namespace Shared.Repository.Rss
 {
-    public class RssData : IHaveId
+    public class RssDomainModel : IHaveId
     {
         public string Id { get; set; }
         

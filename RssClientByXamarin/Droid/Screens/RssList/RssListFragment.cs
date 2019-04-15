@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
@@ -10,10 +12,13 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
+using ReactiveUI;
 using Shared;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
+using Shared.Services.Rss;
 using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
@@ -23,12 +28,8 @@ namespace Droid.Screens.RssList
 {
     public class RssListFragment : BaseFragment<RssListViewModel>
     {
-        [Inject] private IRssRepository _rssRepository;
-
-        [Inject] private INavigator _navigator;
-
-        [Inject] private IConfigurationRepository _configurationRepository;
-
+        private RssListFragmentViewHolder _viewHolder;
+        
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool IsRoot => true;
 
@@ -50,24 +51,31 @@ namespace Droid.Screens.RssList
 
             HasOptionsMenu = true;
 
-            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            _viewHolder = new RssListFragmentViewHolder(view);
+
+            OnActivation(disposable =>
+            {
+                this.BindCommand(ViewModel, model => model.OpenCreateScreenCommand,
+                    fragment => fragment._viewHolder.FloatingActionButton.Events().Click)
+                    .AddTo(disposable);
+
+                ViewModel.WhenAnyValue(w => w.RssServiceModels)
+                    .Subscribe(UpdateAdapter)
+                    .AddTo(disposable);
+            });
             
-            var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
-            fab.Click += FabOnClick;
+            return view;
+        }
 
-            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssList_list);
-            recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
-
-            var items = _rssRepository.GetList();
-            var adapter = new RssListAdapter(items.Result.ToList(), Activity, appConfiguration);
-            recyclerView.SetAdapter(adapter);
+        private void UpdateAdapter(IEnumerable<RssServiceModel> rssServiceModels)
+        {
+            var adapter = new RssListAdapter(rssServiceModels.ToList(), Activity, ViewModel.AppConfiguration);
+            _viewHolder.RecyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 
             var callback = new SwipeTouchHelperCallback(adapter);
             var touchHelper = new ItemTouchHelper(callback);
-            touchHelper.AttachToRecyclerView(recyclerView);
-            
-            return view;
+            touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -80,21 +88,15 @@ namespace Droid.Screens.RssList
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_change:
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
+                    ViewModel.OpenAllMessagesScreenCommand.ExecuteNow();
                     break;
                 
                 case Resource.Id.menuItem_rssList_editMode:
-                    _navigator.Go(App.Container.Resolve<IWay<RssListEditViewModel>>());
+                    ViewModel.OpenListEditScreenCommand.ExecuteNow();
                     break;
             }
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        private void FabOnClick(object sender, EventArgs eventArgs)
-        {
-            var createWay = App.Container.Resolve<IWay<RssCreateViewModel>>();
-            _navigator.Go(createWay);
         }
     }
 }

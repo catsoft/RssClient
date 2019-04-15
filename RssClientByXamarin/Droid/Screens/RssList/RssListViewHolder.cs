@@ -8,14 +8,15 @@ using FFImageLoading;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
 using Shared.Repository.Rss;
+using Shared.Services.Rss;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListViewHolder : RecyclerView.ViewHolder, IDataBind<RssData>, IShowAndLoadImage
+    public class RssListViewHolder : RecyclerView.ViewHolder, IDataBind<RssServiceModel>, IShowAndLoadImage
     {
         public bool IsShowAndLoadImages { get; }
         
-        public RssData Item { get; set; }
+        public RssServiceModel Item { get; set; }
         
         public TextView TitleTextView { get; }
         public TextView SubtitleTextView { get; }
@@ -36,7 +37,7 @@ namespace Droid.Screens.RssList
             IconView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
         
-        public void BindData(RssData item)
+        public void BindData(RssServiceModel item)
         {
             TitleTextView.Text = item.Name;
             Item = item;

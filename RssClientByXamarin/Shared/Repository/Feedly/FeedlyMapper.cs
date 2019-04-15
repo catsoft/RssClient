@@ -1,3 +1,5 @@
+using Shared.Infrastructure.Mappers;
+
 namespace Shared.Repository.Feedly
 {
     public class FeedlyMapper : IMapper<Api.Feedly.FeedlyRss, FeedlyRss>

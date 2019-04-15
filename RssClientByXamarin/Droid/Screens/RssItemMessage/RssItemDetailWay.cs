@@ -4,12 +4,12 @@ using Shared.ViewModels.RssItemDetail;
 
 namespace Droid.Screens.RssItemMessage
 {
-    public class RssItemDetailWay : IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameterses>
+    public class RssItemDetailWay : IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>
     {
         private readonly FragmentActivity _fragmentActivity;
-        private readonly RssItemDetailParameterses _parameters;
+        private readonly RssItemDetailParameters _parameters;
 
-        public RssItemDetailWay(FragmentActivity fragmentActivity, RssItemDetailParameterses parameters)
+        public RssItemDetailWay(FragmentActivity fragmentActivity, RssItemDetailParameters parameters)
         {
             _fragmentActivity = fragmentActivity;
             _parameters = parameters;

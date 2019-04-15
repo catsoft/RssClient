@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FeedlyRss = Shared.Repository.Feedly.FeedlyRss;
 
-namespace Shared.Services
+namespace Shared.Services.Feedly
 {
     public interface IFeedlyService
     {

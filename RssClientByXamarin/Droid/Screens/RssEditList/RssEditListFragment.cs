@@ -10,6 +10,7 @@ using Droid.Screens.Navigation;
 using Shared;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
+using Shared.Services.Rss;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssEdit;
 
@@ -22,6 +23,9 @@ namespace Droid.Screens.RssEditList
 
         [Inject]
         private IRssRepository _rssRepository;
+        
+        [Inject]
+        private IRssService _rssService;
         
         protected override int LayoutId => Resource.Layout.fragment_rss_edit_list;
         public override bool IsRoot => false;
@@ -51,8 +55,8 @@ namespace Droid.Screens.RssEditList
 
             fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); };
 
-            var items = _rssRepository.GetList().Result;
-            var adapter = new RssListEditAdapter(items, Activity, _rssRepository);
+            var items = _rssRepository.GetListAsync().Result;
+            var adapter = new RssListEditAdapter(items, Activity, _rssService);
             recyclerView.SetAdapter(adapter);
 
             var callBack = new ReorderHelperCallback(adapter);

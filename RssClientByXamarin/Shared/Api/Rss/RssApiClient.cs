@@ -17,7 +17,7 @@ namespace Shared.Api.Rss
 			_log = log;
 		}
 
-		public async Task<SyndicationFeed> Update(string rssUrl, CancellationToken token = default)
+		public async Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default)
 		{
 			try
 			{

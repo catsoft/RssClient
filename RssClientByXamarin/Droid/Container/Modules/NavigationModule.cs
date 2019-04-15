@@ -42,7 +42,7 @@ namespace Droid.Container.Modules
 
             builder.RegisterType<CloseWay>().As<IWay<CloseViewModel>>();
 
-            builder.RegisterType<RssItemDetailWay>().As<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameterses>>();
+            builder.RegisterType<RssItemDetailWay>().As<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>();
             builder.RegisterType<RssAllMessagesWay>().As<IWay<RssAllMessagesViewModel>>();
             builder.RegisterType<RssFavoriteMessagesListWay>().As<IWay<RssFavoriteMessagesViewModel>>();
             builder.RegisterType<RssAllMessagesFilterWay>().As<IWay<RssAllMessagesFilterViewModel>>();

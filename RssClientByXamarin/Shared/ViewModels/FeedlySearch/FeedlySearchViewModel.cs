@@ -9,6 +9,7 @@ using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repository.Feedly;
 using Shared.Services;
+using Shared.Services.Feedly;
 
 namespace Shared.ViewModels.FeedlySearch
 {

@@ -142,6 +142,7 @@
     <Compile Include="Screens\RssItemMessage\BaseRssMessageViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListAdapter.cs" />
     <Compile Include="Screens\RssList\RssListFragment.cs" />
+    <Compile Include="Screens\RssList\RssListFragmentViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListViewHolder.cs" />
     <Compile Include="Screens\RssList\RssListWay.cs" />
     <Compile Include="Screens\RssMessage\RssMessageFragment.cs" />
