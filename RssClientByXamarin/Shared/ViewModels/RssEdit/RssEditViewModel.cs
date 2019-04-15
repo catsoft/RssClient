@@ -13,7 +13,7 @@ namespace Shared.ViewModels.RssEdit
     {
         private readonly IRssService _rssService;
         private readonly INavigator _navigator;
-        
+
         public RssEditViewModel(IRssService rssService, RssEditParameters parameters, INavigator navigator) : base(parameters)
         {
             _rssService = rssService;
@@ -25,18 +25,15 @@ namespace Shared.ViewModels.RssEdit
             {
                 RssData = data; 
                 Url = data.Rss;
-                // TODO подумать и убрать
-                this.RaisePropertyChanged(nameof(Url));
             });
             
             UpdateCommand = ReactiveCommand.CreateFromTask(_ => _rssService.Update(RssData.Id, Url));
             UpdateCommand.Subscribe(_ => _navigator.GoBack());
         }
-        
+
         [Reactive]
         public string Url { get; set; }
-            
-        [Reactive]
+
         public RssData RssData { get; set; }
         
         public ReactiveCommand<Unit, RssData> LoadCommand { get; }

@@ -101,6 +101,7 @@ namespace Droid.Screens.Base
         public override void OnDestroy()
         {
             base.OnDestroy();
+            DisposeActivations();
             _destroyingSubject.OnNext(Activity);
         }
 
