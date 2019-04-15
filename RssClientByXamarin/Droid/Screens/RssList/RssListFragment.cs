@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -55,10 +56,11 @@ namespace Droid.Screens.RssList
 
             OnActivation(disposable =>
             {
-                this.BindCommand(ViewModel, model => model.OpenCreateScreenCommand,
-                    fragment => fragment._viewHolder.FloatingActionButton.Events().Click)
+                _viewHolder.FloatingActionButton.Events().Click
+                    .Select(w => Unit.Default)
+                    .InvokeCommand(ViewModel, (model => model.OpenCreateScreenCommand))
                     .AddTo(disposable);
-
+                
                 ViewModel.WhenAnyValue(w => w.RssServiceModels)
                     .Subscribe(UpdateAdapter)
                     .AddTo(disposable);
@@ -69,7 +71,7 @@ namespace Droid.Screens.RssList
 
         private void UpdateAdapter(IEnumerable<RssServiceModel> rssServiceModels)
         {
-            var adapter = new RssListAdapter(rssServiceModels.ToList(), Activity, ViewModel.AppConfiguration);
+            var adapter = new RssListAdapter(rssServiceModels?.ToList() ?? new List<RssServiceModel>(), Activity, ViewModel.AppConfiguration);
             _viewHolder.RecyclerView.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 

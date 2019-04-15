@@ -22,9 +22,11 @@ namespace Shared.ViewModels.RssList
         private readonly IConfigurationRepository _configurationRepository;
         private readonly IRssService _rssService;
         
-        public RssListViewModel(INavigator navigator)
+        public RssListViewModel(INavigator navigator, IConfigurationRepository configurationRepository, IRssService rssService)
         {
             _navigator = navigator;
+            _configurationRepository = configurationRepository;
+            _rssService = rssService;
 
             OpenCreateScreenCommand = ReactiveCommand.Create(OpenCreateScreen);
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(OpenAllMessagesScreen);
@@ -34,7 +36,6 @@ namespace Shared.ViewModels.RssList
             GetListCommand.ToPropertyEx(this, model => model.RssServiceModels);
             
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            
         }
 
         public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
