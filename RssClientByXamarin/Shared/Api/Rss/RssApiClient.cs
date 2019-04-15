@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.ServiceModel.Syndication;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Shared.Analytics;
 
-namespace Shared.Api
+namespace Shared.Api.Rss
 {
 	public class RssApiClient : HttpClient, IRssApiClient
 	{
@@ -16,11 +17,11 @@ namespace Shared.Api
 			_log = log;
 		}
 
-		public async Task<SyndicationFeed> Update(string rssUrl)
+		public async Task<SyndicationFeed> Update(string rssUrl, CancellationToken token = default)
 		{
 			try
 			{
-				var response = await GetAsync(rssUrl);
+				var response = await GetAsync(rssUrl, token);
 
 				var stream = response.Content.ReadAsStreamAsync();
 				var xmlReader = XmlReader.Create(stream.Result);

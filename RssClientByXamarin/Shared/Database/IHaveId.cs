@@ -1,4 +1,4 @@
-﻿namespace Shared.Database.Rss
+﻿namespace Shared.Database
 {
     public interface IHaveId    
     {

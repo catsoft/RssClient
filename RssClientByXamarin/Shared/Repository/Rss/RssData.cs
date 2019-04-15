@@ -1,5 +1,5 @@
 using System;
-using Shared.Database.Rss;
+using Shared.Database;
 
 namespace Shared.Repository.Rss
 {

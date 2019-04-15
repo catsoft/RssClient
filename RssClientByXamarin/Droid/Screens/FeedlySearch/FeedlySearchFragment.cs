@@ -1,23 +1,22 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.NativeExtension;
 using Droid.Screens.Navigation;
-using Shared.Api;
-using Shared.Configuration.Settings;
+using ReactiveUI;
+using Shared.Extensions;
+using Shared.Repository.Feedly;
 using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {
     public class FeedlySearchFragment : BaseFragment<FeedlySearchViewModel>
     {
-        [Inject]
-        private IFeedlyCloudApiClient _feedlyCloudApiClient;
-
-        [Inject] private IConfigurationRepository _configurationRepository;
+        private FeedlySearchFragmentViewHolder _viewHolder;
         
         protected override int LayoutId => Resource.Layout.fragment_feedly_search;
         public override bool IsRoot => true;
@@ -39,46 +38,39 @@ namespace Droid.Screens.FeedlySearch
 
             Title = GetText(Resource.String.feedly_title);
             
-            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_feedlySearch_list);
-            recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
-            recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
+            _viewHolder = new FeedlySearchFragmentViewHolder(view);
+            
+            OnActivation(disposable =>
+            {
+                ViewModel.WhenAnyValue(w => w.FeedlyRss)
+                    .Subscribe(UpdateFeeds)
+                    .AddTo(disposable);
+            });
             
             return view;
         }
-
+        
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_feedlySearch, menu);
 
-            var searchItem = menu?.FindItem(Resource.Id.menuItem_feedlySearch_search);
-
-            if (searchItem.ActionView is SearchView actionView)
+            if (menu?.FindItem(Resource.Id.menuItem_feedlySearch_search)?.ActionView is SearchView actionView)
             {
-                actionView.QueryTextChange += async (sender, args) =>
-                {
-                    var text = args.NewText;
-                    var configuration = _configurationRepository.GetSettings<AppConfiguration>();
-                    var recyclerView = View.FindViewById<RecyclerView>(Resource.Id.recyclerView_feedlySearch_list);
-
-                    FeedlyRssAdapter adapter;
-
-                    if (!string.IsNullOrEmpty(text))
-                    {
-                        var result = await _feedlyCloudApiClient.FindByQuery(text);
-
-                        adapter = new FeedlyRssAdapter(result.Results.ToList(), Activity, configuration);
-                    }
-                    else
-                    {
-                        adapter = new FeedlyRssAdapter(new List<FeedlyRss>(), Activity, configuration);
-                    }
-
-                    recyclerView.SetAdapter(adapter);
-                    adapter.NotifyDataSetChanged();
-                };
+                actionView.GetQueryTextChangeEvent()
+                    .Throttle(TimeSpan.FromSeconds(0.35f))
+                    .Select(w => w.NewText ?? "")
+                    .InvokeCommand(ViewModel.FindByQueryCommand)
+                    .AddTo(Disposables);
             }
 
             base.OnCreateOptionsMenu(menu, inflater);
+        }
+
+        private void UpdateFeeds(IEnumerable<FeedlyRss> feeds)
+        {
+            var adapter = new FeedlyRssAdapter(feeds?.ToList() ?? new List<FeedlyRss>(), Activity, ViewModel.AppConfiguration);
+            _viewHolder.RecyclerView.SetAdapter(adapter);
+            adapter.NotifyDataSetChanged();
         }
     }
 }

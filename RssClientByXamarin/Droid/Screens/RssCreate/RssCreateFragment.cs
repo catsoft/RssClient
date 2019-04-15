@@ -50,8 +50,8 @@ namespace Droid.Screens.RssCreate
                 _urlTextInputLayout.EditText.GetEditorAction().Subscribe(action =>
                 {
                     if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
-                });
-                
+                }).AddTo(disposable);
+
                 this.BindCommand(ViewModel, model => model.CreateCommand,
                     fragment => fragment._sendButton).AddTo(disposable);
             });

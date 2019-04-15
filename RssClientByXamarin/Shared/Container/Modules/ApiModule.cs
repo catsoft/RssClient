@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Shared.Api;
+using Shared.Api.Feedly;
+using Shared.Api.Rss;
 
 namespace Shared.Container.Modules
 {

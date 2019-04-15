@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Realms;
-using Shared.Database.Rss;
 
 namespace Shared.Database
 {

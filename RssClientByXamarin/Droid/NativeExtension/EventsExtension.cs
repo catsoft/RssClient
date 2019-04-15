@@ -1,6 +1,7 @@
 using System;
 using System.Reactive.Linq;
 using Android.Widget;
+using SearchView = Android.Support.V7.Widget.SearchView;
 
 namespace Droid.NativeExtension
 {
@@ -10,6 +11,13 @@ namespace Droid.NativeExtension
         {
             return Observable
                 .FromEventPattern<TextView.EditorActionEventArgs>(t => @this.EditorAction += t, t => @this.EditorAction -= t)
+                .Select(_ => _.EventArgs);
+        }
+        
+        public static IObservable<SearchView.QueryTextChangeEventArgs> GetQueryTextChangeEvent(this SearchView @this)
+        {
+            return Observable
+                .FromEventPattern<SearchView.QueryTextChangeEventArgs>(t => @this.QueryTextChange += t, t => @this.QueryTextChange -= t)
                 .Select(_ => _.EventArgs);
         }
     }

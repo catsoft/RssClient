@@ -6,8 +6,8 @@ using Autofac;
 using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using Shared;
-using Shared.Api;
 using Shared.Configuration.Settings;
+using Shared.Repository.Feedly;
 using Shared.Repository.Rss;
 
 namespace Droid.Screens.FeedlySearch
@@ -27,6 +27,7 @@ namespace Droid.Screens.FeedlySearch
             
             var viewHolder = new FeedlyRssViewHolder(view, _appConfiguration.LoadAndShowImages);
 
+            // TODO вынести
             viewHolder.AddImageView.Click += (sender, args) =>
             {
                 var rssRepository = App.Container.Resolve<IRssRepository>();
