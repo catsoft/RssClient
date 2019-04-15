@@ -7,6 +7,7 @@ using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Api;
+using Shared.Api.Feedly;
 using Shared.Configuration.Settings;
 using Shared.ViewModels.FeedlySearch;
 

@@ -7,6 +7,7 @@ using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using Shared;
 using Shared.Api;
+using Shared.Api.Feedly;
 using Shared.Configuration.Settings;
 using Shared.Repository.Rss;
 

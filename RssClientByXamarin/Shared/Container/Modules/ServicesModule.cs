@@ -10,6 +10,7 @@ namespace Shared.Container.Modules
             base.Load(builder);
 
             builder.RegisterType<RssService>().As<IRssService>().SingleInstance();
+            builder.RegisterType<FeedlyService>().As<IFeedlyService>().SingleInstance();
         }
     }
 }

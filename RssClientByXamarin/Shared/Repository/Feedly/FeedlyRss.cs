@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Shared.Api
+namespace Shared.Repository.Feedly
 {
     public class FeedlyRss
     {

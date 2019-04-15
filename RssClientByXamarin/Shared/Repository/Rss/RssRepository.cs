@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Shared.Analitics.Rss;
 using Shared.Api;
+using Shared.Api.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
 using Shared.Repository.RssMessage;
