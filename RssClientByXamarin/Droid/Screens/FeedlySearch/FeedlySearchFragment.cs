@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -56,7 +57,9 @@ namespace Droid.Screens.FeedlySearch
             if (menu?.FindItem(Resource.Id.menuItem_feedlySearch_search)?.ActionView is SearchView actionView)
             {
                 actionView.GetQueryTextChangeEvent()
-                    .Subscribe(o => { ViewModel.FindByQueryCommand.Execute(o.NewText); })
+                    .Throttle(TimeSpan.FromSeconds(0.35f))
+                    .Select(w => w.NewText ?? "")
+                    .InvokeCommand(ViewModel.FindByQueryCommand)
                     .AddTo(Disposables);
             }
 

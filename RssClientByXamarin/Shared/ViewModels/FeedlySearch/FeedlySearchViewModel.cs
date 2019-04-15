@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Shared.ViewModels.FeedlySearch
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
             FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRss>>((query, token) =>
-                    _feedlyService.FindByQueryAsync(query, token));
+                    _feedlyService.FindByQueryAsync(query ?? "", token));
 
             FindByQueryCommand.ToPropertyEx(this, model => model.FeedlyRss);
         }

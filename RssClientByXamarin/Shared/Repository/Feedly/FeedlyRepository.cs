@@ -21,7 +21,7 @@ namespace Shared.Repository.Feedly
         {
             var items = await _feedlyCloudApiClient.FindByQueryAsync(query, token);
 
-            return items.Results.Select(_mapper.Transform);
+            return items.Results?.Select(_mapper.Transform);
         }
     }
 }
