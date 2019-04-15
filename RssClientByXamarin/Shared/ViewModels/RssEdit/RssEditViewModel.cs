@@ -19,23 +19,20 @@ namespace Shared.ViewModels.RssEdit
             _rssService = rssService;
             _navigator = navigator;
 
-            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssData>(s => _rssService.Find(parameters.RssId));
-
-            LoadCommand.Subscribe(data =>
-            {
-                RssData = data; 
-                Url = data.Rss;
-            });
+            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssData>((s, token) => _rssService.Find(parameters.RssId, token));
+            LoadCommand.ToPropertyEx(this, x => x.RssData);
             
-            UpdateCommand = ReactiveCommand.CreateFromTask(_ => _rssService.Update(RssData.Id, Url));
+            UpdateCommand = ReactiveCommand.CreateFromTask(token => _rssService.Update(RssData.Id, Url, token));
             UpdateCommand.Subscribe(_ => _navigator.GoBack());
+
+            this.WhenAnyValue(w => w.RssData).Subscribe(w => Url = w?.Rss);
         }
 
         [Reactive]
         public string Url { get; set; }
 
-        public RssData RssData { get; set; }
-        
+        public extern RssData RssData { [ObservableAsProperty] get; }
+
         public ReactiveCommand<Unit, RssData> LoadCommand { get; }
         
         public ReactiveCommand<Unit, Unit> UpdateCommand { get; }

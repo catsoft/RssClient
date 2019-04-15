@@ -14,11 +14,6 @@ namespace Shared.ViewModels.RssCreate
         private readonly IRssService _service;
         private readonly INavigator _navigator;
 
-        [Reactive]
-        public string Url { get; set; }
-
-        public readonly ReactiveCommand<Unit, Unit> CreateCommand;
-        
         public RssCreateViewModel(IRssService service, INavigator navigator)
         {
             _service = service;
@@ -26,8 +21,13 @@ namespace Shared.ViewModels.RssCreate
 
             Url = Strings.CreateRssUrlDefault;
 
-            CreateCommand = ReactiveCommand.CreateFromTask(() => _service.Create(Url));
+            CreateCommand = ReactiveCommand.CreateFromTask(token => _service.Create(Url, token));
             CreateCommand.Subscribe(_ => _navigator.GoBack());
         }
+        
+        [Reactive]
+        public string Url { get; set; }
+
+        public readonly ReactiveCommand<Unit, Unit> CreateCommand;
     }
 }
