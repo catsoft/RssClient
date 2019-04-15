@@ -4,6 +4,8 @@ using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
+using ReactiveUI;
+using Shared.Extensions;
 using Shared.ViewModels.Contacts;
 using Xamarin.Essentials;
 
@@ -14,6 +16,8 @@ namespace Droid.Screens.Contacts
         protected override int LayoutId => Resource.Layout.fragment_contacts;
         public override bool IsRoot => true;
 
+        public ContactFragmentViewHolder ViewHolder { get; private set; }
+        
         public ContactsFragment()
         {
 
@@ -30,50 +34,39 @@ namespace Droid.Screens.Contacts
 
             Title = Activity.GetString(Resource.String.contacts_title);
 
-            var root = view.FindViewById<LinearLayout>(Resource.Id.linearLayout_contacts_root);
+            ViewHolder = new ContactFragmentViewHolder(view,
+                () => inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false));
+            
+            ViewHolder.TelegramContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.telegram_48);
+            ViewHolder.EmailContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.email_48);
+            ViewHolder.DiscordContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.discord_48);
+            ViewHolder.LinkedinContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.linkedin_48);
+            
+            ViewHolder.TelegramContactViewHolder.TitleTextView.SetText(Resource.String.contacts_telegram);
+            ViewHolder.EmailContactViewHolder.TitleTextView.SetText(Resource.String.contacts_mail);
+            ViewHolder.LinkedinContactViewHolder.TitleTextView.SetText(Resource.String.contacts_linkedIn);
+            ViewHolder.DiscordContactViewHolder.TitleTextView.SetText(Resource.String.contacts_discord);
 
-            InflateAndFill(inflater, root, Resource.Drawable.telegram_48, Resource.String.contacts_telegram,
-                () => OpenLink(Resource.String.contacts_telegramLink));
-            InflateAndFill(inflater, root, Resource.Drawable.email_48, Resource.String.contacts_mail,
-                () => OpenLink(Resource.String.contacts_mailLink));
-            InflateAndFill(inflater, root, Resource.Drawable.linkedin_48, Resource.String.contacts_linkedIn,
-                () => OpenLink(Resource.String.contacts_linkedInLink));
-            InflateAndFill(inflater, root, Resource.Drawable.discord_48, Resource.String.contacts_discord,
-                () => CopyToClipboard(Resource.String.contacts_discordLink));
+            OnActivation(disposable =>
+            {
+                this.Bind(ViewModel, model => model.GoTelegramCommand,
+                    fragment => fragment.ViewHolder.TelegramContactViewHolder.RootView)
+                    .AddTo(disposable);
+                
+                this.Bind(ViewModel, model => model.GoMailCommand,
+                        fragment => fragment.ViewHolder.EmailContactViewHolder.RootView)
+                    .AddTo(disposable);
+                
+                this.Bind(ViewModel, model => model.GoDiscordCommand,
+                        fragment => fragment.ViewHolder.DiscordContactViewHolder.RootView)
+                    .AddTo(disposable);
+                
+                this.Bind(ViewModel, model => model.GoLinkedinCommand,
+                        fragment => fragment.ViewHolder.LinkedinContactViewHolder.RootView)
+                    .AddTo(disposable);
+            });
 
             return view;
-        }
-
-        private void InflateAndFill(LayoutInflater inflater, ViewGroup container, int imageId, int titleId,
-            Action action)
-        {
-            var linkView = inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false);
-
-            linkView.Click += ((sender, args) => action?.Invoke());
-
-            var icon = linkView.FindViewById<ImageView>(Resource.Id.imageView_linkElementContacts_icon);
-            var title = linkView.FindViewById<TextView>(Resource.Id.textView_linkElementContacts_title);
-
-            icon.SetImageResource(imageId);
-            var text = Context.GetText(titleId);
-            title.Text = text;
-
-            container.AddView(linkView);
-        }
-
-        private async void CopyToClipboard(int linkId)
-        {
-            var text = Activity.GetText(linkId);
-            await Clipboard.SetTextAsync(text);
-
-            Context.ToastClipboard(text);
-        }
-
-        private async void OpenLink(int linkId)
-        {
-            var text = Activity.GetText(linkId);
-            if (await Launcher.CanOpenAsync(text))
-                await Launcher.OpenAsync(text);
         }
     }
 }
