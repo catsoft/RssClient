@@ -64,7 +64,7 @@ namespace Droid.Screens.RssEdit
                     _urlEditText.EditText.GetEditorAction().Subscribe(action =>
                     {
                         if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
-                    });
+                    }).AddTo(compositeDisposable);
 
                     this.BindCommand(ViewModel, model => model.UpdateCommand, activity => activity._sendButton)
                         .AddTo(compositeDisposable);

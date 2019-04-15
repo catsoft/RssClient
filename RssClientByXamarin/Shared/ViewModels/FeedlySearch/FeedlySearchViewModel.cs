@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Reactive;
 using System.Threading.Tasks;
 using Droid.Repository.Configuration;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repository.Feedly;
@@ -19,10 +22,17 @@ namespace Shared.ViewModels.FeedlySearch
             _configurationRepository = configurationRepository;
 
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
+            FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRss>>((query, token) =>
+                    _feedlyService.FindByQueryAsync(query, token));
+
+            FindByQueryCommand.ToPropertyEx(this, model => model.FeedlyRss);
         }
 
         public AppConfiguration AppConfiguration { get; }
 
-        public Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string text) => _feedlyService.FindByQueryAsync(text);
+        public ReactiveCommand<string, IEnumerable<FeedlyRss>> FindByQueryCommand { get; }
+        
+        public extern IEnumerable<FeedlyRss> FeedlyRss { [ObservableAsProperty] get; }
     }
 }
