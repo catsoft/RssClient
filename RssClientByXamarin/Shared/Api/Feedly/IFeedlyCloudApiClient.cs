@@ -5,6 +5,6 @@ namespace Shared.Api.Feedly
 {
     public interface IFeedlyCloudApiClient
     {
-        Task<FeedlyRssResponce> FindByQuery(string query, CancellationToken token = default);
+        Task<FeedlyRssResponce> FindByQueryAsync(string query, CancellationToken token = default);
     }
 }

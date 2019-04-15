@@ -104,6 +104,7 @@
     <Compile Include="Screens\FeedlySearch\FeedlyRssAdapter.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlyRssViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlySearchFragmentViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchWay.cs" />
     <Compile Include="Screens\Navigation\BaseFragment.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />

@@ -5,8 +5,7 @@ using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading.Views;
-using Shared.Api;
-using Shared.Api.Feedly;
+using Shared.Repository.Feedly;
 
 namespace Droid.Screens.FeedlySearch
 {

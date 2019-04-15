@@ -17,9 +17,9 @@ namespace Shared.Repository.Feedly
             _mapper = mapper;
         }
         
-        public async Task<IEnumerable<FeedlyRss>> FindByQuery(string query, CancellationToken token)
+        public async Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string query, CancellationToken token)
         {
-            var items = await _feedlyCloudApiClient.FindByQuery(query, token);
+            var items = await _feedlyCloudApiClient.FindByQueryAsync(query, token);
 
             return items.Results.Select(_mapper.Transform);
         }

@@ -14,7 +14,7 @@ namespace Shared.Services
             _feedlyRepository = feedlyRepository;
         }
 
-        public Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string query, CancellationToken token) =>
-            _feedlyRepository.FindByQuery(query, token);
+        public Task<IEnumerable<FeedlyRss>> FindByQueryAsync(string query, CancellationToken token = default) =>
+            _feedlyRepository.FindByQueryAsync(query, token);
     }
 }

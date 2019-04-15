@@ -10,7 +10,7 @@ namespace Shared.Api.Feedly
         private const string Domen = "https://cloud.feedly.com/v3/";
         private const string Search = "search/feeds";
         
-        public async Task<FeedlyRssResponce> FindByQuery(string query, CancellationToken token)
+        public async Task<FeedlyRssResponce> FindByQueryAsync(string query, CancellationToken token)
         {
             var response = await GetAsync($"{Domen}{Search}?query={query}", token);
 
