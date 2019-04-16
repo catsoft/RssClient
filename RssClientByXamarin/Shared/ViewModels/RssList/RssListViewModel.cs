@@ -51,7 +51,7 @@ namespace Shared.ViewModels.RssList
 
             GetListCommand = ReactiveCommand.CreateFromTask(token => _rssService.GetListAsync(token));
             GetListCommand.ToPropertyEx(this, model => model.RssServiceModelsSource);
-            GetListCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty);
+            SourceList.CountChanged.Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
             GetListCommand.Subscribe(w =>
             {
                 SourceList.Clear();
@@ -60,16 +60,13 @@ namespace Shared.ViewModels.RssList
             
             OpenDetailScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenDetailScreen);
             ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(w => Share.RequestAsync(w.Rss));
-            ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>((w, token) => 
-                    _rssService.ReadAllMessagesAsync(w.Id, token));
-            
+            ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllItemMessage);
             OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen);
             ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog);
             ItemRemoveCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemRemove);
             
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
         }
-
         
         public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
         
@@ -126,14 +123,19 @@ namespace Shared.ViewModels.RssList
             var way = App.Container.Resolve<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>(typedParameter);
             _navigator.Go(way);
         }
+
+        private async Task DoReadAllItemMessage(RssServiceModel model, CancellationToken token)
+        {
+            await _rssService.ReadAllMessagesAsync(model.Id, token);
+            SourceList.ReplaceAt(SourceList.Items.IndexOf(model), model);
+        }
         
         private void DoOpenEditItemScreen(RssServiceModel model)
         {
-            var navigator = App.Container.Resolve<INavigator>();
             var parameter = new RssEditParameters(model.Id);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
             var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter);
-            navigator.Go(editWay);
+            _navigator.Go(editWay);
         }
 
         private void DoShowDeleteItemDialog(RssServiceModel model)
@@ -144,8 +146,8 @@ namespace Shared.ViewModels.RssList
 
         private async Task DoItemRemove(RssServiceModel model)
         {
-            await _rssService.RemoveAsync(model.Id);
             SourceList.Remove(model);
+            await _rssService.RemoveAsync(model.Id);
         }
     }
 }
