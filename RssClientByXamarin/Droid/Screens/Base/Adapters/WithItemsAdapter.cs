@@ -27,6 +27,6 @@ namespace Droid.Screens.Base.Adapters
             Items = items;
         }
 
-        public override int ItemCount => Items.Count();
+        public override int ItemCount => Items?.Count() ?? 0;
     }
 }

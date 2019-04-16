@@ -43,7 +43,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\Rss\RssModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SettingsModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObservableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ReactiveExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Dialogs\IDialogService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Mappers\IMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\ViewModels\ViewModelParameters.cs" />

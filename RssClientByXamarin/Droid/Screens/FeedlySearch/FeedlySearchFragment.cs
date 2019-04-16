@@ -63,11 +63,11 @@ namespace Droid.Screens.FeedlySearch
                 actionView.GetQueryTextChangeEvent()
                     .Throttle(TimeSpan.FromSeconds(0.35f))
                     .Select(w => w.NewText ?? "")
+                    .Where(w => !string.IsNullOrEmpty(w))
                     .InvokeCommand(ViewModel.FindByQueryCommand)
                     .AddTo(Disposables);
 
-                ViewModel.FindByQueryCommand.IsExecuting.Subscribe(w =>
-                        _viewHolder.ProgressBar.Visibility = w.ToVisibility())
+                ViewModel.FindByQueryCommand.IsExecuting.Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
                     .AddTo(Disposables);
             }
 

@@ -1,7 +1,7 @@
 using Android.Content;
 using Android.Net;
 
-namespace Droid.Services
+namespace Droid.NativeExtension
 {
     public static class RateExtension
     {
