@@ -91,6 +91,8 @@ namespace Droid.Screens.Base
         public override void OnStop()
         {
             base.OnStop();
+            
+            DisposeActivations();
             _stoppingSubject.OnNext(Activity);
         }
 
