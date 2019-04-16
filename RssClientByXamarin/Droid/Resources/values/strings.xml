@@ -121,5 +121,6 @@
     <string name="menuFeedlySearch_search">Search</string>
 
     <string name="feedly_title">Feedly search</string>
-    
+    <string name="feedlySearch_emptyText">Just nothing</string>
+
 </resources>

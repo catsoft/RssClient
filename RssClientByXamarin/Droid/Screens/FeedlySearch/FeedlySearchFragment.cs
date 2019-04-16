@@ -45,6 +45,10 @@ namespace Droid.Screens.FeedlySearch
                 ViewModel.WhenAnyValue(w => w.FeedlyRss)
                     .Subscribe(UpdateFeeds)
                     .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
             });
             
             return view;

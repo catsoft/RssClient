@@ -11,18 +11,26 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            style="@style/RecyclerView"
             android:id="@+id/recyclerView_feedlySearch_list"
+            style="@style/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         
         <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
             android:id="@+id/progressBar_feedlySearch_progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent" 
             android:layout_height="@dimen/feedlyProgressBarHeight"
             android:indeterminate="true"
             android:visibility="gone"/>
+        
+        <TextView 
+            android:id="@+id/textView_feedlySearch_emptyText"    
+            style="@style/TextView.Large"
+            android:layout_width="match_parent" 
+            android:layout_height="match_parent" 
+            android:text="@string/feedlySearch_emptyText"
+            android:gravity="center"/>
 
     </FrameLayout>
 

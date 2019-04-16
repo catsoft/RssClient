@@ -16,10 +16,13 @@ namespace Droid.Screens.FeedlySearch
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
             ProgressBar = view.FindViewById<ProgressBar>(Resource.Id.progressBar_feedlySearch_progressBar);
+            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_feedlySearch_emptyText);
         }
 
         public RecyclerView RecyclerView { get; }
         
         public ProgressBar ProgressBar { get; }
+        
+        public TextView EmptyTextView { get; }
     }
 }
