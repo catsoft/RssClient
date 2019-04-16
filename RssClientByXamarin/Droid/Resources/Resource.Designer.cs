@@ -2631,6 +2631,9 @@ namespace Droid
 			// aapt resource value: 0x7f080002
 			public const int fastscroll_minimum_range = 2131230722;
 			
+			// aapt resource value: 0x7f0800de
+			public const int feedlyProgressBarHeight = 2131230942;
+			
 			// aapt resource value: 0x7f080056
 			public const int highlight_alpha_material_colored = 2131230806;
 			
@@ -2849,6 +2852,36 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0800dc
 			public const int notification_top_pad_large_text = 2131230940;
+			
+			// aapt resource value: 0x7f0800e1
+			public const int offset_12 = 2131230945;
+			
+			// aapt resource value: 0x7f0800e2
+			public const int offset_16 = 2131230946;
+			
+			// aapt resource value: 0x7f0800e3
+			public const int offset_20 = 2131230947;
+			
+			// aapt resource value: 0x7f0800e4
+			public const int offset_24 = 2131230948;
+			
+			// aapt resource value: 0x7f0800e5
+			public const int offset_28 = 2131230949;
+			
+			// aapt resource value: 0x7f0800e6
+			public const int offset_32 = 2131230950;
+			
+			// aapt resource value: 0x7f0800e7
+			public const int offset_36 = 2131230951;
+			
+			// aapt resource value: 0x7f0800df
+			public const int offset_4 = 2131230943;
+			
+			// aapt resource value: 0x7f0800e8
+			public const int offset_40 = 2131230952;
+			
+			// aapt resource value: 0x7f0800e0
+			public const int offset_8 = 2131230944;
 			
 			// aapt resource value: 0x7f080065
 			public const int subtitle_corner_radius = 2131230821;
@@ -3920,8 +3953,8 @@ namespace Droid
 			// aapt resource value: 0x7f090058
 			public const int pin = 2131296344;
 			
-			// aapt resource value: 0x7f0900ce
-			public const int progressBar_feedlySearch_progressBar = 2131296462;
+			// aapt resource value: 0x7f0900cf
+			public const int progressBar_feedlySearch_progressBar = 2131296463;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -3998,8 +4031,8 @@ namespace Droid
 			// aapt resource value: 0x7f0900cd
 			public const int recyclerView_favoriteMessages_list = 2131296461;
 			
-			// aapt resource value: 0x7f0900cf
-			public const int recyclerView_feedlySearch_list = 2131296463;
+			// aapt resource value: 0x7f0900ce
+			public const int recyclerView_feedlySearch_list = 2131296462;
 			
 			// aapt resource value: 0x7f0900d5
 			public const int recyclerView_rssDetail_messageList = 2131296469;

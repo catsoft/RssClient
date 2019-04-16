@@ -61,6 +61,10 @@ namespace Droid.Screens.FeedlySearch
                     .Select(w => w.NewText ?? "")
                     .InvokeCommand(ViewModel.FindByQueryCommand)
                     .AddTo(Disposables);
+
+                ViewModel.FindByQueryCommand.IsExecuting.Subscribe(w =>
+                        _viewHolder.ProgressBar.Visibility = w.ToVisibility())
+                    .AddTo(Disposables);
             }
 
             base.OnCreateOptionsMenu(menu, inflater);
