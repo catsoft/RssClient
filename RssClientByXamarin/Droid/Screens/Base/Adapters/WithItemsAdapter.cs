@@ -5,9 +5,22 @@ using Android.App;
 namespace Droid.Screens.Base.Adapters
 {
     public abstract class WithItemsAdapter<TItem, TCollection> : WithActivityAdapter
-        where TCollection : IEnumerable<TItem>
+        where TCollection : class, IEnumerable<TItem>
     {
-        public TCollection Items { get; }
+        private TCollection _items;
+
+        public TCollection Items
+        {
+            get => _items;
+            set
+            {
+                if (_items != value)
+                {
+                    _items = value;
+                    NotifyDataSetChanged();
+                }
+            }
+        }
 
         protected WithItemsAdapter(TCollection items, Activity activity) : base(activity)
         {

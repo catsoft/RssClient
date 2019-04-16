@@ -10,6 +10,7 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
+using Droid.NativeExtension;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
@@ -54,6 +55,14 @@ namespace Droid.Screens.RssList
 
             _viewHolder = new RssListFragmentViewHolder(view);
 
+            var adapter = new RssListAdapter(new List<RssServiceModel>(), Activity, ViewModel.AppConfiguration);
+            _viewHolder.RecyclerView.SetAdapter(adapter);
+            adapter.NotifyDataSetChanged();
+
+            var callback = new SwipeTouchHelperCallback(adapter);
+            var touchHelper = new ItemTouchHelper(callback);
+            touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
+            
             OnActivation(disposable =>
             {
                 _viewHolder.FloatingActionButton.Events().Click
@@ -62,22 +71,17 @@ namespace Droid.Screens.RssList
                     .AddTo(disposable);
                 
                 ViewModel.WhenAnyValue(w => w.RssServiceModels)
-                    .Subscribe(UpdateAdapter)
+                    .Subscribe(w => adapter.Items = w?.ToList())
                     .AddTo(disposable);
+
+                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
+                
+                ViewModel.GetListCommand.ExecuteNow().AddTo(disposable);
             });
             
             return view;
-        }
-
-        private void UpdateAdapter(IEnumerable<RssServiceModel> rssServiceModels)
-        {
-            var adapter = new RssListAdapter(rssServiceModels?.ToList() ?? new List<RssServiceModel>(), Activity, ViewModel.AppConfiguration);
-            _viewHolder.RecyclerView.SetAdapter(adapter);
-            adapter.NotifyDataSetChanged();
-
-            var callback = new SwipeTouchHelperCallback(adapter);
-            var touchHelper = new ItemTouchHelper(callback);
-            touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

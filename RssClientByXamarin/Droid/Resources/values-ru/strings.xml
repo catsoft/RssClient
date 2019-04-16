@@ -113,5 +113,6 @@
 
     <string name="feedly_title">Feedly поиск</string>
     <string name="feedlySearch_emptyText">Пока ничего</string>
+    <string name="rssList_emptyText">Пока ничего</string>
 
 </resources>

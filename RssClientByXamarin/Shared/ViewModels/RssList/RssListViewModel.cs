@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -34,6 +36,8 @@ namespace Shared.ViewModels.RssList
             
             GetListCommand = ReactiveCommand.CreateFromTask(token => _rssService.GetListAsync(token));
             GetListCommand.ToPropertyEx(this, model => model.RssServiceModels);
+
+            GetListCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty);
             
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
         }
@@ -47,7 +51,9 @@ namespace Shared.ViewModels.RssList
         public ReactiveCommand<Unit, IEnumerable<RssServiceModel>> GetListCommand { get; }
         
         public extern IEnumerable<RssServiceModel> RssServiceModels { [ObservableAsProperty] get; }
-        
+
+        public extern bool IsEmpty { [ObservableAsProperty] get; }
+
         public AppConfiguration AppConfiguration { get; }
 
         private void OpenCreateScreen()
