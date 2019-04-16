@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
@@ -6,6 +8,8 @@ using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
+using DynamicData;
+using DynamicData.Binding;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Locale;
@@ -19,29 +23,25 @@ using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListAdapter : DataBindAdapter<RssServiceModel, List<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
+    public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
-        private readonly IRssRepository _rssRepository;
-        private readonly IRssService _rssService;
         private readonly IRssMessagesRepository _rssMessagesRepository;
-        private readonly INavigator _navigator;
         private readonly AppConfiguration _appConfiguration;
+
+        public event EventHandler<RssServiceModel> Click;
+        public event EventHandler<RssServiceModel> LongClick;
+        public event EventHandler<RssServiceModel> ItemDismiss;
 
         public void OnItemDismiss(int position)
         {
             var item = Items.ElementAt(position);
-            _rssRepository.RemoveAsync(item.Id);
-            Items.RemoveAt(position);
-            NotifyItemRemoved(position);
+            ItemDismiss?.Invoke(this, item);
         }
 
-        public RssListAdapter(List<RssServiceModel> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
+        public RssListAdapter(Activity activity, AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
         {
             _appConfiguration = appConfiguration;
-            _rssRepository = App.Container.Resolve<IRssRepository>();
-            _rssService = App.Container.Resolve<IRssService>();
             _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
-            _navigator = App.Container.Resolve<INavigator>();
         }
 
         protected override void BindData(RssListViewHolder holder, RssServiceModel item)
@@ -58,75 +58,10 @@ namespace Droid.Screens.RssList
         {
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss, parent, false);
             var holder = new RssListViewHolder(view, _appConfiguration.LoadAndShowImages);
-            holder.ClickView.Click += (sender, args) => { OpenDetailActivity(holder.Item); };
-            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder.Item, sender); };
+            holder.ClickView.Click += (sender, args) => { Click?.Invoke(this, holder.Item); };
+            holder.ClickView.LongClick += (sender, args) => { LongClick?.Invoke(sender, holder.Item); };
 
             return holder;
-        }
-
-        private void ItemLongClick(RssServiceModel holderItem, object sender)
-        {
-            var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
-            menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
-            menu.Inflate(Resource.Menu.contextMenu_rssList);
-            menu.Show();
-        }
-
-        private void MenuClick(RssServiceModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
-        {
-            switch (eventArgs.Item.ItemId)
-            {
-                case Resource.Id.menuItem_rssList_contextEdit:
-                    EditItem(holderItem);
-                    break;
-                case Resource.Id.menuItem_rssList_contextRemove:
-                    DeleteItem(holderItem);
-                    break;
-                case Resource.Id.menuItem_rssList_contextShare:
-                    ShareItem(holderItem);
-                    break;
-                case Resource.Id.menuItem_rssList_contextReadAllMessages:
-                    ReadAll(holderItem);
-                    break;
-            }
-        }
-
-        private void ReadAll(RssServiceModel holderItem)
-        {
-            _rssService.ReadAllMessagesAsync(holderItem.Id);
-        }
-
-        private async void ShareItem(RssServiceModel holderItem)
-        {
-            await Share.RequestAsync(holderItem.Rss);
-        }
-
-        private void EditItem(RssServiceModel holderItem)
-        {
-            var navigator = App.Container.Resolve<INavigator>();
-            var parameter = new RssEditParameters(holderItem.Id);
-            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter);
-            navigator.Go(editWay);
-        }
-
-        private void DeleteItem(RssServiceModel holderItem)
-        {
-            var builder = new AlertDialog.Builder(Activity);
-            builder.SetPositiveButton(Activity.GetText(Resource.String.rssDeleteDialog_positiveTitle),
-                (sender, args) => { _rssRepository.RemoveAsync(holderItem.Id); });
-            builder.SetNegativeButton(Activity.GetText(Resource.String.rssDeleteDialog_negativeTitle),
-                (sender, args) => { });
-            builder.SetTitle(Activity.GetText(Resource.String.rssDeleteDialog_Title));
-            builder.Show();
-        }
-
-        private void OpenDetailActivity(RssServiceModel holderItem)
-        {
-            var parameter = new RssItemDetailParameters(holderItem);
-            var typedParameter = new TypedParameter(parameter.GetType(), parameter);            
-            var way = App.Container.Resolve<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>(typedParameter);
-            _navigator.Go(way);
         }
     }
 }

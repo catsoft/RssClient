@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Droid.Repository.Configuration;
 using ReactiveUI;
@@ -29,6 +31,8 @@ namespace Shared.ViewModels.FeedlySearch
                     _feedlyService.FindByQueryAsync(query ?? "", token));
 
             FindByQueryCommand.ToPropertyEx(this, model => model.FeedlyRss);
+            
+            FindByQueryCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty, true);
         }
 
         public AppConfiguration AppConfiguration { get; }
@@ -36,5 +40,7 @@ namespace Shared.ViewModels.FeedlySearch
         public ReactiveCommand<string, IEnumerable<FeedlyRss>> FindByQueryCommand { get; }
         
         public extern IEnumerable<FeedlyRss> FeedlyRss { [ObservableAsProperty] get; }
+
+        public extern bool IsEmpty { [ObservableAsProperty] get; }
     }
 }

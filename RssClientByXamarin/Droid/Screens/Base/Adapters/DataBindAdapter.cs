@@ -6,7 +6,7 @@ using Android.Support.V7.Widget;
 namespace Droid.Screens.Base.Adapters
 {
     public abstract class DataBindAdapter<TItem, TCollection, TViewHolder> : WithItemsAdapter<TItem, TCollection>
-        where TCollection : IEnumerable<TItem>
+        where TCollection : class, IEnumerable<TItem>
         where TViewHolder : RecyclerView.ViewHolder, IDataBind<TItem>
     {
         protected DataBindAdapter(TCollection items, Activity activity) : base(items, activity)

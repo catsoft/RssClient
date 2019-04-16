@@ -6,19 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        style="@style/RecyclerView"
+        android:id="@+id/recyclerView_rssList_list"
+        android:layout_width="match_parent" 
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/textView_rssList_emptyText"
+        style="@style/TextView.Large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.RecyclerView
-            style="@style/RecyclerView"
-            android:id="@+id/recyclerView_rssList_list"
-            android:layout_width="match_parent" 
-            android:layout_height="match_parent"/>
-
-    </LinearLayout>
-
+        android:text="@string/rssList_emptyText"
+        android:gravity="center"/>
+    
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_rssList_addRss"
         style="?attr/fabStyle"

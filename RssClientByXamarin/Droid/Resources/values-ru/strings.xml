@@ -112,5 +112,7 @@
     <string name="about_language">Возможно кто-то захочет сделать перевод приложения на другие языки. Предоставлю текстовые данные</string>
 
     <string name="feedly_title">Feedly поиск</string>
-    
+    <string name="feedlySearch_emptyText">Пока ничего</string>
+    <string name="rssList_emptyText">Пока ничего</string>
+
 </resources>

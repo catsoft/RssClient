@@ -45,6 +45,10 @@ namespace Droid.Screens.FeedlySearch
                 ViewModel.WhenAnyValue(w => w.FeedlyRss)
                     .Subscribe(UpdateFeeds)
                     .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
             });
             
             return view;
@@ -59,7 +63,11 @@ namespace Droid.Screens.FeedlySearch
                 actionView.GetQueryTextChangeEvent()
                     .Throttle(TimeSpan.FromSeconds(0.35f))
                     .Select(w => w.NewText ?? "")
+                    .Where(w => !string.IsNullOrEmpty(w))
                     .InvokeCommand(ViewModel.FindByQueryCommand)
+                    .AddTo(Disposables);
+
+                ViewModel.FindByQueryCommand.IsExecuting.Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
                     .AddTo(Disposables);
             }
 

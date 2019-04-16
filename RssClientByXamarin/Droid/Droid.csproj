@@ -72,6 +72,8 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="EmbeddedResourse\Strings.Designer.cs" />
+    <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
+    <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
     <Compile Include="NativeExtension\EventsExtension.cs" />
     <Compile Include="NativeExtension\RateExtension.cs" />

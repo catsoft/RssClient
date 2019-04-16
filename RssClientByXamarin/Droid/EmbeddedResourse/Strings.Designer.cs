@@ -51,5 +51,23 @@ namespace Droid.EmbeddedResourse {
                 return ResourceManager.GetString("CreateRssUrlDefault", resourceCulture);
             }
         }
+        
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        public static string RssDeleteDialogTitle {
+            get {
+                return ResourceManager.GetString("RssDeleteDialogTitle", resourceCulture);
+            }
+        }
     }
 }
