@@ -6,9 +6,9 @@ namespace Droid.Screens.RssAllMessages
 {
     public class RssAllMessagesWay : IWay<RssAllMessagesViewModel>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
 
-        public RssAllMessagesWay(FragmentActivity activity)
+        public RssAllMessagesWay(IFragmentManager activity)
         {
             _activity = activity;
         }

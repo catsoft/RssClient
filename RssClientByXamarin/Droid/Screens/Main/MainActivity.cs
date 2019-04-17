@@ -1,32 +1,17 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
-using Autofac;
-using Droid.Container;
 using Droid.NativeExtension;
-using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
-using Shared;
-using Shared.Configuration.Settings;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.About;
-using Shared.ViewModels.Contacts;
-using Shared.ViewModels.FeedlySearch;
-using Shared.ViewModels.RssAllMessages;
-using Shared.ViewModels.RssFavoriteMessages;
-using Shared.ViewModels.RssList;
-using Shared.ViewModels.Settings;
+using Shared.ViewModels.Main;
 
 namespace Droid.Screens.Main
 {
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Default.NoActionBar")]
-    public class MainActivity : FragmentActivity
+    public class MainActivity : FragmentActivity<MainViewModel>
     {
-        [Inject] private INavigator _navigator;
-
-        [Inject] private IConfigurationRepository _configurationRepository;
-
         protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
         protected override int ResourceView => Resource.Layout.activity_main;
         public static MainActivity Instance { get; private set; }
@@ -47,13 +32,7 @@ namespace Droid.Screens.Main
 
             if (savedInstanceState == null)
             {
-                // TODO Вынести в отдельный роут
-                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-
-                if (appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>());
-                else if (appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
+                ViewModel.OpenRootScreenCommand.Execute().Subscribe();
 
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
@@ -63,37 +42,32 @@ namespace Droid.Screens.Main
         {
             if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_main)
             {
-                // TODO Вынести в отдельный роут
-                var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-
-                if (appConfiguration.StartPage == StartPage.RssList)
-                    _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>());
-                else if (appConfiguration.StartPage == StartPage.AllMessages)
-                    _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>());
+                ViewModel.OpenRootScreenCommand.Execute().Subscribe();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_feedlySearch)
             {
-                _navigator.Go(App.Container.Resolve<IWay<FeedlySearchViewModel>>());
+                ViewModel.OpenFeedlySearchCommand.Execute().Subscribe();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_favorite)
             {
-                _navigator.Go(App.Container.Resolve<IWay<RssFavoriteMessagesViewModel>>());
+                ViewModel.OpenFavoriteMessagesCommand.Execute().Subscribe();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
-            {
-                _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel>>());
+            {                
+                ViewModel.OpenSettingsCommand.Execute().Subscribe();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
             {
-                _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel>>());
+                ViewModel.OpenContactsCommand.Execute().Subscribe();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_rate)
             {
+                //TODO тоже как бы вот
                 this.RateInMarket();
             }
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about)
             {
-                _navigator.Go(App.Container.Resolve<IWay<AboutViewModel>>());
+                ViewModel.OpenAboutCommand.Execute().Subscribe();
             }
 
             menuItem.SetChecked(true);

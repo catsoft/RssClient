@@ -6,9 +6,9 @@ namespace Droid.Screens.RssEditList
 {
     public class RssListEditWay : IWay<RssListEditViewModel>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
 
-        public RssListEditWay(FragmentActivity activity)
+        public RssListEditWay(IFragmentManager activity)
         {
             _activity = activity;
         }

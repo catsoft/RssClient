@@ -1,8 +1,8 @@
 ﻿using Android.Widget;
 
-namespace Droid.Screens.Base
+namespace Droid.NativeExtension
 {
-    public static class CursorLastPositionExtension
+    public static class EditTextExtension
     {
         public static void SetTextAndSetCursorToLast(this EditText editText, string text)
         {

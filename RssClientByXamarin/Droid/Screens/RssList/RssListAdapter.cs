@@ -17,6 +17,7 @@ namespace Droid.Screens.RssList
 {
     public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
+        // TODO убрать
         private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly AppConfiguration _appConfiguration;
 

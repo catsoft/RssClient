@@ -12,9 +12,9 @@ using Droid.Screens.RssCreate;
 using Droid.Screens.RssEdit;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssFavoriteMessagesList;
-using Droid.Screens.RssItemMessage;
 using Droid.Screens.RssList;
 using Droid.Screens.RssMessage;
+using Droid.Screens.RssMessagesList;
 using Droid.Screens.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.About;
@@ -42,7 +42,7 @@ namespace Droid.Container.Modules
 
             builder.RegisterType<CloseWay>().As<IWay<CloseViewModel>>();
 
-            builder.RegisterType<RssItemDetailWay>().As<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>();
+            builder.RegisterType<RssMessagesListWay>().As<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>();
             builder.RegisterType<RssAllMessagesWay>().As<IWay<RssAllMessagesViewModel>>();
             builder.RegisterType<RssFavoriteMessagesListWay>().As<IWay<RssFavoriteMessagesViewModel>>();
             builder.RegisterType<RssAllMessagesFilterWay>().As<IWay<RssAllMessagesFilterViewModel>>();
@@ -59,7 +59,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
             
             builder.Register((c) => MainActivity.Instance).As<Activity>();
-            builder.Register((c) => MainActivity.Instance).As<FragmentActivity>();
+            builder.Register((c) => MainActivity.Instance).As<IFragmentManager>();
         }
     }
 }

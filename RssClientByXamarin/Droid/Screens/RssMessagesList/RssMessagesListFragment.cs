@@ -20,9 +20,9 @@ using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
 
-namespace Droid.Screens.RssItemMessage
+namespace Droid.Screens.RssMessagesList
 {
-    public class RssItemDetailFragment : BaseFragment<RssItemDetailViewModel>
+    public class RssMessagesListFragment : BaseFragment<RssMessagesListViewModel>
     {
         private string _itemId;
         private RssDomainModel Item => _rssRepository.GetAsync(_itemId).Result;
@@ -40,12 +40,12 @@ namespace Droid.Screens.RssItemMessage
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
         public override bool IsRoot => false;
 
-        public RssItemDetailFragment()
+        public RssMessagesListFragment()
         {
 
         }
 
-        public RssItemDetailFragment(string itemId)
+        public RssMessagesListFragment(string itemId)
         {
             _itemId = itemId;
         }
@@ -85,7 +85,7 @@ namespace Droid.Screens.RssItemMessage
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(item.Id);
-            var adapter = new RssItemMessageAdapter(items.ToList(), Activity, _rssMessagesRepository, appConfiguration);
+            var adapter = new RssMessagesListAdapter(items.ToList(), Activity, _rssMessagesRepository, appConfiguration);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 

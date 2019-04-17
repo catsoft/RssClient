@@ -9,7 +9,6 @@ namespace Droid.Screens.RssList
     {
         public RssListFragmentViewHolder(View view)
         {
-                    
             FloatingActionButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
             
             RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssList_list);

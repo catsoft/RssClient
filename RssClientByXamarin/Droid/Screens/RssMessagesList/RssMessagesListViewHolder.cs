@@ -7,9 +7,9 @@ using FFImageLoading.Views;
 using Shared.Infrastructure.Locale;
 using Shared.Repository.RssMessage;
 
-namespace Droid.Screens.RssItemMessage
+namespace Droid.Screens.RssMessagesList
 {
-    public class RssItemMessageViewHolder : BaseRssMessageViewHolder, IShowAndLoadImage
+    public class RssMessagesListViewHolder : BaseRssMessagesViewHolder, IShowAndLoadImage
     {
         public bool IsShowAndLoadImages { get; }
         
@@ -21,7 +21,7 @@ namespace Droid.Screens.RssItemMessage
         public LinearLayout Background { get; }
         public RatingBar RatingBar { get; }
         
-        public RssItemMessageViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
+        public RssMessagesListViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
             Title = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_title);

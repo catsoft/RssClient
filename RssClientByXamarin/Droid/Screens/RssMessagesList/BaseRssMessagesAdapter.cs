@@ -10,14 +10,14 @@ using Shared.Repository.RssMessage;
 using Shared.ViewModels.RssMessage;
 using Xamarin.Essentials;
 
-namespace Droid.Screens.RssItemMessage
+namespace Droid.Screens.RssMessagesList
 {
-    public abstract class BaseRssMessageAdapter<TViewHolder> : DataBindAdapter<RssMessageData, List<RssMessageData>, TViewHolder>
+    public abstract class BaseRssMessagesAdapter<TViewHolder> : DataBindAdapter<RssMessageData, List<RssMessageData>, TViewHolder>
         where TViewHolder : RecyclerView.ViewHolder, IDataBind<RssMessageData>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
         
-        protected BaseRssMessageAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
+        protected BaseRssMessagesAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
         }
@@ -50,7 +50,7 @@ namespace Droid.Screens.RssItemMessage
             menu.Show();
         }
 
-        protected void MenuClick(IDataBind<RssMessageData> holder, PopupMenu.MenuItemClickEventArgs eventArgs)
+        private void MenuClick(IDataBind<RssMessageData> holder, PopupMenu.MenuItemClickEventArgs eventArgs)
         {
             switch (eventArgs.Item.ItemId)
             {
@@ -66,7 +66,7 @@ namespace Droid.Screens.RssItemMessage
             }
         }
 
-        protected async void ShareItem(IDataBind<RssMessageData> holder)
+        private async void ShareItem(IDataBind<RssMessageData> holder)
         {
             await Share.RequestAsync(holder.Item.Url);
         }

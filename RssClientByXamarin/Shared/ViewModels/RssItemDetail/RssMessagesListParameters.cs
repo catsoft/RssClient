@@ -3,11 +3,11 @@ using Shared.Services.Rss;
 
 namespace Shared.ViewModels.RssItemDetail
 {
-    public class RssItemDetailParameters : ViewModelParameters
+    public class RssMessagesListParameters : ViewModelParameters
     {
         public RssServiceModel RssModel { get; }
 
-        public RssItemDetailParameters(RssServiceModel rssModel)
+        public RssMessagesListParameters(RssServiceModel rssModel)
         {
             RssModel = rssModel;
         }

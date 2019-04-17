@@ -6,10 +6,10 @@ namespace Droid.Screens.RssEdit
 {
     public class RssEditWay : IWayWithParameters<RssEditViewModel, RssEditParameters>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
         private readonly RssEditParameters _parameters;
 
-        public RssEditWay(FragmentActivity fragmentActivity, RssEditParameters parameters)
+        public RssEditWay(IFragmentManager fragmentActivity, RssEditParameters parameters)
         {
             _fragmentActivity = fragmentActivity;
             _parameters = parameters;

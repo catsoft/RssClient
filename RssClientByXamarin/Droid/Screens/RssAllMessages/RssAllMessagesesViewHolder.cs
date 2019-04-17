@@ -2,7 +2,7 @@
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
-using Droid.Screens.RssItemMessage;
+using Droid.Screens.RssMessagesList;
 using FFImageLoading;
 using FFImageLoading.Views;
 using Shared.Infrastructure.Locale;
@@ -10,7 +10,7 @@ using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssAllMessages
 {
-    public class RssAllMessagesViewHolder : BaseRssMessageViewHolder, IShowAndLoadImage
+    public class RssAllMessagesesViewHolder : BaseRssMessagesViewHolder, IShowAndLoadImage
     {
         public bool IsShowAndLoadImages { get; }
         
@@ -23,7 +23,7 @@ namespace Droid.Screens.RssAllMessages
         public LinearLayout Background { get; }
         public RatingBar RatingBar { get; }
         
-        public RssAllMessagesViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
+        public RssAllMessagesesViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
             

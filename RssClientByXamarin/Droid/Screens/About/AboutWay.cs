@@ -6,9 +6,9 @@ namespace Droid.Screens.About
 {
     public class AboutWay : IWay<AboutViewModel>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
 
-        public AboutWay(FragmentActivity fragmentActivity)
+        public AboutWay(IFragmentManager fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }
