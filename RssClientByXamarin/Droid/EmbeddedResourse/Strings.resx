@@ -46,5 +46,9 @@
     <data name="ContactsDiscordLink" xml:space="preserve">
         <value>asura#0938</value>
     </data>
-    
+
+    <data name="RssDeleteDialogTitle" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+
 </root>
