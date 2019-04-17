@@ -5,6 +5,7 @@ using System.Reactive.Subjects;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Shared.Extensions;
 
 namespace Droid.Screens.Base
 {
@@ -43,7 +44,7 @@ namespace Droid.Screens.Base
 
         public void OnActivation(Action<CompositeDisposable> d)
         {
-            Resuming.Subscribe(_ => d(_disposables));
+            Resuming.Subscribe(_ => d(_disposables)).AddTo(_disposables);
         }
 
         public override void OnAttach(Context context)
