@@ -64,9 +64,27 @@ namespace Droid.EmbeddedResourse {
             }
         }
         
-        public static string RssDeleteDialogTitle {
+        public static string ContactsTelegramLink {
             get {
-                return ResourceManager.GetString("RssDeleteDialogTitle", resourceCulture);
+                return ResourceManager.GetString("ContactsTelegramLink", resourceCulture);
+            }
+        }
+        
+        public static string ContactsMailLink {
+            get {
+                return ResourceManager.GetString("ContactsMailLink", resourceCulture);
+            }
+        }
+        
+        public static string ContactsLinkedInLink {
+            get {
+                return ResourceManager.GetString("ContactsLinkedInLink", resourceCulture);
+            }
+        }
+        
+        public static string ContactsDiscordLink {
+            get {
+                return ResourceManager.GetString("ContactsDiscordLink", resourceCulture);
             }
         }
     }

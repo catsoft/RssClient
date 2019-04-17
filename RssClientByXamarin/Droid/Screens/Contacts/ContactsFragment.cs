@@ -12,7 +12,7 @@ namespace Droid.Screens.Contacts
         protected override int LayoutId => Resource.Layout.fragment_contacts;
         public override bool IsRoot => true;
 
-        public ContactFragmentViewHolder ViewHolder { get; private set; }
+        private ContactFragmentViewHolder _viewHolder;
         
         public ContactsFragment()
         {
@@ -30,35 +30,35 @@ namespace Droid.Screens.Contacts
 
             Title = Activity.GetString(Resource.String.contacts_title);
 
-            ViewHolder = new ContactFragmentViewHolder(view,
+            _viewHolder = new ContactFragmentViewHolder(view,
                 () => inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false));
             
-            ViewHolder.TelegramContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.telegram_48);
-            ViewHolder.EmailContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.email_48);
-            ViewHolder.DiscordContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.discord_48);
-            ViewHolder.LinkedinContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.linkedin_48);
+            _viewHolder.TelegramContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.telegram_48);
+            _viewHolder.EmailContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.email_48);
+            _viewHolder.DiscordContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.discord_48);
+            _viewHolder.LinkedinContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.linkedin_48);
             
-            ViewHolder.TelegramContactViewHolder.TitleTextView.SetText(Resource.String.contacts_telegram);
-            ViewHolder.EmailContactViewHolder.TitleTextView.SetText(Resource.String.contacts_mail);
-            ViewHolder.LinkedinContactViewHolder.TitleTextView.SetText(Resource.String.contacts_linkedIn);
-            ViewHolder.DiscordContactViewHolder.TitleTextView.SetText(Resource.String.contacts_discord);
+            _viewHolder.TelegramContactViewHolder.TitleTextView.SetText(Resource.String.contacts_telegram);
+            _viewHolder.EmailContactViewHolder.TitleTextView.SetText(Resource.String.contacts_mail);
+            _viewHolder.LinkedinContactViewHolder.TitleTextView.SetText(Resource.String.contacts_linkedIn);
+            _viewHolder.DiscordContactViewHolder.TitleTextView.SetText(Resource.String.contacts_discord);
 
             OnActivation(disposable =>
             {
-                this.Bind(ViewModel, model => model.GoTelegramCommand,
-                    fragment => fragment.ViewHolder.TelegramContactViewHolder.RootView)
+                this.BindCommand(ViewModel, model => model.GoTelegramCommand,
+                    fragment => fragment._viewHolder.TelegramContactViewHolder.RootView)
                     .AddTo(disposable);
                 
-                this.Bind(ViewModel, model => model.GoMailCommand,
-                        fragment => fragment.ViewHolder.EmailContactViewHolder.RootView)
+                this.BindCommand(ViewModel, model => model.GoMailCommand,
+                        fragment => fragment._viewHolder.EmailContactViewHolder.RootView)
                     .AddTo(disposable);
                 
-                this.Bind(ViewModel, model => model.GoDiscordCommand,
-                        fragment => fragment.ViewHolder.DiscordContactViewHolder.RootView)
+                this.BindCommand(ViewModel, model => model.GoDiscordCommand,
+                        fragment => fragment._viewHolder.DiscordContactViewHolder.RootView)
                     .AddTo(disposable);
                 
-                this.Bind(ViewModel, model => model.GoLinkedinCommand,
-                        fragment => fragment.ViewHolder.LinkedinContactViewHolder.RootView)
+                this.BindCommand(ViewModel, model => model.GoLinkedinCommand,
+                        fragment => fragment._viewHolder.LinkedinContactViewHolder.RootView)
                     .AddTo(disposable);
             });
 

@@ -31,8 +31,20 @@
         <value>No</value>
     </data>
 
-    <data name="RssDeleteDialogTitle" xml:space="preserve">
-        <value>Are you sure?</value>
+    <data name="ContactsTelegramLink" xml:space="preserve">
+        <value>https://t.me/asura_pro</value>
+    </data>
+
+    <data name="ContactsMailLink" xml:space="preserve">
+        <value>mailto:asuraprog@gmail.com</value>
+    </data>
+
+    <data name="ContactsLinkedInLink" xml:space="preserve">
+        <value>http://www.linkedin.com/in/asurapro</value>
+    </data>
+
+    <data name="ContactsDiscordLink" xml:space="preserve">
+        <value>asura#0938</value>
     </data>
     
 </root>

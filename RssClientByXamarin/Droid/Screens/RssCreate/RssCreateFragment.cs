@@ -15,9 +15,8 @@ namespace Droid.Screens.RssCreate
 {
     public class RssCreateFragment : BaseFragment<RssCreateViewModel>
     {
-        private Button _sendButton;
-        private TextInputLayout _urlTextInputLayout;
-
+        private RssCreateFragmentViewHolder _viewHolder;
+        
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
         public override bool IsRoot => false;
 
@@ -31,29 +30,31 @@ namespace Droid.Screens.RssCreate
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            Title = GetText(Resource.String.create_title);
-
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            _sendButton = view.FindViewById<Button>(Resource.Id.button_rssCreate_submit);
-            _urlTextInputLayout = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssCreate_link);
-
+            Title = GetText(Resource.String.create_title);
+            
+            _viewHolder = new RssCreateFragmentViewHolder(view);
+            
             OnActivation(disposable =>
             {
-                this.Bind(ViewModel, model => model.Url, fragment => fragment._urlTextInputLayout.EditText.Text)
+                this.Bind(ViewModel, model => model.Url, fragment => fragment._viewHolder.EditText.Text)
                     .AddTo(disposable);
 
                 ViewModel.Url.WhenAnyValue(s => s)
-                    .Subscribe(s => _urlTextInputLayout.EditText.SetTextAndSetCursorToLast(s))
+                    .Subscribe(s => _viewHolder.EditText.SetTextAndSetCursorToLast(s))
                     .AddTo(disposable);
 
-                _urlTextInputLayout.EditText.GetEditorAction().Subscribe(action =>
+                _viewHolder.EditText.GetEditorAction().Subscribe(action =>
                 {
-                    if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
+                    if (action.ActionId == ImeAction.Done)
+                    {
+                        _viewHolder.SendButton.CallOnClick();
+                    }
                 }).AddTo(disposable);
 
-                this.BindCommand(ViewModel, model => model.CreateCommand,
-                    fragment => fragment._sendButton).AddTo(disposable);
+                this.BindCommand(ViewModel, model => model.CreateCommand, fragment => fragment._viewHolder.SendButton)
+                    .AddTo(disposable);
             });
 
             return view;

@@ -123,11 +123,13 @@
     <Compile Include="Screens\RssAllMessages\RssAllMessagesWay.cs" />
     <Compile Include="Screens\Base\TextViewExtension.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
+    <Compile Include="Screens\RssCreate\RssEditFragmentViewHolder.cs" />
     <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
     <Compile Include="Screens\RssEditList\RssEditListFragmentViewHolder.cs" />
     <Compile Include="Screens\RssEditList\RssListEditWay.cs" />
     <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
     <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />
+    <Compile Include="Screens\RssEdit\RssEditFragmentViewHolder.cs" />
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssAllMessagesListWay.cs" />

@@ -16,8 +16,7 @@ namespace Droid.Screens.RssEdit
     public class RssEditFragment : BaseFragment<RssEditViewModel>
     {
         private string _itemId;
-        private TextInputLayout _urlEditText;
-        private Button _sendButton;
+        private RssEditFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
         public override bool IsRoot => false;
@@ -50,26 +49,29 @@ namespace Droid.Screens.RssEdit
 
             Title = GetText(Resource.String.edit_title);
 
-            _sendButton = view.FindViewById<Button>(Resource.Id.button_rssEdit_submit);
-            _urlEditText = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
+            _viewHolder = new RssEditFragmentViewHolder(view);
             
             OnActivation(compositeDisposable =>
                 {
-                    this.Bind(ViewModel, model => model.Url, fragment => fragment._urlEditText.EditText.Text).AddTo(compositeDisposable);
+                    this.Bind(ViewModel, model => model.Url, fragment => fragment._viewHolder.EditText.Text)
+                        .AddTo(compositeDisposable);
 
                     ViewModel.Url.WhenAnyValue(s => s)
-                        .Subscribe(s => _urlEditText.EditText.SetTextAndSetCursorToLast(s))
+                        .Subscribe(s => _viewHolder.TextInputLayout.EditText.SetTextAndSetCursorToLast(s))
                         .AddTo(compositeDisposable);
 
-                    _urlEditText.EditText.GetEditorAction().Subscribe(action =>
+                    _viewHolder.EditText.GetEditorAction().Subscribe(action =>
                     {
-                        if (action.ActionId == ImeAction.Done) _sendButton.CallOnClick();
+                        if (action.ActionId == ImeAction.Done)
+                        {
+                            _viewHolder.EditText.CallOnClick();
+                        }
                     }).AddTo(compositeDisposable);
 
-                    this.BindCommand(ViewModel, model => model.UpdateCommand, activity => activity._sendButton)
+                    this.BindCommand(ViewModel, model => model.UpdateCommand, fragment => fragment._viewHolder.SendButton)
                         .AddTo(compositeDisposable);
-                    
-                    ViewModel.LoadCommand.ExecuteNow().AddTo(compositeDisposable);
+
+                    ViewModel.LoadCommand.Execute().Subscribe();
                 }
             );
             

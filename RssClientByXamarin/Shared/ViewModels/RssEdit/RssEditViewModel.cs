@@ -30,13 +30,6 @@ namespace Shared.ViewModels.RssEdit
                 .Subscribe(w => Url = w?.Rss);
         }
 
-        private Task UpdateRssUrl(CancellationToken token)
-        {
-            var model = RssServiceModel;
-            model.Rss = Url;
-            return _rssService.UpdateAsync(model, token);
-        }
-
         [Reactive]
         public string Url { get; set; }
 
@@ -45,5 +38,12 @@ namespace Shared.ViewModels.RssEdit
         public ReactiveCommand<Unit, RssServiceModel> LoadCommand { get; }
         
         public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
+        
+        private async Task UpdateRssUrl(CancellationToken token)
+        {
+            var model = RssServiceModel;
+            model.Rss = Url;
+            await _rssService.UpdateAsync(model, token);
+        }
     }
 }

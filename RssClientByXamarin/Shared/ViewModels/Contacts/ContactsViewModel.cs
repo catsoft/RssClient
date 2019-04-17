@@ -1,5 +1,6 @@
 using System.Reactive;
 using System.Threading.Tasks;
+using Droid.EmbeddedResourse;
 using ReactiveUI;
 using Shared.Infrastructure.ViewModels;
 using Xamarin.Essentials;
@@ -10,17 +11,17 @@ namespace Shared.ViewModels.Contacts
     {
         public ContactsViewModel()
         {
-            GoTelegramCommand = ReactiveCommand.CreateFromTask(() => OpenLink("1"));
-            GoMailCommand = ReactiveCommand.CreateFromTask(() => OpenLink("2"));
-            GoLinkedinCommand = ReactiveCommand.CreateFromTask(() => OpenLink("3"));
-            GoDiscordCommand = ReactiveCommand.CreateFromTask(() => CopyToClipboard("4"));
+            GoTelegramCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsTelegramLink));
+            GoMailCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsMailLink));
+            GoLinkedinCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsLinkedInLink));
+            GoDiscordCommand = ReactiveCommand.CreateFromTask(async () => await CopyToClipboard(Strings.ContactsDiscordLink));
         }
-        
+
         public ReactiveCommand<Unit, Unit> GoTelegramCommand { get; }
         public ReactiveCommand<Unit, Unit> GoMailCommand { get; }
         public ReactiveCommand<Unit, Unit> GoLinkedinCommand { get; }
         public ReactiveCommand<Unit, Unit> GoDiscordCommand { get; }
-        
+
         private async Task CopyToClipboard(string text)
         {
             await Clipboard.SetTextAsync(text);

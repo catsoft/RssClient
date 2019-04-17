@@ -59,12 +59,7 @@
     <string name="contacts_mail" translatable="false">asuraprog@gmail.com (Recommended)</string>
     <string name="contacts_linkedIn" translatable="false">asurapro</string>
     <string name="contacts_discord" translatable="false">asura</string>
-    
-    <string name="contacts_telegramLink" translatable="false">https://t.me/asura_pro</string>
-    <string name="contacts_mailLink" translatable="false">mailto:asuraprog@gmail.com</string>
-    <string name="contacts_linkedInLink" translatable="false">http://www.linkedin.com/in/asurapro</string>
-    <string name="contacts_discordLink" translatable="false">asura#0938</string>
-
+ 
     <string name="copy_clipboard">copy: </string>
     <string name="recommended_rss_add_rss_toast">Added:</string>
 
