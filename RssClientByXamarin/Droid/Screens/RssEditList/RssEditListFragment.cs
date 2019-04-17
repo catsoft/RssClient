@@ -13,10 +13,11 @@ using Shared.Repository.Rss;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssEdit;
+using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssEditListFragment : BaseFragment<RssEditViewModel>
+    public class RssEditListFragment : BaseFragment<RssListEditViewModel>
     {
         [Inject]
         private INavigator _navigator;

@@ -48,8 +48,7 @@ namespace Shared.ViewModels.RssList
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen);
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen);
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen);
-
-            GetListCommand = ReactiveCommand.CreateFromTask(token => _rssService.GetListAsync(token));
+            GetListCommand = ReactiveCommand.CreateFromTask(async token => await _rssService.GetListAsync(token));
             GetListCommand.ToPropertyEx(this, model => model.RssServiceModelsSource);
             SourceList.CountChanged.Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
             GetListCommand.Subscribe(w =>

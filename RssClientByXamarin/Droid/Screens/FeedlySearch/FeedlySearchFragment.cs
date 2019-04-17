@@ -61,13 +61,11 @@ namespace Droid.Screens.FeedlySearch
             if (menu?.FindItem(Resource.Id.menuItem_feedlySearch_search)?.ActionView is SearchView actionView)
             {
                 actionView.GetQueryTextChangeEvent()
-                    .Throttle(TimeSpan.FromSeconds(0.35f))
-                    .Select(w => w.NewText ?? "")
-                    .Where(w => !string.IsNullOrEmpty(w))
-                    .InvokeCommand(ViewModel.FindByQueryCommand)
+                    .Subscribe(w => ViewModel.SearchQuery = w.NewText)
                     .AddTo(Disposables);
-
-                ViewModel.FindByQueryCommand.IsExecuting.Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
+                
+                ViewModel.FindByQueryCommand.IsExecuting
+                    .Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
                     .AddTo(Disposables);
             }
 

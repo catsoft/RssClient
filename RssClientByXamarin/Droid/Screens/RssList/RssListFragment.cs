@@ -93,8 +93,8 @@ namespace Droid.Screens.RssList
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
-                
-                ViewModel.GetListCommand.ExecuteNow().AddTo(disposable);
+
+                ViewModel.GetListCommand.Execute().Subscribe();
             });
             
             return view;
