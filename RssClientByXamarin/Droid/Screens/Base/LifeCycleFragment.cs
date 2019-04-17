@@ -44,7 +44,7 @@ namespace Droid.Screens.Base
 
         public void OnActivation(Action<CompositeDisposable> d)
         {
-            Resuming.Subscribe(_ => d(_disposables)).AddTo(_disposables);
+            Resuming.Take(1).Subscribe(_ => d(_disposables));
         }
 
         public override void OnAttach(Context context)
@@ -92,14 +92,13 @@ namespace Droid.Screens.Base
         public override void OnStop()
         {
             base.OnStop();
-            
-            DisposeActivations();
             _stoppingSubject.OnNext(Activity);
         }
 
         public override void OnDestroyView()
         {
             base.OnDestroyView();
+            DisposeActivations();
             _destroyingViewSubject.OnNext(Activity);
         }
 
