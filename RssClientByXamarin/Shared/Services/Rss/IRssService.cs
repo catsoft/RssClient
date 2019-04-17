@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
-using Shared.Repository.Rss;
 
 namespace Shared.Services.Rss
 {

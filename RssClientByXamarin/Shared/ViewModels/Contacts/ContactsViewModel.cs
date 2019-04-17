@@ -1,6 +1,5 @@
 using System.Reactive;
 using System.Threading.Tasks;
-using Android.App;
 using ReactiveUI;
 using Shared.Infrastructure.ViewModels;
 using Xamarin.Essentials;

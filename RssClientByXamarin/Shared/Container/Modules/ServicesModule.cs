@@ -1,5 +1,4 @@
 using Autofac;
-using Shared.Services;
 using Shared.Services.Feedly;
 using Shared.Services.Rss;
 

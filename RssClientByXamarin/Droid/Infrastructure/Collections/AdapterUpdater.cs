@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Android.App;
-using Android.Support.V7.Widget;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
 using Shared.Services.Rss;

@@ -6,8 +6,6 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
-using Shared.Repository.Rss;
-using Shared.Services;
 using Shared.Services.Rss;
 
 namespace Shared.ViewModels.RssEdit
@@ -22,13 +20,14 @@ namespace Shared.ViewModels.RssEdit
             _rssService = rssService;
             _navigator = navigator;
 
-            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssServiceModel>((s, token) => _rssService.GetAsync(parameters.RssId, token));
+            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssServiceModel>(async (s, token) => await _rssService.GetAsync(parameters.RssId, token));
             LoadCommand.ToPropertyEx(this, x => x.RssServiceModel);
             
             UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl);
             UpdateCommand.Subscribe(_ => _navigator.GoBack());
 
-            this.WhenAnyValue(w => w.RssServiceModel).Subscribe(w => Url = w?.Rss);
+            this.WhenAnyValue(w => w.RssServiceModel)
+                .Subscribe(w => Url = w?.Rss);
         }
 
         private Task UpdateRssUrl(CancellationToken token)

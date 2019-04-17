@@ -1,5 +1,4 @@
 using Shared.Infrastructure.ViewModels;
-using Shared.Repository.Rss;
 using Shared.Services.Rss;
 
 namespace Shared.ViewModels.RssItemDetail

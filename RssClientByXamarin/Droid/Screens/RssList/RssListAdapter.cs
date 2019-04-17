@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
@@ -8,18 +7,11 @@ using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
-using DynamicData;
-using DynamicData.Binding;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Locale;
-using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;
 using Shared.Services.Rss;
-using Shared.ViewModels.RssEdit;
-using Shared.ViewModels.RssItemDetail;
-using Xamarin.Essentials;
 
 namespace Droid.Screens.RssList
 {

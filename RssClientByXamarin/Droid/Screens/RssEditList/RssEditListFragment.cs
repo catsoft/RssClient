@@ -12,7 +12,6 @@ using Shared.Infrastructure.Navigation;
 using Shared.Repository.Rss;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssCreate;
-using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssEditList

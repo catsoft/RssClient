@@ -1,13 +1,9 @@
-﻿using System;
-using Android.OS;
+﻿using Android.OS;
 using Android.Views;
-using Android.Widget;
-using Droid.NativeExtension;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.ViewModels.Contacts;
-using Xamarin.Essentials;
 
 namespace Droid.Screens.Contacts
 {

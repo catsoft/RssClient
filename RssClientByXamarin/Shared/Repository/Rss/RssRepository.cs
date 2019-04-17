@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using Shared.Analitics.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
 using Shared.Infrastructure.Mappers;
-using Shared.Utils;
 
 namespace Shared.Repository.Rss
 {

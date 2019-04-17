@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using Droid.Repository.Configuration;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repository.Feedly;
-using Shared.Services;
 using Shared.Services.Feedly;
-using Shared.ViewModels.Settings;
 
 namespace Shared.ViewModels.FeedlySearch
 {
@@ -34,9 +30,9 @@ namespace Shared.ViewModels.FeedlySearch
             
             FindByQueryCommand.ToPropertyEx(this, model => model.FeedlyRss);
             FindByQueryCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty, true);
-            
+
             this.WhenAnyValue(vm => vm.SearchQuery)
-                .Throttle(TimeSpan.FromSeconds(0.35))
+                .Throttle(TimeSpan.FromSeconds(0.35f))
                 .InvokeCommand(FindByQueryCommand);
         }
 

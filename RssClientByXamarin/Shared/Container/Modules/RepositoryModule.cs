@@ -2,7 +2,6 @@
 using Droid.Repository.Configuration;
 using Shared.Database.Rss;
 using Shared.Infrastructure.Mappers;
-using Shared.Repository;
 using Shared.Repository.Feedly;
 using Shared.Repository.Rss;
 using Shared.Repository.RssMessage;

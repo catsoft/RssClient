@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
-using Java.Util;
-using ReactiveUI;
 using Shared.Infrastructure.Mappers;
 using Shared.Repository.Rss;
 

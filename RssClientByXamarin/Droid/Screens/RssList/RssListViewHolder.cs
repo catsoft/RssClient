@@ -7,7 +7,6 @@ using Droid.Screens.Base.Adapters;
 using FFImageLoading;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
-using Shared.Repository.Rss;
 using Shared.Services.Rss;
 
 namespace Droid.Screens.RssList

@@ -1,31 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Autofac;
-using Droid.Container;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
-using Droid.Repository.Configuration;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using ReactiveUI;
-using Shared;
-using Shared.Configuration.Settings;
 using Shared.Extensions;
-using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
 using Shared.Services.Rss;
-using Shared.ViewModels.RssAllMessages;
-using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
-using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssList
 {
