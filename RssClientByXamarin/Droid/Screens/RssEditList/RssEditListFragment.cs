@@ -1,31 +1,21 @@
+using System;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Autofac;
-using Droid.Container;
+using Droid.Infrastructure.Collections;
+using Droid.NativeExtension;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
-using Shared;
-using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
+using ReactiveUI;
+using Shared.Extensions;
 using Shared.Services.Rss;
-using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssEditList
 {
     public class RssEditListFragment : BaseFragment<RssListEditViewModel>
     {
-        [Inject]
-        private INavigator _navigator;
-
-        [Inject]
-        private IRssRepository _rssRepository;
-        
-        [Inject]
-        private IRssService _rssService;
+        private RssEditListFragmentViewHolder _viewHolder;
         
         protected override int LayoutId => Resource.Layout.fragment_rss_edit_list;
         public override bool IsRoot => false;
@@ -46,25 +36,47 @@ namespace Droid.Screens.RssEditList
             
             Title = GetText(Resource.String.rssEditList_title);
             
-            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssEditList_list);
-            recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
-            recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
-            recyclerView.SaveEnabled = true;
+            _viewHolder = new RssEditListFragmentViewHolder(view);
 
-            var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab_rssEditList_addRss);
-
-            fab.Click += (sender, args) => { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); };
-
-            var items = _rssRepository.GetListAsync().Result;
-            var adapter = new RssListEditAdapter(items, Activity, _rssService);
-            recyclerView.SetAdapter(adapter);
+            var adapter = new RssListEditAdapter(Activity);
+            _viewHolder.RecyclerView.SetAdapter(adapter);
 
             var callBack = new ReorderHelperCallback(adapter);
             var helper = new ItemTouchHelper(callBack);
-            helper.AttachToRecyclerView(recyclerView);
-
+            helper.AttachToRecyclerView(_viewHolder.RecyclerView);
             adapter.OnStartDrag += holder => { helper.StartDrag(holder); };
+
+            var adapterUpdater = new AdapterUpdater<RssServiceModel>(adapter, ViewModel.SourceList);
             
+            OnActivation(disposable =>
+                {
+                    this.BindCommand(ViewModel, model => model.OpenCreateItemScreenCommand,
+                        fragment => fragment._viewHolder.FloatingActionButton)
+                        .AddTo(disposable);
+                    
+                    ViewModel.WhenAnyValue(model => model.SourceList)
+                        .Subscribe(w => adapter.Items = w.Items)
+                        .AddTo(disposable);
+
+                    ViewModel.ConnectChanges()
+                        .Subscribe(w => adapterUpdater.Update(w))
+                        .AddTo(disposable);
+
+                    adapter.GetItemDeleteEvent()
+                        .InvokeCommand(ViewModel.DeleteItemCommand)
+                        .AddTo(disposable);
+                    
+                    adapter.GetItemMoveEvent()
+                        .InvokeCommand(ViewModel.MoveItemCommand)
+                        .AddTo(disposable);
+                    
+                    ViewModel.WhenAnyValue(model => model.IsEmpty)
+                        .Subscribe(w => _viewHolder.EmptyEditText.Visibility = w.ToVisibility())
+                        .AddTo(disposable);
+                    
+                    ViewModel.LoadCommand.Execute().Subscribe();
+                });
+
             return view;
         }
     }

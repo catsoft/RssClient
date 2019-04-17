@@ -93,6 +93,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\MoveEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageParameterses.cs" />

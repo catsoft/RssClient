@@ -40,9 +40,11 @@ namespace Shared.Services.Rss
             throw new System.NotImplementedException();
         }
 
-        Task IRssService.UpdatePositionAsync(string localItemId, int position, CancellationToken token)
+        public async Task UpdatePositionAsync(string localItemId, int position, CancellationToken token)
         {
-            throw new System.NotImplementedException();
+            var item = await _rssRepository.GetAsync(localItemId, token);
+            item.Position = position;
+            await _rssRepository.UpdateAsync(item, token);
         }
 
         public Task ReadAllMessagesAsync(string itemId, CancellationToken token = default)

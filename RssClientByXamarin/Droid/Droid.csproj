@@ -124,6 +124,7 @@
     <Compile Include="Screens\Base\TextViewExtension.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
     <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
+    <Compile Include="Screens\RssEditList\RssEditListFragmentViewHolder.cs" />
     <Compile Include="Screens\RssEditList\RssListEditWay.cs" />
     <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
     <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />

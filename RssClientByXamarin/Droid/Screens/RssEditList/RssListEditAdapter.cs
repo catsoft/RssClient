@@ -9,35 +9,28 @@ using Droid.Screens.Base.DragRecyclerView;
 using Shared.Infrastructure.Locale;
 using Shared.Repository.Rss;
 using Shared.Services.Rss;
+using Shared.ViewModels.RssListEdit;
 
 namespace Droid.Screens.RssEditList
 {
-    public class RssListEditAdapter : DataBindAdapter<RssDomainModel, List<RssDomainModel>, RssListEditViewHolder>, IReorderListHelperAdapter
+    public class RssListEditAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListEditViewHolder>, IReorderListHelperAdapter
     {
+        public event EventHandler<RssServiceModel> DeleteClick;
+        public event EventHandler<MoveEventArgs<RssServiceModel>> OnMoveEvent;
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
-        private readonly IRssService _rssRepository;
         
-        public RssListEditAdapter(IEnumerable<RssDomainModel> items, Activity activity, IRssService rssRepository) : base(items.ToList(), activity)
+        public RssListEditAdapter(Activity activity) : base(new List<RssServiceModel>(), activity)
         {
-            _rssRepository = rssRepository;
         }
 
         public void OnMove(int fromPosition, int toPosition)
         {
-            var item = Items[fromPosition];
-            Items.RemoveAt(fromPosition);
-            Items.Insert(toPosition, item);
-
-            for (var i = 0; i < Items.Count; i++)
-            {
-                var localItem = Items[i];
-                _rssRepository.UpdatePositionAsync(localItem.Id, i);
-            }
-            
-            NotifyItemMoved(fromPosition, toPosition);
+            var item = Items.ElementAt(fromPosition);
+            var args = new MoveEventArgs<RssServiceModel>(item, fromPosition, toPosition);
+            OnMoveEvent?.Invoke(this, args);
         }
 
-        protected override void BindData(RssListEditViewHolder holder, RssDomainModel item)
+        protected override void BindData(RssListEditViewHolder holder, RssServiceModel item)
         {
             base.BindData(holder, item);
             
@@ -56,9 +49,7 @@ namespace Droid.Screens.RssEditList
             viewHolder.DeleteImage.Click += (sender, args) =>
             {
                 var position = viewHolder.AdapterPosition;
-                _rssRepository.RemoveAsync(viewHolder.Item.Id);
-                Items.RemoveAt(position);
-                NotifyItemRemoved(position);
+                DeleteClick?.Invoke(sender, Items.ElementAt(position));
             };
 
             viewHolder.ReorderImage.Touch += (sender, args) =>

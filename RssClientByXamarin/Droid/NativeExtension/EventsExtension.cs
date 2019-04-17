@@ -2,8 +2,10 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.Widget;
+using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
 using Shared.Services.Rss;
+using Shared.ViewModels.RssListEdit;
 using SearchView = Android.Support.V7.Widget.SearchView;
 
 namespace Droid.NativeExtension
@@ -40,6 +42,20 @@ namespace Droid.NativeExtension
         {
             return Observable
                 .FromEventPattern<RssServiceModel>(t => @this.ItemDismiss += t, t => @this.ItemDismiss -= t)
+                .Select(_ => _.EventArgs);
+        }
+        
+        public static IObservable<RssServiceModel> GetItemDeleteEvent(this RssListEditAdapter @this)
+        {
+            return Observable
+                .FromEventPattern<RssServiceModel>(t => @this.DeleteClick += t, t => @this.DeleteClick -= t)
+                .Select(_ => _.EventArgs);
+        }
+        
+        public static IObservable<MoveEventArgs<RssServiceModel>> GetItemMoveEvent(this RssListEditAdapter @this)
+        {
+            return Observable
+                .FromEventPattern<MoveEventArgs<RssServiceModel>>(t => @this.OnMoveEvent += t, t => @this.OnMoveEvent -= t)
                 .Select(_ => _.EventArgs);
         }
     }
