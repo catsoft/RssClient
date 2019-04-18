@@ -51,4 +51,12 @@
         <value>Are you sure?</value>
     </data>
 
+    <data name="FilterFromTitle" xml:space="preserve">
+        <value>From</value>
+    </data>
+
+    <data name="FilterToTitle" xml:space="preserve">
+        <value>To</value>
+    </data>
+    
 </root>
