@@ -83,6 +83,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Close\CloseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Contacts\ContactsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FeedlySearch\FeedlySearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Main\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesOrderFilterViewModel.cs" />
@@ -91,8 +92,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssFavoriteMessages\RssFavoriteMessagesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailParameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssItemDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssMessagesListParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssItemDetail\RssMessagesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\MoveEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssListEdit\RssListEditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />

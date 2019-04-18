@@ -6,9 +6,9 @@ namespace Droid.Screens.RssAllMessagesFilter
 {
     public class RssAllMessagesFilterWay : IWay<RssAllMessagesFilterViewModel>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
 
-        public RssAllMessagesFilterWay(FragmentActivity activity)
+        public RssAllMessagesFilterWay(IFragmentManager activity)
         {
             _activity = activity;
         }

@@ -6,9 +6,9 @@ namespace Droid.Screens.FeedlySearch
 {
     public class FeedlySearchWay : IWay<FeedlySearchViewModel>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
 
-        public FeedlySearchWay(FragmentActivity activity)
+        public FeedlySearchWay(IFragmentManager activity)
         {
             _activity = activity;
         }

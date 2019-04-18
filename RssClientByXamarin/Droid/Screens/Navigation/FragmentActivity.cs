@@ -4,13 +4,17 @@ using Android.OS;
 using Android.Support.Transitions;
 using Android.Support.V4.App;
 using Android.Views;
+using Autofac;
 using Droid.Container;
 using Droid.Repository.Configuration;
+using Shared;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
-{   
-    public abstract class FragmentActivity : BurgerActivity
+{
+    public abstract class FragmentActivity<TViewModel> : BurgerActivity<TViewModel>, IFragmentManager
+        where TViewModel : ViewModel
     {
         [Inject] private IConfigurationRepository _configurationRepository;
 
@@ -20,6 +24,8 @@ namespace Droid.Screens.Navigation
         {
             base.OnCreate(savedInstanceState);
 
+            _configurationRepository = App.Container.Resolve<IConfigurationRepository>();
+            
             SupportFragmentManager.BackStackChanged += (sender, args) =>
             {
                 var lastFragment = SupportFragmentManager.Fragments.LastOrDefault();

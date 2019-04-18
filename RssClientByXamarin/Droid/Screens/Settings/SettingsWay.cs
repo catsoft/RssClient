@@ -6,9 +6,9 @@ namespace Droid.Screens.Settings
 {
     public class SettingsWay : IWay<SettingsViewModel>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
 
-        public SettingsWay(FragmentActivity fragmentActivity)
+        public SettingsWay(IFragmentManager fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }

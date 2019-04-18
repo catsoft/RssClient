@@ -1,11 +1,8 @@
 ﻿using System;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
-using Android.Widget;
 using Droid.NativeExtension;
-using Droid.Screens.Base;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;

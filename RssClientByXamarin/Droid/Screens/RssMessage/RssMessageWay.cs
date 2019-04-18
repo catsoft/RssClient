@@ -10,11 +10,11 @@ namespace Droid.Screens.RssMessage
 {
     public class RssMessageWay : IWayWithParameters<RssMessageViewModel, RssMessageParameterses>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
         private readonly IConfigurationRepository _configurationRepository;
         private readonly RssMessageParameterses _parameters;
 
-        public RssMessageWay(FragmentActivity activity, IConfigurationRepository configurationRepository,
+        public RssMessageWay(IFragmentManager activity, IConfigurationRepository configurationRepository,
             RssMessageParameterses parameters)
         {
             _activity = activity;

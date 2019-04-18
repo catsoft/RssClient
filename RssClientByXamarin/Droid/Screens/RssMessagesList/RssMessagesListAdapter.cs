@@ -5,13 +5,13 @@ using Android.Views;
 using Shared.Configuration.Settings;
 using Shared.Repository.RssMessage;
 
-namespace Droid.Screens.RssItemMessage
+namespace Droid.Screens.RssMessagesList
 {
-    public class RssItemMessageAdapter : BaseRssMessageAdapter<RssItemMessageViewHolder>
+    public class RssMessagesListAdapter : BaseRssMessagesAdapter<RssMessagesListViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
         
-        public RssItemMessageAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items, activity, rssMessagesRepository)
+        public RssMessagesListAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items, activity, rssMessagesRepository)
         {
             _appConfiguration = appConfiguration;
         }
@@ -19,7 +19,7 @@ namespace Droid.Screens.RssItemMessage
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss_message, parent, false);
-            var holder = new RssItemMessageViewHolder(view, _appConfiguration.LoadAndShowImages);
+            var holder = new RssMessagesListViewHolder(view, _appConfiguration.LoadAndShowImages);
 
             holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder); };
             holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder, sender); };

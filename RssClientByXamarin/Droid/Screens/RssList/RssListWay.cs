@@ -6,9 +6,9 @@ namespace Droid.Screens.RssList
 {
     public class RssListWay : IWay<RssListViewModel>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
 
-        public RssListWay(FragmentActivity fragmentActivity)
+        public RssListWay(IFragmentManager fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }

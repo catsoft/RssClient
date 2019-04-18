@@ -6,18 +6,21 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
-using Droid.Container;
+using Autofac;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base;
 using Java.Lang;
+using Shared;
 using Shared.Configuration.Settings;
+using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {
-    public abstract class BurgerActivity : ToolbarActivity, NavigationView.IOnNavigationItemSelectedListener,
-        View.IOnClickListener
+    public abstract class BurgerActivity<TViewModel> : BaseReactiveAppCompatActivity<TViewModel>, NavigationView.IOnNavigationItemSelectedListener,
+        View.IOnClickListener 
+        where TViewModel : ViewModel
     {
-        [Inject] private IConfigurationRepository _configurationRepository;
+        private IConfigurationRepository _configurationRepository;
 
         protected bool IsHomeToggle { get; set; } = true;
 
@@ -38,6 +41,8 @@ namespace Droid.Screens.Navigation
         {
             base.OnCreate(savedInstanceState);
 
+            _configurationRepository = App.Container.Resolve<IConfigurationRepository>();
+            
             if (savedInstanceState != null)
             {
                 IsHomeToggle = savedInstanceState.GetBoolean(nameof(IsHomeToggle));
@@ -68,7 +73,6 @@ namespace Droid.Screens.Navigation
             else
                 OnBackPressed();
         }
-
 
         protected void UpdateDrawerState()
         {

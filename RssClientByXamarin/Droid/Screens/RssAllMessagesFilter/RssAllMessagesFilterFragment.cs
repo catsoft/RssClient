@@ -1,22 +1,13 @@
+using System;
 using Android.OS;
 using Android.Views;
-using Droid.Container;
-using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
-using Shared.Configuration.Settings;
-using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter
 {
     public class RssAllMessagesFilterFragment : BaseFragment<RssAllMessagesFilterViewModel>
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-
-        [Inject]
-        private INavigator _navigator;
-    
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter;
         public override bool IsRoot => false;
         
@@ -52,18 +43,11 @@ namespace Droid.Screens.RssAllMessagesFilter
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_allMessagesFilter_clear:
-                    ClearFilter();
+                    ViewModel.ClearFilterCommand.Execute().Subscribe();
                     return true;
             }
             
             return base.OnOptionsItemSelected(item);
-        }
-
-        private void ClearFilter()
-        {
-            _configurationRepository.DeleteSetting<AllMessageFilterConfiguration>();
-         
-            _navigator.GoBack();
         }
     }
 }

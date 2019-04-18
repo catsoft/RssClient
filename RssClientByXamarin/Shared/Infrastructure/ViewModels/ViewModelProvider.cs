@@ -9,7 +9,7 @@ namespace Shared.Infrastructure.ViewModels
             
         }
 
-        public TViewModel Resolve<TViewModel>(ViewModelParameters parameters)
+        public TViewModel Resolve<TViewModel>(ViewModelParameters parameters = null)
         {
             if (parameters != null)
             {

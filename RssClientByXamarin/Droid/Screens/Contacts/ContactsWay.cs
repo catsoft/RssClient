@@ -6,9 +6,9 @@ namespace Droid.Screens.Contacts
 {
     public class ContactsWay : IWay<ContactsViewModel>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
 
-        public ContactsWay(FragmentActivity fragmentActivity)
+        public ContactsWay(IFragmentManager fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }

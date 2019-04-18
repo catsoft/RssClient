@@ -2,7 +2,7 @@
 using Android.Text;
 using Android.Widget;
 
-namespace Droid.Screens.Base
+namespace Droid.NativeExtension
 {
     public static class TextViewExtension
     {

@@ -1,19 +1,23 @@
 using System;
-using Android.OS;
-using Droid.Container;
+using Android.App;
+using Autofac;
 using Droid.Repository.Configuration;
+using Shared;
 using Shared.Configuration.Settings;
 
 namespace Droid.Screens.Base
 {
-    public abstract class AppThemeActivity : InjectActivity
+    public class AppThemeController
     {
-        [Inject] private IConfigurationRepository _configurationRepository;
+        private readonly IConfigurationRepository _configurationRepository;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        public AppThemeController()
         {
-            base.OnCreate(savedInstanceState);
-
+            _configurationRepository = App.Container.Resolve<IConfigurationRepository>();
+        }
+        
+        public void SetTheme(Activity activity)
+        {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var appTheme = appConfiguration.AppTheme;
 
@@ -34,7 +38,7 @@ namespace Droid.Screens.Base
                     throw new ArgumentOutOfRangeException();
             }
 
-            SetTheme(themeId);
+            activity.SetTheme(themeId);
         }
     }
 }

@@ -4,6 +4,7 @@ using Shared.ViewModels.About;
 using Shared.ViewModels.Close;
 using Shared.ViewModels.Contacts;
 using Shared.ViewModels.FeedlySearch;
+using Shared.ViewModels.Main;
 using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssAllMessagesFilter;
 using Shared.ViewModels.RssCreate;
@@ -25,6 +26,8 @@ namespace Shared.Container.Modules
 
             builder.RegisterType<ViewModelProvider>().AsSelf().SingleInstance();
             
+            builder.RegisterType<MainViewModel>().AsSelf();
+            
             builder.RegisterType<AboutViewModel>().AsSelf();
             builder.RegisterType<CloseViewModel>().AsSelf();
             builder.RegisterType<ContactsViewModel>().AsSelf();
@@ -38,7 +41,7 @@ namespace Shared.Container.Modules
             builder.RegisterType<RssCreateViewModel>().AsSelf();
             builder.RegisterType<RssEditViewModel>().AsSelf();
             builder.RegisterType<RssFavoriteMessagesViewModel>().AsSelf();
-            builder.RegisterType<RssItemDetailViewModel>().AsSelf();
+            builder.RegisterType<RssMessagesListViewModel>().AsSelf();
             builder.RegisterType<RssListViewModel>().AsSelf();
             builder.RegisterType<RssListEditViewModel>().AsSelf();
             builder.RegisterType<RssMessageViewModel>().AsSelf();

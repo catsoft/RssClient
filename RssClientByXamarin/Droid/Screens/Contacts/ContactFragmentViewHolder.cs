@@ -1,5 +1,4 @@
 using System;
-using Android.Provider;
 using Android.Views;
 using Android.Widget;
 

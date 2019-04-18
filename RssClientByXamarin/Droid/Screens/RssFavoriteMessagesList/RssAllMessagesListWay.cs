@@ -6,9 +6,9 @@ namespace Droid.Screens.RssFavoriteMessagesList
 {
     public class RssFavoriteMessagesListWay : IWay<RssFavoriteMessagesViewModel>
     {
-        private readonly FragmentActivity _activity;
+        private readonly IFragmentManager _activity;
 
-        public RssFavoriteMessagesListWay(FragmentActivity activity)
+        public RssFavoriteMessagesListWay(IFragmentManager activity)
         {
             _activity = activity;
         }

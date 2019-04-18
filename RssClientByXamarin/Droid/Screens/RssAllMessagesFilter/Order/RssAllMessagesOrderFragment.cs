@@ -1,18 +1,18 @@
-﻿using Android.OS;
+﻿using System;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Droid.Container;
-using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
+using ReactiveUI;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter.Order
 {
     public class RssAllMessagesOrderFragment : BaseFragment<RssAllMessagesOrderFilterViewModel>, RadioGroup.IOnCheckedChangeListener
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
+        private RssAllMessagesOrderFragmentViewHolder _viewHolder;
         
         protected override int LayoutId => Resource.Layout.fragment_all_messages_order_sub;
 
@@ -31,42 +31,49 @@ namespace Droid.Screens.RssAllMessagesFilter.Order
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
-            var rootRadioGroup =  view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_order_main);
-            var newestRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_newest);
-            var oldestRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_order_oldest);
+            _viewHolder = new RssAllMessagesOrderFragmentViewHolder(view);
             
-            switch (filterConfiguration.Sort)
-            {
-                case Sort.Oldest:
-                    oldestRadioButton.Checked = true;
-                    break;
-                case Sort.Newest:
-                    newestRadioButton.Checked = true;
-                    break;
-            }
+            _viewHolder.RootRadioGroup.SetOnCheckedChangeListener(this);
 
-            rootRadioGroup.SetOnCheckedChangeListener(this);
+            OnActivation(disposable =>
+            {
+                ViewModel.WhenAnyValue(w => w.Sort)
+                    .Subscribe(UpdateSortFilter)
+                    .AddTo(disposable);
+            });
             
             return view;
         }
 
-        public void OnCheckedChanged(RadioGroup @group, int checkedId)
+        private void UpdateSortFilter(Sort sort)
         {
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
-            switch (checkedId)
+            switch (sort)
             {
-                case Resource.Id.radioButton_rss_all_messages_order_newest:
-                    filterConfiguration.Sort = Sort.Newest;
+                case Sort.Oldest:
+                    _viewHolder.OldestRadioButton.Checked = true;
                     break;
-                case Resource.Id.radioButton_rss_all_messages_order_oldest:
-                    filterConfiguration.Sort = Sort.Oldest;
+                case Sort.Newest:
+                    _viewHolder.NewestRadioButton.Checked = true;
                     break;
             }
+        }
+
+        public void OnCheckedChanged(RadioGroup @group, int checkedId)
+        {
+            Sort sort;
             
-            _configurationRepository.SaveSetting(filterConfiguration);
+            switch (checkedId)
+            {
+                default:
+                case Resource.Id.radioButton_rss_all_messages_order_newest:
+                   sort = Sort.Newest;
+                    break;
+                case Resource.Id.radioButton_rss_all_messages_order_oldest:
+                    sort = Sort.Oldest;
+                    break;
+            }
+
+            ViewModel.UpdateSortCommand.Execute(sort).Subscribe();
         }
     }
 }

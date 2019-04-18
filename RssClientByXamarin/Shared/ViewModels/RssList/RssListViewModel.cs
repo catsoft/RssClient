@@ -112,9 +112,9 @@ namespace Shared.ViewModels.RssList
         
         private void DoOpenDetailScreen(RssServiceModel model)
         {
-            var parameter = new RssItemDetailParameters(model);
+            var parameter = new RssMessagesListParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);            
-            var way = App.Container.Resolve<IWayWithParameters<RssItemDetailViewModel, RssItemDetailParameters>>(typedParameter);
+            var way = App.Container.Resolve<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>(typedParameter);
             _navigator.Go(way);
         }
 

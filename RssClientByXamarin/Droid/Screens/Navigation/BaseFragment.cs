@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 using Droid.Container;
+using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Shared.Infrastructure.ViewModels;
 

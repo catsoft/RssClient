@@ -3,20 +3,18 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Droid.Container;
-using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
+using ReactiveUI;
 using Shared.Configuration.Settings;
-using Shared.Infrastructure.Locale;
+using Shared.Extensions;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {
     public class RssAllMessagesFilterSubFragment : BaseFragment<RssAllMessagesFilterFilterViewModel>, RadioGroup.IOnCheckedChangeListener
     {
-        [Inject]
-        private IConfigurationRepository _configurationRepository;
-
+        private RssAllMessagesFilterSubFragmentViewHolder _viewHolder;
+        
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter_sub;
 
         public override bool IsRoot => false;
@@ -34,107 +32,99 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+            _viewHolder = new RssAllMessagesFilterSubFragmentViewHolder(view);
 
-            var rootRadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_filter_main);
-            var allRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_all);
-            var favoriteRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_favorite);
-            var readRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_read);
-            var unreadRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_unread);
-
-            switch (filterConfiguration.MessageFilterType)
-            {
-                case MessageFilterType.None:
-                    allRadioButton.Checked = true;
-                    break;
-                case MessageFilterType.Favorite:
-                    favoriteRadioButton.Checked = true;
-                    break;
-                case MessageFilterType.Read:
-                    readRadioButton.Checked = true;
-                    break;
-                case MessageFilterType.Unread:
-                    unreadRadioButton.Checked = true;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            rootRadioGroup.SetOnCheckedChangeListener(this);
-
-            var fromButton = view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateFrom);
-            var toButton = view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateTo);
-
-            if (filterConfiguration.From.HasValue)
-            {
-                fromButton.Text = filterConfiguration.From.Value.ToShortDateLocaleString();
-            }
+            _viewHolder.RootRadioGroup.SetOnCheckedChangeListener(this);
             
-            if (filterConfiguration.To.HasValue)
+            OnActivation(disposable =>
             {
-                toButton.Text = filterConfiguration.To.Value.ToShortDateLocaleString();
-            }
+                ViewModel.WhenAnyValue(model => model.MessageFilterType)
+                    .Subscribe(SetFilterType)
+                    .AddTo(disposable);
+                
+                this.Bind(ViewModel, model => model.FromDateText, fragment => fragment._viewHolder.FromButton.Text)
+                    .AddTo(disposable);
 
-            fromButton.Click += (sender, args) =>
-            {
-                var configuration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-                var defaultDate = configuration.From ?? DateTime.Now;
-                var picker = new DatePickerDialog(Context, SetFromDate, defaultDate.Year,defaultDate.Month,defaultDate.Day);
-                picker.Show();
-            };
+                this.Bind(ViewModel, model => model.ToDateText, fragment => fragment._viewHolder.ToButton.Text)
+                    .AddTo(disposable);
 
-            toButton.Click += (sender, args) =>
-            {
-                var configuration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-                var defaultDate = configuration.To ?? DateTime.Now;
-                var picker = new DatePickerDialog(Context, SetToDate, defaultDate.Year,defaultDate.Month,defaultDate.Day);
-                picker.Show();
-            };
+                _viewHolder.FromButton.Events().Click
+                    .Subscribe(w => OpenFromDatePicker())
+                    .AddTo(disposable);
+                
+                _viewHolder.ToButton.Events().Click
+                    .Subscribe(w => OpenToDatePicker())
+                    .AddTo(disposable);
+            });
 
             return view;
         }
 
+        private void SetFilterType(MessageFilterType type)
+        {
+            switch (type)
+            {
+                default:
+                case MessageFilterType.None:
+                    _viewHolder.AllRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Favorite:
+                    _viewHolder.FavoriteRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Read:
+                    _viewHolder.ReadRadioButton.Checked = true;
+                    break;
+                case MessageFilterType.Unread:
+                    _viewHolder.UnreadRadioButton.Checked = true;
+                    break;
+            }
+        }
+
+        private void OpenFromDatePicker()
+        {
+            var fromDate = ViewModel.FromDate;
+            var picker = new DatePickerDialog(Context, SetFromDate, fromDate.Year,fromDate.Month,fromDate.Day);
+            picker.Show();   
+        }
+
+        private void OpenToDatePicker()
+        {
+            var defaultDate = ViewModel.ToDate;
+            var picker = new DatePickerDialog(Context, SetToDate, defaultDate.Year,defaultDate.Month,defaultDate.Day);
+            picker.Show();
+        }
+        
         private void SetFromDate(object sender, DatePickerDialog.DateSetEventArgs e)
         {
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-            filterConfiguration.From = e.Date;
-            _configurationRepository.SaveSetting(filterConfiguration);
-            
-            var fromButton = View.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateFrom);
-            fromButton.Text = e.Date.ToShortDateLocaleString();
+            ViewModel.SetFromDateTypeCommand.Execute(e.Date).Subscribe();
         }
         
         private void SetToDate(object sender, DatePickerDialog.DateSetEventArgs e)
         {
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-            filterConfiguration.To = e.Date;
-            _configurationRepository.SaveSetting(filterConfiguration);
-            
-            var toButton = View.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateTo);
-            toButton.Text = e.Date.ToShortDateLocaleString();
+            ViewModel.SetToDateTypeCommand.Execute(e.Date).Subscribe();
         }
         
         public void OnCheckedChanged(RadioGroup @group, int checkedId)
         {
-            var filterConfiguration = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
+            MessageFilterType filterType;
             switch (checkedId)
             {
+                default:
                 case Resource.Id.radioButton_rss_all_messages_filter_all:
-                    filterConfiguration.MessageFilterType = MessageFilterType.None;
+                    filterType = MessageFilterType.None;
                     break;
                 case Resource.Id.radioButton_rss_all_messages_filter_favorite:
-                    filterConfiguration.MessageFilterType = MessageFilterType.Favorite;
+                    filterType = MessageFilterType.Favorite;
                     break;
                 case Resource.Id.radioButton_rss_all_messages_filter_read:
-                    filterConfiguration.MessageFilterType = MessageFilterType.Read;
+                    filterType = MessageFilterType.Read;
                     break;
                 case Resource.Id.radioButton_rss_all_messages_filter_unread:
-                    filterConfiguration.MessageFilterType = MessageFilterType.Unread;
+                    filterType = MessageFilterType.Unread;
                     break;
             }
-            
-            _configurationRepository.SaveSetting(filterConfiguration);
+
+            ViewModel.SetMessageFilterTypeCommand.Execute(filterType).Subscribe();
         }
     }
 }

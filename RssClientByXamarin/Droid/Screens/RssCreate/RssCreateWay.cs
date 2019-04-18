@@ -6,9 +6,9 @@ namespace Droid.Screens.RssCreate
 {
     public class RssCreateWay : IWay<RssCreateViewModel>
     {
-        private readonly FragmentActivity _fragmentActivity;
+        private readonly IFragmentManager _fragmentActivity;
 
-        public RssCreateWay(FragmentActivity fragmentActivity)
+        public RssCreateWay(IFragmentManager fragmentActivity)
         {
             _fragmentActivity = fragmentActivity;
         }
