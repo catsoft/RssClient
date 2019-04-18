@@ -28,6 +28,7 @@ namespace Shared.ViewModels.RssAllMessagesFilter
             Filter.ToPropertyEx(this, model => model.FilterConfiguration);
             
             UpdateSortCommand = ReactiveCommand.Create<Sort>(DoUpdateSort);
+            _sortFilter.OnNext(_configurationRepository.GetSettings<AllMessageFilterConfiguration>());
         }
 
         public IObservable<AllMessageFilterConfiguration> Filter { get; }
