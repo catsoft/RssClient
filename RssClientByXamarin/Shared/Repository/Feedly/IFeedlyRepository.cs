@@ -6,6 +6,6 @@ namespace Shared.Repository.Feedly
 {
     public interface IFeedlyRepository
     {
-        Task<IEnumerable<FeedlyRss>> SearchByQueryAsync(string query, CancellationToken token = default);
+        Task<IEnumerable<FeedlyRssDomainModel>> SearchByQueryAsync(string query, CancellationToken token = default);
     }
 }

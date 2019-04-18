@@ -2,13 +2,13 @@ using Shared.Infrastructure.Mappers;
 
 namespace Shared.Repository.Feedly
 {
-    public class FeedlyMapper : IMapper<Api.Feedly.FeedlyRss, FeedlyRss>
+    public class FeedlyMapper : IMapper<Api.Feedly.FeedlyRssApiModel, FeedlyRssDomainModel>
     {
-        public FeedlyRss Transform(Api.Feedly.FeedlyRss model)
+        public FeedlyRssDomainModel Transform(Api.Feedly.FeedlyRssApiModel model)
         {
             return model == null
-                ? new FeedlyRss()
-                : new FeedlyRss()
+                ? new FeedlyRssDomainModel()
+                : new FeedlyRssDomainModel()
                 {
                     // TODO may be automapper?
                     DeliciousTags = model.DeliciousTags,

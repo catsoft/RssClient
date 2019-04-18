@@ -9,9 +9,9 @@ using Shared.Repository.Feedly;
 
 namespace Droid.Screens.FeedlySearch
 {
-    public class FeedlyRssViewHolder : RecyclerView.ViewHolder, IDataBind<FeedlyRss>, IShowAndLoadImage
+    public class FeedlyRssViewHolder : RecyclerView.ViewHolder, IDataBind<FeedlyRssDomainModel>, IShowAndLoadImage
     {
-        public FeedlyRss Item { get; set; }
+        public FeedlyRssDomainModel Item { get; set; }
         public bool IsShowAndLoadImages { get; }
         
         public ImageButton AddImageView { get; set; }
@@ -29,7 +29,7 @@ namespace Droid.Screens.FeedlySearch
             RssIcon.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        public void BindData(FeedlyRss item)
+        public void BindData(FeedlyRssDomainModel item)
         {
             Item = item;
             

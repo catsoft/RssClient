@@ -105,7 +105,7 @@
     <Compile Include="Screens\Contacts\ContactFragmentViewHolder.cs" />
     <Compile Include="Screens\Contacts\ContactItemViewHolder.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
-    <Compile Include="Screens\FeedlySearch\FeedlyRssAdapter.cs" />
+    <Compile Include="Screens\FeedlySearch\FeedlySearchRssAdapter.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlyRssViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragmentViewHolder.cs" />

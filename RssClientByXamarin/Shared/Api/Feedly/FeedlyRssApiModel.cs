@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Shared.Api.Feedly
 {
-    public class FeedlyRss
+    public class FeedlyRssApiModel
     {
         public List<string> DeliciousTags { get; set; }
         public string FeedId { get; set; }

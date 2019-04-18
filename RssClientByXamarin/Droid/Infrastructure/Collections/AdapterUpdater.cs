@@ -16,7 +16,7 @@ namespace Droid.Infrastructure.Collections
             _viewModelSourceList = viewModelSourceList;
         }
 
-        public void Update(IChangeSet<RssServiceModel> observableList)
+        public void Update(IChangeSet<T> observableList)
         {
             _adapter.Items = _viewModelSourceList.Items;
             

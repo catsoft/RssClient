@@ -28,7 +28,7 @@ namespace Shared.Container.Modules
             builder.RegisterType<RssMessageMapper>().As<IMapper<RssMessageModel, RssMessageDomainModel>>().SingleInstance();
             builder.RegisterType<RssMessageMapper>().As<IMapper<RssMessageDomainModel, RssMessageModel>>().SingleInstance();
             
-            builder.RegisterType<FeedlyMapper>().As<IMapper<Api.Feedly.FeedlyRss, FeedlyRss>>().SingleInstance();
+            builder.RegisterType<FeedlyMapper>().As<IMapper<Api.Feedly.FeedlyRssApiModel, FeedlyRssDomainModel>>().SingleInstance();
         }
     }
 }

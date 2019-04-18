@@ -16,7 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\RssMessageLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Analitics\Rss\ScreenLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Feedly\FeedlyCloudApiClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Api\Feedly\FeedlyRss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\Feedly\FeedlyRssApiModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Feedly\FeedlyRssResponce.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Feedly\IFeedlyCloudApiClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Rss\IRssApiClient.cs" />
@@ -55,7 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Configuration\IConfigurationRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRssDomainModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\IFeedlyRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\IRssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageDomainModel.cs" />

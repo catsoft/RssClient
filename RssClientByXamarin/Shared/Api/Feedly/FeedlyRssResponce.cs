@@ -4,7 +4,7 @@ namespace Shared.Api.Feedly
 {
     public class FeedlyRssResponce
     {
-        public List<FeedlyRss> Results { get; set; }
+        public List<FeedlyRssApiModel> Results { get; set; }
         
         
         public string Hint { get; set; }

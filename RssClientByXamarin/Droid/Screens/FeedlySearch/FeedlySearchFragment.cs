@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.Repository.Feedly;
+using Shared.Services.Rss;
 using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
@@ -39,14 +42,24 @@ namespace Droid.Screens.FeedlySearch
             
             _viewHolder = new FeedlySearchFragmentViewHolder(view);
             
+            var adapter = new FeedlySearchRssAdapter(Activity, ViewModel.AppConfiguration);
+            _viewHolder.RecyclerView.SetAdapter(adapter);
+            
+            var adapterUpdater = new AdapterUpdater<FeedlyRssDomainModel>(adapter, ViewModel.SourceList);
+            
             OnActivation(disposable =>
             {
-                ViewModel.WhenAnyValue(w => w.FeedlyRss)
-                    .Subscribe(UpdateFeeds)
-                    .AddTo(disposable);
-                
                 ViewModel.WhenAnyValue(w => w.IsEmpty)
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
+                
+                adapter.GetClickAddImageEvent()
+                    .InvokeCommand(ViewModel.AddFeedlyRssCommand)
+                    .AddTo(disposable);
+                
+                ViewModel.ConnectChanges
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
             });
             
@@ -69,13 +82,6 @@ namespace Droid.Screens.FeedlySearch
             }
 
             base.OnCreateOptionsMenu(menu, inflater);
-        }
-
-        private void UpdateFeeds(IEnumerable<FeedlyRss> feeds)
-        {
-            var adapter = new FeedlyRssAdapter(feeds?.ToList() ?? new List<FeedlyRss>(), Activity, ViewModel.AppConfiguration);
-            _viewHolder.RecyclerView.SetAdapter(adapter);
-            adapter.NotifyDataSetChanged();
         }
     }
 }

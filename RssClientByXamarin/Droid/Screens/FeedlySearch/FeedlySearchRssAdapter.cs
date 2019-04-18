@@ -1,22 +1,21 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Autofac;
-using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
-using Shared;
 using Shared.Configuration.Settings;
 using Shared.Repository.Feedly;
-using Shared.Repository.Rss;
 
 namespace Droid.Screens.FeedlySearch
 {
-    public class FeedlyRssAdapter : DataBindAdapter<FeedlyRss, List<FeedlyRss>, FeedlyRssViewHolder>
+    public class FeedlySearchRssAdapter : DataBindAdapter<FeedlyRssDomainModel, IEnumerable<FeedlyRssDomainModel>, FeedlyRssViewHolder>
     {
+        public event EventHandler<FeedlyRssDomainModel> ClickAddImage; 
+        
         private readonly AppConfiguration _appConfiguration;
         
-        public FeedlyRssAdapter(List<FeedlyRss> items, Activity activity, AppConfiguration appConfiguration) : base(items, activity)
+        public FeedlySearchRssAdapter(Activity activity, AppConfiguration appConfiguration) : base(new List<FeedlyRssDomainModel>(), activity)
         {
             _appConfiguration = appConfiguration;
         }
@@ -27,13 +26,7 @@ namespace Droid.Screens.FeedlySearch
             
             var viewHolder = new FeedlyRssViewHolder(view, _appConfiguration.LoadAndShowImages);
 
-            // TODO вынести
-            viewHolder.AddImageView.Click += (sender, args) =>
-            {
-                var rssRepository = App.Container.Resolve<IRssRepository>();
-                rssRepository.AddAsync(viewHolder.Item.FeedId);
-                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.Item.Title);
-            };
+            viewHolder.AddImageView.Click += (sender, args) => ClickAddImage?.Invoke(sender, viewHolder.Item);
             
             return viewHolder;
         }

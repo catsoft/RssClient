@@ -2,8 +2,11 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.Widget;
+using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
+using Shared.Api.Feedly;
+using Shared.Repository.Feedly;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
 using SearchView = Android.Support.V7.Widget.SearchView;
@@ -56,6 +59,13 @@ namespace Droid.NativeExtension
         {
             return Observable
                 .FromEventPattern<MoveEventArgs<RssServiceModel>>(t => @this.OnMoveEvent += t, t => @this.OnMoveEvent -= t)
+                .Select(_ => _.EventArgs);
+        }
+        
+        public static IObservable<FeedlyRssDomainModel> GetClickAddImageEvent(this FeedlySearchRssAdapter @this)
+        {
+            return Observable
+                .FromEventPattern<FeedlyRssDomainModel>(t => @this.ClickAddImage += t, t => @this.ClickAddImage -= t)
                 .Select(_ => _.EventArgs);
         }
     }
