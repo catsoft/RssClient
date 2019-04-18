@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Support.V4.Content;
+using JetBrains.Annotations;
 using Realms;
+using Shared.Extensions;
 
 namespace Shared.Database
 {
@@ -10,6 +12,7 @@ namespace Shared.Database
 	{
 		private const string DatabaseFilename = "librarydb.realm";
 
+		[NotNull]
 		public Realm MainThreadRealm { get; }
 
 		public RealmDatabase()
@@ -17,29 +20,30 @@ namespace Shared.Database
             var config = new RealmConfiguration(DatabaseFilename);
             try
             {
-                MainThreadRealm = Realm.GetInstance(config);
+                MainThreadRealm = Realm.GetInstance(config).NotNull();
             }
             catch (Realms.Exceptions.RealmMigrationNeededException)
             {
                 Realm.DeleteRealm(config);
-                MainThreadRealm = Realm.GetInstance(config);
+                MainThreadRealm = Realm.GetInstance(config).NotNull();
             }
         }
 
-        public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename);
+		[NotNull]
+        public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename).NotNull();
 
         public void Dispose()
 		{
 			MainThreadRealm.Dispose();
 		}
 
-        public static Task DoInBackground(Action<Realm> action)
+        public static Task DoInBackground([CanBeNull] Action<Realm> action)
         {
             return Task.Run(() =>
             {
                 using (var realm = OpenDatabase)
                 {
-                    using (var transaction = realm.BeginWrite())
+                    using (var transaction = realm.BeginWrite().NotNull())
                     {
                         action?.Invoke(realm);
 
@@ -66,7 +70,7 @@ namespace Shared.Database
         {
             return DoInBackground(realm =>
             {
-                var currentItem = realm.Find<TModel>(id);
+                var currentItem = realm.NotNull().Find<TModel>(id);
 
                 action?.Invoke(currentItem, realm);
             });
@@ -79,9 +83,9 @@ namespace Shared.Database
             {
                 using (var realm = OpenDatabase)
                 {
-                    using (var transaction = realm.BeginWrite())
+                    using (var transaction = realm.BeginWrite().NotNull())
                     {
-                        var item = realm.Add(model);
+                        var item = realm.Add(model).NotNull();
 
                         transaction.Commit();
 

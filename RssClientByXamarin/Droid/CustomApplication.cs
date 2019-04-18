@@ -5,6 +5,7 @@ using Autofac;
 using Droid.Container.Modules;
 using Shared;
 using Shared.Analytics;
+using Shared.Extensions;
 
 namespace Droid
 {
@@ -25,7 +26,7 @@ namespace Droid
 
             App.Build(new PlatformModule());
 
-            var log = App.Container.Resolve<ILog>();
+            var log = App.Container.Resolve<ILog>().NotNull();
 
 #if DEBUG
             {

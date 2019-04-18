@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Shared.Analitics.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
+using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
 
 namespace Shared.Repository.Rss
 {
     public class RssRepository : IRssRepository
     {
-        private readonly RssLog _log;
-        private readonly IMapper<RssModel, RssDomainModel> _mapper;
+        [NotNull] private readonly RssLog _log;
+        [NotNull] private readonly IMapper<RssModel, RssDomainModel> _mapper;
 
-        public RssRepository(RssLog log, IMapper<RssModel, RssDomainModel> mapper)
+        public RssRepository([NotNull] RssLog log, [NotNull] IMapper<RssModel, RssDomainModel> mapper)
         {
             _log = log;
             _mapper = mapper;
@@ -40,19 +42,24 @@ namespace Shared.Repository.Rss
             }, token);
         }
 
-        public Task UpdateAsync(RssDomainModel rssDomainModel, CancellationToken token = default)
+        public Task UpdateAsync([CanBeNull] RssDomainModel rssDomainModel, CancellationToken token = default)
         {
+            if (rssDomainModel == null) return Task.CompletedTask;
+            
             return RealmDatabase.DoInBackground(realm =>
             {
-                var rss = realm.Find<RssModel>(rssDomainModel.Id);
-                rss.Rss = rssDomainModel.Rss;
-                rss.Name = rssDomainModel.Name;
-                rss.Position = rssDomainModel.Position;
-                rss.UpdateTime = rssDomainModel.UpdateTime;
-                rss.CreationTime = rssDomainModel.CreationTime;
-                rss.UrlPreviewImage = rssDomainModel.UrlPreviewImage;
+                var rss = realm.NotNull().Find<RssModel>(rssDomainModel.Id);
+                if (rss != null)
+                {
+                    rss.Rss = rssDomainModel.Rss;
+                    rss.Name = rssDomainModel.Name;
+                    rss.Position = rssDomainModel.Position;
+                    rss.UpdateTime = rssDomainModel.UpdateTime;
+                    rss.CreationTime = rssDomainModel.CreationTime;
+                    rss.UrlPreviewImage = rssDomainModel.UrlPreviewImage;
 
-                realm.Add(rss, true);
+                    realm.NotNull().Add(rss, true);
+                }
             });
         }
 
@@ -63,7 +70,7 @@ namespace Shared.Repository.Rss
                 using (var realm = RealmDatabase.OpenDatabase)
                 {
                     var items = realm.Find<RssModel>(id);
-                    return _mapper.Transform(items);
+                    return items == null ? null : _mapper.Transform(items);
                 }
             }, token);
         }
@@ -72,14 +79,14 @@ namespace Shared.Repository.Rss
         {
             return RealmDatabase.DoInBackground(realm =>
             {
-                var backgroundRssItem = realm.Find<RssModel>(id);
+                var backgroundRssItem = realm.NotNull().Find<RssModel>(id);
 
                 if (backgroundRssItem != null)
                 {
                     _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
                 
-                    backgroundRssItem.RssMessageModels.Clear();
-                    realm.Remove(backgroundRssItem);
+                    backgroundRssItem.RssMessageModels?.Clear();
+                    realm.NotNull().Remove(backgroundRssItem);
                 }
             });
         }
