@@ -154,7 +154,8 @@ namespace Shared.ViewModels.RssList
         private async Task DoAllUpdate(IChangeSet<RssServiceModel> changes, CancellationToken token)
         {
             var updatable = SourceList.Items
-                    ?.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
+                       //TODO продумать условие
+//                    ?.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
                     .ToList() ?? new List<RssServiceModel>();
             
             foreach (var rssServiceModel in updatable)
@@ -162,7 +163,10 @@ namespace Shared.ViewModels.RssList
                 await _rssService.LoadAndUpdateAsync(rssServiceModel.Id, token);
                 var newItem = await _rssService.GetAsync(rssServiceModel.Id, token);
 
-                SourceList.Replace(rssServiceModel, newItem);
+                if (SourceList.Items?.Contains(rssServiceModel) == true)
+                {
+                    SourceList.Replace(rssServiceModel, newItem);
+                }
             }
         }
     }

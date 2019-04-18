@@ -76,11 +76,7 @@ namespace Shared.Repository.Rss
                 
                 _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
                 
-                var messages = backgroundRssItem.RssMessageModels;
-                
-                foreach (var rssMessageModel in messages)
-                    realm.Remove(rssMessageModel);
-                
+                backgroundRssItem.RssMessageModels.Clear();
                 realm.Remove(backgroundRssItem);
             });
         }
