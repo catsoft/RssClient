@@ -43,23 +43,23 @@ namespace Droid.Screens.RssMessage
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var message = _rssMessagesRepository.FindById(_rssMessageId);
-
-            Title = message.Title;
-
-            var webView = view.FindViewById<WebView>(Resource.Id.webView_rssMessage_mainView);
-
-            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;
-            webView.ScrollbarFadingEnabled = false;
-
-            var settings = webView.Settings;
-            settings.JavaScriptEnabled = true;
-            settings.BuiltInZoomControls = true;
-            settings.SetSupportZoom(true);
-
-            var client = new WebViewClient();
-            webView.SetWebViewClient(client);
-            webView.LoadUrl(message.Url);
+//            var message = _rssMessagesRepository.GetAsync(_rssMessageId);
+//
+//            Title = message.Title;
+//
+//            var webView = view.FindViewById<WebView>(Resource.Id.webView_rssMessage_mainView);
+//
+//            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;
+//            webView.ScrollbarFadingEnabled = false;
+//
+//            var settings = webView.Settings;
+//            settings.JavaScriptEnabled = true;
+//            settings.BuiltInZoomControls = true;
+//            settings.SetSupportZoom(true);
+//
+//            var client = new WebViewClient();
+//            webView.SetWebViewClient(client);
+//            webView.LoadUrl(message.Url);
 
             return view;
         }

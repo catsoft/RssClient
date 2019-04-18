@@ -31,10 +31,10 @@ namespace Droid.Screens.RssMessagesList
 
         private void UpdateHimself(IDataBind<RssMessageDomainModel> holder)
         {
-            var position =  Items.IndexOf(holder.Item);
-            var newItem = _rssMessagesRepository.FindById(holder.Item.Id);
-            Items[position] = newItem;
-            holder.BindData(newItem);
+//            var position =  Items.IndexOf(holder.Item);
+//            var newItem = _rssMessagesRepository.GetAsync(holder.Item.Id);
+//            Items[position] = newItem;
+//            holder.BindData(newItem);
         }
 
         protected async void ReadItem(IDataBind<RssMessageDomainModel> holder)

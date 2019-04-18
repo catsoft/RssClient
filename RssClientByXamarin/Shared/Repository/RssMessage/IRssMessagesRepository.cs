@@ -9,7 +9,7 @@ namespace Shared.Repository.RssMessage
     {
         Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default);
         
-        RssMessageDomainModel FindById(string id, CancellationToken token = default);
+        Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token = default);
 
         Task MarkAsFavoriteAsync(string id, CancellationToken token = default);
 

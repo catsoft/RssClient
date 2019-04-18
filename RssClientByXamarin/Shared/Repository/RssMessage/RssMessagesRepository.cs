@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Droid.Repository.Configuration;
@@ -50,9 +51,27 @@ namespace Shared.Repository.RssMessage
             });
         }
 
-        public RssMessageDomainModel FindById(string id, CancellationToken token)
+        public Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token)
         {
-            return _mapperToData.Transform(_localDatabase.MainThreadRealm.Find<RssMessageModel>(id));
+            return Task.Run(() =>
+            {
+                using (var realm = RealmDatabase.OpenDatabase)
+                {
+                    var item = realm.Find<RssMessageModel>(id);
+                    return _mapperToData.Transform(item);
+                }
+            }, token);
+        }
+
+        public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
+        {
+            return RealmDatabase.DoInBackground(realm =>
+            {
+                var newModel = _mapperToModel.Transform(message);
+                
+                var messageModel = realm.Find<RssMessageModel>(message.Id);
+                realm.Add(messageModel, true);
+            });
         }
 
         public async Task MarkAsFavoriteAsync(string id, CancellationToken token)

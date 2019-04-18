@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DynamicData;
 using Shared.Analitics.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
@@ -13,123 +12,15 @@ namespace Shared.Repository.Rss
 {
     public class RssRepository : IRssRepository
     {
-        private readonly RealmDatabase _database;
         private readonly RssLog _log;
         private readonly IMapper<RssModel, RssDomainModel> _mapper;
 
-        public RssRepository(RealmDatabase database, RssLog log, IMapper<RssModel, RssDomainModel> mapper)
+        public RssRepository(RssLog log, IMapper<RssModel, RssDomainModel> mapper)
         {
-            _database = database;
             _log = log;
             _mapper = mapper;
         }
 
-//
-//        public async Task UpdateFeedAsync(string url, string id, CancellationToken token = default)
-//        {
-//            var request = await _client.LoadFeedsAsync(url);
-//            await Update(id, request, token);
-//        }
-//
-//
-//        public Task Update(string id, string rss, CancellationToken token = default)
-//        {
-//            return Task.Run(async () =>
-//            {
-//                await RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
-//                {
-//                    model.RssMessageModels.Clear();
-//
-//                    _log.TrackRssUpdate(model.Rss, rss, model.Name, DateTimeOffset.Now);
-//
-//                    model.Rss = rss;
-//                    model.UpdateTime = null;
-//                    model.UrlPreviewImage = null;
-//                });
-//
-//                await UpdateFeedAsync(rss, id, token);
-//            }, token);
-//        } 
-//
-//        public Task Update(string rssId, SyndicationFeed feed, CancellationToken token = default)
-//        {
-//            return Task.Run(() =>
-//            {
-//                // TODO Добавить обработку незагруженного состояния, может стоит очистить
-//                if (feed == null)
-//                    return;
-//
-//                RealmDatabase.DoInBackground(realm =>
-//                {
-//                    var currentItem = realm.Find<RssModel>(rssId);
-//
-//                    currentItem.Name = feed.Title?.Text;
-//                    currentItem.UpdateTime = DateTime.Now;
-//                    //TODO сюда запихнуть фавикон
-//                    currentItem.UrlPreviewImage = feed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
-//
-//                    foreach (var syndicationItem in feed.Items)
-//                    {
-//                        var imageUri = syndicationItem.Links.FirstOrDefault(w =>
-//                                w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) ==
-//                                true && w.MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
-//                                ?.Uri?.OriginalString;
-//
-//                        var url = syndicationItem.Links.FirstOrDefault(w =>
-//                                w.RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)?.Uri
-//                            ?.OriginalString;
-//
-//                        var item = new RssMessageModel()
-//                        {
-//                            SyndicationId = syndicationItem.Id,
-//                            Title = syndicationItem.Title?.Text?.SafeTrim(),
-//                            Text = syndicationItem.Summary.Text?.SafeTrim(),
-//                            CreationDate = syndicationItem.PublishDate.Date,
-//                            Url = url,
-//                            ImageUrl = imageUri,
-//                        };
-//
-//                        var rssMessage = currentItem.RssMessageModels.FirstOrDefault(w => w.SyndicationId == item.SyndicationId);
-//
-//                        if (rssMessage != null)
-//                            item.Id = rssMessage.Id;
-//
-//                        if (rssMessage != null)
-//                        {
-//                            realm.Add(rssMessage, true);
-//                        }
-//                        else
-//                        {
-//                            currentItem.RssMessageModels.Add(item);
-//                        }
-//                    }
-//                });
-//            }, token);
-//        }
-//
-//        public Task UpdatePositionAsync(string id, int position, CancellationToken token = default)
-//        {
-//            RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
-//            {
-//                model.Position = position;
-//                realm.Add(model, true);
-//            });
-//            
-//            return Task.CompletedTask;
-//        }
-//
-//        public Task ReadAllMessagesAsync(string id, CancellationToken token = default)
-//        {
-//            RealmDatabase.UpdateInBackground<RssModel>(id, (model, realm) =>
-//            {
-//                foreach (var holderItemRssMessageModel in model.RssMessageModels)
-//                {
-//                    _rssMessagesRepository.MarkAsReadAsync(holderItemRssMessageModel.Id);
-//                }
-//            });
-//            
-//            return Task.CompletedTask;
-//        }
         public Task<string> AddAsync(string url, CancellationToken token = default)
         {
             return Task.Run(async () =>
@@ -140,7 +31,7 @@ namespace Shared.Repository.Rss
                     Name = url,
                     CreationTime = DateTime.Now,
                 };
-                // TOOD Наверно можно навесить события на базу данных
+                
                 _log.TrackRssInsert(url, newItem.CreationTime);
 
                 var itemId = await RealmDatabase.InsertAsync(newItem);
