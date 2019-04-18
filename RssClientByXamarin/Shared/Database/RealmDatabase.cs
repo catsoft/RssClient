@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Android.Support.V4.Content;
 using Realms;
 
 namespace Shared.Database
@@ -43,6 +45,18 @@ namespace Shared.Database
 
                         transaction.Commit();
                     }
+                }
+            });
+        }
+        
+        public static Task<TModel> GetAsync<TModel>(string id)
+            where TModel : RealmObject, IHaveId
+        {
+            return Task.Run(() =>
+            {
+                using (var realm = OpenDatabase)
+                {
+                    return realm.Find<TModel>(id);
                 }
             });
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DynamicData;
 using Shared.Analitics.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
@@ -166,8 +167,14 @@ namespace Shared.Repository.Rss
 
         public Task<RssDomainModel> GetAsync(string id, CancellationToken token = default)
         {
-            var rssData = _mapper.Transform(_database.MainThreadRealm.Find<RssModel>(id));
-            return Task.FromResult(rssData);
+            return Task.Run(() =>
+            {
+                using (var realm = RealmDatabase.OpenDatabase)
+                {
+                    var items = realm.Find<RssModel>(id);
+                    return _mapper.Transform(items);
+                }
+            }, token);
         }
 
         public Task RemoveAsync(string id, CancellationToken token = default)
@@ -189,13 +196,20 @@ namespace Shared.Repository.Rss
 
         public Task<IEnumerable<RssDomainModel>> GetListAsync(CancellationToken token = default)
         {
-            var items = _database.MainThreadRealm.All<RssModel>()
-                .OrderBy(w => w.Position)
-                .ThenByDescending(w => w.CreationTime)
-                .ToList()
-                .Select(_mapper.Transform);
-
-            return Task.FromResult(items);
+            return Task.Run(() =>
+            {
+                using (var realm = RealmDatabase.OpenDatabase)
+                {
+                    var items = realm.All<RssModel>()
+                        .OrderBy(w => w.Position)
+                        .ThenByDescending(w => w.CreationTime)
+                        .ToList()
+                        .Select(_mapper.Transform)
+                        .ToList();
+                    
+                    return items.AsEnumerable();
+                }
+            }, token);
         }
     }
 }
