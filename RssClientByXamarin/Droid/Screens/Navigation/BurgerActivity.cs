@@ -7,7 +7,6 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
 using Autofac;
-using Droid.Container;
 using Droid.Repository.Configuration;
 using Droid.Screens.Base;
 using Java.Lang;

@@ -7,7 +7,6 @@ using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.DragRecyclerView;
 using Shared.Infrastructure.Locale;
-using Shared.Repository.Rss;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
 

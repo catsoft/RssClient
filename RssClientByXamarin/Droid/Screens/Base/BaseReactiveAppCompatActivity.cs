@@ -1,13 +1,9 @@
-using System;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Autofac;
-using Droid.Container;
-using Droid.Repository.Configuration;
 using ReactiveUI.AndroidSupport;
 using Shared;
 using Shared.Analytics.Rss;
-using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Base

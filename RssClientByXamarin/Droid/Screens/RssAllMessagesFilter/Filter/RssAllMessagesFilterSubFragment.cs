@@ -3,13 +3,10 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Droid.Container;
-using Droid.Repository.Configuration;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Configuration.Settings;
 using Shared.Extensions;
-using Shared.Infrastructure.Locale;
 using Shared.ViewModels.RssAllMessagesFilter;
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter

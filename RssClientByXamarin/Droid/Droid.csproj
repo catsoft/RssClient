@@ -120,6 +120,7 @@
     <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragmentViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
+    <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragmentViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesListWay.cs" />
     <Compile Include="Screens\RssAllMessages\RssAllMessagesWay.cs" />
