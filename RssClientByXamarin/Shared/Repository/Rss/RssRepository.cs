@@ -73,11 +73,14 @@ namespace Shared.Repository.Rss
             return RealmDatabase.DoInBackground(realm =>
             {
                 var backgroundRssItem = realm.Find<RssModel>(id);
+
+                if (backgroundRssItem != null)
+                {
+                    _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
                 
-                _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
-                
-                backgroundRssItem.RssMessageModels.Clear();
-                realm.Remove(backgroundRssItem);
+                    backgroundRssItem.RssMessageModels.Clear();
+                    realm.Remove(backgroundRssItem);
+                }
             });
         }
 

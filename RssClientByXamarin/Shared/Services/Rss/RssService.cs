@@ -61,7 +61,7 @@ namespace Shared.Services.Rss
             currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
             await _rssRepository.UpdateAsync(currentItem, token);
 
-            foreach (var syndicationItem in syndicationFeed.Items)
+            foreach (var syndicationItem in syndicationFeed.Items.Where(w => w != null))
             {
                 var imageUri = syndicationItem.Links.FirstOrDefault(w =>
                         w.RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) ==
@@ -77,7 +77,7 @@ namespace Shared.Services.Rss
                 {
                     SyndicationId = syndicationItem.Id,
                     Title = syndicationItem.Title?.Text?.SafeTrim(),
-                    Text = syndicationItem.Summary.Text?.SafeTrim(),
+                    Text = syndicationItem?.Summary?.Text?.SafeTrim(),
                     CreationDate = syndicationItem.PublishDate.Date,
                     Url = url,
                     ImageUrl = imageUri,

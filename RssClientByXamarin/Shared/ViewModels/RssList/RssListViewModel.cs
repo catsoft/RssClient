@@ -153,7 +153,7 @@ namespace Shared.ViewModels.RssList
 
         private async Task DoAllUpdate(IChangeSet<RssServiceModel> changes, CancellationToken token)
         {
-            var updatable = SourceList.Items
+            var updatable = SourceList.Items.Where(w => w != null)
                        //TODO продумать условие
 //                    ?.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
                     .ToList() ?? new List<RssServiceModel>();
