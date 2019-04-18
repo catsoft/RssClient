@@ -1,10 +1,9 @@
 using System;
-using Shared.Database;
 using Shared.Repository.Rss;
 
-namespace Shared.Repository.RssMessage
+namespace Shared.Database.Rss
 {
-    public class RssMessageData : IHaveId
+    public class RssMessageServiceModel
     {
         public string Id { get; set; }
         

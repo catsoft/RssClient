@@ -5,9 +5,9 @@ namespace Shared.ViewModels.RssMessage
 {
     public class RssMessageParameterses : ViewModelParameters
     {
-        public RssMessageData RssMessageModel { get; }
+        public RssMessageDomainModel RssMessageModel { get; }
 
-        public RssMessageParameterses(RssMessageData rssMessageModel)
+        public RssMessageParameterses(RssMessageDomainModel rssMessageModel)
         {
             RssMessageModel = rssMessageModel;
         }

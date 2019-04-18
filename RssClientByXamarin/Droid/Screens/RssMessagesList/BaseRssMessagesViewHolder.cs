@@ -6,7 +6,7 @@ using Shared.Repository.RssMessage;
 
 namespace Droid.Screens.RssMessagesList
 {
-    public abstract class BaseRssMessagesViewHolder : SwipeButtonViewHolder, IDataBind<RssMessageData>
+    public abstract class BaseRssMessagesViewHolder : SwipeButtonViewHolder, IDataBind<RssMessageDomainModel>
     {
         protected Color BackgroundItemColor = new Color(0, 0, 0, 0);
         protected Color BackgroundItemSelectColor = new Color(0, 0, 0, 95);
@@ -16,9 +16,9 @@ namespace Droid.Screens.RssMessagesList
         public override string LeftButtonText => "Read";
         public override string RightButtonText => "Favorite";
         
-        public RssMessageData Item { get; set; }
+        public RssMessageDomainModel Item { get; set; }
 
-        public abstract void BindData(RssMessageData item);
+        public abstract void BindData(RssMessageDomainModel item);
         
         protected BaseRssMessagesViewHolder(View itemView) : base(itemView)
         {

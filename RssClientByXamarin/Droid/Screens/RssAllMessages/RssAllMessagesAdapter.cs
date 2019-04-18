@@ -13,7 +13,7 @@ namespace Droid.Screens.RssAllMessages
     {
         private readonly AppConfiguration _appConfiguration;
         
-        public RssAllMessagesesListAdapter(IEnumerable<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
+        public RssAllMessagesesListAdapter(IEnumerable<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
         {
             _appConfiguration = appConfiguration;
         }

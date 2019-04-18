@@ -47,7 +47,7 @@ namespace Shared.Database
             });
         }
 
-        public static Task UpdateInBackground<TModel>(string id, Action<TModel, Realm> action)
+        public static Task UpdateAsync<TModel>(string id, Action<TModel, Realm> action)
         where TModel : RealmObject, IHaveId
         {
             return DoInBackground(realm =>
@@ -58,7 +58,7 @@ namespace Shared.Database
             });
         }
 
-        public static async Task<string> InsertInBackground<TModel>(TModel model)
+        public static async Task<string> InsertAsync<TModel>(TModel model)
             where TModel : RealmObject, IHaveId
         {
             return await Task.Run(() =>

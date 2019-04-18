@@ -35,7 +35,7 @@ namespace Droid.Screens.RssMessagesList
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
         }
         
-        public override void BindData(RssMessageData item)
+        public override void BindData(RssMessageDomainModel item)
         {
             Item = item;
 

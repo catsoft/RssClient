@@ -142,7 +142,7 @@ namespace Shared.Repository.Rss
                 // TOOD Наверно можно навесить события на базу данных
                 _log.TrackRssInsert(url, newItem.CreationTime);
 
-                var itemId = await RealmDatabase.InsertInBackground(newItem);
+                var itemId = await RealmDatabase.InsertAsync(newItem);
 
                 return itemId;
             }, token);

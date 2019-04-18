@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Droid.EmbeddedResourse;
 using Droid.Repository.Configuration;
+using Droid.Screens.Navigation;
 using DynamicData;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -51,9 +53,11 @@ namespace Shared.ViewModels.RssList
                 SourceList.Clear();
                 SourceList.AddRange(w ?? new RssServiceModel[0]);
             });
+            AllUpdateCommand = ReactiveCommand.CreateFromTask<IEnumerable<RssServiceModel>>(DoAllUpdate);
+            GetListCommand.ObserveOn(RxApp.TaskpoolScheduler).InvokeCommand(AllUpdateCommand);
             
             OpenDetailScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenDetailScreen);
-            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(w => Share.RequestAsync(w.Rss));
+            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(async w => await Share.RequestAsync(w.Rss));
             ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllItemMessage);
             OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen);
             ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog);
@@ -61,7 +65,7 @@ namespace Shared.ViewModels.RssList
             
             AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
         }
-        
+
         public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
         
         public ReactiveCommand<Unit, Unit> OpenAllMessagesScreenCommand { get; }
@@ -69,6 +73,8 @@ namespace Shared.ViewModels.RssList
         public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
         
         public ReactiveCommand<Unit, IEnumerable<RssServiceModel>> GetListCommand { get; }
+        
+        public ReactiveCommand<IEnumerable<RssServiceModel>, Unit> AllUpdateCommand { get; }
         
         public ReactiveCommand<RssServiceModel, Unit> OpenDetailScreenCommand { get; }
         
@@ -142,6 +148,20 @@ namespace Shared.ViewModels.RssList
         {
             SourceList.Remove(model);
             await _rssService.RemoveAsync(model.Id);
+        }
+        
+        private async Task DoAllUpdate(IEnumerable<RssServiceModel> rssServiceModels, CancellationToken token)
+        {
+            var updatable = rssServiceModels.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now);
+            foreach (var rssServiceModel in updatable)
+            {
+                await _rssService.LoadAndUpdateAsync(rssServiceModel.Id, token);
+                var newItem = await _rssService.GetAsync(rssServiceModel.Id, token);
+                
+                
+                
+                SourceList.Replace(rssServiceModel, newItem);
+            }
         }
     }
 }

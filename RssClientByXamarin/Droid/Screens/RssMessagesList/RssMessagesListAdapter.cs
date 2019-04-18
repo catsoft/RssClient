@@ -11,7 +11,7 @@ namespace Droid.Screens.RssMessagesList
     {
         private readonly AppConfiguration _appConfiguration;
         
-        public RssMessagesListAdapter(List<RssMessageData> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items, activity, rssMessagesRepository)
+        public RssMessagesListAdapter(List<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items, activity, rssMessagesRepository)
         {
             _appConfiguration = appConfiguration;
         }

@@ -1,11 +1,12 @@
 using System.Linq;
+using Java.Util;
 using Shared.Database.Rss;
 using Shared.Infrastructure.Mappers;
 using Shared.Repository.Rss;
 
 namespace Shared.Repository.RssMessage
 {
-    public class RssMessageMapper : IMapper<RssMessageModel, RssMessageData>
+    public class RssMessageMapper : IMapper<RssMessageModel, RssMessageDomainModel>, IMapper<RssMessageDomainModel, RssMessageModel>
     {
         private readonly IMapper<RssModel, RssDomainModel> _rssMapper;
         
@@ -14,9 +15,9 @@ namespace Shared.Repository.RssMessage
             _rssMapper = rssMapper;
         }
         
-        public RssMessageData Transform(RssMessageModel model)
+        public RssMessageDomainModel Transform(RssMessageModel model)
         {
-            return model == null ? new RssMessageData() : new RssMessageData()
+            return model == null ? new RssMessageDomainModel() : new RssMessageDomainModel()
             {
                 Id = model.Id,
                 Url = model.Url,
@@ -24,6 +25,22 @@ namespace Shared.Repository.RssMessage
                 Title = model.Title,
                 IsRead = model.IsRead,
                 RssParent = _rssMapper.Transform(model.RssParent.FirstOrDefault()),
+                IsFavorite = model.IsFavorite,
+                CreationDate = model.CreationDate,
+                ImageUrl = model.ImageUrl,
+                SyndicationId = model.SyndicationId,
+            };
+        }
+
+        public RssMessageModel Transform(RssMessageDomainModel model)
+        {
+            return model == null ? new RssMessageModel() : new RssMessageModel()
+            {
+                Id = model.Id,
+                Url = model.Url,
+                Text = model.Text,
+                Title = model.Title,
+                IsRead = model.IsRead,
                 IsFavorite = model.IsFavorite,
                 CreationDate = model.CreationDate,
                 ImageUrl = model.ImageUrl,

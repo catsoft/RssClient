@@ -58,7 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\FeedlyRss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Feedly\IFeedlyRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\IRssMessagesRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageDomainModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessageMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\RssMessage\RssMessagesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\Rss\IRssRepository.cs" />
@@ -73,6 +73,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Navigation\DataWay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Feedly\FeedlyService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Feedly\IFeedlyService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RssMessages\RssMessageServiceModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\IRssService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\RssService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Rss\RssServiceModel.cs" />
