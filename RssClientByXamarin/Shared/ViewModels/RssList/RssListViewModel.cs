@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Droid.EmbeddedResourse;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using DynamicData;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -23,17 +25,22 @@ using Shared.ViewModels.RssItemDetail;
 using Shared.ViewModels.RssListEdit;
 using Xamarin.Essentials;
 
+#endregion
+
 namespace Shared.ViewModels.RssList
 {
     public class RssListViewModel : ViewModel
     {
-        private readonly INavigator _navigator;
         private readonly IConfigurationRepository _configurationRepository;
-        private readonly IRssService _rssService;
         private readonly IDialogService _dialogService;
+        private readonly INavigator _navigator;
+        private readonly IRssService _rssService;
 
-        public RssListViewModel(INavigator navigator, IConfigurationRepository configurationRepository,
-            IRssService rssService, IDialogService dialogService)
+        public RssListViewModel(
+            INavigator navigator,
+            IConfigurationRepository configurationRepository,
+            IRssService rssService,
+            IDialogService dialogService)
         {
             _navigator = navigator;
             _configurationRepository = configurationRepository;
@@ -89,11 +96,11 @@ namespace Shared.ViewModels.RssList
 
         public SourceList<RssServiceModel> SourceList { get; }
 
-        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() => SourceList.Connect();
-
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 
         public AppConfiguration AppConfiguration { get; }
+
+        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() { return SourceList.Connect(); }
 
         private void DoOpenCreateScreen()
         {
@@ -118,8 +125,7 @@ namespace Shared.ViewModels.RssList
             var parameter = new RssMessagesListParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
             var way =
-                App.Container.Resolve<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>(
-                    typedParameter);
+                App.Container.Resolve<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>(typedParameter);
             _navigator.Go(way);
         }
 
@@ -140,8 +146,12 @@ namespace Shared.ViewModels.RssList
 
         private void DoShowDeleteItemDialog(RssServiceModel model)
         {
-            _dialogService.ShowYesNoDialog(Strings.RssDeleteDialogTitle, "", Strings.Yes, Strings.No,
-                async () => { await DoItemRemove(model); }, null);
+            _dialogService.ShowYesNoDialog(Strings.RssDeleteDialogTitle,
+                "",
+                Strings.Yes,
+                Strings.No,
+                async () => { await DoItemRemove(model); },
+                null);
         }
 
         private async Task DoItemRemove(RssServiceModel model)
@@ -153,19 +163,17 @@ namespace Shared.ViewModels.RssList
         private async Task DoAllUpdate(IChangeSet<RssServiceModel> changes, CancellationToken token)
         {
             var updatable = SourceList.Items.Where(w => w != null)
-                       //TODO продумать условие
+                                //TODO продумать условие
 //                    ?.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
-                    .ToList() ?? new List<RssServiceModel>();
-            
+                                .ToList() ??
+                            new List<RssServiceModel>();
+
             foreach (var rssServiceModel in updatable)
             {
                 await _rssService.LoadAndUpdateAsync(rssServiceModel.Id, token);
                 var newItem = await _rssService.GetAsync(rssServiceModel.Id, token);
 
-                if (SourceList.Items?.Contains(rssServiceModel) == true)
-                {
-                    SourceList.Replace(rssServiceModel, newItem);
-                }
+                if (SourceList.Items?.Contains(rssServiceModel) == true) SourceList.Replace(rssServiceModel, newItem);
             }
         }
     }

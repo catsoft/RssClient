@@ -5,6 +5,6 @@ namespace Shared.Configuration.Settings
         None,
         Favorite,
         Read,
-        Unread,
+        Unread
     }
 }

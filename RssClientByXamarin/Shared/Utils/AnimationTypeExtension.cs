@@ -1,5 +1,9 @@
+#region
+
 using System;
 using Shared.Configuration.Settings;
+
+#endregion
 
 namespace Shared.Utils
 {

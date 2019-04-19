@@ -1,5 +1,9 @@
+#region
+
 using Android.Content;
 using Android.Widget;
+
+#endregion
 
 namespace Droid.NativeExtension
 {
@@ -9,7 +13,7 @@ namespace Droid.NativeExtension
         {
             Android.Widget.Toast.MakeText(context, text, length).Show();
         }
-        
+
         public static void ToastClipboard(this Context context, string text, ToastLength length = ToastLength.Short)
         {
             var textClip = context.GetText(Resource.String.copy_clipboard);

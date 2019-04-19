@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,8 @@ using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssCreate;
 
+#endregion
+
 namespace Shared.ViewModels.RssListEdit
 {
     public class RssListEditViewModel : ViewModel
@@ -28,7 +32,7 @@ namespace Shared.ViewModels.RssListEdit
 
             SourceList = new SourceList<RssServiceModel>();
             SourceList.CountChanged.Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
-            
+
             OpenCreateItemScreenCommand = ReactiveCommand.Create(DoOpenCreateItemScreen);
             LoadCommand = ReactiveCommand.CreateFromTask(async token => await _rssService.GetListAsync(token));
             LoadCommand.Subscribe(w =>
@@ -36,36 +40,33 @@ namespace Shared.ViewModels.RssListEdit
                 SourceList.Clear();
                 SourceList.AddRange(w);
             });
-            
+
             DeleteItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(async (model, token) => await DoDeleteItem(model, token));
             MoveItemCommand = ReactiveCommand.CreateFromTask<MoveEventArgs<RssServiceModel>>(async (model, token) => await DoMoveItem(model, token));
         }
 
         public ReactiveCommand<Unit, Unit> OpenCreateItemScreenCommand { get; }
-        
+
         public ReactiveCommand<Unit, IEnumerable<RssServiceModel>> LoadCommand { get; }
-        
+
         public ReactiveCommand<RssServiceModel, Unit> DeleteItemCommand { get; }
-        
+
         public ReactiveCommand<MoveEventArgs<RssServiceModel>, Unit> MoveItemCommand { get; }
-        
+
         public SourceList<RssServiceModel> SourceList { get; }
-        
-        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() => SourceList.Connect();
-        
+
         public extern bool IsEmpty { [ObservableAsProperty] get; }
-        
-        private void DoOpenCreateItemScreen()
-        {
-            _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); 
-        }
-        
+
+        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() { return SourceList.Connect(); }
+
+        private void DoOpenCreateItemScreen() { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>()); }
+
         private async Task DoDeleteItem(RssServiceModel model, CancellationToken token)
         {
             SourceList.Remove(model);
             await _rssService.RemoveAsync(model.Id, token);
         }
-        
+
         private async Task DoMoveItem(MoveEventArgs<RssServiceModel> model, CancellationToken token)
         {
             SourceList.Move(model.FromPosition, model.ToPosition);

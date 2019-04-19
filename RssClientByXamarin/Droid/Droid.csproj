@@ -87,7 +87,6 @@
     <Compile Include="Screens\Base\IShowAndLoadImage.cs" />
     <Compile Include="Screens\Base\LifeCycleFragment.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\ISwipeButtonItemTouchHelperViewHolder.cs" />
-    <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonListAdapter.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonTouchHelperCallback.cs" />
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonViewHolder.cs" />
     <Compile Include="Screens\Base\SwipeRecyclerView\SwipeTouchHelperCallback.cs" />

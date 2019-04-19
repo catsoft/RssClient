@@ -1,6 +1,10 @@
+#region
+
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssAllMessages;
+
+#endregion
 
 namespace Droid.Screens.RssAllMessages
 {
@@ -8,14 +12,8 @@ namespace Droid.Screens.RssAllMessages
     {
         private readonly IFragmentManager _activity;
 
-        public RssAllMessagesWay(IFragmentManager activity)
-        {
-            _activity = activity;
-        }
+        public RssAllMessagesWay(IFragmentManager activity) { _activity = activity; }
 
-        public void Go()
-        {
-            _activity.AddFragment(new RssAllMessagesFragment(), CacheState.Old);
-        }
+        public void Go() { _activity.AddFragment(new RssAllMessagesFragment(), CacheState.Old); }
     }
 }

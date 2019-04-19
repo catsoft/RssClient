@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -5,46 +7,45 @@ using System.Reactive.Subjects;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using JetBrains.Annotations;
+using ReactiveUI.AndroidSupport;
+
+#endregion
 
 namespace Droid.Screens.Base
 {
-    public class LifeCycleFragment<TViewModel> : ReactiveUI.AndroidSupport.ReactiveFragment<TViewModel>
+    public class LifeCycleFragment<TViewModel> : ReactiveFragment<TViewModel>
         where TViewModel : class
     {
-        private readonly ISubject<Context> _attachingSubject = new Subject<Context>();
-        private readonly ISubject<Bundle> _creatingSubject = new Subject<Bundle>();
-        private readonly ISubject<Context> _creatingViewSubject = new Subject<Context>();
-        private readonly ISubject<Bundle> _activityCreatingSubject = new Subject<Bundle>();
-        private readonly ISubject<Context> _startingSubject = new Subject<Context>();
-        private readonly ISubject<Context> _resumingSubject = new Subject<Context>();
-        
-        private readonly ISubject<Context> _pausingSubject = new Subject<Context>();
-        private readonly ISubject<Context> _stoppingSubject = new Subject<Context>();
-        private readonly ISubject<Context> _destroyingViewSubject = new Subject<Context>();
-        private readonly ISubject<Context> _destroyingSubject = new Subject<Context>();
-        private readonly ISubject<Context> _detachingSubject = new Subject<Context>();
-        
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        [NotNull] private readonly ISubject<Bundle> _activityCreatingSubject = new Subject<Bundle>();
+        [NotNull] private readonly ISubject<Context> _attachingSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Bundle> _creatingSubject = new Subject<Bundle>();
+        [NotNull] private readonly ISubject<Context> _creatingViewSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _destroyingSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _destroyingViewSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _detachingSubject = new Subject<Context>();
 
-        public IObservable<Context> Attaching => _attachingSubject.AsObservable();
-        public IObservable<Bundle> Creating => _creatingSubject.AsObservable();
-        public IObservable<Context> CreatingView => _creatingViewSubject.AsObservable();
-        public IObservable<Bundle> ActivityCreating => _activityCreatingSubject.AsObservable();
-        public IObservable<Context> Starting => _startingSubject.AsObservable();
-        public IObservable<Context> Resuming => _resumingSubject.AsObservable();
-        
-        public IObservable<Context> Pausing => _pausingSubject.AsObservable();
-        public IObservable<Context> Stopping => _stoppingSubject.AsObservable();
-        public IObservable<Context> DestroyingView => _destroyingViewSubject.AsObservable();
-        public IObservable<Context> Destroying => _destroyingSubject.AsObservable();
-        public IObservable<Context> Detaching => _detachingSubject.AsObservable();
+        [NotNull] private readonly ISubject<Context> _pausingSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _resumingSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _startingSubject = new Subject<Context>();
+        [NotNull] private readonly ISubject<Context> _stoppingSubject = new Subject<Context>();
 
-        public CompositeDisposable Disposables => _disposables; 
+        [NotNull] public IObservable<Context> Attaching => _attachingSubject.AsObservable();
+        [NotNull] public IObservable<Bundle> Creating => _creatingSubject.AsObservable();
+        [NotNull] public IObservable<Context> CreatingView => _creatingViewSubject.AsObservable();
+        [NotNull] public IObservable<Bundle> ActivityCreating => _activityCreatingSubject.AsObservable();
+        [NotNull] public IObservable<Context> Starting => _startingSubject.AsObservable();
+        [NotNull] public IObservable<Context> Resuming => _resumingSubject.AsObservable();
 
-        public void OnActivation(Action<CompositeDisposable> d)
-        {
-            Resuming.Take(1).Subscribe(_ => d(_disposables));
-        }
+        [NotNull] public IObservable<Context> Pausing => _pausingSubject.AsObservable();
+        [NotNull] public IObservable<Context> Stopping => _stoppingSubject.AsObservable();
+        [NotNull] public IObservable<Context> DestroyingView => _destroyingViewSubject.AsObservable();
+        [NotNull] public IObservable<Context> Destroying => _destroyingSubject.AsObservable();
+        [NotNull] public IObservable<Context> Detaching => _detachingSubject.AsObservable();
+
+        [NotNull] public CompositeDisposable Disposables { get ; } = new CompositeDisposable();
+
+        public void OnActivation([CanBeNull] Action<CompositeDisposable> d) { Resuming.Take(1).Subscribe(_ => d?.Invoke(Disposables)); }
 
         public override void OnAttach(Context context)
         {
@@ -113,12 +114,12 @@ namespace Droid.Screens.Base
             base.OnDetach();
             _detachingSubject.OnNext(Activity);
         }
-        
+
         private void DisposeActivations()
         {
-            foreach (var disposable in _disposables)
+            foreach (var disposable in Disposables)
                 disposable.Dispose();
-            _disposables.Clear();
+            Disposables.Clear();
         }
     }
 }

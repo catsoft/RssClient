@@ -1,8 +1,12 @@
+#region
+
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Shared.Repository.Feedly
+#endregion
+
+namespace Shared.Repositories.Feedly
 {
     public interface IFeedlyRepository
     {

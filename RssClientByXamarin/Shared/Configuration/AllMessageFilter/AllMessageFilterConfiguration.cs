@@ -1,6 +1,10 @@
+#region
+
 using System;
 using System.Linq;
 using Shared.Database.Rss;
+
+#endregion
 
 namespace Shared.Configuration.Settings
 {
@@ -10,7 +14,7 @@ namespace Shared.Configuration.Settings
         public MessageFilterType MessageFilterType { get; set; } = MessageFilterType.None;
 
         public DateTime? From { get; set; }
-        
+
         public DateTime? To { get; set; }
 
         public IQueryable<RssMessageModel> ApplySort(IQueryable<RssMessageModel> messages)
@@ -54,13 +58,13 @@ namespace Shared.Configuration.Settings
                 var fromDate = From.Value;
                 filterMessages = filterMessages.Where(w => w.CreationDate >= fromDate);
             }
-            
+
             if (To.HasValue)
             {
                 var toDate = To.Value;
                 filterMessages = filterMessages.Where(w => w.CreationDate <= toDate);
             }
-            
+
             return filterMessages;
         }
     }

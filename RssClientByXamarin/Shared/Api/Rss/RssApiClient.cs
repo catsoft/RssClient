@@ -1,39 +1,45 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
+using JetBrains.Annotations;
 using Shared.Analytics;
+using Shared.Extensions;
+
+#endregion
 
 namespace Shared.Api.Rss
 {
-	public class RssApiClient : HttpClient, IRssApiClient
-	{
-		private readonly ILog _log;
+    public class RssApiClient : HttpClient, IRssApiClient
+    {
+        [NotNull] private readonly ILog _log;
 
-		public RssApiClient(ILog log)
-		{
-			_log = log;
-		}
+        public RssApiClient([NotNull] ILog log) { _log = log; }
 
-		public async Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default)
-		{
-			try
-			{
-				var response = await GetAsync(rssUrl, token);
+        public async Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default)
+        {
+            try
+            {
+                var response = await GetAsync(rssUrl, token).NotNull();
 
-				var stream = response.Content.ReadAsStreamAsync();
-				var xmlReader = XmlReader.Create(stream.Result);
-				var feed = SyndicationFeed.Load(xmlReader);
+                if (response?.Content != null)
+                {
+                    var stream = response.Content.ReadAsStreamAsync().Result.NotNull();
+                    var xmlReader = XmlReader.Create(stream);
+                    return SyndicationFeed.Load(xmlReader);
+                }
 
-				return feed;
-			}
-			catch (Exception e)
-			{
-				_log.TrackLog(LogLevel.Warn, "UpdateFeed", "При попытке обновить данные", e);
-				return null;
-			}
-		}
-	}
+                return null;
+            }
+            catch (Exception e)
+            {
+                _log.TrackLog(LogLevel.Warn, "UpdateFeed", "При попытке обновить данные", e);
+                return null;
+            }
+        }
+    }
 }

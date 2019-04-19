@@ -1,6 +1,10 @@
+#region
+
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssCreate;
+
+#endregion
 
 namespace Droid.Screens.RssCreate
 {
@@ -8,14 +12,8 @@ namespace Droid.Screens.RssCreate
     {
         private readonly IFragmentManager _fragmentActivity;
 
-        public RssCreateWay(IFragmentManager fragmentActivity)
-        {
-            _fragmentActivity = fragmentActivity;
-        }
+        public RssCreateWay(IFragmentManager fragmentActivity) { _fragmentActivity = fragmentActivity; }
 
-        public void Go()
-        {
-            _fragmentActivity.AddFragment(new RssCreateFragment());
-        }
+        public void Go() { _fragmentActivity.AddFragment(new RssCreateFragment()); }
     }
 }

@@ -1,6 +1,10 @@
+#region
+
 using Autofac;
 using Shared.Services.Feedly;
 using Shared.Services.Rss;
+
+#endregion
 
 namespace Shared.Container.Modules
 {

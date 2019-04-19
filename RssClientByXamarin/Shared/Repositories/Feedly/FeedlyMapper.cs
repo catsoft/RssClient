@@ -1,14 +1,19 @@
+#region
+
+using Shared.Api.Feedly;
 using Shared.Infrastructure.Mappers;
 
-namespace Shared.Repository.Feedly
+#endregion
+
+namespace Shared.Repositories.Feedly
 {
-    public class FeedlyMapper : IMapper<Api.Feedly.FeedlyRssApiModel, FeedlyRssDomainModel>
+    public class FeedlyMapper : IMapper<FeedlyRssApiModel, FeedlyRssDomainModel>
     {
-        public FeedlyRssDomainModel Transform(Api.Feedly.FeedlyRssApiModel model)
+        public FeedlyRssDomainModel Transform(FeedlyRssApiModel model)
         {
             return model == null
                 ? new FeedlyRssDomainModel()
-                : new FeedlyRssDomainModel()
+                : new FeedlyRssDomainModel
                 {
                     // TODO may be automapper?
                     DeliciousTags = model.DeliciousTags,
@@ -31,7 +36,7 @@ namespace Shared.Repository.Feedly
                     CoverColor = model.CoverColor,
                     ContentType = model.ContentType,
                     CoverageScore = model.CoverageScore,
-                    EstimatedEngagement = model.EstimatedEngagement,
+                    EstimatedEngagement = model.EstimatedEngagement
                 };
         }
     }

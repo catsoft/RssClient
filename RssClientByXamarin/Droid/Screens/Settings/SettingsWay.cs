@@ -1,6 +1,10 @@
-﻿using Droid.Screens.Navigation;
+﻿#region
+
+using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Settings;
+
+#endregion
 
 namespace Droid.Screens.Settings
 {
@@ -8,10 +12,7 @@ namespace Droid.Screens.Settings
     {
         private readonly IFragmentManager _fragmentActivity;
 
-        public SettingsWay(IFragmentManager fragmentActivity)
-        {
-            _fragmentActivity = fragmentActivity;
-        }
+        public SettingsWay(IFragmentManager fragmentActivity) { _fragmentActivity = fragmentActivity; }
 
         public void Go()
         {

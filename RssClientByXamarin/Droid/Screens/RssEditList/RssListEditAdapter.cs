@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +12,13 @@ using Shared.Infrastructure.Locale;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
 
+#endregion
+
 namespace Droid.Screens.RssEditList
 {
     public class RssListEditAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListEditViewHolder>, IReorderListHelperAdapter
     {
-        public event EventHandler<RssServiceModel> DeleteClick;
-        public event EventHandler<MoveEventArgs<RssServiceModel>> OnMoveEvent;
-        public event Action<RecyclerView.ViewHolder> OnStartDrag;
-        
-        public RssListEditAdapter(Activity activity) : base(new List<RssServiceModel>(), activity)
-        {
-        }
+        public RssListEditAdapter(Activity activity) : base(new List<RssServiceModel>(), activity) { }
 
         public void OnMove(int fromPosition, int toPosition)
         {
@@ -29,10 +27,14 @@ namespace Droid.Screens.RssEditList
             OnMoveEvent?.Invoke(this, args);
         }
 
+        public event EventHandler<RssServiceModel> DeleteClick;
+        public event EventHandler<MoveEventArgs<RssServiceModel>> OnMoveEvent;
+        public event Action<RecyclerView.ViewHolder> OnStartDrag;
+
         protected override void BindData(RssListEditViewHolder holder, RssServiceModel item)
         {
             base.BindData(holder, item);
-            
+
             holder.TitleTextView.Text = item.Name;
             holder.SubtitleTextView.Text = item.UpdateTime == null
                 ? Activity.GetText(Resource.String.rssList_notUpdated)
@@ -53,12 +55,9 @@ namespace Droid.Screens.RssEditList
 
             viewHolder.ReorderImage.Touch += (sender, args) =>
             {
-                if (args.Event.Action == MotionEventActions.Up || args.Event.Action == MotionEventActions.Down)
-                {
-                    OnStartDrag?.Invoke(viewHolder);
-                }
+                if (args.Event.Action == MotionEventActions.Up || args.Event.Action == MotionEventActions.Down) OnStartDrag?.Invoke(viewHolder);
             };
-            
+
             return viewHolder;
         }
     }

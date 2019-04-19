@@ -1,6 +1,10 @@
+#region
+
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssEdit;
+
+#endregion
 
 namespace Droid.Screens.RssEdit
 {
@@ -19,7 +23,7 @@ namespace Droid.Screens.RssEdit
         {
             var fragment = new RssEditFragment(_parameters.RssId);
             fragment.SetParameters(_parameters);
-            
+
             _fragmentActivity.AddFragment(fragment);
         }
     }

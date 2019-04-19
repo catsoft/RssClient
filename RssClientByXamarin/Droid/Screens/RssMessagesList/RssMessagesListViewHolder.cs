@@ -1,26 +1,20 @@
-﻿using Android.Views;
+﻿#region
+
+using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
 using Shared.Infrastructure.Locale;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
+
+#endregion
 
 namespace Droid.Screens.RssMessagesList
 {
     public class RssMessagesListViewHolder : BaseRssMessagesViewHolder, IShowAndLoadImage
     {
-        public bool IsShowAndLoadImages { get; }
-        
-        public TextView Title { get; }
-        public TextView Text { get; }
-        public TextView CreationDate { get; }
-        public ImageViewAsync ImageView { get; }
-        public LinearLayout ClickView { get; }
-        public LinearLayout Background { get; }
-        public RatingBar RatingBar { get; }
-        
         public RssMessagesListViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
@@ -31,10 +25,19 @@ namespace Droid.Screens.RssMessagesList
             ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
             Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
             RatingBar = itemView.FindViewById<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
-            
+
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
         }
-        
+
+        public TextView Title { get; }
+        public TextView Text { get; }
+        public TextView CreationDate { get; }
+        public ImageViewAsync ImageView { get; }
+        public LinearLayout ClickView { get; }
+        public LinearLayout Background { get; }
+        public RatingBar RatingBar { get; }
+        public bool IsShowAndLoadImages { get; }
+
         public override void BindData(RssMessageDomainModel item)
         {
             Item = item;
@@ -45,7 +48,7 @@ namespace Droid.Screens.RssMessagesList
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
-            
+
             if (IsShowAndLoadImages)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();

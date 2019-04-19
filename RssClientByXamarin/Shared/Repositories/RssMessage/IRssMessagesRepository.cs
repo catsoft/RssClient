@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Shared.Configuration.Settings;
 
-namespace Shared.Repository.RssMessage
+#endregion
+
+namespace Shared.Repositories.RssMessage
 {
     public interface IRssMessagesRepository
     {
         Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default);
-        
+
         Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token = default);
 
         Task MarkAsFavoriteAsync(string id, CancellationToken token = default);
@@ -29,7 +33,8 @@ namespace Shared.Repository.RssMessage
 
         IEnumerable<RssMessageDomainModel> GetFavoriteMessages(CancellationToken token = default);
 
-        IEnumerable<RssMessageDomainModel> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration,
+        IEnumerable<RssMessageDomainModel> GetAllFilterMessages(
+            AllMessageFilterConfiguration filterConfiguration,
             CancellationToken token = default);
     }
 }

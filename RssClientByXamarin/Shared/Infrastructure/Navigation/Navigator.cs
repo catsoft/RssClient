@@ -1,14 +1,15 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
 using Shared.ViewModels.Close;
+
+#endregion
 
 namespace Shared.Infrastructure.Navigation
 {
     public class Navigator : INavigator
     {
-        public void Go(IWay way)
-        {
-            way.Go();
-        }
+        public void Go(IWay way) { way.Go(); }
 
         public void GoBack()
         {

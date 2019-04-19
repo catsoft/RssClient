@@ -1,13 +1,17 @@
+#region
+
 using System.Collections.Generic;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
+
+#endregion
 
 namespace Droid.Infrastructure.Collections
 {
     public class AdapterUpdater<T>
     {
-        private readonly SourceList<T> _viewModelSourceList;
         private readonly WithItemsAdapter<T, IEnumerable<T>> _adapter;
+        private readonly SourceList<T> _viewModelSourceList;
 
         public AdapterUpdater(WithItemsAdapter<T, IEnumerable<T>> adapter, SourceList<T> viewModelSourceList)
         {
@@ -18,9 +22,8 @@ namespace Droid.Infrastructure.Collections
         public void Update(IChangeSet<T> observableList)
         {
             _adapter.Items = _viewModelSourceList.Items;
-            
+
             foreach (var change in observableList)
-            {
                 switch (change.Reason)
                 {
                     case ListChangeReason.Add:
@@ -48,7 +51,6 @@ namespace Droid.Infrastructure.Collections
                         _adapter.NotifyDataSetChanged();
                         break;
                 }
-            }
         }
     }
 }

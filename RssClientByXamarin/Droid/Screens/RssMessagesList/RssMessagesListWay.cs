@@ -1,6 +1,10 @@
-﻿using Droid.Screens.Navigation;
+﻿#region
+
+using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssItemDetail;
+
+#endregion
 
 namespace Droid.Screens.RssMessagesList
 {
@@ -19,7 +23,7 @@ namespace Droid.Screens.RssMessagesList
         {
             var fragment = new RssMessagesListFragment(_parameters.RssModel.Id);
             fragment.SetParameters(_parameters);
-            
+
             _fragmentActivity.AddFragment(fragment, CacheState.Replace);
         }
     }

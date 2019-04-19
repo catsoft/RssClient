@@ -1,9 +1,13 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Shared.Repository.Feedly;
-using Shared.Repository.Rss;
+using Shared.Repositories.Feedly;
+using Shared.Repositories.Rss;
+
+#endregion
 
 namespace Shared.Services.Feedly
 {
@@ -18,8 +22,10 @@ namespace Shared.Services.Feedly
             _rssRepository = rssRepository;
         }
 
-        public Task<IEnumerable<FeedlyRssDomainModel>> FindByQueryAsync(string query, CancellationToken token = default) =>
-            _feedlyRepository.SearchByQueryAsync(query, token);
+        public Task<IEnumerable<FeedlyRssDomainModel>> FindByQueryAsync(string query, CancellationToken token = default)
+        {
+            return _feedlyRepository.SearchByQueryAsync(query, token);
+        }
 
         public async Task AddFeedly(FeedlyRssDomainModel model, CancellationToken token)
         {

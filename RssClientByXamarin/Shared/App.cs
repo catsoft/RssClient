@@ -1,6 +1,10 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
 using Autofac.Core;
 using Shared.Container.Modules;
+
+#endregion
 
 namespace Shared
 {

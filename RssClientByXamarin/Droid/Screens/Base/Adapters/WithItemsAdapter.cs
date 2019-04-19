@@ -1,19 +1,21 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using JetBrains.Annotations;
+
+#endregion
 
 namespace Droid.Screens.Base.Adapters
 {
     public abstract class WithItemsAdapter<TItem, TCollection> : WithActivityAdapter
         where TCollection : class, IEnumerable<TItem>
     {
-        public TCollection Items { get; set; }
+        protected WithItemsAdapter([NotNull] TCollection items, [NotNull] Activity activity) : base(activity) { Items = items; }
 
-        protected WithItemsAdapter(TCollection items, Activity activity) : base(activity)
-        {
-            Items = items;
-        }
+        [NotNull] public TCollection Items { get; set; }
 
-        public override int ItemCount => Items?.Count() ?? 0;
+        public override int ItemCount => Items.Count();
     }
 }

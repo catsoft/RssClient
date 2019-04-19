@@ -1,8 +1,12 @@
-﻿using Android.OS;
+﻿#region
+
+using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Navigation;
 using Shared.ViewModels.Settings;
+
+#endregion
 
 namespace Droid.Screens.Settings
 {
@@ -11,15 +15,7 @@ namespace Droid.Screens.Settings
         protected override int LayoutId => Resource.Layout.fragment_settings;
         public override bool IsRoot => true;
 
-        public SettingsFragment()
-        {
-
-        }
-
-        protected override void RestoreState(Bundle saved)
-        {
-
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

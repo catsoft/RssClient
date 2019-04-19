@@ -1,14 +1,15 @@
+#region
+
 using Shared.Infrastructure.ViewModels;
+
+#endregion
 
 namespace Shared.ViewModels.RssEdit
 {
     public class RssEditParameters : ViewModelParameters
     {
-        public string RssId { get; }
+        public RssEditParameters(string rssId) { RssId = rssId; }
 
-        public RssEditParameters(string rssId)
-        {
-            RssId = rssId;
-        }
+        public string RssId { get; }
     }
 }

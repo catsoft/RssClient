@@ -1,6 +1,10 @@
+#region
+
 using System;
 using Android.Views;
 using Android.Widget;
+
+#endregion
 
 namespace Droid.Screens.Contacts
 {
@@ -13,11 +17,11 @@ namespace Droid.Screens.Contacts
             var viewContacts = getContactView?.Invoke();
             RootLinearLayout.AddView(viewContacts);
             TelegramContactViewHolder = new ContactItemViewHolder(viewContacts);
-            
+
             viewContacts = getContactView?.Invoke();
             RootLinearLayout.AddView(viewContacts);
             EmailContactViewHolder = new ContactItemViewHolder(viewContacts);
-            
+
             viewContacts = getContactView?.Invoke();
             RootLinearLayout.AddView(viewContacts);
             LinkedinContactViewHolder = new ContactItemViewHolder(viewContacts);
@@ -26,15 +30,15 @@ namespace Droid.Screens.Contacts
             RootLinearLayout.AddView(viewContacts);
             DiscordContactViewHolder = new ContactItemViewHolder(viewContacts);
         }
-        
+
         public LinearLayout RootLinearLayout { get; }
-        
+
         public ContactItemViewHolder TelegramContactViewHolder { get; }
-        
+
         public ContactItemViewHolder EmailContactViewHolder { get; }
-        
+
         public ContactItemViewHolder LinkedinContactViewHolder { get; }
-        
+
         public ContactItemViewHolder DiscordContactViewHolder { get; }
     }
 }

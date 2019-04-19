@@ -1,11 +1,15 @@
+#region
+
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.ViewModels.Settings;
+
+#endregion
 
 namespace Droid.Screens.Settings
 {
@@ -16,15 +20,37 @@ namespace Droid.Screens.Settings
         protected override int LayoutId => Resource.Layout.fragment_settings_theme;
 
         public override bool IsRoot => false;
-        
-        public SettingsThemeFragment()
-        {
 
+        public void OnCheckedChanged(RadioGroup group, int checkedId)
+        {
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+
+            var nextAppTheme = AppTheme.Light;
+
+            switch (checkedId)
+            {
+                case Resource.Id.radioButton_settingsTheme_dark:
+                    nextAppTheme = AppTheme.Dark;
+                    break;
+                case Resource.Id.radioButton_settingsTheme_light:
+                    nextAppTheme = AppTheme.Light;
+                    break;
+                case Resource.Id.radioButton_settingsTheme_default:
+                    nextAppTheme = AppTheme.Default;
+                    break;
+            }
+
+            if (nextAppTheme != appConfiguration.AppTheme)
+            {
+                appConfiguration.AppTheme = nextAppTheme;
+
+                _configurationRepository.SaveSetting(appConfiguration);
+
+                Activity.Recreate();
+            }
         }
 
-        protected override void RestoreState(Bundle saved)
-        {
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -55,35 +81,6 @@ namespace Droid.Screens.Settings
             radioGroup.SetOnCheckedChangeListener(this);
 
             return view;
-        }
-
-        public void OnCheckedChanged(RadioGroup @group, int checkedId)
-        {
-            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-
-            var nextAppTheme = AppTheme.Light;
-
-            switch (checkedId)
-            {
-                case Resource.Id.radioButton_settingsTheme_dark:
-                    nextAppTheme = AppTheme.Dark;
-                    break;
-                case Resource.Id.radioButton_settingsTheme_light:
-                    nextAppTheme = AppTheme.Light;
-                    break;
-                case Resource.Id.radioButton_settingsTheme_default:
-                    nextAppTheme = AppTheme.Default;
-                    break;
-            }
-
-            if (nextAppTheme != appConfiguration.AppTheme)
-            {
-                appConfiguration.AppTheme = nextAppTheme;
-
-                _configurationRepository.SaveSetting(appConfiguration);
-
-                Activity.Recreate();
-            }
         }
     }
 }

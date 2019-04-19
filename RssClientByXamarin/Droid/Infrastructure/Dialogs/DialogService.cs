@@ -1,8 +1,12 @@
+#region
+
 using System;
 using Android.App;
 using Autofac;
 using Shared;
 using Shared.Infrastructure.Dialogs;
+
+#endregion
 
 namespace Droid.Infrastructure.Dialogs
 {
@@ -12,8 +16,8 @@ namespace Droid.Infrastructure.Dialogs
         {
             var activity = App.Container.Resolve<Activity>();
             var builder = new AlertDialog.Builder(activity);
-            builder.SetPositiveButton(yes, (sender, args) => { yesDo?.Invoke(); });
-            builder.SetNegativeButton(no, (sender, args) => { noDo?.Invoke(); });
+            builder.SetPositiveButton(yes, (sender, args) => yesDo?.Invoke());
+            builder.SetNegativeButton(no, (sender, args) => noDo?.Invoke());
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.Show();

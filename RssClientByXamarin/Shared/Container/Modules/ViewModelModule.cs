@@ -1,3 +1,5 @@
+#region
+
 using Autofac;
 using Shared.Infrastructure.ViewModels;
 using Shared.ViewModels.About;
@@ -16,6 +18,8 @@ using Shared.ViewModels.RssListEdit;
 using Shared.ViewModels.RssMessage;
 using Shared.ViewModels.Settings;
 
+#endregion
+
 namespace Shared.Container.Modules
 {
     public class ViewModelModule : Module
@@ -25,9 +29,9 @@ namespace Shared.Container.Modules
             base.Load(builder);
 
             builder.RegisterType<ViewModelProvider>().AsSelf().SingleInstance();
-            
+
             builder.RegisterType<MainViewModel>().AsSelf();
-            
+
             builder.RegisterType<AboutViewModel>().AsSelf();
             builder.RegisterType<CloseViewModel>().AsSelf();
             builder.RegisterType<ContactsViewModel>().AsSelf();
@@ -37,7 +41,7 @@ namespace Shared.Container.Modules
 
             builder.RegisterType<RssAllMessagesFilterFilterViewModel>().AsSelf();
             builder.RegisterType<RssAllMessagesOrderFilterViewModel>().AsSelf();
-            
+
             builder.RegisterType<RssCreateViewModel>().AsSelf();
             builder.RegisterType<RssEditViewModel>().AsSelf();
             builder.RegisterType<RssFavoriteMessagesViewModel>().AsSelf();

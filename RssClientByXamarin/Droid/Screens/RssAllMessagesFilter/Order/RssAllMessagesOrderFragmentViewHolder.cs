@@ -1,5 +1,9 @@
+#region
+
 using Android.Views;
 using Android.Widget;
+
+#endregion
 
 namespace Droid.Screens.RssAllMessagesFilter.Order
 {

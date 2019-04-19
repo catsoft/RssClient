@@ -1,15 +1,16 @@
+#region
+
 using Shared.Infrastructure.ViewModels;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
+
+#endregion
 
 namespace Shared.ViewModels.RssMessage
 {
     public class RssMessageParameterses : ViewModelParameters
     {
-        public RssMessageDomainModel RssMessageModel { get; }
+        public RssMessageParameterses(RssMessageDomainModel rssMessageModel) { RssMessageModel = rssMessageModel; }
 
-        public RssMessageParameterses(RssMessageDomainModel rssMessageModel)
-        {
-            RssMessageModel = rssMessageModel;
-        }
+        public RssMessageDomainModel RssMessageModel { get; }
     }
 }

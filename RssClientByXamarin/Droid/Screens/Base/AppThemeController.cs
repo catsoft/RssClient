@@ -1,9 +1,13 @@
+#region
+
 using System;
 using Android.App;
 using Autofac;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Shared;
 using Shared.Configuration.Settings;
+
+#endregion
 
 namespace Droid.Screens.Base
 {
@@ -11,11 +15,8 @@ namespace Droid.Screens.Base
     {
         private readonly IConfigurationRepository _configurationRepository;
 
-        public AppThemeController()
-        {
-            _configurationRepository = App.Container.Resolve<IConfigurationRepository>();
-        }
-        
+        public AppThemeController() { _configurationRepository = App.Container.Resolve<IConfigurationRepository>(); }
+
         public void SetTheme(Activity activity)
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();

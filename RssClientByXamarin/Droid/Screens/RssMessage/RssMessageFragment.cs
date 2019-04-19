@@ -1,30 +1,27 @@
+#region
+
 using Android.OS;
 using Android.Views;
 using Droid.Container;
 using Droid.Screens.Navigation;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
 using Shared.ViewModels.RssMessage;
+
+#endregion
 
 namespace Droid.Screens.RssMessage
 {
     public class RssMessageFragment : BaseFragment<RssMessageViewModel>
     {
+        private string _rssMessageId;
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
-        private string _rssMessageId;
+        public RssMessageFragment() { }
+
+        public RssMessageFragment(string rssMessageId) { _rssMessageId = rssMessageId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_message;
         public override bool IsRoot => false;
-
-        public RssMessageFragment()
-        {
-
-        }
-
-        public RssMessageFragment(string rssMessageId)
-        {
-            _rssMessageId = rssMessageId;
-        }
 
         public override void OnSaveInstanceState(Bundle outState)
         {
@@ -33,10 +30,7 @@ namespace Droid.Screens.RssMessage
             outState.PutString(nameof(_rssMessageId), _rssMessageId);
         }
 
-        protected override void RestoreState(Bundle saved)
-        {
-            _rssMessageId = saved.GetString(nameof(_rssMessageId));
-        }
+        protected override void RestoreState(Bundle saved) { _rssMessageId = saved.GetString(nameof(_rssMessageId)); }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

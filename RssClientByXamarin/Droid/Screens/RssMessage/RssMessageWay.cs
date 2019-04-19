@@ -1,10 +1,14 @@
+#region
+
 using System;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssMessage;
 using Xamarin.Essentials;
+
+#endregion
 
 namespace Droid.Screens.RssMessage
 {
@@ -14,7 +18,9 @@ namespace Droid.Screens.RssMessage
         private readonly IConfigurationRepository _configurationRepository;
         private readonly RssMessageParameterses _parameters;
 
-        public RssMessageWay(IFragmentManager activity, IConfigurationRepository configurationRepository,
+        public RssMessageWay(
+            IFragmentManager activity,
+            IConfigurationRepository configurationRepository,
             RssMessageParameterses parameters)
         {
             _activity = activity;
@@ -34,7 +40,7 @@ namespace Droid.Screens.RssMessage
                 case MessagesViewer.App:
                     var fragment = new RssMessageFragment(_parameters.RssMessageModel.Id);
                     fragment.SetParameters(_parameters);
-                    
+
                     _activity.AddFragment(fragment);
                     break;
                 default:

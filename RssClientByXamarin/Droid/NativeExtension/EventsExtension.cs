@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -5,10 +7,12 @@ using Android.Widget;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
-using Shared.Repository.Feedly;
+using Shared.Repositories.Feedly;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
 using SearchView = Android.Support.V7.Widget.SearchView;
+
+#endregion
 
 namespace Droid.NativeExtension
 {
@@ -20,47 +24,47 @@ namespace Droid.NativeExtension
                 .FromEventPattern<TextView.EditorActionEventArgs>(t => @this.EditorAction += t, t => @this.EditorAction -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<SearchView.QueryTextChangeEventArgs> GetQueryTextChangeEvent(this SearchView @this)
         {
             return Observable
                 .FromEventPattern<SearchView.QueryTextChangeEventArgs>(t => @this.QueryTextChange += t, t => @this.QueryTextChange -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<RssServiceModel> GetRssItemClickEvent(this RssListAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssServiceModel>(t => @this.Click += t, t => @this.Click -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<EventPattern<RssServiceModel>> GetRssItemLongClickEvent(this RssListAdapter @this)
         {
             return Observable.FromEventPattern<RssServiceModel>(t => @this.LongClick += t, t => @this.LongClick -= t);
         }
-        
+
         public static IObservable<RssServiceModel> GetRssItemDismissEvent(this RssListAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssServiceModel>(t => @this.ItemDismiss += t, t => @this.ItemDismiss -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<RssServiceModel> GetItemDeleteEvent(this RssListEditAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssServiceModel>(t => @this.DeleteClick += t, t => @this.DeleteClick -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<MoveEventArgs<RssServiceModel>> GetItemMoveEvent(this RssListEditAdapter @this)
         {
             return Observable
                 .FromEventPattern<MoveEventArgs<RssServiceModel>>(t => @this.OnMoveEvent += t, t => @this.OnMoveEvent -= t)
                 .Select(_ => _.EventArgs);
         }
-        
+
         public static IObservable<FeedlyRssDomainModel> GetClickAddImageEvent(this FeedlySearchRssAdapter @this)
         {
             return Observable

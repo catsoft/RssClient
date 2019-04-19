@@ -1,6 +1,10 @@
+#region
+
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+
+#endregion
 
 namespace Droid.Screens.RssCreate
 {
@@ -13,7 +17,7 @@ namespace Droid.Screens.RssCreate
         }
 
         public Button SendButton { get; }
-        
+
         public TextInputLayout TextInputLayout { get; }
 
         public EditText EditText => TextInputLayout.EditText;

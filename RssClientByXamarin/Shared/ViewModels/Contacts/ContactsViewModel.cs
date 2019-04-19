@@ -1,9 +1,13 @@
+#region
+
 using System.Reactive;
 using System.Threading.Tasks;
 using Droid.EmbeddedResourse;
 using ReactiveUI;
 using Shared.Infrastructure.ViewModels;
 using Xamarin.Essentials;
+
+#endregion
 
 namespace Shared.ViewModels.Contacts
 {

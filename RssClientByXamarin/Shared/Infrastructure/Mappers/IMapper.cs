@@ -1,4 +1,8 @@
+#region
+
 using JetBrains.Annotations;
+
+#endregion
 
 namespace Shared.Infrastructure.Mappers
 {
@@ -7,6 +11,6 @@ namespace Shared.Infrastructure.Mappers
     public interface IMapper<in T, out TE>
     {
         [NotNull]
-        TE Transform([NotNull] T model);
+        TE Transform([CanBeNull] T model);
     }
 }

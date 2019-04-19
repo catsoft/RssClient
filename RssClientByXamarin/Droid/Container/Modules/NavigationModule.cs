@@ -1,4 +1,6 @@
-﻿using Android.App;
+﻿#region
+
+using Android.App;
 using Autofac;
 using Droid.Screens.About;
 using Droid.Screens.Close;
@@ -32,6 +34,8 @@ using Shared.ViewModels.RssListEdit;
 using Shared.ViewModels.RssMessage;
 using Shared.ViewModels.Settings;
 
+#endregion
+
 namespace Droid.Container.Modules
 {
     public class NavigationModule : Module
@@ -57,9 +61,9 @@ namespace Droid.Container.Modules
             builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel>>();
 
             builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
-            
-            builder.Register((c) => MainActivity.Instance).As<Activity>();
-            builder.Register((c) => MainActivity.Instance).As<IFragmentManager>();
+
+            builder.Register(c => MainActivity.Instance).As<Activity>();
+            builder.Register(c => MainActivity.Instance).As<IFragmentManager>();
         }
     }
 }

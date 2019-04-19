@@ -1,6 +1,10 @@
+#region
+
 using System;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
+
+#endregion
 
 namespace Shared.Extensions
 {
@@ -17,20 +21,12 @@ namespace Shared.Extensions
     [Serializable]
     public class NullException : Exception
     {
-        public NullException()
-        {
-        }
+        public NullException() { }
 
-        public NullException(string message) : base(message)
-        {
-        }
+        public NullException(string message) : base(message) { }
 
-        public NullException(string message, Exception inner) : base(message, inner)
-        {
-        }
+        public NullException(string message, Exception inner) : base(message, inner) { }
 
-        protected NullException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected NullException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

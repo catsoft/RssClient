@@ -1,12 +1,16 @@
+#region
+
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
+
+#endregion
 
 namespace Shared.ViewModels.RssAllMessagesFilter
 {
@@ -18,7 +22,7 @@ namespace Shared.ViewModels.RssAllMessagesFilter
         public RssAllMessagesOrderFilterViewModel(IConfigurationRepository configurationRepository)
         {
             _configurationRepository = configurationRepository;
-            
+
             _sortFilter = new Subject<AllMessageFilterConfiguration>();
             Filter = _sortFilter.AsObservable();
 
@@ -26,19 +30,19 @@ namespace Shared.ViewModels.RssAllMessagesFilter
                 .ToPropertyEx(this, model => model.Sort);
 
             Filter.ToPropertyEx(this, model => model.FilterConfiguration);
-            
+
             UpdateSortCommand = ReactiveCommand.Create<Sort>(DoUpdateSort);
             _sortFilter.OnNext(_configurationRepository.GetSettings<AllMessageFilterConfiguration>());
         }
 
         public IObservable<AllMessageFilterConfiguration> Filter { get; }
-        
+
         public extern Sort Sort { [ObservableAsProperty] get; }
 
         public extern AllMessageFilterConfiguration FilterConfiguration { [ObservableAsProperty] get; }
-        
+
         public ReactiveCommand<Sort, Unit> UpdateSortCommand { get; }
-        
+
         private void DoUpdateSort(Sort sort)
         {
             var config = FilterConfiguration;

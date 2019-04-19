@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
@@ -14,29 +16,23 @@ using Shared.Extensions;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssList;
 
+#endregion
+
 namespace Droid.Screens.RssList
 {
     public class RssListFragment : BaseFragment<RssListViewModel>
     {
         private RssListFragmentViewHolder _viewHolder;
-        
+
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool IsRoot => true;
 
-        public RssListFragment()
-        {
-
-        }
-
-        protected override void RestoreState(Bundle saved)
-        {
-
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-            
+
             Title = Activity?.GetText(Resource.String.rssList_title);
 
             HasOptionsMenu = true;
@@ -52,26 +48,27 @@ namespace Droid.Screens.RssList
             touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
             var adapterUpdater = new AdapterUpdater<RssServiceModel>(adapter, ViewModel.SourceList);
-            
+
             OnActivation(disposable =>
             {
-                _viewHolder.FloatingActionButton.Events().Click
+                _viewHolder.FloatingActionButton.Events()
+                    .Click
                     .Select(w => Unit.Default)
-                    .InvokeCommand(ViewModel, (model => model.OpenCreateScreenCommand))
+                    .InvokeCommand(ViewModel, model => model.OpenCreateScreenCommand)
                     .AddTo(disposable);
-                
+
                 ViewModel.WhenAnyValue(w => w.IsEmpty)
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
-                
+
                 adapter.GetRssItemClickEvent()
                     .InvokeCommand(ViewModel.OpenDetailScreenCommand)
                     .AddTo(disposable);
-                
+
                 adapter.GetRssItemLongClickEvent()
                     .Subscribe(model => ItemLongClick(model.EventArgs, model.Sender))
                     .AddTo(disposable);
-                
+
                 adapter.GetRssItemDismissEvent()
                     .InvokeCommand(ViewModel.ItemRemoveCommand)
                     .AddTo(disposable);
@@ -83,14 +80,11 @@ namespace Droid.Screens.RssList
 
                 ViewModel.GetListCommand.Execute().Subscribe();
             });
-            
+
             return view;
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.menu_rssList, menu);
-        }
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater) { inflater.Inflate(Resource.Menu.menu_rssList, menu); }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -99,7 +93,7 @@ namespace Droid.Screens.RssList
                 case Resource.Id.menuItem_rssList_change:
                     ViewModel.OpenAllMessagesScreenCommand.ExecuteNow();
                     break;
-                
+
                 case Resource.Id.menuItem_rssList_editMode:
                     ViewModel.OpenListEditScreenCommand.ExecuteNow();
                     break;
@@ -107,7 +101,7 @@ namespace Droid.Screens.RssList
 
             return base.OnOptionsItemSelected(item);
         }
-        
+
         private void ItemLongClick(RssServiceModel holderItem, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);

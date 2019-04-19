@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Reactive;
 using Droid.EmbeddedResourse;
@@ -9,12 +11,14 @@ using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
 
+#endregion
+
 namespace Shared.ViewModels.RssCreate
 {
     public class RssCreateViewModel : ViewModel
     {
-        [NotNull] readonly IRssService _service;
         [NotNull] private readonly INavigator _navigator;
+        [NotNull] private readonly IRssService _service;
 
         public RssCreateViewModel([NotNull] IRssService service, [NotNull] INavigator navigator)
         {
@@ -27,10 +31,8 @@ namespace Shared.ViewModels.RssCreate
             CreateCommand.Subscribe(_ => _navigator.GoBack());
         }
 
-        [Reactive]
-        public string Url { get; set; }
+        [Reactive] public string Url { get; set; }
 
-        [NotNull]
-        public ReactiveCommand<Unit, Unit> CreateCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> CreateCommand { get; }
     }
 }

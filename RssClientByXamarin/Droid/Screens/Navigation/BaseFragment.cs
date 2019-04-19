@@ -1,11 +1,18 @@
+#region
+
 using Android.Graphics;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Util;
 using Android.Views;
 using Droid.Container;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
+using JetBrains.Annotations;
+using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
+
+#endregion
 
 namespace Droid.Screens.Navigation
 {
@@ -13,11 +20,14 @@ namespace Droid.Screens.Navigation
         where TViewModel : ViewModel
     {
         private string _title;
-        
-        protected BaseFragment()
-        {
-            this.Inject(true);
-        }
+
+        protected BaseFragment() { this.Inject(true); }
+
+        protected abstract int LayoutId { get; }
+
+        [NotNull] public new FragmentActivity Activity => base.Activity.NotNull();
+
+        public abstract bool IsRoot { get; }
 
         public string Title
         {
@@ -25,31 +35,27 @@ namespace Droid.Screens.Navigation
             set
             {
                 _title = value;
-                if (Activity != null)
+                if (base.Activity != null)
                     Activity.Title = _title;
             }
         }
-        
-        public abstract bool IsRoot { get; }
 
         protected abstract void RestoreState(Bundle saved);
-        
-        protected abstract int LayoutId { get; }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView([NotNull] LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             if (savedInstanceState != null)
                 RestoreState(savedInstanceState);
 
-            var view = inflater.Inflate(LayoutId, container, false);
+            var view = inflater.Inflate(LayoutId, container, false).NotNull();
 
             var value = new TypedValue();
-            Activity.Theme.ResolveAttribute(Resource.Attribute.background, value, true);
+            Activity?.Theme?.ResolveAttribute(Resource.Attribute.background, value, true);
             view.SetBackgroundColor(new Color((int) value.Float));
 
             return view;
         }
-        
+
         public override void OnDetach()
         {
             Activity?.HideKeyboard();

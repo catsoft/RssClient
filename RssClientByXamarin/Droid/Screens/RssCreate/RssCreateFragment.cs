@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
@@ -8,31 +10,27 @@ using ReactiveUI;
 using Shared.Extensions;
 using Shared.ViewModels.RssCreate;
 
+#endregion
+
 namespace Droid.Screens.RssCreate
 {
     public class RssCreateFragment : BaseFragment<RssCreateViewModel>
     {
         private RssCreateFragmentViewHolder _viewHolder;
-        
+
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
         public override bool IsRoot => false;
 
-        public RssCreateFragment()
-        {
-        }
-
-        protected override void RestoreState(Bundle saved)
-        {
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             Title = GetText(Resource.String.create_title);
-            
+
             _viewHolder = new RssCreateFragmentViewHolder(view);
-            
+
             OnActivation(disposable =>
             {
                 this.Bind(ViewModel, model => model.Url, fragment => fragment._viewHolder.EditText.Text)
@@ -42,13 +40,12 @@ namespace Droid.Screens.RssCreate
                     .Subscribe(s => _viewHolder.EditText.SetTextAndSetCursorToLast(s))
                     .AddTo(disposable);
 
-                _viewHolder.EditText.GetEditorAction().Subscribe(action =>
-                {
-                    if (action.ActionId == ImeAction.Done)
+                _viewHolder.EditText.GetEditorAction()
+                    .Subscribe(action =>
                     {
-                        _viewHolder.SendButton.CallOnClick();
-                    }
-                }).AddTo(disposable);
+                        if (action.ActionId == ImeAction.Done) _viewHolder.SendButton.CallOnClick();
+                    })
+                    .AddTo(disposable);
 
                 this.BindCommand(ViewModel, model => model.CreateCommand, fragment => fragment._viewHolder.SendButton)
                     .AddTo(disposable);

@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
+
+#endregion
 
 namespace Shared.Analytics
 {
@@ -17,10 +21,7 @@ namespace Shared.Analytics
             Microsoft.AppCenter.Analytics.Analytics.TrackEvent(name, properties);
         }
 
-        public void TrackError(Exception e, IDictionary<string, string> properties = null)
-        {
-            Crashes.TrackError(e, properties);
-        }
+        public void TrackError(Exception e, IDictionary<string, string> properties = null) { Crashes.TrackError(e, properties); }
 
         public void TrackLog(LogLevel logLevel, string tag, string message, Exception e = null)
         {
@@ -45,7 +46,7 @@ namespace Shared.Analytics
                     AppCenterLog.Assert(tag, message, e);
                     break;
                 default:
-                    AppCenterLog.Info($"DefaultTrac: " + tag, message, e);
+                    AppCenterLog.Info("DefaultTrac: " + tag, message, e);
                     break;
             }
         }

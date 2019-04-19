@@ -1,6 +1,10 @@
+#region
+
 using Autofac;
 using JetBrains.Annotations;
 using Shared.Extensions;
+
+#endregion
 
 namespace Shared.Infrastructure.ViewModels
 {
@@ -8,14 +12,14 @@ namespace Shared.Infrastructure.ViewModels
     {
         [NotNull]
         public TViewModel Resolve<TViewModel>([CanBeNull] ViewModelParameters parameters = null)
-        where TViewModel : ViewModel
+            where TViewModel : ViewModel
         {
             if (parameters != null)
             {
                 var typedParameter = new TypedParameter(parameters.GetType(), parameters);
                 return App.Container.Resolve<TViewModel>(typedParameter).NotNull();
             }
-            
+
             return App.Container.Resolve<TViewModel>().NotNull();
         }
     }

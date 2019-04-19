@@ -1,5 +1,9 @@
+#region
+
 using Android.Views;
 using Android.Widget;
+
+#endregion
 
 namespace Droid.Screens.Contacts
 {
@@ -13,9 +17,9 @@ namespace Droid.Screens.Contacts
         }
 
         public View RootView { get; }
-        
+
         public ImageView IconImageView { get; }
-        
+
         public TextView TitleTextView { get; }
     }
 }

@@ -1,19 +1,27 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Screens.RssMessagesList;
 using Shared.Configuration.Settings;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
+
+#endregion
 
 namespace Droid.Screens.RssAllMessages
 {
-    public class RssAllMessagesesListAdapter : BaseRssMessagesAdapter<RssAllMessagesesViewHolder>
+    public class RssAllMessagesListAdapter : BaseRssMessagesAdapter<RssAllMessagesesViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
-        
-        public RssAllMessagesesListAdapter(IEnumerable<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository, AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
+
+        public RssAllMessagesListAdapter(
+            IEnumerable<RssMessageDomainModel> items,
+            Activity activity,
+            IRssMessagesRepository rssMessagesRepository,
+            AppConfiguration appConfiguration) : base(items.ToList(), activity, rssMessagesRepository)
         {
             _appConfiguration = appConfiguration;
         }
@@ -28,7 +36,7 @@ namespace Droid.Screens.RssAllMessages
 
             holder.LeftButtonAction += () => { ReadItem(holder); };
             holder.RightButtonAction += () => { InFavoriteItem(holder); };
-            
+
             return holder;
         }
     }

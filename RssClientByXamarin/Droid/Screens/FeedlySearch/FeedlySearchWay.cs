@@ -1,6 +1,10 @@
+#region
+
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.FeedlySearch;
+
+#endregion
 
 namespace Droid.Screens.FeedlySearch
 {
@@ -8,14 +12,8 @@ namespace Droid.Screens.FeedlySearch
     {
         private readonly IFragmentManager _activity;
 
-        public FeedlySearchWay(IFragmentManager activity)
-        {
-            _activity = activity;
-        }
+        public FeedlySearchWay(IFragmentManager activity) { _activity = activity; }
 
-        public void Go()
-        {
-            _activity.AddFragment(new FeedlySearchFragment(), CacheState.Old);
-        }
+        public void Go() { _activity.AddFragment(new FeedlySearchFragment(), CacheState.Old); }
     }
 }

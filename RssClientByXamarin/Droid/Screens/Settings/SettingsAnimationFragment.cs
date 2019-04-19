@@ -1,3 +1,5 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using Android.OS;
@@ -5,11 +7,13 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.Utils;
 using Shared.ViewModels.Settings;
+
+#endregion
 
 namespace Droid.Screens.Settings
 {
@@ -20,15 +24,8 @@ namespace Droid.Screens.Settings
         protected override int LayoutId => Resource.Layout.fragment_settings_animation;
 
         public override bool IsRoot => false;
-        
-        public SettingsAnimationFragment()
-        {
-            
-        }
 
-        protected override void RestoreState(Bundle saved)
-        {
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -48,7 +45,7 @@ namespace Droid.Screens.Settings
                 AnimationSpeed.X2,
                 AnimationSpeed.X3,
                 AnimationSpeed.X4,
-                AnimationSpeed.Max,
+                AnimationSpeed.Max
             };
 
             var animationTypes = new List<AnimationType>
@@ -59,13 +56,15 @@ namespace Droid.Screens.Settings
                 AnimationType.ExitToBottomEnterFade,
                 AnimationType.ExitToBottomEnterFromBottom,
                 AnimationType.FromLeftToRight,
-                AnimationType.FromRightToLeft,
+                AnimationType.FromRightToLeft
             };
 
-            speedSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item,
+            speedSpinner.Adapter = new ArrayAdapter(Context,
+                Resource.Layout.support_simple_spinner_dropdown_item,
                 animationSpeeds.Select(w => w.ToLocaleString()).ToList());
 
-            typeSpinner.Adapter = new ArrayAdapter(Context, Resource.Layout.support_simple_spinner_dropdown_item,
+            typeSpinner.Adapter = new ArrayAdapter(Context,
+                Resource.Layout.support_simple_spinner_dropdown_item,
                 animationTypes.Select(w => w.ToLocaleString()).ToList());
 
             speedSpinner.SetSelection(animationSpeeds.IndexOf(appConfiguration.AnimationSpeed));

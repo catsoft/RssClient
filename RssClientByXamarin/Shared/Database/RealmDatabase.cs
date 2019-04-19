@@ -1,40 +1,42 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Realms;
+using Realms.Exceptions;
 using Shared.Extensions;
+using Shared.Repositories.Rss;
+
+#endregion
 
 namespace Shared.Database
 {
-	public class RealmDatabase
-	{
-		private const string DatabaseFilename = "librarydb.realm";
+    public class RealmDatabase
+    {
+        private const string DatabaseFilename = "librarydb.realm";
 
-		[NotNull]
-		public Realm MainThreadRealm { get; }
-
-		public RealmDatabase()
-		{
+        public RealmDatabase()
+        {
             var config = new RealmConfiguration(DatabaseFilename);
             try
             {
                 MainThreadRealm = Realm.GetInstance(config).NotNull();
             }
-            catch (Realms.Exceptions.RealmMigrationNeededException)
+            catch (RealmMigrationNeededException)
             {
                 Realm.DeleteRealm(config);
                 MainThreadRealm = Realm.GetInstance(config).NotNull();
             }
         }
 
-		[NotNull]
-        public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename).NotNull();
+        [NotNull] public Realm MainThreadRealm { get; }
 
-        public void Dispose()
-		{
-			MainThreadRealm.Dispose();
-		}
+        [NotNull] public static Realm OpenDatabase => Realm.GetInstance(DatabaseFilename).NotNull();
 
+        public void Dispose() { MainThreadRealm.Dispose(); }
+
+        [NotNull]
         public static Task DoInBackground([CanBeNull] Action<Realm> action)
         {
             return Task.Run(() =>
@@ -50,8 +52,10 @@ namespace Shared.Database
                 }
             });
         }
-        
-        public static Task<TModel> GetAsync<TModel>(string id)
+
+        [NotNull]
+        [TaskItemCanBeNull]
+        public static Task<TModel> GetAsync<TModel>([CanBeNull] string id)
             where TModel : RealmObject, IHaveId
         {
             return Task.Run(() =>
@@ -63,8 +67,9 @@ namespace Shared.Database
             });
         }
 
-        public static Task UpdateAsync<TModel>(string id, Action<TModel, Realm> action)
-        where TModel : RealmObject, IHaveId
+        [NotNull]
+        public static Task UpdateAsync<TModel>([CanBeNull] string id, [CanBeNull] Action<TModel, Realm> action)
+            where TModel : RealmObject, IHaveId
         {
             return DoInBackground(realm =>
             {
@@ -74,7 +79,9 @@ namespace Shared.Database
             });
         }
 
-        public static async Task<string> InsertAsync<TModel>(TModel model)
+        [NotNull]
+        [TaskItemCanBeNull]
+        public static async Task<string> InsertAsync<TModel>([CanBeNull] TModel model)
             where TModel : RealmObject, IHaveId
         {
             return await Task.Run(() =>

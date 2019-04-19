@@ -1,6 +1,10 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
 using Shared.Api.Feedly;
 using Shared.Api.Rss;
+
+#endregion
 
 namespace Shared.Container.Modules
 {

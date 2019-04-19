@@ -1,6 +1,10 @@
-﻿using Droid.Screens.Navigation;
+﻿#region
+
+using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Contacts;
+
+#endregion
 
 namespace Droid.Screens.Contacts
 {
@@ -8,10 +12,7 @@ namespace Droid.Screens.Contacts
     {
         private readonly IFragmentManager _fragmentActivity;
 
-        public ContactsWay(IFragmentManager fragmentActivity)
-        {
-            _fragmentActivity = fragmentActivity;
-        }
+        public ContactsWay(IFragmentManager fragmentActivity) { _fragmentActivity = fragmentActivity; }
 
         public void Go()
         {

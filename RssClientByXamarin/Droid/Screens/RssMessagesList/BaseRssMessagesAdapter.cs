@@ -1,3 +1,5 @@
+#region
+
 using System.Collections.Generic;
 using Android.App;
 using Android.Support.V7.Widget;
@@ -6,9 +8,11 @@ using Autofac;
 using Droid.Screens.Base.Adapters;
 using Shared;
 using Shared.Infrastructure.Navigation;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
 using Shared.ViewModels.RssMessage;
 using Xamarin.Essentials;
+
+#endregion
 
 namespace Droid.Screens.RssMessagesList
 {
@@ -16,12 +20,13 @@ namespace Droid.Screens.RssMessagesList
         where TViewHolder : RecyclerView.ViewHolder, IDataBind<RssMessageDomainModel>
     {
         private readonly IRssMessagesRepository _rssMessagesRepository;
-        
-        protected BaseRssMessagesAdapter(List<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) : base(items, activity)
+
+        protected BaseRssMessagesAdapter(List<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) :
+            base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;
         }
-        
+
         protected async void InFavoriteItem(IDataBind<RssMessageDomainModel> holder)
         {
             await _rssMessagesRepository.ChangeIsFavoriteAsync(holder.Item.Id);
@@ -41,7 +46,7 @@ namespace Droid.Screens.RssMessagesList
             await _rssMessagesRepository.ChangeIsReadAsync(holder.Item.Id);
             UpdateHimself(holder);
         }
-        
+
         protected void ItemLongClick(IDataBind<RssMessageDomainModel> holder, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
@@ -66,16 +71,13 @@ namespace Droid.Screens.RssMessagesList
             }
         }
 
-        private async void ShareItem(IDataBind<RssMessageDomainModel> holder)
-        {
-            await Share.RequestAsync(holder.Item.Url);
-        }
+        private async void ShareItem(IDataBind<RssMessageDomainModel> holder) { await Share.RequestAsync(holder.Item.Url); }
 
         protected async void OpenContentActivity(IDataBind<RssMessageDomainModel> holder)
         {
             await _rssMessagesRepository.MarkAsReadAsync(holder.Item.Id);
             UpdateHimself(holder);
-            
+
             var navigator = App.Container.Resolve<INavigator>();
             var parameter = new RssMessageParameterses(holder.Item);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);

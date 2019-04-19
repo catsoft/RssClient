@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
@@ -10,20 +12,25 @@ using Droid.Screens.Base.SwipeRecyclerView;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Locale;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
 using Shared.Services.Rss;
+
+#endregion
 
 namespace Droid.Screens.RssList
 {
     public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
-        // TODO убрать
-        private readonly IRssMessagesRepository _rssMessagesRepository;
         private readonly AppConfiguration _appConfiguration;
 
-        public event EventHandler<RssServiceModel> Click;
-        public event EventHandler<RssServiceModel> LongClick;
-        public event EventHandler<RssServiceModel> ItemDismiss;
+        // TODO убрать
+        private readonly IRssMessagesRepository _rssMessagesRepository;
+
+        public RssListAdapter(Activity activity, AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
+        {
+            _appConfiguration = appConfiguration;
+            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
+        }
 
         public void OnItemDismiss(int position)
         {
@@ -31,11 +38,9 @@ namespace Droid.Screens.RssList
             ItemDismiss?.Invoke(this, item);
         }
 
-        public RssListAdapter(Activity activity, AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
-        {
-            _appConfiguration = appConfiguration;
-            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
-        }
+        public event EventHandler<RssServiceModel> Click;
+        public event EventHandler<RssServiceModel> LongClick;
+        public event EventHandler<RssServiceModel> ItemDismiss;
 
         protected override void BindData(RssListViewHolder holder, RssServiceModel item)
         {

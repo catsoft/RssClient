@@ -1,7 +1,11 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
 using Shared.Analitics.Rss;
 using Shared.Analytics;
 using Shared.Analytics.Rss;
+
+#endregion
 
 namespace Shared.Container.Modules
 {

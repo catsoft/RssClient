@@ -1,8 +1,12 @@
+#region
+
 using System;
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
 using Shared.ViewModels.RssAllMessagesFilter;
+
+#endregion
 
 namespace Droid.Screens.RssAllMessagesFilter
 {
@@ -10,15 +14,8 @@ namespace Droid.Screens.RssAllMessagesFilter
     {
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter;
         public override bool IsRoot => false;
-        
-        protected override void RestoreState(Bundle saved)
-        {
-        }
 
-        public RssAllMessagesFilterFragment()
-        {
-            
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -27,14 +24,14 @@ namespace Droid.Screens.RssAllMessagesFilter
             Title = GetText(Resource.String.all_messages_filter_title);
 
             HasOptionsMenu = true;
-            
+
             return view;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             base.OnCreateOptionsMenu(menu, inflater);
-            
+
             inflater.Inflate(Resource.Menu.menu_allMessagesFilter, menu);
         }
 
@@ -46,7 +43,7 @@ namespace Droid.Screens.RssAllMessagesFilter
                     ViewModel.ClearFilterCommand.Execute().Subscribe();
                     return true;
             }
-            
+
             return base.OnOptionsItemSelected(item);
         }
     }

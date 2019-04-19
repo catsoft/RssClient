@@ -1,5 +1,9 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
 using Shared.Database;
+
+#endregion
 
 namespace Shared.Container.Modules
 {

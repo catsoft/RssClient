@@ -1,4 +1,8 @@
-﻿using Autofac;
+﻿#region
+
+using Autofac;
+
+#endregion
 
 namespace Droid.Container.Modules
 {

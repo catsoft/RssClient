@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +8,11 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Shared.Api.Rss;
 using Shared.Infrastructure.Mappers;
-using Shared.Repository.Rss;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.Rss;
+using Shared.Repositories.RssMessage;
 using Shared.Utils;
+
+#endregion
 
 namespace Shared.Services.Rss
 {
@@ -22,10 +26,10 @@ namespace Shared.Services.Rss
 
         public RssService(
             [NotNull] IRssRepository rssRepository,
-            IMapper<RssServiceModel, RssDomainModel> mapper,
-            IMapper<RssDomainModel, RssServiceModel> toServiceModelMapper,
-            IRssApiClient rssApiClient,
-            IRssMessagesRepository rssMessagesRepository)
+            [NotNull] IMapper<RssServiceModel, RssDomainModel> mapper,
+            [NotNull] IMapper<RssDomainModel, RssServiceModel> toServiceModelMapper,
+            [NotNull] IRssApiClient rssApiClient,
+            [NotNull] IRssMessagesRepository rssMessagesRepository)
         {
             _rssRepository = rssRepository;
             _mapper = mapper;

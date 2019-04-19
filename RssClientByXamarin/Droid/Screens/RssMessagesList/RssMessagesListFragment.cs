@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿#region
+
+using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
@@ -7,48 +9,44 @@ using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Autofac;
 using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
-using Shared.Repository.Rss;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.Rss;
+using Shared.Repositories.RssMessage;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
 
+#endregion
+
 namespace Droid.Screens.RssMessagesList
 {
     public class RssMessagesListFragment : BaseFragment<RssMessagesListViewModel>
     {
-        private string _itemId;
-        private RssDomainModel Item => _rssRepository.GetAsync(_itemId).Result;
-
         [Inject] private IConfigurationRepository _configurationRepository;
-        
-        [Inject] private IRssMessagesRepository _rssMessagesRepository;
-
-        [Inject] private IRssRepository _rssRepository;
-        
-        [Inject] private IRssService _rssService;
+        private string _itemId;
 
         [Inject] private INavigator _navigator;
 
+        [Inject] private IRssMessagesRepository _rssMessagesRepository;
+
+        [Inject] private IRssRepository _rssRepository;
+
+        [Inject] private IRssService _rssService;
+
+        public RssMessagesListFragment() { }
+
+        public RssMessagesListFragment(string itemId) { _itemId = itemId; }
+
+        private RssDomainModel Item => _rssRepository.GetAsync(_itemId).Result;
+
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
         public override bool IsRoot => false;
-
-        public RssMessagesListFragment()
-        {
-
-        }
-
-        public RssMessagesListFragment(string itemId)
-        {
-            _itemId = itemId;
-        }
 
         public override void OnSaveInstanceState(Bundle outState)
         {
@@ -57,10 +55,7 @@ namespace Droid.Screens.RssMessagesList
             outState.PutString(nameof(_itemId), _itemId);
         }
 
-        protected override void RestoreState(Bundle saved)
-        {
-            _itemId = saved.GetString(nameof(_itemId));
-        }
+        protected override void RestoreState(Bundle saved) { _itemId = saved.GetString(nameof(_itemId)); }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -72,7 +67,7 @@ namespace Droid.Screens.RssMessagesList
             Title = item.Name;
 
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            
+
             var list = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList);
             list.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
             list.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
@@ -96,10 +91,7 @@ namespace Droid.Screens.RssMessagesList
             return view;
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.menu_rssDetail, menu);
-        }
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater) { inflater.Inflate(Resource.Menu.menu_rssDetail, menu); }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -122,15 +114,9 @@ namespace Droid.Screens.RssMessagesList
             return base.OnOptionsItemSelected(item);
         }
 
-        private void ReadAllMessages()
-        {
-            _rssService.ReadAllMessagesAsync(Item.Id);
-        }
+        private void ReadAllMessages() { _rssService.ReadAllMessagesAsync(Item.Id); }
 
-        private async void ShareItem()
-        {
-            await Share.RequestAsync(Item.Rss);
-        }
+        private async void ShareItem() { await Share.RequestAsync(Item.Rss); }
 
         private void EditItem()
         {
@@ -144,11 +130,12 @@ namespace Droid.Screens.RssMessagesList
         private void DeleteItem()
         {
             var builder = new AlertDialog.Builder(Activity);
-            builder.SetPositiveButton(GetText(Resource.String.rssDeleteDialog_positiveTitle), (sender, args) =>
-            {
-                _rssRepository.RemoveAsync(Item.Id);
-                _navigator.GoBack();
-            });
+            builder.SetPositiveButton(GetText(Resource.String.rssDeleteDialog_positiveTitle),
+                (sender, args) =>
+                {
+                    _rssRepository.RemoveAsync(Item.Id);
+                    _navigator.GoBack();
+                });
             builder.SetNegativeButton(GetText(Resource.String.rssDeleteDialog_negativeTitle), (sender, args) => { });
             builder.SetTitle(GetText(Resource.String.rssDeleteDialog_Title));
             builder.Show();

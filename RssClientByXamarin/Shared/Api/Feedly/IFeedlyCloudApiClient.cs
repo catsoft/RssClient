@@ -1,5 +1,9 @@
+#region
+
 using System.Threading;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace Shared.Api.Feedly
 {

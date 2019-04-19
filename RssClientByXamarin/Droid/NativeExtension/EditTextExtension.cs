@@ -1,4 +1,8 @@
-﻿using Android.Widget;
+﻿#region
+
+using Android.Widget;
+
+#endregion
 
 namespace Droid.NativeExtension
 {

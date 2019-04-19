@@ -1,4 +1,8 @@
+#region
+
 using System;
+
+#endregion
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {
@@ -12,7 +16,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
 
         event Action LeftButtonAction;
         event Action RightButtonAction;
-        
+
         void OnLeftButton();
         void OnRightButton();
     }

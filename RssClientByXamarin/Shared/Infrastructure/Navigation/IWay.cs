@@ -1,4 +1,8 @@
-﻿using Shared.Infrastructure.ViewModels;
+﻿#region
+
+using Shared.Infrastructure.ViewModels;
+
+#endregion
 
 namespace Shared.Infrastructure.Navigation
 {
@@ -6,9 +10,9 @@ namespace Shared.Infrastructure.Navigation
         where TViewModel : ViewModelWithParameter<TParameter>
         where TParameter : ViewModelParameters
     {
-
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public interface IWay<TViewModel> : IWay
         where TViewModel : ViewModel
     {

@@ -1,6 +1,10 @@
-﻿using Android.App;
+﻿#region
+
+using Android.App;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Close;
+
+#endregion
 
 namespace Droid.Screens.Close
 {
@@ -8,14 +12,8 @@ namespace Droid.Screens.Close
     {
         private readonly Activity _activity;
 
-        public CloseWay(Activity activity)
-        {
-            _activity = activity;
-        }
+        public CloseWay(Activity activity) { _activity = activity; }
 
-        public void Go()
-        {
-            _activity.OnBackPressed();
-        }
+        public void Go() { _activity.OnBackPressed(); }
     }
 }

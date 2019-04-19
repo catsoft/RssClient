@@ -1,28 +1,27 @@
-﻿using Android.OS;
+﻿#region
+
+using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.ViewModels.Contacts;
 
+#endregion
+
 namespace Droid.Screens.Contacts
 {
     public class ContactsFragment : BaseFragment<ContactsViewModel>
     {
+        private ContactFragmentViewHolder _viewHolder;
+
+        // ReSharper disable once EmptyConstructor
+        public ContactsFragment() { }
+
         protected override int LayoutId => Resource.Layout.fragment_contacts;
         public override bool IsRoot => true;
 
-        private ContactFragmentViewHolder _viewHolder;
-        
-        public ContactsFragment()
-        {
-
-        }
-
-        protected override void RestoreState(Bundle saved)
-        {
-
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -32,12 +31,12 @@ namespace Droid.Screens.Contacts
 
             _viewHolder = new ContactFragmentViewHolder(view,
                 () => inflater.Inflate(Resource.Layout.item_link_element_contacts, container, false));
-            
+
             _viewHolder.TelegramContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.telegram_48);
             _viewHolder.EmailContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.email_48);
             _viewHolder.DiscordContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.discord_48);
             _viewHolder.LinkedinContactViewHolder.IconImageView.SetImageResource(Resource.Drawable.linkedin_48);
-            
+
             _viewHolder.TelegramContactViewHolder.TitleTextView.SetText(Resource.String.contacts_telegram);
             _viewHolder.EmailContactViewHolder.TitleTextView.SetText(Resource.String.contacts_mail);
             _viewHolder.LinkedinContactViewHolder.TitleTextView.SetText(Resource.String.contacts_linkedIn);
@@ -45,19 +44,23 @@ namespace Droid.Screens.Contacts
 
             OnActivation(disposable =>
             {
-                this.BindCommand(ViewModel, model => model.GoTelegramCommand,
-                    fragment => fragment._viewHolder.TelegramContactViewHolder.RootView)
+                this.BindCommand(ViewModel,
+                        model => model.GoTelegramCommand,
+                        fragment => fragment._viewHolder.TelegramContactViewHolder.RootView)
                     .AddTo(disposable);
-                
-                this.BindCommand(ViewModel, model => model.GoMailCommand,
+
+                this.BindCommand(ViewModel,
+                        model => model.GoMailCommand,
                         fragment => fragment._viewHolder.EmailContactViewHolder.RootView)
                     .AddTo(disposable);
-                
-                this.BindCommand(ViewModel, model => model.GoDiscordCommand,
+
+                this.BindCommand(ViewModel,
+                        model => model.GoDiscordCommand,
                         fragment => fragment._viewHolder.DiscordContactViewHolder.RootView)
                     .AddTo(disposable);
-                
-                this.BindCommand(ViewModel, model => model.GoLinkedinCommand,
+
+                this.BindCommand(ViewModel,
+                        model => model.GoLinkedinCommand,
                         fragment => fragment._viewHolder.LinkedinContactViewHolder.RootView)
                     .AddTo(disposable);
             });

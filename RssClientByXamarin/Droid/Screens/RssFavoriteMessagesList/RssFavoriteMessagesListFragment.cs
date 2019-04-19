@@ -1,39 +1,34 @@
-﻿using Android.OS;
+﻿#region
+
+using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using Droid.Screens.RssAllMessages;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
-using Shared.Repository.RssMessage;
+using Shared.Repositories.RssMessage;
 using Shared.ViewModels.RssFavoriteMessages;
+
+#endregion
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {
     public class RssFavoriteMessagesListFragment : BaseFragment<RssFavoriteMessagesViewModel>
     {
+        [Inject] private IConfigurationRepository _configurationRepository;
         [Inject] private INavigator _navigator;
 
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
-        [Inject] private IConfigurationRepository _configurationRepository;
-
         protected override int LayoutId => Resource.Layout.fragment_favorite_messages_list;
         public override bool IsRoot => true;
 
-        public RssFavoriteMessagesListFragment()
-        {
-
-        }
-
-        protected override void RestoreState(Bundle saved)
-        {
-
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -47,7 +42,7 @@ namespace Droid.Screens.RssFavoriteMessagesList
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_favoriteMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
-            var adapter = new RssAllMessagesesListAdapter(items, Activity, _rssMessagesRepository, appConfiguration);
+            var adapter = new RssAllMessagesListAdapter(items, Activity, _rssMessagesRepository, appConfiguration);
             recyclerView.SetAdapter(adapter);
 
             var callback = new SwipeButtonTouchHelperCallback();

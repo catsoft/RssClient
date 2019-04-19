@@ -1,17 +1,18 @@
+#region
+
 using System.Linq;
 using Newtonsoft.Json;
 using Shared.Database;
 
-namespace Droid.Repository.Configuration
+#endregion
+
+namespace Droid.Repositories.Configuration
 {
     public class ConfigurationRepository : IConfigurationRepository
     {
         private readonly RealmDatabase _database;
 
-        public ConfigurationRepository(RealmDatabase database)
-        {
-            _database = database;
-        }
+        public ConfigurationRepository(RealmDatabase database) { _database = database; }
 
         public void SaveSetting<T>(T obj)
         {
@@ -40,10 +41,7 @@ namespace Droid.Repository.Configuration
             {
                 var key = typeof(T).FullName;
                 var item = realm.All<SettingsModel>().FirstOrDefault(w => w.Key == key);
-                if (item != null)
-                {
-                    realm.Remove(item);
-                }
+                if (item != null) realm.Remove(item);
             });
         }
     }

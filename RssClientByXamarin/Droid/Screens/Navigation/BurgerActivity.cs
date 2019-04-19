@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿#region
+
+using System.Linq;
 using Android.Animation;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -7,17 +9,21 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
 using Autofac;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Base;
 using Java.Lang;
+using JetBrains.Annotations;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
 
+#endregion
+
 namespace Droid.Screens.Navigation
 {
-    public abstract class BurgerActivity<TViewModel> : BaseReactiveAppCompatActivity<TViewModel>, NavigationView.IOnNavigationItemSelectedListener,
-        View.IOnClickListener 
+    public abstract class BurgerActivity<TViewModel> : BaseReactiveAppCompatActivity<TViewModel>,
+        NavigationView.IOnNavigationItemSelectedListener,
+        View.IOnClickListener
         where TViewModel : ViewModel
     {
         private IConfigurationRepository _configurationRepository;
@@ -26,11 +32,24 @@ namespace Droid.Screens.Navigation
 
         public ActionBarDrawerToggle Toggle { get; private set; }
 
-        protected DrawerLayout DrawerLayout { get; private set; }
-        protected NavigationView NavigationView { get; private set; }
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        [NotNull] protected DrawerLayout DrawerLayout { get; private set; }
+
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        [NotNull] protected NavigationView NavigationView { [NotNull] get; private set; }
         protected int DrawerGravity { get; } = (int) GravityFlags.Start;
 
-        protected override void OnSaveInstanceState(Bundle outState)
+        public void OnClick(View v)
+        {
+            if (IsHomeToggle)
+                DrawerLayout.OpenDrawer(DrawerGravity);
+            else
+                OnBackPressed();
+        }
+
+        public abstract bool OnNavigationItemSelected(IMenuItem menuItem);
+
+        protected override void OnSaveInstanceState([NotNull] Bundle outState)
         {
             base.OnSaveInstanceState(outState);
 
@@ -42,17 +61,17 @@ namespace Droid.Screens.Navigation
             base.OnCreate(savedInstanceState);
 
             _configurationRepository = App.Container.Resolve<IConfigurationRepository>();
-            
-            if (savedInstanceState != null)
-            {
-                IsHomeToggle = savedInstanceState.GetBoolean(nameof(IsHomeToggle));
-            }
+
+            if (savedInstanceState != null) IsHomeToggle = savedInstanceState.GetBoolean(nameof(IsHomeToggle));
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
-            Toggle = new ActionBarDrawerToggle(this, DrawerLayout, Toolbar, Resource.String.navigation_drawer_open,
+            Toggle = new ActionBarDrawerToggle(this,
+                DrawerLayout,
+                Toolbar,
+                Resource.String.navigation_drawer_open,
                 Resource.String.navigation_drawer_close);
-            DrawerLayout.AddDrawerListener(Toggle);
+            DrawerLayout?.AddDrawerListener(Toggle);
             Toolbar.SetNavigationOnClickListener(this);
             Toggle.SyncState();
 
@@ -62,21 +81,9 @@ namespace Droid.Screens.Navigation
             Toggle.OnDrawerSlide(DrawerLayout, IsHomeToggle ? 0 : 1);
         }
 
-        public abstract bool OnNavigationItemSelected(IMenuItem menuItem);
-
-        public void OnClick(View v)
-        {
-            if (IsHomeToggle)
-            {
-                DrawerLayout.OpenDrawer(DrawerGravity);
-            }
-            else
-                OnBackPressed();
-        }
-
         protected void UpdateDrawerState()
         {
-            var isHome = (SupportFragmentManager.Fragments.LastOrDefault() as IRoot)?.IsRoot== true;
+            var isHome = (SupportFragmentManager.Fragments.LastOrDefault() as IRoot)?.IsRoot == true;
 
             if (IsHomeToggle != isHome)
             {

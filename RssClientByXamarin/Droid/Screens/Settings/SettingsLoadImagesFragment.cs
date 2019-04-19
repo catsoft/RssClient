@@ -1,11 +1,15 @@
+#region
+
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Droid.Container;
-using Droid.Repository.Configuration;
+using Droid.Repositories.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.ViewModels.Settings;
+
+#endregion
 
 namespace Droid.Screens.Settings
 {
@@ -16,15 +20,8 @@ namespace Droid.Screens.Settings
         protected override int LayoutId => Resource.Layout.fragment_settings_load_images;
 
         public override bool IsRoot => false;
-        
-        public SettingsLoadImagesFragment()
-        {
-            
-        }
 
-        protected override void RestoreState(Bundle saved)
-        {
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -37,7 +34,7 @@ namespace Droid.Screens.Settings
             checkBox.Checked = appConfiguration.LoadAndShowImages;
 
             checkBox.CheckedChange += CheckBoxOnCheckedChange;
-            
+
             return view;
         }
 

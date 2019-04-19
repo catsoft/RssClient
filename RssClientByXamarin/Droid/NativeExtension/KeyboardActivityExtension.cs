@@ -1,7 +1,11 @@
-﻿using Android.App;
+﻿#region
+
+using Android.App;
 using Android.Content;
 using Android.Views;
 using Android.Views.InputMethods;
+
+#endregion
 
 namespace Droid.NativeExtension
 {
@@ -19,7 +23,7 @@ namespace Droid.NativeExtension
             if (focus != null)
             {
                 var manager = (InputMethodManager) activity.GetSystemService(Context.InputMethodService);
-                manager?.HideSoftInputFromWindow(focus.WindowToken, 0);   
+                manager?.HideSoftInputFromWindow(focus.WindowToken, 0);
             }
         }
     }
