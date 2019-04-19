@@ -17,7 +17,6 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -38,10 +37,6 @@
     <AndroidSupportedAbis />
     <AndroidHttpClientHandlerType>
     </AndroidHttpClientHandlerType>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
-    <EnableProguard>false</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -55,9 +50,6 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,6 +63,7 @@
     <Compile Include="Container\Modules\NavigationModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
+    <Compile Include="CustomApplication.cs" />
     <Compile Include="EmbeddedResourse\Strings.Designer.cs" />
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
     <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
@@ -99,7 +92,6 @@
     <Compile Include="Screens\Base\SwipeButtonRecyclerView\SwipeButtonViewHolder.cs" />
     <Compile Include="Screens\Base\SwipeRecyclerView\SwipeTouchHelperCallback.cs" />
     <Compile Include="Screens\Base\SwipeRecyclerView\IItemTouchHelperAdapter.cs" />
-    <Compile Include="CustomApplication.cs" />
     <Compile Include="Screens\Base\ViewModelFragment.cs" />
     <Compile Include="Screens\Close\CloseWay.cs" />
     <Compile Include="Screens\Contacts\ContactFragmentViewHolder.cs" />
@@ -368,6 +360,9 @@
       <Version>4.6.0-preview.18571.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Constraint.Layout">
+      <Version>1.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout.Solver">
       <Version>1.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.CustomTabs">

@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu 
+<menu
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    
     <item
         android:id="@+id/menuItem_rssDetail_remove"
         android:title="@string/menuRssDetail_remove"
         android:icon="@drawable/baseline_delete_24"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="ifRoom"/>
+    
     <item
         android:id="@+id/menuItem_rssDetail_edit"
         android:title="@string/menuRssDetail_edit"
         android:icon="@drawable/baseline_edit_24"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="ifRoom"/>
+    
     <item
         android:id="@+id/menuItem_rssDetail_share"
         android:title="@string/menuRssDetail_share"
         android:icon="@drawable/baseline_share_24"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="ifRoom"/>
+    
     <item
         android:id="@+id/menuItem_rssDetail_readAllMessages"
         android:title="@string/menuRssDetail_readAllMessages"
-        android:icon="@drawable/baseline_share_24" />
+        android:icon="@drawable/baseline_share_24"/>
+    
 </menu>

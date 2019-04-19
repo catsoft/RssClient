@@ -1,46 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView_settings_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
     
-
-    <ScrollView
-        android:id="@+id/scrollView_settings_main"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <fragment
+            android:id="@+id/fragment_settings_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            class="Droid.Screens.RssAllMessagesFilter.Filter.RssAllMessagesFilterSubFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_read_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.RssAllMessagesFilter.Order.RssAllMessagesOrderFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    
+    </LinearLayout>
 
-            <fragment
-                android:id="@+id/fragment_settings_theme"
-                class="Droid.Screens.RssAllMessagesFilter.Filter.RssAllMessagesFilterSubFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+</ScrollView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <fragment
-                android:id="@+id/fragment_settings_read_messages"
-                class="Droid.Screens.RssAllMessagesFilter.Order.RssAllMessagesOrderFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>

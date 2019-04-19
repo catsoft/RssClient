@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    
     <group android:checkableBehavior="single">
-
+        
         <item
             android:id="@+id/menuItem_navigationMenu_main"
             android:icon="@drawable/baseline_home_24"
             android:title="@string/menuNavigation_main"/>
-
+        
         <item
             android:id="@+id/menuItem_navigationMenu_favorite"
             android:icon="@drawable/baseline_favorite_border_24"
@@ -23,22 +23,22 @@
             android:id="@+id/menuItem_navigationMenu_settings"
             android:icon="@drawable/baseline_settings_black_24"
             android:title="@string/menuNavigation_settings"/>
-
+        
         <item
             android:id="@+id/menuItem_navigationMenu_contacts"
             android:icon="@drawable/baseline_contacts_24"
             android:title="@string/menuNavigation_contacts"/>
-
+        
         <item
             android:id="@+id/menuItem_navigationMenu_rate"
             android:icon="@drawable/baseline_stars_24"
             android:title="@string/menuNavigation_rate"/>
-
+        
         <item
             android:id="@+id/menuItem_navigationMenu_about"
             android:icon="@drawable/info_24"
             android:title="@string/menuNavigation_about"/>
-        
+    
     </group>
 
 </menu>

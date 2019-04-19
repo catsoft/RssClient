@@ -1,90 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView_settings_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
     
-
-    <ScrollView
-        android:id="@+id/scrollView_settings_main"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <fragment
+            android:id="@+id/fragment_settings_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            class="Droid.Screens.Settings.SettingsThemeFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_read_messages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.SettingsReadMessagesFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_load_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.SettingsLoadImagesFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_startPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.SettingsStartPageFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_rssDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.SettingsRssDetailFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        
+        <fragment
+            android:id="@+id/fragment_settings_animation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.SettingsAnimationFragment"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    
+    </LinearLayout>
 
-            <fragment
-                android:id="@+id/fragment_settings_theme"
-                class="Droid.Screens.Settings.SettingsThemeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <fragment
-                android:id="@+id/fragment_settings_read_messages"
-                class="Droid.Screens.Settings.SettingsReadMessagesFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <fragment
-                android:id="@+id/fragment_settings_load_images"
-                class="Droid.Screens.Settings.SettingsLoadImagesFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-            
-            <fragment
-                android:id="@+id/fragment_settings_startPage"
-                class="Droid.Screens.Settings.SettingsStartPageFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <fragment
-                android:id="@+id/fragment_settings_rssDetail"
-                class="Droid.Screens.Settings.SettingsRssDetailFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <fragment
-                android:id="@+id/fragment_settings_animation"
-                class="Droid.Screens.Settings.SettingsAnimationFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
+</ScrollView>

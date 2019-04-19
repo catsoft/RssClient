@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearLayout_notValid_content"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     android:visibility="gone"
     android:orientation="vertical"
     android:background="@android:color/darker_gray">
-
+    
     <TextView
         android:id="@+id/textView_notValid_text"
         style="@style/TextView.Large"
@@ -17,6 +17,6 @@
         android:layout_marginTop="88dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:gravity="center_horizontal|top" />
+        android:gravity="center_horizontal|top"/>
 
 </LinearLayout>

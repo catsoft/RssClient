@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_feedlySearch_list"
             style="@style/RecyclerView"
@@ -19,19 +17,19 @@
         <ProgressBar
             android:id="@+id/progressBar_feedlySearch_progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent" 
+            android:layout_width="match_parent"
             android:layout_height="@dimen/feedlyProgressBarHeight"
             android:indeterminate="true"
             android:visibility="gone"/>
         
-        <TextView 
-            android:id="@+id/textView_feedlySearch_emptyText"    
+        <TextView
+            android:id="@+id/textView_feedlySearch_emptyText"
             style="@style/TextView.Large"
-            android:layout_width="match_parent" 
-            android:layout_height="match_parent" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/feedlySearch_emptyText"
             android:gravity="center"/>
-
+    
     </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

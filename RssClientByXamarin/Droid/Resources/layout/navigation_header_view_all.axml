@@ -8,34 +8,34 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="?attr/colorPrimary">
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        
         <FrameLayout
-            android:layout_width="72dp" 
+            android:layout_width="72dp"
             android:layout_height="72dp"
             android:orientation="vertical"
             android:background="@drawable/circle_72">
-
+            
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/rss_56"
                 android:tint="@color/rss_header"/>
-            
+        
         </FrameLayout>
-
+        
         <TextView
+            style="?attr/navigationHeaderTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|bottom"
             android:text="@string/navigation_drawer_header_title"
-            style="?attr/navigationHeaderTextStyle"
             android:layout_marginTop="16dp"/>
-
+    
     </LinearLayout>
 
 </FrameLayout>

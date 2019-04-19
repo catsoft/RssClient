@@ -2,46 +2,44 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    
     <ScrollView
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="24dp">
-
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout_rssCreate_link"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
+                
                 <EditText
                     style="@style/EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/rss_linkHint"
                     android:inputType="text"/>
-
+            
             </android.support.design.widget.TextInputLayout>
-
+            
             <Button
                 android:id="@+id/button_rssCreate_submit"
                 style="@style/Button.Submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rssCreate_submitTitle"/>
-
+        
         </LinearLayout>
-
+    
     </ScrollView>
 
 </LinearLayout>

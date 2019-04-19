@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu 
+<menu
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    
     <item
         android:id="@+id/menuItem_rssList_editMode"
         android:title="@string/menuRssList_editMode"
         android:icon="@drawable/baseline_edit_24"
-        app:showAsAction="ifRoom" />
-
+        app:showAsAction="ifRoom"/>
+    
     <item
         android:id="@+id/menuItem_rssList_change"
         android:title="@string/menuRssList_change"
         android:icon="@drawable/baseline_change"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 
 </menu>
