@@ -16,20 +16,18 @@ namespace Shared.ViewModels.RssEdit
 {
     public class RssEditViewModel : ViewModelWithParameter<RssEditParameters>
     {
-        private readonly INavigator _navigator;
         private readonly IRssService _rssService;
 
         public RssEditViewModel(IRssService rssService, RssEditParameters parameters, INavigator navigator) : base(parameters)
         {
             _rssService = rssService;
-            _navigator = navigator;
 
             LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssServiceModel>(async (s, token) =>
                 await _rssService.GetAsync(parameters.RssId, token));
             LoadCommand.ToPropertyEx(this, x => x.RssServiceModel);
 
             UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl);
-            UpdateCommand.Subscribe(_ => _navigator.GoBack());
+            UpdateCommand.Subscribe(_ => navigator.GoBack());
 
             this.WhenAnyValue(w => w.RssServiceModel)
                 .Subscribe(w => Url = w?.Rss);

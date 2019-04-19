@@ -24,22 +24,21 @@ namespace Shared.ViewModels.FeedlySearch
 {
     public class FeedlySearchViewModel : ViewModel
     {
-        [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IFeedlyService _feedlyService;
 
         public FeedlySearchViewModel([NotNull] IFeedlyService feedlyService, [NotNull] IConfigurationRepository configurationRepository)
         {
             _feedlyService = feedlyService;
-            _configurationRepository = configurationRepository;
 
-            AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>().NotNull();
+            AppConfiguration = configurationRepository.GetSettings<AppConfiguration>().NotNull();
 
             SourceList = new SourceList<FeedlyRssDomainModel>();
             ConnectChanges = SourceList.Connect().NotNull();
 
-            FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRssDomainModel>>(
-                (query, token) => _feedlyService.FindByQueryAsync(query ?? "", token),
-                this.WhenAnyValue(model => model.SearchQuery).Select(w => !string.IsNullOrEmpty(w)));
+            FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRssDomainModel>>((query, token) =>
+                        _feedlyService.FindByQueryAsync(query ?? "", token),
+                    this.WhenAnyValue(model => model.SearchQuery).NotNull().Select(w => !string.IsNullOrEmpty(w)))
+                .NotNull();
 
             FindByQueryCommand.Subscribe(w =>
             {
@@ -51,6 +50,7 @@ namespace Shared.ViewModels.FeedlySearch
             AddFeedlyRssCommand = ReactiveCommand.CreateFromTask<FeedlyRssDomainModel>(DoAddFeedlyRss).NotNull();
 
             this.WhenAnyValue(vm => vm.SearchQuery)
+                .NotNull()
                 .Throttle(TimeSpan.FromSeconds(0.35f))
                 .InvokeCommand(FindByQueryCommand);
         }

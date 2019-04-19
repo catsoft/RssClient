@@ -19,7 +19,7 @@ namespace Droid.Screens.Base
         [NotNull]
         public new TViewModel ViewModel
         {
-            get => base.ViewModel.NotNull();
+            [NotNull] get => base.ViewModel.NotNull();
             private set => base.ViewModel = value;
         }
 

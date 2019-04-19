@@ -6,9 +6,11 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Droid.EmbeddedResourse;
 using Droid.Repositories.Configuration;
+using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.Infrastructure.Locale;
 using Shared.Infrastructure.ViewModels;
 
@@ -18,30 +20,30 @@ namespace Shared.ViewModels.RssAllMessagesFilter
 {
     public class RssAllMessagesFilterFilterViewModel : ViewModel
     {
-        private readonly IConfigurationRepository _configurationRepository;
-        private readonly ISubject<AllMessageFilterConfiguration> _messageFilter;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
+        [NotNull] private readonly ISubject<AllMessageFilterConfiguration> _messageFilter;
 
-        public RssAllMessagesFilterFilterViewModel(IConfigurationRepository configurationRepository)
+        public RssAllMessagesFilterFilterViewModel([NotNull] IConfigurationRepository configurationRepository)
         {
             _configurationRepository = configurationRepository;
 
             _messageFilter = new Subject<AllMessageFilterConfiguration>();
             Filter = _messageFilter.AsObservable();
 
-            Filter.Select(w => w.MessageFilterType)
+            Filter.Select(filter => filter.NotNull().MessageFilterType)
                 .ToPropertyEx(this, model => model.MessageFilterType);
 
-            Filter.Select(w => w.From ?? DateTime.Now)
+            Filter.Select(filter => filter.NotNull().From ?? DateTime.Now)
                 .ToPropertyEx(this, model => model.FromDate);
 
-            Filter.Select(w => w.To ?? DateTime.Now)
-                .ToPropertyEx(this, model => model.ToDate);
+            Filter.Select(filter => filter.NotNull().To ?? DateTime.Now)
+                .ToPropertyEx(this, model => model.ToDate); 
 
-            Filter.Select(w => w.From)
-                .Subscribe(w => FromDateText = w?.ToShortDateLocaleString() ?? Strings.FilterFromTitle);
+            Filter.Select(filter => filter.NotNull().From)
+                .Subscribe(fromDate => FromDateText = fromDate?.ToShortDateLocaleString() ?? Strings.FilterFromTitle);
 
-            Filter.Select(w => w.To)
-                .Subscribe(w => ToDateText = w?.ToShortDateLocaleString() ?? Strings.FilterToTitle);
+            Filter.Select(filter => filter.NotNull().To)
+                .Subscribe(toDate => ToDateText = toDate?.ToShortDateLocaleString() ?? Strings.FilterToTitle);
 
             Filter.ToPropertyEx(this, model => model.FilterConfiguration);
 
@@ -72,13 +74,13 @@ namespace Shared.ViewModels.RssAllMessagesFilter
 
         public ReactiveCommand<DateTime, Unit> SetToDateTypeCommand  { get; }
 
-        private void DoSetMessageFilterType(MessageFilterType type) { UpdateFilter(filter => { filter.MessageFilterType = type; }); }
+        private void DoSetMessageFilterType(MessageFilterType type) { UpdateFilter(filter => filter.NotNull().MessageFilterType = type); }
 
-        private void DoSetFromDate(DateTime fromDate) { UpdateFilter(filter => filter.From = fromDate); }
+        private void DoSetFromDate(DateTime fromDate) { UpdateFilter(filter => filter.NotNull().From = fromDate); }
 
-        private void DoSetToDate(DateTime toDate) { UpdateFilter(filter => filter.To = toDate); }
+        private void DoSetToDate(DateTime toDate) { UpdateFilter(filter => filter.NotNull().To = toDate); }
 
-        private void UpdateFilter(Action<AllMessageFilterConfiguration> update)
+        private void UpdateFilter([CanBeNull] Action<AllMessageFilterConfiguration> update)
         {
             update?.Invoke(FilterConfiguration);
             _configurationRepository.SaveSetting(FilterConfiguration);

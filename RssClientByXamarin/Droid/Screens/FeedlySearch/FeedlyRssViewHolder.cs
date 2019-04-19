@@ -7,6 +7,8 @@ using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading.Views;
+using JetBrains.Annotations;
+using Shared.Extensions;
 using Shared.Repositories.Feedly;
 
 #endregion
@@ -15,20 +17,20 @@ namespace Droid.Screens.FeedlySearch
 {
     public class FeedlyRssViewHolder : RecyclerView.ViewHolder, IDataBind<FeedlyRssDomainModel>, IShowAndLoadImage
     {
-        public FeedlyRssViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
+        public FeedlyRssViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
 
-            RssIcon = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_feedlyRss_rssIcon);
-            TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_feedlyRss_title);
-            AddImageView = itemView.FindViewById<ImageButton>(Resource.Id.imageButton_feedlyRss_add);
+            RssIcon = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_feedlyRss_rssIcon).NotNull();
+            TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_feedlyRss_title).NotNull();
+            AddImageView = itemView.FindViewById<ImageButton>(Resource.Id.imageButton_feedlyRss_add).NotNull();
 
             RssIcon.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        public ImageButton AddImageView { get; set; }
-        public TextView TitleView { get; set; }
-        public ImageViewAsync RssIcon { get; set; }
+        [NotNull] public ImageButton AddImageView { get; }
+        [NotNull] public TextView TitleView { get; }
+        [NotNull] public ImageViewAsync RssIcon { get; }
         public FeedlyRssDomainModel Item { get; set; }
 
         public void BindData(FeedlyRssDomainModel item)

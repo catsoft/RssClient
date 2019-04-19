@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Shared.Repositories.Rss;
 
 #endregion
 
@@ -12,27 +13,29 @@ namespace Shared.Services.Rss
     public interface IRssService
     {
         [NotNull]
-        Task AddAsync(string url, CancellationToken cancellationToken = default);
+        Task AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
 
         [NotNull]
-        Task RemoveAsync(string id, CancellationToken token = default);
+        Task RemoveAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
-        Task<RssServiceModel> GetAsync(string id, CancellationToken token = default);
+        [TaskItemCanBeNull]
+        Task<RssServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
+        [TaskItemNotNull]
         Task<IEnumerable<RssServiceModel>> GetListAsync(CancellationToken token = default);
 
         [NotNull]
-        Task UpdateAsync(RssServiceModel rss, CancellationToken token = default);
+        Task UpdateAsync([CanBeNull] RssServiceModel rss, CancellationToken token = default);
 
         [NotNull]
-        Task LoadAndUpdateAsync(string id, CancellationToken token = default);
+        Task LoadAndUpdateAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
-        Task UpdatePositionAsync(string localItemId, int position, CancellationToken token = default);
+        Task UpdatePositionAsync([CanBeNull] string localItemId, int position, CancellationToken token = default);
 
         [NotNull]
-        Task ReadAllMessagesAsync(string itemId, CancellationToken token = default);
+        Task ReadAllMessagesAsync([CanBeNull] string itemId, CancellationToken token = default);
     }
 }

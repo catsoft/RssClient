@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
+
 namespace Droid.Screens.Base.Adapters
 {
     public interface IDataBind<TItem>
     {
-        TItem Item { get; set; }
-        void BindData(TItem item);
+        [CanBeNull] TItem Item { get;  }
+        void BindData([NotNull] TItem item);
     }
 }
