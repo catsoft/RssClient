@@ -62,9 +62,9 @@ namespace Shared.ViewModels.RssListEdit
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 
         [NotNull]
-        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() => SourceList.Connect().NotNull();
+        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() { return SourceList.Connect().NotNull(); }
 
-        private void DoOpenCreateItemScreen() => _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>().NotNull());
+        private void DoOpenCreateItemScreen() { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>().NotNull()); }
 
         [NotNull]
         private async Task DoDeleteItem([CanBeNull] RssServiceModel model, CancellationToken token)

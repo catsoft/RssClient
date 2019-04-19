@@ -20,7 +20,8 @@ namespace Shared.ViewModels.RssEdit
     {
         [NotNull] private readonly IRssService _rssService;
 
-        public RssEditViewModel([NotNull] IRssService rssService, [NotNull] RssEditParameters parameters, [NotNull] INavigator navigator) : base(parameters)
+        public RssEditViewModel([NotNull] IRssService rssService, [NotNull] RssEditParameters parameters, [NotNull] INavigator navigator) :
+            base(parameters)
         {
             _rssService = rssService;
 

@@ -10,7 +10,7 @@ namespace Shared.Utils
 {
     public static class AnimationTypeExtension
     {
-        [CanBeNull] 
+        [CanBeNull]
         public static string ToLocaleString(this AnimationType animationType)
         {
             switch (animationType)

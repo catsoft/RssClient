@@ -9,8 +9,6 @@ namespace Shared.Repositories.Rss
 {
     public class RssDomainModel : IHaveId
     {
-        public string Id { get; set; }
-        
         public string Name { get; set; }
 
         public string Rss { get; set; }
@@ -22,5 +20,6 @@ namespace Shared.Repositories.Rss
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }
+        public string Id { get; set; }
     }
 }

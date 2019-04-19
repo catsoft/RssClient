@@ -59,18 +59,18 @@ namespace Shared.ViewModels.Main
 
             if (appConfiguration.StartPage == StartPage.RssList)
                 _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>().NotNull());
-            else if (appConfiguration.StartPage == StartPage.AllMessages) 
+            else if (appConfiguration.StartPage == StartPage.AllMessages)
                 _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>().NotNull());
         }
 
-        private void DoOpenFeedlySearch() => _navigator.Go(App.Container.Resolve<IWay<FeedlySearchViewModel>>().NotNull());
+        private void DoOpenFeedlySearch() { _navigator.Go(App.Container.Resolve<IWay<FeedlySearchViewModel>>().NotNull()); }
 
-        private void DoOpenFavoriteMessages() => _navigator.Go(App.Container.Resolve<IWay<RssFavoriteMessagesViewModel>>().NotNull());
+        private void DoOpenFavoriteMessages() { _navigator.Go(App.Container.Resolve<IWay<RssFavoriteMessagesViewModel>>().NotNull()); }
 
-        private void DoOpenSettings() => _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel>>().NotNull());
+        private void DoOpenSettings() { _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel>>().NotNull()); }
 
-        private void DoOpenContacts() => _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel>>().NotNull());
+        private void DoOpenContacts() { _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel>>().NotNull()); }
 
-        private void DoOpenAbout() => _navigator.Go(App.Container.Resolve<IWay<AboutViewModel>>().NotNull());
+        private void DoOpenAbout() { _navigator.Go(App.Container.Resolve<IWay<AboutViewModel>>().NotNull()); }
     }
 }

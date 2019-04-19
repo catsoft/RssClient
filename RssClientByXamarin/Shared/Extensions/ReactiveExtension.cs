@@ -13,10 +13,10 @@ namespace Shared.Extensions
 {
     public static class ReactiveExtension
     {
-        public static void AddTo(this IDisposable @this, [CanBeNull] CompositeDisposable disposable) => disposable?.Add(@this);
+        public static void AddTo(this IDisposable @this, [CanBeNull] CompositeDisposable disposable) { disposable?.Add(@this); }
 
         [NotNull]
-        public static IObservable<Unit> SelectUnit<T>([NotNull] this IObservable<T> obs) => obs.Select(x => Unit.Default);
+        public static IObservable<Unit> SelectUnit<T>([NotNull] this IObservable<T> obs) { return obs.Select(x => Unit.Default); }
 
         [NotNull]
         public static IDisposable ExecuteNow<TParam, TResult>([NotNull] this ReactiveCommand<TParam, TResult> cmd, TParam param = default)

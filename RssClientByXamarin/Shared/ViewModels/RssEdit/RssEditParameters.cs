@@ -9,9 +9,8 @@ namespace Shared.ViewModels.RssEdit
 {
     public class RssEditParameters : ViewModelParameters
     {
-        public RssEditParameters([CanBeNull] string rssId) => RssId = rssId;
+        public RssEditParameters([CanBeNull] string rssId) { RssId = rssId; }
 
-        [CanBeNull] 
-        public string RssId { get; }
+        [CanBeNull] public string RssId { get; }
     }
 }

@@ -10,8 +10,8 @@ namespace Shared.Infrastructure.Navigation
 {
     public class Navigator : INavigator
     {
-        public void Go(IWay way) => way.Go();
+        public void Go(IWay way) { way.Go(); }
 
-        public void GoBack() => App.Container.Resolve<IWay<CloseViewModel>>().NotNull().Go();
+        public void GoBack() { App.Container.Resolve<IWay<CloseViewModel>>().NotNull().Go(); }
     }
 }

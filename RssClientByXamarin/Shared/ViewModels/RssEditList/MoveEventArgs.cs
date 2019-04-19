@@ -1,5 +1,3 @@
-using JetBrains.Annotations;
-
 namespace Shared.ViewModels.RssListEdit
 {
     public class MoveEventArgs
@@ -9,9 +7,9 @@ namespace Shared.ViewModels.RssListEdit
             FromPosition = fromPosition;
             ToPosition = position;
         }
-        
+
         public int FromPosition { get; }
-        
+
         public int ToPosition { get; }
     }
 }

@@ -37,7 +37,7 @@ namespace Shared.ViewModels.RssAllMessagesFilter
                 .ToPropertyEx(this, model => model.FromDate);
 
             Filter.Select(filter => filter.NotNull().To ?? DateTime.Now)
-                .ToPropertyEx(this, model => model.ToDate); 
+                .ToPropertyEx(this, model => model.ToDate);
 
             Filter.Select(filter => filter.NotNull().From)
                 .Subscribe(fromDate => FromDateText = fromDate?.ToShortDateLocaleString() ?? Strings.FilterFromTitle);
@@ -74,11 +74,11 @@ namespace Shared.ViewModels.RssAllMessagesFilter
 
         [NotNull] public ReactiveCommand<DateTime, Unit> SetToDateTypeCommand { get; }
 
-        private void DoSetMessageFilterType(MessageFilterType type) => UpdateFilter(filter => filter.NotNull().MessageFilterType = type);
+        private void DoSetMessageFilterType(MessageFilterType type) { UpdateFilter(filter => filter.NotNull().MessageFilterType = type); }
 
-        private void DoSetFromDate(DateTime fromDate) => UpdateFilter(filter => filter.NotNull().From = fromDate);
+        private void DoSetFromDate(DateTime fromDate) { UpdateFilter(filter => filter.NotNull().From = fromDate); }
 
-        private void DoSetToDate(DateTime toDate) => UpdateFilter(filter => filter.NotNull().To = toDate);
+        private void DoSetToDate(DateTime toDate) { UpdateFilter(filter => filter.NotNull().To = toDate); }
 
         private void UpdateFilter([CanBeNull] Action<AllMessageFilterConfiguration> update)
         {

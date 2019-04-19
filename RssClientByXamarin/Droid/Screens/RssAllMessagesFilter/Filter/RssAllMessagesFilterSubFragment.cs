@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 using Shared.Configuration.Settings;
 using Shared.Extensions;
@@ -17,9 +18,10 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
 {
     public class RssAllMessagesFilterSubFragment : BaseFragment<RssAllMessagesFilterFilterViewModel>, RadioGroup.IOnCheckedChangeListener
     {
-        private RssAllMessagesFilterSubFragmentViewHolder _viewHolder;
+        [NotNull] private RssAllMessagesFilterSubFragmentViewHolder _viewHolder;
 
         // ReSharper disable once EmptyConstructor
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public RssAllMessagesFilterSubFragment() { }
 
         protected override int LayoutId => Resource.Layout.fragment_all_messages_filter_sub;
@@ -32,7 +34,6 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
             switch (checkedId)
             {
                 default:
-                case Resource.Id.radioButton_rss_all_messages_filter_all:
                     filterType = MessageFilterType.None;
                     break;
                 case Resource.Id.radioButton_rss_all_messages_filter_favorite:
@@ -46,7 +47,7 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
                     break;
             }
 
-            ViewModel.SetMessageFilterTypeCommand.Execute(filterType).Subscribe();
+            ViewModel.SetMessageFilterTypeCommand.Execute(filterType).NotNull().Subscribe();
         }
 
         protected override void RestoreState(Bundle saved) { }
@@ -55,13 +56,14 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            _viewHolder = new RssAllMessagesFilterSubFragmentViewHolder(view);
+            _viewHolder = new RssAllMessagesFilterSubFragmentViewHolder(view.NotNull());
 
             _viewHolder.RootRadioGroup.SetOnCheckedChangeListener(this);
 
             OnActivation(disposable =>
             {
                 ViewModel.WhenAnyValue(model => model.MessageFilterType)
+                    .NotNull()
                     .Subscribe(SetFilterType)
                     .AddTo(disposable);
 
@@ -72,12 +74,12 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
                     .AddTo(disposable);
 
                 _viewHolder.FromButton.Events()
-                    .Click
+                    ?.Click?
                     .Subscribe(w => OpenFromDatePicker())
                     .AddTo(disposable);
 
                 _viewHolder.ToButton.Events()
-                    .Click
+                    ?.Click?
                     .Subscribe(w => OpenToDatePicker())
                     .AddTo(disposable);
             });
@@ -90,7 +92,6 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
             switch (type)
             {
                 default:
-                case MessageFilterType.None:
                     _viewHolder.AllRadioButton.Checked = true;
                     break;
                 case MessageFilterType.Favorite:
@@ -119,8 +120,14 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
             picker.Show();
         }
 
-        private void SetFromDate(object sender, DatePickerDialog.DateSetEventArgs e) { ViewModel.SetFromDateTypeCommand.Execute(e.Date).Subscribe(); }
+        private void SetFromDate(object sender, [NotNull] DatePickerDialog.DateSetEventArgs e)
+        {
+            ViewModel.SetFromDateTypeCommand.Execute(e.Date).NotNull().Subscribe();
+        }
 
-        private void SetToDate(object sender, DatePickerDialog.DateSetEventArgs e) { ViewModel.SetToDateTypeCommand.Execute(e.Date).Subscribe(); }
+        private void SetToDate(object sender, [NotNull] DatePickerDialog.DateSetEventArgs e)
+        {
+            ViewModel.SetToDateTypeCommand.Execute(e.Date).NotNull().Subscribe();
+        }
     }
 }

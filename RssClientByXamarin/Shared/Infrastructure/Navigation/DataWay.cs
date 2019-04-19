@@ -11,7 +11,7 @@ namespace Shared.Infrastructure.Navigation
         where TViewModel : ViewModel
     {
         [CanBeNull] public TData Data { get; set; }
-        
+
         public abstract void Go();
     }
 }

@@ -10,7 +10,7 @@ namespace Shared.Utils
 {
     public static class AnimationSpeedExtension
     {
-        [CanBeNull] 
+        [CanBeNull]
         public static string ToLocaleString(this AnimationSpeed animationSpeed)
         {
             switch (animationSpeed)

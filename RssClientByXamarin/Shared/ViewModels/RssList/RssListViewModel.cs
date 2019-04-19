@@ -100,8 +100,8 @@ namespace Shared.ViewModels.RssList
 
         [NotNull] public AppConfiguration AppConfiguration { get; }
 
-        [NotNull] 
-        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() => SourceList.Connect().NotNull();
+        [NotNull]
+        public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() { return SourceList.Connect().NotNull(); }
 
         private void DoOpenCreateScreen()
         {

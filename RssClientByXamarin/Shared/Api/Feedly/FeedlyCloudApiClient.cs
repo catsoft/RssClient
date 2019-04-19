@@ -32,11 +32,11 @@ namespace Shared.Api.Feedly
                     return rssResponse;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
-            
+
             return null;
         }
     }

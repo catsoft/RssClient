@@ -13,7 +13,7 @@ namespace Shared.Infrastructure.Locale
     public static class LocaleDateTimeExtension
     {
         [NotNull]
-        private static ILocale ResolveLocale() => App.Container.Resolve<ILocale>().NotNull();
+        private static ILocale ResolveLocale() { return App.Container.Resolve<ILocale>().NotNull(); }
 
         public static string ToShortDateLocaleString(this DateTime date)
         {
