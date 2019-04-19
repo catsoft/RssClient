@@ -8,6 +8,7 @@ using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.Services.Rss;
@@ -19,7 +20,8 @@ namespace Droid.Screens.RssEditList
 {
     public class RssEditListFragment : BaseFragment<RssListEditViewModel>
     {
-        private RssEditListFragmentViewHolder _viewHolder;
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        [NotNull] private RssEditListFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit_list;
         public override bool IsRoot => false;
@@ -28,7 +30,7 @@ namespace Droid.Screens.RssEditList
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             Title = GetText(Resource.String.rssEditList_title);
 
@@ -40,7 +42,7 @@ namespace Droid.Screens.RssEditList
             var callBack = new ReorderHelperCallback(adapter);
             var helper = new ItemTouchHelper(callBack);
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
-            adapter.OnStartDrag += holder => { helper.StartDrag(holder); };
+            adapter.OnStartDrag += holder => helper.StartDrag(holder);
 
             var adapterUpdater = new AdapterUpdater<RssServiceModel>(adapter, ViewModel.SourceList);
 
@@ -52,10 +54,12 @@ namespace Droid.Screens.RssEditList
                     .AddTo(disposable);
 
                 ViewModel.WhenAnyValue(model => model.SourceList)
+                    .NotNull()
                     .Subscribe(w => adapter.Items = w.Items)
                     .AddTo(disposable);
 
                 ViewModel.ConnectChanges()
+                    .NotNull()
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 

@@ -25,7 +25,7 @@ namespace Shared.ViewModels.RssCreate
             CreateCommand.Subscribe(_ => navigator.GoBack());
         }
 
-        [Reactive] public string Url { get; set; }
+        [Reactive] [CanBeNull] public string Url { get; set; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> CreateCommand { get; }
     }

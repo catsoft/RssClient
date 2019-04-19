@@ -3,6 +3,7 @@
 using Autofac;
 using Shared.Api.Feedly;
 using Shared.Api.Rss;
+using Shared.Extensions;
 
 #endregion
 
@@ -14,8 +15,8 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssApiClient>().As<IRssApiClient>().SingleInstance();
-            builder.RegisterType<FeedlyCloudApiClient>().As<IFeedlyCloudApiClient>().SingleInstance();
+            builder.RegisterType<RssApiClient>().NotNull().As<IRssApiClient>().NotNull().SingleInstance();
+            builder.RegisterType<FeedlyCloudApiClient>().NotNull().As<IFeedlyCloudApiClient>().NotNull().SingleInstance();
         }
     }
 }

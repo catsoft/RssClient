@@ -3,6 +3,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Shared.Repositories.Rss;
 
 #endregion
 
@@ -10,6 +12,8 @@ namespace Shared.Repositories.Feedly
 {
     public interface IFeedlyRepository
     {
-        Task<IEnumerable<FeedlyRssDomainModel>> SearchByQueryAsync(string query, CancellationToken token = default);
+        [NotNull]
+        [TaskItemCanBeNull]
+        Task<IEnumerable<FeedlyRssDomainModel>> SearchByQueryAsync([CanBeNull] string query, CancellationToken token = default);
     }
 }

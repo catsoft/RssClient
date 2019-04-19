@@ -6,6 +6,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
+using JetBrains.Annotations;
 using Shared;
 using Shared.Infrastructure.Navigation;
 using Shared.Repositories.RssMessage;
@@ -19,9 +20,11 @@ namespace Droid.Screens.RssMessagesList
     public abstract class BaseRssMessagesAdapter<TViewHolder> : DataBindAdapter<RssMessageDomainModel, List<RssMessageDomainModel>, TViewHolder>
         where TViewHolder : RecyclerView.ViewHolder, IDataBind<RssMessageDomainModel>
     {
-        private readonly IRssMessagesRepository _rssMessagesRepository;
+        [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
 
-        protected BaseRssMessagesAdapter(List<RssMessageDomainModel> items, Activity activity, IRssMessagesRepository rssMessagesRepository) :
+        protected BaseRssMessagesAdapter([NotNull] List<RssMessageDomainModel> items,
+            [NotNull] Activity activity,
+            [NotNull] IRssMessagesRepository rssMessagesRepository) :
             base(items, activity)
         {
             _rssMessagesRepository = rssMessagesRepository;

@@ -43,7 +43,7 @@ namespace Droid.Screens.Base
         [NotNull] public IObservable<Context> Destroying => _destroyingSubject.AsObservable();
         [NotNull] public IObservable<Context> Detaching => _detachingSubject.AsObservable();
 
-        [NotNull] public CompositeDisposable Disposables { get ; } = new CompositeDisposable();
+        [NotNull] public CompositeDisposable Disposables { get; } = new CompositeDisposable();
 
         public void OnActivation([CanBeNull] Action<CompositeDisposable> d) { Resuming.Take(1).Subscribe(_ => d?.Invoke(Disposables)); }
 

@@ -217,10 +217,14 @@ namespace Droid.Screens.Navigation
         /// <summary>
         ///     Добавляет новый фрагмент
         /// </summary>
-        New, /// <summary>
+        New,
+
+        /// <summary>
         ///     Если есть в стеке, показывает его, если нет, создает новый
         /// </summary>
-        Old, /// <summary>
+        Old,
+
+        /// <summary>
         ///     Если есть старый, удаляет, помещает в стек новый
         /// </summary>
         Replace

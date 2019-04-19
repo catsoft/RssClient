@@ -30,14 +30,14 @@ namespace Droid.Screens.RssAllMessages
 
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_all_rss_message, parent, false);
+            var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_all_rss_message, parent, false).NotNull();
             var holder = new RssAllMessagesViewHolder(view, _appConfiguration.LoadAndShowImages);
 
-            holder.ClickView.Click += (sender, args) => { OpenContentActivity(holder); };
-            holder.ClickView.LongClick += (sender, args) => { ItemLongClick(holder, sender); };
+            holder.ClickView.Click += (sender, args) => OpenContentActivity(holder);
+            holder.ClickView.LongClick += (sender, args) => ItemLongClick(holder, sender);
 
-            holder.LeftButtonAction += () => { ReadItem(holder); };
-            holder.RightButtonAction += () => { InFavoriteItem(holder); };
+            holder.LeftButtonAction += () => ReadItem(holder);
+            holder.RightButtonAction += () => InFavoriteItem(holder);
 
             return holder;
         }

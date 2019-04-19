@@ -50,83 +50,82 @@ namespace Shared.ViewModels.RssList
             SourceList = new SourceList<RssServiceModel>();
             SourceList.CountChanged.NotNull().Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
 
-            OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen);
-            OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen);
-            OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen);
+            OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
+            OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
+            OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
             GetListCommand = ReactiveCommand.CreateFromTask(async token => await _rssService.GetListAsync(token)).NotNull();
             GetListCommand.Subscribe(w =>
             {
                 SourceList.Clear();
                 SourceList.AddRange(w ?? new RssServiceModel[0]);
             });
-            AllUpdateCommand = ReactiveCommand.CreateFromTask<IChangeSet<RssServiceModel>>(DoAllUpdate);
+            AllUpdateCommand = ReactiveCommand.CreateFromTask<IChangeSet<RssServiceModel>>(DoAllUpdate).NotNull();
             ConnectChanges().ObserveOn(RxApp.TaskpoolScheduler.NotNull()).InvokeCommand(AllUpdateCommand);
 
-            OpenDetailScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenDetailScreen);
-            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(async w => await Share.RequestAsync(w?.Rss).NotNull());
-            ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllItemMessage);
-            OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen);
-            ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog);
-            ItemRemoveCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemRemove);
+            OpenDetailScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenDetailScreen).NotNull();
+            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(async w => await Share.RequestAsync(w?.Rss).NotNull()).NotNull();
+            ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllItemMessage).NotNull();
+            OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen).NotNull();
+            ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog).NotNull();
+            ItemRemoveCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemRemove).NotNull();
 
             AppConfiguration = configurationRepository.GetSettings<AppConfiguration>();
         }
 
-        public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
 
-        public ReactiveCommand<Unit, Unit> OpenAllMessagesScreenCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> OpenAllMessagesScreenCommand { get; }
 
-        public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssServiceModel>> GetListCommand { get; }
 
-        public ReactiveCommand<IChangeSet<RssServiceModel>, Unit> AllUpdateCommand { get; }
+        [NotNull] public ReactiveCommand<IChangeSet<RssServiceModel>, Unit> AllUpdateCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> OpenDetailScreenCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> OpenDetailScreenCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> ShareItemCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ShareItemCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> OpenEditItemScreenCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> OpenEditItemScreenCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> ReadAllItemsCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ReadAllItemsCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> ShowDeleteItemDialogCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ShowDeleteItemDialogCommand { get; }
 
-        public ReactiveCommand<RssServiceModel, Unit> ItemRemoveCommand { get; }
+        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ItemRemoveCommand { get; }
 
         [NotNull] public SourceList<RssServiceModel> SourceList { get; }
 
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 
-        public AppConfiguration AppConfiguration { get; }
+        [NotNull] public AppConfiguration AppConfiguration { get; }
 
-        [NotNull]
+        [NotNull] 
         public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() => SourceList.Connect().NotNull();
 
         private void DoOpenCreateScreen()
         {
-            var way = App.Container.Resolve<IWay<RssCreateViewModel>>();
+            var way = App.Container.Resolve<IWay<RssCreateViewModel>>().NotNull();
             _navigator.Go(way);
         }
 
         private void DoOpenAllMessagesScreen()
         {
-            var way = App.Container.Resolve<IWay<RssAllMessagesViewModel>>();
+            var way = App.Container.Resolve<IWay<RssAllMessagesViewModel>>().NotNull();
             _navigator.Go(way);
         }
 
         private void DoOpenListEditScreen()
         {
-            var way = App.Container.Resolve<IWay<RssListEditViewModel>>();
+            var way = App.Container.Resolve<IWay<RssListEditViewModel>>().NotNull();
             _navigator.Go(way);
         }
 
-        private void DoOpenDetailScreen(RssServiceModel model)
+        private void DoOpenDetailScreen([CanBeNull] RssServiceModel model)
         {
             var parameter = new RssMessagesListParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var way =
-                App.Container.Resolve<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>(typedParameter);
+            var way = App.Container.Resolve<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>(typedParameter).NotNull();
             _navigator.Go(way);
         }
 
@@ -140,12 +139,11 @@ namespace Shared.ViewModels.RssList
         {
             var parameter = new RssEditParameters(model?.Id);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var editWay =
-                App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter);
+            var editWay = App.Container.Resolve<IWayWithParameters<RssEditViewModel, RssEditParameters>>(typedParameter).NotNull();
             _navigator.Go(editWay);
         }
 
-        private void DoShowDeleteItemDialog(RssServiceModel model)
+        private void DoShowDeleteItemDialog([CanBeNull] RssServiceModel model)
         {
             _dialogService.ShowYesNoDialog(Strings.RssDeleteDialogTitle,
                 "",

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Shared.Analitics.Rss;
+using Shared.Analytics.Rss;
 using Shared.Database;
 using Shared.Database.Rss;
 using Shared.Extensions;
@@ -38,7 +38,7 @@ namespace Shared.Repositories.Rss
                         CreationTime = DateTime.Now
                     };
 
-                    _log.TrackRssInsert(url, newItem.CreationTime);
+                    _log.TrackRssInsert(url);
 
                     var itemId = await RealmDatabase.InsertAsync(newItem);
 
@@ -90,7 +90,7 @@ namespace Shared.Repositories.Rss
 
                 if (backgroundRssItem == null) return;
 
-                _log.TrackRssDelete(backgroundRssItem.Rss, DateTimeOffset.Now);
+                _log.TrackRssDelete(backgroundRssItem.Rss);
 
                 backgroundRssItem.RssMessageModels?.Clear();
                 realm.NotNull().Remove(backgroundRssItem);

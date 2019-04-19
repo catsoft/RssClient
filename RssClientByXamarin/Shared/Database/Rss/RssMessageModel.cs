@@ -26,7 +26,9 @@ namespace Shared.Database.Rss
 
         public bool IsFavorite { get; set; }
 
-        [Backlink(nameof(RssModel.RssMessageModels))] public IQueryable<RssModel> RssParent { get; }
+        [Backlink(nameof(RssModel.RssMessageModels))] 
+        // ReSharper disable once UnassignedGetOnlyAutoProperty
+        public IQueryable<RssModel> RssParent { get; }
 
         [Ignored] public string RssLink => RssParent?.FirstOrDefault()?.Rss;
 

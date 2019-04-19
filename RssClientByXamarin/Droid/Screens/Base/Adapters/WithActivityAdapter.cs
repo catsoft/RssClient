@@ -2,7 +2,7 @@
 
 using Android.App;
 using Android.Support.V7.Widget;
-using DynamicData.Annotations;
+using JetBrains.Annotations;
 
 #endregion
 

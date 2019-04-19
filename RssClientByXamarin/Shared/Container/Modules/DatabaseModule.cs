@@ -2,6 +2,7 @@
 
 using Autofac;
 using Shared.Database;
+using Shared.Extensions;
 
 #endregion
 
@@ -13,7 +14,7 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RealmDatabase>().AsSelf().SingleInstance();
+            builder.RegisterType<RealmDatabase>().NotNull().AsSelf().NotNull().SingleInstance();
         }
     }
 }

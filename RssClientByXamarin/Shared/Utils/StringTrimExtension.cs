@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
+
 namespace Shared.Utils
 {
     public static class StringTrimExtension
     {
-        public static string SafeTrim(this string str) { return str?.Trim(' ', '\n', '\r'); }
+        [CanBeNull]
+        public static string SafeTrim([CanBeNull] this string str) { return str?.Trim(' ', '\n', '\r'); }
     }
 }

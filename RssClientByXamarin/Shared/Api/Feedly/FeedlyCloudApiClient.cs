@@ -1,9 +1,11 @@
 #region
 
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Shared.Extensions;
 
 #endregion
 
@@ -17,13 +19,25 @@ namespace Shared.Api.Feedly
 
         public async Task<FeedlyRssResponce> FindByQueryAsync(string query, CancellationToken token)
         {
-            var response = await GetAsync($"{Domen}{Search}?query={query}&count={Count}", token);
+            try
+            {
+                var response = await GetAsync($"{Domen}{Search}?query={query}&count={Count}", token).NotNull();
 
-            var stream = await response.Content.ReadAsStringAsync();
+                if (response.Content != null)
+                {
+                    var stringAsync = await response.Content.ReadAsStringAsync();
 
-            var rssResponse = JsonConvert.DeserializeObject<FeedlyRssResponce>(stream);
+                    var rssResponse = JsonConvert.DeserializeObject<FeedlyRssResponce>(stringAsync ?? "");
 
-            return rssResponse;
+                    return rssResponse;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
+            return null;
         }
     }
 }

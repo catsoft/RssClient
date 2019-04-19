@@ -47,20 +47,20 @@ namespace Shared.ViewModels.RssAllMessagesFilter
 
             Filter.ToPropertyEx(this, model => model.FilterConfiguration);
 
-            SetMessageFilterTypeCommand = ReactiveCommand.Create<MessageFilterType>(DoSetMessageFilterType);
-            SetFromDateTypeCommand = ReactiveCommand.Create<DateTime>(DoSetFromDate);
-            SetToDateTypeCommand = ReactiveCommand.Create<DateTime>(DoSetToDate);
+            SetMessageFilterTypeCommand = ReactiveCommand.Create<MessageFilterType>(DoSetMessageFilterType).NotNull();
+            SetFromDateTypeCommand = ReactiveCommand.Create<DateTime>(DoSetFromDate).NotNull();
+            SetToDateTypeCommand = ReactiveCommand.Create<DateTime>(DoSetToDate).NotNull();
 
             _messageFilter.OnNext(_configurationRepository.GetSettings<AllMessageFilterConfiguration>());
         }
 
-        [Reactive] public string FromDateText { get; set; }
+        [Reactive] [CanBeNull] public string FromDateText { get; set; }
 
-        [Reactive] public string ToDateText { get; set; }
+        [Reactive] [CanBeNull] public string ToDateText { get; set; }
 
-        public IObservable<AllMessageFilterConfiguration> Filter { get; }
+        [NotNull] public IObservable<AllMessageFilterConfiguration> Filter { get; }
 
-        public extern AllMessageFilterConfiguration FilterConfiguration { [ObservableAsProperty] get; }
+        [NotNull] public extern AllMessageFilterConfiguration FilterConfiguration { [ObservableAsProperty] get; }
 
         public extern MessageFilterType MessageFilterType { [ObservableAsProperty] get; }
 
@@ -68,17 +68,17 @@ namespace Shared.ViewModels.RssAllMessagesFilter
 
         public extern DateTime ToDate { [ObservableAsProperty] get; }
 
-        public ReactiveCommand<MessageFilterType, Unit> SetMessageFilterTypeCommand { get; }
+        [NotNull] public ReactiveCommand<MessageFilterType, Unit> SetMessageFilterTypeCommand { get; }
 
-        public ReactiveCommand<DateTime, Unit> SetFromDateTypeCommand { get; }
+        [NotNull] public ReactiveCommand<DateTime, Unit> SetFromDateTypeCommand { get; }
 
-        public ReactiveCommand<DateTime, Unit> SetToDateTypeCommand  { get; }
+        [NotNull] public ReactiveCommand<DateTime, Unit> SetToDateTypeCommand { get; }
 
-        private void DoSetMessageFilterType(MessageFilterType type) { UpdateFilter(filter => filter.NotNull().MessageFilterType = type); }
+        private void DoSetMessageFilterType(MessageFilterType type) => UpdateFilter(filter => filter.NotNull().MessageFilterType = type);
 
-        private void DoSetFromDate(DateTime fromDate) { UpdateFilter(filter => filter.NotNull().From = fromDate); }
+        private void DoSetFromDate(DateTime fromDate) => UpdateFilter(filter => filter.NotNull().From = fromDate);
 
-        private void DoSetToDate(DateTime toDate) { UpdateFilter(filter => filter.NotNull().To = toDate); }
+        private void DoSetToDate(DateTime toDate) => UpdateFilter(filter => filter.NotNull().To = toDate);
 
         private void UpdateFilter([CanBeNull] Action<AllMessageFilterConfiguration> update)
         {

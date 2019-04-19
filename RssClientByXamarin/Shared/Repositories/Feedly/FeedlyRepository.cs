@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Shared.Api.Feedly;
 using Shared.Infrastructure.Mappers;
 
@@ -13,10 +14,11 @@ namespace Shared.Repositories.Feedly
 {
     public class FeedlyRepository : IFeedlyRepository
     {
-        private readonly IFeedlyCloudApiClient _feedlyCloudApiClient;
-        private readonly IMapper<FeedlyRssApiModel, FeedlyRssDomainModel> _mapper;
+        [NotNull] private readonly IFeedlyCloudApiClient _feedlyCloudApiClient;
+        [NotNull] private readonly IMapper<FeedlyRssApiModel, FeedlyRssDomainModel> _mapper;
 
-        public FeedlyRepository(IFeedlyCloudApiClient feedlyCloudApiClient, IMapper<FeedlyRssApiModel, FeedlyRssDomainModel> mapper)
+        public FeedlyRepository([NotNull] IFeedlyCloudApiClient feedlyCloudApiClient,
+            [NotNull] IMapper<FeedlyRssApiModel, FeedlyRssDomainModel> mapper)
         {
             _feedlyCloudApiClient = feedlyCloudApiClient;
             _mapper = mapper;

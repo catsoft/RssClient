@@ -9,6 +9,7 @@ namespace Shared.Configuration.Settings
     public class AppConfiguration
     {
         public StartPage StartPage { get; set; } = StartPage.RssList;
+        
         public MessagesViewer MessagesViewer { get; set; } = MessagesViewer.App;
 
         /// <summary>

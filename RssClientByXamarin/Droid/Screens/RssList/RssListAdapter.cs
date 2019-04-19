@@ -6,13 +6,12 @@ using System.Linq;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
-using Autofac;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
-using Shared;
+using JetBrains.Annotations;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.Infrastructure.Locale;
-using Shared.Repositories.RssMessage;
 using Shared.Services.Rss;
 
 #endregion
@@ -21,15 +20,11 @@ namespace Droid.Screens.RssList
 {
     public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
     {
-        private readonly AppConfiguration _appConfiguration;
+        [NotNull] private readonly AppConfiguration _appConfiguration;
 
-        // TODO убрать
-        private readonly IRssMessagesRepository _rssMessagesRepository;
-
-        public RssListAdapter(Activity activity, AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
+        public RssListAdapter([NotNull] Activity activity, [NotNull] AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
         {
             _appConfiguration = appConfiguration;
-            _rssMessagesRepository = App.Container.Resolve<IRssMessagesRepository>();
         }
 
         public void OnItemDismiss(int position)
@@ -49,15 +44,16 @@ namespace Droid.Screens.RssList
             holder.SubtitleTextView.Text = item.UpdateTime == null
                 ? Activity.GetText(Resource.String.rssList_notUpdated)
                 : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
-            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
+            // TODO сделать
+//            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
         }
 
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss, parent, false);
+            var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_rss, parent, false);
             var holder = new RssListViewHolder(view, _appConfiguration.LoadAndShowImages);
-            holder.ClickView.Click += (sender, args) => { Click?.Invoke(this, holder.Item); };
-            holder.ClickView.LongClick += (sender, args) => { LongClick?.Invoke(sender, holder.Item); };
+            holder.ClickView.Click += (sender, args) => Click?.Invoke(this, holder.Item);
+            holder.ClickView.LongClick += (sender, args) => LongClick?.Invoke(sender, holder.Item);
 
             return holder;
         }

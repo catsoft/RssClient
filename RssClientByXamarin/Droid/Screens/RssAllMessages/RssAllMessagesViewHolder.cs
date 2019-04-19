@@ -40,14 +40,14 @@ namespace Droid.Screens.RssAllMessages
         [NotNull] public RatingBar RatingBar { get; }
         public bool IsShowAndLoadImages { get; }
 
-        public override void BindData([NotNull] RssMessageDomainModel item)
+        public override void BindData(RssMessageDomainModel item)
         {
             Item = item;
 
             Title.Text = item.Title;
             Text.SetTextAsHtml(item.Text);
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            Canal.Text = item.RssParent.Name;
+            Canal.Text = item.RssParent?.Name;
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
@@ -55,7 +55,7 @@ namespace Droid.Screens.RssAllMessages
             if (IsShowAndLoadImages)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
-                ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
+                ImageService.Instance.NotNull().LoadUrl(item.ImageUrl).Into(ImageView);
             }
         }
     }

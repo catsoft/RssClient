@@ -23,12 +23,12 @@ namespace Droid.Screens.RssEditList
         public void OnMove(int fromPosition, int toPosition)
         {
             var item = Items.ElementAt(fromPosition);
-            var args = new MoveEventArgs<RssServiceModel>(item, fromPosition, toPosition);
+            var args = new MoveEventArgs(fromPosition, toPosition);
             OnMoveEvent?.Invoke(this, args);
         }
 
         public event EventHandler<RssServiceModel> DeleteClick;
-        public event EventHandler<MoveEventArgs<RssServiceModel>> OnMoveEvent;
+        public event EventHandler<MoveEventArgs> OnMoveEvent;
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
 
         protected override void BindData(RssListEditViewHolder holder, RssServiceModel item)

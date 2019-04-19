@@ -59,7 +59,7 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
             bool isCurrentlyActive)
         {
             if (actionState == ItemTouchHelper.ActionStateSwipe)
-                SetTouchListener( recyclerView);
+                SetTouchListener(recyclerView);
 
             if (viewHolder is SwipeButtonViewHolder swipeViewHolder)
             {

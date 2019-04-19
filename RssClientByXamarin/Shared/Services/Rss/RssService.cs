@@ -105,9 +105,7 @@ namespace Shared.Services.Rss
                     ImageUrl = imageUri
                 };
 
-                await _rssMessagesRepository.AddMessageAsync(item,
-                    id,
-                    token);
+                await _rssMessagesRepository.AddMessageAsync(item, id, token);
             }
         }
 

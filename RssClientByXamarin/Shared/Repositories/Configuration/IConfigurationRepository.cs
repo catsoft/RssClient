@@ -1,10 +1,13 @@
+using JetBrains.Annotations;
+
 namespace Droid.Repositories.Configuration
 {
     public interface IConfigurationRepository
     {
-        void SaveSetting<T>(T obj);
+        void SaveSetting<T>([NotNull] T obj);
 
-        T GetSettings<T>() where T : new();
+        [NotNull]
+        T GetSettings<T>() where T : class, new();
 
         void DeleteSetting<T>();
     }

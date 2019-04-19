@@ -22,6 +22,7 @@ namespace Shared.Database.Rss
 
         public DateTimeOffset? UpdateTime { get; set; }
 
+        // ReSharper disable once UnassignedGetOnlyAutoProperty
         public IList<RssMessageModel> RssMessageModels { get; }
 
         [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();

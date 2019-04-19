@@ -23,7 +23,7 @@ namespace Shared.Repositories.Rss
         Task<RssDomainModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
-        Task RemoveAsync(string id, CancellationToken token = default);
+        Task RemoveAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
         [TaskItemNotNull]

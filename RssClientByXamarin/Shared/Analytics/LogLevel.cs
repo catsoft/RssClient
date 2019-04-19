@@ -7,7 +7,6 @@
         Info,
         Warn,
         Error,
-        Assert,
-        None
+        Assert
     }
 }

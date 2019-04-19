@@ -1,6 +1,7 @@
 #region
 
 using Autofac;
+using Shared.Extensions;
 using Shared.Services.Feedly;
 using Shared.Services.Rss;
 
@@ -14,8 +15,8 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssService>().As<IRssService>().SingleInstance();
-            builder.RegisterType<FeedlyService>().As<IFeedlyService>().SingleInstance();
+            builder.RegisterType<RssService>().NotNull().As<IRssService>().NotNull().SingleInstance();
+            builder.RegisterType<FeedlyService>().NotNull().As<IFeedlyService>().NotNull().SingleInstance();
         }
     }
 }

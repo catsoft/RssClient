@@ -2,6 +2,8 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Shared.Repositories.Rss;
 
 #endregion
 
@@ -9,6 +11,8 @@ namespace Shared.Api.Feedly
 {
     public interface IFeedlyCloudApiClient
     {
-        Task<FeedlyRssResponce> FindByQueryAsync(string query, CancellationToken token = default);
+        [NotNull]
+        [TaskItemCanBeNull]
+        Task<FeedlyRssResponce> FindByQueryAsync([CanBeNull] string query, CancellationToken token = default);
     }
 }

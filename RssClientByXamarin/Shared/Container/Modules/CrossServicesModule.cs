@@ -1,6 +1,7 @@
 ﻿#region
 
 using Autofac;
+using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 
 #endregion
@@ -13,7 +14,7 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<Navigator>().As<INavigator>().SingleInstance();
+            builder.RegisterType<Navigator>().NotNull().As<INavigator>().NotNull().SingleInstance();
         }
     }
 }

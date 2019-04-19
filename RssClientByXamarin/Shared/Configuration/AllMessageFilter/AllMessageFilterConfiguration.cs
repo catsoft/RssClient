@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 using Shared.Database.Rss;
 
 #endregion
@@ -11,13 +12,16 @@ namespace Shared.Configuration.Settings
     public class AllMessageFilterConfiguration
     {
         public Sort Sort { get; set; } = Sort.Newest;
+
         public MessageFilterType MessageFilterType { get; set; } = MessageFilterType.None;
 
         public DateTime? From { get; set; }
 
         public DateTime? To { get; set; }
 
-        public IQueryable<RssMessageModel> ApplySort(IQueryable<RssMessageModel> messages)
+        [NotNull]
+        [ItemCanBeNull]
+        public IQueryable<RssMessageModel> ApplySort([NotNull] IQueryable<RssMessageModel> messages)
         {
             switch (Sort)
             {
@@ -30,7 +34,9 @@ namespace Shared.Configuration.Settings
             }
         }
 
-        public IQueryable<RssMessageModel> ApplyFilter(IQueryable<RssMessageModel> messages)
+        [NotNull]
+        [ItemCanBeNull]
+        public IQueryable<RssMessageModel> ApplyFilter([NotNull] IQueryable<RssMessageModel> messages)
         {
             var filterMessages = messages;
 
@@ -49,7 +55,9 @@ namespace Shared.Configuration.Settings
             }
         }
 
-        public IQueryable<RssMessageModel> ApplyDateFilter(IQueryable<RssMessageModel> messages)
+        [NotNull]
+        [ItemCanBeNull]
+        public IQueryable<RssMessageModel> ApplyDateFilter([NotNull] IQueryable<RssMessageModel> messages)
         {
             var filterMessages = messages;
 

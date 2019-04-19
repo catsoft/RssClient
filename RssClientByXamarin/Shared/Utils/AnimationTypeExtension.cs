@@ -1,6 +1,7 @@
 #region
 
 using System;
+using JetBrains.Annotations;
 using Shared.Configuration.Settings;
 
 #endregion
@@ -9,6 +10,7 @@ namespace Shared.Utils
 {
     public static class AnimationTypeExtension
     {
+        [CanBeNull] 
         public static string ToLocaleString(this AnimationType animationType)
         {
             switch (animationType)

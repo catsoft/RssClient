@@ -3,6 +3,8 @@
 using System;
 using System.Globalization;
 using Autofac;
+using JetBrains.Annotations;
+using Shared.Extensions;
 
 #endregion
 
@@ -10,7 +12,8 @@ namespace Shared.Infrastructure.Locale
 {
     public static class LocaleDateTimeExtension
     {
-        private static ILocale ResolveLocale() { return App.Container.Resolve<ILocale>(); }
+        [NotNull]
+        private static ILocale ResolveLocale() => App.Container.Resolve<ILocale>().NotNull();
 
         public static string ToShortDateLocaleString(this DateTime date)
         {

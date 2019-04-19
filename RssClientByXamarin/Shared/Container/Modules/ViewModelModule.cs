@@ -1,6 +1,7 @@
 #region
 
 using Autofac;
+using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
 using Shared.ViewModels.About;
 using Shared.ViewModels.Close;
@@ -28,7 +29,7 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<ViewModelProvider>().AsSelf().SingleInstance();
+            builder.RegisterType<ViewModelProvider>().NotNull().AsSelf().NotNull().SingleInstance();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 

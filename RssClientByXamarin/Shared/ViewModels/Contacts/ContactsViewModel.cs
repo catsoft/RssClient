@@ -3,7 +3,9 @@
 using System.Reactive;
 using System.Threading.Tasks;
 using Droid.EmbeddedResourse;
+using JetBrains.Annotations;
 using ReactiveUI;
+using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
 using Xamarin.Essentials;
 
@@ -15,28 +17,30 @@ namespace Shared.ViewModels.Contacts
     {
         public ContactsViewModel()
         {
-            GoTelegramCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsTelegramLink));
-            GoMailCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsMailLink));
-            GoLinkedinCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsLinkedInLink));
-            GoDiscordCommand = ReactiveCommand.CreateFromTask(async () => await CopyToClipboard(Strings.ContactsDiscordLink));
+            GoTelegramCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsTelegramLink)).NotNull();
+            GoMailCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsMailLink)).NotNull();
+            GoLinkedinCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsLinkedInLink)).NotNull();
+            GoDiscordCommand = ReactiveCommand.CreateFromTask(async () => await CopyToClipboard(Strings.ContactsDiscordLink)).NotNull();
         }
 
-        public ReactiveCommand<Unit, Unit> GoTelegramCommand { get; }
-        public ReactiveCommand<Unit, Unit> GoMailCommand { get; }
-        public ReactiveCommand<Unit, Unit> GoLinkedinCommand { get; }
-        public ReactiveCommand<Unit, Unit> GoDiscordCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> GoTelegramCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> GoMailCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> GoLinkedinCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, Unit> GoDiscordCommand { get; }
 
-        private async Task CopyToClipboard(string text)
+        [NotNull]
+        private async Task CopyToClipboard([CanBeNull] string text)
         {
-            await Clipboard.SetTextAsync(text);
+            await Clipboard.SetTextAsync(text).NotNull();
             // TODO го клиборт
             //            Context.ToastClipboard(text);
         }
 
-        private async Task OpenLink(string text)
+        [NotNull]
+        private async Task OpenLink([CanBeNull] string text)
         {
-            if (await Launcher.CanOpenAsync(text))
-                await Launcher.OpenAsync(text);
+            if (await Launcher.CanOpenAsync(text).NotNull())
+                await Launcher.OpenAsync(text).NotNull();
         }
     }
 }

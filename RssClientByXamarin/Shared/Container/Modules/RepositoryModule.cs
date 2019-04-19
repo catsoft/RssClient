@@ -4,6 +4,7 @@ using Autofac;
 using Droid.Repositories.Configuration;
 using Shared.Api.Feedly;
 using Shared.Database.Rss;
+using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
 using Shared.Repositories.Feedly;
 using Shared.Repositories.Rss;
@@ -20,20 +21,20 @@ namespace Shared.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssRepository>().As<IRssRepository>().SingleInstance();
-            builder.RegisterType<RssMessagesRepository>().As<IRssMessagesRepository>().SingleInstance();
-            builder.RegisterType<ConfigurationRepository>().As<IConfigurationRepository>().SingleInstance();
-            builder.RegisterType<FeedlyRepository>().As<IFeedlyRepository>().SingleInstance();
+            builder.RegisterType<RssRepository>().NotNull().As<IRssRepository>().NotNull().SingleInstance();
+            builder.RegisterType<RssMessagesRepository>().NotNull().As<IRssMessagesRepository>().NotNull().SingleInstance();
+            builder.RegisterType<ConfigurationRepository>().NotNull().As<IConfigurationRepository>().NotNull().SingleInstance();
+            builder.RegisterType<FeedlyRepository>().NotNull().As<IFeedlyRepository>().NotNull().SingleInstance();
 
-            builder.RegisterType<RssMapper>().As<IMapper<RssModel, RssDomainModel>>().SingleInstance();
-            builder.RegisterType<RssMapper>().As<IMapper<RssDomainModel, RssModel>>().SingleInstance();
-            builder.RegisterType<RssMapper>().As<IMapper<RssDomainModel, RssServiceModel>>().SingleInstance();
-            builder.RegisterType<RssMapper>().As<IMapper<RssServiceModel, RssDomainModel>>().SingleInstance();
+            builder.RegisterType<RssMapper>().NotNull().As<IMapper<RssModel, RssDomainModel>>().NotNull().SingleInstance();
+            builder.RegisterType<RssMapper>().NotNull().As<IMapper<RssDomainModel, RssModel>>().NotNull().SingleInstance();
+            builder.RegisterType<RssMapper>().NotNull().As<IMapper<RssDomainModel, RssServiceModel>>().NotNull().SingleInstance();
+            builder.RegisterType<RssMapper>().NotNull().As<IMapper<RssServiceModel, RssDomainModel>>().NotNull().SingleInstance();
 
-            builder.RegisterType<RssMessageMapper>().As<IMapper<RssMessageModel, RssMessageDomainModel>>().SingleInstance();
-            builder.RegisterType<RssMessageMapper>().As<IMapper<RssMessageDomainModel, RssMessageModel>>().SingleInstance();
+            builder.RegisterType<RssMessageMapper>().NotNull().As<IMapper<RssMessageModel, RssMessageDomainModel>>().NotNull().SingleInstance();
+            builder.RegisterType<RssMessageMapper>().NotNull().As<IMapper<RssMessageDomainModel, RssMessageModel>>().NotNull().SingleInstance();
 
-            builder.RegisterType<FeedlyMapper>().As<IMapper<FeedlyRssApiModel, FeedlyRssDomainModel>>().SingleInstance();
+            builder.RegisterType<FeedlyMapper>().NotNull().As<IMapper<FeedlyRssApiModel, FeedlyRssDomainModel>>().NotNull().SingleInstance();
         }
     }
 }

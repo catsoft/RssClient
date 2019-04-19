@@ -7,6 +7,8 @@ using Android.Widget;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
+using DynamicData.Annotations;
+using Shared.Extensions;
 using Shared.Repositories.Feedly;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
@@ -18,58 +20,75 @@ namespace Droid.NativeExtension
 {
     public static class EventsExtension
     {
-        public static IObservable<TextView.EditorActionEventArgs> GetEditorAction(this EditText @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<TextView.EditorActionEventArgs> GetEditorAction([NotNull] this EditText @this)
         {
             return Observable
-                .FromEventPattern<TextView.EditorActionEventArgs>(t => @this.EditorAction += t, t => @this.EditorAction -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<TextView.EditorActionEventArgs>(t => @this.NotNull().EditorAction += t, t => @this.NotNull().EditorAction -= t)
+                .Select(_ => _?.EventArgs);
         }
 
-        public static IObservable<SearchView.QueryTextChangeEventArgs> GetQueryTextChangeEvent(this SearchView @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<SearchView.QueryTextChangeEventArgs> GetQueryTextChangeEvent([NotNull] this SearchView @this)
         {
             return Observable
-                .FromEventPattern<SearchView.QueryTextChangeEventArgs>(t => @this.QueryTextChange += t, t => @this.QueryTextChange -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<SearchView.QueryTextChangeEventArgs>(t => @this.NotNull().QueryTextChange += t,
+                    t => @this.NotNull().QueryTextChange -= t)
+                .Select(_ => _?.EventArgs);
         }
 
-        public static IObservable<RssServiceModel> GetRssItemClickEvent(this RssListAdapter @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<RssServiceModel> GetRssItemClickEvent([NotNull] this RssListAdapter @this)
         {
             return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.Click += t, t => @this.Click -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<RssServiceModel>(t => @this.NotNull().Click += t, t => @this.NotNull().Click -= t)
+                .Select(_ => _?.EventArgs);
         }
 
-        public static IObservable<EventPattern<RssServiceModel>> GetRssItemLongClickEvent(this RssListAdapter @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<EventPattern<RssServiceModel>> GetRssItemLongClickEvent([NotNull] this RssListAdapter @this)
         {
-            return Observable.FromEventPattern<RssServiceModel>(t => @this.LongClick += t, t => @this.LongClick -= t);
+            return Observable.FromEventPattern<RssServiceModel>(t => @this.NotNull().LongClick += t, t => @this.NotNull().LongClick -= t);
         }
 
-        public static IObservable<RssServiceModel> GetRssItemDismissEvent(this RssListAdapter @this)
-        {
-            return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.ItemDismiss += t, t => @this.ItemDismiss -= t)
-                .Select(_ => _.EventArgs);
-        }
-
-        public static IObservable<RssServiceModel> GetItemDeleteEvent(this RssListEditAdapter @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<RssServiceModel> GetRssItemDismissEvent([NotNull] this RssListAdapter @this)
         {
             return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.DeleteClick += t, t => @this.DeleteClick -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<RssServiceModel>(t => @this.NotNull().ItemDismiss += t, t => @this.NotNull().ItemDismiss -= t)
+                .Select(_ => _?.EventArgs);
         }
 
-        public static IObservable<MoveEventArgs<RssServiceModel>> GetItemMoveEvent(this RssListEditAdapter @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<RssServiceModel> GetItemDeleteEvent([NotNull] this RssListEditAdapter @this)
         {
             return Observable
-                .FromEventPattern<MoveEventArgs<RssServiceModel>>(t => @this.OnMoveEvent += t, t => @this.OnMoveEvent -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<RssServiceModel>(t => @this.NotNull().DeleteClick += t, t => @this.NotNull().DeleteClick -= t)
+                .Select(_ => _?.EventArgs);
         }
 
-        public static IObservable<FeedlyRssDomainModel> GetClickAddImageEvent(this FeedlySearchRssAdapter @this)
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<MoveEventArgs> GetItemMoveEvent([NotNull] this RssListEditAdapter @this)
         {
             return Observable
-                .FromEventPattern<FeedlyRssDomainModel>(t => @this.ClickAddImage += t, t => @this.ClickAddImage -= t)
-                .Select(_ => _.EventArgs);
+                .FromEventPattern<MoveEventArgs>(t => @this.NotNull().OnMoveEvent += t, t => @this.NotNull().OnMoveEvent -= t)
+                .Select(_ => _?.EventArgs);
+        }
+
+        [NotNull]
+        [ItemCanBeNull]
+        public static IObservable<FeedlyRssDomainModel> GetClickAddImageEvent([NotNull] this FeedlySearchRssAdapter @this)
+        {
+            return Observable
+                .FromEventPattern<FeedlyRssDomainModel>(t => @this.NotNull().ClickAddImage += t, t => @this.NotNull().ClickAddImage -= t)
+                .Select(_ => _?.EventArgs);
         }
     }
 }

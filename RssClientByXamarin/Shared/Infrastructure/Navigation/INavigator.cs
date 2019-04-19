@@ -1,8 +1,10 @@
-﻿namespace Shared.Infrastructure.Navigation
+﻿using JetBrains.Annotations;
+
+namespace Shared.Infrastructure.Navigation
 {
     public interface INavigator
     {
-        void Go(IWay way);
+        void Go([NotNull] IWay way);
 
         void GoBack();
     }

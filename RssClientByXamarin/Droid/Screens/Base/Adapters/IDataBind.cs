@@ -4,7 +4,7 @@ namespace Droid.Screens.Base.Adapters
 {
     public interface IDataBind<TItem>
     {
-        [CanBeNull] TItem Item { get;  }
+        [CanBeNull] TItem Item { get; }
         void BindData([NotNull] TItem item);
     }
 }
