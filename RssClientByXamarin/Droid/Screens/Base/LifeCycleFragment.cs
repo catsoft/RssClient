@@ -5,7 +5,6 @@ using System.Reactive.Subjects;
 using Android.Content;
 using Android.OS;
 using Android.Views;
-using Shared.Extensions;
 
 namespace Droid.Screens.Base
 {

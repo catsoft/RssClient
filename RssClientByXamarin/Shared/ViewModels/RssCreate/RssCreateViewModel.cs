@@ -1,8 +1,10 @@
 using System;
 using System.Reactive;
 using Droid.EmbeddedResourse;
+using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
@@ -11,23 +13,24 @@ namespace Shared.ViewModels.RssCreate
 {
     public class RssCreateViewModel : ViewModel
     {
-        private readonly IRssService _service;
-        private readonly INavigator _navigator;
+        [NotNull] readonly IRssService _service;
+        [NotNull] private readonly INavigator _navigator;
 
-        public RssCreateViewModel(IRssService service, INavigator navigator)
+        public RssCreateViewModel([NotNull] IRssService service, [NotNull] INavigator navigator)
         {
             _service = service;
             _navigator = navigator;
 
             Url = Strings.CreateRssUrlDefault;
 
-            CreateCommand = ReactiveCommand.CreateFromTask(async token => await _service.AddAsync(Url, token));
+            CreateCommand = ReactiveCommand.CreateFromTask(async token => await _service.AddAsync(Url, token)).NotNull();
             CreateCommand.Subscribe(_ => _navigator.GoBack());
         }
-        
+
         [Reactive]
         public string Url { get; set; }
 
-        public readonly ReactiveCommand<Unit, Unit> CreateCommand;
+        [NotNull]
+        public ReactiveCommand<Unit, Unit> CreateCommand { get; }
     }
 }

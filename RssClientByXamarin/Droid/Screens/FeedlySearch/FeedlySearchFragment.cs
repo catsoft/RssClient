@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -11,7 +9,6 @@ using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.Repository.Feedly;
-using Shared.Services.Rss;
 using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch

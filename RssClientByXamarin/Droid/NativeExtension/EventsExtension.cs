@@ -5,7 +5,6 @@ using Android.Widget;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
-using Shared.Api.Feedly;
 using Shared.Repository.Feedly;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;

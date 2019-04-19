@@ -5,33 +5,33 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Autofac;
 using Droid.Repository.Configuration;
 using DynamicData;
+using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repository.Feedly;
-using Shared.Repository.Rss;
 using Shared.Services.Feedly;
 
 namespace Shared.ViewModels.FeedlySearch
 {
     public class FeedlySearchViewModel : ViewModel
     {
-        private readonly IFeedlyService _feedlyService;
-        private readonly IConfigurationRepository _configurationRepository;
+        [NotNull] private readonly IFeedlyService _feedlyService;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
 
-        public FeedlySearchViewModel(IFeedlyService feedlyService, IConfigurationRepository configurationRepository)
+        public FeedlySearchViewModel([NotNull] IFeedlyService feedlyService, [NotNull] IConfigurationRepository configurationRepository)
         {
             _feedlyService = feedlyService;
             _configurationRepository = configurationRepository;
 
-            AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            AppConfiguration = _configurationRepository.GetSettings<AppConfiguration>().NotNull();
 
             SourceList = new SourceList<FeedlyRssDomainModel>();
-            ConnectChanges = SourceList.Connect();
+            ConnectChanges = SourceList.Connect().NotNull();
             
             FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRssDomainModel>>(
                 (query, token) => _feedlyService.FindByQueryAsync(query ?? "", token),
@@ -44,29 +44,36 @@ namespace Shared.ViewModels.FeedlySearch
             });
             FindByQueryCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty, true);
 
-            AddFeedlyRssCommand = ReactiveCommand.CreateFromTask<FeedlyRssDomainModel>(DoAddFeedlyRss);
+            AddFeedlyRssCommand = ReactiveCommand.CreateFromTask<FeedlyRssDomainModel>(DoAddFeedlyRss).NotNull();
             
             this.WhenAnyValue(vm => vm.SearchQuery)
                 .Throttle(TimeSpan.FromSeconds(0.35f))
                 .InvokeCommand(FindByQueryCommand);
         }
 
+        [NotNull]
         public AppConfiguration AppConfiguration { get; }
 
         [Reactive]
+        [CanBeNull]
         public string SearchQuery { get; set; }
         
+        [NotNull]
         public ReactiveCommand<string, IEnumerable<FeedlyRssDomainModel>> FindByQueryCommand { get; }
         
+        [NotNull]
         public ReactiveCommand<FeedlyRssDomainModel, Unit> AddFeedlyRssCommand { get; }
         
+        [NotNull]
         public SourceList<FeedlyRssDomainModel> SourceList { get; }
         
+        [NotNull]
         public IObservable<IChangeSet<FeedlyRssDomainModel>> ConnectChanges { get; }
 
         public extern bool IsEmpty { [ObservableAsProperty] get; }
         
-        private Task DoAddFeedlyRss(FeedlyRssDomainModel model, CancellationToken token)
+        [NotNull]
+        private Task DoAddFeedlyRss([NotNull] FeedlyRssDomainModel model, CancellationToken token = default)
         {
             return _feedlyService.AddFeedly(model, token);
             //TODO го тоаст

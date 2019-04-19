@@ -4,7 +4,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Autofac;
 using Droid.Screens.Base.Adapters;
-using Droid.Screens.Navigation;
 using Shared;
 using Shared.Infrastructure.Navigation;
 using Shared.Repository.RssMessage;

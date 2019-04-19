@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Autofac;
 using Droid.EmbeddedResourse;
 using Droid.Repository.Configuration;
-using Droid.Screens.Navigation;
 using DynamicData;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;

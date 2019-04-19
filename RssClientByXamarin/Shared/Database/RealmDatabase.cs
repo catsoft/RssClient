@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Android.Support.V4.Content;
 using JetBrains.Annotations;
 using Realms;
 using Shared.Extensions;

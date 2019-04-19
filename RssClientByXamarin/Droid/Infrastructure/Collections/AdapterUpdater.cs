@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
-using Shared.Services.Rss;
 
 namespace Droid.Infrastructure.Collections
 {
