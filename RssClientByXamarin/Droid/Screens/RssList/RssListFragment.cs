@@ -74,7 +74,7 @@ namespace Droid.Screens.RssList
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 
-                ViewModel.GetListCommand.Execute().Subscribe();
+                ViewModel.GetListCommand.Execute().Subscribe().AddTo(disposable);
             });
 
             return view;

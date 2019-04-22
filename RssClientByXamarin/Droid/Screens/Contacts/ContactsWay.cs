@@ -14,7 +14,7 @@ namespace Droid.Screens.Contacts
         {
             var fragment = new ContactsFragment();
 
-            _fragmentActivity.AddFragment(fragment, CacheState.Replace);
+            _fragmentActivity.AddFragment(fragment);
         }
     }
 }

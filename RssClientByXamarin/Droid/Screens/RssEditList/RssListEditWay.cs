@@ -10,6 +10,6 @@ namespace Droid.Screens.RssEditList
 
         public RssListEditWay(IFragmentManager activity) { _activity = activity; }
 
-        public void Go() { _activity.AddFragment(new RssEditListFragment(), CacheState.Replace); }
+        public void Go() { _activity.AddFragment(new RssEditListFragment()); }
     }
 }

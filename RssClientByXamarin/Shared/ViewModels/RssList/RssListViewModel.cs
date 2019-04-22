@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using Com.Microsoft.Appcenter.Ingestion;
 using Droid.EmbeddedResourse;
 using Droid.Repositories.Configuration;
 using DynamicData;
@@ -30,6 +31,7 @@ namespace Shared.ViewModels.RssList
     {
         [NotNull] private readonly IDialogService _dialogService;
         [NotNull] private readonly INavigator _navigator;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IRssService _rssService;
 
         public RssListViewModel(
@@ -39,6 +41,7 @@ namespace Shared.ViewModels.RssList
             [NotNull] IDialogService dialogService)
         {
             _navigator = navigator;
+            _configurationRepository = configurationRepository;
             _rssService = rssService;
             _dialogService = dialogService;
 
@@ -63,8 +66,6 @@ namespace Shared.ViewModels.RssList
             OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen).NotNull();
             ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog).NotNull();
             ItemRemoveCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemRemove).NotNull();
-
-            AppConfiguration = configurationRepository.GetSettings<AppConfiguration>();
         }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
@@ -93,7 +94,7 @@ namespace Shared.ViewModels.RssList
 
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 
-        [NotNull] public AppConfiguration AppConfiguration { get; }
+        [NotNull] public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
         [NotNull]
         public IObservable<IChangeSet<RssServiceModel>> ConnectChanges() { return SourceList.Connect().NotNull(); }

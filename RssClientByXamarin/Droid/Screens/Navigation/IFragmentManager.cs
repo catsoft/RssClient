@@ -4,7 +4,7 @@ namespace Droid.Screens.Navigation
 {
     public interface IFragmentManager
     {
-        void AddFragment(Fragment fragment, CacheState cacheState = CacheState.New);
+        void AddFragment(Fragment fragment);
 
         void RemoveFragment(Fragment fragment);
     }

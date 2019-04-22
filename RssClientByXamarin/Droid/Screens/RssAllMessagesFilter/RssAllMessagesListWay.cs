@@ -10,6 +10,6 @@ namespace Droid.Screens.RssAllMessagesFilter
 
         public RssAllMessagesFilterWay(IFragmentManager activity) { _activity = activity; }
 
-        public void Go() { _activity.AddFragment(new RssAllMessagesFilterFragment(), CacheState.Old); }
+        public void Go() { _activity.AddFragment(new RssAllMessagesFilterFragment()); }
     }
 }

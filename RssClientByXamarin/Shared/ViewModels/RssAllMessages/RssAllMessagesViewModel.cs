@@ -26,6 +26,7 @@ namespace Shared.ViewModels.RssAllMessages
     {
         [NotNull] private readonly INavigator _navigator;
         [NotNull] private readonly IRssMessageService _rssMessageService;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
 
         public RssAllMessagesViewModel([NotNull] INavigator navigator,
             [NotNull] IRssMessageService rssMessageService,
@@ -33,12 +34,10 @@ namespace Shared.ViewModels.RssAllMessages
         {
             _navigator = navigator;
             _rssMessageService = rssMessageService;
+            _configurationRepository = configurationRepository;
 
             SourceList = new SourceList<RssMessageServiceModel>();
             SourceList.CountChanged.NotNull().Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
-
-            AllMessageFilterConfiguration = configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-            AppConfiguration = configurationRepository.GetSettings<AppConfiguration>();
 
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
             OpenRssListScreenCommand = ReactiveCommand.Create(DoOpenRssListScreen).NotNull();
@@ -52,8 +51,8 @@ namespace Shared.ViewModels.RssAllMessages
             });
             
             OpenContentScreenCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoOpenContentScreen).NotNull();
-            ReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoReadItem).NotNull();
-            InFavoriteCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoIsFavoriteItem).NotNull();
+            ChangeReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeReadItem).NotNull();
+            ChangeFavoriteCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeFavoriteItem).NotNull();
             ShareItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoShareItem).NotNull();
         }
 
@@ -71,17 +70,18 @@ namespace Shared.ViewModels.RssAllMessages
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> OpenContentScreenCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ReadItemCommand { get; }
+        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeReadItemCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> InFavoriteCommand { get; }
+        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeFavoriteCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ShareItemCommand { get; }
         
-        [NotNull] public extern bool IsEmpty { [ObservableAsProperty] get; }
+        public extern bool IsEmpty { [ObservableAsProperty] get; }
 
-        [NotNull] public AllMessageFilterConfiguration AllMessageFilterConfiguration { get; }
+        [NotNull]
+        public AllMessageFilterConfiguration AllMessageFilterConfiguration => _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
         
-        [NotNull] public AppConfiguration AppConfiguration { get; }
+        [NotNull] public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
         private void DoOpenCreateScreen() { _navigator.Go(App.Container.Resolve<IWay<RssCreateViewModel>>().NotNull()); }
 
@@ -104,21 +104,26 @@ namespace Shared.ViewModels.RssAllMessages
             var way = App.Container.Resolve<IWayWithParameters<RssMessageViewModel, RssMessageParameters>>(typedParameter).NotNull();
             _navigator.Go(way);
 
-            await DoReadItem(model, token);
+            if (!model.IsRead)
+            {
+                model.IsRead = true;
+                SourceList.Replace(model, model);
+                await _rssMessageService.UpdateAsync(model, token);
+            }
         }
 
         [NotNull]
-        private async Task DoReadItem([NotNull] RssMessageServiceModel model, CancellationToken token)
+        private async Task DoChangeReadItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
-            model.IsRead = true;
+            model.IsRead = !model.IsRead;
             SourceList.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }
         
         [NotNull]
-        private async Task DoIsFavoriteItem([NotNull] RssMessageServiceModel model, CancellationToken token)
+        private async Task DoChangeFavoriteItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
-            model.IsFavorite = true;
+            model.IsFavorite = !model.IsFavorite;
             SourceList.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }

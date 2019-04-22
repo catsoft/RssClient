@@ -20,7 +20,7 @@ namespace Droid.Screens.RssMessagesList
             var fragment = new RssMessagesListFragment(_parameters.RssModel.Id);
             fragment.SetParameters(_parameters);
 
-            _fragmentActivity.AddFragment(fragment, CacheState.Replace);
+            _fragmentActivity.AddFragment(fragment);
         }
     }
 }

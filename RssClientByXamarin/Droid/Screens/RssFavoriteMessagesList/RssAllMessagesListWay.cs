@@ -10,6 +10,6 @@ namespace Droid.Screens.RssFavoriteMessagesList
 
         public RssFavoriteMessagesListWay(IFragmentManager activity) { _activity = activity; }
 
-        public void Go() { _activity.AddFragment(new RssFavoriteMessagesListFragment(), CacheState.Old); }
+        public void Go() { _activity.AddFragment(new RssFavoriteMessagesListFragment()); }
     }
 }

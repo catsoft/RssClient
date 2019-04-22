@@ -14,7 +14,7 @@ namespace Droid.Screens.About
         {
             var fragment = new AboutFragment();
 
-            _fragmentActivity.AddFragment(fragment, CacheState.Replace);
+            _fragmentActivity.AddFragment(fragment);
         }
     }
 }

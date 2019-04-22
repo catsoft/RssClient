@@ -14,7 +14,7 @@ namespace Droid.Screens.Settings
         {
             var fragment = new SettingsFragment();
 
-            _fragmentActivity.AddFragment(fragment, CacheState.Replace);
+            _fragmentActivity.AddFragment(fragment);
         }
     }
 }

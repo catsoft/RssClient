@@ -20,7 +20,7 @@ namespace Droid.Screens.Navigation
 
         protected abstract int? ContainerId { get; }
 
-        public void AddFragment(Fragment fragment, CacheState cacheState = CacheState.New)
+        public void AddFragment(Fragment fragment)
         {
             DoOrNo(transaction =>
             {
@@ -29,35 +29,8 @@ namespace Droid.Screens.Navigation
                 var previousFragment = SupportFragmentManager.FindFragmentById(ContainerId.Value);
                 SetAnimation(previousFragment, fragment);
 
-                var type = fragment.GetType();
-                //TODO подумать и убрать?
-                switch (cacheState)
-                {
-                    case CacheState.New:
-                        transaction.Replace(ContainerId ?? 0, fragment);
-                        transaction.AddToBackStack(fragment.GetType().FullName);
-                        break;
-                    case CacheState.Old:
-                        var old = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
-                        if (old == null)
-                        {
-                            transaction.Replace(ContainerId ?? 0, fragment);
-                            transaction.AddToBackStack(fragment.GetType().FullName);
-                        }
-                        else
-                        {
-                            transaction.Show(old);
-                        }
-
-                        break;
-                    case CacheState.Replace:
-                        var oldReplace = SupportFragmentManager.Fragments.LastOrDefault(w => w.GetType() == type);
-                        if (oldReplace != null) DoOrNo(fragmentTransaction => transaction.Remove(oldReplace));
-
-                        transaction.Replace(ContainerId ?? 0, fragment);
-                        transaction.AddToBackStack(fragment.GetType().FullName);
-                        break;
-                }
+                transaction.Replace(ContainerId ?? 0, fragment);
+                transaction.AddToBackStack(fragment.GetType().FullName);
             });
         }
 
@@ -206,23 +179,5 @@ namespace Droid.Screens.Navigation
                     base.OnBackPressed();
             }
         }
-    }
-
-    public enum CacheState
-    {
-        /// <summary>
-        ///     Добавляет новый фрагмент
-        /// </summary>
-        New,
-
-        /// <summary>
-        ///     Если есть в стеке, показывает его, если нет, создает новый
-        /// </summary>
-        Old,
-
-        /// <summary>
-        ///     Если есть старый, удаляет, помещает в стек новый
-        /// </summary>
-        Replace
     }
 }
