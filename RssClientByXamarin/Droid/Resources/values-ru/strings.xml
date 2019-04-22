@@ -115,5 +115,6 @@
     <string name="feedlySearch_emptyText">Пока ничего</string>
     <string name="rssList_emptyText">Пока ничего</string>
     <string name="rssEditListEmptyText">Еще пока ничего</string>
+    <string name="rssAllMessagesList_emptyText">Nothing</string>
 
 </resources>

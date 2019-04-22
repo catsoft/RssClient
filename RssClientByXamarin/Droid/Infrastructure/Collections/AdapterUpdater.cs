@@ -1,16 +1,21 @@
 using System.Collections.Generic;
+using Android.Support.V7.Widget;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
+using JetBrains.Annotations;
 
 namespace Droid.Infrastructure.Collections
 {
     public class AdapterUpdater<T>
     {
-        private readonly WithItemsAdapter<T, IEnumerable<T>> _adapter;
-        private readonly SourceList<T> _viewModelSourceList;
+        [NotNull] private readonly RecyclerView _recyclerView;
+        [NotNull] private readonly WithItemsAdapter<T, IEnumerable<T>> _adapter;
+        [NotNull] private readonly SourceList<T> _viewModelSourceList;
 
-        public AdapterUpdater(WithItemsAdapter<T, IEnumerable<T>> adapter, SourceList<T> viewModelSourceList)
+        public AdapterUpdater([NotNull] RecyclerView recyclerView, [NotNull] WithItemsAdapter<T, IEnumerable<T>> adapter,
+            [NotNull] SourceList<T> viewModelSourceList)
         {
+            _recyclerView = recyclerView;
             _adapter = adapter;
             _viewModelSourceList = viewModelSourceList;
         }
@@ -29,7 +34,12 @@ namespace Droid.Infrastructure.Collections
                         _adapter.NotifyItemRangeInserted(change.Range.Index, change.Range.Count);
                         break;
                     case ListChangeReason.Replace:
-                        _adapter.NotifyItemChanged(change.Item.CurrentIndex);
+                        var viewHolder = _recyclerView.FindViewHolderForAdapterPosition(change.Item.CurrentIndex);
+                        if (viewHolder is IDataBind<T> bind)
+                        {
+                            bind.BindData(change.Item.Current);
+                        }
+
                         break;
                     case ListChangeReason.Remove:
                         _adapter.NotifyItemRemoved(change.Item.CurrentIndex);

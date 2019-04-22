@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -8,6 +9,7 @@ using Droid.Repositories.Configuration;
 using DynamicData;
 using JetBrains.Annotations;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
 using Shared.Extensions;
@@ -17,7 +19,6 @@ using Shared.ViewModels.RssAllMessagesFilter;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
 using Shared.ViewModels.RssMessage;
-using Xamarin.Essentials;
 
 namespace Shared.ViewModels.RssAllMessages
 {
@@ -34,6 +35,7 @@ namespace Shared.ViewModels.RssAllMessages
             _rssMessageService = rssMessageService;
 
             SourceList = new SourceList<RssMessageServiceModel>();
+            SourceList.CountChanged.NotNull().Select(w => w == 0).ToPropertyEx(this, model => model.IsEmpty);
 
             AllMessageFilterConfiguration = configurationRepository.GetSettings<AllMessageFilterConfiguration>();
             AppConfiguration = configurationRepository.GetSettings<AppConfiguration>();
@@ -74,6 +76,8 @@ namespace Shared.ViewModels.RssAllMessages
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> InFavoriteCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ShareItemCommand { get; }
+        
+        [NotNull] public extern bool IsEmpty { [ObservableAsProperty] get; }
 
         [NotNull] public AllMessageFilterConfiguration AllMessageFilterConfiguration { get; }
         
@@ -107,6 +111,7 @@ namespace Shared.ViewModels.RssAllMessages
         private async Task DoReadItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
             model.IsRead = true;
+            SourceList.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }
         
@@ -114,6 +119,7 @@ namespace Shared.ViewModels.RssAllMessages
         private async Task DoIsFavoriteItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
             model.IsFavorite = true;
+            SourceList.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }
 

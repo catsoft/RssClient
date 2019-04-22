@@ -42,7 +42,7 @@ namespace Droid.Screens.RssAllMessages
             var helper = new ItemTouchHelper(callback);
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
-            var adapterUpdater = new AdapterUpdater<RssMessageServiceModel>(adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssMessageServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
 
             OnActivation(disposable =>
             {
@@ -70,6 +70,10 @@ namespace Droid.Screens.RssAllMessages
                 
                 adapter.GetRssMessageRightButtonClickEvent()
                     .InvokeCommand(ViewModel.InFavoriteCommand)
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
                 ViewModel.LoadRssMessagesCommand.Execute().NotNull().Subscribe().AddTo(disposable);

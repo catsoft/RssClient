@@ -43,7 +43,7 @@ namespace Droid.Screens.RssList
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
 
             OnActivation(disposable =>
             {

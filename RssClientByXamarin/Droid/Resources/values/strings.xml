@@ -119,5 +119,6 @@
     <string name="feedlySearch_emptyText">Just nothing</string>
     <string name="rssList_emptyText">Just nothing</string>
     <string name="rssEditListEmptyText">Nothing else</string>
+    <string name="rssAllMessagesList_emptyText">Nothing</string>
 
 </resources>

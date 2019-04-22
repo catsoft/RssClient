@@ -1,6 +1,8 @@
+using System.Net.Mime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using JetBrains.Annotations;
 using Shared.Extensions;
 
@@ -15,10 +17,14 @@ namespace Droid.Screens.RssAllMessages
             RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list).NotNull();
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
+
+            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_allMessagesFilter_emptyText);
         }
         
         [NotNull] public RecyclerView RecyclerView { get; }
         
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
+        
+        [NotNull] public TextView EmptyTextView { get; }
     }
 }

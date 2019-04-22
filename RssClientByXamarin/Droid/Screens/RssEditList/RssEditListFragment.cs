@@ -40,7 +40,7 @@ namespace Droid.Screens.RssEditList
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
             adapter.OnStartDrag += holder => helper.StartDrag(holder);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
 
             OnActivation(disposable =>
             {
