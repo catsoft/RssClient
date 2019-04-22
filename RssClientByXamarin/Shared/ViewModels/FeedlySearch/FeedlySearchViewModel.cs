@@ -42,6 +42,7 @@ namespace Shared.ViewModels.FeedlySearch
             this.WhenAnyValue(vm => vm.SearchQuery)
                 .NotNull()
                 .Throttle(TimeSpan.FromSeconds(0.35f))
+                .SelectUnit()
                 .InvokeCommand(FindByQueryCommand);
         }
 

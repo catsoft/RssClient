@@ -61,7 +61,7 @@ namespace Shared.ViewModels
                 "",
                 Strings.Yes,
                 Strings.No,
-                () => DeleteItemCommand.Execute().Subscribe(),
+                () => DeleteItemCommand.Execute(model).Subscribe(),
                 null);
         }
 

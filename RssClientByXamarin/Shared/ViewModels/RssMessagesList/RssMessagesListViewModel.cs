@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,10 @@ namespace Shared.ViewModels.RssItemDetail
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
             MessageViewModel = new RssListMessageViewModel(rssMessageService, navigator, ListViewModel.SourceList);
             RssViewModel = new RssViewModel(rssService, dialogService, navigator, null);
+
+            RssViewModel.DeleteItemCommand
+                .SelectUnit()
+                .Subscribe(w => navigator.GoBack());
         }
 
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
