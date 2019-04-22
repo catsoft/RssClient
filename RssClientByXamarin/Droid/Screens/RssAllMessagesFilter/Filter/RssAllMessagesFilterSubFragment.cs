@@ -105,14 +105,14 @@ namespace Droid.Screens.RssAllMessagesFilter.Filter
         private void OpenFromDatePicker()
         {
             var fromDate = ViewModel.FromDate;
-            var picker = new DatePickerDialog(Context, SetFromDate, fromDate.Year, fromDate.Month, fromDate.Day);
+            var picker = new DatePickerDialog(Context, SetFromDate, fromDate.Year, fromDate.Month - 1, fromDate.Day);
             picker.Show();
         }
 
         private void OpenToDatePicker()
         {
             var defaultDate = ViewModel.ToDate;
-            var picker = new DatePickerDialog(Context, SetToDate, defaultDate.Year, defaultDate.Month, defaultDate.Day);
+            var picker = new DatePickerDialog(Context, SetToDate, defaultDate.Year, defaultDate.Month - 1, defaultDate.Day);
             picker.Show();
         }
 
