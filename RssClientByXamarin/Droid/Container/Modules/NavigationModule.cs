@@ -31,6 +31,7 @@ using Shared.ViewModels.RssList;
 using Shared.ViewModels.RssListEdit;
 using Shared.ViewModels.RssMessage;
 using Shared.ViewModels.Settings;
+using RssMessageViewModel = Shared.ViewModels.RssMessage.RssMessageViewModel;
 
 namespace Droid.Container.Modules
 {

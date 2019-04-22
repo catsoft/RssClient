@@ -42,11 +42,11 @@ namespace Droid.Screens.RssAllMessages
             var helper = new ItemTouchHelper(callback);
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
-            var adapterUpdater = new AdapterUpdater<RssMessageServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssMessageServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {
-                ViewModel.ConnectChanges
+                ViewModel.ListViewModel.ConnectChanges
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 
@@ -57,7 +57,7 @@ namespace Droid.Screens.RssAllMessages
                     .AddTo(disposable);
                 
                 adapter.GetClickAction()
-                    .InvokeCommand(ViewModel.OpenContentScreenCommand)
+                    .InvokeCommand(ViewModel.MessageViewModel.OpenContentScreenCommand)
                     .AddTo(disposable);
 
                 adapter.GetLongClickAction()
@@ -65,14 +65,14 @@ namespace Droid.Screens.RssAllMessages
                     .AddTo(disposable);
                 
                 adapter.GetSwipeLeftAction()
-                    .InvokeCommand(ViewModel.ChangeReadItemCommand)
+                    .InvokeCommand(ViewModel.MessageViewModel.ChangeReadItemCommand)
                     .AddTo(disposable);
                 
                 adapter.GetSwipeRightAction()
-                    .InvokeCommand(ViewModel.ChangeFavoriteCommand)
+                    .InvokeCommand(ViewModel.MessageViewModel.ChangeFavoriteCommand)
                     .AddTo(disposable);
                 
-                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
@@ -115,13 +115,13 @@ namespace Droid.Screens.RssAllMessages
             switch (eventArgs.Item?.ItemId)
             {
                 case Resource.Id.menuItem_rssDetailList_contextShare:
-                    ViewModel.ShareItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageViewModel.ShareItemCommand.Execute(model).NotNull().Subscribe();
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextRead:
-                    ViewModel.ChangeReadItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageViewModel.ChangeReadItemCommand.Execute(model).NotNull().Subscribe();
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextFavorite:
-                    ViewModel.ChangeFavoriteCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageViewModel.ChangeFavoriteCommand.Execute(model).NotNull().Subscribe();
                     break;
             }
         }

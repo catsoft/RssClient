@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -43,7 +42,7 @@ namespace Droid.Screens.RssList
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {
@@ -53,12 +52,12 @@ namespace Droid.Screens.RssList
                     .InvokeCommand(ViewModel.OpenCreateScreenCommand)
                     .AddTo(disposable);
 
-                ViewModel.WhenAnyValue(w => w.IsEmpty)
+                ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
                 adapter.GetClickAction()
-                    .InvokeCommand(ViewModel.OpenDetailScreenCommand)
+                    .InvokeCommand(ViewModel.RssViewModel.OpenMessagesListCommand)
                     .AddTo(disposable);
 
                 adapter.GetLongClickAction()
@@ -66,10 +65,10 @@ namespace Droid.Screens.RssList
                     .AddTo(disposable);
 
                 adapter.GetRssItemDismissEvent()
-                    .InvokeCommand(ViewModel.ItemRemoveCommand)
+                    .InvokeCommand(ViewModel.RssViewModel.DeleteItemCommand)
                     .AddTo(disposable);
 
-                ViewModel.ConnectChanges()
+                ViewModel.ListViewModel.ConnectChanges
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
@@ -111,16 +110,16 @@ namespace Droid.Screens.RssList
             switch (eventArgs.Item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_contextEdit:
-                    ViewModel.OpenEditItemScreenCommand.ExecuteNow(holderItem);
+                    ViewModel.RssViewModel.OpenEditItemCommand.ExecuteNow(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextRemove:
-                    ViewModel.ShowDeleteItemDialogCommand.ExecuteNow(holderItem);
+                    ViewModel.RssViewModel.ShowDeleteDialogCommand.ExecuteNow(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextShare:
-                    ViewModel.ShareItemCommand.ExecuteNow(holderItem);
+                    ViewModel.RssViewModel.ShareCommand.ExecuteNow(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextReadAllMessages:
-                    ViewModel.ReadAllItemsCommand.ExecuteNow(holderItem);
+                    ViewModel.RssViewModel.ReadAllMessagesCommand.ExecuteNow(holderItem);
                     break;
             }
         }

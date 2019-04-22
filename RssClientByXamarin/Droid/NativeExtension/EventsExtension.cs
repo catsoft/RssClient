@@ -1,15 +1,13 @@
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
+using Android.Support.V4.Widget;
 using Android.Widget;
-using Droid.Screens.Base.Adapters;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssAllMessages;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
-using Droid.Screens.RssMessagesList;
 using JetBrains.Annotations;
-using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Repositories.Feedly;
 using Shared.Services.Rss;
@@ -101,6 +99,14 @@ namespace Droid.NativeExtension
         {
             return Observable
                 .FromEventPattern<T>(t => @this.NotNull().RightSwipeAction += t, t => @this.NotNull().RightSwipeAction -= t)
+                .Select(_ => _?.EventArgs);
+        }
+        
+        [NotNull]
+        public static IObservable<object> GetRefreshAction([NotNull] this SwipeRefreshLayout @this)
+        {
+            return Observable
+                .FromEventPattern(t => @this.NotNull().Refresh += t, t => @this.NotNull().Refresh -= t)
                 .Select(_ => _?.EventArgs);
         }
     }

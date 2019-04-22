@@ -40,7 +40,7 @@ namespace Droid.Screens.RssEditList
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
             adapter.OnStartDrag += holder => helper.StartDrag(holder);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {
@@ -49,12 +49,12 @@ namespace Droid.Screens.RssEditList
                         fragment => fragment._viewHolder.FloatingActionButton)
                     .AddTo(disposable);
 
-                ViewModel.WhenAnyValue(model => model.SourceList)
+                ViewModel.WhenAnyValue(model => model.ListViewModel.SourceList)
                     .NotNull()
                     .Subscribe(w => adapter.Items = w.Items)
                     .AddTo(disposable);
 
-                ViewModel.ConnectChanges()
+                ViewModel.ListViewModel.ConnectChanges
                     .NotNull()
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
@@ -67,7 +67,7 @@ namespace Droid.Screens.RssEditList
                     .InvokeCommand(ViewModel.MoveItemCommand)
                     .AddTo(disposable);
 
-                ViewModel.WhenAnyValue(model => model.IsEmpty)
+                ViewModel.WhenAnyValue(model => model.ListViewModel.IsEmpty)
                     .Subscribe(w => _viewHolder.EmptyEditText.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 

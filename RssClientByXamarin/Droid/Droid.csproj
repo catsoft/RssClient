@@ -130,6 +130,7 @@
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssAllMessagesListWay.cs" />
+    <Compile Include="Screens\RssMessagesList\RssMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListFragment.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListWay.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListAdapter.cs" />

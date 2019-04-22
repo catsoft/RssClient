@@ -1,28 +1,28 @@
-using Android.Support.Design.Widget;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using JetBrains.Annotations;
 using Shared.Extensions;
 
-namespace Droid.Screens.RssAllMessages
+namespace Droid.Screens.RssMessagesList
 {
-    public class RssAllMessagesFragmentViewHolder
+    public class RssMessagesFragmentViewHolder
     {
-        public RssAllMessagesFragmentViewHolder([NotNull] View view)
+        public RssMessagesFragmentViewHolder([NotNull] View view)
         {
-            FloatingActionButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss).NotNull();
-            
-            RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list).NotNull();
+            RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_rssDetail_messageList).NotNull();
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
             EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_allMessagesFilter_emptyText);
+            
+            RefreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
         }
-        
+
+        [NotNull] public SwipeRefreshLayout RefreshLayout { get; }
+
         [NotNull] public RecyclerView RecyclerView { get; }
-        
-        [NotNull] public FloatingActionButton FloatingActionButton { get; }
         
         [NotNull] public TextView EmptyTextView { get; }
     }

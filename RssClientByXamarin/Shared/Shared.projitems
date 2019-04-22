@@ -91,6 +91,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesFilterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessagesFilter\RssAllMessagesOrderFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\ListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssListMessageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssAllMessages\RssAllMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssCreate\RssCreateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssEdit\RssEditParameters.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssList\RssListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageParameters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssMessage\RssMessageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RssViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsLoadImagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsReadMessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsRssDetailViewModel.cs" />
