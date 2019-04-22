@@ -13,7 +13,7 @@ using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
-using Shared.Repositories.RssMessage;
+using Shared.ViewModels.RssAllMessagesFilter;
 using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssList;
 using Shared.ViewModels.RssMessage;
@@ -43,6 +43,11 @@ namespace Shared.ViewModels.RssAllMessages
             OpenRssAllMessagesFilterScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesFilterScreen).NotNull();
 
             LoadRssMessagesCommand = ReactiveCommand.CreateFromTask(DoLoadRssMessages).NotNull();
+            LoadRssMessagesCommand.Subscribe(w =>
+            {
+                SourceList.Clear();
+                SourceList.AddRange(w);
+            });
             
             OpenContentScreenCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoOpenContentScreen).NotNull();
             ReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoReadItem).NotNull();
@@ -78,7 +83,7 @@ namespace Shared.ViewModels.RssAllMessages
 
         private void DoOpenRssListScreen() { _navigator.Go(App.Container.Resolve<IWay<RssListViewModel>>().NotNull()); }
     
-        private void DoOpenAllMessagesFilterScreen() { _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesViewModel>>().NotNull()); }
+        private void DoOpenAllMessagesFilterScreen() { _navigator.Go(App.Container.Resolve<IWay<RssAllMessagesFilterViewModel>>().NotNull()); }
 
         [NotNull]
         [ItemNotNull]
@@ -115,7 +120,7 @@ namespace Shared.ViewModels.RssAllMessages
         [NotNull]
         private async Task DoShareItem(RssMessageServiceModel model, CancellationToken token)
         {
-            await Share.RequestAsync(model?.Url).NotNull();
+            await _rssMessageService.ShareAsync(model, token);
         }
     }
 }

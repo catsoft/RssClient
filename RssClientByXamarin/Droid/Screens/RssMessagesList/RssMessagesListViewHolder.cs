@@ -6,7 +6,6 @@ using FFImageLoading;
 using FFImageLoading.Views;
 using Shared.Database.Rss;
 using Shared.Infrastructure.Locale;
-using Shared.Repositories.RssMessage;
 
 namespace Droid.Screens.RssMessagesList
 {

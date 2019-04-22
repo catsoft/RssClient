@@ -130,7 +130,7 @@ namespace Shared.Repositories.RssMessage
                         messages = filterConfiguration?.ApplyDateFilter(messages);
                         messages = messages ?? new List<RssMessageModel>().AsQueryable();
                         
-                        return messages.ToList().Select(_mapperToData.Transform);
+                        return messages.ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
                     }
                 },
                 token);

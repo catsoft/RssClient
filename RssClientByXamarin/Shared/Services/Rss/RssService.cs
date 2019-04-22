@@ -58,12 +58,14 @@ namespace Shared.Services.Rss
         public async Task LoadAndUpdateAsync(string id, CancellationToken token = default)
         {
             var currentItem = await _rssRepository.GetAsync(id, token);
-            var syndicationFeed = await _rssApiClient.LoadFeedsAsync(currentItem.Rss, token);
+            var syndicationFeed = await _rssApiClient.LoadFeedsAsync(currentItem?.Rss, token);
 
-            if (syndicationFeed == null)
-                return;
+            if (syndicationFeed == null) return;
 
             currentItem = await _rssRepository.GetAsync(id, token);
+            
+            if(currentItem == null) return;
+            
             currentItem.Name = syndicationFeed.Title?.Text;
             currentItem.UpdateTime = DateTime.Now;
             //TODO сюда запихнуть фавикон
@@ -72,7 +74,7 @@ namespace Shared.Services.Rss
 
             foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
             {
-                var notNulLinks = syndicationFeed.Links.Where(w => w != null).ToList();
+                var notNulLinks = syndicationFeed.Links?.Where(w => w != null).ToList() ?? new List<SyndicationLink>();
                 var imageUri = notNulLinks.FirstOrDefault(w =>
                         w.NotNull().RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true
                         && w.NotNull().MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
@@ -86,7 +88,7 @@ namespace Shared.Services.Rss
                 {
                     SyndicationId = syndicationItem.Id,
                     Title = syndicationItem.Title?.Text?.SafeTrim(),
-                    Text = syndicationItem?.Summary?.Text?.SafeTrim(),
+                    Text = syndicationItem.Summary?.Text?.SafeTrim(),
                     CreationDate = syndicationItem.PublishDate.Date,
                     Url = url,
                     ImageUrl = imageUri
@@ -99,10 +101,18 @@ namespace Shared.Services.Rss
         public async Task UpdatePositionAsync(string localItemId, int position, CancellationToken token)
         {
             var item = await _rssRepository.GetAsync(localItemId, token);
-            item.Position = position;
-            await _rssRepository.UpdateAsync(item, token);
+            if (item != null)
+            {
+                item.Position = position;
+                await _rssRepository.UpdateAsync(item, token);
+            }
         }
 
         public Task ReadAllMessagesAsync(string itemId, CancellationToken token = default) { throw new NotImplementedException(); }
+        
+        public async Task ShareAsync(RssServiceModel model, CancellationToken token = default)
+        {
+            await Xamarin.Essentials.Share.RequestAsync(model?.Rss).NotNull();
+        }
     }
 }

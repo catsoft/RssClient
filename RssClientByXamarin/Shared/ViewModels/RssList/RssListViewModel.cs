@@ -23,7 +23,6 @@ using Shared.ViewModels.RssCreate;
 using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Shared.ViewModels.RssListEdit;
-using Xamarin.Essentials;
 
 namespace Shared.ViewModels.RssList
 {
@@ -59,7 +58,7 @@ namespace Shared.ViewModels.RssList
             ConnectChanges().ObserveOn(RxApp.TaskpoolScheduler.NotNull()).InvokeCommand(AllUpdateCommand);
 
             OpenDetailScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenDetailScreen).NotNull();
-            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(async w => await Share.RequestAsync(w?.Rss).NotNull()).NotNull();
+            ShareItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemShare).NotNull();
             ReadAllItemsCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllItemMessage).NotNull();
             OpenEditItemScreenCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItemScreen).NotNull();
             ShowDeleteItemDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog).NotNull();
@@ -157,10 +156,16 @@ namespace Shared.ViewModels.RssList
         }
 
         [NotNull]
+        private async Task DoItemShare([CanBeNull] RssServiceModel model, CancellationToken token)
+        {
+            await _rssService.ShareAsync(model, token);
+        }
+        
+        [NotNull]
         private async Task DoAllUpdate([CanBeNull] IChangeSet<RssServiceModel> changes, CancellationToken token)
         {
             var updatable = SourceList.Items?.Where(w => w != null)
-                                ?.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
+                                .Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
                                 .ToList() ??
                             new List<RssServiceModel>();
 

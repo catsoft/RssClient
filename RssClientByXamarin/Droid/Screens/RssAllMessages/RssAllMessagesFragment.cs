@@ -51,9 +51,8 @@ namespace Droid.Screens.RssAllMessages
                     .AddTo(disposable);
 
                 _viewHolder.FloatingActionButton.Events()
-                    .NotNull()
                     .Click
-                    .NotNull()
+                    .SelectUnit()
                     .InvokeCommand(ViewModel.OpenCreateScreenCommand)
                     .AddTo(disposable);
                 

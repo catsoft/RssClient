@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Shared.Configuration.Settings;
+using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
 using Shared.Repositories.RssMessage;
 
@@ -58,6 +59,11 @@ namespace Shared.Database.Rss
         public async Task<IEnumerable<RssMessageServiceModel>> GetAllFavoriteMessages(CancellationToken token = default)
         {
             return (await _rssMessagesRepository.GetAllFavoriteMessages(token)).Select(w => _toServiceMapper.Transform(w));
+        }
+        
+        public async Task ShareAsync(RssMessageServiceModel model, CancellationToken token = default)
+        {
+            await Xamarin.Essentials.Share.RequestAsync(model?.Url).NotNull();
         }
     }
 }

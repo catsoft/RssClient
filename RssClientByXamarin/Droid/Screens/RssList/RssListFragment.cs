@@ -49,8 +49,8 @@ namespace Droid.Screens.RssList
             {
                 _viewHolder.FloatingActionButton.Events()
                     .Click
-                    .Select(w => Unit.Default)
-                    .InvokeCommand(ViewModel, model => model.OpenCreateScreenCommand)
+                    .SelectUnit()
+                    .InvokeCommand(ViewModel.OpenCreateScreenCommand)
                     .AddTo(disposable);
 
                 ViewModel.WhenAnyValue(w => w.IsEmpty)

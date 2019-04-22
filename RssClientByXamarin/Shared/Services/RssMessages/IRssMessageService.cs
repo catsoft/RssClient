@@ -34,5 +34,8 @@ namespace Shared.Database.Rss
         [NotNull]
         [ItemNotNull]
         Task<IEnumerable<RssMessageServiceModel>> GetAllFavoriteMessages(CancellationToken token = default);
+
+        [NotNull]
+        Task ShareAsync([CanBeNull] RssMessageServiceModel model, CancellationToken token = default);
     }
 }

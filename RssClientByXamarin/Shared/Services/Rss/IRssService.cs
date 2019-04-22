@@ -32,5 +32,8 @@ namespace Shared.Services.Rss
 
         [NotNull]
         Task ReadAllMessagesAsync([CanBeNull] string itemId, CancellationToken token = default);
+
+        [NotNull]
+        Task ShareAsync([CanBeNull] RssServiceModel model, CancellationToken token = default);
     }
 }

@@ -8,10 +8,6 @@ namespace Droid.Repositories.Configuration
 {
     public class ConfigurationRepository : IConfigurationRepository
     {
-        [NotNull] private readonly RealmDatabase _database;
-
-        public ConfigurationRepository([NotNull] RealmDatabase database) { _database = database; }
-
         public void SaveSetting<T>(T obj)
         {
             RealmDatabase.DoInBackground(realm =>
@@ -29,8 +25,12 @@ namespace Droid.Repositories.Configuration
             where T : class, new()
         {
             var key = typeof(T).FullName;
-            var item = _database.MainThreadRealm.All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
-            return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue) ?? new T();
+
+            using (var realmDatabase = RealmDatabase.OpenDatabase)
+            {
+                var item = realmDatabase.All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
+                return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue) ?? new T();
+            }
         }
 
         public void DeleteSetting<T>()
