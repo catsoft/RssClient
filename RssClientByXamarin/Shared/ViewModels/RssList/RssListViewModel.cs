@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -45,6 +46,7 @@ namespace Shared.ViewModels.RssList
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
             AllUpdateCommand = ReactiveCommand.CreateFromTask<IChangeSet<RssServiceModel>>(DoAllUpdate).NotNull();
+            ListViewModel.ConnectChanges.ObserveOn(RxApp.TaskpoolScheduler.NotNull()).InvokeCommand(AllUpdateCommand);
         }
 
         [NotNull] public ListViewModel<RssServiceModel> ListViewModel { get; }
