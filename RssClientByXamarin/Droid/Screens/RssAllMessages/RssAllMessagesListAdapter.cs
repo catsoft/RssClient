@@ -26,8 +26,11 @@ namespace Droid.Screens.RssAllMessages
         }
 
         public event EventHandler<RssMessageServiceModel> Click;
+        
         public event EventHandler<RssMessageServiceModel> LongClick;
+        
         public event EventHandler<RssMessageServiceModel> LeftSwipeAction;
+        
         public event EventHandler<RssMessageServiceModel> RightSwipeAction;
 
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)

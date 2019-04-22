@@ -34,7 +34,9 @@ namespace Droid.Screens.RssList
         }
 
         public event EventHandler<RssServiceModel> Click;
+        
         public event EventHandler<RssServiceModel> LongClick;
+        
         public event EventHandler<RssServiceModel> ItemDismiss;
 
         protected override void BindData(RssListViewHolder holder, RssServiceModel item)
