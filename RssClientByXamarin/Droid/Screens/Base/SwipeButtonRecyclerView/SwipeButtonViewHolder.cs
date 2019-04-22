@@ -13,7 +13,6 @@ namespace Droid.Screens.Base.SwipeButtonRecyclerView
         public abstract string LeftButtonText { get; }
         public abstract string RightButtonText { get; }
 
-
         public event Action LeftButtonAction;
         public event Action RightButtonAction;
 

@@ -114,6 +114,9 @@
     <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragmentViewHolder.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />
     <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesListWay.cs" />
+    <Compile Include="Screens\RssAllMessages\IClickable.cs" />
+    <Compile Include="Screens\RssAllMessages\ILongClick.cs" />
+    <Compile Include="Screens\RssAllMessages\ISwipeActions.cs" />
     <Compile Include="Screens\RssAllMessages\RssAllMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\RssAllMessages\RssAllMessagesWay.cs" />
     <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
@@ -127,14 +130,13 @@
     <Compile Include="Screens\RssEdit\RssEditWay.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\RssFavoriteMessagesList\RssAllMessagesListWay.cs" />
-    <Compile Include="Screens\RssMessagesList\BaseRssMessagesAdapter.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListFragment.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListWay.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListAdapter.cs" />
     <Compile Include="Screens\RssMessagesList\RssMessagesListViewHolder.cs" />
     <Compile Include="Screens\RssEdit\RssEditFragment.cs" />
     <Compile Include="Screens\RssAllMessages\RssAllMessagesFragment.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesAdapter.cs" />
+    <Compile Include="Screens\RssAllMessages\RssAllMessagesListAdapter.cs" />
     <Compile Include="Screens\RssAllMessages\RssAllMessagesViewHolder.cs" />
     <Compile Include="Screens\Main\MainActivity.cs" />
     <Compile Include="Screens\RssCreate\RssCreateFragment.cs" />

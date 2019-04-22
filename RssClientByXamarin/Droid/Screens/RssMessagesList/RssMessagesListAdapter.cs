@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
+using Shared.ViewModels.RssMessage;
 
 namespace Droid.Screens.RssMessagesList
 {
-    public class RssMessagesListAdapter : BaseRssMessagesAdapter
+    public class RssMessagesListAdapter : DataBindAdapter<RssMessageServiceModel, IEnumerable<RssMessageServiceModel>, RssMessagesListViewHolder>
     {
         private readonly AppConfiguration _appConfiguration;
 
@@ -19,10 +22,10 @@ namespace Droid.Screens.RssMessagesList
             _appConfiguration = appConfiguration;
         }
 
-        public override event EventHandler<RssMessageServiceModel> Click;
-        public override event EventHandler<RssMessageServiceModel> LongClick;
-        public override event EventHandler<RssMessageServiceModel> LeftButtonClick;
-        public override event EventHandler<RssMessageServiceModel> RightButtonClick;
+        public virtual event EventHandler<RssMessageServiceModel> Click;
+        public virtual event EventHandler<RssMessageServiceModel> LongClick;
+        public virtual event EventHandler<RssMessageServiceModel> LeftButtonClick;
+        public virtual event EventHandler<RssMessageServiceModel> RightButtonClick;
         
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {

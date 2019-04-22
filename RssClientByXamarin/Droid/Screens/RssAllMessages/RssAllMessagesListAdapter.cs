@@ -4,7 +4,6 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Screens.Base.Adapters;
-using Droid.Screens.RssMessagesList;
 using JetBrains.Annotations;
 using Shared.Configuration.Settings;
 using Shared.Database.Rss;
@@ -12,7 +11,10 @@ using Shared.Extensions;
 
 namespace Droid.Screens.RssAllMessages
 {
-    public class RssAllMessagesListAdapter : BaseRssMessagesAdapter
+    public class RssAllMessagesListAdapter : DataBindAdapter<RssMessageServiceModel, IEnumerable<RssMessageServiceModel>, RssAllMessagesViewHolder>,
+        IClickable<RssMessageServiceModel>, 
+        ILongClick<RssMessageServiceModel>, 
+        ISwipeActions<RssMessageServiceModel>
     {
         [NotNull] private readonly AppConfiguration _appConfiguration;
 
@@ -23,10 +25,10 @@ namespace Droid.Screens.RssAllMessages
             _appConfiguration = appConfiguration;
         }
 
-        public override event EventHandler<RssMessageServiceModel> Click;
-        public override event EventHandler<RssMessageServiceModel> LongClick;
-        public override event EventHandler<RssMessageServiceModel> LeftButtonClick;
-        public override event EventHandler<RssMessageServiceModel> RightButtonClick;
+        public event EventHandler<RssMessageServiceModel> Click;
+        public event EventHandler<RssMessageServiceModel> LongClick;
+        public event EventHandler<RssMessageServiceModel> LeftSwipeAction;
+        public event EventHandler<RssMessageServiceModel> RightSwipeAction;
 
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {
@@ -36,8 +38,8 @@ namespace Droid.Screens.RssAllMessages
             holder.ClickView.Click += (sender, args) => Click?.Invoke(sender, holder.Item);
             holder.ClickView.LongClick += (sender, args) => LongClick?.Invoke(sender, holder.Item);
 
-            holder.LeftButtonAction += () => LeftButtonClick?.Invoke(this, holder.Item);
-            holder.RightButtonAction += () => RightButtonClick?.Invoke(this, holder.Item);
+            holder.LeftButtonAction += () => LeftSwipeAction?.Invoke(this, holder.Item);
+            holder.RightButtonAction += () => RightSwipeAction?.Invoke(this, holder.Item);
 
             return holder;
         }

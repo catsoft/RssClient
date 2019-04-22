@@ -56,19 +56,19 @@ namespace Droid.Screens.RssAllMessages
                     .InvokeCommand(ViewModel.OpenCreateScreenCommand)
                     .AddTo(disposable);
                 
-                adapter.GetRssMessageItemClickEvent()
+                adapter.GetClickAction()
                     .InvokeCommand(ViewModel.OpenContentScreenCommand)
                     .AddTo(disposable);
 
-                adapter.GetRssMessageItemLongClickEvent()
+                adapter.GetLongClickAction()
                     .Subscribe(w => ItemLongClick(w.NotNull().Sender.NotNull(), w.NotNull().EventArgs.NotNull()))
                     .AddTo(disposable);
                 
-                adapter.GetRssMessageLeftButtonClickEvent()
+                adapter.GetSwipeLeftAction()
                     .InvokeCommand(ViewModel.ChangeReadItemCommand)
                     .AddTo(disposable);
                 
-                adapter.GetRssMessageRightButtonClickEvent()
+                adapter.GetSwipeRightAction()
                     .InvokeCommand(ViewModel.ChangeFavoriteCommand)
                     .AddTo(disposable);
                 

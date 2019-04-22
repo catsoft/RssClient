@@ -1,3 +1,4 @@
+using System;
 using Android.Graphics;
 using Android.Views;
 using Droid.Screens.Base.Adapters;

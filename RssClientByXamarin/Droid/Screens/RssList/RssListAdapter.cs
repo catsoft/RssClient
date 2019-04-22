@@ -6,6 +6,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
+using Droid.Screens.RssAllMessages;
 using JetBrains.Annotations;
 using Shared.Configuration.Settings;
 using Shared.Extensions;
@@ -14,7 +15,10 @@ using Shared.Services.Rss;
 
 namespace Droid.Screens.RssList
 {
-    public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, IItemTouchHelperAdapter
+    public class RssListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssListViewHolder>, 
+        IItemTouchHelperAdapter, 
+        IClickable<RssServiceModel>, 
+        ILongClick<RssServiceModel>
     {
         [NotNull] private readonly AppConfiguration _appConfiguration;
 

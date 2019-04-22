@@ -2,6 +2,7 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.Widget;
+using Droid.Screens.Base.Adapters;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssAllMessages;
 using Droid.Screens.RssEditList;
@@ -37,20 +38,6 @@ namespace Droid.NativeExtension
         }
 
         [NotNull]
-        public static IObservable<RssServiceModel> GetRssItemClickEvent([NotNull] this RssListAdapter @this)
-        {
-            return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.NotNull().Click += t, t => @this.NotNull().Click -= t)
-                .Select(_ => _?.EventArgs);
-        }
-
-        [NotNull]
-        public static IObservable<EventPattern<RssServiceModel>> GetRssItemLongClickEvent([NotNull] this RssListAdapter @this)
-        {
-            return Observable.FromEventPattern<RssServiceModel>(t => @this.NotNull().LongClick += t, t => @this.NotNull().LongClick -= t);
-        }
-
-        [NotNull]
         public static IObservable<RssServiceModel> GetRssItemDismissEvent([NotNull] this RssListAdapter @this)
         {
             return Observable
@@ -83,34 +70,37 @@ namespace Droid.NativeExtension
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageItemClickEvent([NotNull] this BaseRssMessagesAdapter @this)
+        public static IObservable<T> GetClickAction<T>([NotNull] this IClickable<T> @this)
+            where T : class
         {
             return Observable
-                .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().Click += t, t => @this.NotNull().Click -= t)
+                .FromEventPattern<T>(t => @this.NotNull().Click += t, t => @this.NotNull().Click -= t)
                 .Select(_ => _?.EventArgs);
         }
 
         [NotNull]
-        public static IObservable<EventPattern<RssMessageServiceModel>> GetRssMessageItemLongClickEvent(
-            [NotNull] this BaseRssMessagesAdapter @this)
+        public static IObservable<EventPattern<T>> GetLongClickAction<T>([NotNull] this ILongClick<T> @this)
+            where T : class
         {
             return Observable
-                .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().LongClick += t, t => @this.NotNull().LongClick -= t);
+                .FromEventPattern<T>(t => @this.NotNull().LongClick += t, t => @this.NotNull().LongClick -= t);
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageLeftButtonClickEvent([NotNull] this BaseRssMessagesAdapter @this)
+        public static IObservable<T> GetSwipeLeftAction<T>([NotNull] this ISwipeActions<T> @this)
+            where T : class
         {
             return Observable
-                .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().LeftButtonClick += t, t => @this.NotNull().LeftButtonClick -= t)
+                .FromEventPattern<T>(t => @this.NotNull().LeftSwipeAction += t, t => @this.NotNull().LeftSwipeAction -= t)
                 .Select(_ => _?.EventArgs);
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageRightButtonClickEvent([NotNull] this BaseRssMessagesAdapter @this)
+        public static IObservable<T> GetSwipeRightAction<T>([NotNull] this ISwipeActions<T> @this)
+            where T : class
         {
             return Observable
-                .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().RightButtonClick += t, t => @this.NotNull().RightButtonClick -= t)
+                .FromEventPattern<T>(t => @this.NotNull().RightSwipeAction += t, t => @this.NotNull().RightSwipeAction -= t)
                 .Select(_ => _?.EventArgs);
         }
     }

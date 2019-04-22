@@ -57,11 +57,11 @@ namespace Droid.Screens.RssList
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
-                adapter.GetRssItemClickEvent()
+                adapter.GetClickAction()
                     .InvokeCommand(ViewModel.OpenDetailScreenCommand)
                     .AddTo(disposable);
 
-                adapter.GetRssItemLongClickEvent()
+                adapter.GetLongClickAction()
                     .Subscribe(model => ItemLongClick(model.EventArgs, model.Sender))
                     .AddTo(disposable);
 
