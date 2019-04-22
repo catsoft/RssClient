@@ -1,10 +1,6 @@
-﻿#region
-
-using Android.App;
+﻿using Android.App;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.Close;
-
-#endregion
 
 namespace Droid.Screens.Close
 {

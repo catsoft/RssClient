@@ -1,12 +1,8 @@
-#region
-
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Shared.Database;
 using Shared.Extensions;
-
-#endregion
 
 namespace Droid.Repositories.Configuration
 {

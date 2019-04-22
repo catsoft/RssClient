@@ -1,11 +1,7 @@
-#region
-
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Droid.Screens.FeedlySearch
 {

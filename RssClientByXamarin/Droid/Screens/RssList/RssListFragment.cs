@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
@@ -15,8 +13,6 @@ using ReactiveUI;
 using Shared.Extensions;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssList;
-
-#endregion
 
 namespace Droid.Screens.RssList
 {

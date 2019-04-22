@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
@@ -13,8 +11,6 @@ using Shared.Configuration.Settings;
 using Shared.Extensions;
 using Shared.Infrastructure.Locale;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Droid.Screens.RssList
 {

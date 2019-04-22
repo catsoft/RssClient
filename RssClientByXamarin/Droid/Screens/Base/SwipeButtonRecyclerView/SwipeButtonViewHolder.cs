@@ -1,10 +1,6 @@
-#region
-
 using System;
 using Android.Support.V7.Widget;
 using Android.Views;
-
-#endregion
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {

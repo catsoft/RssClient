@@ -1,6 +1,4 @@
-﻿#region
-
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
@@ -12,8 +10,6 @@ using FFImageLoading.Work;
 using JetBrains.Annotations;
 using Shared.Extensions;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Droid.Screens.RssList
 {

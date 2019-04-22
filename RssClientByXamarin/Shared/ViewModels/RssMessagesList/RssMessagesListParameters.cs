@@ -1,9 +1,5 @@
-#region
-
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.ViewModels.RssItemDetail
 {

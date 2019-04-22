@@ -1,9 +1,5 @@
-#region
-
 using Android.Content;
 using Android.Net;
-
-#endregion
 
 namespace Droid.NativeExtension
 {

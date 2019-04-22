@@ -1,5 +1,3 @@
-#region
-
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -7,8 +5,6 @@ using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 using Shared.Extensions;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Droid.Screens.RssEditList
 {

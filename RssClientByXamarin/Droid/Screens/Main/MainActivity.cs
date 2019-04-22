@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -8,8 +6,6 @@ using Android.Views;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
 using Shared.ViewModels.Main;
-
-#endregion
 
 namespace Droid.Screens.Main
 {

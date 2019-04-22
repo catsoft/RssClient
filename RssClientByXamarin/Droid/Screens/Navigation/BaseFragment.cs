@@ -1,5 +1,3 @@
-#region
-
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
@@ -11,8 +9,6 @@ using Droid.Screens.Base;
 using JetBrains.Annotations;
 using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Droid.Screens.Navigation
 {

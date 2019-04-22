@@ -1,10 +1,6 @@
-#region
-
 using System;
 using Android.Views;
 using Android.Widget;
-
-#endregion
 
 namespace Droid.Screens.Contacts
 {

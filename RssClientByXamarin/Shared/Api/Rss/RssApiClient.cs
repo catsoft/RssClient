@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Threading;
@@ -9,8 +7,6 @@ using System.Xml;
 using JetBrains.Annotations;
 using Shared.Analytics;
 using Shared.Extensions;
-
-#endregion
 
 namespace Shared.Api.Rss
 {

@@ -1,6 +1,4 @@
-﻿#region
-
-using System.Linq;
+﻿using System.Linq;
 using Android.Animation;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -16,8 +14,6 @@ using JetBrains.Annotations;
 using Shared;
 using Shared.Configuration.Settings;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Droid.Screens.Navigation
 {

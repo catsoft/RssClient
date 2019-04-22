@@ -1,11 +1,7 @@
-﻿#region
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Views;
 using Android.Views.InputMethods;
-
-#endregion
 
 namespace Droid.NativeExtension
 {

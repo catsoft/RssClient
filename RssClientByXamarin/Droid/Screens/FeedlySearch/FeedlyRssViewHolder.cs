@@ -1,5 +1,3 @@
-#region
-
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -10,8 +8,6 @@ using FFImageLoading.Views;
 using JetBrains.Annotations;
 using Shared.Extensions;
 using Shared.Repositories.Feedly;
-
-#endregion
 
 namespace Droid.Screens.FeedlySearch
 {

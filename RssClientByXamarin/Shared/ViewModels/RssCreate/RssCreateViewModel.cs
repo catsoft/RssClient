@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Reactive;
 using Droid.EmbeddedResourse;
@@ -10,8 +8,6 @@ using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.ViewModels.RssCreate
 {

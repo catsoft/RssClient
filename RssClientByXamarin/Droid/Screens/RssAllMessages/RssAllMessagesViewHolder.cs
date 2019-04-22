@@ -6,9 +6,9 @@ using Droid.Screens.RssMessagesList;
 using FFImageLoading;
 using FFImageLoading.Views;
 using JetBrains.Annotations;
+using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Infrastructure.Locale;
-using Shared.Repositories.RssMessage;
 
 namespace Droid.Screens.RssAllMessages
 {
@@ -40,7 +40,7 @@ namespace Droid.Screens.RssAllMessages
         [NotNull] public RatingBar RatingBar { get; }
         public bool IsShowAndLoadImages { get; }
 
-        public override void BindData(RssMessageDomainModel item)
+        public override void BindData(RssMessageServiceModel item)
         {
             Item = item;
 

@@ -1,12 +1,8 @@
-﻿#region
-
-using Autofac;
+﻿using Autofac;
 using Autofac.Core;
 using JetBrains.Annotations;
 using Shared.Container.Modules;
 using Shared.Extensions;
-
-#endregion
 
 namespace Shared
 {

@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using Android.App;
@@ -8,8 +6,6 @@ using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Shared.Configuration.Settings;
 using Shared.Repositories.Feedly;
-
-#endregion
 
 namespace Droid.Screens.FeedlySearch
 {

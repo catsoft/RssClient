@@ -1,12 +1,8 @@
-#region
-
 using System.Linq;
 using JetBrains.Annotations;
 using Shared.Database.Rss;
 using Shared.Infrastructure.Mappers;
 using Shared.Repositories.Rss;
-
-#endregion
 
 namespace Shared.Repositories.RssMessage
 {

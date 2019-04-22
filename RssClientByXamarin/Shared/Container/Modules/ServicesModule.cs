@@ -1,11 +1,8 @@
-#region
-
 using Autofac;
+using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Services.Feedly;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.Container.Modules
 {
@@ -16,6 +13,7 @@ namespace Shared.Container.Modules
             base.Load(builder);
 
             builder.RegisterType<RssService>().NotNull().As<IRssService>().NotNull().SingleInstance();
+            builder.RegisterType<RssMessageService>().NotNull().As<IRssMessageService>().NotNull().SingleInstance();
             builder.RegisterType<FeedlyService>().NotNull().As<IFeedlyService>().NotNull().SingleInstance();
         }
     }

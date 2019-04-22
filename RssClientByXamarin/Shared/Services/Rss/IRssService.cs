@@ -1,12 +1,7 @@
-#region
-
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Shared.Repositories.Rss;
-
-#endregion
 
 namespace Shared.Services.Rss
 {
@@ -19,11 +14,11 @@ namespace Shared.Services.Rss
         Task RemoveAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
-        [TaskItemCanBeNull]
+        [ItemCanBeNull]
         Task<RssServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
-        [TaskItemNotNull]
+        [ItemNotNull]
         Task<IEnumerable<RssServiceModel>> GetListAsync(CancellationToken token = default);
 
         [NotNull]

@@ -1,10 +1,6 @@
-#region
-
 using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssAllMessages;
-
-#endregion
 
 namespace Droid.Screens.RssAllMessages
 {

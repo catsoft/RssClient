@@ -1,9 +1,5 @@
-#region
-
 using System;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Shared.Infrastructure.Dialogs
 {

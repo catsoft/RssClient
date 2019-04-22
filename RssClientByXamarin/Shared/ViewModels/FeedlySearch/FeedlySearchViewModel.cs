@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +15,6 @@ using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repositories.Feedly;
 using Shared.Services.Feedly;
-
-#endregion
 
 namespace Shared.ViewModels.FeedlySearch
 {

@@ -1,12 +1,8 @@
-#region
-
 using System;
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
 using Shared.ViewModels.RssAllMessagesFilter;
-
-#endregion
 
 namespace Droid.Screens.RssAllMessagesFilter
 {

@@ -1,8 +1,4 @@
-﻿#region
-
-using Shared.Infrastructure.ViewModels;
-
-#endregion
+﻿using Shared.Infrastructure.ViewModels;
 
 namespace Shared.ViewModels.Close
 {

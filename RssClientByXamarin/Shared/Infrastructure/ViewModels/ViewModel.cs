@@ -1,8 +1,4 @@
-﻿#region
-
-using ReactiveUI;
-
-#endregion
+﻿using ReactiveUI;
 
 namespace Shared.Infrastructure.ViewModels
 {

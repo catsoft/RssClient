@@ -1,10 +1,6 @@
-﻿#region
-
-using Droid.Screens.Navigation;
+﻿using Droid.Screens.Navigation;
 using Shared.Infrastructure.Navigation;
 using Shared.ViewModels.RssItemDetail;
-
-#endregion
 
 namespace Droid.Screens.RssMessagesList
 {

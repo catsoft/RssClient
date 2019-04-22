@@ -1,9 +1,5 @@
-#region
-
 using Shared.Api.Feedly;
 using Shared.Infrastructure.Mappers;
-
-#endregion
 
 namespace Shared.Repositories.Feedly
 {

@@ -1,6 +1,4 @@
-﻿#region
-
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
@@ -13,8 +11,6 @@ using Shared.Configuration.Settings;
 using Shared.Infrastructure.Navigation;
 using Shared.Repositories.RssMessage;
 using Shared.ViewModels.RssFavoriteMessages;
-
-#endregion
 
 namespace Droid.Screens.RssFavoriteMessagesList
 {
@@ -38,11 +34,11 @@ namespace Droid.Screens.RssFavoriteMessagesList
 
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 
-            var items = _rssMessagesRepository.GetFavoriteMessages();
+            var items = _rssMessagesRepository.GetAllFavoriteMessages();
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_favoriteMessages_list);
             recyclerView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Vertical, false));
             recyclerView.AddItemDecoration(new DividerItemDecoration(Context, DividerItemDecoration.Vertical));
-            var adapter = new RssAllMessagesListAdapter(items, Activity, _rssMessagesRepository, appConfiguration);
+            var adapter = new RssAllMessagesListAdapter(Activity, appConfiguration);
             recyclerView.SetAdapter(adapter);
 
             var callback = new SwipeButtonTouchHelperCallback();

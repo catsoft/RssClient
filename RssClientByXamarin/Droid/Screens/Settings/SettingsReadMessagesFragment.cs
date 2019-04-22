@@ -1,5 +1,3 @@
-#region
-
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -8,8 +6,6 @@ using Droid.Repositories.Configuration;
 using Droid.Screens.Navigation;
 using Shared.Configuration.Settings;
 using Shared.ViewModels.Settings;
-
-#endregion
 
 namespace Droid.Screens.Settings
 {

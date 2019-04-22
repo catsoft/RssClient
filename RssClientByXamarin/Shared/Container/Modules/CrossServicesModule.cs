@@ -1,10 +1,6 @@
-﻿#region
-
-using Autofac;
+﻿using Autofac;
 using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
-
-#endregion
 
 namespace Shared.Container.Modules
 {

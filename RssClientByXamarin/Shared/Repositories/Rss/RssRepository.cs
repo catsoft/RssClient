@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -11,8 +9,6 @@ using Shared.Database;
 using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
-
-#endregion
 
 namespace Shared.Repositories.Rss
 {

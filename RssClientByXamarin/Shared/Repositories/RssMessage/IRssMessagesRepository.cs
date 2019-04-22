@@ -1,40 +1,38 @@
-﻿#region
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Shared.Configuration.Settings;
-
-#endregion
 
 namespace Shared.Repositories.RssMessage
 {
     public interface IRssMessagesRepository
     {
-        Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default);
+        [NotNull]
+        Task AddMessageAsync([CanBeNull] RssMessageDomainModel messageDomainModel, [CanBeNull] string idRss, CancellationToken token = default);
 
-        Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token = default);
+        [NotNull]
+        [ItemCanBeNull]
+        Task<RssMessageDomainModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
 
-        Task MarkAsFavoriteAsync(string id, CancellationToken token = default);
+        [NotNull]
+        Task UpdateAsync([CanBeNull] RssMessageDomainModel message, CancellationToken token = default);
 
-        Task MarkAsReadAsync(string id, CancellationToken token = default);
+        [NotNull]
+        [ItemNotNull]
+        Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss([CanBeNull] string rssId, CancellationToken token = default);
 
-        Task ChangeIsFavoriteAsync(string id, CancellationToken token = default);
+        [NotNull]
+        [ItemNotNull]
+        Task<IEnumerable<RssMessageDomainModel>> GetAllMessages(CancellationToken token = default);
 
-        Task ChangeIsReadAsync(string id, CancellationToken token = default);
-
-        IEnumerable<RssMessageDomainModel> GetMessagesForRss(string rssId, CancellationToken token = default);
-
-        long GetCountNewMessagesForModel(string rssId, CancellationToken token = default);
-
-        long GetCountForModel(string rssId, CancellationToken token = default);
-
-        IEnumerable<RssMessageDomainModel> GetAllMessages(CancellationToken token = default);
-
-        IEnumerable<RssMessageDomainModel> GetFavoriteMessages(CancellationToken token = default);
-
-        IEnumerable<RssMessageDomainModel> GetAllFilterMessages(
-            AllMessageFilterConfiguration filterConfiguration,
+        [NotNull]
+        [ItemNotNull]
+        Task<IEnumerable<RssMessageDomainModel>> GetAllFilterMessages([CanBeNull] AllMessageFilterConfiguration filterConfiguration,
             CancellationToken token = default);
+
+        [NotNull]
+        [ItemNotNull]
+        Task<IEnumerable<RssMessageDomainModel>> GetAllFavoriteMessages(CancellationToken token = default);
     }
 }

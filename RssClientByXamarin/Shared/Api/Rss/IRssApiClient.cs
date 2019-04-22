@@ -1,11 +1,7 @@
-﻿#region
-
-using System.ServiceModel.Syndication;
+﻿using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Shared.Api.Rss
 {

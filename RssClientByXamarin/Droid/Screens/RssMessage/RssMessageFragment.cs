@@ -1,13 +1,9 @@
-#region
-
 using Android.OS;
 using Android.Views;
 using Droid.Container;
 using Droid.Screens.Navigation;
 using Shared.Repositories.RssMessage;
 using Shared.ViewModels.RssMessage;
-
-#endregion
 
 namespace Droid.Screens.RssMessage
 {

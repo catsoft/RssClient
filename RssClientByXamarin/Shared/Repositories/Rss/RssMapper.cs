@@ -1,10 +1,6 @@
-#region
-
 using Shared.Database.Rss;
 using Shared.Infrastructure.Mappers;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.Repositories.Rss
 {

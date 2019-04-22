@@ -1,11 +1,7 @@
-#region
-
 using System;
 using System.Linq;
 using JetBrains.Annotations;
 using Shared.Database.Rss;
-
-#endregion
 
 namespace Shared.Configuration.Settings
 {

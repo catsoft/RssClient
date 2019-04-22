@@ -1,13 +1,9 @@
-#region
-
 using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using JetBrains.Annotations;
 using ReactiveUI;
-
-#endregion
 
 namespace Shared.Extensions
 {

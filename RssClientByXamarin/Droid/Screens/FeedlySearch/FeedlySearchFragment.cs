@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Reactive.Linq;
 using Android.OS;
@@ -12,8 +10,6 @@ using ReactiveUI;
 using Shared.Extensions;
 using Shared.Repositories.Feedly;
 using Shared.ViewModels.FeedlySearch;
-
-#endregion
 
 namespace Droid.Screens.FeedlySearch
 {

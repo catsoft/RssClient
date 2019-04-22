@@ -1,6 +1,4 @@
-﻿#region
-
-using Autofac;
+﻿using Autofac;
 using Droid.Repositories.Configuration;
 using Shared.Api.Feedly;
 using Shared.Database.Rss;
@@ -10,8 +8,6 @@ using Shared.Repositories.Feedly;
 using Shared.Repositories.Rss;
 using Shared.Repositories.RssMessage;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.Container.Modules
 {

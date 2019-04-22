@@ -1,11 +1,7 @@
-﻿#region
-
-using Android.OS;
+﻿using Android.OS;
 using Android.Text;
 using Android.Widget;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Droid.NativeExtension
 {

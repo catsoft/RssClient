@@ -1,7 +1,4 @@
-﻿#region
-
-using System.Linq;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -21,8 +18,6 @@ using Shared.Services.Rss;
 using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Xamarin.Essentials;
-
-#endregion
 
 namespace Droid.Screens.RssMessagesList
 {
@@ -80,7 +75,7 @@ namespace Droid.Screens.RssMessagesList
             };
 
             var items = _rssMessagesRepository.GetMessagesForRss(item.Id);
-            var adapter = new RssMessagesListAdapter(items.ToList(), Activity, _rssMessagesRepository, appConfiguration);
+            var adapter = new RssMessagesListAdapter(Activity, appConfiguration);
             list.SetAdapter(adapter);
             adapter.NotifyDataSetChanged();
 

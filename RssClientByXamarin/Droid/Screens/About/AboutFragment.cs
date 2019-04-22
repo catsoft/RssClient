@@ -1,11 +1,7 @@
-#region
-
 using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
 using Shared.ViewModels.About;
-
-#endregion
 
 namespace Droid.Screens.About
 {

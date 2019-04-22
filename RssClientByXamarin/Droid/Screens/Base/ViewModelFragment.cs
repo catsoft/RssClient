@@ -1,13 +1,9 @@
-#region
-
 using Android.OS;
 using Autofac;
 using JetBrains.Annotations;
 using Shared;
 using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Droid.Screens.Base
 {

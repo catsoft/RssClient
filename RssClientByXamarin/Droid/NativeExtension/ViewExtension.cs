@@ -1,8 +1,4 @@
-#region
-
 using Android.Views;
-
-#endregion
 
 namespace Droid.NativeExtension
 {

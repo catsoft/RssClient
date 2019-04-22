@@ -1,11 +1,7 @@
-﻿#region
-
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Droid.Screens.Main;
-
-#endregion
 
 namespace Droid.Screens.SplashScreen
 {

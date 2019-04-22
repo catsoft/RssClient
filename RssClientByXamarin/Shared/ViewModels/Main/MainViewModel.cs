@@ -1,5 +1,3 @@
-#region
-
 using System.Reactive;
 using Autofac;
 using Droid.Repositories.Configuration;
@@ -16,8 +14,6 @@ using Shared.ViewModels.RssAllMessages;
 using Shared.ViewModels.RssFavoriteMessages;
 using Shared.ViewModels.RssList;
 using Shared.ViewModels.Settings;
-
-#endregion
 
 namespace Shared.ViewModels.Main
 {

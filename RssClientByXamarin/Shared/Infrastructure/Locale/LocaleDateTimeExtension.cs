@@ -1,12 +1,8 @@
-#region
-
 using System;
 using System.Globalization;
 using Autofac;
 using JetBrains.Annotations;
 using Shared.Extensions;
-
-#endregion
 
 namespace Shared.Infrastructure.Locale
 {

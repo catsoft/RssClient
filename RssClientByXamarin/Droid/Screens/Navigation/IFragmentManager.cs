@@ -1,8 +1,4 @@
-#region
-
 using Android.Support.V4.App;
-
-#endregion
 
 namespace Droid.Screens.Navigation
 {

@@ -1,10 +1,6 @@
-#region
-
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
-
-#endregion
 
 namespace Droid.Screens.RssEdit
 {

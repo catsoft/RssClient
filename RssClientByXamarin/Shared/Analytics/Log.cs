@@ -1,11 +1,7 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
-
-#endregion
 
 namespace Shared.Analytics
 {

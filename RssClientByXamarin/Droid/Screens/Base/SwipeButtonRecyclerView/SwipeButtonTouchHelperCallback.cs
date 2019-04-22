@@ -1,14 +1,10 @@
-﻿#region
-
-using System;
+﻿using System;
 using Android.Graphics;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using JetBrains.Annotations;
 using Object = Java.Lang.Object;
-
-#endregion
 
 namespace Droid.Screens.Base.SwipeButtonRecyclerView
 {

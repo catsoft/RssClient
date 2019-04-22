@@ -1,11 +1,7 @@
-#region
-
 using Android.Views;
 using Android.Widget;
 using JetBrains.Annotations;
 using Shared.Extensions;
-
-#endregion
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {

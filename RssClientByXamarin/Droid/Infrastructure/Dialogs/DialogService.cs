@@ -1,12 +1,8 @@
-#region
-
 using System;
 using Android.App;
 using Autofac;
 using Shared;
 using Shared.Infrastructure.Dialogs;
-
-#endregion
 
 namespace Droid.Infrastructure.Dialogs
 {

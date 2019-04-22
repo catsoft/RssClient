@@ -1,10 +1,6 @@
-#region
-
 using System;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Shared.Extensions
 {

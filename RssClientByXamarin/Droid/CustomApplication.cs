@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Android.App;
 using Android.Runtime;
 using Autofac;
@@ -8,8 +6,6 @@ using Droid.Container.Modules;
 using Shared;
 using Shared.Analytics;
 using Shared.Extensions;
-
-#endregion
 
 namespace Droid
 {

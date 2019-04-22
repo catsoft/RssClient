@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +11,6 @@ using Shared.Extensions;
 using Shared.Infrastructure.Locale;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
-
-#endregion
 
 namespace Droid.Screens.RssEditList
 {

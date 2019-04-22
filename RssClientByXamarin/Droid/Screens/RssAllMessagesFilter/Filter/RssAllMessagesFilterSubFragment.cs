@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -11,8 +9,6 @@ using ReactiveUI;
 using Shared.Configuration.Settings;
 using Shared.Extensions;
 using Shared.ViewModels.RssAllMessagesFilter;
-
-#endregion
 
 namespace Droid.Screens.RssAllMessagesFilter.Filter
 {

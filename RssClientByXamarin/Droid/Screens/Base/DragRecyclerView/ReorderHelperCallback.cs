@@ -1,9 +1,5 @@
-﻿#region
-
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
-
-#endregion
 
 namespace Droid.Screens.Base.DragRecyclerView
 {

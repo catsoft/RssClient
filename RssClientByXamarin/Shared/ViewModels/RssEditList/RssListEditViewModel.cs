@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +15,6 @@ using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssCreate;
-
-#endregion
 
 namespace Shared.ViewModels.RssListEdit
 {

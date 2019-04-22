@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +6,6 @@ using Autofac;
 using Droid.Screens.Base;
 using Droid.Screens.Navigation;
 using Shared;
-
-#endregion
 
 namespace Droid.Container
 {

@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Reactive;
 using System.Threading;
@@ -11,8 +9,6 @@ using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
 using Shared.Services.Rss;
-
-#endregion
 
 namespace Shared.ViewModels.RssEdit
 {

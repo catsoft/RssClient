@@ -1,9 +1,5 @@
-#region
-
 using System;
 using Shared.Database;
-
-#endregion
 
 namespace Shared.Repositories.Rss
 {

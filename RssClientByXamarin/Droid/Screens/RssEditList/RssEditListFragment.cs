@@ -1,5 +1,3 @@
-#region
-
 using System;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
@@ -13,8 +11,6 @@ using ReactiveUI;
 using Shared.Extensions;
 using Shared.Services.Rss;
 using Shared.ViewModels.RssListEdit;
-
-#endregion
 
 namespace Droid.Screens.RssEditList
 {

@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -9,8 +7,6 @@ using Android.OS;
 using Android.Views;
 using JetBrains.Annotations;
 using ReactiveUI.AndroidSupport;
-
-#endregion
 
 namespace Droid.Screens.Base
 {

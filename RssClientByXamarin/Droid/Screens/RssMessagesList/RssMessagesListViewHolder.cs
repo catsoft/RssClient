@@ -1,15 +1,12 @@
-﻿#region
-
-using Android.Views;
+﻿using Android.Views;
 using Android.Widget;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
+using Shared.Database.Rss;
 using Shared.Infrastructure.Locale;
 using Shared.Repositories.RssMessage;
-
-#endregion
 
 namespace Droid.Screens.RssMessagesList
 {
@@ -38,7 +35,7 @@ namespace Droid.Screens.RssMessagesList
         public RatingBar RatingBar { get; }
         public bool IsShowAndLoadImages { get; }
 
-        public override void BindData(RssMessageDomainModel item)
+        public override void BindData(RssMessageServiceModel item)
         {
             Item = item;
 

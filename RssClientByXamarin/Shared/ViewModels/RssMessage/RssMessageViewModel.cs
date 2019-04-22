@@ -1,13 +1,9 @@
-#region
-
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Shared.ViewModels.RssMessage
 {
-    public class RssMessageViewModel : ViewModelWithParameter<RssMessageParameterses>
+    public class RssMessageViewModel : ViewModelWithParameter<RssMessageParameters>
     {
-        public RssMessageViewModel(RssMessageParameterses parameters) : base(parameters) { }
+        public RssMessageViewModel(RssMessageParameters parameters) : base(parameters) { }
     }
 }

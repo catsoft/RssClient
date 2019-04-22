@@ -1,18 +1,16 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Shared.Api.Rss;
+using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
 using Shared.Repositories.Rss;
 using Shared.Repositories.RssMessage;
 using Shared.Utils;
-
-#endregion
 
 namespace Shared.Services.Rss
 {
@@ -60,40 +58,29 @@ namespace Shared.Services.Rss
         public async Task LoadAndUpdateAsync(string id, CancellationToken token = default)
         {
             var currentItem = await _rssRepository.GetAsync(id, token);
-            var syndicationFeed = await _rssApiClient.LoadFeedsAsync(currentItem.Rss,
-                token);
+            var syndicationFeed = await _rssApiClient.LoadFeedsAsync(currentItem.Rss, token);
 
             if (syndicationFeed == null)
                 return;
 
-            currentItem = await _rssRepository.GetAsync(id,
-                token);
+            currentItem = await _rssRepository.GetAsync(id, token);
             currentItem.Name = syndicationFeed.Title?.Text;
             currentItem.UpdateTime = DateTime.Now;
             //TODO сюда запихнуть фавикон
-            currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()
-                                              ?.Uri?.OriginalString +
-                                          "/favicon.ico";
-            await _rssRepository.UpdateAsync(currentItem,
-                token);
+            currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+            await _rssRepository.UpdateAsync(currentItem, token);
 
-            foreach (var syndicationItem in syndicationFeed.Items.Where(w => w != null))
+            foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
             {
-                var imageUri = syndicationItem.Links.FirstOrDefault(w =>
-                        w.RelationshipType?.Equals("enclosure",
-                            StringComparison.InvariantCultureIgnoreCase) ==
-                        true &&
-                        w.MediaType?.Equals("image/jpeg",
-                            StringComparison.InvariantCultureIgnoreCase) ==
-                        true)
+                var notNulLinks = syndicationFeed.Links.Where(w => w != null).ToList();
+                var imageUri = notNulLinks.FirstOrDefault(w =>
+                        w.NotNull().RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true
+                        && w.NotNull().MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
                     ?.Uri?.OriginalString;
 
-                var url = syndicationItem.Links.FirstOrDefault(w =>
-                        w.RelationshipType?.Equals("alternate",
-                            StringComparison.InvariantCultureIgnoreCase) ==
-                        true)
-                    ?.Uri
-                    ?.OriginalString;
+                var url = notNulLinks
+                    .FirstOrDefault(w => w.NotNull().RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)
+                    ?.Uri?.OriginalString;
 
                 var item = new RssMessageDomainModel
                 {
@@ -111,11 +98,9 @@ namespace Shared.Services.Rss
 
         public async Task UpdatePositionAsync(string localItemId, int position, CancellationToken token)
         {
-            var item = await _rssRepository.GetAsync(localItemId,
-                token);
+            var item = await _rssRepository.GetAsync(localItemId, token);
             item.Position = position;
-            await _rssRepository.UpdateAsync(item,
-                token);
+            await _rssRepository.UpdateAsync(item, token);
         }
 
         public Task ReadAllMessagesAsync(string itemId, CancellationToken token = default) { throw new NotImplementedException(); }

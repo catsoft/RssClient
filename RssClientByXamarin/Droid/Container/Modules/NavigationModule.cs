@@ -1,6 +1,4 @@
-﻿#region
-
-using Android.App;
+﻿using Android.App;
 using Autofac;
 using Droid.Screens.About;
 using Droid.Screens.Close;
@@ -34,8 +32,6 @@ using Shared.ViewModels.RssListEdit;
 using Shared.ViewModels.RssMessage;
 using Shared.ViewModels.Settings;
 
-#endregion
-
 namespace Droid.Container.Modules
 {
     public class NavigationModule : Module
@@ -54,7 +50,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssListEditWay>().As<IWay<RssListEditViewModel>>();
             builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel>>();
             builder.RegisterType<RssEditWay>().As<IWayWithParameters<RssEditViewModel, RssEditParameters>>();
-            builder.RegisterType<RssMessageWay>().As<IWayWithParameters<RssMessageViewModel, RssMessageParameterses>>();
+            builder.RegisterType<RssMessageWay>().As<IWayWithParameters<RssMessageViewModel, RssMessageParameters>>();
 
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();

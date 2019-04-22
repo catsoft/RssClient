@@ -1,5 +1,3 @@
-#region
-
 using System.Reactive;
 using Droid.Repositories.Configuration;
 using JetBrains.Annotations;
@@ -8,8 +6,6 @@ using Shared.Configuration.Settings;
 using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Shared.ViewModels.RssAllMessagesFilter
 {

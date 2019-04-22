@@ -1,10 +1,6 @@
-#region
-
 using System.Collections.Generic;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
-
-#endregion
 
 namespace Droid.Infrastructure.Collections
 {

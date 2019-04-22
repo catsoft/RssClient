@@ -1,8 +1,4 @@
-#region
-
 using Realms;
-
-#endregion
 
 namespace Shared.Database
 {

@@ -1,5 +1,3 @@
-#region
-
 using Android.OS;
 using Android.Support.V7.Widget;
 using Autofac;
@@ -7,8 +5,6 @@ using ReactiveUI.AndroidSupport;
 using Shared;
 using Shared.Analytics.Rss;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Droid.Screens.Base
 {

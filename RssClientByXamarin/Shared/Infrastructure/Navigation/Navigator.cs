@@ -1,10 +1,6 @@
-﻿#region
-
-using Autofac;
+﻿using Autofac;
 using Shared.Extensions;
 using Shared.ViewModels.Close;
-
-#endregion
 
 namespace Shared.Infrastructure.Navigation
 {

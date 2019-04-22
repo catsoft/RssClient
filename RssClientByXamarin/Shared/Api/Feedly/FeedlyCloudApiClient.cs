@@ -1,13 +1,9 @@
-#region
-
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Shared.Extensions;
-
-#endregion
 
 namespace Shared.Api.Feedly
 {

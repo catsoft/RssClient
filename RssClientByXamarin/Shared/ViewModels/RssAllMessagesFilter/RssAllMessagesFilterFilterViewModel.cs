@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -13,8 +11,6 @@ using Shared.Configuration.Settings;
 using Shared.Extensions;
 using Shared.Infrastructure.Locale;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Shared.ViewModels.RssAllMessagesFilter
 {

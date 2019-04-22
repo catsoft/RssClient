@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +24,6 @@ using Shared.ViewModels.RssEdit;
 using Shared.ViewModels.RssItemDetail;
 using Shared.ViewModels.RssListEdit;
 using Xamarin.Essentials;
-
-#endregion
 
 namespace Shared.ViewModels.RssList
 {

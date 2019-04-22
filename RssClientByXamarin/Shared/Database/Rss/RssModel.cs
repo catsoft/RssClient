@@ -1,10 +1,6 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Realms;
-
-#endregion
 
 namespace Shared.Database.Rss
 {

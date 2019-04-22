@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Android.OS;
 using Android.Views;
 using Android.Views.InputMethods;
@@ -9,8 +7,6 @@ using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.ViewModels.RssCreate;
-
-#endregion
 
 namespace Droid.Screens.RssCreate
 {

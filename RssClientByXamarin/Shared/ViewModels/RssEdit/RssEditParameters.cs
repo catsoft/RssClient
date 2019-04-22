@@ -1,9 +1,5 @@
-#region
-
 using JetBrains.Annotations;
 using Shared.Infrastructure.ViewModels;
-
-#endregion
 
 namespace Shared.ViewModels.RssEdit
 {

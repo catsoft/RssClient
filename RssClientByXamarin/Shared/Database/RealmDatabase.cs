@@ -1,14 +1,9 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Realms;
 using Realms.Exceptions;
 using Shared.Extensions;
-using Shared.Repositories.Rss;
-
-#endregion
 
 namespace Shared.Database
 {
@@ -54,7 +49,7 @@ namespace Shared.Database
         }
 
         [NotNull]
-        [TaskItemCanBeNull]
+        [ItemCanBeNull]
         public static Task<TModel> GetAsync<TModel>([CanBeNull] string id)
             where TModel : RealmObject, IHaveId
         {
@@ -80,7 +75,7 @@ namespace Shared.Database
         }
 
         [NotNull]
-        [TaskItemCanBeNull]
+        [ItemCanBeNull]
         public static async Task<string> InsertAsync<TModel>([CanBeNull] TModel model)
             where TModel : RealmObject, IHaveId
         {

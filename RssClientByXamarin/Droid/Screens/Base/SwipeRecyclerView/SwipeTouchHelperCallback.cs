@@ -1,10 +1,6 @@
-﻿#region
-
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Droid.Screens.Base.SwipeRecyclerView
 {

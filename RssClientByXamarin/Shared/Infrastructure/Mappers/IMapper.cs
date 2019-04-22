@@ -1,8 +1,4 @@
-#region
-
 using JetBrains.Annotations;
-
-#endregion
 
 namespace Shared.Infrastructure.Mappers
 {

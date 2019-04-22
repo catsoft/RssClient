@@ -1,10 +1,6 @@
-#region
-
 using System;
 using JetBrains.Annotations;
 using Shared.Configuration.Settings;
-
-#endregion
 
 namespace Shared.Utils
 {

@@ -1,5 +1,3 @@
-#region
-
 using Autofac;
 using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
@@ -18,8 +16,6 @@ using Shared.ViewModels.RssList;
 using Shared.ViewModels.RssListEdit;
 using Shared.ViewModels.RssMessage;
 using Shared.ViewModels.Settings;
-
-#endregion
 
 namespace Shared.Container.Modules
 {

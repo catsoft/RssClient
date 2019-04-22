@@ -1,34 +1,30 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Droid.Repositories.Configuration;
+using JetBrains.Annotations;
+using Realms;
 using Shared.Configuration.Settings;
 using Shared.Database;
 using Shared.Database.Rss;
+using Shared.Extensions;
 using Shared.Infrastructure.Mappers;
-
-#endregion
 
 namespace Shared.Repositories.RssMessage
 {
     public class RssMessagesRepository : IRssMessagesRepository
     {
-        private readonly IConfigurationRepository _configurationRepository;
-        private readonly RealmDatabase _localDatabase;
-        private readonly IMapper<RssMessageModel, RssMessageDomainModel> _mapperToData;
-        private readonly IMapper<RssMessageDomainModel, RssMessageModel> _mapperToModel;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
+        [NotNull] private readonly IMapper<RssMessageModel, RssMessageDomainModel> _mapperToData;
+        [NotNull] private readonly IMapper<RssMessageDomainModel, RssMessageModel> _mapperToModel;
 
         public RssMessagesRepository(
-            RealmDatabase localDatabase,
-            IConfigurationRepository configurationRepository,
-            IMapper<RssMessageModel, RssMessageDomainModel> mapperToData,
-            IMapper<RssMessageDomainModel, RssMessageModel> mapperToModel)
+            [NotNull] IConfigurationRepository configurationRepository,
+            [NotNull] IMapper<RssMessageModel, RssMessageDomainModel> mapperToData,
+            [NotNull] IMapper<RssMessageDomainModel, RssMessageModel> mapperToModel)
         {
-            _localDatabase = localDatabase;
             _configurationRepository = configurationRepository;
             _mapperToData = mapperToData;
             _mapperToModel = mapperToModel;
@@ -41,15 +37,13 @@ namespace Shared.Repositories.RssMessage
             await RealmDatabase.UpdateAsync<RssModel>(idRss,
                 (rss, realm) =>
                 {
-                    var rssExistMessage = rss.RssMessageModels.FirstOrDefault(w => w.SyndicationId == messageModel.SyndicationId);
+                    var rssExistMessage = rss?.RssMessageModels?.FirstOrDefault(w => w?.SyndicationId == messageModel.SyndicationId);
                     messageModel.Id = rssExistMessage != null ? rssExistMessage.Id : Guid.NewGuid().ToString();
 
                     if (rssExistMessage != null)
-                        realm.Add(messageModel, true);
+                        realm.NotNull().Add(messageModel, true);
                     else
-                        rss.RssMessageModels.Add(messageModel);
-
-                    rss.RssMessageModels.Add(messageModel);
+                        rss?.RssMessageModels?.Add(messageModel);
                 });
         }
 
@@ -60,47 +54,107 @@ namespace Shared.Repositories.RssMessage
                     using (var realm = RealmDatabase.OpenDatabase)
                     {
                         var item = realm.Find<RssMessageModel>(id);
-                        return _mapperToData.Transform(item);
+                        return item == null ? null : _mapperToData.Transform(item);
                     }
                 },
                 token);
         }
 
-        public async Task MarkAsFavoriteAsync(string id, CancellationToken token)
+        public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
         {
-            await RealmDatabase.UpdateAsync<RssMessageModel>(id, (message, realm) => { message.IsFavorite = true; });
+            if (message == null) return Task.CompletedTask;
+            
+            return RealmDatabase.DoInBackground(realm =>
+            {
+                var newModel = _mapperToModel.Transform(message);
+                realm.NotNull().Add(newModel, true);
+            });
         }
 
-        public async Task MarkAsReadAsync(string id, CancellationToken token)
+        public Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss(string rssId, CancellationToken token)
         {
-            await RealmDatabase.UpdateAsync<RssMessageModel>(id, (message, realm) => { message.IsRead = true; });
+            return Task.Run(() =>
+                {
+                    var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+                    var hideReadMessages = appConfiguration.HideReadMessages;
+
+                    using (var realm = RealmDatabase.OpenDatabase)
+                    {
+                        var rssModel = realm.Find<RssModel>(rssId);
+                        var messages = rssModel?.RssMessageModels?.Where(w => w != null);
+                        if (hideReadMessages)
+                            messages = messages?.Where(w => !w.IsRead);
+                        return messages?.OrderByDescending(w => w.NotNull().CreationDate)
+                            .ToList()
+                            .Select(_mapperToData.Transform)
+                            .ToList()
+                            .AsEnumerable();
+                    }
+                },
+                token);
         }
 
-        public async Task ChangeIsFavoriteAsync(string id, CancellationToken token)
+        public Task<IEnumerable<RssMessageDomainModel>> GetAllMessages(CancellationToken token)
         {
-            await RealmDatabase.UpdateAsync<RssMessageModel>(id, (message, realm) => { message.IsFavorite = !message.IsFavorite; });
+            return Task.Run(() =>
+                {
+                    using (var realm = RealmDatabase.OpenDatabase)
+                    {
+                        return GetAllMessagesInner(realm).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
+                    }
+                },
+                token);
         }
 
-        public async Task ChangeIsReadAsync(string id, CancellationToken token)
+        public Task<IEnumerable<RssMessageDomainModel>> GetAllFavoriteMessages(CancellationToken token)
         {
-            await RealmDatabase.UpdateAsync<RssMessageModel>(id, (message, realm) => { message.IsRead = !message.IsRead; });
+            return Task.Run(() =>
+                {
+                    using (var realm = RealmDatabase.OpenDatabase)
+                    {
+                        return GetAllMessagesInner(realm).Where(w => w.IsFavorite).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
+                    }
+                },
+                token);
         }
 
-        public IEnumerable<RssMessageDomainModel> GetMessagesForRss(string rssId, CancellationToken token)
+        public Task<IEnumerable<RssMessageDomainModel>> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration, CancellationToken token)
+        {
+            return Task.Run(() =>
+                {
+                    using (var realm = RealmDatabase.OpenDatabase)
+                    {
+                        var messages = GetAllMessagesInner(realm);
+
+                        messages = filterConfiguration?.ApplyFilter(messages);
+                        messages = filterConfiguration?.ApplyDateFilter(messages);
+                        messages = messages ?? new List<RssMessageModel>().AsQueryable();
+                        
+                        return messages.ToList().Select(_mapperToData.Transform);
+                    }
+                },
+                token);
+        }
+
+        [NotNull]
+        [ItemNotNull]
+        private IQueryable<RssMessageModel> GetAllMessagesInner([NotNull] Realm realmDatabase)
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var hideReadMessages = appConfiguration.HideReadMessages;
-            var rssModel = _localDatabase.MainThreadRealm.Find<RssModel>(rssId);
-            IEnumerable<RssMessageModel> messages = rssModel.RssMessageModels;
+            var messages = realmDatabase.All<RssMessageModel>();
+
             if (hideReadMessages)
-                messages = messages.Where(w => !w.IsRead);
-            return messages.OrderByDescending(w => w.CreationDate).ToList().Select(_mapperToData.Transform);
+                messages = messages?.Where(w => !w.IsRead);
+
+            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+
+            messages = messages ?? new List<RssMessageModel>().AsQueryable();
+            messages = filter.ApplySort(messages);
+
+            return messages;
         }
-
-        public long GetCountNewMessagesForModel(string rssId, CancellationToken token = default) { return 1; }
-
-        public long GetCountForModel(string rssId, CancellationToken token = default) { return 2; }
-
+        
 //        public long GetCountNewMessagesForModel(string rssId, CancellationToken token)
 //        {
 //            var rssModel = _localDatabase.mainThreadRealm.Find<RssModel>(rssId);
@@ -112,52 +166,5 @@ namespace Shared.Repositories.RssMessage
 //        {
 //            return GetMessagesForRss(rssId, token).Count();
 //        }
-
-        public IEnumerable<RssMessageDomainModel> GetAllMessages(CancellationToken token)
-        {
-            return GetAllMessagesInner(token).ToList().Select(_mapperToData.Transform);
-        }
-
-        public IEnumerable<RssMessageDomainModel> GetFavoriteMessages(CancellationToken token)
-        {
-            return GetAllMessagesInner(token).Where(w => w.IsFavorite).ToList().Select(_mapperToData.Transform);
-        }
-
-        public IEnumerable<RssMessageDomainModel> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration, CancellationToken token)
-        {
-            var messages = GetAllMessagesInner(token);
-
-            messages = filterConfiguration.ApplyFilter(messages);
-            messages = filterConfiguration.ApplyDateFilter(messages);
-
-            return messages.ToList().Select(_mapperToData.Transform);
-        }
-
-        public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
-        {
-            return RealmDatabase.DoInBackground(realm =>
-            {
-                var newModel = _mapperToModel.Transform(message);
-
-                var messageModel = realm.Find<RssMessageModel>(message.Id);
-                realm.Add(messageModel, true);
-            });
-        }
-
-        private IQueryable<RssMessageModel> GetAllMessagesInner(CancellationToken token)
-        {
-            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            var hideReadMessages = appConfiguration.HideReadMessages;
-            var messages = _localDatabase.MainThreadRealm.All<RssMessageModel>();
-
-            if (hideReadMessages)
-                messages = messages.Where(w => !w.IsRead);
-
-            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
-            messages = filter.ApplySort(messages);
-
-            return messages;
-        }
     }
 }

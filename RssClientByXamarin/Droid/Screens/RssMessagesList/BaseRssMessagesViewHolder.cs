@@ -1,16 +1,12 @@
-#region
-
 using Android.Graphics;
 using Android.Views;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
-using Shared.Repositories.RssMessage;
-
-#endregion
+using Shared.Database.Rss;
 
 namespace Droid.Screens.RssMessagesList
 {
-    public abstract class BaseRssMessagesViewHolder : SwipeButtonViewHolder, IDataBind<RssMessageDomainModel>
+    public abstract class BaseRssMessagesViewHolder : SwipeButtonViewHolder, IDataBind<RssMessageServiceModel>
     {
         protected Color BackgroundItemColor = new Color(0, 0, 0, 0);
         protected Color BackgroundItemSelectColor = new Color(0, 0, 0, 95);
@@ -22,8 +18,8 @@ namespace Droid.Screens.RssMessagesList
         public override string LeftButtonText => "Read";
         public override string RightButtonText => "Favorite";
 
-        public RssMessageDomainModel Item { get; set; }
+        public RssMessageServiceModel Item { get; set; }
 
-        public abstract void BindData(RssMessageDomainModel item);
+        public abstract void BindData(RssMessageServiceModel item);
     }
 }

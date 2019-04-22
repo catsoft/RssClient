@@ -1,8 +1,4 @@
-﻿#region
-
-using Shared.Infrastructure.Locale;
-
-#endregion
+﻿using Shared.Infrastructure.Locale;
 
 namespace Droid.Infrastructure.Locale
 {

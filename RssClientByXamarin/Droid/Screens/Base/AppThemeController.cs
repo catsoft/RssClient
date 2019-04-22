@@ -1,13 +1,9 @@
-#region
-
 using System;
 using Android.App;
 using Autofac;
 using Droid.Repositories.Configuration;
 using Shared;
 using Shared.Configuration.Settings;
-
-#endregion
 
 namespace Droid.Screens.Base
 {

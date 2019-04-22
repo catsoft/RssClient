@@ -1,13 +1,9 @@
-﻿#region
-
-using Android.OS;
+﻿using Android.OS;
 using Android.Views;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 using Shared.Extensions;
 using Shared.ViewModels.Contacts;
-
-#endregion
 
 namespace Droid.Screens.Contacts
 {

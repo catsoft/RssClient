@@ -1,12 +1,8 @@
-﻿#region
-
-using Autofac;
+﻿using Autofac;
 using Droid.Infrastructure.Dialogs;
 using Droid.Infrastructure.Locale;
 using Shared.Infrastructure.Dialogs;
 using Shared.Infrastructure.Locale;
-
-#endregion
 
 namespace Droid.Container.Modules
 {

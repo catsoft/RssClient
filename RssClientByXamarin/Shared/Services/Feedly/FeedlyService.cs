@@ -1,5 +1,3 @@
-#region
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,8 +5,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Shared.Repositories.Feedly;
 using Shared.Repositories.Rss;
-
-#endregion
 
 namespace Shared.Services.Feedly
 {
