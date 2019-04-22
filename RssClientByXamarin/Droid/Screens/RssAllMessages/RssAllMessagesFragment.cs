@@ -51,7 +51,9 @@ namespace Droid.Screens.RssAllMessages
                     .AddTo(disposable);
 
                 _viewHolder.FloatingActionButton.Events()
+                    .NotNull()
                     .Click
+                    .NotNull()
                     .SelectUnit()
                     .InvokeCommand(ViewModel.OpenCreateScreenCommand)
                     .AddTo(disposable);
@@ -73,6 +75,7 @@ namespace Droid.Screens.RssAllMessages
                     .AddTo(disposable);
                 
                 ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
+                    .NotNull()
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 

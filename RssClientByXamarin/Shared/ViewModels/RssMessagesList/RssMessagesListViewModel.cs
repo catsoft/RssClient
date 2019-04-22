@@ -23,7 +23,7 @@ namespace Shared.ViewModels.RssItemDetail
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IRssService _rssService;
 
-        public RssMessagesListViewModel(RssMessagesListParameters parameters,
+        public RssMessagesListViewModel([NotNull] RssMessagesListParameters parameters,
             [NotNull] IRssMessageService rssMessageService,
             [NotNull] INavigator navigator,
             [NotNull] IConfigurationRepository configurationRepository, 
@@ -34,8 +34,8 @@ namespace Shared.ViewModels.RssItemDetail
             _configurationRepository = configurationRepository;
             _rssService = rssService;
 
-            LoadCommand = ReactiveCommand.CreateFromTask(DoLoad);
-            RefreshCommand = ReactiveCommand.CreateFromTask(DoRefresh);
+            LoadCommand = ReactiveCommand.CreateFromTask(DoLoad).NotNull();
+            RefreshCommand = ReactiveCommand.CreateFromTask(DoRefresh).NotNull();
             RefreshCommand.SelectUnit().InvokeCommand(LoadCommand);
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
             MessageViewModel = new RssListMessageViewModel(rssMessageService, navigator, ListViewModel.SourceList);
@@ -60,7 +60,7 @@ namespace Shared.ViewModels.RssItemDetail
 
         private async Task<IEnumerable<RssMessageServiceModel>> DoLoad(CancellationToken token)
         {
-            return await _rssMessageService.GetMessagesForRss(Parameters?.RssModel?.Id, token);
+            return await _rssMessageService.GetMessagesForRss(Parameters.RssModel.Id, token);
         }
 
         private async Task DoRefresh(CancellationToken token)

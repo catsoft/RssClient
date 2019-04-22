@@ -6,7 +6,8 @@ using Shared.Repositories.Rss;
 
 namespace Shared.Repositories.RssMessage
 {
-    public class RssMessageMapper : IMapper<RssMessageModel, RssMessageDomainModel>, IMapper<RssMessageDomainModel, RssMessageModel>,
+    public class RssMessageMapper : IMapper<RssMessageModel, RssMessageDomainModel>, 
+        IMapper<RssMessageDomainModel, RssMessageModel>,
         IMapper<RssMessageServiceModel, RssMessageDomainModel>,
         IMapper<RssMessageDomainModel, RssMessageServiceModel>
     {

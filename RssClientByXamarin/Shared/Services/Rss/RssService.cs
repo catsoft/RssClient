@@ -64,7 +64,7 @@ namespace Shared.Services.Rss
 
             currentItem = await _rssRepository.GetAsync(id, token);
             
-            if(currentItem == null) return;
+            if (currentItem == null) return;
             
             currentItem.Name = syndicationFeed.Title?.Text;
             currentItem.UpdateTime = DateTime.Now;

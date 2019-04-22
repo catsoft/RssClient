@@ -5,7 +5,6 @@ using Autofac;
 using DynamicData;
 using JetBrains.Annotations;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 using Shared.Database.Rss;
 using Shared.Extensions;
 using Shared.Infrastructure.Navigation;
@@ -40,14 +39,12 @@ namespace Shared.ViewModels.RssAllMessages
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ShareItemCommand { get; }
         
-        public extern bool IsEmpty { [ObservableAsProperty] get; }
-        
         [NotNull]
         private async Task DoOpenContentScreen([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
             var parameter = new RssMessageParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var way = App.Container.Resolve<IWayWithParameters<RssMessage.RssMessageViewModel, RssMessageParameters>>(typedParameter).NotNull();
+            var way = App.Container.Resolve<IWayWithParameters<RssMessageViewModel, RssMessageParameters>>(typedParameter).NotNull();
             _navigator.Go(way);
 
             if (!model.IsRead)
