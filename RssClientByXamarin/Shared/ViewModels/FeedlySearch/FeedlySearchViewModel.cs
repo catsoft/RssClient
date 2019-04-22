@@ -15,32 +15,26 @@ using Shared.Extensions;
 using Shared.Infrastructure.ViewModels;
 using Shared.Repositories.Feedly;
 using Shared.Services.Feedly;
+using Shared.ViewModels.RssAllMessages;
 
 namespace Shared.ViewModels.FeedlySearch
 {
     public class FeedlySearchViewModel : ViewModel
     {
         [NotNull] private readonly IFeedlyService _feedlyService;
+        [NotNull] private readonly IConfigurationRepository _configurationRepository;
 
         public FeedlySearchViewModel([NotNull] IFeedlyService feedlyService, [NotNull] IConfigurationRepository configurationRepository)
         {
             _feedlyService = feedlyService;
+            _configurationRepository = configurationRepository;
 
-            AppConfiguration = configurationRepository.GetSettings<AppConfiguration>().NotNull();
-
-            SourceList = new SourceList<FeedlyRssDomainModel>();
-            ConnectChanges = SourceList.Connect().NotNull();
-
-            FindByQueryCommand = ReactiveCommand.CreateFromTask<string, IEnumerable<FeedlyRssDomainModel>>((query, token) =>
-                        _feedlyService.FindByQueryAsync(query ?? "", token),
+            FindByQueryCommand = ReactiveCommand.CreateFromTask(token => _feedlyService.FindByQueryAsync(SearchQuery ?? "", token),
                     this.WhenAnyValue(model => model.SearchQuery).NotNull().Select(w => !string.IsNullOrEmpty(w)))
                 .NotNull();
-
-            FindByQueryCommand.Subscribe(w =>
-            {
-                SourceList.Clear();
-                SourceList.AddRange(w);
-            });
+            
+            ListViewModel = new ListViewModel<FeedlyRssDomainModel>(FindByQueryCommand);
+         
             FindByQueryCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty, true);
 
             AddFeedlyRssCommand = ReactiveCommand.CreateFromTask<FeedlyRssDomainModel>(DoAddFeedlyRss).NotNull();
@@ -51,17 +45,15 @@ namespace Shared.ViewModels.FeedlySearch
                 .InvokeCommand(FindByQueryCommand);
         }
 
-        [NotNull] public AppConfiguration AppConfiguration { get; }
+        [NotNull] public ListViewModel<FeedlyRssDomainModel> ListViewModel { get; }
+
+        [NotNull] public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
         [Reactive] [CanBeNull] public string SearchQuery { get; set; }
 
-        [NotNull] public ReactiveCommand<string, IEnumerable<FeedlyRssDomainModel>> FindByQueryCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, IEnumerable<FeedlyRssDomainModel>> FindByQueryCommand { get; }
 
         [NotNull] public ReactiveCommand<FeedlyRssDomainModel, Unit> AddFeedlyRssCommand { get; }
-
-        [NotNull] public SourceList<FeedlyRssDomainModel> SourceList { get; }
-
-        [NotNull] public IObservable<IChangeSet<FeedlyRssDomainModel>> ConnectChanges { get; }
 
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 

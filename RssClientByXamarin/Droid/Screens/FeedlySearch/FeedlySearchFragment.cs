@@ -38,7 +38,7 @@ namespace Droid.Screens.FeedlySearch
             var adapter = new FeedlySearchRssAdapter(Activity, ViewModel.AppConfiguration);
             _viewHolder.RecyclerView.SetAdapter(adapter);
 
-            var adapterUpdater = new AdapterUpdater<FeedlyRssDomainModel>(_viewHolder.RecyclerView, adapter, ViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<FeedlyRssDomainModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {
@@ -50,7 +50,7 @@ namespace Droid.Screens.FeedlySearch
                     .InvokeCommand(ViewModel.AddFeedlyRssCommand)
                     .AddTo(disposable);
 
-                ViewModel.ConnectChanges
+                ViewModel.ListViewModel.ConnectChanges
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
