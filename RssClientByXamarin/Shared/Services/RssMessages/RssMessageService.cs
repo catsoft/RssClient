@@ -11,11 +11,10 @@ namespace Shared.Database.Rss
 {
     public class RssMessageService : IRssMessageService
     {
-        [NotNull] private IRssMessagesRepository _rssMessagesRepository;
-        [NotNull] private IMapper<RssMessageServiceModel, RssMessageDomainModel> _toDomainMapper;
-        [NotNull] private IMapper<RssMessageDomainModel, RssMessageServiceModel> _toServiceMapper;
+        [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
+        [NotNull] private readonly IMapper<RssMessageServiceModel, RssMessageDomainModel> _toDomainMapper;
+        [NotNull] private readonly IMapper<RssMessageDomainModel, RssMessageServiceModel> _toServiceMapper;
 
-        //TODO  Саша мапперов не хватает
         public RssMessageService([NotNull] IRssMessagesRepository rssMessagesRepository,
             [NotNull] IMapper<RssMessageServiceModel, RssMessageDomainModel> toDomainMapper,
             [NotNull] IMapper<RssMessageDomainModel, RssMessageServiceModel> toServiceMapper)
