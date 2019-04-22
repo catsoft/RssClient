@@ -6,6 +6,7 @@ using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssAllMessages;
 using Droid.Screens.RssEditList;
 using Droid.Screens.RssList;
+using Droid.Screens.RssMessagesList;
 using JetBrains.Annotations;
 using Shared.Database.Rss;
 using Shared.Extensions;
@@ -82,7 +83,7 @@ namespace Droid.NativeExtension
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageItemClickEvent([NotNull] this RssAllMessagesListAdapter @this)
+        public static IObservable<RssMessageServiceModel> GetRssMessageItemClickEvent([NotNull] this BaseRssMessagesAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().Click += t, t => @this.NotNull().Click -= t)
@@ -91,14 +92,14 @@ namespace Droid.NativeExtension
 
         [NotNull]
         public static IObservable<EventPattern<RssMessageServiceModel>> GetRssMessageItemLongClickEvent(
-            [NotNull] this RssAllMessagesListAdapter @this)
+            [NotNull] this BaseRssMessagesAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().LongClick += t, t => @this.NotNull().LongClick -= t);
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageLeftButtonClickEvent([NotNull] this RssAllMessagesListAdapter @this)
+        public static IObservable<RssMessageServiceModel> GetRssMessageLeftButtonClickEvent([NotNull] this BaseRssMessagesAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().LeftButtonClick += t, t => @this.NotNull().LeftButtonClick -= t)
@@ -106,7 +107,7 @@ namespace Droid.NativeExtension
         }
 
         [NotNull]
-        public static IObservable<RssMessageServiceModel> GetRssMessageRightButtonClickEvent([NotNull] this RssAllMessagesListAdapter @this)
+        public static IObservable<RssMessageServiceModel> GetRssMessageRightButtonClickEvent([NotNull] this BaseRssMessagesAdapter @this)
         {
             return Observable
                 .FromEventPattern<RssMessageServiceModel>(t => @this.NotNull().RightButtonClick += t, t => @this.NotNull().RightButtonClick -= t)
