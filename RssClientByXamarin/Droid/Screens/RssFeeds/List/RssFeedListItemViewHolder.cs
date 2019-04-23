@@ -4,7 +4,6 @@ using Android.Widget;
 using Core.Extensions;
 using Core.Services.Rss;
 using Droid.NativeExtension;
-using Droid.Resources;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading;

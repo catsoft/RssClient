@@ -1,11 +1,11 @@
 ﻿using Autofac;
+using Core;
+using Core.Database.Rss;
+using Core.Repositories.RssMessage;
 using Foundation;
 using iOS.Screens.Base.Table;
 using iOS.Styles;
 using SDWebImage;
-using Shared;
-using Shared.Database.Rss;
-using Shared.Repository;
 using UIKit;
 
 namespace iOS.Screens.List

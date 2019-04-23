@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using Autofac;
+using Core;
+using Core.Database.Rss;
+using Core.Repositories.Rss;
+using Core.Repositories.RssMessage;
 using iOS.Screens.Base.Stated;
 using iOS.Screens.Base.Table;
 using iOS.Screens.Edit;
 using Realms;
-using Shared;
-using Shared.Database.Rss;
-using Shared.Repository;
-using Shared.Repository.Rss;
-using Shared.Repository.RssMessage;
 using UIKit;
 using Xamarin;
 

@@ -10,7 +10,6 @@ using Core.ViewModels.RssFeeds.List;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
-using Droid.Resources;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using ReactiveUI;

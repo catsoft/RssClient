@@ -2,7 +2,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Droid.Resources;
 
 namespace Droid.Screens.RssFeeds.List
 {

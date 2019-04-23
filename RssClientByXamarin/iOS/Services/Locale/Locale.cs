@@ -1,5 +1,5 @@
-﻿using Foundation;
-using Shared.Services.Locale;
+﻿using Core.Infrastructure.Locale;
+using Foundation;
 
 namespace iOS.Services.Locale
 {

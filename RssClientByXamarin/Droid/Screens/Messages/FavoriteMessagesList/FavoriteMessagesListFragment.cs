@@ -8,7 +8,6 @@ using Core.Services.RssMessages;
 using Core.ViewModels.Messages.FavoriteMessages;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension.Events;
-using Droid.Resources;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Messages.AllMessages;
 using Droid.Screens.Navigation;

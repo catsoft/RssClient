@@ -1,12 +1,11 @@
 ﻿using Autofac;
+using Core;
+using Core.Database.Rss;
+using Core.Repositories.Rss;
 using iOS.CustomUI;
 using iOS.CustomUI.StyledView;
 using iOS.Screens.Base.ViewController;
 using iOS.Styles;
-using RssClient.Repository;
-using Shared;
-using Shared.Database.Rss;
-using Shared.Repository.Rss;
 using UIKit;
 
 namespace iOS.Screens.Edit

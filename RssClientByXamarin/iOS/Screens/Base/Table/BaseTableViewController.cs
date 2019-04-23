@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using Core;
+using Core.Analytics.Rss;
 using iOS.Screens.Base.Stated;
 using iOS.Styles;
-using Shared;
-using Shared.Analytics.Rss;
 using UIKit;
 
 namespace iOS.Screens.Base.Table

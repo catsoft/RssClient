@@ -1,6 +1,8 @@
 /.vs
 /Droid/obj
 /Droid/bin
+/Core/obj
+/Core/bin
 /Droid/*.user
 /Analitics/obj
 /Analitics/bin

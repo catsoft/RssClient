@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using Autofac;
+using Core;
+using Core.Database.Rss;
+using Core.Repositories.Rss;
 using iOS.Screens.Base.Stated;
 using iOS.Screens.Base.Table;
 using iOS.Screens.Create;
 using iOS.Screens.Detail;
 using iOS.Styles;
-using Realms;
-using RssClient.Repository;
-using Shared;
-using Shared.Database.Rss;
 using UIKit;
 using Xamarin;
 

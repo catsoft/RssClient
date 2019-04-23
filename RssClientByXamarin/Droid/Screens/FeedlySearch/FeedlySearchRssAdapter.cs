@@ -5,7 +5,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Core.Configuration.Settings;
 using Core.Repositories.Feedly;
-using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 
 namespace Droid.Screens.FeedlySearch

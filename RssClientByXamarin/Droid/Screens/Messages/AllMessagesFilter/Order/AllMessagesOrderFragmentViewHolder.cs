@@ -1,7 +1,6 @@
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
-using Droid.Resources;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.AllMessagesFilter.Order

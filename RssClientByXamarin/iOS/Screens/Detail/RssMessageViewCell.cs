@@ -1,17 +1,16 @@
 ﻿using System;
 using Autofac;
+using Core;
+using Core.Analytics.Rss;
+using Core.Database.Rss;
+using Core.Infrastructure.Locale;
+using Core.Repositories.RssMessage;
 using Foundation;
 using iOS.Screens.Base.Table;
 using iOS.Styles;
 using Plugin.Share;
 using Plugin.Share.Abstractions;
 using SDWebImage;
-using Shared;
-using Shared.Analytics.Rss;
-using Shared.Database.Rss;
-using Shared.Repository;
-using Shared.Repository.RssMessage;
-using Shared.Services.Locale;
 using UIKit;
 
 namespace iOS.Screens.Detail

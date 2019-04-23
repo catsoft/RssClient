@@ -1,10 +1,10 @@
 ﻿using Autofac;
+using Core;
+using Core.Repositories.Rss;
 using iOS.CustomUI;
 using iOS.CustomUI.StyledView;
 using iOS.Screens.Base.ViewController;
 using iOS.Styles;
-using Shared;
-using Shared.Repository.Rss;
 using UIKit;
 
 namespace iOS.Screens.Create
@@ -47,7 +47,7 @@ namespace iOS.Screens.Create
 			_submitButton.AddGestureRecognizer(new UITapGestureRecognizer(async () =>
 			{
 				var text = _urlField.Text;
-				await _rssRepository.InsertByUrl(text);
+				await _rssRepository.AddAsync(text);
 
 				NavigationController?.PopViewController(true);
 			}));

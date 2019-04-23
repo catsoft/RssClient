@@ -1,10 +1,10 @@
 ﻿using Autofac;
+using Core;
+using Core.Analytics;
 using Foundation;
 using iOS.Container.Modules;
 using iOS.Screens.List;
 using iOS.Styles;
-using Shared;
-using Shared.Analytics;
 using UIKit;
 
 namespace iOS
