@@ -1,6 +1,6 @@
 ﻿using Android.App;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.Close;
+using Core.Infrastructure.Navigation;
+using Core.ViewModels.Close;
 
 namespace Droid.Screens.Close
 {

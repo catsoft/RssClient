@@ -4,12 +4,13 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Core.Configuration.Settings;
+using Core.Repositories.Configuration;
+using Core.Utils;
+using Core.ViewModels.Settings;
 using Droid.Container;
-using Droid.Repositories.Configuration;
+using Droid.Resources;
 using Droid.Screens.Navigation;
-using Shared.Configuration.Settings;
-using Shared.Utils;
-using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {

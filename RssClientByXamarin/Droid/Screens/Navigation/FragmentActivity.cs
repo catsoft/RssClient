@@ -5,11 +5,11 @@ using Android.Support.Transitions;
 using Android.Support.V4.App;
 using Android.Views;
 using Autofac;
+using Core;
+using Core.Configuration.Settings;
+using Core.Infrastructure.ViewModels;
+using Core.Repositories.Configuration;
 using Droid.Container;
-using Droid.Repositories.Configuration;
-using Shared;
-using Shared.Configuration.Settings;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {

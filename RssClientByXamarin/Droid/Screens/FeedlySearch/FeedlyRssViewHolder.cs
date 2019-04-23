@@ -1,13 +1,14 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Core.Extensions;
+using Core.Repositories.Feedly;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading.Views;
 using JetBrains.Annotations;
-using Shared.Extensions;
-using Shared.Repositories.Feedly;
 
 namespace Droid.Screens.FeedlySearch
 {

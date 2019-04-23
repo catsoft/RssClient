@@ -7,13 +7,14 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.Animations;
 using Autofac;
-using Droid.Repositories.Configuration;
+using Core;
+using Core.Configuration.Settings;
+using Core.Infrastructure.ViewModels;
+using Core.Repositories.Configuration;
+using Droid.Resources;
 using Droid.Screens.Base;
 using Java.Lang;
 using JetBrains.Annotations;
-using Shared;
-using Shared.Configuration.Settings;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.Support.V7.Widget;
+using Core.Extensions;
 using Droid.Screens.Base.Adapters;
 using DynamicData;
 using JetBrains.Annotations;
-using Shared.Extensions;
 
 namespace Droid.Infrastructure.Collections
 {

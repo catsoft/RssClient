@@ -3,12 +3,13 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Util;
 using Android.Views;
+using Core.Extensions;
+using Core.Infrastructure.ViewModels;
 using Droid.Container;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Base;
 using JetBrains.Annotations;
-using Shared.Extensions;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Navigation
 {

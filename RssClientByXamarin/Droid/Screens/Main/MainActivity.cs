@@ -3,9 +3,10 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Core.ViewModels.Main;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Navigation;
-using Shared.ViewModels.Main;
 
 namespace Droid.Screens.Main
 {

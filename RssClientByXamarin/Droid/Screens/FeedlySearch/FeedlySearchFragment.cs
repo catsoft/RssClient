@@ -3,13 +3,15 @@ using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Core.Extensions;
+using Core.Repositories.Feedly;
+using Core.ViewModels.FeedlySearch;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
+using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 using ReactiveUI;
-using Shared.Extensions;
-using Shared.Repositories.Feedly;
-using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {

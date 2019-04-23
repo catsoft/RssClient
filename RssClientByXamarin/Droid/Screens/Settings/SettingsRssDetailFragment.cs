@@ -1,11 +1,12 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Core.Configuration.Settings;
+using Core.Repositories.Configuration;
+using Core.ViewModels.Settings;
 using Droid.Container;
-using Droid.Repositories.Configuration;
+using Droid.Resources;
 using Droid.Screens.Navigation;
-using Shared.Configuration.Settings;
-using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {

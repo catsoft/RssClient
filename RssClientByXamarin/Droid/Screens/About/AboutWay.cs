@@ -1,6 +1,6 @@
-﻿using Droid.Screens.Navigation;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.About;
+﻿using Core.Infrastructure.Navigation;
+using Core.ViewModels.About;
+using Droid.Screens.Navigation;
 
 namespace Droid.Screens.About
 {

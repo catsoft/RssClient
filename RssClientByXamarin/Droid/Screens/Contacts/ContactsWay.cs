@@ -1,6 +1,6 @@
-﻿using Droid.Screens.Navigation;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.Contacts;
+﻿using Core.Infrastructure.Navigation;
+using Core.ViewModels.Contacts;
+using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Contacts
 {

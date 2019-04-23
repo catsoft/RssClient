@@ -1,37 +1,36 @@
 ﻿using Android.App;
 using Autofac;
+using Core.Infrastructure.Navigation;
+using Core.ViewModels.About;
+using Core.ViewModels.Close;
+using Core.ViewModels.Contacts;
+using Core.ViewModels.FeedlySearch;
+using Core.ViewModels.Messages.AllMessages;
+using Core.ViewModels.Messages.AllMessagesFilter;
+using Core.ViewModels.Messages.FavoriteMessages;
+using Core.ViewModels.Messages.Message;
+using Core.ViewModels.Messages.RssFeedMessagesList;
+using Core.ViewModels.RssFeeds.Create;
+using Core.ViewModels.RssFeeds.Edit;
+using Core.ViewModels.RssFeeds.EditableList;
+using Core.ViewModels.RssFeeds.List;
+using Core.ViewModels.Settings;
 using Droid.Screens.About;
 using Droid.Screens.Close;
 using Droid.Screens.Contacts;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.Main;
+using Droid.Screens.Messages.AllMessages;
+using Droid.Screens.Messages.AllMessagesFilter;
+using Droid.Screens.Messages.FavoriteMessagesList;
+using Droid.Screens.Messages.Message;
+using Droid.Screens.Messages.RssFeedMessagesList;
 using Droid.Screens.Navigation;
-using Droid.Screens.RssAllMessages;
-using Droid.Screens.RssAllMessagesFilter;
-using Droid.Screens.RssCreate;
-using Droid.Screens.RssEdit;
-using Droid.Screens.RssEditList;
-using Droid.Screens.RssFavoriteMessagesList;
-using Droid.Screens.RssList;
-using Droid.Screens.RssMessage;
-using Droid.Screens.RssMessagesList;
+using Droid.Screens.RssFeeds.Create;
+using Droid.Screens.RssFeeds.Edit;
+using Droid.Screens.RssFeeds.EditableList;
+using Droid.Screens.RssFeeds.List;
 using Droid.Screens.Settings;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.About;
-using Shared.ViewModels.Close;
-using Shared.ViewModels.Contacts;
-using Shared.ViewModels.FeedlySearch;
-using Shared.ViewModels.RssAllMessages;
-using Shared.ViewModels.RssAllMessagesFilter;
-using Shared.ViewModels.RssCreate;
-using Shared.ViewModels.RssEdit;
-using Shared.ViewModels.RssFavoriteMessages;
-using Shared.ViewModels.RssItemDetail;
-using Shared.ViewModels.RssList;
-using Shared.ViewModels.RssListEdit;
-using Shared.ViewModels.RssMessage;
-using Shared.ViewModels.Settings;
-using RssMessageViewModel = Shared.ViewModels.RssMessage.RssMessageViewModel;
 
 namespace Droid.Container.Modules
 {
@@ -43,15 +42,15 @@ namespace Droid.Container.Modules
 
             builder.RegisterType<CloseWay>().As<IWay<CloseViewModel>>();
 
-            builder.RegisterType<RssMessagesListWay>().As<IWayWithParameters<RssMessagesListViewModel, RssMessagesListParameters>>();
-            builder.RegisterType<RssAllMessagesWay>().As<IWay<RssAllMessagesViewModel>>();
-            builder.RegisterType<RssFavoriteMessagesListWay>().As<IWay<RssFavoriteMessagesViewModel>>();
-            builder.RegisterType<RssAllMessagesFilterWay>().As<IWay<RssAllMessagesFilterViewModel>>();
-            builder.RegisterType<RssListWay>().As<IWay<RssListViewModel>>();
-            builder.RegisterType<RssListEditWay>().As<IWay<RssListEditViewModel>>();
-            builder.RegisterType<RssCreateWay>().As<IWay<RssCreateViewModel>>();
-            builder.RegisterType<RssEditWay>().As<IWayWithParameters<RssEditViewModel, RssEditParameters>>();
-            builder.RegisterType<RssMessageWay>().As<IWayWithParameters<RssMessageViewModel, RssMessageParameters>>();
+            builder.RegisterType<RssFeedMessagesListWay>().As<IWayWithParameters<RssFeedMessagesListViewModel, RssFeedMessagesListParameters>>();
+            builder.RegisterType<AllMessagesWay>().As<IWay<AllMessagesViewModel>>();
+            builder.RegisterType<FavoriteMessagesListWay>().As<IWay<FavoriteMessagesViewModel>>();
+            builder.RegisterType<AllMessagesFilterWay>().As<IWay<AllMessagesFilterViewModel>>();
+            builder.RegisterType<RssFeedListWay>().As<IWay<RssFeedListViewModel>>();
+            builder.RegisterType<RssFeedEditableListWay>().As<IWay<RssFeedEditableListViewModel>>();
+            builder.RegisterType<RssFeedCreateWay>().As<IWay<RssFeedCreateViewModel>>();
+            builder.RegisterType<RssFeedEditWay>().As<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>();
+            builder.RegisterType<MessageWay>().As<IWayWithParameters<MessageViewModel, MessageParameters>>();
 
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();

@@ -1,4 +1,4 @@
-﻿using Shared.Infrastructure.Locale;
+﻿using Core.Infrastructure.Locale;
 
 namespace Droid.Infrastructure.Locale
 {

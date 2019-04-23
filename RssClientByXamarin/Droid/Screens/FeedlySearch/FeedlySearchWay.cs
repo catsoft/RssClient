@@ -1,6 +1,6 @@
+using Core.Infrastructure.Navigation;
+using Core.ViewModels.FeedlySearch;
 using Droid.Screens.Navigation;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.FeedlySearch;
 
 namespace Droid.Screens.FeedlySearch
 {

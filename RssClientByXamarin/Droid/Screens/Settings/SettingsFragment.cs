@@ -1,8 +1,9 @@
 ﻿using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Core.ViewModels.Settings;
+using Droid.Resources;
 using Droid.Screens.Navigation;
-using Shared.ViewModels.Settings;
 
 namespace Droid.Screens.Settings
 {

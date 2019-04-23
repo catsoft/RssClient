@@ -1,9 +1,9 @@
 using Android.OS;
 using Autofac;
+using Core;
+using Core.Extensions;
+using Core.Infrastructure.ViewModels;
 using JetBrains.Annotations;
-using Shared;
-using Shared.Extensions;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Base
 {

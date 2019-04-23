@@ -1,9 +1,10 @@
 using System;
 using Android.App;
 using Autofac;
-using Droid.Repositories.Configuration;
-using Shared;
-using Shared.Configuration.Settings;
+using Core;
+using Core.Configuration.Settings;
+using Core.Repositories.Configuration;
+using Droid.Resources;
 
 namespace Droid.Screens.Base
 {

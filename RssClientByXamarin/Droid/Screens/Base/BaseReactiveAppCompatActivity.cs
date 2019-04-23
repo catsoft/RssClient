@@ -1,10 +1,11 @@
 using Android.OS;
 using Android.Support.V7.Widget;
 using Autofac;
+using Core;
+using Core.Analytics.Rss;
+using Core.Infrastructure.ViewModels;
+using Droid.Resources;
 using ReactiveUI.AndroidSupport;
-using Shared;
-using Shared.Analytics.Rss;
-using Shared.Infrastructure.ViewModels;
 
 namespace Droid.Screens.Base
 {

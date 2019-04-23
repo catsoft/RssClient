@@ -1,8 +1,8 @@
 using System;
 using Android.App;
 using Autofac;
-using Shared;
-using Shared.Infrastructure.Dialogs;
+using Core;
+using Core.Infrastructure.Dialogs;
 
 namespace Droid.Infrastructure.Dialogs
 {

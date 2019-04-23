@@ -1,7 +1,8 @@
 using Android.OS;
 using Android.Views;
+using Core.ViewModels.About;
+using Droid.Resources;
 using Droid.Screens.Navigation;
-using Shared.ViewModels.About;
 
 namespace Droid.Screens.About
 {

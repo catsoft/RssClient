@@ -1,6 +1,6 @@
-﻿using Droid.Screens.Navigation;
-using Shared.Infrastructure.Navigation;
-using Shared.ViewModels.Settings;
+﻿using Core.Infrastructure.Navigation;
+using Core.ViewModels.Settings;
+using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Settings
 {

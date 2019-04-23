@@ -2,10 +2,10 @@
 using Android.App;
 using Android.Runtime;
 using Autofac;
+using Core;
+using Core.Analytics;
+using Core.Extensions;
 using Droid.Container.Modules;
-using Shared;
-using Shared.Analytics;
-using Shared.Extensions;
 
 namespace Droid
 {

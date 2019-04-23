@@ -1,8 +1,8 @@
 ﻿using Autofac;
+using Core.Infrastructure.Dialogs;
+using Core.Infrastructure.Locale;
 using Droid.Infrastructure.Dialogs;
 using Droid.Infrastructure.Locale;
-using Shared.Infrastructure.Dialogs;
-using Shared.Infrastructure.Locale;
 
 namespace Droid.Container.Modules
 {

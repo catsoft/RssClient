@@ -64,12 +64,14 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="CustomApplication.cs" />
-    <Compile Include="EmbeddedResourse\Strings.Designer.cs" />
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
     <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
     <Compile Include="NativeExtension\EditTextExtension.cs" />
-    <Compile Include="NativeExtension\EventsExtension.cs" />
+    <Compile Include="NativeExtension\Events\EventsExtension.cs" />
+    <Compile Include="NativeExtension\Events\IClickable.cs" />
+    <Compile Include="NativeExtension\Events\ILongClick.cs" />
+    <Compile Include="NativeExtension\Events\ISwipeActions.cs" />
     <Compile Include="NativeExtension\KeyboardActivityExtension.cs" />
     <Compile Include="NativeExtension\RateExtension.cs" />
     <Compile Include="NativeExtension\TextViewExtension.cs" />
@@ -101,6 +103,28 @@
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragmentViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchWay.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\Filter\AllMessagesFilterSubFragment.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\Filter\AllMessagesFilterSubFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\Order\AllMessagesOrderFragment.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\Order\AllMessagesOrderFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\AllMessagesFilterFragment.cs" />
+    <Compile Include="Screens\Messages\AllMessagesFilter\RssAllMessagesListWay.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessagesFragment.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessagesFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessagesListAdapter.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessageItemItemViewHolder.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessagesWay.cs" />
+    <Compile Include="Screens\Messages\BaseMessageItemViewHolder.cs" />
+    <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
+    <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragment.cs" />
+    <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesListAdapter.cs" />
+    <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesListFragment.cs" />
+    <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessageItemListViewHolder.cs" />
+    <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesListWay.cs" />
+    <Compile Include="Screens\Messages\Message\MessageFragment.cs" />
+    <Compile Include="Screens\Messages\Message\MessageWay.cs" />
     <Compile Include="Screens\Navigation\BaseFragment.cs" />
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
@@ -108,48 +132,23 @@
     <Compile Include="Screens\Navigation\IFragmentManager.cs" />
     <Compile Include="Screens\Navigation\IRoot.cs" />
     <Compile Include="Screens\Navigation\ITitle.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragment.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\Filter\RssAllMessagesFilterSubFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragment.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\Order\RssAllMessagesOrderFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesFilterFragment.cs" />
-    <Compile Include="Screens\RssAllMessagesFilter\RssAllMessagesListWay.cs" />
-    <Compile Include="Screens\RssAllMessages\IClickable.cs" />
-    <Compile Include="Screens\RssAllMessages\ILongClick.cs" />
-    <Compile Include="Screens\RssAllMessages\ISwipeActions.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesWay.cs" />
-    <Compile Include="Screens\RssCreate\RssCreateWay.cs" />
-    <Compile Include="Screens\RssCreate\RssEditFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssEditList\RssEditListFragment.cs" />
-    <Compile Include="Screens\RssEditList\RssEditListFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssEditList\RssListEditWay.cs" />
-    <Compile Include="Screens\RssEditList\RssListEditAdapter.cs" />
-    <Compile Include="Screens\RssEditList\RssListEditViewHolder.cs" />
-    <Compile Include="Screens\RssEdit\RssEditFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssEdit\RssEditWay.cs" />
-    <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragment.cs" />
-    <Compile Include="Screens\RssFavoriteMessagesList\RssAllMessagesListWay.cs" />
-    <Compile Include="Screens\RssFavoriteMessagesList\RssFavoriteMessagesListFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssMessagesList\RssMessagesFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssMessagesList\RssMessagesListFragment.cs" />
-    <Compile Include="Screens\RssMessagesList\RssMessagesListWay.cs" />
-    <Compile Include="Screens\RssMessagesList\RssMessagesListAdapter.cs" />
-    <Compile Include="Screens\RssMessagesList\RssMessagesListViewHolder.cs" />
-    <Compile Include="Screens\RssEdit\RssEditFragment.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesFragment.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesListAdapter.cs" />
-    <Compile Include="Screens\RssAllMessages\RssAllMessagesViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\Create\RssFeedCreateFragment.cs" />
+    <Compile Include="Screens\RssFeeds\Create\RssFeedCreateWay.cs" />
+    <Compile Include="Screens\RssFeeds\Create\RssEditFragmentViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\EditableList\RssFeedEditableListFragment.cs" />
+    <Compile Include="Screens\RssFeeds\EditableList\RssFeedEditableListFragmentViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\EditableList\RssFeedEditableListAdapter.cs" />
+    <Compile Include="Screens\RssFeeds\EditableList\RssFeedEditableListItemViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\EditableList\RssFeedEditableListWay.cs" />
+    <Compile Include="Screens\RssFeeds\Edit\RssFeedEditFragment.cs" />
+    <Compile Include="Screens\RssFeeds\Edit\RssFeedEditFragmentViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\Edit\RssFeedEditWay.cs" />
+    <Compile Include="Screens\RssFeeds\List\RssFeedListAdapter.cs" />
+    <Compile Include="Screens\RssFeeds\List\RssFeedListFragment.cs" />
+    <Compile Include="Screens\RssFeeds\List\RssFeedListFragmentViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\List\RssFeedListItemViewHolder.cs" />
+    <Compile Include="Screens\RssFeeds\List\RssFeedListWay.cs" />
     <Compile Include="Screens\Main\MainActivity.cs" />
-    <Compile Include="Screens\RssCreate\RssCreateFragment.cs" />
-    <Compile Include="Screens\RssMessagesList\BaseRssMessagesViewHolder.cs" />
-    <Compile Include="Screens\RssList\RssListAdapter.cs" />
-    <Compile Include="Screens\RssList\RssListFragment.cs" />
-    <Compile Include="Screens\RssList\RssListFragmentViewHolder.cs" />
-    <Compile Include="Screens\RssList\RssListViewHolder.cs" />
-    <Compile Include="Screens\RssList\RssListWay.cs" />
-    <Compile Include="Screens\RssMessage\RssMessageFragment.cs" />
-    <Compile Include="Screens\RssMessage\RssMessageWay.cs" />
     <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
     <Compile Include="Screens\Settings\SettingsLoadImagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsReadMessagesFragment.cs" />
@@ -343,16 +342,13 @@
       <Version>10.0.0-preview.3</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Fody">
-      <Version>10.0.0-preview.3</Version>
+      <Version>9.13.1</Version>
     </PackageReference>
     <PackageReference Include="Realm">
       <Version>3.4.0</Version>
     </PackageReference>
     <PackageReference Include="Realm.Database">
       <Version>3.4.0</Version>
-    </PackageReference>
-    <PackageReference Include="Realm.DataBinding">
-      <Version>1.2.0</Version>
     </PackageReference>
     <PackageReference Include="System.Reactive">
       <Version>4.2.0-preview.102</Version>
@@ -568,9 +564,16 @@
     <AndroidResource Include="Resources\drawable\baseline_favorite_border_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_stars_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_search_24.xml" />
+    <Content Include="FodyWeavers.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourse\Strings.resx" />
+    <Folder Include="Screens\RssFeeds" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{c8e423ae-95a9-48c5-a983-88b03c10f238}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
