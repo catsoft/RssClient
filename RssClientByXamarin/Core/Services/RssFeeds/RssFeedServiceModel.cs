@@ -17,5 +17,7 @@ namespace Core.Services.RssFeeds
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }
+
+        public bool IsFeedly { get; set; }
     }
 }

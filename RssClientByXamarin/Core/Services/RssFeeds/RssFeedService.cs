@@ -73,8 +73,9 @@ namespace Core.Services.RssFeeds
             
             currentItem.Name = syndicationFeed.Title?.Text;
             currentItem.UpdateTime = DateTime.Now;
-            //TODO сюда запихнуть фавикон
-            currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+            if(!currentItem.IsFeedly)
+                currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+            
             await _rssFeedRepository.UpdateAsync(currentItem, token);
 
             foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])

@@ -9,12 +9,12 @@ using JetBrains.Annotations;
 
 namespace Core.Services.Feedly
 {
-    public class FeedlySearchSearchService : IFeedlySearchService
+    public class FeedlySearchService : IFeedlySearchService
     {
         [NotNull] private readonly IFeedlyRepository _feedlyRepository;
         [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
 
-        public FeedlySearchSearchService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssFeedRepository rssFeedRepository)
+        public FeedlySearchService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssFeedRepository rssFeedRepository)
         {
             _feedlyRepository = feedlyRepository;
             _rssFeedRepository = rssFeedRepository;
@@ -32,6 +32,7 @@ namespace Core.Services.Feedly
 
             var item = (await _rssFeedRepository.GetAsync(guid, token)).NotNull();
             item.UrlPreviewImage = model?.IconUrl;
+            item.IsFeedly = true;
             await _rssFeedRepository.UpdateAsync(item, token);
         }
     }

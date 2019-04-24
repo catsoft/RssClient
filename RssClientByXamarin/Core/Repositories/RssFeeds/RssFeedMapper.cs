@@ -22,7 +22,8 @@ namespace Core.Repositories.RssFeeds
                     Position = model.Position,
                     UpdateTime = model.UpdateTime,
                     CreationTime = model.CreationTime,
-                    UrlPreviewImage = model.UrlPreviewImage
+                    UrlPreviewImage = model.UrlPreviewImage,
+                    IsFeedly = model.IsFeedly,
                 };
         }
 
@@ -38,23 +39,25 @@ namespace Core.Repositories.RssFeeds
                     Position = model.Position,
                     UpdateTime = model.UpdateTime,
                     CreationTime = model.CreationTime,
-                    UrlPreviewImage = model.UrlPreviewImage
+                    UrlPreviewImage = model.UrlPreviewImage,
+                    IsFeedly = model.IsFeedly,
                 };
         }
 
-        public RssFeedDomainModel Transform(RssFeedModel feedModel)
+        public RssFeedDomainModel Transform(RssFeedModel model)
         {
-            return feedModel == null
+            return model == null
                 ? new RssFeedDomainModel()
                 : new RssFeedDomainModel
                 {
-                    Id = feedModel.Id,
-                    Rss = feedModel.Rss,
-                    Name = feedModel.Name,
-                    Position = feedModel.Position,
-                    UpdateTime = feedModel.UpdateTime,
-                    CreationTime = feedModel.CreationTime,
-                    UrlPreviewImage = feedModel.UrlPreviewImage
+                    Id = model.Id,
+                    Rss = model.Rss,
+                    Name = model.Name,
+                    Position = model.Position,
+                    UpdateTime = model.UpdateTime,
+                    CreationTime = model.CreationTime,
+                    UrlPreviewImage = model.UrlPreviewImage,
+                    IsFeedly = model.IsFeedly,
                 };
         }
 
@@ -70,7 +73,8 @@ namespace Core.Repositories.RssFeeds
                     Position = model.Position,
                     UpdateTime = model.UpdateTime,
                     CreationTime = model.CreationTime,
-                    UrlPreviewImage = model.UrlPreviewImage
+                    UrlPreviewImage = model.UrlPreviewImage,
+                    IsFeedly = model.IsFeedly,
                 };
         }
     }

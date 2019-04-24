@@ -16,6 +16,8 @@ namespace Core.Database.Rss
 
         public string UrlPreviewImage { get; set; }
         
+        public bool IsFeedly { get; set; }
+        
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }

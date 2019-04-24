@@ -23,8 +23,6 @@ namespace Core.Repositories.RssMessage
 
         public bool IsFavorite { get; set; }
 
-        [CanBeNull] public RssFeedDomainModel RssFeedParent { get; set; }
-
         public Guid Id { get; set; }
         
         public Guid RssId { get; set; }
