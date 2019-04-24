@@ -29,9 +29,13 @@ namespace Droid.Screens.RssFeeds.List
         }
 
         [NotNull] public TextView TitleTextView { get; }
+        
         [NotNull] public TextView SubtitleTextView { get; }
+        
         [NotNull] public ImageViewAsync IconView { get; }
+        
         [NotNull] public TextView CountTextView { get; }
+        
         [NotNull] public LinearLayout ClickView { get; }
 
         public RssFeedServiceModel Item { get; set; }

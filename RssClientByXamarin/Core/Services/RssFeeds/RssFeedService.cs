@@ -138,7 +138,18 @@ namespace Core.Services.RssFeeds
             }
         }
 
-        public Task ReadAllMessagesAsync(Guid itemId, CancellationToken token = default) { throw new NotImplementedException(); }
+        public Task ReadAllMessagesAsync(Guid itemId, CancellationToken token = default) {
+        {
+            return Task.Run(async () =>
+            {
+                var messages = await _rssMessagesRepository.GetMessagesForRss(itemId, token);
+                foreach (var message in messages.Where(w => !w.IsRead))
+                {
+                    message.IsRead = true;
+                    await _rssMessagesRepository.UpdateAsync(message, token);
+                }
+            }, token);
+        }}
         
         public async Task ShareAsync(RssFeedServiceModel model, CancellationToken token = default)
         {

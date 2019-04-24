@@ -26,12 +26,19 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         }
 
         public TextView Title { get; }
+        
         public TextView Text { get; }
+        
         public TextView CreationDate { get; }
+        
         public ImageViewAsync ImageView { get; }
+        
         public LinearLayout ClickView { get; }
+        
         public LinearLayout Background { get; }
+        
         public RatingBar RatingBar { get; }
+        
         public bool IsShowAndLoadImages { get; }
 
         public override void BindData(RssMessageServiceModel item)
