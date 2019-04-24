@@ -339,10 +339,10 @@
       <Version>7.1.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.AndroidSupport">
-      <Version>10.0.0-preview.3</Version>
+      <Version>9.13.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Events">
-      <Version>10.0.0-preview.3</Version>
+      <Version>9.13.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Fody">
       <Version>9.13.1</Version>
@@ -360,7 +360,7 @@
       <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Reactive">
-      <Version>4.2.0-preview.102</Version>
+      <Version>4.1.5</Version>
     </PackageReference>
     <PackageReference Include="System.ServiceModel.Syndication">
       <Version>4.5.0</Version>
@@ -578,7 +578,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{c8e423ae-95a9-48c5-a983-88b03c10f238}</Project>
+      <Project>{f0e7dd28-55b6-409a-8e1d-7d5add8a695f}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
