@@ -114,10 +114,11 @@
     <string name="menuFeedlySearch_search">Search</string>
 
     <string name="feedly_title">Feedly search</string>
-    <string name="feedlySearch_emptyText">Just nothing</string>
-    <string name="rssList_emptyText">Just nothing</string>
-    <string name="rssEditListEmptyText">Nothing else</string>
-    <string name="rssAllMessagesList_emptyText">Nothing</string>
-    <string name="favoriteList_emptyText">Nothing else</string>
+    
+    <string name="feedlySearch_emptyText">Here you can search RSS from "Feedly" and add to you</string>
+    <string name="rssList_emptyText">Time to add RSS feed!</string>
+    <string name="rssEditListEmptyText">Here you have nothing yet</string>
+    <string name="rssAllMessagesList_emptyText">Here you have nothing yet</string>
+    <string name="favoriteList_emptyText">Here you have nothing yet</string>
 
 </resources>
