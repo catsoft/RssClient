@@ -1,6 +1,5 @@
 using System;
 using Core.Infrastructure.ViewModels;
-using JetBrains.Annotations;
 
 namespace Core.ViewModels.RssFeeds.Edit
 {

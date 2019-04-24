@@ -79,28 +79,49 @@ namespace Core.Services.RssFeeds
 
             foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
             {
-                var notNulLinks = syndicationFeed.Links?.Where(w => w != null).ToList() ?? new List<SyndicationLink>();
-                var imageUri = notNulLinks.FirstOrDefault(w =>
-                        w.NotNull().RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true
-                        && w.NotNull().MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
-                    ?.Uri?.OriginalString;
-
-                var url = notNulLinks
-                    .FirstOrDefault(w => w.NotNull().RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)
-                    ?.Uri?.OriginalString;
-
-                var item = new RssMessageDomainModel
+                var existItem = await _rssMessagesRepository.GetMessageBySyndicationIdAsync(syndicationItem.Id, id, token);
+                
+                if (existItem == null)
                 {
-                    SyndicationId = syndicationItem.Id,
-                    Title = syndicationItem.Title?.Text?.SafeTrim(),
-                    Text = syndicationItem.Summary?.Text?.SafeTrim(),
-                    CreationDate = syndicationItem.PublishDate.Date,
-                    Url = url,
-                    ImageUrl = imageUri
-                };
-
-                await _rssMessagesRepository.AddMessageAsync(item, id, token);
+                    var item = new RssMessageDomainModel();
+                    
+                    item = FillMessage(item, syndicationItem);
+                    
+                    await _rssMessagesRepository.AddAsync(item, id, token);
+                }
+                else
+                {
+                    var item = FillMessage(existItem, syndicationItem);
+                    
+                    await _rssMessagesRepository.UpdateAsync(item, token);
+                }
             }
+        }
+
+        private RssMessageDomainModel FillMessage(RssMessageDomainModel model, SyndicationItem syndicationItem)
+        {
+            var notNulLinks = syndicationItem.Links?.Where(w => w != null).ToList() ?? new List<SyndicationLink>();
+            var imageUri = notNulLinks.FirstOrDefault(w =>
+                    w.NotNull().RelationshipType?.Equals("enclosure", StringComparison.InvariantCultureIgnoreCase) == true
+                    && w.NotNull().MediaType?.Equals("image/jpeg", StringComparison.InvariantCultureIgnoreCase) == true)
+                ?.Uri?.OriginalString;
+
+            var url = notNulLinks
+                .FirstOrDefault(w => w.NotNull().RelationshipType?.Equals("alternate", StringComparison.InvariantCultureIgnoreCase) == true)
+                ?.Uri?.OriginalString;
+
+            var title = syndicationItem.Title?.Text?.SafeTrim();
+            var text = syndicationItem.Summary?.Text?.SafeTrim();
+            var createDate = syndicationItem.PublishDate.Date;
+
+            model.SyndicationId = syndicationItem.Id;
+            model.Title = title;
+            model.Text = text;
+            model.CreationDate = createDate;
+            model.Url = url;
+            model.ImageUrl = imageUri;
+
+            return model;
         }
 
         public async Task UpdatePositionAsync(Guid localItemId, int position, CancellationToken token)

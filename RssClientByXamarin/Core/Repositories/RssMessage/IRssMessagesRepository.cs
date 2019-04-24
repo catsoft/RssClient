@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.AllMessageFilter;
+using Core.Database.Rss;
 using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage
@@ -10,7 +11,7 @@ namespace Core.Repositories.RssMessage
     public interface IRssMessagesRepository
     {
         [NotNull]
-        Task AddMessageAsync([CanBeNull] RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default);
+        Task AddAsync([CanBeNull] RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default);
 
         [NotNull]
         [ItemCanBeNull]
@@ -38,5 +39,9 @@ namespace Core.Repositories.RssMessage
         
         [NotNull]
         Task DeleteRssFeedMessages(Guid id, CancellationToken token = default);
+
+        [NotNull]
+        [ItemCanBeNull]
+        Task<RssMessageDomainModel> GetMessageBySyndicationIdAsync(string syndicationId, Guid rssId, CancellationToken token);
     }
 }

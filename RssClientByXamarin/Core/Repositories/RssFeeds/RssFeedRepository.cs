@@ -83,7 +83,7 @@ namespace Core.Repositories.RssFeeds
 
                 _log.TrackRssDelete(rssItem.Rss);
 
-                connection.Delete(id);
+                connection.Delete(rssItem);
             }, token);
         }
 

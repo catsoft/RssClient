@@ -28,7 +28,7 @@ namespace Core.Services.RssMessages
 
         public Task AddMessageAsync(RssMessageServiceModel message, Guid idRss, CancellationToken token = default)
         {
-            return _rssMessagesRepository.AddMessageAsync(_toDomainMapper.Transform(message), idRss, token);
+            return _rssMessagesRepository.AddAsync(_toDomainMapper.Transform(message), idRss, token);
         }
 
         public async Task<RssMessageServiceModel> GetAsync(Guid id, CancellationToken token = default)

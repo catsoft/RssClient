@@ -18,28 +18,29 @@ namespace Core.Repositories.RssMessage
     {
         [JetBrains.Annotations.NotNull] private readonly SqliteDatabase _sqliteDatabase;
         [JetBrains.Annotations.NotNull] private readonly IConfigurationRepository _configurationRepository;
-        [JetBrains.Annotations.NotNull] private readonly IMapper<RssMessageModel, RssMessageDomainModel> _mapperToData;
+        [JetBrains.Annotations.NotNull] private readonly IMapper<RssMessageModel, RssMessageDomainModel> _mapperToDomain;
         [JetBrains.Annotations.NotNull] private readonly IMapper<RssMessageDomainModel, RssMessageModel> _mapperToModel;
 
         public RssMessagesRepository(
             [JetBrains.Annotations.NotNull] SqliteDatabase sqliteDatabase,
             [JetBrains.Annotations.NotNull] IConfigurationRepository configurationRepository,
-            [JetBrains.Annotations.NotNull] IMapper<RssMessageModel, RssMessageDomainModel> mapperToData,
+            [JetBrains.Annotations.NotNull] IMapper<RssMessageModel, RssMessageDomainModel> mapperToDomain,
             [JetBrains.Annotations.NotNull] IMapper<RssMessageDomainModel, RssMessageModel> mapperToModel)
         {
             _sqliteDatabase = sqliteDatabase;
             _configurationRepository = configurationRepository;
-            _mapperToData = mapperToData;
+            _mapperToDomain = mapperToDomain;
             _mapperToModel = mapperToModel;
         }
 
-        public Task AddMessageAsync(RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default)
+        public Task AddAsync(RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var messageModel = _mapperToModel.Transform(messageDomainModel);
                 messageModel.Id = Guid.NewGuid();
-                
+                messageModel.RssId = idRss;
+
                 connection.Insert(messageModel);
             }, token);
         }
@@ -49,14 +50,14 @@ namespace Core.Repositories.RssMessage
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var item = connection.Find<RssMessageModel>(id);
-                return item == null ? null : _mapperToData.Transform(item);
+                return item == null ? null : _mapperToDomain.Transform(item);
             }, token);
         }
 
         public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
         {
             if (message == null) return Task.CompletedTask;
-         
+
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var newModel = _mapperToModel.Transform(message);
@@ -66,46 +67,33 @@ namespace Core.Repositories.RssMessage
 
         public Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss(Guid rssId, CancellationToken token)
         {
-            return Task.Run(() =>
-                {
-//                    var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-//                    var hideReadMessages = appConfiguration.HideReadMessages;
-//
-//                    using (var realm = RealmDatabase.OpenDatabase)
-//                    {
-//                        var rssModel = realm.Find<RssModel>(rssId);
-//                        var messages = rssModel?.RssMessageModels?.Where(w => w != null);
-//                        if (hideReadMessages)
-//                            messages = messages?.Where(w => !w.IsRead);
-//                        return messages?.OrderByDescending(w => w.NotNull().CreationDate)
-//                            .ToList()
-//                            .Select(_mapperToData.Transform)
-//                            .ToList()
-//                            .AsEnumerable();
-//                    }
-                    return new List<RssMessageDomainModel>().AsEnumerable();
-                },
+            return _sqliteDatabase.DoWithConnectionAsync((connection) => GetAllMessagesInner(connection)
+                    .Where(w => w.RssId == rssId)
+                    .Select(_mapperToDomain.Transform)
+                    .ToList()
+                    .AsEnumerable(),
                 token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetAllMessages(CancellationToken token)
         {
             return _sqliteDatabase.DoWithConnectionAsync(
-                connection => GetAllMessagesInner(connection).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable(), token);
+                connection => GetAllMessagesInner(connection)
+                    .ToList()
+                    .Select(_mapperToDomain.Transform)
+                    .ToList()
+                    .AsEnumerable(), token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetAllFavoriteMessages(CancellationToken token)
         {
-            return Task.Run(() =>
-                {
-                    return new List<RssMessageDomainModel>().AsEnumerable();
-
-//                    
-//                    using (var realm = RealmDatabase.OpenDatabase)
-//                    {
-//                        return GetAllMessagesInner(realm).Where(w => w.IsFavorite).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
-//                    }
-                },
+            return _sqliteDatabase.DoWithConnectionAsync(
+                (connection) => GetAllMessagesInner(connection)
+                    .Where(w => w.IsFavorite)
+                    .ToList()
+                    .Select(_mapperToDomain.Transform)
+                    .ToList()
+                    .AsEnumerable(),
                 token);
         }
 
@@ -122,23 +110,28 @@ namespace Core.Repositories.RssMessage
             }, token);
         }
 
-        public Task<IEnumerable<RssMessageDomainModel>> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration, CancellationToken token)
+        public Task<RssMessageDomainModel> GetMessageBySyndicationIdAsync(string syndicationId, Guid rssId, CancellationToken token)
         {
-            return Task.Run(() =>
-                {
-                    return new List<RssMessageDomainModel>().AsEnumerable();
+            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
+            {
+                var item = connection.Table<RssMessageModel>().FirstOrDefault(w => w.RssId == rssId && w.SyndicationId == syndicationId);
 
-                    
-//                    using (var realm = RealmDatabase.OpenDatabase)
-//                    {
-//                        var messages = GetAllMessagesInner(realm);
-//
-//                        messages = filterConfiguration?.ApplyFilter(messages);
-//                        messages = filterConfiguration?.ApplyDateFilter(messages);
-//                        messages = messages ?? new List<RssMessageModel>().AsQueryable();
-//                        
-//                        return messages.ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
-//                    }
+                return item == null ? null : _mapperToDomain.Transform(item);
+            }, token);
+        }
+
+        public Task<IEnumerable<RssMessageDomainModel>> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration,
+            CancellationToken token)
+        {
+            return _sqliteDatabase.DoWithConnectionAsync(connection =>
+                {
+                    var messages = GetAllMessagesInner(connection);
+
+                    messages = filterConfiguration?.ApplyFilter(messages);
+                    messages = filterConfiguration?.ApplyDateFilter(messages);
+                    messages = messages ?? new List<RssMessageModel>().AsQueryable();
+
+                    return messages.ToList().Select(_mapperToDomain.Transform).ToList().AsEnumerable();
                 },
                 token);
         }
