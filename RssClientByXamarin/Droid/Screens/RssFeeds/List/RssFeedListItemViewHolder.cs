@@ -2,6 +2,8 @@
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
+using Core.Infrastructure.Locale;
+using Core.Resources;
 using Core.Services.RssFeeds;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
@@ -45,6 +47,12 @@ namespace Droid.Screens.RssFeeds.List
             TitleTextView.Text = item.Name;
             Item = item;
 
+            SubtitleTextView.Text = item.UpdateTime == null
+                ? Strings.RssFeedItemNotUpdated
+                : $"{Strings.RssFeedItemUpdated} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
+            // TODO сделать
+//            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
+            
             if (IsShowAndLoadImages)
                 ImageService.Instance.NotNull()
                     .LoadUrl(item.UrlPreviewImage)

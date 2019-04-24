@@ -5,7 +5,6 @@ using Android.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Core.Extensions;
-using Core.Infrastructure.Locale;
 using Core.Services.RssFeeds;
 using Core.ViewModels.Lists;
 using Droid.Screens.Base.Adapters;
@@ -27,16 +26,6 @@ namespace Droid.Screens.RssFeeds.EditableList
         public event EventHandler<RssFeedServiceModel> DeleteClick;
         public event EventHandler<MoveEventArgs> OnMoveEvent;
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
-
-        protected override void BindData(RssFeedEditableListItemViewHolder holder, RssFeedServiceModel item)
-        {
-            base.BindData(holder, item);
-
-            holder.TitleTextView.Text = item.Name;
-            holder.SubtitleTextView.Text = item.UpdateTime == null
-                ? Activity.GetText(Resource.String.rssList_notUpdated)
-                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToShortDateLocaleString()}";
-        }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {

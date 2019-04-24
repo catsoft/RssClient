@@ -10,7 +10,7 @@ namespace Droid.Screens.Base.Adapters
     {
         protected WithItemsAdapter([NotNull] TCollection items, [NotNull] Activity activity) : base(activity) { Items = items; }
 
-        [NotNull] public TCollection Items { get; set; }
+        [NotNull] [ItemNotNull] public TCollection Items { get; set; }
 
         public override int ItemCount => Items.Count();
     }

@@ -44,8 +44,6 @@
     <string name="edit_title">Edit RSS</string>
 
     <string name="rssList_title">RSS Client</string>
-    <string name="rssList_notUpdated">Not updated</string>
-    <string name="rssList_updated">Updated: </string>
 
     <string name="rssFavoriteMessages_title">Favorite</string>
 

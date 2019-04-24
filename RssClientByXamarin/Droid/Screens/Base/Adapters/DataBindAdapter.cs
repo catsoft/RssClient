@@ -12,17 +12,11 @@ namespace Droid.Screens.Base.Adapters
     {
         protected DataBindAdapter([NotNull] TCollection items, [NotNull] Activity activity) : base(items, activity) { }
 
-        protected virtual void BindData([NotNull] TViewHolder holder, [NotNull] TItem item) { }
-
         public sealed override void OnBindViewHolder([NotNull] RecyclerView.ViewHolder holder, int position)
         {
             var item = Items.ElementAt(position);
 
-            if (item != null && holder is TViewHolder bindData)
-            {
-                bindData.BindData(item);
-                BindData(bindData, item);
-            }
+            if (item != null && holder is TViewHolder bindData) bindData.BindData(item);
         }
     }
 }

@@ -59,4 +59,12 @@
         <value>To</value>
     </data>
     
+    <data name="RssFeedItemUpdated" xml:space="preserve">
+        <value>Updated: </value>
+    </data>
+    
+    <data name="RssFeedItemNotUpdated" xml:space="preserve">
+        <value>Not updated</value>
+    </data>
+    
 </root>

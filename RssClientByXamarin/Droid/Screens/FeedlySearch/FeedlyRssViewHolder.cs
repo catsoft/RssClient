@@ -43,13 +43,14 @@ namespace Droid.Screens.FeedlySearch
             TitleView.Text = item.Title;
 
             if (IsShowAndLoadImages)
-            {
                 // TODO плейсхолдер должен зависить от темы
-                ImageService.Instance.LoadUrl(item.IconUrl)
+                ImageService.Instance.NotNull()
+                    .LoadUrl(item.IconUrl)
+                    .NotNull()
                     .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
+                    .NotNull()
                     .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
-                    .Into(RssIcon);   
-            }
+                    .Into(RssIcon);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Analytics.Rss;
 using Core.Database;
 using Core.Database.Rss;
+using Core.Extensions;
 using Core.Infrastructure.Mappers;
 using JetBrains.Annotations;
 
@@ -32,71 +33,76 @@ namespace Core.Repositories.RssFeeds
         public Task<Guid> AddAsync(string url, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync(connection =>
-            {
-                var newItem = new RssFeedModel
                 {
-                    Id = Guid.NewGuid(),
-                    Rss = url,
-                    Name = url,
-                    CreationTime = DateTime.Now
-                };
+                    var newItem = new RssFeedModel
+                    {
+                        Id = Guid.NewGuid(),
+                        Rss = url,
+                        Name = url,
+                        CreationTime = DateTime.Now
+                    };
 
-                _log.TrackRssInsert(url);
-                connection.Insert(newItem);
-                
-                return newItem.Id;
-            }, token);
+                    _log.TrackRssInsert(url);
+                    connection.NotNull().Insert(newItem);
+
+                    return newItem.Id;
+                },
+                token);
         }
 
         public Task UpdateAsync(RssFeedDomainModel rssFeedDomainModel, CancellationToken token = default)
         {
             if (rssFeedDomainModel == null) return Task.CompletedTask;
 
-            return _sqliteDatabase.DoWithConnectionAsync((connection =>
-            {
-                var item = _mapperToModel.Transform(rssFeedDomainModel);
+            return _sqliteDatabase.DoWithConnectionAsync(connection =>
+                {
+                    var item = _mapperToModel.Transform(rssFeedDomainModel);
 
-                connection.Update(item);
-            }), token);
-
+                    connection.NotNull().Update(item);
+                },
+                token);
         }
 
         public Task<RssFeedDomainModel> GetAsync(Guid id, CancellationToken token = default)
         {
-            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var items = connection.Find<RssFeedModel>(id);
-                return items == null ? null : _mapperToDomain.Transform(items);
-            }, token);
+            return _sqliteDatabase.DoWithConnectionAsync(connection =>
+                {
+                    var items = connection.NotNull().Find<RssFeedModel>(id);
+                    return items == null ? null : _mapperToDomain.Transform(items);
+                },
+                token);
         }
 
         public Task RemoveAsync(Guid id, CancellationToken token = default)
         {
-            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var rssItem = connection.Find<RssFeedModel>(id);
+            return _sqliteDatabase.DoWithConnectionAsync(connection =>
+                {
+                    var rssItem = connection.NotNull().Find<RssFeedModel>(id);
 
-                if (rssItem == null) return;
+                    if (rssItem == null) return;
 
-                _log.TrackRssDelete(rssItem.Rss);
+                    _log.TrackRssDelete(rssItem.Rss);
 
-                connection.Delete(rssItem);
-            }, token);
+                    connection.NotNull().Delete(rssItem);
+                },
+                token);
         }
 
         public Task<IEnumerable<RssFeedDomainModel>> GetListAsync(CancellationToken token = default)
         {
-            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var items = connection.Table<RssFeedModel>()
-                    ?.OrderBy(w => w.Position)
-                    .ThenByDescending(w => w.CreationTime)
-                    .ToList()
-                    .Select(_mapperToDomain.Transform)
-                    .ToList();
+            return _sqliteDatabase.DoWithConnectionAsync(connection =>
+                {
+                    var items = connection.NotNull()
+                        .Table<RssFeedModel>()
+                        ?.OrderBy(w => w.Position)
+                        ?.ThenByDescending(w => w.CreationTime)
+                        ?.ToList()
+                        .Select(_mapperToDomain.Transform)
+                        .ToList();
 
-                return items?.AsEnumerable() ?? new List<RssFeedDomainModel>();
-            }, token);
+                    return items?.AsEnumerable() ?? new List<RssFeedDomainModel>();
+                },
+                token);
         }
     }
 }

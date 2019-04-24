@@ -2,6 +2,8 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
+using Core.Infrastructure.Locale;
+using Core.Resources;
 using Core.Services.RssFeeds;
 using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
@@ -28,6 +30,15 @@ namespace Droid.Screens.RssFeeds.EditableList
 
         public RssFeedServiceModel Item { get; private set; }
 
-        public void BindData(RssFeedServiceModel item) { Item = item; }
+        public void BindData(RssFeedServiceModel item)
+        {
+            Item = item;
+            
+            SubtitleTextView.Text = item.UpdateTime == null
+                ? Strings.RssFeedItemNotUpdated
+                : $"{Strings.RssFeedItemUpdated} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
+            // TODO сделать
+//            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
+        }
     }
 }

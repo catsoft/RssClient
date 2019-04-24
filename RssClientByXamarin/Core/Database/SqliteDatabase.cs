@@ -4,35 +4,36 @@ using System.Threading;
 using System.Threading.Tasks;
 using Core.Analytics;
 using Core.Database.Rss;
+using JetBrains.Annotations;
 using SQLite;
 
 namespace Core.Database
 {
     public class SqliteDatabase
     {
-        private readonly ILog _logger;
-        private readonly object _locker = new object();
+        [JetBrains.Annotations.NotNull] private readonly ILog _logger;
+        [JetBrains.Annotations.NotNull] private readonly object _locker = new object();
         [JetBrains.Annotations.NotNull] private readonly SQLiteConnection _connection;
 
-        public SqliteDatabase(ILog logger)
+        public SqliteDatabase([JetBrains.Annotations.NotNull] ILog logger)
         {
             _logger = logger;
             var sqliteFilename = "RssClientDatabase.db3";
             var libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var dbPath = Path.Combine (libraryPath, sqliteFilename);
+            var dbPath = Path.Combine(libraryPath, sqliteFilename);
             
             _connection = new SQLiteConnection(dbPath);
 
-            TryCreateTable<SettingsModel>(_connection);
-            TryCreateTable<RssFeedModel>(_connection);
-            TryCreateTable<RssMessageModel>(_connection );
+            TryCreateTable<SettingsModel>();
+            TryCreateTable<RssFeedModel>();
+            TryCreateTable<RssMessageModel>();
         }
 
-        private void TryCreateTable<T>(SQLiteConnection connection)
+        private void TryCreateTable<T>()
         {
             try
             {
-                connection.CreateTable<T>();
+                _connection.CreateTable<T>();
             }
             catch (Exception e)
             {
@@ -40,13 +41,13 @@ namespace Core.Database
             }
         }
 
-        public void DoWithConnection(Action<SQLiteConnection> action)
+        public void DoWithConnection([JetBrains.Annotations.NotNull] Action<SQLiteConnection> action)
         {
             try
             {
                 lock (_locker)
                 {
-                    action?.Invoke(_connection);
+                    action.Invoke(_connection);
                 }
             }
             catch (Exception e)
@@ -55,7 +56,7 @@ namespace Core.Database
             }
         }
         
-        public T DoWithConnection<T>(Func<SQLiteConnection, T> action)
+        public T DoWithConnection<T>([JetBrains.Annotations.NotNull] Func<SQLiteConnection, T> action)
         {
             try
             {
@@ -71,12 +72,15 @@ namespace Core.Database
             }
         }
         
-        public Task DoWithConnectionAsync(Action<SQLiteConnection> action, CancellationToken token = default)
+        [JetBrains.Annotations.NotNull]
+        public Task DoWithConnectionAsync([JetBrains.Annotations.NotNull] Action<SQLiteConnection> action, CancellationToken token = default)
         {
-            return Task.Run(() => { DoWithConnection(action); }, token);
+            return Task.Run(() => DoWithConnection(action), token);
         }
         
-        public Task<T> DoWithConnectionAsync<T>(Func<SQLiteConnection, T> action, CancellationToken token = default)
+        [JetBrains.Annotations.NotNull]
+        [ItemCanBeNull]
+        public Task<T> DoWithConnectionAsync<T>([JetBrains.Annotations.NotNull] Func<SQLiteConnection, T> action, CancellationToken token = default)
         {
             return Task.Run(() => DoWithConnection(action), token);
         }

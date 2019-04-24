@@ -46,8 +46,6 @@
     <string name="edit_title">Редактировать RSS</string>
 
     <string name="rssList_title">RSS Клиент</string>
-    <string name="rssList_notUpdated">Не обновлено</string>
-    <string name="rssList_updated">Обновлено: </string>
 
     <string name="rssEditList_title">Редактирование списка RSS</string>
 

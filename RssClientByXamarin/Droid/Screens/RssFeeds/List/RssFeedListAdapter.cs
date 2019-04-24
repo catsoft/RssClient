@@ -6,7 +6,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Core.Configuration.Settings;
 using Core.Extensions;
-using Core.Infrastructure.Locale;
 using Core.Services.RssFeeds;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Base.Adapters;
@@ -39,20 +38,9 @@ namespace Droid.Screens.RssFeeds.List
         
         public event EventHandler<RssFeedServiceModel> ItemDismiss;
 
-        protected override void BindData(RssFeedListItemViewHolder holder, RssFeedServiceModel item)
-        {
-            base.BindData(holder, item);
-
-            holder.SubtitleTextView.Text = item.UpdateTime == null
-                ? Activity.GetText(Resource.String.rssList_notUpdated)
-                : $"{Activity.GetText(Resource.String.rssList_updated)} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
-            // TODO сделать
-//            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
-        }
-
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_rss, parent, false);
+            var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_rss, parent, false).NotNull();
             var holder = new RssFeedListItemViewHolder(view, _appConfiguration.LoadAndShowImages);
             holder.ClickView.Click += (sender, args) => Click?.Invoke(this, holder.Item);
             holder.ClickView.LongClick += (sender, args) => LongClick?.Invoke(sender, holder.Item);

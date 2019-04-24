@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Database.Rss;
+using Core.Extensions;
 using JetBrains.Annotations;
 
 namespace Core.Configuration.AllMessageFilter
@@ -23,9 +24,9 @@ namespace Core.Configuration.AllMessageFilter
             switch (Sort)
             {
                 case Sort.Oldest:
-                    return messages.OrderBy(w => w.CreationDate);
+                    return messages.OrderBy(w => w.NotNull().CreationDate);
                 case Sort.Newest:
-                    return messages.OrderByDescending(w => w.CreationDate);
+                    return messages.OrderByDescending(w => w.NotNull().CreationDate);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -42,11 +43,11 @@ namespace Core.Configuration.AllMessageFilter
                 case MessageFilterType.None:
                     return filterMessages;
                 case MessageFilterType.Favorite:
-                    return filterMessages.Where(w => w.IsFavorite);
+                    return filterMessages.Where(w => w.NotNull().IsFavorite);
                 case MessageFilterType.Read:
-                    return filterMessages.Where(w => w.IsRead);
+                    return filterMessages.Where(w => w.NotNull().IsRead);
                 case MessageFilterType.Unread:
-                    return filterMessages.Where(w => !w.IsRead);
+                    return filterMessages.Where(w => !w.NotNull().IsRead);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -61,13 +62,13 @@ namespace Core.Configuration.AllMessageFilter
             if (From.HasValue)
             {
                 var fromDate = From.Value;
-                filterMessages = filterMessages.Where(w => w.CreationDate >= fromDate);
+                filterMessages = filterMessages.Where(w => w.NotNull().CreationDate >= fromDate);
             }
 
             if (To.HasValue)
             {
                 var toDate = To.Value;
-                filterMessages = filterMessages.Where(w => w.CreationDate <= toDate);
+                filterMessages = filterMessages.Where(w => w.NotNull().CreationDate <= toDate);
             }
 
             return filterMessages;

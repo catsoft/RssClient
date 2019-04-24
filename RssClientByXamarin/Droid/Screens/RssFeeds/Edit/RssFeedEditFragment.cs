@@ -7,15 +7,17 @@ using Core.ViewModels.RssFeeds.Edit;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.RssFeeds.Edit
 {
     public class RssFeedEditFragment : BaseFragment<RssFeedEditViewModel>
     {
-        private Guid  _itemId;
+        private Guid _itemId;
         private RssFeedEditFragmentViewHolder _viewHolder;
 
+        // ReSharper disable once UnusedMember.Global
         public RssFeedEditFragment() { }
 
         public RssFeedEditFragment(Guid itemId) { _itemId = itemId; }
@@ -23,14 +25,14 @@ namespace Droid.Screens.RssFeeds.Edit
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
         public override bool IsRoot => false;
 
-        public override void OnSaveInstanceState(Bundle outState)
+        public override void OnSaveInstanceState([NotNull] Bundle outState)
         {
             base.OnSaveInstanceState(outState);
 
             outState.PutString(nameof(_itemId), _itemId.ToString());
         }
 
-        protected override void RestoreState(Bundle saved) { _itemId = Guid.Parse(saved.GetString(nameof(_itemId))); }
+        protected override void RestoreState([NotNull] Bundle saved) { _itemId = Guid.Parse(saved.GetString(nameof(_itemId)).NotNull()); }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -46,6 +48,7 @@ namespace Droid.Screens.RssFeeds.Edit
                     .AddTo(compositeDisposable);
 
                 ViewModel.Url.WhenAnyValue(s => s)
+                    .NotNull()
                     .Subscribe(s => _viewHolder.TextInputLayout.EditText.SetTextAndSetCursorToLast(s))
                     .AddTo(compositeDisposable);
 

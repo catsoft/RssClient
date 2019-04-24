@@ -7,6 +7,7 @@ using Core.Configuration.AllMessageFilter;
 using Core.Configuration.Settings;
 using Core.Database;
 using Core.Database.Rss;
+using Core.Extensions;
 using Core.Infrastructure.Mappers;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
@@ -36,22 +37,24 @@ namespace Core.Repositories.RssMessage
         public Task AddAsync(RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var messageModel = _mapperToModel.Transform(messageDomainModel);
-                messageModel.Id = Guid.NewGuid();
-                messageModel.RssId = idRss;
+                {
+                    var messageModel = _mapperToModel.Transform(messageDomainModel);
+                    messageModel.Id = Guid.NewGuid();
+                    messageModel.RssId = idRss;
 
-                connection.Insert(messageModel);
-            }, token);
+                    connection.NotNull().Insert(messageModel);
+                },
+                token);
         }
 
         public Task<RssMessageDomainModel> GetAsync(Guid id, CancellationToken token)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var item = connection.Find<RssMessageModel>(id);
-                return item == null ? null : _mapperToDomain.Transform(item);
-            }, token);
+                {
+                    var item = connection.NotNull().Find<RssMessageModel>(id);
+                    return item == null ? null : _mapperToDomain.Transform(item);
+                },
+                token);
         }
 
         public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
@@ -59,10 +62,11 @@ namespace Core.Repositories.RssMessage
             if (message == null) return Task.CompletedTask;
 
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var newModel = _mapperToModel.Transform(message);
-                connection.Update(newModel);
-            }, token);
+                {
+                    var newModel = _mapperToModel.Transform(message);
+                    connection.NotNull().Update(newModel);
+                },
+                token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss(Guid rssId, CancellationToken token)
@@ -82,7 +86,8 @@ namespace Core.Repositories.RssMessage
                     .ToList()
                     .Select(_mapperToDomain.Transform)
                     .ToList()
-                    .AsEnumerable(), token);
+                    .AsEnumerable(),
+                token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetAllFavoriteMessages(CancellationToken token)
@@ -100,24 +105,24 @@ namespace Core.Repositories.RssMessage
         public Task DeleteRssFeedMessages(Guid id, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var messages = connection.Table<RssMessageModel>().Where(w => w.RssId == id);
-                foreach (var rssMessageModel in messages)
                 {
-                    connection.Delete(rssMessageModel);
-                }
-                
-            }, token);
+                    var messages = connection.NotNull().Table<RssMessageModel>().NotNull().Where(w => w.RssId == id).NotNull();
+                    foreach (var rssMessageModel in messages) connection.NotNull().Delete(rssMessageModel);
+                },
+                token);
         }
 
         public Task<RssMessageDomainModel> GetMessageBySyndicationIdAsync(string syndicationId, Guid rssId, CancellationToken token)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
-            {
-                var item = connection.Table<RssMessageModel>().FirstOrDefault(w => w.RssId == rssId && w.SyndicationId == syndicationId);
+                {
+                    var item = connection.NotNull()
+                        .Table<RssMessageModel>()
+                        ?.FirstOrDefault(w => w.RssId == rssId && w.SyndicationId == syndicationId);
 
-                return item == null ? null : _mapperToDomain.Transform(item);
-            }, token);
+                    return item == null ? null : _mapperToDomain.Transform(item);
+                },
+                token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetAllFilterMessages(AllMessageFilterConfiguration filterConfiguration,
@@ -142,19 +147,19 @@ namespace Core.Repositories.RssMessage
         {
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             var hideReadMessages = appConfiguration.HideReadMessages;
-            var messages = connection.Table<RssMessageModel>();
+            var messages = connection.NotNull().Table<RssMessageModel>();
 
             if (hideReadMessages)
                 messages = messages?.Where(w => !w.IsRead);
 
             var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
 
-            var enumerableMessages = messages?.ToList() ?? new List<RssMessageModel>().AsEnumerable();
+            var enumerableMessages = messages?.ToList() ?? new List<RssMessageModel>().AsEnumerable().NotNull();
             enumerableMessages = filter.ApplySort(enumerableMessages);
 
             return enumerableMessages;
         }
-        
+
 //        public long GetCountNewMessagesForModel(string rssId, CancellationToken token)
 //        {
 //            var rssModel = _localDatabase.mainThreadRealm.Find<RssModel>(rssId);

@@ -27,6 +27,7 @@ namespace Core.Api.Feedly
 
                     return rssResponse;
                 }
+                
                 return null;
             }
             catch (Exception)
