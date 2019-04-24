@@ -29,13 +29,12 @@ namespace Core.Repositories.Configurations
         public T GetSettings<T>()
             where T : class, new()
         {
-            var key = typeof(T).FullName;
-
-            using (var connection = _sqliteDatabase.OpenConnection)
+            return _sqliteDatabase.DoWithConnection((connection) =>
             {
+                var key = typeof(T).FullName;
                 var item = connection.Table<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
                 return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue) ?? new T();
-            }
+            });
         }
 
         public void DeleteSetting<T>()

@@ -18,7 +18,7 @@ namespace Core.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssFeedFeedRepository>().NotNull().As<IRssFeedRepository>().NotNull().SingleInstance();
+            builder.RegisterType<RssFeedRepository>().NotNull().As<IRssFeedRepository>().NotNull().SingleInstance();
             builder.RegisterType<RssMessagesRepository>().NotNull().As<IRssMessagesRepository>().NotNull().SingleInstance();
             builder.RegisterType<ConfigurationRepository>().NotNull().As<IConfigurationRepository>().NotNull().SingleInstance();
             builder.RegisterType<FeedlyRepository>().NotNull().As<IFeedlyRepository>().NotNull().SingleInstance();

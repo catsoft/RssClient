@@ -16,6 +16,6 @@ namespace Core.Repositories.RssFeeds
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }
-        public string Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

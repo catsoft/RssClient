@@ -11,20 +11,20 @@ using JetBrains.Annotations;
 
 namespace Core.Repositories.RssFeeds
 {
-    public class RssFeedFeedRepository : IRssFeedRepository
+    public class RssFeedRepository : IRssFeedRepository
     {
         [NotNull] private readonly SqliteDatabase _sqliteDatabase;
         [NotNull] private readonly RssLog _log;
         [NotNull] private readonly IMapper<RssFeedModel, RssFeedDomainModel> _mapper;
 
-        public RssFeedFeedRepository([NotNull] SqliteDatabase sqliteDatabase, [NotNull] RssLog log, [NotNull] IMapper<RssFeedModel, RssFeedDomainModel> mapper)
+        public RssFeedRepository([NotNull] SqliteDatabase sqliteDatabase, [NotNull] RssLog log, [NotNull] IMapper<RssFeedModel, RssFeedDomainModel> mapper)
         {
             _sqliteDatabase = sqliteDatabase;
             _log = log;
             _mapper = mapper;
         }
 
-        public Task<string> AddAsync(string url, CancellationToken token = default)
+        public Task<Guid> AddAsync(string url, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync(connection =>
             {
@@ -38,7 +38,7 @@ namespace Core.Repositories.RssFeeds
                 _log.TrackRssInsert(url);
 
                 connection.Insert(newItem);
-
+                
                 return newItem.Id;
             }, token);
         }
@@ -64,7 +64,7 @@ namespace Core.Repositories.RssFeeds
 
         }
 
-        public Task<RssFeedDomainModel> GetAsync(string id, CancellationToken token = default)
+        public Task<RssFeedDomainModel> GetAsync(Guid id, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
@@ -73,7 +73,7 @@ namespace Core.Repositories.RssFeeds
             }, token);
         }
 
-        public Task RemoveAsync(string id, CancellationToken token = default)
+        public Task RemoveAsync(Guid id, CancellationToken token = default)
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
@@ -83,7 +83,6 @@ namespace Core.Repositories.RssFeeds
 
                 _log.TrackRssDelete(rssItem.Rss);
 
-                //todo удалить сообщения исчо
                 connection.Delete(id);
             }, token);
         }

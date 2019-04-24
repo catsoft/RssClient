@@ -6,7 +6,7 @@ namespace Core.Database.Rss
     [Table("RssMessage")]
     public class RssMessageModel : IHaveId
     {
-        [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
+        [PrimaryKey] public Guid Id { get; set; }
         
         public string SyndicationId { get; set; }
 
@@ -24,6 +24,6 @@ namespace Core.Database.Rss
 
         public bool IsFavorite { get; set; }
         
-        public string RssId { get; set; }
+        public Guid RssId { get; set; }
     }
 }

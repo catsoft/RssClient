@@ -1,9 +1,9 @@
-﻿using JetBrains.Annotations;
+﻿using System;
 
 namespace Core.Database
 {
     public interface IHaveId
     {
-        [CanBeNull] string Id { get; set; }
+        Guid Id { get; set; }
     }
 }

@@ -7,11 +7,6 @@ namespace Core.Analytics
 {
     public class Log : ILog
     {
-        public Log()
-        {
-            
-        }
-        
         public void SetApiKey(string apiKey)
         {
             Microsoft.AppCenter.AppCenter.Start(apiKey, typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Crashes));

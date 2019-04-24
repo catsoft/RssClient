@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SQLite;
 
 namespace Core.Database.Rss
@@ -7,7 +6,7 @@ namespace Core.Database.Rss
     [Table("RssFeed")]
     public class RssFeedModel : IHaveId
     {
-        [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
+        [PrimaryKey] public Guid Id { get; set; }
         
         public string Name { get; set; }
 

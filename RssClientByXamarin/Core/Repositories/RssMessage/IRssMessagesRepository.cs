@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.AllMessageFilter;
@@ -9,18 +10,18 @@ namespace Core.Repositories.RssMessage
     public interface IRssMessagesRepository
     {
         [NotNull]
-        Task AddMessageAsync([CanBeNull] RssMessageDomainModel messageDomainModel, [CanBeNull] string idRss, CancellationToken token = default);
+        Task AddMessageAsync([CanBeNull] RssMessageDomainModel messageDomainModel, Guid idRss, CancellationToken token = default);
 
         [NotNull]
         [ItemCanBeNull]
-        Task<RssMessageDomainModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
+        Task<RssMessageDomainModel> GetAsync(Guid id, CancellationToken token = default);
 
         [NotNull]
         Task UpdateAsync([CanBeNull] RssMessageDomainModel message, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]
-        Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss([CanBeNull] string rssId, CancellationToken token = default);
+        Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss(Guid rssId, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]
@@ -34,5 +35,8 @@ namespace Core.Repositories.RssMessage
         [NotNull]
         [ItemNotNull]
         Task<IEnumerable<RssMessageDomainModel>> GetAllFavoriteMessages(CancellationToken token = default);
+        
+        [NotNull]
+        Task DeleteRssFeedMessages(Guid id, CancellationToken token = default);
     }
 }

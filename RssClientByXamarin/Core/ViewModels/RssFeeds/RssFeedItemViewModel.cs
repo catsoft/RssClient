@@ -68,7 +68,7 @@ namespace Core.ViewModels.RssFeeds
         private async Task DoItemRemove(RssFeedServiceModel model)
         {
             _sourceList?.Remove(model);
-            await _rssFeedService.RemoveAsync(model?.Id);
+            await _rssFeedService.RemoveAsync(model?.Id ?? Guid.Empty);
         }
         
         private async Task DoReadAllMessages(RssFeedServiceModel model, CancellationToken token)

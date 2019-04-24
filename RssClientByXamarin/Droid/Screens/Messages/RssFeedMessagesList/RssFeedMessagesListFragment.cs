@@ -20,12 +20,12 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
     {
         private RssFeedMessagesFragmentViewHolder _viewHolder;
         
-        private string _itemId;
+        private Guid _itemId;
 
         // ReSharper disable once UnusedMember.Global
         public RssFeedMessagesListFragment() { }
 
-        public RssFeedMessagesListFragment(string itemId) { _itemId = itemId; }
+        public RssFeedMessagesListFragment(Guid itemId) { _itemId = itemId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;
         public override bool IsRoot => false;
@@ -34,10 +34,13 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         {
             base.OnSaveInstanceState(outState);
 
-            outState.PutString(nameof(_itemId), _itemId);
+            outState.PutString(nameof(_itemId), _itemId.ToString());
         }
 
-        protected override void RestoreState(Bundle saved) { _itemId = saved.GetString(nameof(_itemId)); }
+        protected override void RestoreState(Bundle saved)
+        {
+            _itemId = Guid.Parse(saved.GetString(nameof(_itemId)));
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

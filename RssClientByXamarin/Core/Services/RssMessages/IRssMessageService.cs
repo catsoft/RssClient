@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,18 +10,18 @@ namespace Core.Services.RssMessages
     public interface IRssMessageService
     {
         [NotNull]
-        Task AddMessageAsync([CanBeNull] RssMessageServiceModel message, [CanBeNull] string idRss, CancellationToken token = default);
+        Task AddMessageAsync([CanBeNull] RssMessageServiceModel message, Guid idRss, CancellationToken token = default);
 
         [NotNull]
         [ItemCanBeNull]
-        Task<RssMessageServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
+        Task<RssMessageServiceModel> GetAsync(Guid id, CancellationToken token = default);
 
         [NotNull]
         Task UpdateAsync([CanBeNull] RssMessageServiceModel message, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]
-        Task<IEnumerable<RssMessageServiceModel>> GetMessagesForRss([CanBeNull] string rssId, CancellationToken token = default);
+        Task<IEnumerable<RssMessageServiceModel>> GetMessagesForRss(Guid rssId, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]

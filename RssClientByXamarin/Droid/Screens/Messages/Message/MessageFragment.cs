@@ -1,3 +1,4 @@
+using System;
 using Android.OS;
 using Android.Views;
 using Core.Repositories.RssMessage;
@@ -10,12 +11,12 @@ namespace Droid.Screens.Messages.Message
 {
     public class MessageFragment : BaseFragment<MessageViewModel>
     {
-        private string _rssMessageId;
+        private Guid _rssMessageId;
         [Inject] private IRssMessagesRepository _rssMessagesRepository;
 
         public MessageFragment() { }
 
-        public MessageFragment(string rssMessageId) { _rssMessageId = rssMessageId; }
+        public MessageFragment(Guid rssMessageId) { _rssMessageId = rssMessageId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_message;
         public override bool IsRoot => false;
@@ -24,10 +25,10 @@ namespace Droid.Screens.Messages.Message
         {
             base.OnSaveInstanceState(outState);
 
-            outState.PutString(nameof(_rssMessageId), _rssMessageId);
+            outState.PutString(nameof(_rssMessageId), _rssMessageId.ToString());
         }
 
-        protected override void RestoreState(Bundle saved) { _rssMessageId = saved.GetString(nameof(_rssMessageId)); }
+        protected override void RestoreState(Bundle saved) { _rssMessageId = Guid.Parse(saved.GetString(nameof(_rssMessageId))); }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

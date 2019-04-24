@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -25,12 +26,12 @@ namespace Core.Services.RssMessages
             _toServiceMapper = toServiceMapper;
         }
 
-        public Task AddMessageAsync(RssMessageServiceModel message, string idRss, CancellationToken token = default)
+        public Task AddMessageAsync(RssMessageServiceModel message, Guid idRss, CancellationToken token = default)
         {
             return _rssMessagesRepository.AddMessageAsync(_toDomainMapper.Transform(message), idRss, token);
         }
 
-        public async Task<RssMessageServiceModel> GetAsync(string id, CancellationToken token = default)
+        public async Task<RssMessageServiceModel> GetAsync(Guid id, CancellationToken token = default)
         {
             return _toServiceMapper.Transform(await _rssMessagesRepository.GetAsync(id, token));
         }
@@ -40,7 +41,7 @@ namespace Core.Services.RssMessages
             return _rssMessagesRepository.UpdateAsync(_toDomainMapper.Transform(message), token);
         }
 
-        public async Task<IEnumerable<RssMessageServiceModel>> GetMessagesForRss(string rssId, CancellationToken token = default)
+        public async Task<IEnumerable<RssMessageServiceModel>> GetMessagesForRss(Guid rssId, CancellationToken token = default)
         {
             return (await _rssMessagesRepository.GetMessagesForRss(rssId, token)).Select(w => _toServiceMapper.Transform(w));
         }

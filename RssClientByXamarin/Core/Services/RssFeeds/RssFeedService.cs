@@ -38,12 +38,17 @@ namespace Core.Services.RssFeeds
 
         public Task AddAsync(string url, CancellationToken cancellationToken = default) { return _rssFeedRepository.AddAsync(url, cancellationToken); }
 
-        public async Task<RssFeedServiceModel> GetAsync(string id, CancellationToken cancellationToken = default)
+        public async Task<RssFeedServiceModel> GetAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return _toServiceModelMapper.Transform(await _rssFeedRepository.GetAsync(id, cancellationToken));
         }
 
-        public Task RemoveAsync(string id, CancellationToken token = default) { return _rssFeedRepository.RemoveAsync(id, token); }
+        public async Task RemoveAsync(Guid id, CancellationToken token = default)
+        {
+            await _rssMessagesRepository.DeleteRssFeedMessages(id, token);
+            
+            await _rssFeedRepository.RemoveAsync(id, token);
+        }
 
         public async Task<IEnumerable<RssFeedServiceModel>> GetListAsync(CancellationToken token = default)
         {
@@ -55,13 +60,11 @@ namespace Core.Services.RssFeeds
             return _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
         }
 
-        public async Task LoadAndUpdateAsync(string id, CancellationToken token = default)
+        public async Task LoadAndUpdateAsync(Guid id, CancellationToken token = default)
         {
             var currentItem = await _rssFeedRepository.GetAsync(id, token);
-            var syndicationFeed1 = await _rssFeedApiClient.LoadFeedsAsync(currentItem?.Rss, token);
+            var syndicationFeed = await _rssFeedApiClient.LoadFeedsAsync(currentItem?.Rss, token);
 
-            var syndicationFeed = new SyndicationFeed();
-            
             if (syndicationFeed == null) return;
 
             currentItem = await _rssFeedRepository.GetAsync(id, token);
@@ -100,7 +103,7 @@ namespace Core.Services.RssFeeds
             }
         }
 
-        public async Task UpdatePositionAsync(string localItemId, int position, CancellationToken token)
+        public async Task UpdatePositionAsync(Guid localItemId, int position, CancellationToken token)
         {
             var item = await _rssFeedRepository.GetAsync(localItemId, token);
             if (item != null)
@@ -110,7 +113,7 @@ namespace Core.Services.RssFeeds
             }
         }
 
-        public Task ReadAllMessagesAsync(string itemId, CancellationToken token = default) { throw new NotImplementedException(); }
+        public Task ReadAllMessagesAsync(Guid itemId, CancellationToken token = default) { throw new NotImplementedException(); }
         
         public async Task ShareAsync(RssFeedServiceModel model, CancellationToken token = default)
         {

@@ -5,7 +5,7 @@ namespace Core.Services.RssMessages
 {
     public class RssMessageServiceModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string SyndicationId { get; set; }
 

@@ -14,12 +14,12 @@ namespace Droid.Screens.RssFeeds.Edit
 {
     public class RssFeedEditFragment : BaseFragment<RssFeedEditViewModel>
     {
-        private string _itemId;
+        private Guid  _itemId;
         private RssFeedEditFragmentViewHolder _viewHolder;
 
         public RssFeedEditFragment() { }
 
-        public RssFeedEditFragment(string itemId) { _itemId = itemId; }
+        public RssFeedEditFragment(Guid itemId) { _itemId = itemId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
         public override bool IsRoot => false;
@@ -28,10 +28,10 @@ namespace Droid.Screens.RssFeeds.Edit
         {
             base.OnSaveInstanceState(outState);
 
-            outState.PutString(nameof(_itemId), _itemId);
+            outState.PutString(nameof(_itemId), _itemId.ToString());
         }
 
-        protected override void RestoreState(Bundle saved) { _itemId = saved.GetString(nameof(_itemId)); }
+        protected override void RestoreState(Bundle saved) { _itemId = Guid.Parse(saved.GetString(nameof(_itemId))); }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

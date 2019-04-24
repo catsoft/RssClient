@@ -1,8 +1,6 @@
 using Core.Database.Rss;
 using Core.Infrastructure.Mappers;
-using Core.Repositories.RssFeeds;
 using Core.Services.RssMessages;
-using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage
 {
@@ -11,13 +9,6 @@ namespace Core.Repositories.RssMessage
         IMapper<RssMessageServiceModel, RssMessageDomainModel>,
         IMapper<RssMessageDomainModel, RssMessageServiceModel>
     {
-        [NotNull] private readonly IMapper<RssFeedModel, RssFeedDomainModel> _rssMapper;
-
-        public RssMessageMapper([NotNull] IMapper<RssFeedModel, RssFeedDomainModel> rssMapper)
-        {
-            _rssMapper = rssMapper;
-        }
-
         public RssMessageModel Transform(RssMessageDomainModel model)
         {
             return model == null

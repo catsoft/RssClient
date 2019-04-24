@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
@@ -53,7 +54,7 @@ namespace Core.ViewModels.RssFeeds.EditableList
         private async Task DoDeleteItem([CanBeNull] RssFeedServiceModel model, CancellationToken token)
         {
             ListViewModel.SourceList.Remove(model);
-            await _rssFeedService.RemoveAsync(model?.Id, token);
+            await _rssFeedService.RemoveAsync(model?.Id ?? Guid.Empty, token);
         }
 
         private async Task DoMoveItem([NotNull] MoveEventArgs model, CancellationToken token)
@@ -64,7 +65,7 @@ namespace Core.ViewModels.RssFeeds.EditableList
             for (var i = 0; i < items.Count; i++)
             {
                 var localItem = items[i];
-                await _rssFeedService.UpdatePositionAsync(localItem?.Id, i, token);
+                await _rssFeedService.UpdatePositionAsync(localItem?.Id ?? Guid.Empty, i, token);
             }
         }
     }

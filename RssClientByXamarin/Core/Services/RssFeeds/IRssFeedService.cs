@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,11 +12,11 @@ namespace Core.Services.RssFeeds
         Task AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
 
         [NotNull]
-        Task RemoveAsync([CanBeNull] string id, CancellationToken token = default);
+        Task RemoveAsync(Guid id, CancellationToken token = default);
 
         [NotNull]
         [ItemCanBeNull]
-        Task<RssFeedServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
+        Task<RssFeedServiceModel> GetAsync(Guid id, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]
@@ -25,13 +26,13 @@ namespace Core.Services.RssFeeds
         Task UpdateAsync([CanBeNull] RssFeedServiceModel rssFeed, CancellationToken token = default);
 
         [NotNull]
-        Task LoadAndUpdateAsync([CanBeNull] string id, CancellationToken token = default);
+        Task LoadAndUpdateAsync(Guid id, CancellationToken token = default);
 
         [NotNull]
-        Task UpdatePositionAsync([CanBeNull] string localItemId, int position, CancellationToken token = default);
+        Task UpdatePositionAsync(Guid localItemId, int position, CancellationToken token = default);
 
         [NotNull]
-        Task ReadAllMessagesAsync([CanBeNull] string itemId, CancellationToken token = default);
+        Task ReadAllMessagesAsync(Guid itemId, CancellationToken token = default);
 
         [NotNull]
         Task ShareAsync([CanBeNull] RssFeedServiceModel model, CancellationToken token = default);

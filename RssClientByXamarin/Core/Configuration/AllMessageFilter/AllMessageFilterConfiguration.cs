@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Database.Rss;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ namespace Core.Configuration.AllMessageFilter
 
         [NotNull]
         [ItemCanBeNull]
-        public IQueryable<RssMessageModel> ApplySort([NotNull] IQueryable<RssMessageModel> messages)
+        public IEnumerable<RssMessageModel> ApplySort([NotNull] IEnumerable<RssMessageModel> messages)
         {
             switch (Sort)
             {
@@ -32,7 +33,7 @@ namespace Core.Configuration.AllMessageFilter
 
         [NotNull]
         [ItemCanBeNull]
-        public IQueryable<RssMessageModel> ApplyFilter([NotNull] IQueryable<RssMessageModel> messages)
+        public IEnumerable<RssMessageModel> ApplyFilter([NotNull] IEnumerable<RssMessageModel> messages)
         {
             var filterMessages = messages;
 
@@ -53,7 +54,7 @@ namespace Core.Configuration.AllMessageFilter
 
         [NotNull]
         [ItemCanBeNull]
-        public IQueryable<RssMessageModel> ApplyDateFilter([NotNull] IQueryable<RssMessageModel> messages)
+        public IEnumerable<RssMessageModel> ApplyDateFilter([NotNull] IEnumerable<RssMessageModel> messages)
         {
             var filterMessages = messages;
 
