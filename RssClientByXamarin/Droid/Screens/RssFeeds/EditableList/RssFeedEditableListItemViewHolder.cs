@@ -37,8 +37,7 @@ namespace Droid.Screens.RssFeeds.EditableList
             SubtitleTextView.Text = item.UpdateTime == null
                 ? Strings.RssFeedItemNotUpdated
                 : $"{Strings.RssFeedItemUpdated} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
-            // TODO сделать
-//            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
+            TitleTextView.Text = item.Name;
         }
     }
 }
