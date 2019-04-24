@@ -15,7 +15,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
-            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_allMessagesFilter_emptyText);
+            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_rssList_emptyText);
             
             RefreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
         }
