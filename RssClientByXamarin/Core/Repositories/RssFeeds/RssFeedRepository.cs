@@ -15,13 +15,18 @@ namespace Core.Repositories.RssFeeds
     {
         [NotNull] private readonly SqliteDatabase _sqliteDatabase;
         [NotNull] private readonly RssLog _log;
-        [NotNull] private readonly IMapper<RssFeedModel, RssFeedDomainModel> _mapper;
+        [NotNull] private readonly IMapper<RssFeedModel, RssFeedDomainModel> _mapperToDomain;
+        [NotNull] private readonly IMapper<RssFeedDomainModel, RssFeedModel> _mapperToModel;
 
-        public RssFeedRepository([NotNull] SqliteDatabase sqliteDatabase, [NotNull] RssLog log, [NotNull] IMapper<RssFeedModel, RssFeedDomainModel> mapper)
+        public RssFeedRepository([NotNull] SqliteDatabase sqliteDatabase, 
+            [NotNull] RssLog log,
+            [NotNull] IMapper<RssFeedModel, RssFeedDomainModel> mapperToDomain,
+            [NotNull] IMapper<RssFeedDomainModel, RssFeedModel> mapperToModel)
         {
             _sqliteDatabase = sqliteDatabase;
             _log = log;
-            _mapper = mapper;
+            _mapperToDomain = mapperToDomain;
+            _mapperToModel = mapperToModel;
         }
 
         public Task<Guid> AddAsync(string url, CancellationToken token = default)
@@ -49,18 +54,9 @@ namespace Core.Repositories.RssFeeds
 
             return _sqliteDatabase.DoWithConnectionAsync((connection =>
             {
-                var rss = connection.Find<RssFeedModel>(rssFeedDomainModel.Id);
-                if (rss == null) return;
+                var item = _mapperToModel.Transform(rssFeedDomainModel);
 
-                rss.Rss = rssFeedDomainModel.Rss;
-                rss.Name = rssFeedDomainModel.Name;
-                rss.Position = rssFeedDomainModel.Position;
-                rss.UpdateTime = rssFeedDomainModel.UpdateTime;
-                rss.CreationTime = rssFeedDomainModel.CreationTime;
-                rss.UrlPreviewImage = rssFeedDomainModel.UrlPreviewImage;
-                rss.IsFeedly = rssFeedDomainModel.IsFeedly;
-
-                connection.Update(rss);
+                connection.Update(item);
             }), token);
 
         }
@@ -70,7 +66,7 @@ namespace Core.Repositories.RssFeeds
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var items = connection.Find<RssFeedModel>(id);
-                return items == null ? null : _mapper.Transform(items);
+                return items == null ? null : _mapperToDomain.Transform(items);
             }, token);
         }
 
@@ -96,7 +92,7 @@ namespace Core.Repositories.RssFeeds
                     ?.OrderBy(w => w.Position)
                     .ThenByDescending(w => w.CreationTime)
                     .ToList()
-                    .Select(_mapper.Transform)
+                    .Select(_mapperToDomain.Transform)
                     .ToList();
 
                 return items?.AsEnumerable() ?? new List<RssFeedDomainModel>();
