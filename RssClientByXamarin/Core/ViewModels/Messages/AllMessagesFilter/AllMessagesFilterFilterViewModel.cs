@@ -7,7 +7,7 @@ using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configuration;
-using Droid.EmbeddedResourse;
+using Core.Resources;
 using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;

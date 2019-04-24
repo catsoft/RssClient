@@ -58,8 +58,10 @@ namespace Core.Services.Rss
         public async Task LoadAndUpdateAsync(string id, CancellationToken token = default)
         {
             var currentItem = await _rssRepository.GetAsync(id, token);
-            var syndicationFeed = await _rssApiClient.LoadFeedsAsync(currentItem?.Rss, token);
+            var syndicationFeed1 = await _rssApiClient.LoadFeedsAsync(currentItem?.Rss, token);
 
+            var syndicationFeed = new SyndicationFeed();
+            
             if (syndicationFeed == null) return;
 
             currentItem = await _rssRepository.GetAsync(id, token);

@@ -2,7 +2,7 @@ using System.Reactive;
 using System.Threading.Tasks;
 using Core.Extensions;
 using Core.Infrastructure.ViewModels;
-using Droid.EmbeddedResourse;
+using Core.Resources;
 using JetBrains.Annotations;
 using ReactiveUI;
 using Xamarin.Essentials;

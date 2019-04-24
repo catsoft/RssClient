@@ -9,15 +9,15 @@ namespace Core.Repositories.Configuration
     {
         public void SaveSetting<T>(T obj)
         {
-            RealmDatabase.DoInBackground(realm =>
-            {
-                var key = typeof(T).FullName;
-                var value = JsonConvert.SerializeObject(obj);
-                var item = realm.NotNull().All<SettingsModel>()?.FirstOrDefault(w => w.Key == key) ?? new SettingsModel(key);
-                item.JsonValue = value;
-
-                realm.NotNull().Add(item, true);
-            });
+//            RealmDatabase.DoInBackground(realm =>
+//            {
+//                var key = typeof(T).FullName;
+//                var value = JsonConvert.SerializeObject(obj);
+//                var item = realm.NotNull().All<SettingsModel>()?.FirstOrDefault(w => w.Key == key) ?? new SettingsModel(key);
+//                item.JsonValue = value;
+//
+//                realm.NotNull().Add(item, true);
+//            });
         }
 
         public T GetSettings<T>()
@@ -25,21 +25,22 @@ namespace Core.Repositories.Configuration
         {
             var key = typeof(T).FullName;
 
-            using (var realmDatabase = RealmDatabase.OpenDatabase)
-            {
-                var item = realmDatabase.All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
-                return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue) ?? new T();
-            }
+//            using (var realmDatabase = RealmDatabase.OpenDatabase)
+//            {
+//                var item = realmDatabase.All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
+//                return item == null ? new T() : JsonConvert.DeserializeObject<T>(item.JsonValue) ?? new T();
+//            }
+return new T();
         }
 
         public void DeleteSetting<T>()
         {
-            RealmDatabase.DoInBackground(realm =>
-            {
-                var key = typeof(T).FullName;
-                var item = realm.NotNull().All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
-                if (item != null) realm.NotNull().Remove(item);
-            });
+//            RealmDatabase.DoInBackground(realm =>
+//            {
+//                var key = typeof(T).FullName;
+//                var item = realm.NotNull().All<SettingsModel>()?.FirstOrDefault(w => w.Key == key);
+//                if (item != null) realm.NotNull().Remove(item);
+//            });
         }
     }
 }

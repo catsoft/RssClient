@@ -48,7 +48,6 @@ namespace Core.Repositories.RssMessage
                     Text = model.Text,
                     Title = model.Title,
                     IsRead = model.IsRead,
-                    RssParent = _rssMapper.Transform(model.RssParent?.FirstOrDefault()),
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,

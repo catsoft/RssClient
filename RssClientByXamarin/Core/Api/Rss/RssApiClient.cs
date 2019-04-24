@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Threading;
@@ -10,32 +11,38 @@ using JetBrains.Annotations;
 
 namespace Core.Api.Rss
 {
-    public class RssApiClient : HttpClient, IRssApiClient
+    public class RssApiClient : IRssApiClient
     {
-        [NotNull] private readonly ILog _log;
+//        [NotNull] private readonly ILog _log;
+//        [NotNull] private readonly HttpClient _httpClient;
+//
+//        public RssApiClient([NotNull] ILog log)
+//        {
+//            _log = log;
+//            _httpClient = new HttpClient();
+//        }
 
-        public RssApiClient([NotNull] ILog log) { _log = log; }
-
-        public async Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default)
+        public Task<SyndicationFeed> LoadFeedsAsync(string rssUrl, CancellationToken token = default)
         {
-            try
-            {
-                var response = await GetAsync(rssUrl, token).NotNull();
-
-                if (response?.Content != null)
-                {
-                    var stream = response.Content.ReadAsStreamAsync().Result.NotNull();
-                    var xmlReader = XmlReader.Create(stream);
-                    return SyndicationFeed.Load(xmlReader);
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                _log.TrackLog(LogLevel.Warn, "UpdateFeed", "При попытке обновить данные", e);
-                return null;
-            }
+            return Task.FromResult<SyndicationFeed>(null);
+//            try
+//            {
+//                var response = await _httpClient.GetAsync(rssUrl, token).NotNull();
+//
+//                if (response?.Content != null)
+//                {
+//                    var stream = response.Content.ReadAsStreamAsync().Result.NotNull();
+//                    var xmlReader = XmlReader.Create(stream);
+//                    return SyndicationFeed.Load(xmlReader);
+//                }
+//
+//                return null;
+//            }
+//            catch (Exception e)
+//            {
+////                _log.TrackLog(LogLevel.Warn, "UpdateFeed", "При попытке обновить данные", e);
+//                return null;
+//            }
         }
     }
 }

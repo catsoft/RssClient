@@ -10,7 +10,7 @@ namespace Core.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RealmDatabase>().NotNull().AsSelf().NotNull().SingleInstance();
+            builder.RegisterType<SqliteDatabase>().NotNull().AsSelf().NotNull().SingleInstance();
         }
     }
 }

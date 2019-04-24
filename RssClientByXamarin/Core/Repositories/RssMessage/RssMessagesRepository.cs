@@ -11,52 +11,44 @@ using Core.Extensions;
 using Core.Infrastructure.Mappers;
 using Core.Repositories.Configuration;
 using JetBrains.Annotations;
-using Realms;
 
 namespace Core.Repositories.RssMessage
 {
     public class RssMessagesRepository : IRssMessagesRepository
     {
+        [NotNull] private readonly SqliteDatabase _sqliteDatabase;
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IMapper<RssMessageModel, RssMessageDomainModel> _mapperToData;
         [NotNull] private readonly IMapper<RssMessageDomainModel, RssMessageModel> _mapperToModel;
 
         public RssMessagesRepository(
+            [NotNull] SqliteDatabase sqliteDatabase,
             [NotNull] IConfigurationRepository configurationRepository,
             [NotNull] IMapper<RssMessageModel, RssMessageDomainModel> mapperToData,
             [NotNull] IMapper<RssMessageDomainModel, RssMessageModel> mapperToModel)
         {
+            _sqliteDatabase = sqliteDatabase;
             _configurationRepository = configurationRepository;
             _mapperToData = mapperToData;
             _mapperToModel = mapperToModel;
         }
 
-        public async Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default)
+        public Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default)
         {
-            var messageModel = _mapperToModel.Transform(messageDomainModel);
-
-            await RealmDatabase.UpdateAsync<RssModel>(idRss,
-                (rss, realm) =>
-                {
-                    var rssExistMessage = rss?.RssMessageModels?.FirstOrDefault(w => w?.SyndicationId == messageModel.SyndicationId);
-                    messageModel.Id = rssExistMessage != null ? rssExistMessage.Id : Guid.NewGuid().ToString();
-
-                    if (rssExistMessage != null)
-                        realm.NotNull().Add(messageModel, true);
-                    else
-                        rss?.RssMessageModels?.Add(messageModel);
-                });
+            return Task.Run(() =>
+            {
+                var messageModel = _mapperToModel.Transform(messageDomainModel);
+                
+                _sqliteDatabase.Connection.Insert(messageModel);
+            }, token);
         }
 
         public Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token)
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        var item = realm.Find<RssMessageModel>(id);
-                        return item == null ? null : _mapperToData.Transform(item);
-                    }
+                    var item = _sqliteDatabase.Connection.Find<RssMessageModel>(id);
+                    return item == null ? null : _mapperToData.Transform(item);
                 },
                 token);
         }
@@ -64,33 +56,34 @@ namespace Core.Repositories.RssMessage
         public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
         {
             if (message == null) return Task.CompletedTask;
-            
-            return RealmDatabase.DoInBackground(realm =>
+         
+            return Task.Run(() =>
             {
                 var newModel = _mapperToModel.Transform(message);
-                realm.NotNull().Add(newModel, true);
-            });
+                _sqliteDatabase.Connection.Update(newModel);
+            }, token);
         }
 
         public Task<IEnumerable<RssMessageDomainModel>> GetMessagesForRss(string rssId, CancellationToken token)
         {
             return Task.Run(() =>
                 {
-                    var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-                    var hideReadMessages = appConfiguration.HideReadMessages;
-
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        var rssModel = realm.Find<RssModel>(rssId);
-                        var messages = rssModel?.RssMessageModels?.Where(w => w != null);
-                        if (hideReadMessages)
-                            messages = messages?.Where(w => !w.IsRead);
-                        return messages?.OrderByDescending(w => w.NotNull().CreationDate)
-                            .ToList()
-                            .Select(_mapperToData.Transform)
-                            .ToList()
-                            .AsEnumerable();
-                    }
+//                    var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+//                    var hideReadMessages = appConfiguration.HideReadMessages;
+//
+//                    using (var realm = RealmDatabase.OpenDatabase)
+//                    {
+//                        var rssModel = realm.Find<RssModel>(rssId);
+//                        var messages = rssModel?.RssMessageModels?.Where(w => w != null);
+//                        if (hideReadMessages)
+//                            messages = messages?.Where(w => !w.IsRead);
+//                        return messages?.OrderByDescending(w => w.NotNull().CreationDate)
+//                            .ToList()
+//                            .Select(_mapperToData.Transform)
+//                            .ToList()
+//                            .AsEnumerable();
+//                    }
+                    return new List<RssMessageDomainModel>().AsEnumerable();
                 },
                 token);
         }
@@ -99,10 +92,12 @@ namespace Core.Repositories.RssMessage
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        return GetAllMessagesInner(realm).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
-                    }
+                    return new List<RssMessageDomainModel>().AsEnumerable();
+                    
+//                    using (var realm = RealmDatabase.OpenDatabase)
+//                    {
+//                        return GetAllMessagesInner(realm).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
+//                    }
                 },
                 token);
         }
@@ -111,10 +106,13 @@ namespace Core.Repositories.RssMessage
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        return GetAllMessagesInner(realm).Where(w => w.IsFavorite).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
-                    }
+                    return new List<RssMessageDomainModel>().AsEnumerable();
+
+//                    
+//                    using (var realm = RealmDatabase.OpenDatabase)
+//                    {
+//                        return GetAllMessagesInner(realm).Where(w => w.IsFavorite).ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
+//                    }
                 },
                 token);
         }
@@ -123,38 +121,41 @@ namespace Core.Repositories.RssMessage
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        var messages = GetAllMessagesInner(realm);
+                    return new List<RssMessageDomainModel>().AsEnumerable();
 
-                        messages = filterConfiguration?.ApplyFilter(messages);
-                        messages = filterConfiguration?.ApplyDateFilter(messages);
-                        messages = messages ?? new List<RssMessageModel>().AsQueryable();
-                        
-                        return messages.ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
-                    }
+                    
+//                    using (var realm = RealmDatabase.OpenDatabase)
+//                    {
+//                        var messages = GetAllMessagesInner(realm);
+//
+//                        messages = filterConfiguration?.ApplyFilter(messages);
+//                        messages = filterConfiguration?.ApplyDateFilter(messages);
+//                        messages = messages ?? new List<RssMessageModel>().AsQueryable();
+//                        
+//                        return messages.ToList().Select(_mapperToData.Transform).ToList().AsEnumerable();
+//                    }
                 },
                 token);
         }
 
-        [NotNull]
-        [ItemNotNull]
-        private IQueryable<RssMessageModel> GetAllMessagesInner([NotNull] Realm realmDatabase)
-        {
-            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-            var hideReadMessages = appConfiguration.HideReadMessages;
-            var messages = realmDatabase.All<RssMessageModel>();
-
-            if (hideReadMessages)
-                messages = messages?.Where(w => !w.IsRead);
-
-            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
-
-            messages = messages ?? new List<RssMessageModel>().AsQueryable();
-            messages = filter.ApplySort(messages);
-
-            return messages;
-        }
+//        [NotNull]
+//        [ItemNotNull]
+//        private IQueryable<RssMessageModel> GetAllMessagesInner()
+//        {
+//            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+//            var hideReadMessages = appConfiguration.HideReadMessages;
+//            var messages = .All<RssMessageModel>();
+//
+//            if (hideReadMessages)
+//                messages = messages?.Where(w => !w.IsRead);
+//
+//            var filter = _configurationRepository.GetSettings<AllMessageFilterConfiguration>();
+//
+//            messages = messages ?? new List<RssMessageModel>().AsQueryable();
+//            messages = filter.ApplySort(messages);
+//
+//            return messages;
+//        }
         
 //        public long GetCountNewMessagesForModel(string rssId, CancellationToken token)
 //        {

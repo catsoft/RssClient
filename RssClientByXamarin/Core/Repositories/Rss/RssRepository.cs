@@ -14,18 +14,20 @@ namespace Core.Repositories.Rss
 {
     public class RssRepository : IRssRepository
     {
+        [NotNull] private readonly SqliteDatabase _sqliteDatabase;
         [NotNull] private readonly RssLog _log;
         [NotNull] private readonly IMapper<RssModel, RssDomainModel> _mapper;
 
-        public RssRepository([NotNull] RssLog log, [NotNull] IMapper<RssModel, RssDomainModel> mapper)
+        public RssRepository([NotNull] SqliteDatabase sqliteDatabase, [NotNull] RssLog log, [NotNull] IMapper<RssModel, RssDomainModel> mapper)
         {
+            _sqliteDatabase = sqliteDatabase;
             _log = log;
             _mapper = mapper;
         }
 
         public Task<string> AddAsync(string url, CancellationToken token = default)
         {
-            return Task.Run(async () =>
+            return Task.Run(() =>
                 {
                     var newItem = new RssModel
                     {
@@ -36,9 +38,9 @@ namespace Core.Repositories.Rss
 
                     _log.TrackRssInsert(url);
 
-                    var itemId = await RealmDatabase.InsertAsync(newItem);
+                    _sqliteDatabase.Connection.Insert(newItem);
 
-                    return itemId;
+                    return newItem.Id;
                 },
                 token);
         }
@@ -47,67 +49,61 @@ namespace Core.Repositories.Rss
         {
             if (rssDomainModel == null) return Task.CompletedTask;
 
-            return RealmDatabase.DoInBackground(realm =>
-            {
-                var rss = realm.NotNull().Find<RssModel>(rssDomainModel.Id);
-                if (rss == null) return;
+            return Task.Run(() =>
+                {
+                    var rss = _sqliteDatabase.Connection.Find<RssModel>(rssDomainModel.Id);
+                    if (rss == null) return;
 
-                rss.Rss = rssDomainModel.Rss;
-                rss.Name = rssDomainModel.Name;
-                rss.Position = rssDomainModel.Position;
-                rss.UpdateTime = rssDomainModel.UpdateTime;
-                rss.CreationTime = rssDomainModel.CreationTime;
-                rss.UrlPreviewImage = rssDomainModel.UrlPreviewImage;
+                    rss.Rss = rssDomainModel.Rss;
+                    rss.Name = rssDomainModel.Name;
+                    rss.Position = rssDomainModel.Position;
+                    rss.UpdateTime = rssDomainModel.UpdateTime;
+                    rss.CreationTime = rssDomainModel.CreationTime;
+                    rss.UrlPreviewImage = rssDomainModel.UrlPreviewImage;
 
-                realm.NotNull();
-
-                realm.NotNull().Add(rss, true);
-            });
+                    _sqliteDatabase.Connection.Update(rss);
+                    _sqliteDatabase.Connection.Commit();
+                },
+                token);
         }
 
         public Task<RssDomainModel> GetAsync(string id, CancellationToken token = default)
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        var items = realm.Find<RssModel>(id);
-                        return items == null ? null : _mapper.Transform(items);
-                    }
+                    var items = _sqliteDatabase.Connection.Find<RssModel>(id);
+                    return items == null ? null : _mapper.Transform(items);
                 },
                 token);
         }
 
         public Task RemoveAsync(string id, CancellationToken token = default)
         {
-            return RealmDatabase.DoInBackground(realm =>
+            return Task.Run(() =>
             {
-                var backgroundRssItem = realm.NotNull().Find<RssModel>(id);
+                var rssItem = _sqliteDatabase.Connection.Find<RssModel>(id);
 
-                if (backgroundRssItem == null) return;
+                if (rssItem == null) return;
 
-                _log.TrackRssDelete(backgroundRssItem.Rss);
+                _log.TrackRssDelete(rssItem.Rss);
 
-                backgroundRssItem.RssMessageModels?.Clear();
-                realm.NotNull().Remove(backgroundRssItem);
-            });
+                //todo удалить сообщения исчо
+                _sqliteDatabase.Connection.Delete(id);
+            }, token);
         }
 
         public Task<IEnumerable<RssDomainModel>> GetListAsync(CancellationToken token = default)
         {
             return Task.Run(() =>
                 {
-                    using (var realm = RealmDatabase.OpenDatabase)
-                    {
-                        var items = realm.All<RssModel>()
-                            ?.OrderBy(w => w.Position)
-                            .ThenByDescending(w => w.CreationTime)
-                            .ToList()
-                            .Select(_mapper.Transform)
-                            .ToList();
+                    var items = _sqliteDatabase.Connection.Table<RssModel>()
+                        ?.OrderBy(w => w.Position)
+                        .ThenByDescending(w => w.CreationTime)
+                        .ToList()
+                        .Select(_mapper.Transform)
+                        .ToList();
 
-                        return items?.AsEnumerable() ?? new List<RssDomainModel>();
-                    }
+                    return items?.AsEnumerable() ?? new List<RssDomainModel>();
                 },
                 token);
         }

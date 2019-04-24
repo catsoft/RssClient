@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Realms;
+using SQLite;
 
 namespace Core.Database.Rss
 {
-    public class RssMessageModel : RealmObject, IHaveId
+    public class RssMessageModel : IHaveId
     {
+        [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
+        
         public string SyndicationId { get; set; }
 
         public string Title { get; set; }
@@ -21,14 +23,5 @@ namespace Core.Database.Rss
         public bool IsRead { get; set; }
 
         public bool IsFavorite { get; set; }
-
-        [Backlink(nameof(RssModel.RssMessageModels))]
-        // ReSharper disable once UnassignedGetOnlyAutoProperty
-        public IQueryable<RssModel> RssParent { get; }
-
-        [Ignored] public string RssLink => RssParent?.FirstOrDefault()?.Rss;
-
-        [Ignored] public string RssName => RssParent?.FirstOrDefault()?.Name;
-        [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

@@ -1,8 +1,7 @@
-using Realms;
 
 namespace Core.Database
 {
-    public class SettingsModel : RealmObject
+    public class SettingsModel
     {
         public SettingsModel() { }
 
