@@ -17,9 +17,9 @@ namespace Core.ViewModels.Messages
     {
         [NotNull] private readonly INavigator _navigator;
         [NotNull] private readonly IRssMessageService _rssMessageService;
-        [NotNull] private readonly SourceList<RssMessageServiceModel> _sourceList;
+        [CanBeNull] private readonly SourceList<RssMessageServiceModel> _sourceList;
         
-        public MessageItemViewModel([NotNull] IRssMessageService rssMessageService, [NotNull] INavigator navigator, [NotNull] SourceList<RssMessageServiceModel> sourceList)
+        public MessageItemViewModel([NotNull] IRssMessageService rssMessageService, [NotNull] INavigator navigator, [CanBeNull] SourceList<RssMessageServiceModel> sourceList)
         {
             _rssMessageService = rssMessageService;
             _navigator = navigator;
@@ -50,7 +50,7 @@ namespace Core.ViewModels.Messages
             if (!model.IsRead)
             {
                 model.IsRead = true;
-                _sourceList.Replace(model, model);
+                _sourceList?.Replace(model, model);
                 await _rssMessageService.UpdateAsync(model, token);
             }
         }
@@ -59,7 +59,7 @@ namespace Core.ViewModels.Messages
         private async Task DoChangeReadItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
             model.IsRead = !model.IsRead;
-            _sourceList.Replace(model, model);
+            _sourceList?.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }
         
@@ -67,7 +67,7 @@ namespace Core.ViewModels.Messages
         private async Task DoChangeFavoriteItem([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
             model.IsFavorite = !model.IsFavorite;
-            _sourceList.Replace(model, model);
+            _sourceList?.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
         }
 

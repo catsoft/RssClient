@@ -9,7 +9,6 @@ using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Services.RssFeeds;
 using Droid.NativeExtension.Events;
-using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
 using JetBrains.Annotations;

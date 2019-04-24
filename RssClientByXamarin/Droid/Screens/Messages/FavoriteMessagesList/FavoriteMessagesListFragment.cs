@@ -7,8 +7,8 @@ using Core.Extensions;
 using Core.Services.RssMessages;
 using Core.ViewModels.Messages.FavoriteMessages;
 using Droid.Infrastructure.Collections;
+using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
-using Droid.Resources;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Messages.AllMessages;
 using Droid.Screens.Navigation;
@@ -63,6 +63,10 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
                 
                 adapter.GetSwipeRightAction()
                     .InvokeCommand(ViewModel.RssMessageItemViewModel.ChangeFavoriteCommand)
+                    .AddTo(disposable);
+                
+                ViewModel.ListViewModel.WhenAnyValue(model => model.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
                 ViewModel.LoadCommand.Execute().NotNull().Subscribe().AddTo(disposable);

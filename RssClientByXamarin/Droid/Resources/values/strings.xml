@@ -120,5 +120,6 @@
     <string name="rssList_emptyText">Just nothing</string>
     <string name="rssEditListEmptyText">Nothing else</string>
     <string name="rssAllMessagesList_emptyText">Nothing</string>
+    <string name="favoriteList_emptyText">Nothing else</string>
 
 </resources>

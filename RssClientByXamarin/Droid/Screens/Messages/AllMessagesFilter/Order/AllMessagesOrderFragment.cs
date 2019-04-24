@@ -5,7 +5,6 @@ using Android.Widget;
 using Core.Configuration.AllMessageFilter;
 using Core.Extensions;
 using Core.ViewModels.Messages.AllMessagesFilter;
-using Droid.Resources;
 using Droid.Screens.Navigation;
 using JetBrains.Annotations;
 using ReactiveUI;

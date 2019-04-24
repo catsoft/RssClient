@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_favoriteMessages_list"
+        style="@style/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <TextView
+        android:id="@+id/textview_favoriteMessages_empty"
+        style="@style/TextView.Large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView_favoriteMessages_list"
-            style="@style/RecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    
-    </LinearLayout>
+        android:text="@string/favoriteList_emptyText"
+        android:gravity="center"/>
 
 </android.support.design.widget.CoordinatorLayout>

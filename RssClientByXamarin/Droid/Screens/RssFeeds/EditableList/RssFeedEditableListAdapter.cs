@@ -8,7 +8,6 @@ using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Services.RssFeeds;
 using Core.ViewModels.Lists;
-using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.DragRecyclerView;
 using JetBrains.Annotations;

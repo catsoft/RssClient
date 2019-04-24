@@ -8,7 +8,6 @@ using Core.ViewModels.RssFeeds.EditableList;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
-using Droid.Resources;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
 using JetBrains.Annotations;

@@ -2,7 +2,6 @@ using System;
 using Android.OS;
 using Android.Views;
 using Core.ViewModels.Messages.AllMessagesFilter;
-using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Messages.AllMessagesFilter

@@ -5,7 +5,6 @@ using Core.Configuration.Settings;
 using Core.Repositories.Configurations;
 using Core.ViewModels.Settings;
 using Droid.Container;
-using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Settings

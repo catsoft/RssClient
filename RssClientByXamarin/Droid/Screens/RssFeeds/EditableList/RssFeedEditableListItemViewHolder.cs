@@ -3,7 +3,6 @@ using Android.Views;
 using Android.Widget;
 using Core.Extensions;
 using Core.Services.RssFeeds;
-using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 

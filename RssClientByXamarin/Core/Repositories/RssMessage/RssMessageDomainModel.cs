@@ -1,7 +1,5 @@
 using System;
 using Core.Database;
-using Core.Repositories.RssFeeds;
-using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage
 {

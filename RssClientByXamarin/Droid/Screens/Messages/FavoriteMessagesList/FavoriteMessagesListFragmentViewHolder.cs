@@ -1,7 +1,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using Core.Extensions;
-using Droid.Resources;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.FavoriteMessagesList
@@ -14,8 +14,12 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
             
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
+
+            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textview_favoriteMessages_empty).NotNull();
         }
         
         [NotNull] public RecyclerView RecyclerView { get; }
+        
+        [NotNull] public TextView EmptyTextView { get; }
     }
 }

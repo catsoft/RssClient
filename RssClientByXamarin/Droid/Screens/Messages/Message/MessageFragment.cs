@@ -1,19 +1,20 @@
 using System;
 using Android.OS;
 using Android.Views;
-using Core.Repositories.RssMessage;
+using Core.Extensions;
 using Core.ViewModels.Messages.Message;
-using Droid.Container;
-using Droid.Resources;
 using Droid.Screens.Navigation;
+using ReactiveUI;
 
 namespace Droid.Screens.Messages.Message
 {
     public class MessageFragment : BaseFragment<MessageViewModel>
     {
+        private MessageFragmentViewHolder _viewHolder;
+        
         private Guid _rssMessageId;
-        [Inject] private IRssMessagesRepository _rssMessagesRepository;
-
+        
+        // ReSharper disable once UnusedMember.Global
         public MessageFragment() { }
 
         public MessageFragment(Guid rssMessageId) { _rssMessageId = rssMessageId; }
@@ -32,25 +33,20 @@ namespace Droid.Screens.Messages.Message
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
-//            var message = _rssMessagesRepository.GetAsync(_rssMessageId);
-//
-//            Title = message.Title;
-//
-//            var webView = view.FindViewById<WebView>(Resource.Id.webView_rssMessage_mainView);
-//
-//            webView.ScrollBarStyle = ScrollbarStyles.OutsideOverlay;
-//            webView.ScrollbarFadingEnabled = false;
-//
-//            var settings = webView.Settings;
-//            settings.JavaScriptEnabled = true;
-//            settings.BuiltInZoomControls = true;
-//            settings.SetSupportZoom(true);
-//
-//            var client = new WebViewClient();
-//            webView.SetWebViewClient(client);
-//            webView.LoadUrl(message.Url);
+            _viewHolder = new MessageFragmentViewHolder(view);
+            
+            OnActivation(disposable =>
+            {
+                ViewModel.WhenAnyValue(model => model.Parameters)
+                    .Subscribe(w => Title = w.RssMessageModel.Title)
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(model => model.Parameters)
+                    .Subscribe(w => _viewHolder.WebView.LoadUrl(w.RssMessageModel.Url))
+                    .AddTo(disposable);
+            });
 
             return view;
         }

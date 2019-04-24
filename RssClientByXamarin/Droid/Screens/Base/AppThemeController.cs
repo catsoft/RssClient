@@ -4,7 +4,6 @@ using Autofac;
 using Core;
 using Core.Configuration.Settings;
 using Core.Repositories.Configurations;
-using Droid.Resources;
 
 namespace Droid.Screens.Base
 {

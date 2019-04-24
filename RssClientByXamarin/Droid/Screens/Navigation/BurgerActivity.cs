@@ -11,7 +11,6 @@ using Core;
 using Core.Configuration.Settings;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
-using Droid.Resources;
 using Droid.Screens.Base;
 using Java.Lang;
 using JetBrains.Annotations;

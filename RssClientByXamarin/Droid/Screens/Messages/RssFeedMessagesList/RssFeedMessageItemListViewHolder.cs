@@ -3,7 +3,6 @@ using Android.Widget;
 using Core.Infrastructure.Locale;
 using Core.Services.RssMessages;
 using Droid.NativeExtension;
-using Droid.Resources;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;

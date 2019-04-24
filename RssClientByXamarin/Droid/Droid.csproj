@@ -115,6 +115,7 @@
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\Message\MessageFragmentViewHolder.cs" />
     <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesListAdapter.cs" />
     <Compile Include="Screens\Messages\RssFeedMessagesList\RssFeedMessagesListFragment.cs" />

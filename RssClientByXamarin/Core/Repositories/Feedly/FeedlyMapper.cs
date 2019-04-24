@@ -1,4 +1,3 @@
-using System;
 using Core.Api.Feedly;
 using Core.Infrastructure.Mappers;
 

@@ -60,43 +60,46 @@ namespace Core.Services.RssFeeds
             return _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
         }
 
-        public async Task LoadAndUpdateAsync(Guid id, CancellationToken token = default)
+        public Task LoadAndUpdateAsync(Guid id, CancellationToken token = default)
         {
-            var currentItem = await _rssFeedRepository.GetAsync(id, token);
-            var syndicationFeed = await _rssFeedApiClient.LoadFeedsAsync(currentItem?.Rss, token);
-
-            if (syndicationFeed == null) return;
-
-            currentItem = await _rssFeedRepository.GetAsync(id, token);
-            
-            if (currentItem == null) return;
-            
-            currentItem.Name = syndicationFeed.Title?.Text;
-            currentItem.UpdateTime = DateTime.Now;
-            if(!currentItem.IsFeedly)
-                currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
-            
-            await _rssFeedRepository.UpdateAsync(currentItem, token);
-
-            foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
+            return Task.Run(async () =>
             {
-                var existItem = await _rssMessagesRepository.GetMessageBySyndicationIdAsync(syndicationItem.Id, id, token);
-                
-                if (existItem == null)
+                var currentItem = await _rssFeedRepository.GetAsync(id, token);
+                var syndicationFeed = await _rssFeedApiClient.LoadFeedsAsync(currentItem?.Rss, token);
+
+                if (syndicationFeed == null) return;
+
+                currentItem = await _rssFeedRepository.GetAsync(id, token);
+
+                if (currentItem == null) return;
+
+                currentItem.Name = syndicationFeed.Title?.Text;
+                currentItem.UpdateTime = DateTime.Now;
+                if (!currentItem.IsFeedly)
+                    currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
+
+                await _rssFeedRepository.UpdateAsync(currentItem, token);
+
+                foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
                 {
-                    var item = new RssMessageDomainModel();
-                    
-                    item = FillMessage(item, syndicationItem);
-                    
-                    await _rssMessagesRepository.AddAsync(item, id, token);
+                    var existItem = await _rssMessagesRepository.GetMessageBySyndicationIdAsync(syndicationItem.Id, id, token);
+
+                    if (existItem == null)
+                    {
+                        var item = new RssMessageDomainModel();
+
+                        item = FillMessage(item, syndicationItem);
+
+                        await _rssMessagesRepository.AddAsync(item, id, token);
+                    }
+                    else
+                    {
+                        var item = FillMessage(existItem, syndicationItem);
+
+                        await _rssMessagesRepository.UpdateAsync(item, token);
+                    }
                 }
-                else
-                {
-                    var item = FillMessage(existItem, syndicationItem);
-                    
-                    await _rssMessagesRepository.UpdateAsync(item, token);
-                }
-            }
+            }, token);
         }
 
         private RssMessageDomainModel FillMessage(RssMessageDomainModel model, SyndicationItem syndicationItem)

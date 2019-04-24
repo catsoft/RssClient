@@ -1,7 +1,6 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Droid.Resources;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.FeedlySearch
