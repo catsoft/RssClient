@@ -7,6 +7,7 @@ using Core.Extensions;
 using Core.Services.RssMessages;
 using Core.ViewModels.Messages.RssFeedMessagesList;
 using Droid.Infrastructure.Collections;
+using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
@@ -89,6 +90,10 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
                 
                 ViewModel.RefreshCommand.IsExecuting
                     .Subscribe(w => _viewHolder.RefreshLayout.Refreshing = w)
+                    .AddTo(disposable);
+                
+                ViewModel.ListViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
                 ViewModel.LoadCommand.Execute().NotNull().Subscribe();
