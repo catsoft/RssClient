@@ -58,6 +58,7 @@ namespace Core.Repositories.RssFeeds
                 rss.UpdateTime = rssFeedDomainModel.UpdateTime;
                 rss.CreationTime = rssFeedDomainModel.CreationTime;
                 rss.UrlPreviewImage = rssFeedDomainModel.UrlPreviewImage;
+                rss.IsFeedly = rssFeedDomainModel.IsFeedly;
 
                 connection.Update(rss);
             }), token);
