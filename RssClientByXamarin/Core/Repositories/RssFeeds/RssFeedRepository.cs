@@ -30,13 +30,13 @@ namespace Core.Repositories.RssFeeds
             {
                 var newItem = new RssFeedModel
                 {
+                    Id = Guid.NewGuid(),
                     Rss = url,
                     Name = url,
                     CreationTime = DateTime.Now
                 };
 
                 _log.TrackRssInsert(url);
-
                 connection.Insert(newItem);
                 
                 return newItem.Id;

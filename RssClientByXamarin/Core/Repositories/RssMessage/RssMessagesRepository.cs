@@ -38,6 +38,7 @@ namespace Core.Repositories.RssMessage
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var messageModel = _mapperToModel.Transform(messageDomainModel);
+                messageModel.Id = Guid.NewGuid();
                 
                 connection.Insert(messageModel);
             }, token);
