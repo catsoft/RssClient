@@ -1,5 +1,6 @@
 using Android.Content;
 using Android.Widget;
+using Droid.Resources;
 
 namespace Droid.NativeExtension
 {

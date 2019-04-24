@@ -5,7 +5,7 @@ using System.Reactive.Subjects;
 using Core.Configuration.AllMessageFilter;
 using Core.Extensions;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;

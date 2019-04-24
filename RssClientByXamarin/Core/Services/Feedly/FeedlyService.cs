@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Repositories.Feedly;
-using Core.Repositories.Rss;
+using Core.Repositories.RssFeeds;
 using JetBrains.Annotations;
 
 namespace Core.Services.Feedly
@@ -11,12 +11,12 @@ namespace Core.Services.Feedly
     public class FeedlyService : IFeedlyService
     {
         [NotNull] private readonly IFeedlyRepository _feedlyRepository;
-        [NotNull] private readonly IRssRepository _rssRepository;
+        [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
 
-        public FeedlyService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssRepository rssRepository)
+        public FeedlyService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssFeedRepository rssFeedRepository)
         {
             _feedlyRepository = feedlyRepository;
-            _rssRepository = rssRepository;
+            _rssFeedRepository = rssFeedRepository;
         }
 
         public Task<IEnumerable<FeedlyRssDomainModel>> FindByQueryAsync(string query, CancellationToken token = default)
@@ -27,7 +27,7 @@ namespace Core.Services.Feedly
         public async Task AddFeedly(FeedlyRssDomainModel model, CancellationToken token)
         {
             var rss = model?.FeedId?.TrimStart("feed/".ToArray());
-            await _rssRepository.AddAsync(rss, token);
+            await _rssFeedRepository.AddAsync(rss, token);
         }
     }
 }

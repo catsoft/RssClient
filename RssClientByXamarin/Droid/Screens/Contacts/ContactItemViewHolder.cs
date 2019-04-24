@@ -1,5 +1,6 @@
 using Android.Views;
 using Android.Widget;
+using Droid.Resources;
 
 namespace Droid.Screens.Contacts
 {

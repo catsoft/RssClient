@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using SQLite;
 
 namespace Core.Database.Rss
 {
+    [Table("RssMessage")]
     public class RssMessageModel : IHaveId
     {
         [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -23,5 +23,7 @@ namespace Core.Database.Rss
         public bool IsRead { get; set; }
 
         public bool IsFavorite { get; set; }
+        
+        public string RssId { get; set; }
     }
 }

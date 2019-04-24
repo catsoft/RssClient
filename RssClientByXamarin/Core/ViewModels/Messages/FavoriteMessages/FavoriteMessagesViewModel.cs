@@ -6,7 +6,7 @@ using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.Services.RssMessages;
 using Core.ViewModels.Lists;
 using JetBrains.Annotations;

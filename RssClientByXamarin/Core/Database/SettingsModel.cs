@@ -1,6 +1,9 @@
 
+using SQLite;
+
 namespace Core.Database
 {
+    [Table("Settings")]
     public class SettingsModel
     {
         public SettingsModel() { }
@@ -11,6 +14,7 @@ namespace Core.Database
             JsonValue = jsonValue;
         }
 
+        [PrimaryKey]
         public string Key { get; set; }
 
         public string JsonValue { get; set; }

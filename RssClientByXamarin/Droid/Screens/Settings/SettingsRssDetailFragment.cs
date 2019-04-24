@@ -2,9 +2,10 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Core.Configuration.Settings;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.ViewModels.Settings;
 using Droid.Container;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Settings

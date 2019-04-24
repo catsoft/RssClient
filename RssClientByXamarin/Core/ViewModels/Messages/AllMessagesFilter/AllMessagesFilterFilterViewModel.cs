@@ -6,7 +6,7 @@ using Core.Configuration.AllMessageFilter;
 using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.Resources;
 using JetBrains.Annotations;
 using ReactiveUI;

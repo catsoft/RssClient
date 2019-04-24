@@ -3,11 +3,12 @@ using Android.OS;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Core.Extensions;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.ViewModels.RssFeeds.EditableList;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.DragRecyclerView;
 using Droid.Screens.Navigation;
 using JetBrains.Annotations;
@@ -41,7 +42,7 @@ namespace Droid.Screens.RssFeeds.EditableList
             helper.AttachToRecyclerView(_viewHolder.RecyclerView);
             adapter.OnStartDrag += holder => helper.StartDrag(holder);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssFeedServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {

@@ -1,7 +1,7 @@
 using Autofac;
 using Core.Extensions;
 using Core.Services.Feedly;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.Services.RssMessages;
 
 namespace Core.Container.Modules
@@ -12,7 +12,7 @@ namespace Core.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssService>().NotNull().As<IRssService>().NotNull().SingleInstance();
+            builder.RegisterType<RssFeedService>().NotNull().As<IRssFeedService>().NotNull().SingleInstance();
             builder.RegisterType<RssMessageService>().NotNull().As<IRssMessageService>().NotNull().SingleInstance();
             builder.RegisterType<FeedlyService>().NotNull().As<IFeedlyService>().NotNull().SingleInstance();
         }

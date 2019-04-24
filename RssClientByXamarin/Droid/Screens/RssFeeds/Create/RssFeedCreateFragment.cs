@@ -6,6 +6,7 @@ using Core.Extensions;
 using Core.ViewModels.RssFeeds.Create;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 

@@ -2,6 +2,7 @@
 using Android.Views;
 using Android.Widget;
 using Core.ViewModels.Settings;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Settings

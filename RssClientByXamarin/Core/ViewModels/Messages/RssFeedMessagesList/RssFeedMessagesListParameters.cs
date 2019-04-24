@@ -1,13 +1,13 @@
 using Core.Infrastructure.ViewModels;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using JetBrains.Annotations;
 
 namespace Core.ViewModels.Messages.RssFeedMessagesList
 {
     public class RssFeedMessagesListParameters : ViewModelParameters
     {
-        public RssFeedMessagesListParameters([NotNull] RssServiceModel rssModel) { RssModel = rssModel; }
+        public RssFeedMessagesListParameters([NotNull] RssFeedServiceModel rssFeedModel) { RssFeedModel = rssFeedModel; }
 
-        [NotNull] public RssServiceModel RssModel { get; }
+        [NotNull] public RssFeedServiceModel RssFeedModel { get; }
     }
 }

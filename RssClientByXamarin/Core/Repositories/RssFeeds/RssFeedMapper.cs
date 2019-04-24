@@ -1,20 +1,36 @@
 using Core.Database.Rss;
 using Core.Infrastructure.Mappers;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 
-namespace Core.Repositories.Rss
+namespace Core.Repositories.RssFeeds
 {
-    public class RssMapper : IMapper<RssModel, RssDomainModel>,
-        IMapper<RssDomainModel, RssModel>,
-        IMapper<RssDomainModel, RssServiceModel>,
-        IMapper<RssServiceModel, RssDomainModel>
-
+    public class RssFeedMapper : IMapper<RssFeedModel, RssFeedDomainModel>,
+        IMapper<RssFeedDomainModel, RssFeedModel>,
+        IMapper<RssFeedDomainModel, RssFeedServiceModel>,
+        IMapper<RssFeedServiceModel, RssFeedDomainModel>
     {
-        RssModel IMapper<RssDomainModel, RssModel>.Transform(RssDomainModel model)
+        RssFeedModel IMapper<RssFeedDomainModel, RssFeedModel>.Transform(RssFeedDomainModel model)
         {
             return model == null
-                ? new RssModel()
-                : new RssModel
+                ? new RssFeedModel()
+                : new RssFeedModel
+                {
+                    Id = model.Id,
+                    
+                    Rss = model.Rss,
+                    Name = model.Name,
+                    Position = model.Position,
+                    UpdateTime = model.UpdateTime,
+                    CreationTime = model.CreationTime,
+                    UrlPreviewImage = model.UrlPreviewImage
+                };
+        }
+
+        public RssFeedServiceModel Transform(RssFeedDomainModel model)
+        {
+            return model == null
+                ? new RssFeedServiceModel()
+                : new RssFeedServiceModel
                 {
                     Id = model.Id,
                     Rss = model.Rss,
@@ -26,43 +42,27 @@ namespace Core.Repositories.Rss
                 };
         }
 
-        public RssServiceModel Transform(RssDomainModel model)
+        public RssFeedDomainModel Transform(RssFeedModel feedModel)
         {
-            return model == null
-                ? new RssServiceModel()
-                : new RssServiceModel
+            return feedModel == null
+                ? new RssFeedDomainModel()
+                : new RssFeedDomainModel
                 {
-                    Id = model.Id,
-                    Rss = model.Rss,
-                    Name = model.Name,
-                    Position = model.Position,
-                    UpdateTime = model.UpdateTime,
-                    CreationTime = model.CreationTime,
-                    UrlPreviewImage = model.UrlPreviewImage
+                    Id = feedModel.Id,
+                    Rss = feedModel.Rss,
+                    Name = feedModel.Name,
+                    Position = feedModel.Position,
+                    UpdateTime = feedModel.UpdateTime,
+                    CreationTime = feedModel.CreationTime,
+                    UrlPreviewImage = feedModel.UrlPreviewImage
                 };
         }
 
-        public RssDomainModel Transform(RssModel model)
+        public RssFeedDomainModel Transform(RssFeedServiceModel model)
         {
             return model == null
-                ? new RssDomainModel()
-                : new RssDomainModel
-                {
-                    Id = model.Id,
-                    Rss = model.Rss,
-                    Name = model.Name,
-                    Position = model.Position,
-                    UpdateTime = model.UpdateTime,
-                    CreationTime = model.CreationTime,
-                    UrlPreviewImage = model.UrlPreviewImage
-                };
-        }
-
-        public RssDomainModel Transform(RssServiceModel model)
-        {
-            return model == null
-                ? new RssDomainModel()
-                : new RssDomainModel
+                ? new RssFeedDomainModel()
+                : new RssFeedDomainModel
                 {
                     Id = model.Id,
                     Rss = model.Rss,

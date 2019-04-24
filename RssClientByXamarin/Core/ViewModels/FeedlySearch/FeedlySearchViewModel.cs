@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.Repositories.Feedly;
 using Core.Services.Feedly;
 using Core.ViewModels.Lists;

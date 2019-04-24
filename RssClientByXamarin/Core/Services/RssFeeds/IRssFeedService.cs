@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace Core.Services.Rss
+namespace Core.Services.RssFeeds
 {
-    public interface IRssService
+    public interface IRssFeedService
     {
         [NotNull]
         Task AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
@@ -15,14 +15,14 @@ namespace Core.Services.Rss
 
         [NotNull]
         [ItemCanBeNull]
-        Task<RssServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
+        Task<RssFeedServiceModel> GetAsync([CanBeNull] string id, CancellationToken token = default);
 
         [NotNull]
         [ItemNotNull]
-        Task<IEnumerable<RssServiceModel>> GetListAsync(CancellationToken token = default);
+        Task<IEnumerable<RssFeedServiceModel>> GetListAsync(CancellationToken token = default);
 
         [NotNull]
-        Task UpdateAsync([CanBeNull] RssServiceModel rss, CancellationToken token = default);
+        Task UpdateAsync([CanBeNull] RssFeedServiceModel rssFeed, CancellationToken token = default);
 
         [NotNull]
         Task LoadAndUpdateAsync([CanBeNull] string id, CancellationToken token = default);
@@ -34,6 +34,6 @@ namespace Core.Services.Rss
         Task ReadAllMessagesAsync([CanBeNull] string itemId, CancellationToken token = default);
 
         [NotNull]
-        Task ShareAsync([CanBeNull] RssServiceModel model, CancellationToken token = default);
+        Task ShareAsync([CanBeNull] RssFeedServiceModel model, CancellationToken token = default);
     }
 }

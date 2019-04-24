@@ -17,7 +17,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 
         public void Go()
         {
-            var fragment = new RssFeedMessagesListFragment(_parameters.RssModel.Id);
+            var fragment = new RssFeedMessagesListFragment(_parameters.RssFeedModel.Id);
             fragment.SetParameters(_parameters);
 
             _fragmentActivity.AddFragment(fragment);

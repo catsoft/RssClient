@@ -1,6 +1,6 @@
 using System;
 using Core.Database;
-using Core.Repositories.Rss;
+using Core.Repositories.RssFeeds;
 using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage
@@ -23,7 +23,7 @@ namespace Core.Repositories.RssMessage
 
         public bool IsFavorite { get; set; }
 
-        [CanBeNull] public RssDomainModel RssParent { get; set; }
+        [CanBeNull] public RssFeedDomainModel RssFeedParent { get; set; }
 
         public string Id { get; set; }
     }

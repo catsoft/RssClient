@@ -7,22 +7,23 @@ using Android.Views;
 using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Locale;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.SwipeRecyclerView;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.RssFeeds.List
 {
-    public class RssFeedListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssFeedListItemViewHolder>, 
+    public class RssFeedListAdapter : DataBindAdapter<RssFeedServiceModel, IEnumerable<RssFeedServiceModel>, RssFeedListItemViewHolder>, 
         IItemTouchHelperAdapter, 
-        IClickable<RssServiceModel>, 
-        ILongClick<RssServiceModel>
+        IClickable<RssFeedServiceModel>, 
+        ILongClick<RssFeedServiceModel>
     {
         [NotNull] private readonly AppConfiguration _appConfiguration;
 
-        public RssFeedListAdapter([NotNull] Activity activity, [NotNull] AppConfiguration appConfiguration) : base(new List<RssServiceModel>(), activity)
+        public RssFeedListAdapter([NotNull] Activity activity, [NotNull] AppConfiguration appConfiguration) : base(new List<RssFeedServiceModel>(), activity)
         {
             _appConfiguration = appConfiguration;
         }
@@ -33,13 +34,13 @@ namespace Droid.Screens.RssFeeds.List
             ItemDismiss?.Invoke(this, item);
         }
 
-        public event EventHandler<RssServiceModel> Click;
+        public event EventHandler<RssFeedServiceModel> Click;
         
-        public event EventHandler<RssServiceModel> LongClick;
+        public event EventHandler<RssFeedServiceModel> LongClick;
         
-        public event EventHandler<RssServiceModel> ItemDismiss;
+        public event EventHandler<RssFeedServiceModel> ItemDismiss;
 
-        protected override void BindData(RssFeedListItemViewHolder holder, RssServiceModel item)
+        protected override void BindData(RssFeedListItemViewHolder holder, RssFeedServiceModel item)
         {
             base.BindData(holder, item);
 

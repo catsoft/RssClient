@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -14,22 +14,22 @@ namespace Core.ViewModels.RssFeeds.Edit
 {
     public class RssFeedEditViewModel : ViewModelWithParameter<RssEditParameters>
     {
-        [NotNull] private readonly IRssService _rssService;
+        [NotNull] private readonly IRssFeedService _rssFeedService;
 
-        public RssFeedEditViewModel([NotNull] IRssService rssService, [NotNull] RssEditParameters parameters, [NotNull] INavigator navigator) :
+        public RssFeedEditViewModel([NotNull] IRssFeedService rssFeedService, [NotNull] RssEditParameters parameters, [NotNull] INavigator navigator) :
             base(parameters)
         {
-            _rssService = rssService;
+            _rssFeedService = rssFeedService;
 
-            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssServiceModel>(async (s, token) =>
-                    await _rssService.GetAsync(parameters.RssId, token))
+            LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssFeedServiceModel>(async (s, token) =>
+                    await _rssFeedService.GetAsync(parameters.RssId, token))
                 .NotNull();
-            LoadCommand.ToPropertyEx(this, x => x.RssServiceModel);
+            LoadCommand.ToPropertyEx(this, x => x.RssFeedServiceModel);
 
             UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl).NotNull();
             UpdateCommand.Subscribe(_ => navigator.GoBack());
 
-            this.WhenAnyValue(w => w.RssServiceModel)
+            this.WhenAnyValue(w => w.RssFeedServiceModel)
                 .NotNull()
                 .Subscribe(w => Url = w?.Rss)
                 .NotNull();
@@ -37,18 +37,18 @@ namespace Core.ViewModels.RssFeeds.Edit
 
         [CanBeNull] [Reactive] public string Url { get; set; }
 
-        [NotNull] public extern RssServiceModel RssServiceModel { [ObservableAsProperty] get; }
+        [NotNull] public extern RssFeedServiceModel RssFeedServiceModel { [ObservableAsProperty] get; }
 
-        [NotNull] public ReactiveCommand<Unit, RssServiceModel> LoadCommand { get; }
+        [NotNull] public ReactiveCommand<Unit, RssFeedServiceModel> LoadCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
 
         [NotNull]
         private async Task UpdateRssUrl(CancellationToken token)
         {
-            var model = RssServiceModel;
+            var model = RssFeedServiceModel;
             model.Rss = Url;
-            await _rssService.UpdateAsync(model, token);
+            await _rssFeedService.UpdateAsync(model, token);
         }
     }
 }

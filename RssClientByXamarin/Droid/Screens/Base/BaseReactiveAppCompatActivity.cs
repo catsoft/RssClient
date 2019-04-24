@@ -4,6 +4,7 @@ using Autofac;
 using Core;
 using Core.Analytics.Rss;
 using Core.Infrastructure.ViewModels;
+using Droid.Resources;
 using ReactiveUI.AndroidSupport;
 
 namespace Droid.Screens.Base

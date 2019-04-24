@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Core.Repositories.Configuration
+namespace Core.Repositories.Configurations
 {
     public interface IConfigurationRepository
     {

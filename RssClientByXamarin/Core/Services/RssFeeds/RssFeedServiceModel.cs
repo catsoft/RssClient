@@ -1,8 +1,8 @@
 using System;
 
-namespace Core.Services.Rss
+namespace Core.Services.RssFeeds
 {
-    public class RssServiceModel
+    public class RssFeedServiceModel
     {
         public string Id { get; set; }
 

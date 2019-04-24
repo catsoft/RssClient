@@ -2,8 +2,9 @@
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading;
@@ -13,7 +14,7 @@ using JetBrains.Annotations;
 
 namespace Droid.Screens.RssFeeds.List
 {
-    public class RssFeedListItemViewHolder : RecyclerView.ViewHolder, IDataBind<RssServiceModel>, IShowAndLoadImage
+    public class RssFeedListItemViewHolder : RecyclerView.ViewHolder, IDataBind<RssFeedServiceModel>, IShowAndLoadImage
     {
         public RssFeedListItemViewHolder([NotNull] View itemView, bool showImages) : base(itemView)
         {
@@ -34,9 +35,9 @@ namespace Droid.Screens.RssFeeds.List
         [NotNull] public TextView CountTextView { get; }
         [NotNull] public LinearLayout ClickView { get; }
 
-        public RssServiceModel Item { get; set; }
+        public RssFeedServiceModel Item { get; set; }
 
-        public void BindData(RssServiceModel item)
+        public void BindData(RssFeedServiceModel item)
         {
             TitleTextView.Text = item.Name;
             Item = item;

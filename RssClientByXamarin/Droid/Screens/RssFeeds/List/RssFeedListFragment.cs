@@ -5,11 +5,12 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Core.Extensions;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.ViewModels.RssFeeds.List;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using ReactiveUI;
@@ -43,7 +44,7 @@ namespace Droid.Screens.RssFeeds.List
             var touchHelper = new ItemTouchHelper(callback);
             touchHelper.AttachToRecyclerView(_viewHolder.RecyclerView);
 
-            var adapterUpdater = new AdapterUpdater<RssServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
+            var adapterUpdater = new AdapterUpdater<RssFeedServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
             OnActivation(disposable =>
             {
@@ -98,7 +99,7 @@ namespace Droid.Screens.RssFeeds.List
             return base.OnOptionsItemSelected(item);
         }
 
-        private void ItemLongClick(RssServiceModel holderItem, object sender)
+        private void ItemLongClick(RssFeedServiceModel holderItem, object sender)
         {
             var menu = new PopupMenu(Activity, sender as View, (int) GravityFlags.Right);
             menu.MenuItemClick += (o, eventArgs) => MenuClick(holderItem, eventArgs);
@@ -106,7 +107,7 @@ namespace Droid.Screens.RssFeeds.List
             menu.Show();
         }
 
-        private void MenuClick(RssServiceModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
+        private void MenuClick(RssFeedServiceModel holderItem, PopupMenu.MenuItemClickEventArgs eventArgs)
         {
             switch (eventArgs.Item.ItemId)
             {

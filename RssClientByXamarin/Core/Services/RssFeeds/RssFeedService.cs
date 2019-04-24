@@ -4,67 +4,67 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Api.Rss;
+using Core.Api.RssFeeds;
 using Core.Extensions;
 using Core.Infrastructure.Mappers;
-using Core.Repositories.Rss;
+using Core.Repositories.RssFeeds;
 using Core.Repositories.RssMessage;
 using Core.Utils;
 using JetBrains.Annotations;
 
-namespace Core.Services.Rss
+namespace Core.Services.RssFeeds
 {
-    public class RssService : IRssService
+    public class RssFeedService : IRssFeedService
     {
-        [NotNull] private readonly IMapper<RssServiceModel, RssDomainModel> _mapper;
-        [NotNull] private readonly IRssApiClient _rssApiClient;
+        [NotNull] private readonly IMapper<RssFeedServiceModel, RssFeedDomainModel> _mapper;
+        [NotNull] private readonly IRssFeedApiClient _rssFeedApiClient;
         [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
-        [NotNull] private readonly IRssRepository _rssRepository;
-        [NotNull] private readonly IMapper<RssDomainModel, RssServiceModel> _toServiceModelMapper;
+        [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
+        [NotNull] private readonly IMapper<RssFeedDomainModel, RssFeedServiceModel> _toServiceModelMapper;
 
-        public RssService(
-            [NotNull] IRssRepository rssRepository,
-            [NotNull] IMapper<RssServiceModel, RssDomainModel> mapper,
-            [NotNull] IMapper<RssDomainModel, RssServiceModel> toServiceModelMapper,
-            [NotNull] IRssApiClient rssApiClient,
+        public RssFeedService(
+            [NotNull] IRssFeedRepository rssFeedRepository,
+            [NotNull] IMapper<RssFeedServiceModel, RssFeedDomainModel> mapper,
+            [NotNull] IMapper<RssFeedDomainModel, RssFeedServiceModel> toServiceModelMapper,
+            [NotNull] IRssFeedApiClient rssFeedApiClient,
             [NotNull] IRssMessagesRepository rssMessagesRepository)
         {
-            _rssRepository = rssRepository;
+            _rssFeedRepository = rssFeedRepository;
             _mapper = mapper;
             _toServiceModelMapper = toServiceModelMapper;
-            _rssApiClient = rssApiClient;
+            _rssFeedApiClient = rssFeedApiClient;
             _rssMessagesRepository = rssMessagesRepository;
         }
 
-        public Task AddAsync(string url, CancellationToken cancellationToken = default) { return _rssRepository.AddAsync(url, cancellationToken); }
+        public Task AddAsync(string url, CancellationToken cancellationToken = default) { return _rssFeedRepository.AddAsync(url, cancellationToken); }
 
-        public async Task<RssServiceModel> GetAsync(string id, CancellationToken cancellationToken = default)
+        public async Task<RssFeedServiceModel> GetAsync(string id, CancellationToken cancellationToken = default)
         {
-            return _toServiceModelMapper.Transform(await _rssRepository.GetAsync(id, cancellationToken));
+            return _toServiceModelMapper.Transform(await _rssFeedRepository.GetAsync(id, cancellationToken));
         }
 
-        public Task RemoveAsync(string id, CancellationToken token = default) { return _rssRepository.RemoveAsync(id, token); }
+        public Task RemoveAsync(string id, CancellationToken token = default) { return _rssFeedRepository.RemoveAsync(id, token); }
 
-        public async Task<IEnumerable<RssServiceModel>> GetListAsync(CancellationToken token = default)
+        public async Task<IEnumerable<RssFeedServiceModel>> GetListAsync(CancellationToken token = default)
         {
-            return (await _rssRepository.GetListAsync(token)).Select(w => _toServiceModelMapper.Transform(w));
+            return (await _rssFeedRepository.GetListAsync(token)).Select(w => _toServiceModelMapper.Transform(w));
         }
 
-        public Task UpdateAsync(RssServiceModel rss, CancellationToken token = default)
+        public Task UpdateAsync(RssFeedServiceModel rssFeed, CancellationToken token = default)
         {
-            return _rssRepository.UpdateAsync(_mapper.Transform(rss), token);
+            return _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
         }
 
         public async Task LoadAndUpdateAsync(string id, CancellationToken token = default)
         {
-            var currentItem = await _rssRepository.GetAsync(id, token);
-            var syndicationFeed1 = await _rssApiClient.LoadFeedsAsync(currentItem?.Rss, token);
+            var currentItem = await _rssFeedRepository.GetAsync(id, token);
+            var syndicationFeed1 = await _rssFeedApiClient.LoadFeedsAsync(currentItem?.Rss, token);
 
             var syndicationFeed = new SyndicationFeed();
             
             if (syndicationFeed == null) return;
 
-            currentItem = await _rssRepository.GetAsync(id, token);
+            currentItem = await _rssFeedRepository.GetAsync(id, token);
             
             if (currentItem == null) return;
             
@@ -72,7 +72,7 @@ namespace Core.Services.Rss
             currentItem.UpdateTime = DateTime.Now;
             //TODO сюда запихнуть фавикон
             currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";
-            await _rssRepository.UpdateAsync(currentItem, token);
+            await _rssFeedRepository.UpdateAsync(currentItem, token);
 
             foreach (var syndicationItem in syndicationFeed.Items?.Where(w => w != null) ?? new SyndicationItem[0])
             {
@@ -102,17 +102,17 @@ namespace Core.Services.Rss
 
         public async Task UpdatePositionAsync(string localItemId, int position, CancellationToken token)
         {
-            var item = await _rssRepository.GetAsync(localItemId, token);
+            var item = await _rssFeedRepository.GetAsync(localItemId, token);
             if (item != null)
             {
                 item.Position = position;
-                await _rssRepository.UpdateAsync(item, token);
+                await _rssFeedRepository.UpdateAsync(item, token);
             }
         }
 
         public Task ReadAllMessagesAsync(string itemId, CancellationToken token = default) { throw new NotImplementedException(); }
         
-        public async Task ShareAsync(RssServiceModel model, CancellationToken token = default)
+        public async Task ShareAsync(RssFeedServiceModel model, CancellationToken token = default)
         {
             await Xamarin.Essentials.Share.RequestAsync(model?.Rss).NotNull();
         }

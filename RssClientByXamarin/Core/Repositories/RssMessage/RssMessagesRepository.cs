@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.AllMessageFilter;
-using Core.Configuration.Settings;
 using Core.Database;
 using Core.Database.Rss;
-using Core.Extensions;
 using Core.Infrastructure.Mappers;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage
@@ -35,32 +32,31 @@ namespace Core.Repositories.RssMessage
 
         public Task AddMessageAsync(RssMessageDomainModel messageDomainModel, string idRss, CancellationToken token = default)
         {
-            return Task.Run(() =>
+            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var messageModel = _mapperToModel.Transform(messageDomainModel);
                 
-                _sqliteDatabase.Connection.Insert(messageModel);
+                connection.Insert(messageModel);
             }, token);
         }
 
         public Task<RssMessageDomainModel> GetAsync(string id, CancellationToken token)
         {
-            return Task.Run(() =>
-                {
-                    var item = _sqliteDatabase.Connection.Find<RssMessageModel>(id);
-                    return item == null ? null : _mapperToData.Transform(item);
-                },
-                token);
+            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
+            {
+                var item = connection.Find<RssMessageModel>(id);
+                return item == null ? null : _mapperToData.Transform(item);
+            }, token);
         }
 
         public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
         {
             if (message == null) return Task.CompletedTask;
          
-            return Task.Run(() =>
+            return _sqliteDatabase.DoWithConnectionAsync((connection) =>
             {
                 var newModel = _mapperToModel.Transform(message);
-                _sqliteDatabase.Connection.Update(newModel);
+                connection.Update(newModel);
             }, token);
         }
 

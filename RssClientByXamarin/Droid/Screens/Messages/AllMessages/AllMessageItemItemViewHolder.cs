@@ -4,6 +4,7 @@ using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Services.RssMessages;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
@@ -46,7 +47,7 @@ namespace Droid.Screens.Messages.AllMessages
             Title.Text = item.Title;
             Text.SetTextAsHtml(item.Text);
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            Canal.Text = item.RssParent?.Name;
+            Canal.Text = item.RssFeedParent?.Name;
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();

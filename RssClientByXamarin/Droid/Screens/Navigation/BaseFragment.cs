@@ -7,6 +7,7 @@ using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Droid.Container;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Base;
 using JetBrains.Annotations;
 

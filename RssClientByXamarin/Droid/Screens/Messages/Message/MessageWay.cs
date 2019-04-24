@@ -1,7 +1,7 @@
 using System;
 using Core.Configuration.Settings;
 using Core.Infrastructure.Navigation;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.ViewModels.Messages.Message;
 using Droid.Screens.Navigation;
 using Xamarin.Essentials;

@@ -6,17 +6,18 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Core.Extensions;
 using Core.Infrastructure.Locale;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.ViewModels.Lists;
+using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using Droid.Screens.Base.DragRecyclerView;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.RssFeeds.EditableList
 {
-    public class RssFeedEditableListAdapter : DataBindAdapter<RssServiceModel, IEnumerable<RssServiceModel>, RssFeedEditableListItemViewHolder>, IReorderListHelperAdapter
+    public class RssFeedEditableListAdapter : DataBindAdapter<RssFeedServiceModel, IEnumerable<RssFeedServiceModel>, RssFeedEditableListItemViewHolder>, IReorderListHelperAdapter
     {
-        public RssFeedEditableListAdapter([NotNull] Activity activity) : base(new List<RssServiceModel>(), activity) { }
+        public RssFeedEditableListAdapter([NotNull] Activity activity) : base(new List<RssFeedServiceModel>(), activity) { }
 
         public void OnMove(int fromPosition, int toPosition)
         {
@@ -24,11 +25,11 @@ namespace Droid.Screens.RssFeeds.EditableList
             OnMoveEvent?.Invoke(this, args);
         }
 
-        public event EventHandler<RssServiceModel> DeleteClick;
+        public event EventHandler<RssFeedServiceModel> DeleteClick;
         public event EventHandler<MoveEventArgs> OnMoveEvent;
         public event Action<RecyclerView.ViewHolder> OnStartDrag;
 
-        protected override void BindData(RssFeedEditableListItemViewHolder holder, RssServiceModel item)
+        protected override void BindData(RssFeedEditableListItemViewHolder holder, RssFeedServiceModel item)
         {
             base.BindData(holder, item);
 

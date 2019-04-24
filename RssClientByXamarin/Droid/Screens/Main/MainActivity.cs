@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Core.ViewModels.Main;
 using Droid.NativeExtension;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Main

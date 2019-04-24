@@ -8,6 +8,7 @@ using Core.Services.RssMessages;
 using Core.ViewModels.Messages.RssFeedMessagesList;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using DynamicData.Annotations;
@@ -46,7 +47,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 
             _viewHolder = new RssFeedMessagesFragmentViewHolder(view);
 
-            Title = ViewModel.Parameters.RssModel.Name;
+            Title = ViewModel.Parameters.RssFeedModel.Name;
             
             var adapter = new RssFeedMessagesListAdapter(Activity, ViewModel.AppConfiguration);
             _viewHolder.RecyclerView.SetAdapter(adapter);
@@ -98,7 +99,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            var rssModel = ViewModel.Parameters.RssModel;
+            var rssModel = ViewModel.Parameters.RssFeedModel;
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssDetail_remove:

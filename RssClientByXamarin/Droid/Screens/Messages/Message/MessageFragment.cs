@@ -3,6 +3,7 @@ using Android.Views;
 using Core.Repositories.RssMessage;
 using Core.ViewModels.Messages.Message;
 using Droid.Container;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 
 namespace Droid.Screens.Messages.Message

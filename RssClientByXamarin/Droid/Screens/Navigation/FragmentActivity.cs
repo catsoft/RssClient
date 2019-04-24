@@ -8,7 +8,7 @@ using Autofac;
 using Core;
 using Core.Configuration.Settings;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Droid.Container;
 
 namespace Droid.Screens.Navigation

@@ -2,6 +2,7 @@
 using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.Contacts;
+using Droid.Resources;
 using Droid.Screens.Navigation;
 using ReactiveUI;
 

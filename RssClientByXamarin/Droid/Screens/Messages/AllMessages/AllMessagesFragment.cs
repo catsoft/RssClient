@@ -9,6 +9,7 @@ using Core.ViewModels.Messages.AllMessages;
 using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
 using JetBrains.Annotations;

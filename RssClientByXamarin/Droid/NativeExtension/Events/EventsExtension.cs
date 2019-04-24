@@ -5,7 +5,7 @@ using Android.Support.V4.Widget;
 using Android.Widget;
 using Core.Extensions;
 using Core.Repositories.Feedly;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.ViewModels.Lists;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.RssFeeds.EditableList;
@@ -35,18 +35,18 @@ namespace Droid.NativeExtension.Events
         }
 
         [NotNull]
-        public static IObservable<RssServiceModel> GetRssItemDismissEvent([NotNull] this RssFeedListAdapter @this)
+        public static IObservable<RssFeedServiceModel> GetRssItemDismissEvent([NotNull] this RssFeedListAdapter @this)
         {
             return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.NotNull().ItemDismiss += t, t => @this.NotNull().ItemDismiss -= t)
+                .FromEventPattern<RssFeedServiceModel>(t => @this.NotNull().ItemDismiss += t, t => @this.NotNull().ItemDismiss -= t)
                 .Select(_ => _?.EventArgs);
         }
 
         [NotNull]
-        public static IObservable<RssServiceModel> GetItemDeleteEvent([NotNull] this RssFeedEditableListAdapter @this)
+        public static IObservable<RssFeedServiceModel> GetItemDeleteEvent([NotNull] this RssFeedEditableListAdapter @this)
         {
             return Observable
-                .FromEventPattern<RssServiceModel>(t => @this.NotNull().DeleteClick += t, t => @this.NotNull().DeleteClick -= t)
+                .FromEventPattern<RssFeedServiceModel>(t => @this.NotNull().DeleteClick += t, t => @this.NotNull().DeleteClick -= t)
                 .Select(_ => _?.EventArgs);
         }
 

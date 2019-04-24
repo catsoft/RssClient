@@ -4,7 +4,7 @@ using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
-using Core.Repositories.Configuration;
+using Core.Repositories.Configurations;
 using Core.ViewModels.About;
 using Core.ViewModels.Contacts;
 using Core.ViewModels.FeedlySearch;

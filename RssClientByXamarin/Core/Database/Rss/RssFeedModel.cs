@@ -1,10 +1,14 @@
-using System;
-using Core.Database;
+﻿using System;
+using System.Collections.Generic;
+using SQLite;
 
-namespace Core.Repositories.Rss
+namespace Core.Database.Rss
 {
-    public class RssDomainModel : IHaveId
+    [Table("RssFeed")]
+    public class RssFeedModel : IHaveId
     {
+        [PrimaryKey] public string Id { get; set; } = Guid.NewGuid().ToString();
+        
         public string Name { get; set; }
 
         public string Rss { get; set; }
@@ -12,10 +16,9 @@ namespace Core.Repositories.Rss
         public int Position { get; set; }
 
         public string UrlPreviewImage { get; set; }
-
+        
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }
-        public string Id { get; set; }
     }
 }

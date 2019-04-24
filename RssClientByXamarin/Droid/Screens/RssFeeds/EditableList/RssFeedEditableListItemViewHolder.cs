@@ -2,13 +2,14 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
+using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.RssFeeds.EditableList
 {
-    public class RssFeedEditableListItemViewHolder : RecyclerView.ViewHolder, IDataBind<RssServiceModel>
+    public class RssFeedEditableListItemViewHolder : RecyclerView.ViewHolder, IDataBind<RssFeedServiceModel>
     {
         public RssFeedEditableListItemViewHolder([NotNull] View itemView) : base(itemView)
         {
@@ -26,8 +27,8 @@ namespace Droid.Screens.RssFeeds.EditableList
 
         [NotNull] public ImageView ReorderImage { get; }
 
-        public RssServiceModel Item { get; private set; }
+        public RssFeedServiceModel Item { get; private set; }
 
-        public void BindData(RssServiceModel item) { Item = item; }
+        public void BindData(RssFeedServiceModel item) { Item = item; }
     }
 }

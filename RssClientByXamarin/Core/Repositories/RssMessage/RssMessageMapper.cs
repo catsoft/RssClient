@@ -1,7 +1,6 @@
-using System.Linq;
 using Core.Database.Rss;
 using Core.Infrastructure.Mappers;
-using Core.Repositories.Rss;
+using Core.Repositories.RssFeeds;
 using Core.Services.RssMessages;
 using JetBrains.Annotations;
 
@@ -12,9 +11,9 @@ namespace Core.Repositories.RssMessage
         IMapper<RssMessageServiceModel, RssMessageDomainModel>,
         IMapper<RssMessageDomainModel, RssMessageServiceModel>
     {
-        [NotNull] private readonly IMapper<RssModel, RssDomainModel> _rssMapper;
+        [NotNull] private readonly IMapper<RssFeedModel, RssFeedDomainModel> _rssMapper;
 
-        public RssMessageMapper([NotNull] IMapper<RssModel, RssDomainModel> rssMapper)
+        public RssMessageMapper([NotNull] IMapper<RssFeedModel, RssFeedDomainModel> rssMapper)
         {
             _rssMapper = rssMapper;
         }
@@ -66,7 +65,7 @@ namespace Core.Repositories.RssMessage
                     Text = model.Text,
                     Title = model.Title,
                     IsRead = model.IsRead,
-                    RssParent = model.RssParent,
+                    RssFeedParent = model.RssFeedParent,
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,
@@ -85,7 +84,7 @@ namespace Core.Repositories.RssMessage
                     Text = model.Text,
                     Title = model.Title,
                     IsRead = model.IsRead,
-                    RssParent = model.RssParent,
+                    RssFeedParent = model.RssFeedParent,
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,

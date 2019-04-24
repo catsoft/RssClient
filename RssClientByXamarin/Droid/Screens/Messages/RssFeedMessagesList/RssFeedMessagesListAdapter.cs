@@ -6,6 +6,7 @@ using Android.Views;
 using Core.Configuration.Settings;
 using Core.Services.RssMessages;
 using Droid.NativeExtension.Events;
+using Droid.Resources;
 using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 

@@ -7,7 +7,7 @@ using Core.Extensions;
 using Core.Infrastructure.Dialogs;
 using Core.Infrastructure.Navigation;
 using Core.Resources;
-using Core.Services.Rss;
+using Core.Services.RssFeeds;
 using Core.ViewModels.Messages.RssFeedMessagesList;
 using Core.ViewModels.RssFeeds.Edit;
 using DynamicData;
@@ -18,44 +18,44 @@ namespace Core.ViewModels.RssFeeds
 {
     public class RssFeedItemViewModel
     {
-        [NotNull] private readonly IRssService _rssService;
+        [NotNull] private readonly IRssFeedService _rssFeedService;
         [NotNull] private readonly IDialogService _dialogService;
         [NotNull] private readonly INavigator _navigator;
-        [CanBeNull] private readonly SourceList<RssServiceModel> _sourceList;
+        [CanBeNull] private readonly SourceList<RssFeedServiceModel> _sourceList;
 
-        public RssFeedItemViewModel(IRssService rssService, IDialogService dialogService, [NotNull] INavigator navigator, [CanBeNull] SourceList<RssServiceModel> sourceList)
+        public RssFeedItemViewModel(IRssFeedService rssFeedService, IDialogService dialogService, [NotNull] INavigator navigator, [CanBeNull] SourceList<RssFeedServiceModel> sourceList)
         {
-            _rssService = rssService;
+            _rssFeedService = rssFeedService;
             _dialogService = dialogService;
             _navigator = navigator;
             _sourceList = sourceList;
 
-            ShareCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoShare);
-            ShowDeleteDialogCommand = ReactiveCommand.Create<RssServiceModel>(DoShowDeleteItemDialog);
-            DeleteItemCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoItemRemove);
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask<RssServiceModel>(DoReadAllMessages);
-            OpenEditItemCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenEditItem);
-            OpenMessagesListCommand = ReactiveCommand.Create<RssServiceModel>(DoOpenMessagesList);
+            ShareCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoShare);
+            ShowDeleteDialogCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoShowDeleteItemDialog);
+            DeleteItemCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoItemRemove);
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoReadAllMessages);
+            OpenEditItemCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenEditItem);
+            OpenMessagesListCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenMessagesList);
         }
 
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ShareCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ShareCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ShowDeleteDialogCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ShowDeleteDialogCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> DeleteItemCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> DeleteItemCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> ReadAllMessagesCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ReadAllMessagesCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> OpenEditItemCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> OpenEditItemCommand { get; }
         
-        [NotNull] public ReactiveCommand<RssServiceModel, Unit> OpenMessagesListCommand { get; }
+        [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> OpenMessagesListCommand { get; }
         
-        private async Task DoShare(RssServiceModel model, CancellationToken token)
+        private async Task DoShare(RssFeedServiceModel model, CancellationToken token)
         {
-            await _rssService.ShareAsync(model, token);
+            await _rssFeedService.ShareAsync(model, token);
         }
 
-        private void DoShowDeleteItemDialog([CanBeNull] RssServiceModel model)
+        private void DoShowDeleteItemDialog([CanBeNull] RssFeedServiceModel model)
         {
             _dialogService.ShowYesNoDialog(Strings.RssDeleteDialogTitle,
                 "",
@@ -65,23 +65,23 @@ namespace Core.ViewModels.RssFeeds
                 null);
         }
 
-        private async Task DoItemRemove(RssServiceModel model)
+        private async Task DoItemRemove(RssFeedServiceModel model)
         {
             _sourceList?.Remove(model);
-            await _rssService.RemoveAsync(model?.Id);
+            await _rssFeedService.RemoveAsync(model?.Id);
         }
         
-        private async Task DoReadAllMessages(RssServiceModel model, CancellationToken token)
+        private async Task DoReadAllMessages(RssFeedServiceModel model, CancellationToken token)
         {
-            await _rssService.ReadAllMessagesAsync(model.Id, token);
+            await _rssFeedService.ReadAllMessagesAsync(model.Id, token);
             if (_sourceList != null)
             {
-                var newModel = await _rssService.GetAsync(model.Id, token);
+                var newModel = await _rssFeedService.GetAsync(model.Id, token);
                 _sourceList.Replace(model, newModel);
             }
         }
 
-        private void DoOpenEditItem(RssServiceModel model)
+        private void DoOpenEditItem(RssFeedServiceModel model)
         {
             var parameter = new RssEditParameters(model.Id);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
@@ -89,7 +89,7 @@ namespace Core.ViewModels.RssFeeds
             _navigator.Go(editWay);
         }
         
-        private void DoOpenMessagesList(RssServiceModel model)
+        private void DoOpenMessagesList(RssFeedServiceModel model)
         {
             var parameter = new RssFeedMessagesListParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);

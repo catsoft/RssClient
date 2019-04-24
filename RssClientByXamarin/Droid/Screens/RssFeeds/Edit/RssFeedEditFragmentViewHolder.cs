@@ -1,6 +1,7 @@
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using Droid.Resources;
 
 namespace Droid.Screens.RssFeeds.Edit
 {

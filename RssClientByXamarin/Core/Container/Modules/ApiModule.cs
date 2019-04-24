@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Core.Api.Feedly;
-using Core.Api.Rss;
+using Core.Api.RssFeeds;
 using Core.Extensions;
 
 namespace Core.Container.Modules
@@ -11,7 +11,7 @@ namespace Core.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<RssApiClient>().NotNull().As<IRssApiClient>().NotNull().SingleInstance();
+            builder.RegisterType<RssFeedApiClient>().NotNull().As<IRssFeedApiClient>().NotNull().SingleInstance();
             builder.RegisterType<FeedlyCloudApiClient>().NotNull().As<IFeedlyCloudApiClient>().NotNull().SingleInstance();
         }
     }
