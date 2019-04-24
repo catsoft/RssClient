@@ -7,7 +7,9 @@ using Droid.NativeExtension;
 using Droid.Resources;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
+using FFImageLoading;
 using FFImageLoading.Views;
+using FFImageLoading.Work;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.FeedlySearch
@@ -24,11 +26,16 @@ namespace Droid.Screens.FeedlySearch
 
             RssIcon.Visibility = IsShowAndLoadImages.ToVisibility();
         }
-
+        
         [NotNull] public ImageButton AddImageView { get; }
+        
         [NotNull] public TextView TitleView { get; }
+        
         [NotNull] public ImageViewAsync RssIcon { get; }
+        
         public FeedlyRssDomainModel Item { get; set; }
+        
+        public bool IsShowAndLoadImages { get; }
 
         public void BindData(FeedlyRssDomainModel item)
         {
@@ -38,18 +45,12 @@ namespace Droid.Screens.FeedlySearch
 
             if (IsShowAndLoadImages)
             {
-//                // TODO вынести крутую генерацию фавикона в другое место
-//                var uri = new Uri(item.Rss);
-//                var favicon = $"{uri.Scheme}://{uri.Host}/favicon.ico";
-//
-//                // TODO плейсхолдер должен зависить от темы
-//                ImageService.Instance.LoadUrl(favicon)
-//                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
-//                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
-//                    .Into(RssIcon);   
+                // TODO плейсхолдер должен зависить от темы
+                ImageService.Instance.LoadUrl(item.IconUrl)
+                    .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
+                    .ErrorPlaceholder("no_image.png", ImageSource.CompiledResource)
+                    .Into(RssIcon);   
             }
         }
-
-        public bool IsShowAndLoadImages { get; }
     }
 }

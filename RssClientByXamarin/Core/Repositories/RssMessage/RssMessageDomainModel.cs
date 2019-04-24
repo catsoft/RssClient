@@ -26,5 +26,7 @@ namespace Core.Repositories.RssMessage
         [CanBeNull] public RssFeedDomainModel RssFeedParent { get; set; }
 
         public Guid Id { get; set; }
+        
+        public Guid RssId { get; set; }
     }
 }

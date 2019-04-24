@@ -1,3 +1,4 @@
+using System;
 using Core.Api.Feedly;
 using Core.Infrastructure.Mappers;
 
@@ -32,7 +33,7 @@ namespace Core.Repositories.Feedly
                     CoverColor = model.CoverColor,
                     ContentType = model.ContentType,
                     CoverageScore = model.CoverageScore,
-                    EstimatedEngagement = model.EstimatedEngagement
+                    EstimatedEngagement = model.EstimatedEngagement,
                 };
         }
     }

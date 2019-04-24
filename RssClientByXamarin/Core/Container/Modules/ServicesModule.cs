@@ -14,7 +14,7 @@ namespace Core.Container.Modules
 
             builder.RegisterType<RssFeedService>().NotNull().As<IRssFeedService>().NotNull().SingleInstance();
             builder.RegisterType<RssMessageService>().NotNull().As<IRssMessageService>().NotNull().SingleInstance();
-            builder.RegisterType<FeedlyService>().NotNull().As<IFeedlyService>().NotNull().SingleInstance();
+            builder.RegisterType<FeedlySearchSearchService>().NotNull().As<IFeedlySearchService>().NotNull().SingleInstance();
         }
     }
 }

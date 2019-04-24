@@ -23,7 +23,8 @@ namespace Core.Repositories.RssMessage
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,
-                    SyndicationId = model.SyndicationId
+                    SyndicationId = model.SyndicationId,
+                    RssId = model.RssId,
                 };
         }
 
@@ -41,7 +42,8 @@ namespace Core.Repositories.RssMessage
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,
-                    SyndicationId = model.SyndicationId
+                    SyndicationId = model.SyndicationId,
+                    RssId = model.RssId,
                 };
         }
 
@@ -56,11 +58,11 @@ namespace Core.Repositories.RssMessage
                     Text = model.Text,
                     Title = model.Title,
                     IsRead = model.IsRead,
-                    RssFeedParent = model.RssFeedParent,
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,
-                    SyndicationId = model.SyndicationId
+                    SyndicationId = model.SyndicationId,
+                    RssId = model.RssId,
                 };
         }
 
@@ -75,11 +77,11 @@ namespace Core.Repositories.RssMessage
                     Text = model.Text,
                     Title = model.Title,
                     IsRead = model.IsRead,
-                    RssFeedParent = model.RssFeedParent,
                     IsFavorite = model.IsFavorite,
                     CreationDate = model.CreationDate,
                     ImageUrl = model.ImageUrl,
-                    SyndicationId = model.SyndicationId
+                    SyndicationId = model.SyndicationId,
+                    RssId = model.RssId,
                 };
         }
     }

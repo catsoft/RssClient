@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.AllMessageFilter;
-using Core.Database.Rss;
 using JetBrains.Annotations;
 
 namespace Core.Repositories.RssMessage

@@ -2,18 +2,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Extensions;
 using Core.Repositories.Feedly;
 using Core.Repositories.RssFeeds;
 using JetBrains.Annotations;
 
 namespace Core.Services.Feedly
 {
-    public class FeedlyService : IFeedlyService
+    public class FeedlySearchSearchService : IFeedlySearchService
     {
         [NotNull] private readonly IFeedlyRepository _feedlyRepository;
         [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
 
-        public FeedlyService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssFeedRepository rssFeedRepository)
+        public FeedlySearchSearchService([NotNull] IFeedlyRepository feedlyRepository, [NotNull] IRssFeedRepository rssFeedRepository)
         {
             _feedlyRepository = feedlyRepository;
             _rssFeedRepository = rssFeedRepository;
@@ -27,7 +28,11 @@ namespace Core.Services.Feedly
         public async Task AddFeedly(FeedlyRssDomainModel model, CancellationToken token)
         {
             var rss = model?.FeedId?.TrimStart("feed/".ToArray());
-            await _rssFeedRepository.AddAsync(rss, token);
+            var guid = await _rssFeedRepository.AddAsync(rss, token);
+
+            var item = (await _rssFeedRepository.GetAsync(guid, token)).NotNull();
+            item.UrlPreviewImage = model?.IconUrl;
+            await _rssFeedRepository.UpdateAsync(item, token);
         }
     }
 }

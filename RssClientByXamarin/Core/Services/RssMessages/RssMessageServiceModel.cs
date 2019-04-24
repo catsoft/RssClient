@@ -1,5 +1,4 @@
 using System;
-using Core.Repositories.RssFeeds;
 
 namespace Core.Services.RssMessages
 {
@@ -23,6 +22,6 @@ namespace Core.Services.RssMessages
 
         public bool IsFavorite { get; set; }
 
-        public RssFeedDomainModel RssFeedParent { get; set; }
+        public Guid RssId { get; set; }
     }
 }

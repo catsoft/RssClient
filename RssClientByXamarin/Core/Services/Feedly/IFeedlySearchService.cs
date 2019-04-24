@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace Core.Services.Feedly
 {
-    public interface IFeedlyService
+    public interface IFeedlySearchService
     {
         [NotNull]
         [ItemCanBeNull]

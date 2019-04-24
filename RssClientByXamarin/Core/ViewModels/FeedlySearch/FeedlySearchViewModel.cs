@@ -20,15 +20,15 @@ namespace Core.ViewModels.FeedlySearch
 {
     public class FeedlySearchViewModel : ViewModel
     {
-        [NotNull] private readonly IFeedlyService _feedlyService;
+        [NotNull] private readonly IFeedlySearchService _feedlySearchService;
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
 
-        public FeedlySearchViewModel([NotNull] IFeedlyService feedlyService, [NotNull] IConfigurationRepository configurationRepository)
+        public FeedlySearchViewModel([NotNull] IFeedlySearchService feedlySearchService, [NotNull] IConfigurationRepository configurationRepository)
         {
-            _feedlyService = feedlyService;
+            _feedlySearchService = feedlySearchService;
             _configurationRepository = configurationRepository;
 
-            FindByQueryCommand = ReactiveCommand.CreateFromTask(token => _feedlyService.FindByQueryAsync(SearchQuery ?? "", token),
+            FindByQueryCommand = ReactiveCommand.CreateFromTask(token => _feedlySearchService.FindByQueryAsync(SearchQuery ?? "", token),
                     this.WhenAnyValue(model => model.SearchQuery).NotNull().Select(w => !string.IsNullOrEmpty(w)))
                 .NotNull();
             
@@ -60,7 +60,7 @@ namespace Core.ViewModels.FeedlySearch
         [NotNull]
         private Task DoAddFeedlyRss([NotNull] FeedlyRssDomainModel model, CancellationToken token = default)
         {
-            return _feedlyService.AddFeedly(model, token);
+            return _feedlySearchService.AddFeedly(model, token);
 
             //TODO го тоаст
 //                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.Item.Title);

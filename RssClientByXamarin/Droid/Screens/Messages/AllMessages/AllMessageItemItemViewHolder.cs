@@ -30,14 +30,23 @@ namespace Droid.Screens.Messages.AllMessages
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
+        
         [NotNull] public TextView Title { get; }
+        
         [NotNull] public TextView Text { get; }
+        
         [NotNull] public TextView CreationDate { get; }
+        
         [NotNull] public TextView Canal { get; }
+        
         [NotNull] public ImageViewAsync ImageView { get; }
+        
         [NotNull] public LinearLayout ClickView { get; }
+        
         [NotNull] public LinearLayout Background { get; }
+        
         [NotNull] public RatingBar RatingBar { get; }
+        
         public bool IsShowAndLoadImages { get; }
 
         public override void BindData(RssMessageServiceModel item)
@@ -47,7 +56,8 @@ namespace Droid.Screens.Messages.AllMessages
             Title.Text = item.Title;
             Text.SetTextAsHtml(item.Text);
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            Canal.Text = item.RssFeedParent?.Name;
+            // todo
+//            Canal.Text = item.RssFeedParent?.Name;
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
