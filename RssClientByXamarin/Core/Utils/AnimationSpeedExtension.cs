@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core.Configuration.Settings;
 using JetBrains.Annotations;
 
@@ -30,6 +31,21 @@ namespace Core.Utils
                 default:
                     throw new ArgumentOutOfRangeException(nameof(animationSpeed), animationSpeed, null);
             }
+        }
+        
+        public static List<AnimationSpeed> GetAnimationSpeeds()
+        {
+            return new List<AnimationSpeed>()
+            {
+                AnimationSpeed.X025,
+                AnimationSpeed.X033,
+                AnimationSpeed.X05,
+                AnimationSpeed.X,
+                AnimationSpeed.X2,
+                AnimationSpeed.X3, 
+                AnimationSpeed.X4, 
+                AnimationSpeed.Max,
+            };
         }
     }
 }

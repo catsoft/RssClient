@@ -2,6 +2,7 @@ using Autofac;
 using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.ViewModels.About;
+using Core.ViewModels.AnimationWeaver;
 using Core.ViewModels.Close;
 using Core.ViewModels.Contacts;
 using Core.ViewModels.FeedlySearch;
@@ -54,6 +55,8 @@ namespace Core.Container.Modules
             builder.RegisterType<SettingsRssDetailViewModel>().AsSelf();
             builder.RegisterType<SettingsStartPageViewModel>().AsSelf();
             builder.RegisterType<SettingsThemeViewModel>().AsSelf();
+            
+            builder.RegisterType<AnimationWeaverViewModel>().AsSelf();
         }
     }
 }

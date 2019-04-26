@@ -13,57 +13,10 @@
         android:layout_marginBottom="16dp"
         android:text="@string/settings_animation_header"/>
     
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button_animationSetting_gotoWeaver"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-            
-            <TextView
-                style="@style/TextView.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical|left"
-                android:gravity="center|left"
-                android:text="@string/settings_animation_speedAnimation"/>
-            
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/appCompatSpinner_settingsStartPage_speedAnimation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_gravity="center_vertical|right"/>
-        
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-            
-            <TextView
-                style="@style/TextView.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical|left"
-                android:gravity="center|left"
-                android:text="@string/settings_animation_typeAnimation"/>
-            
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/appCompatSpinner_settingsStartPage_typeAnimation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_gravity="center_vertical|right"/>
-        
-        </LinearLayout>
-    
-    </LinearLayout>
+        android:text="@string/AnimationSettings_gotoCustomize"/>
 
 </LinearLayout>

@@ -2,6 +2,7 @@
 using Autofac;
 using Core.Infrastructure.Navigation;
 using Core.ViewModels.About;
+using Core.ViewModels.AnimationWeaver;
 using Core.ViewModels.Close;
 using Core.ViewModels.Contacts;
 using Core.ViewModels.FeedlySearch;
@@ -16,6 +17,7 @@ using Core.ViewModels.RssFeeds.EditableList;
 using Core.ViewModels.RssFeeds.List;
 using Core.ViewModels.Settings;
 using Droid.Screens.About;
+using Droid.Screens.AnimationWeaver;
 using Droid.Screens.Close;
 using Droid.Screens.Contacts;
 using Droid.Screens.FeedlySearch;
@@ -54,10 +56,11 @@ namespace Droid.Container.Modules
 
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();
+            builder.RegisterType<AnimationWeaverWay>().As<IWay<AnimationWeaverViewModel>>();
             builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel>>();
 
             builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
-
+            
             builder.Register(c => MainActivity.Instance).As<Activity>();
             builder.Register(c => MainActivity.Instance).As<IFragmentManager>();
         }

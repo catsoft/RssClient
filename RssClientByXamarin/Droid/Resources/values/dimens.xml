@@ -2,6 +2,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="feedlyProgressBarHeight">10dp</dimen>
     
+    <dimen name="animationWeaver_container">150dp</dimen>
+    
     <dimen name="offset_4">4dp</dimen>
     <dimen name="offset_8">8dp</dimen>
     <dimen name="offset_12">12dp</dimen>

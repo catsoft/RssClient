@@ -15,7 +15,11 @@ namespace Core.Configuration.Settings
 
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.X;
 
-        public AnimationType AnimationType { get; set; } = AnimationType.OnlyFade;
+        public AnimationType AnimationEnter { get; set; } = AnimationType.Fade;
+        
+        public AnimationType AnimationExit { get; set; } = AnimationType.Fade;
+
+        public bool IsDelay { get; set; } = true;
 
         public AppTheme AppTheme { get; set; } = AppTheme.Default;
 

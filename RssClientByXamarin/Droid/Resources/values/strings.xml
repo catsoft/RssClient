@@ -120,5 +120,12 @@
     <string name="rssEditListEmptyText">Here you have nothing yet</string>
     <string name="rssAllMessagesList_emptyText">Here you have nothing yet</string>
     <string name="favoriteList_emptyText">Here you have nothing yet</string>
+    <string name="animationWeaver_exitAnim">Exit anim</string>
+    <string name="animationWeaver_enterAnim">Enter anim</string>
+    <string name="animationWeaver_speedAnim">Speed anim</string>
+    <string name="animationWeaver_yourScreen">Your screen</string>
+    <string name="AnimationSettings_gotoCustomize">Go to customize</string>
+    <string name="animationWeaver_withoutDelay">Without delay</string>
+    <string name="animationWeaver_withDelay">Delay</string>
 
 </resources>

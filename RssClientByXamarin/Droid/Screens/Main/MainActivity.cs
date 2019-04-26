@@ -12,7 +12,7 @@ namespace Droid.Screens.Main
     [Activity(Label = "@string/all_appName", Theme = "@style/AppTheme.Default.NoActionBar")]
     public class MainActivity : FragmentActivity<MainViewModel>
     {
-        protected override int? ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
+        protected override int ContainerId => Resource.Id.frameLayout_rssList_fragmentContainer;
         protected override int ResourceView => Resource.Layout.activity_main;
         public static MainActivity Instance { get; private set; }
 

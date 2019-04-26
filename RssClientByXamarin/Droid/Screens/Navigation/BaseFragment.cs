@@ -46,7 +46,7 @@ namespace Droid.Screens.Navigation
             var view = inflater.Inflate(LayoutId, container, false).NotNull();
 
             var value = new TypedValue();
-            Activity?.Theme?.ResolveAttribute(Resource.Attribute.background, value, true);
+            Activity.Theme?.ResolveAttribute(Resource.Attribute.background, value, true);
             view.SetBackgroundColor(new Color((int) value.Float));
 
             return view;

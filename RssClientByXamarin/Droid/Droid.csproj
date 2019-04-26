@@ -73,8 +73,14 @@
     <Compile Include="NativeExtension\RateExtension.cs" />
     <Compile Include="NativeExtension\TextViewExtension.cs" />
     <Compile Include="NativeExtension\ViewExtension.cs" />
+    <Compile Include="NativeExtension\VisibilityExtension.cs" />
     <Compile Include="Screens\About\AboutFragment.cs" />
     <Compile Include="Screens\About\AboutWay.cs" />
+    <Compile Include="Screens\AnimationWeaver\AnimatableFragment.cs" />
+    <Compile Include="Screens\AnimationWeaver\AnimationWeaverFragmentViewHolder.cs" />
+    <Compile Include="Screens\AnimationWeaver\AnimationWeaverWay.cs" />
+    <Compile Include="Screens\AnimationWeaver\FragmentNavigation.cs" />
+    <Compile Include="Screens\AnimationWeaver\AnimationWeaverFragment.cs" />
     <Compile Include="Screens\Base\Adapters\DataBindAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\IDataBind.cs" />
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
@@ -148,6 +154,7 @@
     <Compile Include="Screens\RssFeeds\List\RssFeedListWay.cs" />
     <Compile Include="Screens\Main\MainActivity.cs" />
     <Compile Include="Screens\Settings\SettingsAnimationFragment.cs" />
+    <Compile Include="Screens\Settings\SettingsAnimationFragmentViewModel.cs" />
     <Compile Include="Screens\Settings\SettingsLoadImagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsReadMessagesFragment.cs" />
     <Compile Include="Screens\Settings\SettingsRssDetailFragment.cs" />
@@ -168,6 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_animation_weaver.xml" />
     <AndroidResource Include="Resources\layout\fragment_favorite_messages_list.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
