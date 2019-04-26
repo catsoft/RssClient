@@ -67,4 +67,8 @@
         <value>Not updated</value>
     </data>
     
+    <data name="AnimationWeaverTitle" xml:space="preserve">
+        <value>Animation customizing</value>
+    </data>
+    
 </root>

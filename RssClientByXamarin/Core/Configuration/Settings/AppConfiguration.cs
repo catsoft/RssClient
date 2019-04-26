@@ -11,13 +11,13 @@ namespace Core.Configuration.Settings
         /// <summary>
         ///     In millisecond
         /// </summary>
-        public int DefaultAnimationTime { get; set; } = 200;
+        public int DefaultAnimationTime { get; set; } = 235;
 
         public AnimationSpeed AnimationSpeed { get; set; } = AnimationSpeed.X;
 
-        public AnimationType AnimationEnter { get; set; } = AnimationType.Fade;
+        public AnimationType AnimationEnter { get; set; } = AnimationType.Right;
         
-        public AnimationType AnimationExit { get; set; } = AnimationType.Fade;
+        public AnimationType AnimationExit { get; set; } = AnimationType.Left;
 
         public bool IsDelay { get; set; } = true;
 

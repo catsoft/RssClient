@@ -7,6 +7,7 @@ using System.Reactive.Subjects;
 using Core.Configuration.Settings;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
+using Core.Resources;
 using Core.Utils;
 using JetBrains.Annotations;
 using ReactiveUI;
@@ -23,6 +24,8 @@ namespace Core.ViewModels.AnimationWeaver
         {
             _configurationRepository = configurationRepository;
 
+            Title = Strings.AnimationWeaverTitle;
+            
             Types = AnimationTypeExtension.GetAnimationTypes();
             Speeds = AnimationSpeedExtension.GetAnimationSpeeds();
 
@@ -42,6 +45,8 @@ namespace Core.ViewModels.AnimationWeaver
             UpdateIsDelayAnimCommand = ReactiveCommand.Create<bool>(DoUpdateIsDelayAnim);
         }
 
+        public string Title { get; }
+        
         public ReactiveCommand<AnimationType, Unit> UpdateEnterAnimCommand { get; }
 
         public ReactiveCommand<AnimationType, Unit> UpdateExitAnimCommand { get; }

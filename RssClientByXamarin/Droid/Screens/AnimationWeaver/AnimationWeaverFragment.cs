@@ -36,6 +36,8 @@ namespace Droid.Screens.AnimationWeaver
 
             _fragmentNavigation = new FragmentNavigation(Activity, ViewModel.AppConfiguration, _viewHolder.Container);
 
+            Title = ViewModel.Title;
+            
             OnActivation((disposables) =>
             {
                 var enterSpinnerAdapter =
