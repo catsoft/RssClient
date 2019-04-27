@@ -24,7 +24,7 @@ namespace Droid.Screens.Navigation
 
             var config = _configurationRepository.GetSettings<AppConfiguration>();
             
-            var fragmentManager = new FragmentNavigation(this, config, container as ViewGroup);
+            var fragmentManager = new FragmentNavigator(this, config, container as ViewGroup);
 
             fragmentManager.GoTo(fragment);
         }

@@ -14,7 +14,7 @@ namespace Droid.Screens.AnimationWeaver
     public class AnimationWeaverFragment : BaseFragment<AnimationWeaverViewModel>
     {
         // ReSharper disable once NotNullMemberIsNotInitialized
-        [NotNull] private FragmentNavigation _fragmentNavigation;
+        [NotNull] private FragmentNavigator _fragmentNavigator;
         
         // ReSharper disable once NotNullMemberIsNotInitialized
         [NotNull] private AnimationWeaverFragmentViewHolder _viewHolder;
@@ -38,7 +38,7 @@ namespace Droid.Screens.AnimationWeaver
 
             _viewHolder = new AnimationWeaverFragmentViewHolder(view);
 
-            _fragmentNavigation = new FragmentNavigation(Activity, ViewModel.AppConfiguration, _viewHolder.Container);
+            _fragmentNavigator = new FragmentNavigator(Activity, ViewModel.AppConfiguration, _viewHolder.Container);
 
             Title = ViewModel.Title;
 
@@ -112,10 +112,10 @@ namespace Droid.Screens.AnimationWeaver
                     .AddTo(disposables);
 
                 ViewModel.AppConfigurationObservable
-                    .Subscribe(w => _fragmentNavigation.AppConfiguration = w.NotNull())
+                    .Subscribe(w => _fragmentNavigator.AppConfiguration = w.NotNull())
                     .AddTo(disposables);
 
-                _fragmentNavigation.GoTo(new AnimatableFragment(_fragmentNavigation));
+                _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator));
             });
 
             return view;
@@ -123,7 +123,7 @@ namespace Droid.Screens.AnimationWeaver
 
         private void SetIsDelay(bool isDelay)
         {
-            if (_fragmentNavigation.AppConfiguration.IsDelay)
+            if (_fragmentNavigator.AppConfiguration.IsDelay)
                 _viewHolder.RadioButtonDelay.Checked = true;
             else
                 _viewHolder.RadioButtonNotDelay.Checked = true;

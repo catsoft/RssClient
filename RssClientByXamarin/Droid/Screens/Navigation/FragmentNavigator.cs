@@ -8,14 +8,14 @@ using Core.Extensions;
 using Droid.NativeExtension;
 using JetBrains.Annotations;
 
-namespace Droid.Screens.AnimationWeaver
+namespace Droid.Screens.Navigation
 {
-    public class FragmentNavigation
+    public class FragmentNavigator
     {
         [NotNull] private readonly FragmentActivity _fragmentActivity;
         [NotNull] private readonly ViewGroup _container;
 
-        public FragmentNavigation([NotNull] FragmentActivity fragmentActivity,
+        public FragmentNavigator([NotNull] FragmentActivity fragmentActivity,
             [NotNull] AppConfiguration appConfiguration,
             [NotNull] ViewGroup container)
         {

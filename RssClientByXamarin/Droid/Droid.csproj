@@ -79,7 +79,6 @@
     <Compile Include="Screens\AnimationWeaver\AnimatableFragment.cs" />
     <Compile Include="Screens\AnimationWeaver\AnimationWeaverFragmentViewHolder.cs" />
     <Compile Include="Screens\AnimationWeaver\AnimationWeaverWay.cs" />
-    <Compile Include="Screens\AnimationWeaver\FragmentNavigation.cs" />
     <Compile Include="Screens\AnimationWeaver\AnimationWeaverFragment.cs" />
     <Compile Include="Screens\Base\Adapters\DataBindAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\IDataBind.cs" />
@@ -133,6 +132,7 @@
     <Compile Include="Screens\Navigation\BurgerActivity.cs" />
     <Compile Include="Screens\Contacts\ContactsFragment.cs" />
     <Compile Include="Screens\Navigation\FragmentActivity.cs" />
+    <Compile Include="Screens\Navigation\FragmentNavigator.cs" />
     <Compile Include="Screens\Navigation\IFragmentManager.cs" />
     <Compile Include="Screens\Navigation\IRoot.cs" />
     <Compile Include="Screens\Navigation\ITitle.cs" />

@@ -4,17 +4,18 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using Droid.Screens.Navigation;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.AnimationWeaver
 {
     public class AnimatableFragment : Fragment
     {
-        [NotNull] private readonly FragmentNavigation _fragmentNavigation;
+        [NotNull] private readonly FragmentNavigator _fragmentNavigator;
 
-        public AnimatableFragment([NotNull] FragmentNavigation fragmentNavigation)
+        public AnimatableFragment([NotNull] FragmentNavigator fragmentNavigator)
         {
-            _fragmentNavigation = fragmentNavigation;
+            _fragmentNavigator = fragmentNavigator;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -34,7 +35,7 @@ namespace Droid.Screens.AnimationWeaver
             linearLayout.Orientation = Orientation.Horizontal;
 
             AddButton(linearLayout, () => Activity?.OnBackPressed(), "Go previous");
-            AddButton(linearLayout, () => _fragmentNavigation.GoTo(new AnimatableFragment(_fragmentNavigation)), "Go next");
+            AddButton(linearLayout, () => _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator)), "Go next");
 
             return linearLayout;
         }
