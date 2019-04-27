@@ -1,5 +1,4 @@
 using System.Reactive;
-using System.Windows.Input;
 using Autofac;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
@@ -26,7 +25,7 @@ namespace Core.ViewModels.Settings
         
         private void DoGoToWeaver()
         {
-            var way = App.Container.Resolve<IWay<AnimationWeaverViewModel>>();
+            var way = App.Container.Resolve<IWay<AnimationWeaverViewModel>>().NotNull();
             _navigator.Go(way);
         }
     }

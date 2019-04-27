@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Core.Configuration.Settings;
+using Core.Extensions;
 using Core.Repositories.Configurations;
 using Core.ViewModels.Settings;
 using Droid.Container;
@@ -21,12 +22,11 @@ namespace Droid.Screens.Settings
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             var radioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsStartPage_main);
             var rssListRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_rssList);
-            var allMessagesRadioButton =
-                view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
+            var allMessagesRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
 
             var configuration = _configurationRepository.GetSettings<AppConfiguration>();
 

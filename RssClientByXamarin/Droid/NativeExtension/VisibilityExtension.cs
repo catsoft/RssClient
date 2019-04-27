@@ -15,14 +15,14 @@ namespace Droid.NativeExtension
                     return null;
                 case AnimationType.Fade:
                     return new Fade();
-                case AnimationType.Bottom:           
-                    return new Slide() {SlideEdge = (int) GravityFlags.Bottom };
+                case AnimationType.Bottom:
+                    return new Slide() {SlideEdge = (int) GravityFlags.Bottom};
                 case AnimationType.Top:
-                    return new Slide() {SlideEdge = (int) GravityFlags.Top };
+                    return new Slide() {SlideEdge = (int) GravityFlags.Top};
                 case AnimationType.Left:
-                    return new Slide() {SlideEdge = (int) GravityFlags.Left };
+                    return new Slide() {SlideEdge = (int) GravityFlags.Left};
                 case AnimationType.Right:
-                    return new Slide() {SlideEdge = (int) GravityFlags.Right };
+                    return new Slide() {SlideEdge = (int) GravityFlags.Right};
                 case AnimationType.Explode:
                     return new Explode();
                 default:

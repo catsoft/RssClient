@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Core.Configuration.Settings;
+using Core.Extensions;
 using Core.Repositories.Configurations;
 using Core.ViewModels.Settings;
 using Droid.Container;
@@ -21,7 +22,7 @@ namespace Droid.Screens.Settings
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
 

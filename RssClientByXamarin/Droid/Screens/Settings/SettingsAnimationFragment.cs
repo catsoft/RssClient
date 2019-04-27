@@ -1,16 +1,17 @@
-using System.Reactive.Linq;
 using Android.OS;
 using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.Settings;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.Settings
 {
     public class SettingsAnimationFragment : BaseFragment<SettingsAnimationViewModel>
     {
-        private SettingsAnimationFragmentViewModel _viewModel;
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        [NotNull] private SettingsAnimationFragmentViewModel _viewModel;
         
         protected override int LayoutId => Resource.Layout.fragment_settings_animation;
 
@@ -24,13 +25,13 @@ namespace Droid.Screens.Settings
 
             _viewModel = new SettingsAnimationFragmentViewModel(view);
             
-            OnActivation((disposables) =>
-            {
-                _viewModel.GoToCustomizeButton.Events().Click
-                    .SelectUnit()
-                    .InvokeCommand(ViewModel.GoToWeaverCommand)
-                    .AddTo(disposables);
-            });
+            OnActivation((disposables) => _viewModel.GoToCustomizeButton.Events()
+                .NotNull()
+                .Click
+                .NotNull()
+                .SelectUnit()
+                .InvokeCommand(ViewModel.GoToWeaverCommand)
+                .AddTo(disposables));
             
             return view;
         }
