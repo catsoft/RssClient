@@ -18,7 +18,27 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-
+    
+    <data name="CreateRssUrlDefault" xml:space="preserve">
+        <value>http://</value>
+    </data>
+    
+    <data name="ContactsTelegramLink" xml:space="preserve">
+        <value>https://t.me/asura_pro</value>
+    </data>
+    
+    <data name="ContactsMailLink" xml:space="preserve">
+        <value>mailto:asuraprog@gmail.com</value>
+    </data>
+    
+    <data name="ContactsLinkedInLink" xml:space="preserve">
+        <value>http://www.linkedin.com/in/asurapro</value>
+    </data>
+    
+    <data name="ContactsDiscordLink" xml:space="preserve">
+        <value>asura#0938</value>
+    </data>
+    
     <data name="Yes" xml:space="preserve">
         <value>Да</value>
     </data>
@@ -59,4 +79,32 @@
         <value>Назад</value>
     </data>
     
+    <data name="AnimationTypeNone" xml:space="preserve">
+        <value>Отсутствует</value>
+    </data>
+    
+    <data name="AnimationTypeLeft" xml:space="preserve">
+        <value>Лево</value>
+    </data>
+    
+    <data name="AnimationTypeRight" xml:space="preserve">
+        <value>Право</value>
+    </data>
+    
+    <data name="AnimationTypeTop" xml:space="preserve">
+        <value>Верх</value>
+    </data>
+    
+    <data name="AnimationTypeBottom" xml:space="preserve">
+        <value>Низ</value>
+    </data>
+    
+    <data name="AnimationTypeExplode" xml:space="preserve">
+        <value>Взрыв</value>
+    </data>
+    
+    <data name="AnimationTypeFade" xml:space="preserve">
+        <value>Скрытие</value>
+    </data>
+
 </root>

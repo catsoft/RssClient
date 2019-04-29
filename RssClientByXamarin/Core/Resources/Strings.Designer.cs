@@ -135,5 +135,47 @@ namespace Core.Resources {
                 return ResourceManager.GetString("AnimatableFragmentGoBack", resourceCulture);
             }
         }
+        
+        public static string AnimationTypeNone {
+            get {
+                return ResourceManager.GetString("AnimationTypeNone", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeLeft {
+            get {
+                return ResourceManager.GetString("AnimationTypeLeft", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeRight {
+            get {
+                return ResourceManager.GetString("AnimationTypeRight", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeTop {
+            get {
+                return ResourceManager.GetString("AnimationTypeTop", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeBottom {
+            get {
+                return ResourceManager.GetString("AnimationTypeBottom", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeExplode {
+            get {
+                return ResourceManager.GetString("AnimationTypeExplode", resourceCulture);
+            }
+        }
+        
+        public static string AnimationTypeFade {
+            get {
+                return ResourceManager.GetString("AnimationTypeFade", resourceCulture);
+            }
+        }
     }
 }

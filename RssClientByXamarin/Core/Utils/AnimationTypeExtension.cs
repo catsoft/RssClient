@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.Configuration.Settings;
+using Core.Resources;
 using JetBrains.Annotations;
 
 namespace Core.Utils
@@ -13,19 +14,19 @@ namespace Core.Utils
             switch (animationType)
             {
                 case AnimationType.None:
-                    return "None";
+                    return Strings.AnimationTypeNone;
                 case AnimationType.Fade:
-                    return "Fade";
+                    return Strings.AnimationTypeFade;
                 case AnimationType.Explode:
-                    return "Explode";
+                    return Strings.AnimationTypeExplode;
                 case AnimationType.Bottom:
-                    return "Bottom";
+                    return Strings.AnimationTypeBottom;
                 case AnimationType.Top:
-                    return "Top";
+                    return Strings.AnimationTypeTop;
                 case AnimationType.Left:
-                    return "Left";
+                    return Strings.AnimationTypeLeft;
                 case AnimationType.Right:
-                    return "Right";
+                    return Strings.AnimationTypeRight;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(animationType), animationType, null);
             }

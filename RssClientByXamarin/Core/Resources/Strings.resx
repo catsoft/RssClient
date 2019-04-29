@@ -79,4 +79,32 @@
         <value>Go back</value>
     </data>
     
+    <data name="AnimationTypeNone" xml:space="preserve">
+        <value>None</value>
+    </data>
+        
+    <data name="AnimationTypeLeft" xml:space="preserve">
+        <value>Left</value>
+    </data>
+    
+    <data name="AnimationTypeRight" xml:space="preserve">
+        <value>Right</value>
+    </data>
+    
+    <data name="AnimationTypeTop" xml:space="preserve">
+        <value>Top</value>
+    </data>
+    
+    <data name="AnimationTypeBottom" xml:space="preserve">
+        <value>Bottom</value>
+    </data>
+    
+    <data name="AnimationTypeExplode" xml:space="preserve">
+        <value>Explode</value>
+    </data>
+    
+    <data name="AnimationTypeFade" xml:space="preserve">
+        <value>Fade</value>
+    </data>
+    
 </root>
