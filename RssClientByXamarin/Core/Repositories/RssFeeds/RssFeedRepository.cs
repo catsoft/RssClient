@@ -67,8 +67,9 @@ namespace Core.Repositories.RssFeeds
         {
             return _sqliteDatabase.DoWithConnectionAsync(connection =>
                 {
-                    var items = connection.NotNull().Find<RssFeedModel>(id);
-                    return items == null ? null : _mapperToDomain.Transform(items);
+                    var item = connection.NotNull().Find<RssFeedModel>(id);
+                    item = CountMessages(item);
+                    return item == null ? null : _mapperToDomain.Transform(item);
                 },
                 token);
         }
@@ -97,12 +98,27 @@ namespace Core.Repositories.RssFeeds
                         ?.OrderBy(w => w.Position)
                         ?.ThenByDescending(w => w.CreationTime)
                         ?.ToList()
+                        .Select(CountMessages)
                         .Select(_mapperToDomain.Transform)
                         .ToList();
 
                     return items?.AsEnumerable() ?? new List<RssFeedDomainModel>();
                 },
                 token);
+        }
+
+        private RssFeedModel CountMessages(RssFeedModel rssFeedModel)
+        {
+            _sqliteDatabase.DoWithConnection((connection) =>
+            {
+                var allMessages = connection.Table<RssMessageModel>()?.Where(w => w.RssId == rssFeedModel.Id).Count();
+                var countNewMessages = connection.Table<RssMessageModel>()?.Where(w => w.RssId == rssFeedModel.Id && !w.IsRead).Count();
+
+                rssFeedModel.CountAllMessages = allMessages ?? 0;
+                rssFeedModel.CountNewMessages = countNewMessages ?? 0;
+            });
+            
+            return rssFeedModel;
         }
     }
 }

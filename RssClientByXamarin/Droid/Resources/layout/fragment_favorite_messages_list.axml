@@ -12,10 +12,9 @@
     
     <TextView
         android:id="@+id/textview_favoriteMessages_empty"
-        style="@style/TextView.Large"
+        style="@style/TextView.Empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/favoriteList_emptyText"
-        android:gravity="center"/>
+        android:text="@string/favoriteList_emptyText"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -6,7 +6,6 @@ namespace Core.Api.Feedly
     {
         public List<FeedlyRssApiModel> Results { get; set; }
 
-
         public string Hint { get; set; }
 
         public string QueryType { get; set; }

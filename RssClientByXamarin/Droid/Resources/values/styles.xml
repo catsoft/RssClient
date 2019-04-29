@@ -53,7 +53,13 @@
     <style name="TextView.Large" parent="Base.TextAppearance.AppCompat.Large">
 
     </style>
-
+    
+    
+    <style name="TextView.Empty" parent="Base.TextAppearance.AppCompat.Large">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">32dp</item>
+    </style>
+    
     
     <style name="AboutTextView" parent="TextView.Body1">
         <item name="android:linksClickable">true</item>

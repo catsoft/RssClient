@@ -19,5 +19,9 @@ namespace Core.Services.RssFeeds
         public DateTimeOffset? UpdateTime { get; set; }
 
         public bool IsFeedly { get; set; }
+        
+        public int CountNewMessages { get; set; }
+        
+        public int CountAllMessages { get; set; }
     }
 }

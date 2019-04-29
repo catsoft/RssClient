@@ -159,17 +159,5 @@ namespace Core.Repositories.RssMessage
 
             return enumerableMessages;
         }
-
-//        public long GetCountNewMessagesForModel(string rssId, CancellationToken token)
-//        {
-//            var rssModel = _localDatabase.mainThreadRealm.Find<RssModel>(rssId);
-//            
-//            return rssModel.RssMessageModels.Count(w => !w.IsRead);
-//        }
-//
-//        public long GetCountForModel(string rssId, CancellationToken token)
-//        {
-//            return GetMessagesForRss(rssId, token).Count();
-//        }
     }
 }

@@ -13,11 +13,10 @@
     
     <TextView
         android:id="@+id/textView_allMessagesFilter_emptyText"
-        style="@style/TextView.Large"
+        style="@style/TextView.Empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/rssAllMessagesList_emptyText"
-        android:gravity="center"/>
+        android:text="@string/rssAllMessagesList_emptyText"/>
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_allMessages_addRss"

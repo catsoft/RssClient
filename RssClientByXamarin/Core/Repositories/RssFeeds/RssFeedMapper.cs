@@ -24,6 +24,8 @@ namespace Core.Repositories.RssFeeds
                     CreationTime = model.CreationTime,
                     UrlPreviewImage = model.UrlPreviewImage,
                     IsFeedly = model.IsFeedly,
+                    CountNewMessages = model.CountNewMessages,
+                    CountAllMessages = model.CountAllMessages,
                 };
         }
 
@@ -41,6 +43,8 @@ namespace Core.Repositories.RssFeeds
                     CreationTime = model.CreationTime,
                     UrlPreviewImage = model.UrlPreviewImage,
                     IsFeedly = model.IsFeedly,
+                    CountNewMessages = model.CountNewMessages,
+                    CountAllMessages = model.CountAllMessages,
                 };
         }
 
@@ -58,6 +62,8 @@ namespace Core.Repositories.RssFeeds
                     CreationTime = model.CreationTime,
                     UrlPreviewImage = model.UrlPreviewImage,
                     IsFeedly = model.IsFeedly,
+                    CountNewMessages = model.CountNewMessages,
+                    CountAllMessages = model.CountAllMessages,
                 };
         }
 
@@ -75,6 +81,8 @@ namespace Core.Repositories.RssFeeds
                     CreationTime = model.CreationTime,
                     UrlPreviewImage = model.UrlPreviewImage,
                     IsFeedly = model.IsFeedly,
+                    CountNewMessages = model.CountNewMessages,
+                    CountAllMessages = model.CountAllMessages,
                 };
         }
     }

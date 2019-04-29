@@ -20,5 +20,9 @@ namespace Core.Repositories.RssFeeds
         public bool IsFeedly { get; set; }
         
         public Guid Id { get; set; }
+        
+        public int CountNewMessages { get; set; }
+        
+        public int CountAllMessages { get; set; }
     }
 }

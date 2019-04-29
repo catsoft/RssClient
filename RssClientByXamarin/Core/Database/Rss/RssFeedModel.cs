@@ -21,5 +21,9 @@ namespace Core.Database.Rss
         public DateTimeOffset CreationTime { get; set; }
 
         public DateTimeOffset? UpdateTime { get; set; }
+        
+        public int CountNewMessages { get; set; }
+        
+        public int CountAllMessages { get; set; }
     }
 }
