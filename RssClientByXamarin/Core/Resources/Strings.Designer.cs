@@ -177,5 +177,17 @@ namespace Core.Resources {
                 return ResourceManager.GetString("AnimationTypeFade", resourceCulture);
             }
         }
+        
+        public static string RssAdded {
+            get {
+                return ResourceManager.GetString("RssAdded", resourceCulture);
+            }
+        }
+        
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
     }
 }

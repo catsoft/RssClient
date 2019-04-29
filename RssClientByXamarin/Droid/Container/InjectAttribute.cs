@@ -17,7 +17,7 @@ namespace Droid.Container
     {
         private static readonly List<Type> StopList = new List<Type>
         {
-            // TODO разделить на android ios
+            // TODO Попробовать убрать инжекцию
             typeof(BaseReactiveAppCompatActivity<>),
             typeof(BaseFragment<>)
         };

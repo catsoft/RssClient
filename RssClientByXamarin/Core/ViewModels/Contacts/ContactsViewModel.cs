@@ -1,6 +1,7 @@
 using System.Reactive;
 using System.Threading.Tasks;
 using Core.Extensions;
+using Core.Infrastructure.Dialogs;
 using Core.Infrastructure.ViewModels;
 using Core.Resources;
 using JetBrains.Annotations;
@@ -11,8 +12,12 @@ namespace Core.ViewModels.Contacts
 {
     public class ContactsViewModel : ViewModel
     {
-        public ContactsViewModel()
+        [NotNull] private readonly IToastService _toastService;
+
+        public ContactsViewModel([NotNull] IToastService toastService)
         {
+            _toastService = toastService;
+            
             GoTelegramCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsTelegramLink)).NotNull();
             GoMailCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsMailLink)).NotNull();
             GoLinkedinCommand = ReactiveCommand.CreateFromTask(async () => await OpenLink(Strings.ContactsLinkedInLink)).NotNull();
@@ -27,9 +32,9 @@ namespace Core.ViewModels.Contacts
         [NotNull]
         private async Task CopyToClipboard([CanBeNull] string text)
         {
+            _toastService.Show(Strings.CopyToClipboard + " " + text);
+            
             await Clipboard.SetTextAsync(text).NotNull();
-            // TODO го клиборт
-            //            Context.ToastClipboard(text);
         }
 
         [NotNull]

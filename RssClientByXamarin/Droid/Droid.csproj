@@ -63,6 +63,7 @@
     <Compile Include="CustomApplication.cs" />
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
     <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
+    <Compile Include="Infrastructure\Dialogs\ToastService.cs" />
     <Compile Include="NativeExtension\ContextExtension.cs" />
     <Compile Include="NativeExtension\EditTextExtension.cs" />
     <Compile Include="NativeExtension\Events\EventsExtension.cs" />

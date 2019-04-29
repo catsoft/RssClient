@@ -106,5 +106,13 @@
     <data name="AnimationTypeFade" xml:space="preserve">
         <value>Скрытие</value>
     </data>
-
+    
+    <data name="RssAdded" xml:space="preserve">
+        <value>Rss добавлена: </value>
+    </data>
+    
+    <data name="CopyToClipboard" xml:space="preserve">
+        <value>Скопировано: </value>
+    </data>
+    
 </root>

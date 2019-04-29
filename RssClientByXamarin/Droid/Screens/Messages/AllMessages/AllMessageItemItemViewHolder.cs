@@ -55,8 +55,8 @@ namespace Droid.Screens.Messages.AllMessages
             Title.Text = item.Title;
             Text.SetTextAsHtml(item.Text);
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            // todo
-//            Canal.Text = item.RssFeedParent?.Name;
+            // TODO сделать передачу или подтягивание названия канала 
+            // Canal.Text = item.RssFeedParent?.Name;
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();

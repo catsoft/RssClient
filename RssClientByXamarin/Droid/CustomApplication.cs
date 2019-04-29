@@ -12,7 +12,6 @@ namespace Droid
     [Application]
     public class CustomApplication : Application
     {
-        // TODO вынести его на сервер или типо того
         private const string KeyDebugAndroid = "3a26d323-c850-4b9d-b9bd-f4402dcd9995";
 
         // ReSharper disable once UnusedMember.Local

@@ -11,7 +11,7 @@ namespace Droid.NativeExtension
         {
             var spanned = Build.VERSION.SdkInt >= BuildVersionCodes.N
                 ? Html.FromHtml(text, FromHtmlOptions.ModeLegacy)
-                // TODO чо вообще ну
+                // TODO Разобраться с сеттером текста
 #pragma warning disable 618
                 : Html.FromHtml(text);
 #pragma warning restore 618

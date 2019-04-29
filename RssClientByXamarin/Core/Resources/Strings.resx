@@ -107,4 +107,12 @@
         <value>Fade</value>
     </data>
     
+    <data name="RssAdded" xml:space="preserve">
+        <value>Rss add: </value>
+    </data>
+    
+    <data name="CopyToClipboard" xml:space="preserve">
+        <value>Copied: </value>
+    </data>
+    
 </root>

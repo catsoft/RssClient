@@ -50,7 +50,7 @@ namespace Droid.Screens.RssFeeds.List
             SubtitleTextView.Text = item.UpdateTime == null
                 ? Strings.RssFeedItemNotUpdated
                 : $"{Strings.RssFeedItemUpdated} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
-            // TODO сделать
+            // TODO Сделать счетчик сообщений
 //            holder.CountTextView.Text = _rssMessagesRepository.GetCountNewMessagesForModel(item.Id).ToString();
             
             if (IsShowAndLoadImages)

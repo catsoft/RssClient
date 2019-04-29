@@ -14,6 +14,7 @@ namespace Droid.Container.Modules
 
             builder.RegisterType<Locale>().As<ILocale>().SingleInstance();
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<ToastService>().As<IToastService>().SingleInstance();
         }
     }
 }

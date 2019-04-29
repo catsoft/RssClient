@@ -7,9 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.Settings;
 using Core.Extensions;
+using Core.Infrastructure.Dialogs;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using Core.Repositories.Feedly;
+using Core.Resources;
 using Core.Services.Feedly;
 using Core.ViewModels.Lists;
 using JetBrains.Annotations;
@@ -22,18 +24,22 @@ namespace Core.ViewModels.FeedlySearch
     {
         [NotNull] private readonly IFeedlySearchService _feedlySearchService;
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
+        [NotNull] private readonly IToastService _toastService;
 
-        public FeedlySearchViewModel([NotNull] IFeedlySearchService feedlySearchService, [NotNull] IConfigurationRepository configurationRepository)
+        public FeedlySearchViewModel([NotNull] IFeedlySearchService feedlySearchService, 
+            [NotNull] IConfigurationRepository configurationRepository,
+            [NotNull] IToastService toastService)
         {
             _feedlySearchService = feedlySearchService;
             _configurationRepository = configurationRepository;
+            _toastService = toastService;
 
             FindByQueryCommand = ReactiveCommand.CreateFromTask(token => _feedlySearchService.FindByQueryAsync(SearchQuery ?? "", token),
                     this.WhenAnyValue(model => model.SearchQuery).NotNull().Select(w => !string.IsNullOrEmpty(w)))
                 .NotNull();
-            
+
             ListViewModel = new ListViewModel<FeedlyRssDomainModel>(FindByQueryCommand);
-         
+
             FindByQueryCommand.Select(w => w == null || !w.Any()).ToPropertyEx(this, model => model.IsEmpty, true);
 
             AddFeedlyRssCommand = ReactiveCommand.CreateFromTask<FeedlyRssDomainModel>(DoAddFeedlyRss).NotNull();
@@ -60,10 +66,9 @@ namespace Core.ViewModels.FeedlySearch
         [NotNull]
         private Task DoAddFeedlyRss([NotNull] FeedlyRssDomainModel model, CancellationToken token = default)
         {
+            _toastService.Show(Strings.RssAdded + model.Title);
+            
             return _feedlySearchService.AddFeedly(model, token);
-
-            //TODO го тоаст
-//                Activity.Toast(Activity.GetText(Resource.String.recommended_rss_add_rss_toast) + viewHolder.Item.Title);
         }
     }
 }
