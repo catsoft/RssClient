@@ -9,47 +9,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
-        
+    
         <TextView
+            android:id="@+id/textView_about_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/AboutTextView"
-            android:text="@string/about_by"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"/>
         
         <TextView
+            android:id="@+id/textView_about_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/AboutTextView"
-            android:text="@string/about_tech"
-            android:layout_marginBottom="8dp"/>
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/AboutTextView"
-            android:text="@string/about_offer"
-            android:layout_marginBottom="8dp"/>
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/AboutTextView"
-            android:text="@string/about_link"
-            android:layout_marginBottom="8dp"/>
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/AboutTextView"
-            android:text="@string/about_design"
-            android:layout_marginBottom="8dp"/>
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/AboutTextView"
-            android:text="@string/about_language"
             android:layout_marginBottom="8dp"/>
     
     </LinearLayout>

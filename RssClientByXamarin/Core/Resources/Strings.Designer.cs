@@ -189,5 +189,11 @@ namespace Core.Resources {
                 return ResourceManager.GetString("CopyToClipboard", resourceCulture);
             }
         }
+        
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
     }
 }

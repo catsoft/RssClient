@@ -105,12 +105,6 @@
     <string name="all_messages_filter_all">All</string>
     <string name="allMessagesFilter_clear">Clear</string>
 
-    <string name="about_by"> This application was developed as part of the "Catsoft" project</string>
-    <string name="about_tech">Developed using "Xamarin.Android" technology</string>
-    <string name="about_offer">All offers can be sent to me at any means of communication with the page "Contacts". Customized (free) implementation is possible</string>
-    <string name="about_link">Here you can see the stack of tasks: https://trello.com/b/RVEWDCsG/rss-client-offers</string>
-    <string name="about_design"> I myself am a programmer. If you are offered an adequate design or theme, then the implementation will not take long</string>
-    <string name="about_language">Someone may want to translate applications into other languages. I will provide text data</string>
     <string name="menuFeedlySearch_search">Search</string>
 
     <string name="feedly_title">Feedly search</string>

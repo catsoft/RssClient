@@ -64,6 +64,10 @@
     <style name="AboutTextView" parent="TextView.Body1">
         <item name="android:linksClickable">true</item>
         <item name="android:autoLink">all</item>
+        <item name="android:enabled">true</item>
+        <item name="android:textIsSelectable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:longClickable">true</item>
     </style>
 
 

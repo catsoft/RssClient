@@ -75,6 +75,7 @@
     <Compile Include="NativeExtension\ViewExtension.cs" />
     <Compile Include="NativeExtension\VisibilityExtension.cs" />
     <Compile Include="Screens\About\AboutFragment.cs" />
+    <Compile Include="Screens\About\AboutFragmentViewHolder.cs" />
     <Compile Include="Screens\About\AboutWay.cs" />
     <Compile Include="Screens\AnimationWeaver\AnimatableFragment.cs" />
     <Compile Include="Screens\AnimationWeaver\AnimationWeaverFragmentViewHolder.cs" />
