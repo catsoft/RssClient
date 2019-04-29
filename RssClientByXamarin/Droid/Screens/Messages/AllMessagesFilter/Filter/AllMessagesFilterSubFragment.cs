@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -12,7 +13,7 @@ using ReactiveUI;
 
 namespace Droid.Screens.Messages.AllMessagesFilter.Filter
 {
-    public class AllMessagesFilterSubFragment : BaseFragment<AllMessagesFilterFilterViewModel>, RadioGroup.IOnCheckedChangeListener
+    public class AllMessagesFilterSubFragment : BaseFragment<AllMessagesFilterFilterViewModel>
     {
         [NotNull] private AllMessagesFilterSubFragmentViewHolder _viewHolder;
 
@@ -24,28 +25,6 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
 
         public override bool IsRoot => false;
 
-        public void OnCheckedChanged(RadioGroup group, int checkedId)
-        {
-            MessageFilterType filterType;
-            switch (checkedId)
-            {
-                default:
-                    filterType = MessageFilterType.None;
-                    break;
-                case Resource.Id.radioButton_rss_all_messages_filter_favorite:
-                    filterType = MessageFilterType.Favorite;
-                    break;
-                case Resource.Id.radioButton_rss_all_messages_filter_read:
-                    filterType = MessageFilterType.Read;
-                    break;
-                case Resource.Id.radioButton_rss_all_messages_filter_unread:
-                    filterType = MessageFilterType.Unread;
-                    break;
-            }
-
-            ViewModel.SetMessageFilterTypeCommand.Execute(filterType).NotNull().Subscribe();
-        }
-
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -53,8 +32,6 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             _viewHolder = new AllMessagesFilterSubFragmentViewHolder(view.NotNull());
-
-            _viewHolder.RootRadioGroup.SetOnCheckedChangeListener(this);
 
             OnActivation(disposable =>
             {
@@ -78,11 +55,30 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
                     ?.Click?
                     .Subscribe(w => OpenToDatePicker())
                     .AddTo(disposable);
+                
+                _viewHolder.RootRadioGroup.Events().CheckedChange
+                    .Select(w => w.CheckedId)
+                    .Select(ConvertToType)
+                    .InvokeCommand(ViewModel.SetMessageFilterTypeCommand)
+                    .AddTo(disposable);
             });
 
             return view;
         }
 
+        private MessageFilterType ConvertToType(int id)
+        {
+            if (id == _viewHolder.AllRadioButton.Id) return MessageFilterType.None;
+            
+            if (id == _viewHolder.FavoriteRadioButton.Id) return MessageFilterType.Favorite;
+            
+            if (id == _viewHolder.ReadRadioButton.Id) return MessageFilterType.Read;
+            
+            if (id == _viewHolder.UnreadRadioButton.Id) return MessageFilterType.Unread;
+
+            return MessageFilterType.None;
+        }
+        
         private void SetFilterType(MessageFilterType type)
         {
             switch (type)

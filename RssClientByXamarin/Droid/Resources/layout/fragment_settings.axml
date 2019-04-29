@@ -15,7 +15,7 @@
             android:id="@+id/fragment_settings_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsThemeFragment"/>
+            class="Droid.Screens.Settings.Theme.SettingsThemeFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:id="@+id/fragment_settings_read_messages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsReadMessagesFragment"/>
+            class="Droid.Screens.Settings.HideReadMessages.SettingsHideReadMessagesFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:id="@+id/fragment_settings_load_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsLoadImagesFragment"/>
+            class="Droid.Screens.Settings.LoadImages.SettingsLoadImagesFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:id="@+id/fragment_settings_startPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsStartPageFragment"/>
+            class="Droid.Screens.Settings.StartPage.SettingsStartPageFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:id="@+id/fragment_settings_rssDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsRssDetailFragment"/>
+            class="Droid.Screens.Settings.RssDetail.SettingsRssDetailFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:id="@+id/fragment_settings_animation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.Settings.SettingsAnimationFragment"/>
+            class="Droid.Screens.Settings.Animations.SettingsAnimationFragment"/>
         
         <View
             android:layout_width="match_parent"

@@ -7,7 +7,7 @@ using Core.ViewModels.AnimationWeaver;
 using JetBrains.Annotations;
 using ReactiveUI;
 
-namespace Core.ViewModels.Settings
+namespace Core.ViewModels.Settings.Animations
 {
     public class SettingsAnimationViewModel : ViewModel
     {

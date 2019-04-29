@@ -3,11 +3,11 @@ using Android.Widget;
 using Core.Extensions;
 using JetBrains.Annotations;
 
-namespace Droid.Screens.Settings
+namespace Droid.Screens.Settings.Animations
 {
-    public class SettingsAnimationFragmentViewModel
+    public class SettingsAnimationFragmentViewHolder
     {
-        public SettingsAnimationFragmentViewModel(View view)
+        public SettingsAnimationFragmentViewHolder(View view)
         {
             GoToCustomizeButton = view.FindViewById<Button>(Resource.Id.button_animationSetting_gotoWeaver).NotNull();
         }

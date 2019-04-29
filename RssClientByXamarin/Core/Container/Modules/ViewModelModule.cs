@@ -17,6 +17,12 @@ using Core.ViewModels.RssFeeds.Edit;
 using Core.ViewModels.RssFeeds.EditableList;
 using Core.ViewModels.RssFeeds.List;
 using Core.ViewModels.Settings;
+using Core.ViewModels.Settings.Animations;
+using Core.ViewModels.Settings.HideReadMessages;
+using Core.ViewModels.Settings.LoadImages;
+using Core.ViewModels.Settings.RssDetail;
+using Core.ViewModels.Settings.StartPage;
+using Core.ViewModels.Settings.Theme;
 
 namespace Core.Container.Modules
 {
@@ -51,7 +57,7 @@ namespace Core.Container.Modules
 
             builder.RegisterType<SettingsAnimationViewModel>().AsSelf();
             builder.RegisterType<SettingsLoadImagesViewModel>().AsSelf();
-            builder.RegisterType<SettingsReadMessagesViewModel>().AsSelf();
+            builder.RegisterType<SettingsHideReadMessagesViewModel>().AsSelf();
             builder.RegisterType<SettingsRssDetailViewModel>().AsSelf();
             builder.RegisterType<SettingsStartPageViewModel>().AsSelf();
             builder.RegisterType<SettingsThemeViewModel>().AsSelf();

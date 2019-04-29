@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -11,7 +12,7 @@ using ReactiveUI;
 
 namespace Droid.Screens.Messages.AllMessagesFilter.Order
 {
-    public class AllMessagesOrderFragment : BaseFragment<AllMessagesOrderFilterViewModel>, RadioGroup.IOnCheckedChangeListener
+    public class AllMessagesOrderFragment : BaseFragment<AllMessagesOrderFilterViewModel>
     {
         // ReSharper disable once NotNullMemberIsNotInitialized
         [NotNull] private AllMessagesOrderFragmentViewHolder _viewHolder;
@@ -20,24 +21,10 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Order
 
         public override bool IsRoot => false;
 
-        public void OnCheckedChanged(RadioGroup group, int checkedId)
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public AllMessagesOrderFragment()
         {
-            Sort sort;
-
-            switch (checkedId)
-            {
-                case Resource.Id.radioButton_rss_all_messages_order_newest:
-                    sort = Sort.Newest;
-                    break;
-                case Resource.Id.radioButton_rss_all_messages_order_oldest:
-                    sort = Sort.Oldest;
-                    break;
-                default:
-                    sort = Sort.Newest;
-                    break;
-            }
-
-            ViewModel.UpdateSortCommand.Execute(sort).NotNull().Subscribe();
         }
 
         protected override void RestoreState(Bundle saved) { }
@@ -48,14 +35,30 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Order
 
             _viewHolder = new AllMessagesOrderFragmentViewHolder(view);
 
-            _viewHolder.RootRadioGroup.SetOnCheckedChangeListener(this);
-
-            OnActivation(disposable => ViewModel.WhenAnyValue(w => w.Sort)
-                .NotNull()
-                .Subscribe(UpdateSortFilter)
-                .AddTo(disposable));
+            OnActivation(disposable =>
+            {
+                ViewModel.WhenAnyValue(w => w.Sort)
+                    .NotNull()
+                    .Subscribe(UpdateSortFilter)
+                    .AddTo(disposable);
+                
+                _viewHolder.RootRadioGroup.Events().CheckedChange
+                    .Select(w => w.CheckedId)
+                    .Select(ConvertToSort)
+                    .InvokeCommand(ViewModel.UpdateSortCommand)
+                    .AddTo(disposable);
+            });
 
             return view;
+        }
+
+        private Sort ConvertToSort(int id)
+        {
+            if (id == _viewHolder.OldestRadioButton.Id) return Sort.Oldest;
+            
+            if (id == _viewHolder.NewestRadioButton.Id) return Sort.Newest;
+
+            return Sort.Newest;
         }
 
         private void UpdateSortFilter(Sort sort)

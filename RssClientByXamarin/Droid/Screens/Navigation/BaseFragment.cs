@@ -54,7 +54,7 @@ namespace Droid.Screens.Navigation
 
         public override void OnDetach()
         {
-            Activity?.HideKeyboard();
+            Activity.HideKeyboard();
 
             base.OnDetach();
         }
