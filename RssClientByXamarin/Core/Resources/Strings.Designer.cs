@@ -123,5 +123,17 @@ namespace Core.Resources {
                 return ResourceManager.GetString("AnimationWeaverTitle", resourceCulture);
             }
         }
+        
+        public static string AnimatableFragmentGoNext {
+            get {
+                return ResourceManager.GetString("AnimatableFragmentGoNext", resourceCulture);
+            }
+        }
+        
+        public static string AnimatableFragmentGoBack {
+            get {
+                return ResourceManager.GetString("AnimatableFragmentGoBack", resourceCulture);
+            }
+        }
     }
 }

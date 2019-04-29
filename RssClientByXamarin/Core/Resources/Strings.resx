@@ -71,4 +71,12 @@
         <value>Animation customizing</value>
     </data>
     
+    <data name="AnimatableFragmentGoNext" xml:space="preserve">
+        <value>Go next</value>
+    </data>
+    
+    <data name="AnimatableFragmentGoBack" xml:space="preserve">
+        <value>Go back</value>
+    </data>
+    
 </root>

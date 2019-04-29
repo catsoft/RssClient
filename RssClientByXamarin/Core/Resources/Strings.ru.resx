@@ -51,4 +51,12 @@
         <value>Кастомизация анимации</value>
     </data>
     
+    <data name="AnimatableFragmentGoNext" xml:space="preserve">
+        <value>Вперед</value>
+    </data>
+    
+    <data name="AnimatableFragmentGoBack" xml:space="preserve">
+        <value>Назад</value>
+    </data>
+    
 </root>

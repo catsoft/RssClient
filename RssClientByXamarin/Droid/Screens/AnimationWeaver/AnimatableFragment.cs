@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using Core.Resources;
 using Droid.Screens.Navigation;
 using JetBrains.Annotations;
 
@@ -34,8 +35,8 @@ namespace Droid.Screens.AnimationWeaver
             
             linearLayout.Orientation = Orientation.Horizontal;
 
-            AddButton(linearLayout, () => _fragmentNavigator.GoBack(), "Go back");
-            AddButton(linearLayout, () => _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator)), "Go next");
+            AddButton(linearLayout, () => _fragmentNavigator.GoBack(), Strings.AnimatableFragmentGoBack);
+            AddButton(linearLayout, () => _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator)), Strings.AnimatableFragmentGoNext);
 
             return linearLayout;
         }
