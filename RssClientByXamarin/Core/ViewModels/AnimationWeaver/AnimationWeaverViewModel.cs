@@ -90,9 +90,9 @@ namespace Core.ViewModels.AnimationWeaver
             UpdateConfiguration((config) => config.AnimationSpeed = speed);
         }
 
-        private void DoUpdateIsDelayAnim(bool idDelay)
+        private void DoUpdateIsDelayAnim(bool isDelay)
         {
-            UpdateConfiguration((config) => config.IsDelay = idDelay);
+            UpdateConfiguration((config) => config.IsDelay = isDelay);
         }
 
         private void UpdateConfiguration(Action<AppConfiguration> updateAction)

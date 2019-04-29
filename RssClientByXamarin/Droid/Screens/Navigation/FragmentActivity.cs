@@ -5,9 +5,9 @@ using Android.Views;
 using Autofac;
 using Core;
 using Core.Configuration.Settings;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
-using Droid.Screens.AnimationWeaver;
 
 namespace Droid.Screens.Navigation
 {
@@ -24,7 +24,7 @@ namespace Droid.Screens.Navigation
 
             var config = _configurationRepository.GetSettings<AppConfiguration>();
             
-            var fragmentManager = new FragmentNavigator(this, config, container as ViewGroup);
+            var fragmentManager = new FragmentNavigator(SupportFragmentManager, config, (container as ViewGroup).NotNull());
 
             fragmentManager.GoTo(fragment);
         }

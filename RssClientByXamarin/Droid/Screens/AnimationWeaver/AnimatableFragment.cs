@@ -17,7 +17,7 @@ namespace Droid.Screens.AnimationWeaver
         {
             _fragmentNavigator = fragmentNavigator;
         }
-
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var random = new Random((int) DateTime.Now.Ticks);
@@ -34,7 +34,7 @@ namespace Droid.Screens.AnimationWeaver
             
             linearLayout.Orientation = Orientation.Horizontal;
 
-            AddButton(linearLayout, () => Activity?.OnBackPressed(), "Go previous");
+            AddButton(linearLayout, () => _fragmentNavigator.GoBack(), "Go back");
             AddButton(linearLayout, () => _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator)), "Go next");
 
             return linearLayout;

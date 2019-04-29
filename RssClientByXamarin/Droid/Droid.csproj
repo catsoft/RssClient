@@ -136,6 +136,7 @@
     <Compile Include="Screens\Navigation\IFragmentManager.cs" />
     <Compile Include="Screens\Navigation\IRoot.cs" />
     <Compile Include="Screens\Navigation\ITitle.cs" />
+    <Compile Include="Screens\Navigation\TransitionListener.cs" />
     <Compile Include="Screens\RssFeeds\Create\RssFeedCreateFragment.cs" />
     <Compile Include="Screens\RssFeeds\Create\RssFeedCreateWay.cs" />
     <Compile Include="Screens\RssFeeds\Create\RssEditFragmentViewHolder.cs" />
@@ -305,7 +306,7 @@
       <Version>4.9.2</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>5.0.0</Version>
+      <Version>5.0.1</Version>
     </PackageReference>
     <PackageReference Include="JetBrains.Annotations">
       <Version>2019.1.1</Version>
@@ -338,7 +339,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.0</Version>
+      <Version>4.5.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Constraint.Layout">
       <Version>1.1.2</Version>
@@ -362,7 +363,7 @@
       <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
-      <Version>2.4.4.859</Version>
+      <Version>2.4.5.922</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

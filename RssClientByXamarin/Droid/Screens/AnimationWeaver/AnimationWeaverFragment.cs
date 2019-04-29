@@ -38,7 +38,8 @@ namespace Droid.Screens.AnimationWeaver
 
             _viewHolder = new AnimationWeaverFragmentViewHolder(view);
 
-            _fragmentNavigator = new FragmentNavigator(Activity, ViewModel.AppConfiguration, _viewHolder.Container);
+            _fragmentNavigator = new FragmentNavigator(ChildFragmentManager, ViewModel.AppConfiguration, _viewHolder.Container);
+            _fragmentNavigator.SetRootFragment(new AnimatableFragment(_fragmentNavigator));
 
             Title = ViewModel.Title;
 
@@ -114,8 +115,6 @@ namespace Droid.Screens.AnimationWeaver
                 ViewModel.AppConfigurationObservable
                     .Subscribe(w => _fragmentNavigator.AppConfiguration = w.NotNull())
                     .AddTo(disposables);
-
-                _fragmentNavigator.GoTo(new AnimatableFragment(_fragmentNavigator));
             });
 
             return view;

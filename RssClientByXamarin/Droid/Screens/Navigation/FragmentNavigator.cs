@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Android.Support.Transitions;
 using Android.Support.V4.App;
@@ -12,27 +11,37 @@ namespace Droid.Screens.Navigation
 {
     public class FragmentNavigator
     {
-        [NotNull] private readonly FragmentActivity _fragmentActivity;
+        [NotNull] private readonly FragmentManager _fragmentManager;
         [NotNull] private readonly ViewGroup _container;
 
-        public FragmentNavigator([NotNull] FragmentActivity fragmentActivity,
+        public FragmentNavigator([NotNull] FragmentManager fragmentManager,
             [NotNull] AppConfiguration appConfiguration,
             [NotNull] ViewGroup container)
         {
-            _fragmentActivity = fragmentActivity;
+            _fragmentManager = fragmentManager;
             AppConfiguration = appConfiguration;
             _container = container;
         }
 
         [NotNull] public AppConfiguration AppConfiguration { get; set; }
 
+        public void SetRootFragment([NotNull] Fragment fragment)
+        {
+            _fragmentManager.NotNull()
+                .BeginTransaction()
+                .NotNull()
+                .Add(_container.Id, fragment)
+                .NotNull()
+                .Commit();
+        }
+        
         public void GoTo([NotNull] Fragment fragment)
         {
-            var previousFragment = _fragmentActivity.SupportFragmentManager?.Fragments?.LastOrDefault();
+            var previousFragment = _fragmentManager.Fragments?.LastOrDefault();
 
             SetAnimation(fragment, previousFragment);
 
-            _fragmentActivity.SupportFragmentManager.NotNull()
+            _fragmentManager.NotNull()
                 .BeginTransaction()
                 .NotNull()
                 .Replace(_container.Id, fragment)
@@ -40,6 +49,11 @@ namespace Droid.Screens.Navigation
                 .AddToBackStack(null)
                 .NotNull()
                 .Commit();
+        }
+
+        public void GoBack()
+        {
+            _fragmentManager.PopBackStack();
         }
 
         private void SetAnimation([NotNull] Fragment fragment,
@@ -133,25 +147,6 @@ namespace Droid.Screens.Navigation
             {
                 fragment.ExitTransition = null;
             }
-        }
-    }
-
-    public class TransitionListener : TransitionListenerAdapter
-    {
-        private readonly Action _action;
-
-        public TransitionListener(Action action)
-        {
-            _action = action;
-        }
-
-        public override void OnTransitionEnd([NotNull] Transition transition)
-        {
-            base.OnTransitionEnd(transition);
-
-            _action?.Invoke();
-
-            transition.RemoveListener(this);
         }
     }
 }

@@ -118,8 +118,8 @@
     <string name="favoriteList_emptyText">Здесь у тебя еще ничего нет</string>
     <string name="animationWeaver_yourScreen">Ваш экран</string>
     <string name="AnimationSettings_gotoCustomize">Кастомизировать анимацию</string>
-    <string name="animationWeaver_withoutDelay">С задержкой</string>
-    <string name="animationWeaver_withDelay">Без задержки</string>
+    <string name="animationWeaver_withoutDelay">Без задержки</string>
+    <string name="animationWeaver_withDelay">С задержкой</string>
     <string name="animationWeaver_speedAnim">Скорость</string>
     <string name="animationWeaver_enterAnim">Вход</string>
     <string name="animationWeaver_exitAnim">Выход</string>
