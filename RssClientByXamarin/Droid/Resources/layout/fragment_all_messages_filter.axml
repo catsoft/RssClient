@@ -15,7 +15,7 @@
             android:id="@+id/fragment_settings_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.RssAllMessagesFilter.Filter.RssAllMessagesFilterSubFragment"/>
+            class="Droid.Screens.Messages.AllMessagesFilter.Filter.AllMessagesFilterSubFragment"/>
         
         <View
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:id="@+id/fragment_settings_read_messages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="Droid.Screens.RssAllMessagesFilter.Order.RssAllMessagesOrderFragment"/>
+            class="Droid.Screens.Messages.AllMessagesFilter.Order.AllMessagesOrderFragment"/>
         
         <View
             android:layout_width="match_parent"
