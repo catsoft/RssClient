@@ -116,11 +116,11 @@
     </data>
     
     <data name="About" xml:space="preserve">
-        <value> This application was developed as part of the "Catsoft" project.
-    All offers can be sent to me at any means of communication with the page "Contacts". Customized (free) implementation is possible.
-    Here you can see the stack of tasks: https://trello.com/b/RVEWDCsG/rss-client-offers.
-    I myself am a programmer. If you are offered an adequate design or theme, then the implementation will not take long.
-    Someone may want to translate applications into other languages. I will provide text data. </value>
+        <value>This application was developed as part of the "Catsoft" project.
+All offers can be sent to me at any means of communication with the page "Contacts". Customized (free) implementation is possible.
+Here you can see the stack of tasks: https://trello.com/b/RVEWDCsG/rss-client-offers.
+I myself am a programmer. If you are offered an adequate design or theme, then the implementation will not take long.
+Someone may want to translate applications into other languages. I will provide text data. </value>
     </data>
     
 </root>
