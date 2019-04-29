@@ -24,5 +24,7 @@ namespace Core.Repositories.RssMessage
         public Guid Id { get; set; }
         
         public Guid RssId { get; set; }
+        
+        public string RssTitle { get; set; }
     }
 }

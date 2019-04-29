@@ -63,6 +63,7 @@ namespace Core.Repositories.RssMessage
                     ImageUrl = model.ImageUrl,
                     SyndicationId = model.SyndicationId,
                     RssId = model.RssId,
+                    RssTitle = model.RssTitle,
                 };
         }
 
@@ -82,6 +83,7 @@ namespace Core.Repositories.RssMessage
                     ImageUrl = model.ImageUrl,
                     SyndicationId = model.SyndicationId,
                     RssId = model.RssId,
+                    RssTitle = model.RssTitle,
                 };
         }
     }

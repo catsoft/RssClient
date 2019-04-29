@@ -29,7 +29,6 @@ namespace Droid.Screens.Messages.AllMessages
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        
         [NotNull] public TextView Title { get; }
         
         [NotNull] public TextView Text { get; }
@@ -55,8 +54,7 @@ namespace Droid.Screens.Messages.AllMessages
             Title.Text = item.Title;
             Text.SetTextAsHtml(item.Text);
             CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            // TODO сделать передачу или подтягивание названия канала 
-            // Canal.Text = item.RssFeedParent?.Name;
+            Canal.Text = item.RssTitle;
             Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();

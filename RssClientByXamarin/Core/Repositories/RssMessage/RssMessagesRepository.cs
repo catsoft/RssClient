@@ -51,10 +51,27 @@ namespace Core.Repositories.RssMessage
         {
             return _sqliteDatabase.DoWithConnectionAsync((connection) =>
                 {
-                    var item = connection.NotNull().Find<RssMessageModel>(id);
-                    return item == null ? null : _mapperToDomain.Transform(item);
+                    var item = connection.NotNull().Find<RssMessageModel>(id).NotNull();
+
+                    var mappedItem = _mapperToDomain.Transform(item);
+                    
+                    mappedItem = FillRssTitle(mappedItem);
+
+                    return mappedItem;
                 },
                 token);
+        }
+
+        private RssMessageDomainModel FillRssTitle(RssMessageDomainModel model)
+        {
+            return _sqliteDatabase.DoWithConnection((connection) =>
+            {
+                var rss = connection.NotNull().Find<RssFeedModel>(model.RssId).NotNull();
+
+                model.RssTitle = rss.Name;
+
+                return model;
+            });
         }
 
         public Task UpdateAsync(RssMessageDomainModel message, CancellationToken token)
@@ -85,6 +102,7 @@ namespace Core.Repositories.RssMessage
                 connection => GetAllMessagesInner(connection)
                     .ToList()
                     .Select(_mapperToDomain.Transform)
+                    .Select(FillRssTitle)
                     .ToList()
                     .AsEnumerable(),
                 token);
@@ -97,6 +115,7 @@ namespace Core.Repositories.RssMessage
                     .Where(w => w.IsFavorite)
                     .ToList()
                     .Select(_mapperToDomain.Transform)
+                    .Select(FillRssTitle)
                     .ToList()
                     .AsEnumerable(),
                 token);
@@ -136,7 +155,11 @@ namespace Core.Repositories.RssMessage
                     messages = filterConfiguration?.ApplyDateFilter(messages);
                     messages = messages ?? new List<RssMessageModel>().AsQueryable();
 
-                    return messages.ToList().Select(_mapperToDomain.Transform).ToList().AsEnumerable();
+                    return messages.ToList()
+                        .Select(_mapperToDomain.Transform)
+                        .Select(FillRssTitle)
+                        .ToList()
+                        .AsEnumerable();
                 },
                 token);
         }

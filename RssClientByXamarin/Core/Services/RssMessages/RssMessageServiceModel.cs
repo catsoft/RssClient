@@ -23,5 +23,7 @@ namespace Core.Services.RssMessages
         public bool IsFavorite { get; set; }
         
         public Guid RssId { get; set; }
+        
+        public string RssTitle { get; set; }
     }
 }
