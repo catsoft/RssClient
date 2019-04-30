@@ -17,13 +17,21 @@ namespace Droid.NativeExtension
             settings.DomStorageEnabled = true;
             settings.SetAppCacheEnabled(true);
             settings.LoadsImagesAutomatically = true;
-//            settings.LoadWithOverviewMode = true;
-//            settings.UseWideViewPort = true;
             settings.MixedContentMode = MixedContentHandling.AlwaysAllow;
             
-            var client = new WebViewClient();
+            var client = new NotRedirectWebViewClient();
             webView.SetWebViewClient(client);
             webView.SetBackgroundColor(Color.Transparent);
+        }
+        
+        private class NotRedirectWebViewClient : WebViewClient
+        {
+            public override bool ShouldOverrideUrlLoading(WebView view, IWebResourceRequest request)
+            {
+                var url = request.Url.ToString();
+                Xamarin.Essentials.Launcher.OpenAsync(url);
+                return true;
+            }
         }
 
         public static void InitZoom([NotNull] this WebView webView)
