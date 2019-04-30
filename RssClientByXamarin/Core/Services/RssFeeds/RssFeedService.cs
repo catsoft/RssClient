@@ -9,7 +9,6 @@ using Core.Extensions;
 using Core.Infrastructure.Mappers;
 using Core.Repositories.RssFeeds;
 using Core.Repositories.RssMessage;
-using Core.Utils;
 using JetBrains.Annotations;
 
 namespace Core.Services.RssFeeds

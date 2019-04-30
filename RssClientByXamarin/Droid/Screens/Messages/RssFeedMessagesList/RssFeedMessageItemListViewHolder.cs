@@ -27,6 +27,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
             
             TextWebView.Init();
+            TextWebView.DisableScroll();
         }
 
         [NotNull] public TextView TitleTextView { get; }
@@ -50,7 +51,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             Item = item;
 
             TitleTextView.Text = item.Title;
-            TextWebView.SetHtml(item.Text);
+            TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;

@@ -13,6 +13,8 @@ namespace Core.Services.RssMessages
         public DateTimeOffset CreationDate { get; set; }
 
         public string Text { get; set; }
+        
+        public string TextHtml { get; set; }
 
         public string Url { get; set; }
 

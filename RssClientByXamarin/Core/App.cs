@@ -27,6 +27,7 @@ namespace Core
             containerBuilder.RegisterModule(new CrossServicesModule());
             containerBuilder.RegisterModule(new ServicesModule());
             containerBuilder.RegisterModule(new ViewModelModule());
+            containerBuilder.RegisterModule(new CoreServiceModule());
 
             Container = containerBuilder.Build().NotNull();
         }

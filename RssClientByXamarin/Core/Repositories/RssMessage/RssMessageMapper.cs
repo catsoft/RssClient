@@ -1,3 +1,4 @@
+using Core.CoreServices.Html;
 using Core.Database.Rss;
 using Core.Infrastructure.Mappers;
 using Core.Services.RssMessages;
@@ -9,6 +10,13 @@ namespace Core.Repositories.RssMessage
         IMapper<RssMessageServiceModel, RssMessageDomainModel>,
         IMapper<RssMessageDomainModel, RssMessageServiceModel>
     {
+        private readonly IHtmlConfigurator _htmlConfigurator;
+
+        public RssMessageMapper(IHtmlConfigurator htmlConfigurator)
+        {
+            _htmlConfigurator = htmlConfigurator;
+        }
+        
         public RssMessageModel Transform(RssMessageDomainModel model)
         {
             return model == null
@@ -76,6 +84,7 @@ namespace Core.Repositories.RssMessage
                     Id = model.Id,
                     Url = model.Url,
                     Text = model.Text,
+                    TextHtml = _htmlConfigurator.ConfigureHtml(model.Text),
                     Title = model.Title,
                     IsRead = model.IsRead,
                     IsFavorite = model.IsFavorite,

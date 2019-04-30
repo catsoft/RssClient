@@ -11,6 +11,8 @@ namespace Droid.Screens.Messages.Message
         {
             WebView = view.FindNotNull<WebView>(Resource.Id.webView_rssMessage_mainView);
             WebView.Init();
+            WebView.InitZoom();
+            WebView.EnableScroll();
         }
         
         [NotNull] public WebView WebView { get; }

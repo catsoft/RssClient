@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Core.Utils
+namespace Core.Extensions
 {
     public static class StringTrimExtension
     {

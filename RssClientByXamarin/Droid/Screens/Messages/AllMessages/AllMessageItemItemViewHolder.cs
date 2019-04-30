@@ -28,6 +28,8 @@ namespace Droid.Screens.Messages.AllMessages
             RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_allMessagesItem_favorite);
 
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
+            TextWebView.Init();
+            TextWebView.DisableScroll();
         }
 
         [NotNull] public TextView TitleTextView { get; }
@@ -53,7 +55,7 @@ namespace Droid.Screens.Messages.AllMessages
             Item = item;
 
             TitleTextView.Text = item.Title;
-            TextWebView.SetHtml(item.Text);
+            TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             CanalTextView.Text = item.RssTitle;
             BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);

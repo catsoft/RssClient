@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Core.Configuration.Settings;
 using JetBrains.Annotations;
 
-namespace Core.Utils
+namespace Core.Extensions
 {
     public static class AnimationSpeedExtension
     {

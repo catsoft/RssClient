@@ -4,7 +4,7 @@ using Core.Configuration.Settings;
 using Core.Resources;
 using JetBrains.Annotations;
 
-namespace Core.Utils
+namespace Core.Extensions
 {
     public static class AnimationTypeExtension
     {
