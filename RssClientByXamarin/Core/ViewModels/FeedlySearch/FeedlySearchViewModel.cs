@@ -14,6 +14,7 @@ using Core.Repositories.Feedly;
 using Core.Resources;
 using Core.Services.Feedly;
 using Core.ViewModels.Lists;
+using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using JetBrains.Annotations;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -25,14 +26,17 @@ namespace Core.ViewModels.FeedlySearch
         [NotNull] private readonly IFeedlySearchService _feedlySearchService;
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IToastService _toastService;
+        [NotNull] private readonly RssFeedsUpdaterViewModel _rssFeedsUpdaterViewModel;
 
         public FeedlySearchViewModel([NotNull] IFeedlySearchService feedlySearchService, 
             [NotNull] IConfigurationRepository configurationRepository,
-            [NotNull] IToastService toastService)
+            [NotNull] IToastService toastService,
+            [NotNull] RssFeedsUpdaterViewModel rssFeedsUpdaterViewModel)
         {
             _feedlySearchService = feedlySearchService;
             _configurationRepository = configurationRepository;
             _toastService = toastService;
+            _rssFeedsUpdaterViewModel = rssFeedsUpdaterViewModel;
 
             FindByQueryCommand = ReactiveCommand.CreateFromTask(token => _feedlySearchService.FindByQueryAsync(SearchQuery ?? "", token),
                     this.WhenAnyValue(model => model.SearchQuery).NotNull().Select(w => !string.IsNullOrEmpty(w)))
@@ -64,11 +68,13 @@ namespace Core.ViewModels.FeedlySearch
         public extern bool IsEmpty { [ObservableAsProperty] get; }
 
         [NotNull]
-        private Task DoAddFeedlyRss([NotNull] FeedlyRssDomainModel model, CancellationToken token = default)
+        private async Task DoAddFeedlyRss([NotNull] FeedlyRssDomainModel model, CancellationToken token = default)
         {
             _toastService.Show(Strings.RssAdded + model.Title);
             
-            return _feedlySearchService.AddFeedly(model, token);
+            await _feedlySearchService.AddFeedly(model, token);
+
+            _rssFeedsUpdaterViewModel.SoftUpdateCommand.ExecuteIfCan();
         }
     }
 }

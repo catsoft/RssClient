@@ -69,7 +69,7 @@ namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
             return Task.Run(async () =>
             {
                 var feeds = await _rssFeedService.GetListAsync(token);
-                feeds = feeds.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) > DateTimeOffset.Now)
+                feeds = feeds.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) < DateTimeOffset.Now)
                     .OrderBy(w => w.UpdateTime);
                 UpdateCommand.ExecuteIfCan(feeds.ToList());
             }, token);

@@ -9,7 +9,6 @@ using Core.Extensions;
 using Core.Infrastructure.Mappers;
 using Core.Repositories.RssFeeds;
 using Core.Repositories.RssMessage;
-using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using JetBrains.Annotations;
 
 namespace Core.Services.RssFeeds
@@ -19,7 +18,6 @@ namespace Core.Services.RssFeeds
         [NotNull] private readonly IMapper<RssFeedServiceModel, RssFeedDomainModel> _mapper;
         [NotNull] private readonly IRssFeedApiClient _rssFeedApiClient;
         [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
-        [NotNull] private readonly RssFeedsUpdaterViewModel _rssFeedsUpdaterViewModel;
         [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
         [NotNull] private readonly IMapper<RssFeedDomainModel, RssFeedServiceModel> _toServiceModelMapper;
 
@@ -28,24 +26,18 @@ namespace Core.Services.RssFeeds
             [NotNull] IMapper<RssFeedServiceModel, RssFeedDomainModel> mapper,
             [NotNull] IMapper<RssFeedDomainModel, RssFeedServiceModel> toServiceModelMapper,
             [NotNull] IRssFeedApiClient rssFeedApiClient,
-            [NotNull] IRssMessagesRepository rssMessagesRepository,
-            [NotNull] RssFeedsUpdaterViewModel rssFeedsUpdaterViewModel)
+            [NotNull] IRssMessagesRepository rssMessagesRepository)
         {
             _rssFeedRepository = rssFeedRepository;
             _mapper = mapper;
             _toServiceModelMapper = toServiceModelMapper;
             _rssFeedApiClient = rssFeedApiClient;
             _rssMessagesRepository = rssMessagesRepository;
-            _rssFeedsUpdaterViewModel = rssFeedsUpdaterViewModel;
         }
 
-        public Task AddAsync(string url, CancellationToken cancellationToken = default)
+        public Task<Guid> AddAsync(string url, CancellationToken cancellationToken = default)
         {
-            return Task.Run(async () =>
-            {
-                await _rssFeedRepository.AddAsync(url, cancellationToken);
-                _rssFeedsUpdaterViewModel.SoftUpdateCommand.ExecuteIfCan();
-            }, cancellationToken);
+            return _rssFeedRepository.AddAsync(url, cancellationToken);
         }
 
         public async Task<RssFeedServiceModel> GetAsync(Guid id, CancellationToken cancellationToken = default)
@@ -67,11 +59,7 @@ namespace Core.Services.RssFeeds
 
         public Task UpdateAsync(RssFeedServiceModel rssFeed, CancellationToken token = default)
         {
-            return Task.Run(async () =>
-            {
-                await _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
-                _rssFeedsUpdaterViewModel.SoftUpdateCommand.ExecuteIfCan();
-            }, token);
+            return _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
         }
 
         public Task LoadAndUpdateAsync(Guid id, CancellationToken token = default)

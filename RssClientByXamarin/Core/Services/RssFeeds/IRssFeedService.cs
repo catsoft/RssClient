@@ -9,7 +9,7 @@ namespace Core.Services.RssFeeds
     public interface IRssFeedService
     {
         [NotNull]
-        Task AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
+        Task<Guid> AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
 
         [NotNull]
         Task RemoveAsync(Guid id, CancellationToken token = default);
