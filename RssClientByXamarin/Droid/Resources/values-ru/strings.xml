@@ -120,5 +120,7 @@
     <string name="animationWeaver_exitAnim">Выход</string>
     <string name="menuFeedlySearch_search">Поиск</string>
     <string name="allMessagesFilter_clear">Очистить</string>
+    
+    <string name="RssListWidgetTitle">Rss список</string>
 
 </resources>

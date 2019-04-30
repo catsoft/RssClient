@@ -124,4 +124,6 @@
     <string name="animationWeaver_withoutDelay">Without delay</string>
     <string name="animationWeaver_withDelay">Delay</string>
 
+    <string name="RssListWidgetTitle">Rss List</string>
+    
 </resources>
