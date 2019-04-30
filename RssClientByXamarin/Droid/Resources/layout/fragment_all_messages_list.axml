@@ -12,11 +12,19 @@
         android:layout_height="match_parent"/>
     
     <TextView
-        android:id="@+id/textView_allMessagesFilter_emptyText"
+        android:id="@+id/textView_allMessages_emptyText"
         style="@style/TextView.Empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/rssAllMessagesList_emptyText"/>
+    
+    <ProgressBar
+        android:id="@+id/progressBar_allMessages_topProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/feedlyProgressBarHeight"
+        android:indeterminate="true"
+        android:visibility="gone"/>
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_allMessages_addRss"

@@ -69,6 +69,7 @@
     <Compile Include="NativeExtension\Events\IClickable.cs" />
     <Compile Include="NativeExtension\Events\ILongClick.cs" />
     <Compile Include="NativeExtension\Events\ISwipeActions.cs" />
+    <Compile Include="NativeExtension\FindExtension.cs" />
     <Compile Include="NativeExtension\KeyboardActivityExtension.cs" />
     <Compile Include="NativeExtension\RateExtension.cs" />
     <Compile Include="NativeExtension\TextViewExtension.cs" />

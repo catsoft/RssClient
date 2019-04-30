@@ -2,7 +2,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.AllMessages
@@ -11,13 +11,15 @@ namespace Droid.Screens.Messages.AllMessages
     {
         public AllMessagesFragmentViewHolder([NotNull] View view)
         {
-            FloatingActionButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab_allMessages_addRss).NotNull();
+            FloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);
             
-            RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_allMessages_list).NotNull();
+            RecyclerView = view.FindNotNull<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
-            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textView_allMessagesFilter_emptyText);
+            EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_allMessages_emptyText);
+
+            TopProgressBar = view.FindNotNull<ProgressBar>(Resource.Id.progressBar_allMessages_topProgressBar);
         }
         
         [NotNull] public RecyclerView RecyclerView { get; }
@@ -25,5 +27,7 @@ namespace Droid.Screens.Messages.AllMessages
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
         
         [NotNull] public TextView EmptyTextView { get; }
+        
+        [NotNull] public ProgressBar TopProgressBar { get; }
     }
 }

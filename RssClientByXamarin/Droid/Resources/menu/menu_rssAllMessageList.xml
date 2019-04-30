@@ -5,15 +5,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     
     <item
+        android:id="@+id/menuItem_rssAllMessagesList_refresh"
+        android:title="@string/menuRssList_refresh"
+        android:icon="@drawable/baseline_refresh_24"
+        app:showAsAction="always"/>
+    
+    <item
         android:id="@+id/menuItem_rssAllMessageList_filter"
         android:title="@string/menuRssList_filter"
         android:icon="@drawable/baseline_filter_list_24"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
     
     <item
         android:id="@+id/menuItem_rssAllMessageList_change"
         android:title="@string/menuRssList_change"
         android:icon="@drawable/baseline_change"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 </menu>

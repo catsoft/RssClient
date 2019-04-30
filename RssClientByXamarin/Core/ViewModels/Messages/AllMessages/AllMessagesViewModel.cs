@@ -14,6 +14,7 @@ using Core.ViewModels.Lists;
 using Core.ViewModels.Messages.AllMessagesFilter;
 using Core.ViewModels.RssFeeds.Create;
 using Core.ViewModels.RssFeeds.List;
+using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using JetBrains.Annotations;
 using ReactiveUI;
 
@@ -27,12 +28,14 @@ namespace Core.ViewModels.Messages.AllMessages
 
         public AllMessagesViewModel([NotNull] INavigator navigator,
             [NotNull] IRssMessageService rssMessageService,
-            [NotNull] IConfigurationRepository configurationRepository)
+            [NotNull] IConfigurationRepository configurationRepository,
+            [NotNull] RssFeedsUpdaterViewModel rssFeedsUpdaterViewModel)
         {
             _navigator = navigator;
             _rssMessageService = rssMessageService;
             _configurationRepository = configurationRepository;
-
+            RssFeedsUpdaterViewModel = rssFeedsUpdaterViewModel;
+            
             LoadRssMessagesCommand = ReactiveCommand.CreateFromTask(DoLoadRssMessages).NotNull();
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadRssMessagesCommand);
             MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
@@ -45,6 +48,8 @@ namespace Core.ViewModels.Messages.AllMessages
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
         
         [NotNull] public MessageItemViewModel MessageItemViewModel { get; }
+        
+        [NotNull] public RssFeedsUpdaterViewModel RssFeedsUpdaterViewModel { get; }
         
         [NotNull] public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
 

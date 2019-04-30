@@ -3,7 +3,6 @@ using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
-using Android.Widget;
 using Core.Extensions;
 using Core.Services.RssFeeds;
 using Core.ViewModels.RssFeeds.List;
@@ -79,10 +78,6 @@ namespace Droid.Screens.RssFeeds.List
                     .Subscribe(w => _viewHolder.TopProgressBar.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
-                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand
-                    .Subscribe(w => Toast.MakeText(Activity, "123", ToastLength.Short).Show())
-                    .AddTo(disposable);
-                
                 ViewModel.GetListCommand.ExecuteIfCan().AddTo(disposable);
                 
                 ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);

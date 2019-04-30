@@ -80,7 +80,13 @@ namespace Droid.Screens.Messages.AllMessages
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.IsExecuting
+                    .Subscribe(w => _viewHolder.TopProgressBar.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
+                
                 ViewModel.LoadRssMessagesCommand.ExecuteIfCan().AddTo(disposable);
+                
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -100,6 +106,10 @@ namespace Droid.Screens.Messages.AllMessages
                     break;
                 case Resource.Id.menuItem_rssAllMessageList_filter:
                     ViewModel.OpenRssAllMessagesFilterScreenCommand.ExecuteIfCan();
+                    break;
+                
+                case Resource.Id.menuItem_rssAllMessagesList_refresh:
+                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
                     break;
             }
 
