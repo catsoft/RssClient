@@ -17,8 +17,8 @@ namespace Droid.NativeExtension
             settings.DomStorageEnabled = true;
             settings.SetAppCacheEnabled(true);
             settings.LoadsImagesAutomatically = true;
-            settings.LoadWithOverviewMode = true;
-            settings.UseWideViewPort = true;
+//            settings.LoadWithOverviewMode = true;
+//            settings.UseWideViewPort = true;
             settings.MixedContentMode = MixedContentHandling.AlwaysAllow;
             
             var client = new WebViewClient();
