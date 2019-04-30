@@ -14,13 +14,16 @@ namespace Core.CoreServices.Html
         
         public string ConfigureHtml(string html)
         {
+            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
+            var textColor = appConfiguration.AppTheme == AppTheme.Dark ? "white" : "black";
+            
             var str = $@"<!doctype html>
             <html>
                 <head>
                     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-                    <meta http-equiv='Content-Style-Type' content='text/css'>
+                    <meta http-equiv='Content-Style-Type' content='text/css;'>
                 </head>
-                <body style='font-size: 1em; width: fit-content'>
+                <body style='font-size: 1em; width: fit-content; color:{textColor};'>
                     {html}
                 </body>
 
@@ -30,8 +33,6 @@ namespace Core.CoreServices.Html
                         images[i].style.width = '100%';
                 </script>
             </html>";
-            
-            var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
             
             return str;
         }
