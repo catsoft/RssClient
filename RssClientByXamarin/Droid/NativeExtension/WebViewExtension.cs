@@ -19,9 +19,7 @@ namespace Droid.NativeExtension
             settings.LoadsImagesAutomatically = true;
             settings.LoadWithOverviewMode = true;
             settings.UseWideViewPort = true;
-            settings.MinimumFontSize = 30;
             settings.MixedContentMode = MixedContentHandling.AlwaysAllow;
-            settings.SetLayoutAlgorithm(WebSettings.LayoutAlgorithm.TextAutosizing);
             
             var client = new WebViewClient();
             webView.SetWebViewClient(client);
