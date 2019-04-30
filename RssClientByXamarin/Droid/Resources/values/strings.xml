@@ -112,6 +112,7 @@
     
     <string name="feedlySearch_emptyText">Here you can search RSS from "Feedly" and add to you</string>
     <string name="rssList_emptyText">Time to add RSS feed!</string>
+    <string name="rssFeedMessagesList_emptyText">Here you have nothing yet</string>
     <string name="rssEditListEmptyText">Here you have nothing yet</string>
     <string name="rssAllMessagesList_emptyText">Here you have nothing yet</string>
     <string name="favoriteList_emptyText">Here you have nothing yet</string>

@@ -5,11 +5,11 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Services.RssFeeds;
 using JetBrains.Annotations;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
 
 namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
 {
@@ -20,15 +20,13 @@ namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
     {
         [NotNull] private readonly IRssFeedService _rssFeedService;
         [NotNull] private readonly ISubject<RssFeedServiceModel> _updatedRss = new Subject<RssFeedServiceModel>();
-        private extern bool IsExecuting { [ObservableAsProperty] get; }
         
         public RssFeedsUpdaterViewModel([NotNull] IRssFeedService rssFeedService)
         {
             _rssFeedService = rssFeedService;
             
-            UpdateCommand = ReactiveCommand.CreateFromTask(DoUpdate, this.WhenAnyValue(model => model.IsExecuting));
-            UpdateCommand.IsExecuting.ToPropertyEx(this, model => model.IsExecuting);
-            UpdatedRss = _updatedRss.AsObservable();
+            UpdateCommand = ReactiveCommand.CreateFromTask(DoUpdate).NotNull();
+            UpdatedRss = _updatedRss.AsObservable().NotNull();
         }
 
         [NotNull] public ReactiveCommand<Unit, Unit> UpdateCommand { get; }

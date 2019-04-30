@@ -25,6 +25,6 @@
         style="@style/TextView.Empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/rssList_emptyText"/>
+        android:text="@string/rssFeedMessagesList_emptyText"/>
 
 </FrameLayout>

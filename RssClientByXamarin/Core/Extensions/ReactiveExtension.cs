@@ -17,7 +17,13 @@ namespace Core.Extensions
         [NotNull]
         public static IDisposable ExecuteIfCan<TParam, TResult>([NotNull] this ReactiveCommand<TParam, TResult> cmd, TParam param = default)
         {
-            return cmd.CanExecute.NotNull().Take(1).Where(x => x).Select(_ => param).InvokeCommand(cmd).NotNull();
+            return cmd.CanExecute
+                .NotNull()
+                .Take(1)
+                .Where(x => x)
+                .Select(_ => param)
+                .InvokeCommand(cmd)
+                .NotNull();
         }
     }
 }

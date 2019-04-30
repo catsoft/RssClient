@@ -4877,8 +4877,8 @@ namespace Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0c0093
-			public const int AnimationSettings_gotoCustomize = 2131493011;
+			// aapt resource value: 0x7f0c0094
+			public const int AnimationSettings_gotoCustomize = 2131493012;
 			
 			// aapt resource value: 0x7f0c0000
 			public const int abc_action_bar_home_description = 2131492864;
@@ -5030,23 +5030,23 @@ namespace Droid
 			// aapt resource value: 0x7f0c0080
 			public const int all_messages_filter_unread = 2131492992;
 			
-			// aapt resource value: 0x7f0c0090
-			public const int animationWeaver_enterAnim = 2131493008;
-			
-			// aapt resource value: 0x7f0c008f
-			public const int animationWeaver_exitAnim = 2131493007;
-			
 			// aapt resource value: 0x7f0c0091
-			public const int animationWeaver_speedAnim = 2131493009;
+			public const int animationWeaver_enterAnim = 2131493009;
 			
-			// aapt resource value: 0x7f0c0095
-			public const int animationWeaver_withDelay = 2131493013;
-			
-			// aapt resource value: 0x7f0c0094
-			public const int animationWeaver_withoutDelay = 2131493012;
+			// aapt resource value: 0x7f0c0090
+			public const int animationWeaver_exitAnim = 2131493008;
 			
 			// aapt resource value: 0x7f0c0092
-			public const int animationWeaver_yourScreen = 2131493010;
+			public const int animationWeaver_speedAnim = 2131493010;
+			
+			// aapt resource value: 0x7f0c0096
+			public const int animationWeaver_withDelay = 2131493014;
+			
+			// aapt resource value: 0x7f0c0095
+			public const int animationWeaver_withoutDelay = 2131493013;
+			
+			// aapt resource value: 0x7f0c0093
+			public const int animationWeaver_yourScreen = 2131493011;
 			
 			// aapt resource value: 0x7f0c0028
 			public const int appbar_scrolling_view_behavior = 2131492904;
@@ -5132,8 +5132,8 @@ namespace Droid
 			// aapt resource value: 0x7f0c002d
 			public const int fab_transformation_sheet_behavior = 2131492909;
 			
-			// aapt resource value: 0x7f0c008e
-			public const int favoriteList_emptyText = 2131493006;
+			// aapt resource value: 0x7f0c008f
+			public const int favoriteList_emptyText = 2131493007;
 			
 			// aapt resource value: 0x7f0c008a
 			public const int feedlySearch_emptyText = 2131493002;
@@ -5222,8 +5222,8 @@ namespace Droid
 			// aapt resource value: 0x7f0c0060
 			public const int recommended_rss_add_rss_toast = 2131492960;
 			
-			// aapt resource value: 0x7f0c008d
-			public const int rssAllMessagesList_emptyText = 2131493005;
+			// aapt resource value: 0x7f0c008e
+			public const int rssAllMessagesList_emptyText = 2131493006;
 			
 			// aapt resource value: 0x7f0c0037
 			public const int rssCreate_submitTitle = 2131492919;
@@ -5237,8 +5237,8 @@ namespace Droid
 			// aapt resource value: 0x7f0c004f
 			public const int rssDeleteDialog_positiveTitle = 2131492943;
 			
-			// aapt resource value: 0x7f0c008c
-			public const int rssEditListEmptyText = 2131493004;
+			// aapt resource value: 0x7f0c008d
+			public const int rssEditListEmptyText = 2131493005;
 			
 			// aapt resource value: 0x7f0c0057
 			public const int rssEditList_title = 2131492951;
@@ -5248,6 +5248,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0c0056
 			public const int rssFavoriteMessages_title = 2131492950;
+			
+			// aapt resource value: 0x7f0c008c
+			public const int rssFeedMessagesList_emptyText = 2131493004;
 			
 			// aapt resource value: 0x7f0c008b
 			public const int rssList_emptyText = 2131493003;

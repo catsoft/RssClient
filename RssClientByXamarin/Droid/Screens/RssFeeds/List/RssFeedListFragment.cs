@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
@@ -85,7 +86,7 @@ namespace Droid.Screens.RssFeeds.List
                 
                 ViewModel.GetListCommand.Execute().Subscribe().AddTo(disposable);
                 
-                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan(Unit.Default).AddTo(disposable);
             });
 
             return view;
@@ -106,7 +107,7 @@ namespace Droid.Screens.RssFeeds.List
                     break;
                 
                 case Resource.Id.menuItem_rssList_refresh:
-                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
+                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan(Unit.Default);
                     break;
             }
 
