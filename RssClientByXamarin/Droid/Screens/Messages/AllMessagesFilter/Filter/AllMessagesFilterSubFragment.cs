@@ -114,12 +114,12 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
 
         private void SetFromDate(object sender, [NotNull] DatePickerDialog.DateSetEventArgs e)
         {
-            ViewModel.SetFromDateTypeCommand.Execute(e.Date).NotNull().Subscribe();
+            ViewModel.SetFromDateTypeCommand.ExecuteIfCan(e.Date);
         }
 
         private void SetToDate(object sender, [NotNull] DatePickerDialog.DateSetEventArgs e)
         {
-            ViewModel.SetToDateTypeCommand.Execute(e.Date).NotNull().Subscribe();
+            ViewModel.SetToDateTypeCommand.ExecuteIfCan(e.Date);
         }
     }
 }

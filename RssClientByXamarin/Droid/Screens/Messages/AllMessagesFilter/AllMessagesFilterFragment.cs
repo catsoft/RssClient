@@ -1,6 +1,6 @@
-using System;
 using Android.OS;
 using Android.Views;
+using Core.Extensions;
 using Core.ViewModels.Messages.AllMessagesFilter;
 using Droid.Screens.Navigation;
 
@@ -36,7 +36,7 @@ namespace Droid.Screens.Messages.AllMessagesFilter
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_allMessagesFilter_clear:
-                    ViewModel.ClearFilterCommand.Execute().Subscribe();
+                    ViewModel.ClearFilterCommand.ExecuteIfCan();
                     return true;
             }
 

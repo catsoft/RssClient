@@ -1,5 +1,5 @@
-using System;
 using System.Reactive;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
@@ -22,7 +22,7 @@ namespace Core.ViewModels.Settings.StartPage
         
         private void DoUpdateStartPage(Configuration.Settings.StartPage startPage)
         {
-            AppConfigurationViewModel.UpdateConfiguration.Execute(config => config.StartPage = startPage).Subscribe();
+            AppConfigurationViewModel.UpdateConfiguration.ExecuteIfCan(config => config.StartPage = startPage);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace Droid.Screens.RssFeeds.Edit
                 this.BindCommand(ViewModel, model => model.UpdateCommand, fragment => fragment._viewHolder.SendButton)
                     .AddTo(compositeDisposable);
 
-                ViewModel.LoadCommand.Execute().Subscribe();
+                ViewModel.LoadCommand.ExecuteIfCan();
             });
 
             return view;

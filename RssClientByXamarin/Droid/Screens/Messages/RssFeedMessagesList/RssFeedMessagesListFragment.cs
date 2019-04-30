@@ -96,7 +96,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
-                ViewModel.LoadCommand.Execute().NotNull().Subscribe();
+                ViewModel.LoadCommand.ExecuteIfCan();
             });
             
             return view;
@@ -110,16 +110,16 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssDetail_remove:
-                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.Execute(rssModel).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.ExecuteIfCan(rssModel);
                     break;
                 case Resource.Id.menuItem_rssDetail_edit:
-                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.Execute(rssModel).Subscribe();
+                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.ExecuteIfCan(rssModel);
                     break;
                 case Resource.Id.menuItem_rssDetail_share:
-                    ViewModel.RssFeedItemViewModel.ShareCommand.Execute(rssModel).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ShareCommand.ExecuteIfCan(rssModel);
                     break;
                 case Resource.Id.menuItem_rssDetail_readAllMessages:
-                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.Execute(rssModel).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteIfCan(rssModel);
                     break;
             }
 
@@ -139,13 +139,13 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             switch (eventArgs.Item?.ItemId)
             {
                 case Resource.Id.menuItem_rssDetailList_contextShare:
-                    ViewModel.MessageItemViewModel.ShareItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ShareItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextRead:
-                    ViewModel.MessageItemViewModel.ChangeReadItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextFavorite:
-                    ViewModel.MessageItemViewModel.ChangeFavoriteCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ChangeFavoriteCommand.ExecuteIfCan(model);
                     break;
             }
         }

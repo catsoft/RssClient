@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
@@ -84,9 +83,9 @@ namespace Droid.Screens.RssFeeds.List
                     .Subscribe(w => Toast.MakeText(Activity, "123", ToastLength.Short).Show())
                     .AddTo(disposable);
                 
-                ViewModel.GetListCommand.Execute().Subscribe().AddTo(disposable);
+                ViewModel.GetListCommand.ExecuteIfCan().AddTo(disposable);
                 
-                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan(Unit.Default).AddTo(disposable);
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -99,15 +98,15 @@ namespace Droid.Screens.RssFeeds.List
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_change:
-                    ViewModel.OpenAllMessagesScreenCommand.Execute().Subscribe();
+                    ViewModel.OpenAllMessagesScreenCommand.ExecuteIfCan();
                     break;
 
                 case Resource.Id.menuItem_rssList_editMode:
-                    ViewModel.OpenListEditScreenCommand.Execute().Subscribe();
+                    ViewModel.OpenListEditScreenCommand.ExecuteIfCan();
                     break;
                 
                 case Resource.Id.menuItem_rssList_refresh:
-                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan(Unit.Default);
+                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
                     break;
             }
 
@@ -127,16 +126,16 @@ namespace Droid.Screens.RssFeeds.List
             switch (eventArgs.Item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_contextEdit:
-                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.Execute(holderItem).Subscribe();
+                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.ExecuteIfCan(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextRemove:
-                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.Execute(holderItem).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.ExecuteIfCan(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextShare:
-                    ViewModel.RssFeedItemViewModel.ShareCommand.Execute(holderItem).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ShareCommand.ExecuteIfCan(holderItem);
                     break;
                 case Resource.Id.menuItem_rssList_contextReadAllMessages:
-                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.Execute(holderItem).Subscribe();
+                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteIfCan(holderItem);
                     break;
             }
         }

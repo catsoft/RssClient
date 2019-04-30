@@ -61,7 +61,7 @@ namespace Core.ViewModels.RssFeeds
                 "",
                 Strings.Yes,
                 Strings.No,
-                () => DeleteItemCommand.Execute(model).Subscribe(),
+                () => DeleteItemCommand.ExecuteIfCan(model),
                 null);
         }
 

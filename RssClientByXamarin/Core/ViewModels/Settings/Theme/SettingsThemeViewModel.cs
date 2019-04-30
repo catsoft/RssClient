@@ -1,6 +1,6 @@
-using System;
 using System.Reactive;
 using Core.Configuration.Settings;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
@@ -23,7 +23,7 @@ namespace Core.ViewModels.Settings.Theme
         
         private void DoUpdateAppTheme(AppTheme appTheme)
         {
-            AppConfigurationViewModel.UpdateConfiguration.Execute(config => config.AppTheme = appTheme).Subscribe();
+            AppConfigurationViewModel.UpdateConfiguration.ExecuteIfCan(config => config.AppTheme = appTheme);
         }
     }
 }

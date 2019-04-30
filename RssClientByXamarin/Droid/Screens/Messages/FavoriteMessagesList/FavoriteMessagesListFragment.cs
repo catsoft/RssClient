@@ -69,7 +69,7 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
-                ViewModel.LoadCommand.Execute().NotNull().Subscribe().AddTo(disposable);
+                ViewModel.LoadCommand.ExecuteIfCan().AddTo(disposable);
             });
             
             return view;
@@ -88,13 +88,13 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
             switch (eventArgs.Item?.ItemId)
             {
                 case Resource.Id.menuItem_rssDetailList_contextShare:
-                    ViewModel.RssMessageItemViewModel.ShareItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.RssMessageItemViewModel.ShareItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextRead:
-                    ViewModel.RssMessageItemViewModel.ChangeReadItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.RssMessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextFavorite:
-                    ViewModel.RssMessageItemViewModel.ChangeFavoriteCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.RssMessageItemViewModel.ChangeFavoriteCommand.ExecuteIfCan(model);
                     break;
             }
         }

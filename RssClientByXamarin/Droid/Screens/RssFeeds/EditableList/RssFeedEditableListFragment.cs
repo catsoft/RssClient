@@ -72,7 +72,7 @@ namespace Droid.Screens.RssFeeds.EditableList
                     .Subscribe(w => _viewHolder.EmptyEditText.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
-                ViewModel.LoadCommand.Execute().Subscribe();
+                ViewModel.LoadCommand.ExecuteIfCan();
             });
 
             return view;

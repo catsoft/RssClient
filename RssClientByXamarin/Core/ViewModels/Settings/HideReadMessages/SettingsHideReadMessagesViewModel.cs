@@ -1,5 +1,5 @@
-using System;
 using System.Reactive;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
@@ -22,7 +22,7 @@ namespace Core.ViewModels.Settings.HideReadMessages
         
         private void DoUpdateReadMessages(bool value)
         {
-            AppConfigurationViewModel.UpdateConfiguration.Execute(config => config.HideReadMessages = value).Subscribe();
+            AppConfigurationViewModel.UpdateConfiguration.ExecuteIfCan(config => config.HideReadMessages = value);
         }
     }
 }

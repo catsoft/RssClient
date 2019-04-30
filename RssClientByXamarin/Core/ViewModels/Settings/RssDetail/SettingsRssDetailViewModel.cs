@@ -1,6 +1,6 @@
-using System;
 using System.Reactive;
 using Core.Configuration.Settings;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
@@ -23,7 +23,7 @@ namespace Core.ViewModels.Settings.RssDetail
 
         private void DoUpdateRssDetail(MessagesViewer messagesViewer)
         {
-            AppConfigurationViewModel.UpdateConfiguration.Execute(config => config.MessagesViewer = messagesViewer).Subscribe();
+            AppConfigurationViewModel.UpdateConfiguration.ExecuteIfCan(config => config.MessagesViewer = messagesViewer);
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Droid.Screens.Messages.AllMessages
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
                 
-                ViewModel.LoadRssMessagesCommand.Execute().NotNull().Subscribe().AddTo(disposable);
+                ViewModel.LoadRssMessagesCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -96,10 +96,10 @@ namespace Droid.Screens.Messages.AllMessages
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssAllMessageList_change:
-                    ViewModel.OpenRssListScreenCommand.Execute()?.Subscribe();
+                    ViewModel.OpenRssListScreenCommand.ExecuteIfCan();
                     break;
                 case Resource.Id.menuItem_rssAllMessageList_filter:
-                    ViewModel.OpenRssAllMessagesFilterScreenCommand.Execute()?.Subscribe();
+                    ViewModel.OpenRssAllMessagesFilterScreenCommand.ExecuteIfCan();
                     break;
             }
 
@@ -119,13 +119,13 @@ namespace Droid.Screens.Messages.AllMessages
             switch (eventArgs.Item?.ItemId)
             {
                 case Resource.Id.menuItem_rssDetailList_contextShare:
-                    ViewModel.MessageItemViewModel.ShareItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ShareItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextRead:
-                    ViewModel.MessageItemViewModel.ChangeReadItemCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(model);
                     break;
                 case Resource.Id.menuItem_rssDetailList_contextFavorite:
-                    ViewModel.MessageItemViewModel.ChangeFavoriteCommand.Execute(model).NotNull().Subscribe();
+                    ViewModel.MessageItemViewModel.ChangeFavoriteCommand.ExecuteIfCan(model);
                     break;
             }
         }

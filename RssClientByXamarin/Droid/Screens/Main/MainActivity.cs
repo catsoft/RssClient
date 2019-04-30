@@ -1,8 +1,8 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Core.Extensions;
 using Core.ViewModels.Main;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
@@ -32,7 +32,7 @@ namespace Droid.Screens.Main
 
             if (savedInstanceState == null)
             {
-                ViewModel.OpenRootScreenCommand.Execute().Subscribe();
+                ViewModel.OpenRootScreenCommand.ExecuteIfCan();
 
                 NavigationView.SetCheckedItem(Resource.Id.menuItem_navigationMenu_main);
             }
@@ -41,18 +41,18 @@ namespace Droid.Screens.Main
         public override bool OnNavigationItemSelected(IMenuItem menuItem)
         {
             if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_main)
-                ViewModel.OpenRootScreenCommand.Execute().Subscribe();
+                ViewModel.OpenRootScreenCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_feedlySearch)
-                ViewModel.OpenFeedlySearchCommand.Execute().Subscribe();
+                ViewModel.OpenFeedlySearchCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_favorite)
-                ViewModel.OpenFavoriteMessagesCommand.Execute().Subscribe();
+                ViewModel.OpenFavoriteMessagesCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_settings)
-                ViewModel.OpenSettingsCommand.Execute().Subscribe();
+                ViewModel.OpenSettingsCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_contacts)
-                ViewModel.OpenContactsCommand.Execute().Subscribe();
+                ViewModel.OpenContactsCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_rate)
                 this.RateInMarket();
-            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about) ViewModel.OpenAboutCommand.Execute().Subscribe();
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about) ViewModel.OpenAboutCommand.ExecuteIfCan();
 
             menuItem.SetChecked(true);
 
