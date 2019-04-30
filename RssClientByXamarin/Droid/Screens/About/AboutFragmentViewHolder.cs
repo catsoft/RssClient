@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.About
@@ -9,9 +9,9 @@ namespace Droid.Screens.About
     {
         public AboutFragmentViewHolder([NotNull] View view)
         {
-            VersionTextView = view.FindViewById<TextView>(Resource.Id.textView_about_version).NotNull();
-            OtherTextView = view.FindViewById<TextView>(Resource.Id.textView_about_other).NotNull();
-            ProjectLinkTextView = view.FindViewById<TextView>(Resource.Id.textView_about_projectLink).NotNull();
+            VersionTextView = view.FindNotNull<TextView>(Resource.Id.textView_about_version);
+            OtherTextView = view.FindNotNull<TextView>(Resource.Id.textView_about_other);
+            ProjectLinkTextView = view.FindNotNull<TextView>(Resource.Id.textView_about_projectLink);
         }
         
         [NotNull] public TextView VersionTextView { get; }
