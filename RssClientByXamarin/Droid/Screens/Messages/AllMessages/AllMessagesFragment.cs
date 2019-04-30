@@ -86,7 +86,7 @@ namespace Droid.Screens.Messages.AllMessages
                 
                 ViewModel.LoadRssMessagesCommand.ExecuteIfCan().AddTo(disposable);
                 
-                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
+                ViewModel.RssFeedsUpdaterViewModel.SoftUpdateCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -109,7 +109,7 @@ namespace Droid.Screens.Messages.AllMessages
                     break;
                 
                 case Resource.Id.menuItem_rssAllMessagesList_refresh:
-                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
+                    ViewModel.RssFeedsUpdaterViewModel.HardUpdateCommand.ExecuteIfCan();
                     break;
             }
 

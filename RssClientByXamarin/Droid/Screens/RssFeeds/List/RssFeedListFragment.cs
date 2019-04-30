@@ -87,7 +87,7 @@ namespace Droid.Screens.RssFeeds.List
 
                 ViewModel.GetListCommand.ExecuteIfCan().AddTo(disposable);
                 
-                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
+                ViewModel.RssFeedsUpdaterViewModel.SoftUpdateCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -108,7 +108,7 @@ namespace Droid.Screens.RssFeeds.List
                     break;
                 
                 case Resource.Id.menuItem_rssList_refresh:
-                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
+                    ViewModel.RssFeedsUpdaterViewModel.HardUpdateCommand.ExecuteIfCan();
                     break;
             }
 
