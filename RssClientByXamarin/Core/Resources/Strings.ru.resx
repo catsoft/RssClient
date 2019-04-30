@@ -122,5 +122,13 @@
 Сам я программист. Если предложите адекватный дизайн или тему, то реализация не заставит себя ждать.
 Возможно кто-то захочет сделать перевод приложения на другие языки. Предоставлю текстовые данные. </value>
     </data>
-
+    
+    <data name="ProjectLinkText" xml:space="preserve">
+        <value>ProjectLink: </value>
+    </data>
+    
+    <data name="ProjectLink" xml:space="preserve">
+        <value>https://github.com/BallOfDestruction/RssClient/tree/master/RssClientByXamarin</value>
+    </data>
+    
 </root>

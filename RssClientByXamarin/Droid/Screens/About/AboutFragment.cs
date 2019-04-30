@@ -34,6 +34,9 @@ namespace Droid.Screens.About
                 
                 this.OneWayBind(ViewModel, model => model.OtherText, fragment => fragment._viewHolder.OtherTextView.Text)
                     .AddTo(disposable);
+                
+                this.OneWayBind(ViewModel, model => model.ProjectLink, fragment => fragment._viewHolder.ProjectLinkTextView.Text)
+                    .AddTo(disposable);
             });
             
             return view;

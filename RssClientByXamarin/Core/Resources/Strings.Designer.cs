@@ -195,5 +195,17 @@ namespace Core.Resources {
                 return ResourceManager.GetString("About", resourceCulture);
             }
         }
+        
+        public static string ProjectLinkText {
+            get {
+                return ResourceManager.GetString("ProjectLinkText", resourceCulture);
+            }
+        }
+        
+        public static string ProjectLink {
+            get {
+                return ResourceManager.GetString("ProjectLink", resourceCulture);
+            }
+        }
     }
 }

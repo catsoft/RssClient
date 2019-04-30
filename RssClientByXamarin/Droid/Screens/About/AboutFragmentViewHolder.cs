@@ -11,10 +11,13 @@ namespace Droid.Screens.About
         {
             VersionTextView = view.FindViewById<TextView>(Resource.Id.textView_about_version).NotNull();
             OtherTextView = view.FindViewById<TextView>(Resource.Id.textView_about_other).NotNull();
+            ProjectLinkTextView = view.FindViewById<TextView>(Resource.Id.textView_about_projectLink).NotNull();
         }
         
         [NotNull] public TextView VersionTextView { get; }
         
         [NotNull] public TextView OtherTextView { get; }
+        
+        [NotNull] public TextView ProjectLinkTextView { get; }
     }
 }

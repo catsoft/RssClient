@@ -123,4 +123,12 @@ I myself am a programmer. If you are offered an adequate design or theme, then t
 Someone may want to translate applications into other languages. I will provide text data. </value>
     </data>
     
+    <data name="ProjectLinkText" xml:space="preserve">
+        <value>ProjectLink: </value>
+    </data>
+    
+    <data name="ProjectLink" xml:space="preserve">
+        <value>https://github.com/BallOfDestruction/RssClient/tree/master/RssClientByXamarin</value>
+    </data>
+    
 </root>

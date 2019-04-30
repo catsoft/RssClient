@@ -25,5 +25,7 @@ namespace Core.ViewModels.About
         public string AboutVersionCompliance => $"App name: {AppName} \nPackage name: {PackageName} \nVersion: {VersionString}\nBuild: {BuildString}";
 
         public string OtherText => Strings.About;
+
+        public string ProjectLink => Strings.ProjectLinkText + Strings.ProjectLink;
     }
 }
