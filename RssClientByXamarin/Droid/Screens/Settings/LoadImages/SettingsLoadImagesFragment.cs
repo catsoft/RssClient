@@ -13,7 +13,6 @@ namespace Droid.Screens.Settings.LoadImages
 {
     public class SettingsLoadImagesFragment : BaseFragment<SettingsLoadImagesViewModel>
     {
-        // ReSharper disable once NotNullMemberIsNotInitialized
         [NotNull] private SettingsLoadImagesFragmentViewHolder _viewHolder;
         
         protected override int LayoutId => Resource.Layout.fragment_settings_load_images;

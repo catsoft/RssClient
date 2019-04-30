@@ -1,4 +1,5 @@
 ﻿using Android.Views;
+using Android.Webkit;
 using Android.Widget;
 using Core.Extensions;
 using Core.Infrastructure.Locale;
@@ -17,31 +18,31 @@ namespace Droid.Screens.Messages.AllMessages
         {
             IsShowAndLoadImages = isShowAndLoadImages;
 
-            Title = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_title).NotNull();
-            Text = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_text).NotNull();
-            CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_date).NotNull();
-            Canal = itemView.FindViewById<TextView>(Resource.Id.textView_allMessagesItem_canal).NotNull();
-            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content).NotNull();
-            ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_allMessagesItem_image).NotNull();
-            Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_background).NotNull();
-            RatingBar = itemView.FindViewById<RatingBar>(Resource.Id.ratingBar_allMessagesItem_favorite).NotNull();
+            TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_title);
+            TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_allMessagesItem_text);
+            CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_date);
+            CanalTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_canal);
+            ClickViewLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content);
+            ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_allMessagesItem_image);
+            BackgroundLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_background);
+            RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_allMessagesItem_favorite);
 
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
         }
 
-        [NotNull] public TextView Title { get; }
+        [NotNull] public TextView TitleTextView { get; }
         
-        [NotNull] public TextView Text { get; }
+        [NotNull] public WebView TextWebView { get; }
         
-        [NotNull] public TextView CreationDate { get; }
+        [NotNull] public TextView CreationDateTextView { get; }
         
-        [NotNull] public TextView Canal { get; }
+        [NotNull] public TextView CanalTextView { get; }
         
         [NotNull] public ImageViewAsync ImageView { get; }
         
-        [NotNull] public LinearLayout ClickView { get; }
+        [NotNull] public LinearLayout ClickViewLinearLayout { get; }
         
-        [NotNull] public LinearLayout Background { get; }
+        [NotNull] public LinearLayout BackgroundLinearLayout { get; }
         
         [NotNull] public RatingBar RatingBar { get; }
         
@@ -51,11 +52,11 @@ namespace Droid.Screens.Messages.AllMessages
         {
             Item = item;
 
-            Title.Text = item.Title;
-            Text.SetTextAsHtml(item.Text);
-            CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            Canal.Text = item.RssTitle;
-            Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+            TitleTextView.Text = item.Title;
+            TextWebView.SetHtml(item.Text);
+            CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
+            CanalTextView.Text = item.RssTitle;
+            BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 

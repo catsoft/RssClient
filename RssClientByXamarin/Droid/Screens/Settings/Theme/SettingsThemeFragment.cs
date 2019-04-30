@@ -21,6 +21,12 @@ namespace Droid.Screens.Settings.Theme
 
         public override bool IsRoot => false;
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public SettingsThemeFragment()
+        {
+        }
+
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

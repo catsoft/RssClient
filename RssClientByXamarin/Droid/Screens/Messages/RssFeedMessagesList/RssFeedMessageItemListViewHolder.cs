@@ -1,4 +1,5 @@
 ﻿using Android.Views;
+using Android.Webkit;
 using Android.Widget;
 using Core.Infrastructure.Locale;
 using Core.Services.RssMessages;
@@ -6,38 +7,41 @@ using Droid.NativeExtension;
 using Droid.Screens.Base;
 using FFImageLoading;
 using FFImageLoading.Views;
+using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.RssFeedMessagesList
 {
     public class RssFeedMessageItemListViewHolder : BaseMessageItemViewHolder, IShowAndLoadImage
     {
-        public RssFeedMessageItemListViewHolder(View itemView, bool isShowAndLoadImages) : base(itemView)
+        public RssFeedMessageItemListViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
-            Title = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_title);
-            Text = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_text);
-            CreationDate = itemView.FindViewById<TextView>(Resource.Id.textView_messagesItem_date);
-            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_content);
-            ImageView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
-            Background = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
-            RatingBar = itemView.FindViewById<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
+            TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_title);
+            TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_messagesItem_text);
+            CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_date);
+            ClickViewLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_messagesItem_content);
+            ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
+            BackgroundLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
+            RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
 
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
+            
+            TextWebView.Init();
         }
 
-        public TextView Title { get; }
+        [NotNull] public TextView TitleTextView { get; }
         
-        public TextView Text { get; }
+        [NotNull] public WebView TextWebView { get; }
         
-        public TextView CreationDate { get; }
+        [NotNull] public TextView CreationDateTextView { get; }
         
-        public ImageViewAsync ImageView { get; }
+        [NotNull] public ImageViewAsync ImageView { get; }
         
-        public LinearLayout ClickView { get; }
+        [NotNull] public LinearLayout ClickViewLinearLayout { get; }
         
-        public LinearLayout Background { get; }
+        [NotNull] public LinearLayout BackgroundLinearLayout { get; }
         
-        public RatingBar RatingBar { get; }
+        [NotNull] public RatingBar RatingBar { get; }
         
         public bool IsShowAndLoadImages { get; }
 
@@ -45,10 +49,10 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         {
             Item = item;
 
-            Title.Text = item.Title;
-            Text.SetTextAsHtml(item.Text);
-            CreationDate.Text = item.CreationDate.ToShortDateLocaleString();
-            Background.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+            TitleTextView.Text = item.Title;
+            TextWebView.SetHtml(item.Text);
+            CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
+            BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 

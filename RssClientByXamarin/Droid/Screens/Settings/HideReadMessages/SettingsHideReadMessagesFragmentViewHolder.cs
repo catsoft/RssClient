@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.HideReadMessages
@@ -9,7 +9,7 @@ namespace Droid.Screens.Settings.HideReadMessages
     {
         public SettingsHideReadMessagesFragmentViewHolder([NotNull] View view)
         {
-            CheckBox = view.FindViewById<CheckBox>(Resource.Id.checkBox_ReadMessages_hide).NotNull();
+            CheckBox = view.FindNotNull<CheckBox>(Resource.Id.checkBox_ReadMessages_hide);
         }
         
         [NotNull] public CheckBox CheckBox { get; }

@@ -7,17 +7,24 @@ using Core.ViewModels.RssFeeds.Create;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.RssFeeds.Create
 {
     public class RssFeedCreateFragment : BaseFragment<RssFeedCreateViewModel>
     {
-        private RssFeedCreateFragmentViewHolder _viewHolder;
+        [NotNull] private RssFeedCreateFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_create;
         public override bool IsRoot => false;
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public RssFeedCreateFragment()
+        {
+        }
+        
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

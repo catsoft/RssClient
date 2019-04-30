@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings
@@ -9,7 +9,7 @@ namespace Droid.Screens.Settings
     {
         public SettingsFragmentViewHolder([NotNull] View view)
         {
-            ScrollView = view.FindViewById<ScrollView>(Resource.Id.scrollView_settings_main).NotNull();
+            ScrollView = view.FindNotNull<ScrollView>(Resource.Id.scrollView_settings_main);
         }
         
         [NotNull] public ScrollView ScrollView { get; }

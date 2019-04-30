@@ -3,19 +3,21 @@ using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.About;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.About
 {
     public class AboutFragment : BaseFragment<AboutViewModel>
     {
-        private AboutFragmentViewHolder _viewHolder;
-        
-        // ReSharper disable once EmptyConstructor
-        public AboutFragment() { }
+        [NotNull] private AboutFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_about;
         public override bool IsRoot => true;
+
+        // ReSharper disable once EmptyConstructor
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        public AboutFragment() { }
 
         protected override void RestoreState(Bundle saved) { }
 

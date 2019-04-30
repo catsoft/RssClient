@@ -10,15 +10,17 @@ using Droid.Infrastructure.Collections;
 using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.FeedlySearch
 {
     public class FeedlySearchFragment : BaseFragment<FeedlySearchViewModel>
     {
-        private FeedlySearchFragmentViewHolder _viewHolder;
+        [NotNull] private FeedlySearchFragmentViewHolder _viewHolder;
 
         // ReSharper disable once EmptyConstructor
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public FeedlySearchFragment() { }
 
         protected override int LayoutId => Resource.Layout.fragment_feedly_search;

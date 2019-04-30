@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.StartPage
@@ -9,9 +9,9 @@ namespace Droid.Screens.Settings.StartPage
     {
         public SettingsStartPageFragmentViewHolder([NotNull] View view)
         {
-            RadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsStartPage_main).NotNull();
-            RssListRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_rssList).NotNull();
-            AllMessagesRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList).NotNull();
+            RadioGroup = view.FindNotNull<RadioGroup>(Resource.Id.radioGroup_settingsStartPage_main);
+            RssListRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsStartPage_rssList);
+            AllMessagesRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsStartPage_messagesList);
         }
         
         [NotNull] public RadioGroup RadioGroup { get; }

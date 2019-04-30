@@ -15,11 +15,12 @@ namespace Droid.Screens.RssFeeds.Edit
     public class RssFeedEditFragment : BaseFragment<RssFeedEditViewModel>
     {
         private Guid _itemId;
-        private RssFeedEditFragmentViewHolder _viewHolder;
+        [NotNull] private RssFeedEditFragmentViewHolder _viewHolder;
 
-        // ReSharper disable once UnusedMember.Global
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public RssFeedEditFragment() { }
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public RssFeedEditFragment(Guid itemId) { _itemId = itemId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;

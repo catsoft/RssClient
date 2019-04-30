@@ -4,19 +4,22 @@ using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.Messages.Message;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.Messages.Message
 {
     public class MessageFragment : BaseFragment<MessageViewModel>
     {
-        private MessageFragmentViewHolder _viewHolder;
+        [NotNull] private MessageFragmentViewHolder _viewHolder;
         
         private Guid _rssMessageId;
         
         // ReSharper disable once UnusedMember.Global
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public MessageFragment() { }
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public MessageFragment(Guid rssMessageId) { _rssMessageId = rssMessageId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_message;

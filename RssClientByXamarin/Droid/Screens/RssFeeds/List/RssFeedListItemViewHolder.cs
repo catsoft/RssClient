@@ -21,11 +21,11 @@ namespace Droid.Screens.RssFeeds.List
         {
             IsShowAndLoadImages = showImages;
 
-            TitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_title).NotNull();
-            SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_subtitle).NotNull();
-            ClickView = itemView.FindViewById<LinearLayout>(Resource.Id.linearLayout_listItemRss_content).NotNull();
-            IconView = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_listItemRss_rssIcon).NotNull();
-            CountTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemRss_rssCount).NotNull();
+            TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_title);
+            SubtitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_subtitle);
+            ClickView = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_listItemRss_content);
+            IconView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_listItemRss_rssIcon);
+            CountTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_rssCount);
 
             IconView.Visibility = IsShowAndLoadImages.ToVisibility();
         }

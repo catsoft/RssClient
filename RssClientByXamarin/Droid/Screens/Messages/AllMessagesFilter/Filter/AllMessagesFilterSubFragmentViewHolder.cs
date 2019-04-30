@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.AllMessagesFilter.Filter
@@ -9,14 +9,14 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
     {
         public AllMessagesFilterSubFragmentViewHolder([NotNull] View view)
         {
-            RootRadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_filter_main).NotNull();
-            AllRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_all).NotNull();
-            FavoriteRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_favorite).NotNull();
-            ReadRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_read).NotNull();
-            UnreadRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_unread).NotNull();
+            RootRadioGroup = view.FindNotNull<RadioGroup>(Resource.Id.radioGroup_rss_all_messages_filter_main);
+            AllRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_all);
+            FavoriteRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_favorite);
+            ReadRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_read);
+            UnreadRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_rss_all_messages_filter_unread);
 
-            FromButton = view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateFrom).NotNull();
-            ToButton = view.FindViewById<Button>(Resource.Id.button_AllMessagesFilter_dateTo).NotNull();
+            FromButton = view.FindNotNull<Button>(Resource.Id.button_AllMessagesFilter_dateFrom);
+            ToButton = view.FindNotNull<Button>(Resource.Id.button_AllMessagesFilter_dateTo);
         }
 
         [NotNull] public RadioGroup RootRadioGroup { get; }

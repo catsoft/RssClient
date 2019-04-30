@@ -19,9 +19,9 @@ namespace Droid.Screens.FeedlySearch
         {
             IsShowAndLoadImages = isShowAndLoadImages;
 
-            RssIcon = itemView.FindViewById<ImageViewAsync>(Resource.Id.imageView_feedlyRss_rssIcon).NotNull();
-            TitleView = itemView.FindViewById<TextView>(Resource.Id.textView_feedlyRss_title).NotNull();
-            AddImageView = itemView.FindViewById<ImageButton>(Resource.Id.imageButton_feedlyRss_add).NotNull();
+            RssIcon = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_feedlyRss_rssIcon);
+            TitleView = itemView.FindNotNull<TextView>(Resource.Id.textView_feedlyRss_title);
+            AddImageView = itemView.FindNotNull<ImageButton>(Resource.Id.imageButton_feedlyRss_add);
 
             RssIcon.Visibility = IsShowAndLoadImages.ToVisibility();
         }

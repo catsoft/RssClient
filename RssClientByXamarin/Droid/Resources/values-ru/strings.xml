@@ -107,7 +107,7 @@
     
     <string name="feedlySearch_emptyText">Здесь ты можешь найти RSS из сервиса "Feedly" и добавить к себе</string>
     <string name="rssList_emptyText">Время добавить новую RSS!</string>
-    <string name="rssFeedMessagesList_emptyText">Here you have nothing yet</string>
+    <string name="rssFeedMessagesList_emptyText">Здесь у тебя еще ничего нет</string>
     <string name="rssEditListEmptyText">Здесь у тебя еще ничего нет</string>
     <string name="rssAllMessagesList_emptyText">Здесь у тебя еще ничего нет</string>
     <string name="favoriteList_emptyText">Здесь у тебя еще ничего нет</string>

@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.Theme
@@ -9,10 +9,10 @@ namespace Droid.Screens.Settings.Theme
     {
         public SettingsThemeFragmentViewHolder([NotNull] View view)
         {
-            RadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_settingsTheme_main).NotNull();
-            DarkRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_dark).NotNull();
-            LightRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_light).NotNull();
-            DefaultRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsTheme_default).NotNull();
+            RadioGroup = view.FindNotNull<RadioGroup>(Resource.Id.radioGroup_settingsTheme_main);
+            DarkRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsTheme_dark);
+            LightRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsTheme_light);
+            DefaultRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsTheme_default);
         }
         
         [NotNull] public RadioGroup RadioGroup { get; }

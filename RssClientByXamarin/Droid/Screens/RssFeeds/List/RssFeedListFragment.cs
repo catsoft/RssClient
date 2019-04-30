@@ -11,6 +11,7 @@ using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 using PopupMenu = Android.Support.V7.Widget.PopupMenu;
 
@@ -18,11 +19,17 @@ namespace Droid.Screens.RssFeeds.List
 {
     public class RssFeedListFragment : BaseFragment<RssFeedListViewModel>
     {
-        private RssFeedListFragmentViewHolder _viewHolder;
+        [NotNull] private RssFeedListFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_list;
         public override bool IsRoot => true;
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public RssFeedListFragment()
+        {
+        }
+        
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

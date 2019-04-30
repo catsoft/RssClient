@@ -1,7 +1,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.FavoriteMessagesList
@@ -10,12 +10,12 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
     {
         public RssFavoriteMessagesListFragmentViewHolder([NotNull] View view)
         {
-            RecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView_favoriteMessages_list).NotNull();
+            RecyclerView = view.FindNotNull<RecyclerView>(Resource.Id.recyclerView_favoriteMessages_list);
             
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
-            EmptyTextView = view.FindViewById<TextView>(Resource.Id.textview_favoriteMessages_empty).NotNull();
+            EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textview_favoriteMessages_empty);
         }
         
         [NotNull] public RecyclerView RecyclerView { get; }

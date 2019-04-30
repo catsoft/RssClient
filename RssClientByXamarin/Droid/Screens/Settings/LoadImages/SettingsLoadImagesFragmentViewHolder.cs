@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.LoadImages
@@ -9,7 +9,7 @@ namespace Droid.Screens.Settings.LoadImages
     {
         public SettingsLoadImagesFragmentViewHolder([NotNull] View view)
         {
-            CheckBox = view.FindViewById<CheckBox>(Resource.Id.checkBox_loadImages_yesOrNo).NotNull();
+            CheckBox = view.FindNotNull<CheckBox>(Resource.Id.checkBox_loadImages_yesOrNo);
         }
         
         [NotNull] public CheckBox CheckBox { get; }

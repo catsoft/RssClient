@@ -14,6 +14,7 @@ namespace Droid.Screens.Settings.HideReadMessages
     public class SettingsHideReadMessagesFragment : BaseFragment<SettingsHideReadMessagesViewModel>
     {
         [NotNull] private SettingsHideReadMessagesFragmentViewHolder _viewHolder;
+        
         protected override int LayoutId => Resource.Layout.fragment_settings_read_messages;
 
         public override bool IsRoot => false;

@@ -1,10 +1,10 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Resources;
 using Core.Services.RssFeeds;
+using Droid.NativeExtension;
 using Droid.Screens.Base.Adapters;
 using JetBrains.Annotations;
 
@@ -14,10 +14,10 @@ namespace Droid.Screens.RssFeeds.EditableList
     {
         public RssFeedEditableListItemViewHolder([NotNull] View itemView) : base(itemView)
         {
-            TitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemEditRss_title).NotNull();
-            SubtitleTextView = itemView.FindViewById<TextView>(Resource.Id.textView_listItemEditRss_subtitle).NotNull();
-            DeleteImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_delete).NotNull();
-            ReorderImage = itemView.FindViewById<ImageView>(Resource.Id.imageView_listItemEditRss_reorder).NotNull();
+            TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemEditRss_title);
+            SubtitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemEditRss_subtitle);
+            DeleteImage = itemView.FindNotNull<ImageView>(Resource.Id.imageView_listItemEditRss_delete);
+            ReorderImage = itemView.FindNotNull<ImageView>(Resource.Id.imageView_listItemEditRss_reorder);
         }
 
         [NotNull] public TextView TitleTextView { get; }

@@ -10,76 +10,70 @@
         android:id="@+id/linearLayout_allMessagesItem_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="8dp"
         android:clickable="true"
         android:background="?attr/selectableItemBackground">
         
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
             
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_weight="1">
                 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textView_allMessagesItem_date"
+                    style="@style/TextView.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-                    
-                    <TextView
-                        android:id="@+id/textView_allMessagesItem_date"
-                        style="@style/TextView.Body2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"/>
-                    
-                    <TextView
-                        android:id="@+id/textView_allMessagesItem_canal"
-                        style="@style/TextView.Body2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:layout_alignParentLeft="true"/>
                 
-                </LinearLayout>
-                
-                <RatingBar
-                    android:id="@+id/ratingBar_allMessagesItem_favorite"
-                    style="@android:style/Widget.Material.RatingBar.Small"
+                <TextView
+                    android:id="@+id/textView_allMessagesItem_canal"
+                    style="@style/TextView.Body2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="false"
-                    android:numStars="1"
-                    android:stepSize="1.0"/>
+                    android:layout_height="wrap_content"/>
             
             </LinearLayout>
             
-            <TextView
-                android:id="@+id/textView_allMessagesItem_title"
-                style="@style/TextView.Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            
-            <TextView
-                android:id="@+id/textView_allMessagesItem_text"
-                style="@style/TextView.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            
-            <FFImageLoading.Views.ImageViewAsync
-                android:id="@+id/imageView_allMessagesItem_image"
-                style="@style/TextView"
-                android:layout_width="match_parent"
+            <RatingBar
+                android:id="@+id/ratingBar_allMessagesItem_favorite"
+                style="@android:style/Widget.Material.RatingBar.Small"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"/>
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                android:numStars="1"
+                android:stepSize="1.0"/>
         
         </LinearLayout>
+        
+        <TextView
+            android:id="@+id/textView_allMessagesItem_title"
+            style="@style/TextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        
+        <WebView
+            android:id="@+id/webView_allMessagesItem_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"/>
+        
+        <FFImageLoading.Views.ImageViewAsync
+            android:id="@+id/imageView_allMessagesItem_image"
+            style="@style/TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
     
     </LinearLayout>
 

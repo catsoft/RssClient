@@ -4277,9 +4277,6 @@ namespace Droid
 			// aapt resource value: 0x7f090107
 			public const int textView_allMessagesItem_date = 2131296519;
 			
-			// aapt resource value: 0x7f09010b
-			public const int textView_allMessagesItem_text = 2131296523;
-			
 			// aapt resource value: 0x7f09010a
 			public const int textView_allMessagesItem_title = 2131296522;
 			
@@ -4315,9 +4312,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f09011b
 			public const int textView_messagesItem_date = 2131296539;
-			
-			// aapt resource value: 0x7f09011e
-			public const int textView_messagesItem_text = 2131296542;
 			
 			// aapt resource value: 0x7f09011d
 			public const int textView_messagesItem_title = 2131296541;
@@ -4405,6 +4399,12 @@ namespace Droid
 			
 			// aapt resource value: 0x7f090137
 			public const int visible = 2131296567;
+			
+			// aapt resource value: 0x7f09010b
+			public const int webView_allMessagesItem_text = 2131296523;
+			
+			// aapt resource value: 0x7f09011e
+			public const int webView_messagesItem_text = 2131296542;
 			
 			// aapt resource value: 0x7f0900f1
 			public const int webView_rssMessage_mainView = 2131296497;

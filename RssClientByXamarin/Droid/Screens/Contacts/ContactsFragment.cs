@@ -3,20 +3,22 @@ using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.Contacts;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.Contacts
 {
     public class ContactsFragment : BaseFragment<ContactsViewModel>
     {
-        private ContactFragmentViewHolder _viewHolder;
-
-        // ReSharper disable once EmptyConstructor
-        public ContactsFragment() { }
-
+        [NotNull] private ContactFragmentViewHolder _viewHolder;
+   
         protected override int LayoutId => Resource.Layout.fragment_contacts;
         public override bool IsRoot => true;
 
+        // ReSharper disable once EmptyConstructor
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        public ContactsFragment() { }
+        
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

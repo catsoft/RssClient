@@ -11,20 +11,22 @@ using Droid.NativeExtension;
 using Droid.NativeExtension.Events;
 using Droid.Screens.Base.SwipeButtonRecyclerView;
 using Droid.Screens.Navigation;
-using DynamicData.Annotations;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.Messages.RssFeedMessagesList
 {
     public class RssFeedMessagesListFragment : BaseFragment<RssFeedMessagesListViewModel>
     {
-        private RssFeedMessagesFragmentViewHolder _viewHolder;
+        [NotNull] private RssFeedMessagesFragmentViewHolder _viewHolder;
         
         private Guid _itemId;
 
         // ReSharper disable once UnusedMember.Global
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public RssFeedMessagesListFragment() { }
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
         public RssFeedMessagesListFragment(Guid itemId) { _itemId = itemId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_detail;

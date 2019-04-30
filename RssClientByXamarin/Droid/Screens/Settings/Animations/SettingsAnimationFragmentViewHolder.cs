@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.Animations
@@ -9,7 +9,7 @@ namespace Droid.Screens.Settings.Animations
     {
         public SettingsAnimationFragmentViewHolder(View view)
         {
-            GoToCustomizeButton = view.FindViewById<Button>(Resource.Id.button_animationSetting_gotoWeaver).NotNull();
+            GoToCustomizeButton = view.FindNotNull<Button>(Resource.Id.button_animationSetting_gotoWeaver);
         }
         
         [NotNull] public Button GoToCustomizeButton { get; }

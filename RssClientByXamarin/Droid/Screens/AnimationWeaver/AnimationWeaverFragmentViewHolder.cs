@@ -1,7 +1,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.AnimationWeaver
@@ -10,15 +10,15 @@ namespace Droid.Screens.AnimationWeaver
     {
         public AnimationWeaverFragmentViewHolder([NotNull] View view)
         {
-            Container = view.FindViewById<LinearLayout>(Resource.Id.linearLayout_animationWeaver_container);
+            Container = view.FindNotNull<LinearLayout>(Resource.Id.linearLayout_animationWeaver_container);
 
-            EnterSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_enterAnim).NotNull();
-            ExitSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_exitAnim).NotNull();
-            SpeedSpinner = view.FindViewById<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_speedAnim).NotNull();
+            EnterSpinner = view.FindNotNull<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_enterAnim);
+            ExitSpinner = view.FindNotNull<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_exitAnim);
+            SpeedSpinner = view.FindNotNull<AppCompatSpinner>(Resource.Id.spinner_animationWeaver_speedAnim);
 
-            RadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_animationWeaver_delay).NotNull();
-            RadioButtonDelay = view.FindViewById<RadioButton>(Resource.Id.radioButton_animationWeaver_delay).NotNull();
-            RadioButtonNotDelay = view.FindViewById<RadioButton>(Resource.Id.radioButton_animationWeaver_withoutDelay).NotNull();
+            RadioGroup = view.FindNotNull<RadioGroup>(Resource.Id.radioGroup_animationWeaver_delay);
+            RadioButtonDelay = view.FindNotNull<RadioButton>(Resource.Id.radioButton_animationWeaver_delay);
+            RadioButtonNotDelay = view.FindNotNull<RadioButton>(Resource.Id.radioButton_animationWeaver_withoutDelay);
         }
         
         [NotNull] public LinearLayout Container { get; }

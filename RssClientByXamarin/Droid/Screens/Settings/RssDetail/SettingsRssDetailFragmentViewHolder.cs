@@ -1,6 +1,6 @@
 using Android.Views;
 using Android.Widget;
-using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Settings.RssDetail
@@ -9,9 +9,9 @@ namespace Droid.Screens.Settings.RssDetail
     {
         public SettingsRssDetailFragmentViewHolder([NotNull] View view)
         {
-            RadioGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup_rss_detail_main).NotNull();
-            InAppRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inApp).NotNull();
-            InBrowserRadioButton = view.FindViewById<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inBrowser).NotNull();
+            RadioGroup = view.FindNotNull<RadioGroup>(Resource.Id.radioGroup_rss_detail_main);
+            InAppRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inApp);
+            InBrowserRadioButton = view.FindNotNull<RadioButton>(Resource.Id.radioButton_settingsRssDetail_inBrowser);
         }
         
         [NotNull] public RadioGroup RadioGroup { get; }

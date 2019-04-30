@@ -1,21 +1,23 @@
 using Android.Views;
 using Android.Widget;
+using Droid.NativeExtension;
+using JetBrains.Annotations;
 
 namespace Droid.Screens.Contacts
 {
     public class ContactItemViewHolder
     {
-        public ContactItemViewHolder(View view)
+        public ContactItemViewHolder([NotNull] View view)
         {
-            IconImageView = view.FindViewById<ImageView>(Resource.Id.imageView_linkElementContacts_icon);
-            TitleTextView = view.FindViewById<TextView>(Resource.Id.textView_linkElementContacts_title);
+            IconImageView = view.FindNotNull<ImageView>(Resource.Id.imageView_linkElementContacts_icon);
+            TitleTextView = view.FindNotNull<TextView>(Resource.Id.textView_linkElementContacts_title);
             RootView = view;
         }
 
-        public View RootView { get; }
+        [NotNull] public View RootView { get; }
 
-        public ImageView IconImageView { get; }
+        [NotNull] public ImageView IconImageView { get; }
 
-        public TextView TitleTextView { get; }
+        [NotNull] public TextView TitleTextView { get; }
     }
 }

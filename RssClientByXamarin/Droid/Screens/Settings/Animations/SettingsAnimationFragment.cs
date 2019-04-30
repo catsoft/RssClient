@@ -10,12 +10,17 @@ namespace Droid.Screens.Settings.Animations
 {
     public class SettingsAnimationFragment : BaseFragment<SettingsAnimationViewModel>
     {
-        // ReSharper disable once NotNullMemberIsNotInitialized
         [NotNull] private SettingsAnimationFragmentViewHolder _viewHolder;
         
         protected override int LayoutId => Resource.Layout.fragment_settings_animation;
 
         public override bool IsRoot => false;
+
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public SettingsAnimationFragment()
+        {
+        }
 
         protected override void RestoreState(Bundle saved) { }
 

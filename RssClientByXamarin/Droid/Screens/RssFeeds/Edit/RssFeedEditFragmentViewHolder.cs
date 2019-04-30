@@ -2,6 +2,7 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using Core.Extensions;
+using Droid.NativeExtension;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.RssFeeds.Edit
@@ -10,8 +11,8 @@ namespace Droid.Screens.RssFeeds.Edit
     {
         public RssFeedEditFragmentViewHolder([NotNull] View view)
         {
-            SendButton = view.FindViewById<Button>(Resource.Id.button_rssEdit_submit).NotNull();
-            TextInputLayout = view.FindViewById<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link).NotNull();
+            SendButton = view.FindNotNull<Button>(Resource.Id.button_rssEdit_submit);
+            TextInputLayout = view.FindNotNull<TextInputLayout>(Resource.Id.textInputLayout_rssEdit_link);
         }
 
         [NotNull] public Button SendButton { get; }

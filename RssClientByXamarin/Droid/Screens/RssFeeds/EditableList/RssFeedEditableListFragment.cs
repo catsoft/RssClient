@@ -17,12 +17,17 @@ namespace Droid.Screens.RssFeeds.EditableList
 {
     public class RssFeedEditableListFragment : BaseFragment<RssFeedEditableListViewModel>
     {
-        // ReSharper disable once NotNullMemberIsNotInitialized
         [NotNull] private RssFeedEditableListFragmentViewHolder _viewHolder;
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit_list;
         public override bool IsRoot => false;
 
+        // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
+        public RssFeedEditableListFragment()
+        {
+        }
+        
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
