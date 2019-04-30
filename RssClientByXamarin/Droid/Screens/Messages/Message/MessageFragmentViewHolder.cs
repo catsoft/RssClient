@@ -18,6 +18,7 @@ namespace Droid.Screens.Messages.Message
             settings.JavaScriptEnabled = true;
             settings.BuiltInZoomControls = true;
             settings.SetSupportZoom(true);
+            settings.DomStorageEnabled = true;
 
             var client = new WebViewClient();
             WebView.SetWebViewClient(client);

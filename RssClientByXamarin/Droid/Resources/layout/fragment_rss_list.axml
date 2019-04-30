@@ -12,6 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     
+    <ProgressBar
+        android:id="@+id/progressBar_rssList_topProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/feedlyProgressBarHeight"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+    
     <TextView
         android:id="@+id/textView_rssList_emptyText"
         style="@style/TextView.Empty"

@@ -16,6 +16,7 @@ using Core.ViewModels.RssFeeds.Create;
 using Core.ViewModels.RssFeeds.Edit;
 using Core.ViewModels.RssFeeds.EditableList;
 using Core.ViewModels.RssFeeds.List;
+using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using Core.ViewModels.Settings;
 using Core.ViewModels.Settings.Animations;
 using Core.ViewModels.Settings.HideReadMessages;
@@ -63,6 +64,8 @@ namespace Core.Container.Modules
             builder.RegisterType<SettingsThemeViewModel>().AsSelf();
             
             builder.RegisterType<AnimationWeaverViewModel>().AsSelf();
+            
+            builder.RegisterType<RssFeedsUpdaterViewModel>().AsSelf().SingleInstance();
         }
     }
 }

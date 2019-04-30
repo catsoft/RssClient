@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reactive.Linq;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
+using Android.Widget;
 using Core.Extensions;
 using Core.Services.RssFeeds;
 using Core.ViewModels.RssFeeds.List;
@@ -13,6 +13,7 @@ using Droid.NativeExtension.Events;
 using Droid.Screens.Base.SwipeRecyclerView;
 using Droid.Screens.Navigation;
 using ReactiveUI;
+using PopupMenu = Android.Support.V7.Widget.PopupMenu;
 
 namespace Droid.Screens.RssFeeds.List
 {
@@ -29,7 +30,7 @@ namespace Droid.Screens.RssFeeds.List
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            Title = Activity?.GetText(Resource.String.rssList_title);
+            Title = Activity.GetText(Resource.String.rssList_title);
 
             HasOptionsMenu = true;
 
@@ -74,7 +75,17 @@ namespace Droid.Screens.RssFeeds.List
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.IsExecuting
+                    .Subscribe(w => _viewHolder.TopProgressBar.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
+
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand
+                    .Subscribe(w => Toast.MakeText(Activity, "123", ToastLength.Short).Show())
+                    .AddTo(disposable);
+                
                 ViewModel.GetListCommand.Execute().Subscribe().AddTo(disposable);
+                
+                ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan().AddTo(disposable);
             });
 
             return view;
@@ -87,11 +98,15 @@ namespace Droid.Screens.RssFeeds.List
             switch (item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_change:
-                    ViewModel.OpenAllMessagesScreenCommand.ExecuteNow();
+                    ViewModel.OpenAllMessagesScreenCommand.Execute().Subscribe();
                     break;
 
                 case Resource.Id.menuItem_rssList_editMode:
-                    ViewModel.OpenListEditScreenCommand.ExecuteNow();
+                    ViewModel.OpenListEditScreenCommand.Execute().Subscribe();
+                    break;
+                
+                case Resource.Id.menuItem_rssList_refresh:
+                    ViewModel.RssFeedsUpdaterViewModel.UpdateCommand.ExecuteIfCan();
                     break;
             }
 
@@ -111,16 +126,16 @@ namespace Droid.Screens.RssFeeds.List
             switch (eventArgs.Item.ItemId)
             {
                 case Resource.Id.menuItem_rssList_contextEdit:
-                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.ExecuteNow(holderItem);
+                    ViewModel.RssFeedItemViewModel.OpenEditItemCommand.Execute(holderItem).Subscribe();
                     break;
                 case Resource.Id.menuItem_rssList_contextRemove:
-                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.ExecuteNow(holderItem);
+                    ViewModel.RssFeedItemViewModel.ShowDeleteDialogCommand.Execute(holderItem).Subscribe();
                     break;
                 case Resource.Id.menuItem_rssList_contextShare:
-                    ViewModel.RssFeedItemViewModel.ShareCommand.ExecuteNow(holderItem);
+                    ViewModel.RssFeedItemViewModel.ShareCommand.Execute(holderItem).Subscribe();
                     break;
                 case Resource.Id.menuItem_rssList_contextReadAllMessages:
-                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteNow(holderItem);
+                    ViewModel.RssFeedItemViewModel.ReadAllMessagesCommand.Execute(holderItem).Subscribe();
                     break;
             }
         }

@@ -55,6 +55,10 @@ namespace Droid.Screens.FeedlySearch
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
+                
+                ViewModel.FindByQueryCommand.IsExecuting
+                    .Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
+                    .AddTo(disposable);
             });
 
             return view;
@@ -68,10 +72,6 @@ namespace Droid.Screens.FeedlySearch
             {
                 actionView.GetQueryTextChangeEvent()
                     .Subscribe(w => ViewModel.SearchQuery = w.NewText)
-                    .AddTo(Disposables);
-
-                ViewModel.FindByQueryCommand.IsExecuting
-                    .Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
                     .AddTo(Disposables);
             }
 

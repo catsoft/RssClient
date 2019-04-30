@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Autofac;
 using Core.Configuration.Settings;
 using Core.Extensions;
@@ -17,6 +14,7 @@ using Core.ViewModels.Lists;
 using Core.ViewModels.Messages.AllMessages;
 using Core.ViewModels.RssFeeds.Create;
 using Core.ViewModels.RssFeeds.EditableList;
+using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using DynamicData;
 using JetBrains.Annotations;
 using ReactiveUI;
@@ -27,32 +25,33 @@ namespace Core.ViewModels.RssFeeds.List
     {
         [NotNull] private readonly INavigator _navigator;
         [NotNull] private readonly IConfigurationRepository _configurationRepository;
-        [NotNull] private readonly IRssFeedService _rssFeedService;
 
         public RssFeedListViewModel(
             [NotNull] INavigator navigator,
             [NotNull] IConfigurationRepository configurationRepository,
             [NotNull] IRssFeedService rssFeedService,
-            [NotNull] IDialogService dialogService)
+            [NotNull] IDialogService dialogService,
+            [NotNull] RssFeedsUpdaterViewModel rssFeedsUpdaterViewModel)
         {
             _navigator = navigator;
             _configurationRepository = configurationRepository;
-            _rssFeedService = rssFeedService;
-
-            GetListCommand = ReactiveCommand.CreateFromTask(async token => await _rssFeedService.GetListAsync(token)).NotNull();
+            RssFeedsUpdaterViewModel = rssFeedsUpdaterViewModel;
+            
+            GetListCommand = ReactiveCommand.CreateFromTask(async token => await rssFeedService.GetListAsync(token)).NotNull();
             ListViewModel = new ListViewModel<RssFeedServiceModel>(GetListCommand);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, ListViewModel.SourceList);
             
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
-            AllUpdateCommand = ReactiveCommand.CreateFromTask<IChangeSet<RssFeedServiceModel>>(DoAllUpdate).NotNull();
-            ListViewModel.ConnectChanges.ObserveOn(RxApp.TaskpoolScheduler.NotNull()).InvokeCommand(AllUpdateCommand);
-        }
 
+            RssFeedsUpdaterViewModel.UpdatedRss.Subscribe(UpdateList);
+        }
         [NotNull] public ListViewModel<RssFeedServiceModel> ListViewModel { get; }
         
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
+        
+        [NotNull] public RssFeedsUpdaterViewModel RssFeedsUpdaterViewModel { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
 
@@ -61,8 +60,6 @@ namespace Core.ViewModels.RssFeeds.List
         [NotNull] public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssFeedServiceModel>> GetListCommand { get; }
-
-        [NotNull] public ReactiveCommand<IChangeSet<RssFeedServiceModel>, Unit> AllUpdateCommand { get; }
 
         [NotNull] public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
@@ -84,21 +81,12 @@ namespace Core.ViewModels.RssFeeds.List
             _navigator.Go(way);
         }
         
-        [NotNull]
-        private async Task DoAllUpdate([CanBeNull] IChangeSet<RssFeedServiceModel> changes, CancellationToken token)
+        private void UpdateList(RssFeedServiceModel model)
         {
-            var updatable = ListViewModel.SourceList.Items?.Where(w => w != null)
-                                .Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) < DateTimeOffset.Now)
-                                .ToList() ??
-                            new List<RssFeedServiceModel>();
-
-            foreach (var rssServiceModel in updatable)
+            var item = ListViewModel.SourceList.Items.FirstOrDefault(w => w.Id == model.Id);
+            if (item != null)
             {
-                await _rssFeedService.LoadAndUpdateAsync(rssServiceModel.Id, token);
-                var newItem = await _rssFeedService.GetAsync(rssServiceModel.Id, token);
-
-                if (ListViewModel.SourceList.Items?.Contains(rssServiceModel) == true) 
-                    ListViewModel.SourceList.Replace(rssServiceModel, newItem);
+                ListViewModel.SourceList.Replace(item, model);
             }
         }
     }
