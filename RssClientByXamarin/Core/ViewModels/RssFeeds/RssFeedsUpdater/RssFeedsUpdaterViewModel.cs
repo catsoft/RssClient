@@ -29,8 +29,8 @@ namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
             UpdateCommand = ReactiveCommand.CreateFromTask<IEnumerable<RssFeedServiceModel>>(DoUpdate).NotNull();
             UpdatedRss = _updatedRss.AsObservable().NotNull();
             
-            HardUpdateCommand = ReactiveCommand.CreateFromTask(DoHardUpdate, UpdateCommand.IsExecuting.Select(w => !w));
-            SoftUpdateCommand = ReactiveCommand.CreateFromTask(DoSoftUpdate, UpdateCommand.IsExecuting.Select(w => !w));
+            HardUpdateCommand = ReactiveCommand.CreateFromTask(DoHardUpdate, UpdateCommand.IsExecuting.Select(w => !w)).NotNull();
+            SoftUpdateCommand = ReactiveCommand.CreateFromTask(DoSoftUpdate, UpdateCommand.IsExecuting.Select(w => !w)).NotNull();
         }
 
         [NotNull] public ReactiveCommand<IEnumerable<RssFeedServiceModel>, Unit> UpdateCommand { get; }
@@ -40,39 +40,42 @@ namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
         [NotNull] public ReactiveCommand<Unit, Unit> SoftUpdateCommand { get; }
         
         [NotNull] public IObservable<RssFeedServiceModel> UpdatedRss { get; }
-        
-        private Task DoUpdate(IEnumerable<RssFeedServiceModel> models, CancellationToken token)
+
+        private Task DoUpdate([NotNull] [ItemNotNull] IEnumerable<RssFeedServiceModel> models, CancellationToken token)
         {
             return Task.Run(async () =>
-            {
-                foreach (var rssServiceModel in models)
                 {
-                    await _rssFeedService.LoadAndUpdateAsync(rssServiceModel.Id, token);
-                    var newItem = await _rssFeedService.GetAsync(rssServiceModel.Id, token);
-                    _updatedRss.OnNext(newItem);
-                }
-            }, token);
+                    foreach (var rssServiceModel in models)
+                    {
+                        await _rssFeedService.LoadAndUpdateAsync(rssServiceModel.Id, token);
+                        var newItem = await _rssFeedService.GetAsync(rssServiceModel.Id, token);
+                        _updatedRss.OnNext(newItem);
+                    }
+                },
+                token);
         }
-        
+
         private Task DoHardUpdate(CancellationToken token)
         {
             return Task.Run(async () =>
-            {
-                var feeds = await _rssFeedService.GetListAsync(token);
+                {
+                    var feeds = await _rssFeedService.GetListAsync(token);
 
-                UpdateCommand.ExecuteIfCan(feeds.OrderByDescending(w => w.CreationTime).ToList());
-            }, token);
+                    UpdateCommand.ExecuteIfCan(feeds.OrderByDescending(w => w.CreationTime).ToList());
+                },
+                token);
         }
-        
+
         private Task DoSoftUpdate(CancellationToken token)
         {
             return Task.Run(async () =>
-            {
-                var feeds = await _rssFeedService.GetListAsync(token);
-                feeds = feeds.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) < DateTimeOffset.Now)
-                    .OrderBy(w => w.UpdateTime);
-                UpdateCommand.ExecuteIfCan(feeds.ToList());
-            }, token);
+                {
+                    var feeds = await _rssFeedService.GetListAsync(token);
+                    feeds = feeds.Where(w => !w.UpdateTime.HasValue || w.UpdateTime.Value.AddMinutes(5) < DateTimeOffset.Now)
+                        .OrderBy(w => w.UpdateTime);
+                    UpdateCommand.ExecuteIfCan(feeds.ToList());
+                },
+                token);
         }
     }
 }

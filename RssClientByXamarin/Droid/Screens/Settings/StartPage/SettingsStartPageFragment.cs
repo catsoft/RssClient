@@ -21,10 +21,8 @@ namespace Droid.Screens.Settings.StartPage
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         // ReSharper disable once EmptyConstructor
-        public SettingsStartPageFragment()
-        {
-        }
-        
+        public SettingsStartPageFragment() { }
+
         protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -35,14 +33,18 @@ namespace Droid.Screens.Settings.StartPage
 
             OnActivation(disposable =>
             {
-                _viewHolder.RadioGroup.Events().CheckedChange
-                    .Select(w => w.CheckedId)
+                _viewHolder.RadioGroup.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().CheckedId)
                     .Select(ConvertToStartPage)
                     .InvokeCommand(ViewModel.UpdateStartPageCommand)
                     .AddTo(disposable);
-                
+
                 ViewModel.AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
-                    .Select(w => w.StartPage)
+                    .NotNull()
+                    .Select(w => w.NotNull().StartPage)
                     .Select(ConvertToInt)
                     .Subscribe(w => _viewHolder.RadioGroup.Check(w))
                     .AddTo(disposable);
@@ -66,9 +68,9 @@ namespace Droid.Screens.Settings.StartPage
         {
             if (id == _viewHolder.RssListRadioButton.Id) return Core.Configuration.Settings.StartPage.RssList;
 
-            if (id == _viewHolder.AllMessagesRadioButton.Id) return Core.Configuration.Settings.StartPage.AllMessages;
-
-            return Core.Configuration.Settings.StartPage.RssList;
+            return id == _viewHolder.AllMessagesRadioButton.Id
+                ? Core.Configuration.Settings.StartPage.AllMessages
+                : Core.Configuration.Settings.StartPage.RssList;
         }
     }
 }

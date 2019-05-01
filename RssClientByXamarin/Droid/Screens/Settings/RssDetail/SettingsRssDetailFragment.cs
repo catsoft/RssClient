@@ -36,14 +36,18 @@ namespace Droid.Screens.Settings.RssDetail
 
             OnActivation(disposable =>
             {
-                _viewHolder.RadioGroup.Events().CheckedChange
-                    .Select(w => w.CheckedId)
+                _viewHolder.RadioGroup.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().CheckedId)
                     .Select(ConvertToViewer)
                     .InvokeCommand(ViewModel.UpdateRssDetailCommand)
                     .AddTo(disposable);
                 
                 ViewModel.AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
-                    .Select(w => w.MessagesViewer)
+                    .NotNull()
+                    .Select(w => w.NotNull().MessagesViewer)
                     .Select(ConvertToId)
                     .Subscribe(w => _viewHolder.RadioGroup.Check(w))
                     .AddTo(disposable);
@@ -56,10 +60,7 @@ namespace Droid.Screens.Settings.RssDetail
         {
             if (id == _viewHolder.InAppRadioButton.Id)
                 return MessagesViewer.App;
-            if (id == _viewHolder.InBrowserRadioButton.Id)
-                return MessagesViewer.Browser;
-
-            return MessagesViewer.App;
+            return id == _viewHolder.InBrowserRadioButton.Id ? MessagesViewer.Browser : MessagesViewer.App;
         }
 
         private int ConvertToId(MessagesViewer messagesViewer)

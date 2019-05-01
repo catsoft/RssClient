@@ -35,13 +35,17 @@ namespace Droid.Screens.Settings.HideReadMessages
 
             OnActivation(disposable =>
             {
-                _viewHolder.CheckBox.Events().CheckedChange
-                    .Select(w => w.IsChecked)
+                _viewHolder.CheckBox.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().IsChecked)
                     .InvokeCommand(ViewModel.UpdateHideReadMessagesCommand)
                     .AddTo(disposable);
                 
                 ViewModel.AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
-                    .Select(w => w.HideReadMessages)
+                    .NotNull()
+                    .Select(w => w.NotNull().HideReadMessages)
                     .Subscribe(w => _viewHolder.CheckBox.Checked = w)
                     .AddTo(disposable);
             });

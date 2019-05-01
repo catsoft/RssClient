@@ -42,8 +42,11 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Order
                     .Subscribe(UpdateSortFilter)
                     .AddTo(disposable);
                 
-                _viewHolder.RootRadioGroup.Events().CheckedChange
-                    .Select(w => w.CheckedId)
+                _viewHolder.RootRadioGroup.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().CheckedId)
                     .Select(ConvertToSort)
                     .InvokeCommand(ViewModel.UpdateSortCommand)
                     .AddTo(disposable);
@@ -54,11 +57,7 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Order
 
         private Sort ConvertToSort(int id)
         {
-            if (id == _viewHolder.OldestRadioButton.Id) return Sort.Oldest;
-            
-            if (id == _viewHolder.NewestRadioButton.Id) return Sort.Newest;
-
-            return Sort.Newest;
+            return id == _viewHolder.OldestRadioButton.Id ? Sort.Oldest : Sort.Newest;
         }
 
         private void UpdateSortFilter(Sort sort)

@@ -5,7 +5,7 @@ using Android.Content;
 namespace Droid.Widget.RssList
 {
     [BroadcastReceiver(Label = "@string/RssListWidgetTitle")]
-    [IntentFilter(new string[] { "android.appwidget.action.APPWIDGET_UPDATE" })]
+    [IntentFilter(new[] {"android.appwidget.action.APPWIDGET_UPDATE"})]
     [MetaData("android.appwidget.provider", Resource = "@xml/widget_rss_list_provider")]
     public class RssListWidgetProvider : AppWidgetProvider
     {
@@ -52,7 +52,6 @@ namespace Droid.Widget.RssList
 //            // When user clicks on widget, launch to Wiktionary definition page
 //            if (!string.IsNullOrEmpty (entry.Link)) {
 //                Intent defineIntent = new Intent (Intent.ActionView, Android.Net.Uri.Parse (entry.Link));
-//			
 //                PendingIntent pendingIntent = PendingIntent.GetActivity (context, 0, defineIntent, 0);
 //                updateViews.SetOnClickPendingIntent (Resource.Id.widget, pendingIntent);
 //            }

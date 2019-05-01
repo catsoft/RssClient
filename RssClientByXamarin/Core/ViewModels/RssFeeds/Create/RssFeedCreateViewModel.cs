@@ -14,14 +14,14 @@ namespace Core.ViewModels.RssFeeds.Create
 {
     public class RssFeedCreateViewModel : ViewModel
     {
-        public RssFeedCreateViewModel([NotNull] IRssFeedService feedService, [NotNull] INavigator navigator, [NotNull] RssFeedsUpdaterViewModel updater)
+        public RssFeedCreateViewModel([NotNull] IRssFeedService feedService,
+            [NotNull] INavigator navigator,
+            [NotNull] RssFeedsUpdaterViewModel updater)
         {
             Url = Strings.CreateRssUrlDefault;
 
-            CreateCommand = ReactiveCommand.CreateFromTask(async token => 
-            {
-                await feedService.AddAsync(Url, token);
-            }).NotNull();
+            CreateCommand = ReactiveCommand.CreateFromTask(async token => { await feedService.AddAsync(Url, token); })
+                .NotNull();
             CreateCommand.Subscribe(_ => navigator.GoBack());
 
             CreateCommand.SelectUnit().InvokeCommand(updater.SoftUpdateCommand);

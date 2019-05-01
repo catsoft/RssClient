@@ -37,14 +37,18 @@ namespace Droid.Screens.Settings.Theme
 
             OnActivation(disposable =>
             {
-                _viewHolder.RadioGroup.Events().CheckedChange
-                    .Select(w => w.CheckedId)
+                _viewHolder.RadioGroup.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().CheckedId)
                     .Select(ConvertToTheme)
                     .InvokeCommand(ViewModel.UpdateAppThemeCommand)
                     .AddTo(disposable);
                 
                 ViewModel.WhenAnyValue(w => w.AppConfigurationViewModel.AppConfiguration)
-                    .Select(w => w.AppTheme)
+                    .NotNull()
+                    .Select(w => w.NotNull().AppTheme)
                     .Select(ConvertToId)
                     .Subscribe(w => _viewHolder.RadioGroup.Check(w))
                     .AddTo(disposable);
@@ -74,11 +78,7 @@ namespace Droid.Screens.Settings.Theme
         {
             if (id == _viewHolder.DarkRadioButton.Id) return AppTheme.Dark;
 
-            if (id == _viewHolder.LightRadioButton.Id) return AppTheme.Light;
-
-            if (id == _viewHolder.DefaultRadioButton.Id) return AppTheme.Default;
-
-            return AppTheme.Default;
+            return id == _viewHolder.LightRadioButton.Id ? AppTheme.Light : AppTheme.Default;
         }
     }
 }

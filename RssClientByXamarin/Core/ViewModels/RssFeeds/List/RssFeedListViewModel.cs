@@ -47,6 +47,7 @@ namespace Core.ViewModels.RssFeeds.List
 
             RssFeedsUpdaterViewModel.UpdatedRss.Subscribe(UpdateList);
         }
+        
         [NotNull] public ListViewModel<RssFeedServiceModel> ListViewModel { get; }
         
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
@@ -81,13 +82,10 @@ namespace Core.ViewModels.RssFeeds.List
             _navigator.Go(way);
         }
         
-        private void UpdateList(RssFeedServiceModel model)
+        private void UpdateList([NotNull] RssFeedServiceModel model)
         {
-            var item = ListViewModel.SourceList.Items.FirstOrDefault(w => w.Id == model.Id);
-            if (item != null)
-            {
-                ListViewModel.SourceList.Replace(item, model);
-            }
+            var item = ListViewModel.SourceList.Items?.Where(w => w != null).FirstOrDefault(w => w.Id == model.Id);
+            if (item != null) ListViewModel.SourceList.Replace(item, model);
         }
     }
 }

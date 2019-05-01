@@ -56,8 +56,11 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
                     .Subscribe(w => OpenToDatePicker())
                     .AddTo(disposable);
                 
-                _viewHolder.RootRadioGroup.Events().CheckedChange
-                    .Select(w => w.CheckedId)
+                _viewHolder.RootRadioGroup.Events()
+                    .NotNull()
+                    .CheckedChange
+                    .NotNull()
+                    .Select(w => w.NotNull().CheckedId)
                     .Select(ConvertToType)
                     .InvokeCommand(ViewModel.SetMessageFilterTypeCommand)
                     .AddTo(disposable);
@@ -74,9 +77,7 @@ namespace Droid.Screens.Messages.AllMessagesFilter.Filter
             
             if (id == _viewHolder.ReadRadioButton.Id) return MessageFilterType.Read;
             
-            if (id == _viewHolder.UnreadRadioButton.Id) return MessageFilterType.Unread;
-
-            return MessageFilterType.None;
+            return id == _viewHolder.UnreadRadioButton.Id ? MessageFilterType.Unread : MessageFilterType.None;
         }
         
         private void SetFilterType(MessageFilterType type)

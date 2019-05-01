@@ -30,7 +30,7 @@ namespace Droid.Screens.FeedlySearch
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             HasOptionsMenu = true;
 
@@ -46,6 +46,7 @@ namespace Droid.Screens.FeedlySearch
             OnActivation(disposable =>
             {
                 ViewModel.WhenAnyValue(w => w.IsEmpty)
+                    .NotNull()
                     .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
                     .AddTo(disposable);
 
@@ -54,11 +55,12 @@ namespace Droid.Screens.FeedlySearch
                     .AddTo(disposable);
 
                 ViewModel.ListViewModel.ConnectChanges
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(w => adapterUpdater.Update(w))
+                    .ObserveOn(RxApp.MainThreadScheduler.NotNull())
+                    .Subscribe(w => adapterUpdater.Update(w.NotNull()))
                     .AddTo(disposable);
                 
                 ViewModel.FindByQueryCommand.IsExecuting
+                    .NotNull()
                     .Subscribe(w => _viewHolder.ProgressBar.Visibility = w.ToVisibility())
                     .AddTo(disposable);
             });
@@ -66,16 +68,14 @@ namespace Droid.Screens.FeedlySearch
             return view;
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        public override void OnCreateOptionsMenu(IMenu menu, [NotNull] MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_feedlySearch, menu);
 
             if (menu?.FindItem(Resource.Id.menuItem_feedlySearch_search)?.ActionView is SearchView actionView)
-            {
                 actionView.GetQueryTextChangeEvent()
-                    .Subscribe(w => ViewModel.SearchQuery = w.NewText)
+                    .Subscribe(w => ViewModel.SearchQuery = w.NotNull().NewText)
                     .AddTo(Disposables);
-            }
 
             base.OnCreateOptionsMenu(menu, inflater);
         }
