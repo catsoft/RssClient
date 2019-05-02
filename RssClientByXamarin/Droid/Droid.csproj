@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_refresh_24.xml" />
+    <AndroidResource Include="Resources\drawable\widget_preview.xml" />
     <AndroidResource Include="Resources\layout\fragment_all_messages_filter.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>

@@ -2922,6 +2922,12 @@ namespace Droid
 			// aapt resource value: 0x7f090064
 			public const int tooltip_y_offset_touch = 2131296356;
 			
+			// aapt resource value: 0x7f0900ea
+			public const int widget_minHeight = 2131296490;
+			
+			// aapt resource value: 0x7f0900eb
+			public const int widget_minWidth = 2131296491;
+			
 			static Dimension()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -3190,26 +3196,26 @@ namespace Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020090
-			public const int avd_hide_password_1 = 2130837648;
-			
 			// aapt resource value: 0x7f020091
-			public const int avd_hide_password_2 = 2130837649;
+			public const int avd_hide_password_1 = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int avd_hide_password_3 = 2130837650;
+			public const int avd_hide_password_2 = 2130837650;
+			
+			// aapt resource value: 0x7f020093
+			public const int avd_hide_password_3 = 2130837651;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f020093
-			public const int avd_show_password_1 = 2130837651;
-			
 			// aapt resource value: 0x7f020094
-			public const int avd_show_password_2 = 2130837652;
+			public const int avd_show_password_1 = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int avd_show_password_3 = 2130837653;
+			public const int avd_show_password_2 = 2130837653;
+			
+			// aapt resource value: 0x7f020096
+			public const int avd_show_password_3 = 2130837654;
 			
 			// aapt resource value: 0x7f020056
 			public const int baseline_add_24 = 2130837590;
@@ -3301,8 +3307,8 @@ namespace Droid
 			// aapt resource value: 0x7f020073
 			public const int ic_launcher_foreground = 2130837619;
 			
-			// aapt resource value: 0x7f020096
-			public const int ic_launcher_foreground_1 = 2130837654;
+			// aapt resource value: 0x7f020097
+			public const int ic_launcher_foreground_1 = 2130837655;
 			
 			// aapt resource value: 0x7f020074
 			public const int ic_mtrl_chip_checked_black = 2130837620;
@@ -3364,11 +3370,11 @@ namespace Droid
 			// aapt resource value: 0x7f020087
 			public const int notification_icon_background = 2130837639;
 			
-			// aapt resource value: 0x7f02008e
-			public const int notification_template_icon_bg = 2130837646;
-			
 			// aapt resource value: 0x7f02008f
-			public const int notification_template_icon_low_bg = 2130837647;
+			public const int notification_template_icon_bg = 2130837647;
+			
+			// aapt resource value: 0x7f020090
+			public const int notification_template_icon_low_bg = 2130837648;
 			
 			// aapt resource value: 0x7f020088
 			public const int notification_tile_bg = 2130837640;
@@ -3387,6 +3393,9 @@ namespace Droid
 			
 			// aapt resource value: 0x7f02008d
 			public const int tooltip_frame_light = 2130837645;
+			
+			// aapt resource value: 0x7f02008e
+			public const int widget_preview = 2130837646;
 			
 			static Drawable()
 			{

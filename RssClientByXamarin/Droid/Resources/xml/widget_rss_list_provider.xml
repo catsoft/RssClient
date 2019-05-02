@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:minWidth="288dip"
-                    android:minHeight="72dip"
+                    android:minWidth="@dimen/widget_minWidth"
+                    android:minHeight="@dimen/widget_minHeight"
                     android:resizeMode="horizontal"
                     android:minResizeWidth="144dip"
                     android:updatePeriodMillis="1000"
                     android:initialLayout="@layout/widget_rss_list"
-                    android:previewImage="@drawable/big_rss" />
+                    android:previewImage="@drawable/widget_preview" />

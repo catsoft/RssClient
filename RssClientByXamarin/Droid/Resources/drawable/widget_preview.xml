@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item>
+        <shape
+            android:shape="rectangle">
+            
+            <solid android:color="@color/orange"/>
+            
+            <size
+                android:height="@dimen/widget_minHeight"
+                android:width="@dimen/widget_minWidth"/>
+        
+        </shape>
+    </item>
+    
+    <item>
+        <bitmap
+            android:gravity="left"
+            android:src="@drawable/big_rss"/>
+    </item>
+    
+    <item android:end="8dp">
+        <bitmap
+            android:src="@drawable/launch_image_text"
+            android:gravity="right"/>
+    </item>
+
+</layer-list>
