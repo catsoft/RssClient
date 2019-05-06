@@ -3,7 +3,7 @@ using Android.Appwidget;
 using Android.Content;
 using Core.Infrastructure.Widgets;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     public class RssListWidgetUpdater : IRssListWidgetUpdater
     {

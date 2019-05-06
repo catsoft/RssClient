@@ -2,7 +2,7 @@ using Android.App;
 using Android.Appwidget;
 using Android.Content;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     [BroadcastReceiver(Label = "@string/RssListWidgetTitle")]
     [IntentFilter(new[] {"android.appwidget.action.APPWIDGET_UPDATE"})]

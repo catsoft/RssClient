@@ -16,7 +16,7 @@ using Core.Services.RssFeeds;
 using Square.Picasso;
 using Exception = Java.Lang.Exception;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     public class WidgetRssFeedListRemoteViewsFactory : Java.Lang.Object, RemoteViewsService.IRemoteViewsFactory
     {

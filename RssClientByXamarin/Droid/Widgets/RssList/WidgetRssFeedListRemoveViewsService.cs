@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     [Service(Permission = Manifest.Permission.BindRemoteviews)]
     public class WidgetRssFeedListRemoveViewsService : RemoteViewsService

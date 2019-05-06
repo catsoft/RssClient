@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Droid.Widget.RssList;
+using Droid.Widgets.RssList;
 
 namespace Droid.Container.Modules
 {

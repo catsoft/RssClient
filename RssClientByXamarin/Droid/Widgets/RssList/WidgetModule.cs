@@ -1,7 +1,7 @@
 using Autofac;
 using Core.Infrastructure.Widgets;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     public class WidgetModule : Module
     {

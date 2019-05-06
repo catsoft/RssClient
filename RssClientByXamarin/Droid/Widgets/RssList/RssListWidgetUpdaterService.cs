@@ -5,7 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 
-namespace Droid.Widget.RssList
+namespace Droid.Widgets.RssList
 {
     [Service(Permission = Manifest.Permission.BindRemoteviews)]
     public class RssListWidgetUpdaterService : Service

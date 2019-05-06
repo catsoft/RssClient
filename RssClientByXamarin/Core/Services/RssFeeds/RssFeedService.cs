@@ -111,6 +111,8 @@ namespace Core.Services.RssFeeds
                             await _rssMessagesRepository.UpdateAsync(item, token);
                         }
                     }
+                    
+                    CollectionChanged.Invoke(this, EventArgs.Empty);
                 },
                 token);
         }
