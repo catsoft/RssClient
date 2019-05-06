@@ -1,8 +1,10 @@
 using System;
 using System.Reactive.Disposables;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.V4.App;
 using Autofac;
 using Core;
 using Core.Extensions;
@@ -10,7 +12,7 @@ using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 
 namespace Droid.Services.RssFeedUpdate
 {
-    [Service]
+    [Service(Permission = Manifest.Permission.ForegroundService)]
     public class RssFeedUpdateService : Service
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
@@ -24,6 +26,8 @@ namespace Droid.Services.RssFeedUpdate
         {
             App.BuildIfNever();
 
+            InitNotify();
+            
             var viewModel = App.Container.Resolve<RssFeedsUpdaterViewModel>();
 
             viewModel.HardUpdateCommand.ExecuteIfCan().AddTo(_disposables);
@@ -33,6 +37,19 @@ namespace Droid.Services.RssFeedUpdate
             return base.OnStartCommand(intent, flags, startId);
         }
 
+        private void InitNotify()
+        {
+            var channelId = "rssList";
+            var builder = new NotificationCompat.Builder(this, channelId);
+            builder.SetContentTitle("Rss list");
+            builder.SetContentText("Updating list");
+            builder.SetAutoCancel(false);
+
+            var notification = builder.Build();
+            
+            StartForeground(1, notification);
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -40,7 +57,8 @@ namespace Droid.Services.RssFeedUpdate
             _disposables.Dispose();
         }
 
-        public const int Min15 = 1000 * 60 * 15;
+//        public const int Min15 = 1000 * 60 * 15;
+        public const int Min15 = 1000 * 5;
         
         public static void InitAlarm(Context context)
         {
