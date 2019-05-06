@@ -39,5 +39,23 @@ namespace Droid.Services.RssFeedUpdate
             
             _disposables.Dispose();
         }
+
+        public const int Min15 = 1000 * 60 * 15;
+        
+        public static void InitAlarm(Context context)
+        {
+            var intent = new Intent(context, typeof(RssFeedUpdateService));
+            var pendingIntent = PendingIntent.GetService(context, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var alarmManager = context.GetSystemService(AlarmService) as AlarmManager;
+            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + Min15,Min15, pendingIntent);
+        }
+
+        public static void RemoveAlarm(Context context)
+        {
+            var intent = new Intent(context, typeof(RssFeedUpdateService));
+            var pendingIntent = PendingIntent.GetService(context, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var alarmManager = context.GetSystemService(AlarmService) as AlarmManager;
+            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + Min15,Min15, pendingIntent);
+        }
     }
 }

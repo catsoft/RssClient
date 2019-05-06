@@ -1,7 +1,5 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Autofac;
 using Core;
@@ -45,10 +43,7 @@ namespace Droid
 
         private void BuildAlerts()
         {
-            var intent = new Intent(this, typeof(RssFeedUpdateService));
-            var pendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
-            var alarmManager = GetSystemService(AlarmService) as AlarmManager;
-            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + 10000,10000, pendingIntent);
+            RssFeedUpdateService.InitAlarm(this);
         }
     }
 }
