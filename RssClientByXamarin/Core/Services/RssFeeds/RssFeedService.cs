@@ -15,6 +15,8 @@ namespace Core.Services.RssFeeds
 {
     public class RssFeedService : IRssFeedService
     {
+        public event EventHandler CollectionChanged = delegate { };
+        
         [NotNull] private readonly IMapper<RssFeedServiceModel, RssFeedDomainModel> _mapper;
         [NotNull] private readonly IRssFeedApiClient _rssFeedApiClient;
         [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
@@ -35,9 +37,13 @@ namespace Core.Services.RssFeeds
             _rssMessagesRepository = rssMessagesRepository;
         }
 
-        public Task<Guid> AddAsync(string url, CancellationToken cancellationToken = default)
+        public async Task<Guid> AddAsync(string url, CancellationToken cancellationToken = default)
         {
-            return _rssFeedRepository.AddAsync(url, cancellationToken);
+            var guid = await _rssFeedRepository.AddAsync(url, cancellationToken);
+            
+            CollectionChanged.Invoke(this, EventArgs.Empty);
+
+            return guid;
         }
 
         public async Task<RssFeedServiceModel> GetAsync(Guid id, CancellationToken cancellationToken = default)
@@ -50,6 +56,8 @@ namespace Core.Services.RssFeeds
             await _rssMessagesRepository.DeleteRssFeedMessages(id, token);
 
             await _rssFeedRepository.RemoveAsync(id, token);
+            
+            CollectionChanged.Invoke(this, EventArgs.Empty);
         }
 
         public async Task<IEnumerable<RssFeedServiceModel>> GetListAsync(CancellationToken token = default)
@@ -57,9 +65,11 @@ namespace Core.Services.RssFeeds
             return (await _rssFeedRepository.GetListAsync(token)).Select(w => _toServiceModelMapper.Transform(w));
         }
 
-        public Task UpdateAsync(RssFeedServiceModel rssFeed, CancellationToken token = default)
+        public async Task UpdateAsync(RssFeedServiceModel rssFeed, CancellationToken token = default)
         {
-            return _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
+            await _rssFeedRepository.UpdateAsync(_mapper.Transform(rssFeed), token);
+            
+            CollectionChanged.Invoke(this, EventArgs.Empty);
         }
 
         public Task LoadAndUpdateAsync(Guid id, CancellationToken token = default)

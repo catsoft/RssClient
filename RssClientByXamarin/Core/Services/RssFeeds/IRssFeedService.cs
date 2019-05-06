@@ -9,6 +9,9 @@ namespace Core.Services.RssFeeds
     public interface IRssFeedService
     {
         [NotNull]
+        event EventHandler CollectionChanged;
+        
+        [NotNull]
         Task<Guid> AddAsync([CanBeNull] string url, CancellationToken cancellationToken = default);
 
         [NotNull]

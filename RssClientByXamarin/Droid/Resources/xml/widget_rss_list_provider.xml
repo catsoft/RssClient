@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--    70 * n – 30-->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
                     android:minWidth="@dimen/widget_minWidth"
                     android:minHeight="@dimen/widget_minHeight"
-                    android:resizeMode="horizontal"
-                    android:minResizeWidth="144dip"
+                    android:resizeMode="horizontal|vertical"
+                    android:widgetCategory="home_screen|keyguard|searchbox"
+                    android:minResizeWidth="144dp"
+                    android:minResizeHeight="72dp"
                     android:updatePeriodMillis="1000"
-                    android:initialLayout="@layout/widget_rss_list"
-                    android:previewImage="@drawable/widget_preview" />
+                    android:initialLayout="@layout/widget_rss_list"/>

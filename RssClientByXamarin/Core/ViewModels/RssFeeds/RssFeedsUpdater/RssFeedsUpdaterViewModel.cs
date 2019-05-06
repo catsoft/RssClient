@@ -25,7 +25,7 @@ namespace Core.ViewModels.RssFeeds.RssFeedsUpdater
         public RssFeedsUpdaterViewModel([NotNull] IRssFeedService rssFeedService)
         {
             _rssFeedService = rssFeedService;
-            
+
             UpdateCommand = ReactiveCommand.CreateFromTask<IEnumerable<RssFeedServiceModel>>(DoUpdate).NotNull();
             UpdatedRss = _updatedRss.AsObservable().NotNull();
             

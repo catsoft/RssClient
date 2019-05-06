@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Droid.Widget.RssList;
 
 namespace Droid.Container.Modules
 {
@@ -10,6 +11,7 @@ namespace Droid.Container.Modules
 
             builder.RegisterModule(new ServicesModule());
             builder.RegisterModule(new NavigationModule());
+            builder.RegisterModule(new WidgetModule());
         }
     }
 }

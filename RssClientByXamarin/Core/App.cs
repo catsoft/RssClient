@@ -2,6 +2,8 @@
 using Autofac.Core;
 using Core.Container.Modules;
 using Core.Extensions;
+using Core.Infrastructure.Widgets;
+using Core.Services.RssFeeds;
 using JetBrains.Annotations;
 using IContainer = Autofac.IContainer;
 
@@ -30,6 +32,15 @@ namespace Core
             containerBuilder.RegisterModule(new CoreServiceModule());
 
             Container = containerBuilder.Build().NotNull();
+
+            FillDepending();
+        }
+    
+        private static void FillDepending()
+        {
+            var rssFeedService = Container.Resolve<IRssFeedService>();
+            var widgetUpdater = Container.Resolve<IRssListWidgetUpdater>();
+            rssFeedService.CollectionChanged += (sender, args) => widgetUpdater.Update();
         }
     }
 }
