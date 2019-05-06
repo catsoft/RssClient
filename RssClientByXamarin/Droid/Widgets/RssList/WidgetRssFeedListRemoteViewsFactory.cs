@@ -2,15 +2,8 @@ using System;
 using System.Collections.Generic;
 using Android.Content;
 using Android.Widget;
-using Core.Analytics;
-using Core.Analytics.Rss;
-using Core.Api.RssFeeds;
-using Core.CoreServices.Html;
-using Core.Database;
+using Core;
 using Core.Infrastructure.Locale;
-using Core.Repositories.Configurations;
-using Core.Repositories.RssFeeds;
-using Core.Repositories.RssMessage;
 using Core.Resources;
 using Core.Services.RssFeeds;
 using Square.Picasso;
@@ -24,7 +17,7 @@ namespace Droid.Widgets.RssList
         private readonly int _widgetId;
         private readonly Context _context;
         private readonly List<RssFeedServiceModel> _list;
-        private RssFeedService _rssService;
+        private IRssFeedService _rssService;
 
         public WidgetRssFeedListRemoteViewsFactory(Context context, int widgetId)
         {
@@ -71,15 +64,7 @@ namespace Droid.Widgets.RssList
         
         public void OnCreate()
         {
-            var log = new Log();
-            var database = new SqliteDatabase(new Log());
-            var mapper = new RssFeedMapper();
-            var configRepo = new ConfigurationRepository(database);
-            var messageMapper = new RssMessageMapper(new HtmlConfigurator(configRepo));
-            var messageRep = new RssMessagesRepository(database, configRepo, messageMapper, messageMapper);
-            var apiClient = new RssFeedApiClient(log);
-            var feedRepo = new RssFeedRepository(database, new RssLog(log), mapper, mapper);
-            _rssService = new RssFeedService(feedRepo, mapper, mapper, apiClient, messageRep);
+            _rssService = App.BuildRssFeedService();
         }
 
         public void OnDataSetChanged()

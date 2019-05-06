@@ -1,11 +1,14 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
+using Android.OS;
 using Android.Runtime;
 using Autofac;
 using Core;
 using Core.Analytics;
 using Core.Extensions;
 using Droid.Container.Modules;
+using Droid.Services.RssFeedUpdate;
 
 namespace Droid
 {
@@ -23,9 +26,11 @@ namespace Droid
         {
             base.OnCreate();
 
-            App.Build(new PlatformModule());
+            App.BuildIfNever(new PlatformModule());
 
             var log = App.Container.Resolve<ILog>().NotNull();
+
+            BuildAlerts();
 
 #if DEBUG
             {
@@ -36,6 +41,14 @@ namespace Droid
                 log.SetApiKey(KeyBattleAndroid);
 }
 #endif
+        }
+
+        private void BuildAlerts()
+        {
+            var intent = new Intent(this, typeof(RssFeedUpdateService));
+            var pendingIntent = PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var alarmManager = GetSystemService(AlarmService) as AlarmManager;
+            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + 10000,10000, pendingIntent);
         }
     }
 }

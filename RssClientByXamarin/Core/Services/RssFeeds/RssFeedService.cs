@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.Analytics;
 using Core.Api.RssFeeds;
 using Core.Extensions;
 using Core.Infrastructure.Mappers;
@@ -20,6 +21,7 @@ namespace Core.Services.RssFeeds
         [NotNull] private readonly IMapper<RssFeedServiceModel, RssFeedDomainModel> _mapper;
         [NotNull] private readonly IRssFeedApiClient _rssFeedApiClient;
         [NotNull] private readonly IRssMessagesRepository _rssMessagesRepository;
+        [NotNull] private readonly ILog _log;
         [NotNull] private readonly IRssFeedRepository _rssFeedRepository;
         [NotNull] private readonly IMapper<RssFeedDomainModel, RssFeedServiceModel> _toServiceModelMapper;
 
@@ -28,13 +30,15 @@ namespace Core.Services.RssFeeds
             [NotNull] IMapper<RssFeedServiceModel, RssFeedDomainModel> mapper,
             [NotNull] IMapper<RssFeedDomainModel, RssFeedServiceModel> toServiceModelMapper,
             [NotNull] IRssFeedApiClient rssFeedApiClient,
-            [NotNull] IRssMessagesRepository rssMessagesRepository)
+            [NotNull] IRssMessagesRepository rssMessagesRepository,
+            [NotNull] ILog log)
         {
             _rssFeedRepository = rssFeedRepository;
             _mapper = mapper;
             _toServiceModelMapper = toServiceModelMapper;
             _rssFeedApiClient = rssFeedApiClient;
             _rssMessagesRepository = rssMessagesRepository;
+            _log = log;
         }
 
         public async Task<Guid> AddAsync(string url, CancellationToken cancellationToken = default)
@@ -136,10 +140,18 @@ namespace Core.Services.RssFeeds
             model.SyndicationId = syndicationItem.Id;
             model.Title = title;
             model.Text = text;
-            model.CreationDate = createDate;
             model.Url = url;
             model.ImageUrl = imageUri;
-
+            try
+            {
+                model.CreationDate = createDate;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _log.TrackError(e, null);
+            }
+       
             return model;
         }
 
