@@ -19,6 +19,8 @@ namespace Droid.Screens.RssFeeds.List
             EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_rssList_emptyText);
 
             TopProgressBar = view.FindNotNull<ProgressBar>(Resource.Id.progressBar_rssList_topProgressBar);
+
+            ProgpressImageView = view.FindNotNull<ImageView>(Resource.Id.imageView_progressBar);
         }
 
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
@@ -28,5 +30,7 @@ namespace Droid.Screens.RssFeeds.List
         [NotNull] public TextView EmptyTextView { get; }
         
         [NotNull] public ProgressBar TopProgressBar { get; }
+        
+        public ImageView ProgpressImageView { get; }
     }
 }

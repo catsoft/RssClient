@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Linq;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
@@ -52,6 +53,12 @@ namespace Droid.Screens.RssFeeds.List
 
             var adapterUpdater = new AdapterUpdater<RssFeedServiceModel>(_viewHolder.RecyclerView, adapter, ViewModel.ListViewModel.SourceList);
 
+            var drawable = _viewHolder.ProgpressImageView.Drawable;
+            if (drawable is AnimatedVectorDrawable dr)
+            {
+                dr.Start();
+            }
+            
             OnActivation(disposable =>
             {
                 _viewHolder.FloatingActionButton.Events()

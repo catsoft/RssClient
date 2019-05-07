@@ -27,6 +27,12 @@
         android:layout_height="match_parent"
         android:text="@string/rssList_emptyText"/>
     
+    <ImageView 
+        android:id="@+id/imageView_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/vector_test"/>
+    
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_rssList_addRss"
         style="?attr/fabStyle"
