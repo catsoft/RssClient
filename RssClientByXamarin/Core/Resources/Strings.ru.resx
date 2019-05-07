@@ -150,5 +150,9 @@
     <data name="NotificationsRssListInfo" xml:space="preserve">
         <value>Обновление</value>
     </data>
-
+    
+    <data name="UrlIsNotValid" xml:space="preserve">
+        <value>Не верный адрес</value>
+    </data>
+    
 </root>

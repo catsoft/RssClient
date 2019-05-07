@@ -150,5 +150,9 @@ Someone may want to translate applications into other languages. I will provide 
     <data name="NotificationsRssListInfo" xml:space="preserve">
         <value>Updating</value>
     </data>
-
+    
+    <data name="UrlIsNotValid" xml:space="preserve">
+        <value>Url is not valid</value>
+    </data>
+    
 </root>

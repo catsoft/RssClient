@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.OS;
+using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Core.Extensions;
@@ -52,6 +54,19 @@ namespace Droid.Screens.RssFeeds.Create
                     .AddTo(disposable);
 
                 this.BindCommand(ViewModel, model => model.CreateCommand, fragment => fragment._viewHolder.SendButton)
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.Url)
+                    .Select(w => !Patterns.WebUrl.Matcher(_viewHolder.EditText.Text).Matches())
+                    .Subscribe(w => ViewModel.IsUrlInvalid = w)
+                    .AddTo(disposable);
+
+                ViewModel.WhenAnyValue(w => w.ErrorMessage)
+                    .BindTo(_viewHolder.TextInputLayout, layout => layout.Error)
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.IsUrlInvalid)
+                    .BindTo(_viewHolder.TextInputLayout, layout => layout.ErrorEnabled)
                     .AddTo(disposable);
             });
 

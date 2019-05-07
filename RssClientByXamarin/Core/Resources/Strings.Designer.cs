@@ -237,5 +237,11 @@ namespace Core.Resources {
                 return ResourceManager.GetString("NotificationsRssListInfo", resourceCulture);
             }
         }
+        
+        public static string UrlIsNotValid {
+            get {
+                return ResourceManager.GetString("UrlIsNotValid", resourceCulture);
+            }
+        }
     }
 }

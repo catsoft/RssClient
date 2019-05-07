@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.OS;
+using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Core.Extensions;
@@ -43,26 +45,39 @@ namespace Droid.Screens.RssFeeds.Edit
 
             _viewHolder = new RssFeedEditFragmentViewHolder(view);
 
-            OnActivation(compositeDisposable =>
+            OnActivation(disposable =>
             {
                 this.Bind(ViewModel, model => model.Url, fragment => fragment._viewHolder.EditText.Text)
-                    .AddTo(compositeDisposable);
+                    .AddTo(disposable);
 
                 ViewModel.Url.WhenAnyValue(s => s)
                     .NotNull()
                     .Subscribe(s => _viewHolder.TextInputLayout.EditText.SetTextAndSetCursorToLast(s))
-                    .AddTo(compositeDisposable);
+                    .AddTo(disposable);
 
                 _viewHolder.EditText.GetEditorAction()
                     .Subscribe(action =>
                     {
                         if (action.ActionId == ImeAction.Done) _viewHolder.EditText.CallOnClick();
                     })
-                    .AddTo(compositeDisposable);
+                    .AddTo(disposable);
 
                 this.BindCommand(ViewModel, model => model.UpdateCommand, fragment => fragment._viewHolder.SendButton)
-                    .AddTo(compositeDisposable);
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.Url)
+                    .Select(w => !Patterns.WebUrl.Matcher(_viewHolder.EditText.Text).Matches())
+                    .Subscribe(w => ViewModel.IsUrlInvalid = w)
+                    .AddTo(disposable);
 
+                ViewModel.WhenAnyValue(w => w.ErrorMessage)
+                    .BindTo(_viewHolder.TextInputLayout, layout => layout.Error)
+                    .AddTo(disposable);
+                
+                ViewModel.WhenAnyValue(w => w.IsUrlInvalid)
+                    .BindTo(_viewHolder.TextInputLayout, layout => layout.ErrorEnabled)
+                    .AddTo(disposable);
+                
                 ViewModel.LoadCommand.ExecuteIfCan();
             });
 
