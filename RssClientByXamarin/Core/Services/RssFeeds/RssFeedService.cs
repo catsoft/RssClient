@@ -89,7 +89,7 @@ namespace Core.Services.RssFeeds
 
                     if (currentItem == null) return;
 
-                    currentItem.Name = syndicationFeed.Title?.Text;
+                    currentItem.Name = syndicationFeed.Title?.Text?.SafeTrim();
                     currentItem.UpdateTime = DateTime.Now;
                     if (!currentItem.IsFeedly)
                         currentItem.UrlPreviewImage = syndicationFeed.Links?.FirstOrDefault()?.Uri?.OriginalString + "/favicon.ico";

@@ -23,7 +23,6 @@ namespace Droid.Configurations.Canals
 
         public RssListCanal()
         {
-
         }
 
         public static RssListCanal DefaultInit(RssListCanal canal)

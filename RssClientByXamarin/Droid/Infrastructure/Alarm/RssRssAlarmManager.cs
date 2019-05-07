@@ -11,7 +11,7 @@ namespace Droid.Infrastructure.Alarm
             var intent = new Intent(context, typeof(T));
             var pendingIntent = PendingIntent.GetService(context, 0, intent, PendingIntentFlags.UpdateCurrent);
             var alarmManager = context.GetSystemService(Context.AlarmService) as AlarmManager;
-            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + interval,interval, pendingIntent);
+            alarmManager?.SetRepeating(AlarmType.ElapsedRealtime, SystemClock.ElapsedRealtime() + interval, interval, pendingIntent);
         }
 
         public void RemoveAlarm<T>(Context context)

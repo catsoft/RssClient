@@ -18,7 +18,8 @@ namespace Core.ViewModels.RssFeeds.Edit
     {
         [NotNull] private readonly IRssFeedService _rssFeedService;
 
-        public RssFeedEditViewModel([NotNull] IRssFeedService rssFeedService, [NotNull] RssEditParameters parameters,
+        public RssFeedEditViewModel([NotNull] IRssFeedService rssFeedService, 
+            [NotNull] RssEditParameters parameters,
             [NotNull] INavigator navigator) :
             base(parameters)
         {

@@ -41,7 +41,8 @@ namespace Core.ViewModels.Settings.AutoUpdating
         /// <summary>
         /// In minutes
         /// </summary>
-        [NotNull] public ReactiveCommand<int, Unit> UpdateAutoUpdateIntervalCommand { get; }
+        [NotNull] 
+        public ReactiveCommand<int, Unit> UpdateAutoUpdateIntervalCommand { get; }
         
         private void DoUpdateIsAutoUpdate(bool value)
         {

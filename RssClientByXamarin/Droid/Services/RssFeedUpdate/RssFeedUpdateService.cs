@@ -12,13 +12,14 @@ using Core.Repositories.Configurations;
 using Core.ViewModels.RssFeeds.RssFeedsUpdater;
 using Droid.Configurations.Canals;
 using Droid.Container.Modules;
+using JetBrains.Annotations;
 
 namespace Droid.Services.RssFeedUpdate
 {
     [Service(Permission = Manifest.Permission.ForegroundService)]
     public class RssFeedUpdateService : Service
     {
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        [NotNull] private readonly CompositeDisposable _disposables = new CompositeDisposable();
         
         public override IBinder OnBind(Intent intent)
         {
@@ -29,31 +30,29 @@ namespace Droid.Services.RssFeedUpdate
         {
             App.BuildIfNever(new PlatformModule());
 
-            var configurationRepository = App.Container.Resolve<IConfigurationRepository>();
+            var configurationRepository = App.Container.Resolve<IConfigurationRepository>().NotNull();
 
             var rssListCanal = configurationRepository.GetSettings<RssListCanal>();
 
             var appConfiguration = configurationRepository.GetSettings<AppConfiguration>();
 
-            if (appConfiguration.IsShowPush)
-            {
-                ShowForegroundNotification(rssListCanal);
-            }
+            if (appConfiguration.IsShowPush) ShowForegroundNotification(rssListCanal);
 
-            var viewModel = App.Container.Resolve<RssFeedsUpdaterViewModel>();
+            var viewModel = App.Container.Resolve<RssFeedsUpdaterViewModel>().NotNull();
 
             viewModel.HardUpdateCommand.ExecuteIfCan().AddTo(_disposables);
 
             viewModel.UpdateCommand.Subscribe(w =>
-            {
-                StopForeground(StopForegroundFlags.Remove);
-                StopSelf();
-            }).AddTo(_disposables);
+                {
+                    StopForeground(StopForegroundFlags.Remove);
+                    StopSelf();
+                })
+                .AddTo(_disposables);
 
             return base.OnStartCommand(intent, flags, startId);
         }
 
-        private void ShowForegroundNotification(RssListCanal rssListCanal)
+        private void ShowForegroundNotification([NotNull] RssListCanal rssListCanal)
         {
             var notification = rssListCanal.GenerateNotification(this);
 

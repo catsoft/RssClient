@@ -58,7 +58,7 @@ namespace Droid.Screens.Settings.AutoUpdate
                     .Select(w => w.NotNull().AutoUpdateInterval)
                     .Subscribe(w =>
                     {
-                        var alarmManager = App.Container.Resolve<IRssAlarmManager>();
+                        var alarmManager = App.Container.Resolve<IRssAlarmManager>().NotNull();
                         alarmManager.RemoveAlarm<RssFeedUpdateService>(Activity);
                         alarmManager.InitAlarm<RssFeedUpdateService>(Activity, w);
                     })
@@ -68,15 +68,11 @@ namespace Droid.Screens.Settings.AutoUpdate
                     .NotNull()
                     .Subscribe(w =>
                     {
-                        var alarmManager = App.Container.Resolve<IRssAlarmManager>();
-                        if (w.IsAutoUpdate)
-                        {
+                        var alarmManager = App.Container.Resolve<IRssAlarmManager>().NotNull();
+                        if (w.NotNull().IsAutoUpdate)
                             alarmManager.InitAlarm<RssFeedUpdateService>(Activity, w.AutoUpdateInterval);
-                        }
                         else
-                        {
                             alarmManager.RemoveAlarm<RssFeedUpdateService>(Activity);
-                        }
                     })
                     .AddTo(disposable);
             });
