@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Android.Views;
+﻿using Android.Views;
 using Android.Webkit;
 using Android.Widget;
 using Core.Infrastructure.Locale;

@@ -31,7 +31,7 @@ namespace Core.Api.RssFeeds
                     var xmlReader = XmlReader.Create(stream);
                     return SyndicationFeed.Load(xmlReader);
                 }
-
+                
                 return null;
             }
             catch (Exception e)
