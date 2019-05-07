@@ -63,6 +63,22 @@ namespace Droid.Screens.Settings.AutoUpdate
                         alarmManager.InitAlarm<RssFeedUpdateService>(Activity, w);
                     })
                     .AddTo(disposable);
+                         
+                ViewModel.AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
+                    .NotNull()
+                    .Subscribe(w =>
+                    {
+                        var alarmManager = App.Container.Resolve<IRssAlarmManager>();
+                        if (w.IsAutoUpdate)
+                        {
+                            alarmManager.InitAlarm<RssFeedUpdateService>(Activity, w.AutoUpdateInterval);
+                        }
+                        else
+                        {
+                            alarmManager.RemoveAlarm<RssFeedUpdateService>(Activity);
+                        }
+                    })
+                    .AddTo(disposable);
             });
             
             return view;
