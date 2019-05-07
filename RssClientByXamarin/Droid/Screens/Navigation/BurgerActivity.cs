@@ -86,7 +86,7 @@ namespace Droid.Screens.Navigation
                 IsHomeToggle = !IsHomeToggle;
 
                 var appConfiguration = _configurationRepository.GetSettings<AppConfiguration>();
-                var time = appConfiguration.GetCalculationAnimationTime();
+                var time = appConfiguration.CalculateAnimationTime();
 
                 var from = !isHome ? 0 : 1;
                 var to = !isHome ? 1 : 0;

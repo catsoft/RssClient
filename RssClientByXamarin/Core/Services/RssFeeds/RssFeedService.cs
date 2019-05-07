@@ -135,16 +135,16 @@ namespace Core.Services.RssFeeds
 
             var title = syndicationItem.Title?.Text?.SafeTrim();
             var text = syndicationItem.Summary?.Text?.SafeTrim();
-            var createDate = syndicationItem.PublishDate.Date;
 
             model.SyndicationId = syndicationItem.Id;
             model.Title = title;
             model.Text = text;
             model.Url = url;
             model.ImageUrl = imageUri;
+            
             try
             {
-                model.CreationDate = createDate;
+                model.CreationDate = syndicationItem.PublishDate.Date;
             }
             catch (Exception e)
             {

@@ -22,7 +22,7 @@ namespace Core.ViewModels.Settings.LoadImages
         
         private void DoUpdateLoadAndShow(bool value)
         {
-            AppConfigurationViewModel?.UpdateConfiguration.Execute((config) => config.LoadAndShowImages = value).Subscribe();
+            AppConfigurationViewModel.UpdateConfiguration.Execute((config) => config.LoadAndShowImages = value).Subscribe();
         }
     }
 }

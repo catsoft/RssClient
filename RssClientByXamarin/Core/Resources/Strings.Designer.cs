@@ -207,5 +207,35 @@ namespace Core.Resources {
                 return ResourceManager.GetString("ProjectLink", resourceCulture);
             }
         }
+        
+        public static string RssListCanalName {
+            get {
+                return ResourceManager.GetString("RssListCanalName", resourceCulture);
+            }
+        }
+        
+        public static string RssListCanalDescription {
+            get {
+                return ResourceManager.GetString("RssListCanalDescription", resourceCulture);
+            }
+        }
+        
+        public static string NotificationsRssListTitle {
+            get {
+                return ResourceManager.GetString("NotificationsRssListTitle", resourceCulture);
+            }
+        }
+        
+        public static string NotificationsRssListText {
+            get {
+                return ResourceManager.GetString("NotificationsRssListText", resourceCulture);
+            }
+        }
+        
+        public static string NotificationsRssListInfo {
+            get {
+                return ResourceManager.GetString("NotificationsRssListInfo", resourceCulture);
+            }
+        }
     }
 }

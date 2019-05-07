@@ -62,7 +62,7 @@ namespace Droid.Screens.Navigation
         {
             CommonAnimate(fragment,
                 previousFragment,
-                AppConfiguration.GetCalculationAnimationTime(),
+                AppConfiguration.CalculateAnimationTime(),
                 AppConfiguration.AnimationEnter.ToVisibility(),
                 AppConfiguration.AnimationExit.ToVisibility(),
                 AppConfiguration.AnimationEnter.ToVisibility(),

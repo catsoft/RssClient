@@ -125,5 +125,10 @@
     <string name="animationWeaver_withDelay">Delay</string>
 
     <string name="RssListWidgetTitle">RSS List</string>
-    
+    <string name="settings_pushes_header">Pushes</string>
+    <string name="settings_show">Show</string>
+    <string name="settings_auto_update_header">Auto update</string>
+    <string name="settings_auto_update">Auto update</string>
+    <string name="settings_autoUpdate_intervalHint">Interval (in minutes)</string>
+
 </resources>

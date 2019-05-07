@@ -131,4 +131,24 @@ Someone may want to translate applications into other languages. I will provide 
         <value>https://github.com/BallOfDestruction/RssClient/tree/master/RssClientByXamarin</value>
     </data>
     
+    <data name="RssListCanalName" xml:space="preserve">
+        <value>RSS List</value>
+    </data>
+    
+    <data name="RssListCanalDescription" xml:space="preserve">
+        <value>RSS List</value>
+    </data>
+
+    <data name="NotificationsRssListTitle" xml:space="preserve">
+        <value>RSS List</value>
+    </data>
+    
+    <data name="NotificationsRssListText" xml:space="preserve">
+        <value>Updating is processing</value>
+    </data>
+    
+    <data name="NotificationsRssListInfo" xml:space="preserve">
+        <value>Updating</value>
+    </data>
+
 </root>

@@ -1,11 +1,16 @@
 ﻿using System;
 using Android.App;
+using Android.OS;
 using Android.Runtime;
 using Autofac;
 using Core;
 using Core.Analytics;
+using Core.Configuration.Settings;
 using Core.Extensions;
+using Core.Repositories.Configurations;
+using Droid.Configurations.Canals;
 using Droid.Container.Modules;
+using Droid.Infrastructure.Alarm;
 using Droid.Services.RssFeedUpdate;
 
 namespace Droid
@@ -26,10 +31,15 @@ namespace Droid
 
             App.BuildIfNever(new PlatformModule());
 
+            var configurationRepository = App.Container.Resolve<IConfigurationRepository>();
+            var appConfiguration = configurationRepository.GetSettings<AppConfiguration>();
+
+            BuildCanals(configurationRepository);
+            
+            InitAlarms(appConfiguration);
+
             var log = App.Container.Resolve<ILog>().NotNull();
-
-            BuildAlerts();
-
+            
 #if DEBUG
             {
                 log.SetApiKey(KeyDebugAndroid);
@@ -41,9 +51,32 @@ namespace Droid
 #endif
         }
 
-        private void BuildAlerts()
+        private void InitAlarms(AppConfiguration appConfiguration)
         {
-            RssFeedUpdateService.InitAlarm(this);
+            var alarmManager = App.Container.Resolve<IRssAlarmManager>();
+            alarmManager.InitAlarm<RssFeedUpdateService>(this, appConfiguration.AutoUpdateInterval);
+        }
+        
+        private void BuildCanals(IConfigurationRepository configurationRepository)
+        {
+            var settings = configurationRepository.GetSettings<RssListCanal>();
+            settings = RssListCanal.DefaultInit(settings);
+            
+            CreateCanalIfNeed(settings);
+            
+            configurationRepository.SaveSetting(settings);
+        }
+        
+        private void CreateCanalIfNeed(RssListCanal rssListCanal)
+        {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                var canal = new NotificationChannel(rssListCanal.Id, rssListCanal.Name, NotificationImportance.Default);
+                canal.Description = rssListCanal.Description;
+
+                var manager = GetSystemService(NotificationService) as NotificationManager;
+                manager?.CreateNotificationChannel(canal);
+            }
         }
     }
 }

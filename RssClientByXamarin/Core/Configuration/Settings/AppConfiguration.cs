@@ -27,7 +27,16 @@ namespace Core.Configuration.Settings
 
         public bool LoadAndShowImages { get; set; } = true;
 
-        public int GetCalculationAnimationTime()
+        public bool IsShowPush { get; set; } = true;
+
+        public bool IsAutoUpdate { get; set; } = true;
+
+        /// <summary>
+        /// In milliseconds
+        /// </summary>
+        public int AutoUpdateInterval { get; set; } = 1000 * 60 * 15;
+
+        public int CalculateAnimationTime()
         {
             var defaultTime = DefaultAnimationTime;
             switch (AnimationSpeed)

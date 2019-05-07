@@ -131,4 +131,24 @@
         <value>https://github.com/BallOfDestruction/RssClient/tree/master/RssClientByXamarin</value>
     </data>
     
+    <data name="RssListCanalName" xml:space="preserve">
+        <value>RSS Список</value>
+    </data>
+    
+    <data name="RssListCanalDescription" xml:space="preserve">
+        <value>RSS Список</value>
+    </data>
+    
+    <data name="NotificationsRssListTitle" xml:space="preserve">
+        <value>RSS Список</value>
+    </data>
+    
+    <data name="NotificationsRssListText" xml:space="preserve">
+        <value>Выполняется обновление</value>
+    </data>
+    
+    <data name="NotificationsRssListInfo" xml:space="preserve">
+        <value>Обновление</value>
+    </data>
+
 </root>
