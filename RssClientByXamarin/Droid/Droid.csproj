@@ -47,6 +47,8 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -596,7 +598,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{f0e7dd28-55b6-409a-8e1d-7d5add8a695f}</Project>
+      <Project>{35500A8E-B7AC-4A07-9663-8E1C46830CD1}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
