@@ -11,5 +11,12 @@
         android:id="@+id/listView_widgetRssList_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    
+    <TextView
+        android:id="@+id/textView_widgetRssList_emptyText"
+        style="@style/TextView.Empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/widget_rssList_emptyText"/>
 
 </FrameLayout>

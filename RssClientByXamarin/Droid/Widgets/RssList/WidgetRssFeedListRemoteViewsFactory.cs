@@ -33,7 +33,7 @@ namespace Droid.Widgets.RssList
         
         public RemoteViews GetViewAt(int position)
         {
-            var itemView = new RemoteViews(_context.PackageName, Resource.Layout.widget_list_item_rss);
+            var remoteViews = new RemoteViews(_context.PackageName, Resource.Layout.widget_list_item_rss);
 
             var item = _list[position];
             
@@ -42,16 +42,16 @@ namespace Droid.Widgets.RssList
                 : $"{Strings.RssFeedItemUpdated} {item.UpdateTime.Value.ToShortGeneralLocaleString()}";
             var countMessages = item.CountNewMessages.ToString();
             
-            itemView.SetTextViewText(Resource.Id.textView_widgetListItemRss_title, item.Name);
-            itemView.SetTextViewText(Resource.Id.textView_widgetListItemRss_subtitle, subTitle);
-            itemView.SetTextViewText(Resource.Id.textView_widgetListItemRss_rssCount, countMessages);
+            remoteViews.SetTextViewText(Resource.Id.textView_widgetListItemRss_title, item.Name);
+            remoteViews.SetTextViewText(Resource.Id.textView_widgetListItemRss_subtitle, subTitle);
+            remoteViews.SetTextViewText(Resource.Id.textView_widgetListItemRss_rssCount, countMessages);
             
             if (!string.IsNullOrEmpty(item.UrlPreviewImage))
             {
                 try
                 {
                     var picture = Picasso.With(_context).Load(item.UrlPreviewImage).Get();
-                    itemView.SetImageViewBitmap(Resource.Id.imageView_widgetListItemRss_rssIcon, picture);
+                    remoteViews.SetImageViewBitmap(Resource.Id.imageView_widgetListItemRss_rssIcon, picture);
                 }
                 catch (Exception e)
                 {
@@ -59,7 +59,11 @@ namespace Droid.Widgets.RssList
                 }
             }
 
-            return itemView;
+            var clickIntent = new Intent();
+            clickIntent.PutExtra("IdGuid", item.Id.ToString());
+            remoteViews.SetOnClickFillInIntent(Resource.Id.linearLayout_widgetListItemRss_content, clickIntent);
+            
+            return remoteViews;
         }
         
         public void OnCreate()
