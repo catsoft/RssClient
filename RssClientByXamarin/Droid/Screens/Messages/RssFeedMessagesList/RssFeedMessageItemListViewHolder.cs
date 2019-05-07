@@ -1,4 +1,5 @@
-﻿using Android.Views;
+﻿using System.Net.Mime;
+using Android.Views;
 using Android.Webkit;
 using Android.Widget;
 using Core.Infrastructure.Locale;
@@ -28,6 +29,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             
             TextWebView.Init();
             TextWebView.DisableScroll();
+            TextWebView.TurnLoadImages(isShowAndLoadImages);
         }
 
         [NotNull] public TextView TitleTextView { get; }

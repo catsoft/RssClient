@@ -50,6 +50,14 @@ namespace Droid.NativeExtension
         {
             SetScrollBar(webView, true);
         }
+        
+        public static void TurnLoadImages([NotNull] this WebView webView, bool isShowImage)
+        {
+            var settings = webView.Settings;
+            settings.DomStorageEnabled = isShowImage;
+            settings.SetAppCacheEnabled(isShowImage);
+            settings.LoadsImagesAutomatically = isShowImage;
+        }
 
         private static void SetScrollBar(WebView webView, bool value)
         {

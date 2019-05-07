@@ -30,6 +30,7 @@ namespace Droid.Screens.Messages.AllMessages
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
             TextWebView.Init();
             TextWebView.DisableScroll();
+            TextWebView.TurnLoadImages(isShowAndLoadImages);
         }
 
         [NotNull] public TextView TitleTextView { get; }
