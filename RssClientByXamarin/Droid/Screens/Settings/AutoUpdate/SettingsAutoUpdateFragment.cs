@@ -33,6 +33,9 @@ namespace Droid.Screens.Settings.AutoUpdate
 
             OnActivation(disposable =>
             {
+                this.Bind(ViewModel, model => model.Interval, fragment => fragment._viewHolder.EditTextInterval.Text)
+                    .AddTo(disposable);
+                
                 _viewHolder.CheckBox.Events()
                     .CheckedChange
                     .NotNull()
@@ -44,20 +47,6 @@ namespace Droid.Screens.Settings.AutoUpdate
                     .NotNull() 
                     .Select(w => w.NotNull().IsAutoUpdate)
                     .Subscribe(w => _viewHolder.CheckBox.Checked = w)
-                    .AddTo(disposable);
-                
-                ViewModel.AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
-                    .NotNull()
-                    .Select(w => w.AutoUpdateInterval)
-                    .Subscribe(w => _viewHolder.EditTextInterval.Text = (w / 1000 / 60).ToString())
-                    .AddTo(disposable);
-                
-                _viewHolder.EditTextInterval.Events()
-                    .TextChanged
-                    .NotNull()
-                    .Select(w => _viewHolder.EditTextInterval.Text)
-                    .Select(int.Parse)
-                    .InvokeCommand(ViewModel.UpdateAutoUpdateIntervalCommand)
                     .AddTo(disposable);
             });
             
