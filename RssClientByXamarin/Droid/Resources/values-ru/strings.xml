@@ -122,5 +122,10 @@
     <string name="allMessagesFilter_clear">Очистить</string>
     
     <string name="RssListWidgetTitle">RSS список</string>
+    <string name="settings_pushes_header">Пуш уведомления</string>
+    <string name="settings_show">Показывать</string>
+    <string name="settings_auto_update_header">Авто обновление</string>
+    <string name="settings_auto_update">Авто обновление</string>
+    <string name="settings_autoUpdate_intervalHint">Интервал (в минутах)</string>
 
 </resources>
