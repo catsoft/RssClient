@@ -4,6 +4,7 @@ using Core.Infrastructure.Locale;
 using Droid.Infrastructure.Alarm;
 using Droid.Infrastructure.Dialogs;
 using Droid.Infrastructure.Locale;
+using Droid.Infrastructure.Theme;
 
 namespace Droid.Container.Modules
 {
@@ -17,6 +18,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<ToastService>().As<IToastService>().SingleInstance();
             builder.RegisterType<RssRssAlarmManager>().As<IRssAlarmManager>().SingleInstance();
+            builder.RegisterType<AppThemeController>().AsSelf().SingleInstance();
         }
     }
 }

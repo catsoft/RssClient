@@ -1,9 +1,12 @@
 using System;
 using System.Reactive;
+using System.Reactive.Linq;
+using Core.Extensions;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using JetBrains.Annotations;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Core.ViewModels.Settings.AutoUpdating
 {
@@ -16,11 +19,24 @@ namespace Core.ViewModels.Settings.AutoUpdating
             UpdateIsAutoUpdateCommand = ReactiveCommand.Create<bool>(DoUpdateIsAutoUpdate);
             
             UpdateAutoUpdateIntervalCommand = ReactiveCommand.Create<int>(DoUpdateAutoUpdateInterval);
+
+            AppConfigurationViewModel.WhenAnyValue(w => w.AppConfiguration)
+                .NotNull()
+                .Select(w => w.AutoUpdateInterval / 1000 / 60)
+                .Subscribe(w => Interval = w.ToString());
+
+            this.WhenAnyValue(w => w.Interval)
+                .Select(int.Parse)
+                .Where(w => w != AppConfigurationViewModel.AppConfiguration.AutoUpdateInterval / 1000 / 60)
+                .InvokeCommand(UpdateAutoUpdateIntervalCommand);
         }
         
         [NotNull] public AppConfigurationViewModel AppConfigurationViewModel { get; }
         
         [NotNull] public ReactiveCommand<bool, Unit> UpdateIsAutoUpdateCommand { get; }
+        
+        [Reactive]
+        public string Interval { get; set; }
         
         /// <summary>
         /// In minutes

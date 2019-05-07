@@ -4,6 +4,7 @@ using Autofac;
 using Core;
 using Core.Analytics.Rss;
 using Core.Infrastructure.ViewModels;
+using Droid.Infrastructure.Theme;
 using ReactiveUI.AndroidSupport;
 
 namespace Droid.Screens.Base
@@ -18,7 +19,7 @@ namespace Droid.Screens.Base
         {
             base.OnCreate(savedInstanceState);
 
-            var themeController = new AppThemeController();
+            var themeController = App.Container.Resolve<AppThemeController>();
             themeController.SetTheme(this);
 
             SetContentView(ResourceView);

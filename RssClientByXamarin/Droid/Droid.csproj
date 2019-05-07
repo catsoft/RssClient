@@ -67,6 +67,7 @@
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
     <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
     <Compile Include="Infrastructure\Dialogs\ToastService.cs" />
+    <Compile Include="Infrastructure\Theme\AppThemeController.cs" />
     <Compile Include="NativeExtension\EditTextExtension.cs" />
     <Compile Include="NativeExtension\Events\EventsExtension.cs" />
     <Compile Include="NativeExtension\Events\IClickable.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Screens\Base\Adapters\WithActivityAdapter.cs" />
     <Compile Include="Screens\Base\Adapters\WithItemsAdapter.cs" />
     <Compile Include="Screens\Base\BaseReactiveAppCompatActivity.cs" />
-    <Compile Include="Screens\Base\AppThemeController.cs" />
     <Compile Include="Screens\Base\DragRecyclerView\IReorderListHelperAdapter.cs" />
     <Compile Include="Screens\Base\DragRecyclerView\ReorderHelperCallback.cs" />
     <Compile Include="Screens\Base\IShowAndLoadImage.cs" />

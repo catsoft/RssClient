@@ -1,17 +1,18 @@
 using System;
 using Android.App;
-using Autofac;
-using Core;
 using Core.Configuration.Settings;
 using Core.Repositories.Configurations;
 
-namespace Droid.Screens.Base
+namespace Droid.Infrastructure.Theme
 {
     public class AppThemeController
     {
         private readonly IConfigurationRepository _configurationRepository;
 
-        public AppThemeController() { _configurationRepository = App.Container.Resolve<IConfigurationRepository>(); }
+        public AppThemeController(IConfigurationRepository configurationRepository)
+        {
+            _configurationRepository = configurationRepository;
+        }
 
         public void SetTheme(Activity activity)
         {
