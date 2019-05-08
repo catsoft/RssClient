@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -38,16 +39,18 @@ namespace Core.ViewModels.RssFeeds.List
             _navigator = navigator;
             _configurationRepository = configurationRepository;
             RssFeedsUpdaterViewModel = rssFeedsUpdaterViewModel;
-            
+
             GetListCommand = ReactiveCommand.CreateFromTask(async token => await rssFeedService.GetListAsync(token)).NotNull();
             ListViewModel = new ListViewModel<RssFeedServiceModel>(GetListCommand);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, ListViewModel.SourceList);
-            
+
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
 
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessages);
+            var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.Any(rss => rss.CountNewMessages > 0))
+                .ObserveOn(RxApp.MainThreadScheduler);
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessages, isNewMessages);
 
             RssFeedsUpdaterViewModel.UpdatedRss.Subscribe(UpdateList);
         }

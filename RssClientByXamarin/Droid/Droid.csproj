@@ -64,6 +64,7 @@
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="CustomApplication.cs" />
     <Compile Include="CustomView\DrawableProgressBar.cs" />
+    <Compile Include="CustomView\Fab\FabBehavior.cs" />
     <Compile Include="Infrastructure\Alarm\RssRssAlarmManager.cs" />
     <Compile Include="Infrastructure\Alarm\IRssAlarmManager.cs" />
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />

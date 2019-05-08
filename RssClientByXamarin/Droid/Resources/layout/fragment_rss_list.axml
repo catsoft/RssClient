@@ -11,7 +11,8 @@
         android:id="@+id/recyclerView_rssList_list"
         style="@style/RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     
     <TextView
         android:id="@+id/textView_rssList_emptyText"
@@ -36,7 +37,8 @@
         app:layout_anchorGravity="top|end"
         app:useCompatPadding="true"
         app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_check_24"/>
+        app:srcCompat="@drawable/baseline_check_24"
+        app:layout_behavior="@string/fab_behaviour_hide"/>
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_rssList_addRss"
@@ -47,6 +49,7 @@
         app:layout_anchorGravity="bottom|end"
         app:useCompatPadding="true"
         app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_add_24"/>
+        app:srcCompat="@drawable/baseline_add_24"
+        app:layout_behavior="@string/fab_behaviour_hide"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Configuration.Settings;
@@ -40,7 +41,9 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
             RefreshCommand = ReactiveCommand.CreateFromTask(DoRefresh).NotNull();
             RefreshCommand.SelectUnit().InvokeCommand(LoadCommand);
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand);
+            
+            var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.Any(rss => !rss.IsRead)).ObserveOn(RxApp.MainThreadScheduler);
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand, isNewMessages);
             
             MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, null);

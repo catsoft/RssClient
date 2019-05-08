@@ -5219,6 +5219,9 @@ namespace Droid
 			// aapt resource value: 0x7f0d0054
 			public const int edit_title = 2131558484;
 			
+			// aapt resource value: 0x7f0d009e
+			public const int fab_behaviour_hide = 2131558558;
+			
 			// aapt resource value: 0x7f0d002c
 			public const int fab_transformation_scrim_behavior = 2131558444;
 			

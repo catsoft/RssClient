@@ -131,5 +131,5 @@
     <string name="settings_auto_update">Auto update</string>
     <string name="settings_autoUpdate_intervalHint">Interval (in minutes)</string>
     <string name="widget_rssList_emptyText">Here you have nothing yet</string>
-
+    <string name="fab_behaviour_hide">HideFab.ScrollAwareFABBehavior</string>
 </resources>

@@ -74,6 +74,11 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
                 this.BindCommand(ViewModel, model => model.ReadAllMessagesCommand, fragment => fragment._viewHolder.ReadAllFloatingActionButton)
                     .AddTo(disposable);
                 
+                ViewModel.ReadAllMessagesCommand.CanExecute
+                    .Select(w => w.ToVisibility())
+                    .BindTo(_viewHolder.ReadAllFloatingActionButton, button => button.Visibility)
+                    .AddTo(disposable);
+                
                 adapter.GetClickAction()
                     .InvokeCommand(ViewModel.MessageItemViewModel.OpenContentScreenCommand)
                     .AddTo(disposable);
@@ -96,11 +101,12 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
                     .AddTo(disposable);
                 
                 ViewModel.RefreshCommand.IsExecuting
-                    .Subscribe(w => _viewHolder.RefreshLayout.Refreshing = w)
+                    .BindTo(_viewHolder.RefreshLayout, refreshLayout => refreshLayout.Refreshing)
                     .AddTo(disposable);
                 
                 ViewModel.ListViewModel.WhenAnyValue(w => w.IsEmpty)
-                    .Subscribe(w => _viewHolder.EmptyTextView.Visibility = w.ToVisibility())
+                    .Select(w => w.ToVisibility())
+                    .BindTo(_viewHolder.EmptyTextView, textView => textView.Visibility)
                     .AddTo(disposable);
 
                 ViewModel.LoadCommand.ExecuteIfCan();
