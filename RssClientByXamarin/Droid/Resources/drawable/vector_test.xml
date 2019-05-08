@@ -5,18 +5,17 @@
   <aapt:attr name="android:drawable">
     <vector
       android:width="360dp"
-      android:height="10dp"
-      android:viewportHeight="5"
+      android:height="2.5dp"
+      android:viewportHeight="2.5"
       android:viewportWidth="360">
       <group
         android:name="progress_group"
-        android:translateX="180"
-        android:translateY="5">
+        android:translateX="180">
         <path
           android:name="background_track"
           android:fillAlpha="?android:attr/disabledAlpha"
           android:fillColor="?attr/colorControlActivated"
-          android:pathData="M -180,-1 l 360,0 l 0,2 l -360,0 Z"/>
+          android:pathData="M -180 0 L 180 0 L 180 2.5 L -180 2.5 Z"/>
         <group
           android:name="rect2_grp"
           android:scaleX="0.1"
@@ -24,7 +23,7 @@
           <path
             android:name="rect2"
             android:fillColor="?attr/colorControlActivated"
-            android:pathData="M -144,-1 l 288,0 l 0,2 l -288,0 Z"/>
+            android:pathData="M -144 0 L 144 0 L 144 2.5 L -144 2.5 Z"/>
         </group>
         <group
           android:name="rect1_grp"
@@ -33,7 +32,7 @@
           <path
             android:name="rect1"
             android:fillColor="?attr/colorControlActivated"
-            android:pathData="M -144,-1 l 288,0 l 0,2 l -288,0 Z"/>
+            android:pathData="M -144 0 L 144 0 L 144 2.5 L -144 2.5 Z"/>
         </group>
       </group>
     </vector>

@@ -9,6 +9,7 @@ using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Droid.Screens.Base.Adapters;
 using FFImageLoading;
+using FFImageLoading.Cache;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
 using JetBrains.Annotations;
@@ -55,6 +56,7 @@ namespace Droid.Screens.RssFeeds.List
             if (IsShowAndLoadImages)
                 ImageService.Instance.NotNull()
                     .LoadUrl(item.UrlPreviewImage)
+                    .WithCache(CacheType.All)
                     .NotNull()
                     .LoadingPlaceholder("no_image.png", ImageSource.CompiledResource)
                     .NotNull()

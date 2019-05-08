@@ -55,20 +55,21 @@ namespace Core.Repositories.RssMessage
 
                     var mappedItem = _mapperToDomain.Transform(item);
                     
-                    mappedItem = FillRssTitle(mappedItem);
+                    mappedItem = FillRssData(mappedItem);
 
                     return mappedItem;
                 },
                 token);
         }
 
-        private RssMessageDomainModel FillRssTitle(RssMessageDomainModel model)
+        private RssMessageDomainModel FillRssData(RssMessageDomainModel model)
         {
             return _sqliteDatabase.DoWithConnection((connection) =>
             {
                 var rss = connection.NotNull().Find<RssFeedModel>(model.RssId).NotNull();
 
                 model.RssTitle = rss.Name;
+                model.RssIcon = rss.UrlPreviewImage;
 
                 return model;
             });
@@ -102,7 +103,7 @@ namespace Core.Repositories.RssMessage
                 connection => GetAllMessagesInner(connection)
                     .ToList()
                     .Select(_mapperToDomain.Transform)
-                    .Select(FillRssTitle)
+                    .Select(FillRssData)
                     .ToList()
                     .AsEnumerable(),
                 token);
@@ -115,7 +116,7 @@ namespace Core.Repositories.RssMessage
                     .Where(w => w.IsFavorite)
                     .ToList()
                     .Select(_mapperToDomain.Transform)
-                    .Select(FillRssTitle)
+                    .Select(FillRssData)
                     .ToList()
                     .AsEnumerable(),
                 token);
@@ -157,7 +158,7 @@ namespace Core.Repositories.RssMessage
 
                     return messages.ToList()
                         .Select(_mapperToDomain.Transform)
-                        .Select(FillRssTitle)
+                        .Select(FillRssData)
                         .ToList()
                         .AsEnumerable();
                 },

@@ -7,14 +7,15 @@ using Core.Services.RssMessages;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using FFImageLoading;
+using FFImageLoading.Cache;
 using FFImageLoading.Views;
 using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.AllMessages
 {
-    public class AllMessageItemItemViewHolder : BaseMessageItemViewHolder, IShowAndLoadImage
+    public class AllMessageListItemViewHolder : BaseMessageItemViewHolder, IShowAndLoadImage
     {
-        public AllMessageItemItemViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
+        public AllMessageListItemViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
 
@@ -22,6 +23,7 @@ namespace Droid.Screens.Messages.AllMessages
             TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_allMessagesItem_text);
             CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_date);
             CanalTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_canal);
+            MiniIconImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_allMessagesIcon_miniIcon);
             ClickViewLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content);
             ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_allMessagesItem_image);
             BackgroundLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_background);
@@ -40,6 +42,8 @@ namespace Droid.Screens.Messages.AllMessages
         [NotNull] public TextView CreationDateTextView { get; }
         
         [NotNull] public TextView CanalTextView { get; }
+        
+        [NotNull] public ImageViewAsync MiniIconImageView { get; }
         
         [NotNull] public ImageViewAsync ImageView { get; }
         
@@ -63,10 +67,21 @@ namespace Droid.Screens.Messages.AllMessages
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 
+            MiniIconImageView.Visibility = IsShowAndLoadImages.ToVisibility();
+            
             if (IsShowAndLoadImages)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
-                ImageService.Instance.NotNull().LoadUrl(item.ImageUrl).Into(ImageView);
+                ImageService.Instance
+                    .NotNull()
+                    .LoadUrl(item.ImageUrl)
+                    .Into(ImageView);
+                
+                ImageService.Instance.NotNull()
+                    .LoadUrl(item.RssIcon)
+                    .WithCache(CacheType.All)
+                    .NotNull()
+                    .Into(MiniIconImageView);
             }
         }
     }

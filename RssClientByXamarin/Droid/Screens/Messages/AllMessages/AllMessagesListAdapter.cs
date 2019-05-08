@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.AllMessages
 {
-    public class AllMessagesListAdapter : DataBindAdapter<RssMessageServiceModel, IEnumerable<RssMessageServiceModel>, AllMessageItemItemViewHolder>,
+    public class AllMessagesListAdapter : DataBindAdapter<RssMessageServiceModel, IEnumerable<RssMessageServiceModel>, AllMessageListItemViewHolder>,
         IClickable<RssMessageServiceModel>, 
         ILongClick<RssMessageServiceModel>, 
         ISwipeActions<RssMessageServiceModel>
@@ -37,7 +37,7 @@ namespace Droid.Screens.Messages.AllMessages
         public override RecyclerView.ViewHolder OnCreateViewHolder([NotNull] ViewGroup parent, int viewType)
         {
             var view = LayoutInflater.From(parent.Context).NotNull().Inflate(Resource.Layout.list_item_all_rss_message, parent, false).NotNull();
-            var holder = new AllMessageItemItemViewHolder(view, _appConfiguration.LoadAndShowImages);
+            var holder = new AllMessageListItemViewHolder(view, _appConfiguration.LoadAndShowImages);
 
             holder.ClickViewLinearLayout.Click += (sender, args) => Click?.Invoke(sender, holder.Item);
             holder.ClickViewLinearLayout.LongClick += (sender, args) => LongClick?.Invoke(sender, holder.Item);

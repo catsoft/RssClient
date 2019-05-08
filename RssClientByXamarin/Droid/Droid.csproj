@@ -64,6 +64,7 @@
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
     <Compile Include="CustomApplication.cs" />
+    <Compile Include="CustomView\DrawableProgressBar.cs" />
     <Compile Include="Infrastructure\Alarm\RssRssAlarmManager.cs" />
     <Compile Include="Infrastructure\Alarm\IRssAlarmManager.cs" />
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="Screens\Messages\AllMessages\AllMessagesFragment.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesListAdapter.cs" />
-    <Compile Include="Screens\Messages\AllMessages\AllMessageItemItemViewHolder.cs" />
+    <Compile Include="Screens\Messages\AllMessages\AllMessageListItemViewHolder.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesWay.cs" />
     <Compile Include="Screens\Messages\BaseMessageItemViewHolder.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
@@ -197,6 +198,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_check_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_refresh_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_rss_feed_24.xml" />
     <AndroidResource Include="Resources\drawable\vector_test.xml" />
@@ -529,14 +531,6 @@
     <AndroidResource Include="Resources\layout\fragment_contacts.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\anim\enter_from_right.xml">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\anim\exit_to_right.xml">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\anim\exit_to_left.xml" />
-    <AndroidResource Include="Resources\anim\enter_from_left.xml" />
     <AndroidResource Include="Resources\layout\item_link_element_contacts.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -595,6 +589,7 @@
     <AndroidResource Include="Resources\drawable\baseline_search_24.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\anim" />
     <Folder Include="Screens\RssFeeds" />
   </ItemGroup>
   <ItemGroup>

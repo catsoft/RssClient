@@ -79,18 +79,6 @@ namespace Droid
 			// aapt resource value: 0x7f05000f
 			public const int design_snackbar_out = 2131034127;
 			
-			// aapt resource value: 0x7f050010
-			public const int enter_from_left = 2131034128;
-			
-			// aapt resource value: 0x7f050011
-			public const int enter_from_right = 2131034129;
-			
-			// aapt resource value: 0x7f050012
-			public const int exit_to_left = 2131034130;
-			
-			// aapt resource value: 0x7f050013
-			public const int exit_to_right = 2131034131;
-			
 			static Animation()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -3566,8 +3554,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a00c9
 			public const int button_AllMessagesFilter_dateTo = 2131361993;
 			
-			// aapt resource value: 0x7f0a00f9
-			public const int button_animationSetting_gotoWeaver = 2131362041;
+			// aapt resource value: 0x7f0a00f8
+			public const int button_animationSetting_gotoWeaver = 2131362040;
 			
 			// aapt resource value: 0x7f0a00e4
 			public const int button_rssCreate_submit = 2131362020;
@@ -3590,17 +3578,17 @@ namespace Droid
 			// aapt resource value: 0x7f0a006e
 			public const int chains = 2131361902;
 			
-			// aapt resource value: 0x7f0a00fe
-			public const int checkBox_ReadMessages_hide = 2131362046;
+			// aapt resource value: 0x7f0a00fd
+			public const int checkBox_ReadMessages_hide = 2131362045;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int checkBox_autoUpdate_yesOrNo = 2131362042;
+			// aapt resource value: 0x7f0a00f9
+			public const int checkBox_autoUpdate_yesOrNo = 2131362041;
+			
+			// aapt resource value: 0x7f0a00fb
+			public const int checkBox_loadImages_yesOrNo = 2131362043;
 			
 			// aapt resource value: 0x7f0a00fc
-			public const int checkBox_loadImages_yesOrNo = 2131362044;
-			
-			// aapt resource value: 0x7f0a00fd
-			public const int checkBox_pushes_yesOrNo = 2131362045;
+			public const int checkBox_pushes_yesOrNo = 2131362044;
 			
 			// aapt resource value: 0x7f0a0093
 			public const int checkbox = 2131361939;
@@ -3665,6 +3653,9 @@ namespace Droid
 			// aapt resource value: 0x7f0a0027
 			public const int disableHome = 2131361831;
 			
+			// aapt resource value: 0x7f0a00ef
+			public const int drawableProgressBar_rssList_topProgressBar = 2131362031;
+			
 			// aapt resource value: 0x7f0a00aa
 			public const int drawer_layout = 2131361962;
 			
@@ -3698,8 +3689,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a00ec
 			public const int fab_rssEditList_addRss = 2131362028;
 			
-			// aapt resource value: 0x7f0a00f1
-			public const int fab_rssList_addRss = 2131362033;
+			// aapt resource value: 0x7f0a00f0
+			public const int fab_rssList_addRss = 2131362032;
 			
 			// aapt resource value: 0x7f0a005e
 			public const int fill = 2131361886;
@@ -3719,26 +3710,26 @@ namespace Droid
 			// aapt resource value: 0x7f0a0074
 			public const int forever = 2131361908;
 			
-			// aapt resource value: 0x7f0a00f6
-			public const int fragment_settings_animation = 2131362038;
-			
-			// aapt resource value: 0x7f0a00f8
-			public const int fragment_settings_autoUpdate = 2131362040;
-			
-			// aapt resource value: 0x7f0a00f3
-			public const int fragment_settings_load_images = 2131362035;
+			// aapt resource value: 0x7f0a00f5
+			public const int fragment_settings_animation = 2131362037;
 			
 			// aapt resource value: 0x7f0a00f7
-			public const int fragment_settings_pushes = 2131362039;
+			public const int fragment_settings_autoUpdate = 2131362039;
+			
+			// aapt resource value: 0x7f0a00f2
+			public const int fragment_settings_load_images = 2131362034;
+			
+			// aapt resource value: 0x7f0a00f6
+			public const int fragment_settings_pushes = 2131362038;
 			
 			// aapt resource value: 0x7f0a00c2
 			public const int fragment_settings_read_messages = 2131361986;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int fragment_settings_rssDetail = 2131362037;
-			
 			// aapt resource value: 0x7f0a00f4
-			public const int fragment_settings_startPage = 2131362036;
+			public const int fragment_settings_rssDetail = 2131362036;
+			
+			// aapt resource value: 0x7f0a00f3
+			public const int fragment_settings_startPage = 2131362035;
 			
 			// aapt resource value: 0x7f0a00c1
 			public const int fragment_settings_theme = 2131361985;
@@ -3776,14 +3767,17 @@ namespace Droid
 			// aapt resource value: 0x7f0a0115
 			public const int imageButton_feedlyRss_add = 2131362069;
 			
+			// aapt resource value: 0x7f0a010d
+			public const int imageView_allMessagesIcon_miniIcon = 2131362061;
+			
 			// aapt resource value: 0x7f0a0112
 			public const int imageView_allMessagesItem_image = 2131362066;
 			
 			// aapt resource value: 0x7f0a0113
 			public const int imageView_feedlyRss_rssIcon = 2131362067;
 			
-			// aapt resource value: 0x7f0a0109
-			public const int imageView_linkElementContacts_icon = 2131362057;
+			// aapt resource value: 0x7f0a0108
+			public const int imageView_linkElementContacts_icon = 2131362056;
 			
 			// aapt resource value: 0x7f0a011b
 			public const int imageView_listItemEditRss_delete = 2131362075;
@@ -3796,9 +3790,6 @@ namespace Droid
 			
 			// aapt resource value: 0x7f0a0125
 			public const int imageView_messagesItem_image = 2131362085;
-			
-			// aapt resource value: 0x7f0a00f0
-			public const int imageView_progressBar = 2131362032;
 			
 			// aapt resource value: 0x7f0a013e
 			public const int imageView_widgetListItemRss_rssIcon = 2131362110;
@@ -3833,11 +3824,11 @@ namespace Droid
 			// aapt resource value: 0x7f0a00d1
 			public const int linearLayout = 2131362001;
 			
-			// aapt resource value: 0x7f0a010b
-			public const int linearLayout_allMessagesItem_background = 2131362059;
+			// aapt resource value: 0x7f0a010a
+			public const int linearLayout_allMessagesItem_background = 2131362058;
 			
-			// aapt resource value: 0x7f0a010c
-			public const int linearLayout_allMessagesItem_content = 2131362060;
+			// aapt resource value: 0x7f0a010b
+			public const int linearLayout_allMessagesItem_content = 2131362059;
 			
 			// aapt resource value: 0x7f0a00dc
 			public const int linearLayout_animationWeaver_container = 2131362012;
@@ -4025,9 +4016,6 @@ namespace Droid
 			// aapt resource value: 0x7f0a00e1
 			public const int progressBar_feedlySearch_progressBar = 2131362017;
 			
-			// aapt resource value: 0x7f0a00ee
-			public const int progressBar_rssList_topProgressBar = 2131362030;
-			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
 			
@@ -4061,26 +4049,26 @@ namespace Droid
 			// aapt resource value: 0x7f0a00d0
 			public const int radioButton_rss_all_messages_order_oldest = 2131362000;
 			
+			// aapt resource value: 0x7f0a00ff
+			public const int radioButton_settingsRssDetail_inApp = 2131362047;
+			
 			// aapt resource value: 0x7f0a0100
-			public const int radioButton_settingsRssDetail_inApp = 2131362048;
-			
-			// aapt resource value: 0x7f0a0101
-			public const int radioButton_settingsRssDetail_inBrowser = 2131362049;
-			
-			// aapt resource value: 0x7f0a0104
-			public const int radioButton_settingsStartPage_messagesList = 2131362052;
+			public const int radioButton_settingsRssDetail_inBrowser = 2131362048;
 			
 			// aapt resource value: 0x7f0a0103
-			public const int radioButton_settingsStartPage_rssList = 2131362051;
+			public const int radioButton_settingsStartPage_messagesList = 2131362051;
 			
-			// aapt resource value: 0x7f0a0106
-			public const int radioButton_settingsTheme_dark = 2131362054;
+			// aapt resource value: 0x7f0a0102
+			public const int radioButton_settingsStartPage_rssList = 2131362050;
 			
-			// aapt resource value: 0x7f0a0108
-			public const int radioButton_settingsTheme_default = 2131362056;
+			// aapt resource value: 0x7f0a0105
+			public const int radioButton_settingsTheme_dark = 2131362053;
 			
 			// aapt resource value: 0x7f0a0107
-			public const int radioButton_settingsTheme_light = 2131362055;
+			public const int radioButton_settingsTheme_default = 2131362055;
+			
+			// aapt resource value: 0x7f0a0106
+			public const int radioButton_settingsTheme_light = 2131362054;
 			
 			// aapt resource value: 0x7f0a00d9
 			public const int radioGroup_animationWeaver_delay = 2131362009;
@@ -4091,14 +4079,14 @@ namespace Droid
 			// aapt resource value: 0x7f0a00ce
 			public const int radioGroup_rss_all_messages_order_main = 2131361998;
 			
-			// aapt resource value: 0x7f0a00ff
-			public const int radioGroup_rss_detail_main = 2131362047;
+			// aapt resource value: 0x7f0a00fe
+			public const int radioGroup_rss_detail_main = 2131362046;
 			
-			// aapt resource value: 0x7f0a0102
-			public const int radioGroup_settingsStartPage_main = 2131362050;
+			// aapt resource value: 0x7f0a0101
+			public const int radioGroup_settingsStartPage_main = 2131362049;
 			
-			// aapt resource value: 0x7f0a0105
-			public const int radioGroup_settingsTheme_main = 2131362053;
+			// aapt resource value: 0x7f0a0104
+			public const int radioGroup_settingsTheme_main = 2131362052;
 			
 			// aapt resource value: 0x7f0a010f
 			public const int ratingBar_allMessagesItem_favorite = 2131362063;
@@ -4295,8 +4283,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a0022
 			public const int text2 = 2131361826;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int textInputLayout_autoUpdate_interval = 2131362043;
+			// aapt resource value: 0x7f0a00fa
+			public const int textInputLayout_autoUpdate_interval = 2131362042;
 			
 			// aapt resource value: 0x7f0a00e3
 			public const int textInputLayout_rssCreate_link = 2131362019;
@@ -4334,8 +4322,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a010e
 			public const int textView_allMessagesItem_canal = 2131362062;
 			
-			// aapt resource value: 0x7f0a010d
-			public const int textView_allMessagesItem_date = 2131362061;
+			// aapt resource value: 0x7f0a010c
+			public const int textView_allMessagesItem_date = 2131362060;
 			
 			// aapt resource value: 0x7f0a0110
 			public const int textView_allMessagesItem_title = 2131362064;
@@ -4352,8 +4340,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a00e2
 			public const int textView_feedlySearch_emptyText = 2131362018;
 			
-			// aapt resource value: 0x7f0a010a
-			public const int textView_linkElementContacts_title = 2131362058;
+			// aapt resource value: 0x7f0a0109
+			public const int textView_linkElementContacts_title = 2131362057;
 			
 			// aapt resource value: 0x7f0a011d
 			public const int textView_listItemEditRss_subtitle = 2131362077;
@@ -4385,8 +4373,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a00e7
 			public const int textView_rssFeedMessageList_emptyText = 2131362023;
 			
-			// aapt resource value: 0x7f0a00ef
-			public const int textView_rssList_emptyText = 2131362031;
+			// aapt resource value: 0x7f0a00ee
+			public const int textView_rssList_emptyText = 2131362030;
 			
 			// aapt resource value: 0x7f0a0141
 			public const int textView_widgetListItemRss_rssCount = 2131362113;
@@ -4478,8 +4466,8 @@ namespace Droid
 			// aapt resource value: 0x7f0a0124
 			public const int webView_messagesItem_text = 2131362084;
 			
-			// aapt resource value: 0x7f0a00f2
-			public const int webView_rssMessage_mainView = 2131362034;
+			// aapt resource value: 0x7f0a00f1
+			public const int webView_rssMessage_mainView = 2131362033;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int withText = 2131361859;

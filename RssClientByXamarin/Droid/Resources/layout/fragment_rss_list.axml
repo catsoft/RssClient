@@ -12,14 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     
-    <ProgressBar
-        android:id="@+id/progressBar_rssList_topProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/feedlyProgressBarHeight"
-        android:indeterminate="true"
-        android:visibility="gone"/>
-    
     <TextView
         android:id="@+id/textView_rssList_emptyText"
         style="@style/TextView.Empty"
@@ -27,11 +19,11 @@
         android:layout_height="match_parent"
         android:text="@string/rssList_emptyText"/>
     
-    <ImageView 
-        android:id="@+id/imageView_progressBar"
+    <Droid.CustomView.DrawableProgressBar
+        android:id="@+id/drawableProgressBar_rssList_topProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/vector_test"/>
+        android:visibility="gone"/>
     
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_rssList_addRss"

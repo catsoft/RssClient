@@ -72,6 +72,7 @@ namespace Core.Repositories.RssMessage
                     SyndicationId = model.SyndicationId,
                     RssId = model.RssId,
                     RssTitle = model.RssTitle,
+                    RssIcon = model.RssIcon
                 };
         }
 
@@ -93,6 +94,7 @@ namespace Core.Repositories.RssMessage
                     SyndicationId = model.SyndicationId,
                     RssId = model.RssId,
                     RssTitle = model.RssTitle,
+                    RssIcon = model.RssIcon
                 };
         }
     }

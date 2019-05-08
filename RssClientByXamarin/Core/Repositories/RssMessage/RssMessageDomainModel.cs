@@ -26,5 +26,7 @@ namespace Core.Repositories.RssMessage
         public Guid RssId { get; set; }
         
         public string RssTitle { get; set; }
+        
+        public string RssIcon { get; set; }
     }
 }

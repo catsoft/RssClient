@@ -2,6 +2,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Droid.CustomView;
 using Droid.NativeExtension;
 using JetBrains.Annotations;
 
@@ -18,9 +19,7 @@ namespace Droid.Screens.RssFeeds.List
 
             EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_rssList_emptyText);
 
-            TopProgressBar = view.FindNotNull<ProgressBar>(Resource.Id.progressBar_rssList_topProgressBar);
-
-            ProgpressImageView = view.FindNotNull<ImageView>(Resource.Id.imageView_progressBar);
+            TopProgressBar = view.FindNotNull<DrawableProgressBar>(Resource.Id.drawableProgressBar_rssList_topProgressBar);
         }
 
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
@@ -29,8 +28,6 @@ namespace Droid.Screens.RssFeeds.List
 
         [NotNull] public TextView EmptyTextView { get; }
         
-        [NotNull] public ProgressBar TopProgressBar { get; }
-        
-        public ImageView ProgpressImageView { get; }
+        [NotNull] public DrawableProgressBar TopProgressBar { get; }
     }
 }
