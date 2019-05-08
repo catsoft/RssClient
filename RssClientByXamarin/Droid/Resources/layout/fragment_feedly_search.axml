@@ -13,13 +13,11 @@
             style="@style/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-        
-        <ProgressBar
-            android:id="@+id/progressBar_feedlySearch_progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
+    
+        <Droid.CustomView.DrawableProgressBar
+            android:id="@+id/drawableProgressBar_feedlySearch_topProgressBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/feedlyProgressBarHeight"
-            android:indeterminate="true"
+            android:layout_height="wrap_content"
             android:visibility="gone"/>
         
         <TextView

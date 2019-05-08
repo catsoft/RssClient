@@ -1,6 +1,7 @@
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Droid.CustomView;
 using Droid.NativeExtension;
 using JetBrains.Annotations;
 
@@ -14,13 +15,13 @@ namespace Droid.Screens.FeedlySearch
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
             RecyclerView.AddItemDecoration(new DividerItemDecoration(view.Context, DividerItemDecoration.Vertical));
 
-            ProgressBar = view.FindNotNull<ProgressBar>(Resource.Id.progressBar_feedlySearch_progressBar);
+            ProgressBar = view.FindNotNull<DrawableProgressBar>(Resource.Id.drawableProgressBar_feedlySearch_topProgressBar);
             EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_feedlySearch_emptyText);
         }
 
         [NotNull] public RecyclerView RecyclerView { get; }
 
-        [NotNull] public ProgressBar ProgressBar { get; }
+        [NotNull] public DrawableProgressBar ProgressBar { get; }
 
         [NotNull] public TextView EmptyTextView { get; }
     }

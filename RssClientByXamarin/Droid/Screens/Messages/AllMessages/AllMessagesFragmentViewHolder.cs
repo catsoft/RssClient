@@ -2,6 +2,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Droid.CustomView;
 using Droid.NativeExtension;
 using JetBrains.Annotations;
 
@@ -19,7 +20,7 @@ namespace Droid.Screens.Messages.AllMessages
 
             EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_allMessages_emptyText);
 
-            TopProgressBar = view.FindNotNull<ProgressBar>(Resource.Id.progressBar_allMessages_topProgressBar);
+            TopProgressBar = view.FindNotNull<DrawableProgressBar>(Resource.Id.drawableProgressBar_allMessages_topProgressBar);
         }
         
         [NotNull] public RecyclerView RecyclerView { get; }
@@ -28,6 +29,6 @@ namespace Droid.Screens.Messages.AllMessages
         
         [NotNull] public TextView EmptyTextView { get; }
         
-        [NotNull] public ProgressBar TopProgressBar { get; }
+        [NotNull] public DrawableProgressBar TopProgressBar { get; }
     }
 }

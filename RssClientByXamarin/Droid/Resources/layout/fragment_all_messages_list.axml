@@ -18,12 +18,10 @@
         android:layout_height="match_parent"
         android:text="@string/rssAllMessagesList_emptyText"/>
     
-    <ProgressBar
-        android:id="@+id/progressBar_allMessages_topProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+    <Droid.CustomView.DrawableProgressBar
+        android:id="@+id/drawableProgressBar_allMessages_topProgressBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/feedlyProgressBarHeight"
-        android:indeterminate="true"
+        android:layout_height="wrap_content"
         android:visibility="gone"/>
     
     <android.support.design.widget.FloatingActionButton
