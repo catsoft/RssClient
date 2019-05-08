@@ -24,9 +24,8 @@ namespace Droid.Screens.Messages.AllMessages
             CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_date);
             CanalTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_allMessagesItem_canal);
             MiniIconImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_allMessagesIcon_miniIcon);
-            ClickViewLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_content);
+            RootRelativeLayout = itemView.FindNotNull<RelativeLayout>(Resource.Id.relativeLayout_allMessagesItem_root);
             ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_allMessagesItem_image);
-            BackgroundLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_allMessagesItem_background);
             RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_allMessagesItem_favorite);
 
             ImageView.Visibility = IsShowAndLoadImages.ToVisibility();
@@ -47,9 +46,7 @@ namespace Droid.Screens.Messages.AllMessages
         
         [NotNull] public ImageViewAsync ImageView { get; }
         
-        [NotNull] public LinearLayout ClickViewLinearLayout { get; }
-        
-        [NotNull] public LinearLayout BackgroundLinearLayout { get; }
+        [NotNull] public RelativeLayout RootRelativeLayout { get; }
         
         [NotNull] public RatingBar RatingBar { get; }
         
@@ -63,7 +60,7 @@ namespace Droid.Screens.Messages.AllMessages
             TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             CanalTextView.Text = item.RssTitle;
-            BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+            RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 

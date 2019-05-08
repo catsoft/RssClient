@@ -19,9 +19,8 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_title);
             TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_messagesItem_text);
             CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_date);
-            ClickViewLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_messagesItem_content);
+            RootRelativeLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.relativeLayout_messagesItem_root);
             ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
-            BackgroundLinearLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_messagesItem_background);
             RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
 
             ImageView.Visibility = isShowAndLoadImages.ToVisibility();
@@ -39,9 +38,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         
         [NotNull] public ImageViewAsync ImageView { get; }
         
-        [NotNull] public LinearLayout ClickViewLinearLayout { get; }
-        
-        [NotNull] public LinearLayout BackgroundLinearLayout { get; }
+        [NotNull] public LinearLayout RootRelativeLayout { get; }
         
         [NotNull] public RatingBar RatingBar { get; }
         
@@ -54,7 +51,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             TitleTextView.Text = item.Title;
             TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
-            BackgroundLinearLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
+            RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 

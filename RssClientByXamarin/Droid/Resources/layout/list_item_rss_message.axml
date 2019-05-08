@@ -1,71 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout_messagesItem_background"
+    android:id="@+id/relativeLayout_messagesItem_root"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
     
-    <LinearLayout
-        android:id="@+id/linearLayout_messagesItem_content"
+    <TextView
+        android:id="@+id/textView_messagesItem_date"
+        style="@style/TextView.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:layout_alignParentLeft="true"/>
+    
+    <RatingBar
+        android:id="@+id/ratingBar_messagesItem_favorite"
+        style="@android:style/Widget.Material.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:clickable="false"
+        android:numStars="1"
+        android:stepSize="1.0"/>
+    
+    <TextView
+        android:id="@+id/textView_messagesItem_title"
+        style="@style/TextView.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:orientation="vertical">
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                
-                <TextView
-                    android:id="@+id/textView_messagesItem_date"
-                    style="@style/TextView.Body2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            
-            </LinearLayout>
-            
-            <RatingBar
-                android:id="@+id/ratingBar_messagesItem_favorite"
-                style="@android:style/Widget.Material.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:clickable="false"
-                android:numStars="1"
-                android:stepSize="1.0"/>
-        
-        </LinearLayout>
-        
-        <TextView
-            android:id="@+id/textView_messagesItem_title"
-            style="@style/TextView.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        
-        <WebView
-            android:id="@+id/webView_messagesItem_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        
-        <FFImageLoading.Views.ImageViewAsync
-            android:id="@+id/imageView_messagesItem_image"
-            style="@style/TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
-        
-    </LinearLayout>
+        android:text="Title"
+        android:layout_below="@+id/textView_messagesItem_date"
+        android:layout_marginBottom="8dp"/>
+    
+    <WebView
+        android:id="@+id/webView_messagesItem_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_messagesItem_title"
+        android:layout_marginBottom="8dp"/>
+    
+    <FFImageLoading.Views.ImageViewAsync
+        android:id="@+id/imageView_messagesItem_image"
+        style="@style/TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/webView_messagesItem_text"/>
 
-</LinearLayout>
+</RelativeLayout>
