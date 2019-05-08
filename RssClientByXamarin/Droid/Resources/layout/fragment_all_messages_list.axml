@@ -25,6 +25,16 @@
         android:visibility="gone"/>
     
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_allMessages_readAll"
+        style="?attr/fabStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="72dp"
+        app:srcCompat="@drawable/baseline_check_24"/>
+    
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_allMessages_addRss"
         style="?attr/fabStyle"
         android:layout_width="wrap_content"

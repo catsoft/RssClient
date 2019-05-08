@@ -5,7 +5,6 @@ using Android.Util;
 using Android.Views;
 using Core.Extensions;
 using Core.Infrastructure.ViewModels;
-using Droid.Container;
 using Droid.NativeExtension;
 using Droid.Screens.Base;
 using JetBrains.Annotations;
@@ -16,8 +15,6 @@ namespace Droid.Screens.Navigation
         where TViewModel : ViewModel
     {
         private string _title;
-
-        protected BaseFragment() { this.Inject(true); }
 
         protected abstract int LayoutId { get; }
 
