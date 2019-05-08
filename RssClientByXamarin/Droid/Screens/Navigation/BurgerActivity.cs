@@ -11,6 +11,7 @@ using Core;
 using Core.Configuration.Settings;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
+using Droid.NativeExtension;
 using Droid.Screens.Base;
 using Java.Lang;
 using JetBrains.Annotations;
@@ -60,7 +61,7 @@ namespace Droid.Screens.Navigation
 
             if (savedInstanceState != null) IsHomeToggle = savedInstanceState.GetBoolean(nameof(IsHomeToggle));
 
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            DrawerLayout = this.FindNotNull<DrawerLayout>(Resource.Id.drawer_layout);
 
             Toggle = new ActionBarDrawerToggle(this,
                 DrawerLayout,
@@ -71,7 +72,7 @@ namespace Droid.Screens.Navigation
             Toolbar.SetNavigationOnClickListener(this);
             Toggle.SyncState();
 
-            NavigationView = FindViewById<NavigationView>(Resource.Id.navigation_view_all);
+            NavigationView = this.FindNotNull<NavigationView>(Resource.Id.navigation_view_all);
             NavigationView.SetNavigationItemSelectedListener(this);
 
             Toggle.OnDrawerSlide(DrawerLayout, IsHomeToggle ? 0 : 1);
