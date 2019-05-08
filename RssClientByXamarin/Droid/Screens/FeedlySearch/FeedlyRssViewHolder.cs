@@ -43,7 +43,6 @@ namespace Droid.Screens.FeedlySearch
             TitleView.Text = item.Title;
 
             if (IsShowAndLoadImages)
-                // TODO плейсхолдер должен зависить от темы
                 ImageService.Instance.NotNull()
                     .LoadUrl(item.IconUrl)
                     .NotNull()

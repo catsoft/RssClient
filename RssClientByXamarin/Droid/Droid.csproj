@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Canals\RssListCanal.cs" />
-    <Compile Include="Container\InjectAttribute.cs" />
     <Compile Include="Container\Modules\NavigationModule.cs" />
     <Compile Include="Container\Modules\PlatformModule.cs" />
     <Compile Include="Container\Modules\ServicesModule.cs" />
