@@ -24,7 +24,7 @@ namespace Droid.Screens.RssFeeds.List
 
             TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_title);
             SubtitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_subtitle);
-            ClickView = itemView.FindNotNull<LinearLayout>(Resource.Id.linearLayout_listItemRss_content);
+            ClickView = itemView.FindNotNull<CardView>(Resource.Id.cardView_listItemRss_content);
             IconView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_listItemRss_rssIcon);
             CountTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_listItemRss_rssCount);
 
@@ -39,7 +39,7 @@ namespace Droid.Screens.RssFeeds.List
         
         [NotNull] public TextView CountTextView { get; }
         
-        [NotNull] public LinearLayout ClickView { get; }
+        [NotNull] public CardView ClickView { get; }
 
         public RssFeedServiceModel Item { get; set; }
 
