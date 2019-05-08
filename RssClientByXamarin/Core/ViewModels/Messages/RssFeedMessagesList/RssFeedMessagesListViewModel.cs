@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
             RefreshCommand = ReactiveCommand.CreateFromTask(DoRefresh).NotNull();
             RefreshCommand.SelectUnit().InvokeCommand(LoadCommand);
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand);
+            
             MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, null);
 
@@ -57,8 +60,22 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
         
         [NotNull] public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
         
+        [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
+        
         public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
+        private Task DoReadAllMessagesCommand(CancellationToken token)
+        {
+            return Task.Run(() =>
+            {
+                var allMessages = ListViewModel.SourceList.Items.Where(w => !w.IsRead).ToList();
+                foreach (var rssMessageServiceModel in allMessages)
+                {
+                    MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
+                }
+            }, token);
+        }
+        
         private async Task<IEnumerable<RssMessageServiceModel>> DoLoad(CancellationToken token)
         {
             return await _rssMessageService.GetMessagesForRss(Parameters.RssFeedModel.Id, token);

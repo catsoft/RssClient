@@ -1,3 +1,4 @@
+using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -18,6 +19,8 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             EmptyTextView = view.FindNotNull<TextView>(Resource.Id.textView_rssFeedMessageList_emptyText);
             
             RefreshLayout = view.FindNotNull<SwipeRefreshLayout>(Resource.Id.swipeRefreshLayout_rssDetail_refresher);
+
+            ReadAllFloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_rssFeedMessageList_readAll);
         }
 
         [NotNull] public SwipeRefreshLayout RefreshLayout { get; }
@@ -25,5 +28,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         [NotNull] public RecyclerView RecyclerView { get; }
         
         [NotNull] public TextView EmptyTextView { get; }
+        
+        [NotNull] public FloatingActionButton ReadAllFloatingActionButton { get; }
     }
 }

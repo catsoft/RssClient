@@ -13,6 +13,7 @@ namespace Droid.Screens.RssFeeds.List
         public RssFeedListFragmentViewHolder(View view)
         {
             FloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_rssList_addRss);
+            ReadAllFloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_rssList_readAll);
 
             RecyclerView = view.FindNotNull<RecyclerView>(Resource.Id.recyclerView_rssList_list);
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
@@ -23,6 +24,8 @@ namespace Droid.Screens.RssFeeds.List
         }
 
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
+        
+        [NotNull] public FloatingActionButton ReadAllFloatingActionButton { get; }
 
         [NotNull] public RecyclerView RecyclerView { get; }
 

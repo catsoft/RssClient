@@ -3,6 +3,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
@@ -30,9 +31,11 @@
         style="?attr/fabStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="72dp"
+        android:layout_gravity="top|end"
+        app:layout_anchor="@+id/fab_rssList_addRss"
+        app:layout_anchorGravity="top|end"
+        app:useCompatPadding="true"
+        app:fabSize="normal"
         app:srcCompat="@drawable/baseline_check_24"/>
     
     <android.support.design.widget.FloatingActionButton
@@ -40,8 +43,10 @@
         style="?attr/fabStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/recyclerView_rssList_list"
+        app:layout_anchorGravity="bottom|end"
+        app:useCompatPadding="true"
+        app:fabSize="normal"
         app:srcCompat="@drawable/baseline_add_24"/>
 
 </android.support.design.widget.CoordinatorLayout>

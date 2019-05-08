@@ -1,4 +1,5 @@
 using System;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget.Helper;
 using Android.Views;
@@ -62,6 +63,7 @@ namespace Droid.Screens.RssFeeds.EditableList
 
                 ViewModel.ListViewModel.ConnectChanges
                     .NotNull()
+                    .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 

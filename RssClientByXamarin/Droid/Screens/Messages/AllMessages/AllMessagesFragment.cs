@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
@@ -48,15 +49,14 @@ namespace Droid.Screens.Messages.AllMessages
             OnActivation(disposable =>
             {
                 ViewModel.ListViewModel.ConnectChanges
+                    .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
 
-                _viewHolder.FloatingActionButton.Events()
-                    .NotNull()
-                    .Click
-                    .NotNull()
-                    .SelectUnit()
-                    .InvokeCommand(ViewModel.OpenCreateScreenCommand)
+                this.BindCommand(ViewModel, model => model.OpenCreateScreenCommand, fragment => fragment._viewHolder.FloatingActionButton)
+                    .AddTo(disposable);
+                
+                this.BindCommand(ViewModel, model => model.ReadAllMessagesCommand, fragment => fragment._viewHolder.ReadAllFloatingActionButton)
                     .AddTo(disposable);
                 
                 adapter.GetClickAction()

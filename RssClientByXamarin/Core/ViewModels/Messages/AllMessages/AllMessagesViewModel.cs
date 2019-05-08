@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace Core.ViewModels.Messages.AllMessages
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
             OpenRssListScreenCommand = ReactiveCommand.Create(DoOpenRssListScreen).NotNull();
             OpenRssAllMessagesFilterScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesFilterScreen).NotNull();
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand);
         }
 
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
@@ -57,6 +59,8 @@ namespace Core.ViewModels.Messages.AllMessages
         
         [NotNull] public ReactiveCommand<Unit, Unit> OpenRssAllMessagesFilterScreenCommand { get; }
         
+        [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
+        
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssMessageServiceModel>> LoadRssMessagesCommand { get; }
         
         [NotNull]
@@ -70,6 +74,18 @@ namespace Core.ViewModels.Messages.AllMessages
     
         private void DoOpenAllMessagesFilterScreen() { _navigator.Go(App.Container.Resolve<IWay<AllMessagesFilterViewModel>>().NotNull()); }
 
+        private Task DoReadAllMessagesCommand(CancellationToken token)
+        {
+            return Task.Run(() =>
+            {
+                var allMessages = ListViewModel.SourceList.Items.Where(w => !w.IsRead).ToList();
+                foreach (var rssMessageServiceModel in allMessages)
+                {
+                    MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
+                }
+            }, token);
+        }
+        
         [NotNull]
         [ItemNotNull]
         private Task<IEnumerable<RssMessageServiceModel>> DoLoadRssMessages(CancellationToken token)

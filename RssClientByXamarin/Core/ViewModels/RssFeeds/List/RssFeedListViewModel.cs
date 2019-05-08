@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using Core.Configuration.Settings;
 using Core.Extensions;
@@ -45,9 +47,11 @@ namespace Core.ViewModels.RssFeeds.List
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
 
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessages);
+
             RssFeedsUpdaterViewModel.UpdatedRss.Subscribe(UpdateList);
         }
-        
+
         [NotNull] public ListViewModel<RssFeedServiceModel> ListViewModel { get; }
         
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
@@ -59,6 +63,8 @@ namespace Core.ViewModels.RssFeeds.List
         [NotNull] public ReactiveCommand<Unit, Unit> OpenAllMessagesScreenCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
+        
+        [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssFeedServiceModel>> GetListCommand { get; }
 
@@ -82,6 +88,18 @@ namespace Core.ViewModels.RssFeeds.List
             _navigator.Go(way);
         }
         
+        private Task DoReadAllMessages(CancellationToken arg)
+        {
+            return Task.Run(() =>
+            {
+                var allRssFeeds = ListViewModel.SourceList.Items.ToList();
+                foreach (var rssFeedServiceModel in allRssFeeds)
+                {
+                    RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteIfCan(rssFeedServiceModel);
+                }
+            }, arg);
+        }
+
         private void UpdateList([NotNull] RssFeedServiceModel model)
         {
             var item = ListViewModel.SourceList.Items?.Where(w => w != null).FirstOrDefault(w => w.Id == model.Id);

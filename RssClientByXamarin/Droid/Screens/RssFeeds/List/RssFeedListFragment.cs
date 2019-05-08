@@ -54,10 +54,10 @@ namespace Droid.Screens.RssFeeds.List
             
             OnActivation(disposable =>
             {
-                _viewHolder.FloatingActionButton.Events()
-                    .Click
-                    .SelectUnit()
-                    .InvokeCommand(ViewModel.OpenCreateScreenCommand)
+                this.BindCommand(ViewModel, model => model.ReadAllMessagesCommand, fragment => fragment._viewHolder.ReadAllFloatingActionButton)
+                    .AddTo(disposable);
+                
+                this.BindCommand(ViewModel, model => model.OpenCreateScreenCommand, fragment => fragment._viewHolder.FloatingActionButton)
                     .AddTo(disposable);
 
                 ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)

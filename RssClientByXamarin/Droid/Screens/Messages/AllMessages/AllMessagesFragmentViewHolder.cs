@@ -13,6 +13,7 @@ namespace Droid.Screens.Messages.AllMessages
         public AllMessagesFragmentViewHolder([NotNull] View view)
         {
             FloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_allMessages_addRss);
+            ReadAllFloatingActionButton = view.FindNotNull<FloatingActionButton>(Resource.Id.fab_allMessages_readAll);
             
             RecyclerView = view.FindNotNull<RecyclerView>(Resource.Id.recyclerView_allMessages_list);
             RecyclerView.SetLayoutManager(new LinearLayoutManager(view.Context, LinearLayoutManager.Vertical, false));
@@ -26,6 +27,8 @@ namespace Droid.Screens.Messages.AllMessages
         [NotNull] public RecyclerView RecyclerView { get; }
         
         [NotNull] public FloatingActionButton FloatingActionButton { get; }
+        
+        [NotNull] public FloatingActionButton ReadAllFloatingActionButton { get; }
         
         [NotNull] public TextView EmptyTextView { get; }
         

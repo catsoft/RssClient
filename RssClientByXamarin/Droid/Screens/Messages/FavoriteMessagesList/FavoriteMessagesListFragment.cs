@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
@@ -46,6 +47,7 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
             OnActivation(disposable =>
             {
                 ViewModel.ListViewModel.ConnectChanges
+                    .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(w => adapterUpdater.Update(w))
                     .AddTo(disposable);
                 
