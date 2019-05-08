@@ -4364,11 +4364,11 @@ namespace Droid
 			// aapt resource value: 0x7f0a0120
 			public const int textView_listItemEditRss_title = 2131362080;
 			
-			// aapt resource value: 0x7f0a011d
-			public const int textView_listItemRss_rssCount = 2131362077;
-			
 			// aapt resource value: 0x7f0a011c
-			public const int textView_listItemRss_subtitle = 2131362076;
+			public const int textView_listItemRss_rssCount = 2131362076;
+			
+			// aapt resource value: 0x7f0a011d
+			public const int textView_listItemRss_subtitle = 2131362077;
 			
 			// aapt resource value: 0x7f0a011b
 			public const int textView_listItemRss_title = 2131362075;

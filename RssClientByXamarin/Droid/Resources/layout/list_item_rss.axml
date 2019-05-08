@@ -20,25 +20,29 @@
             android:id="@+id/imageView_listItemRss_rssIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="0dp"
             android:layout_alignParentStart="true"/>
         
         <TextView
             android:id="@+id/textView_listItemRss_title"
             style="@style/TextView.Title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:layout_toRightOf="@+id/imageView_listItemRss_rssIcon"
-            android:layout_toLeftOf="@+id/textView_listItemRss_rssCount"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/imageView_listItemRss_rssIcon"
+            android:layout_toStartOf="@+id/textView_listItemRss_rssCount"
             android:layout_alignTop="@+id/imageView_listItemRss_rssIcon"/>
         
         <TextView
             android:id="@+id/textView_listItemRss_subtitle"
             style="@style/TextView.Subhead"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subtitle"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toRightOf="@+id/imageView_listItemRss_rssIcon"
             android:layout_toLeftOf="@+id/textView_listItemRss_rssCount"
             android:layout_below="@+id/textView_listItemRss_title"/>
@@ -50,8 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:text="Count"/>
+            android:layout_centerVertical="true"/>
     
     </RelativeLayout>
 
