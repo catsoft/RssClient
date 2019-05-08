@@ -19,7 +19,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_title);
             TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_messagesItem_text);
             CreationDateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_messagesItem_date);
-            RootRelativeLayout = itemView.FindNotNull<LinearLayout>(Resource.Id.relativeLayout_messagesItem_root);
+            RootRelativeLayout = itemView.FindNotNull<RelativeLayout>(Resource.Id.relativeLayout_messagesItem_root);
             ImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_messagesItem_image);
             RatingBar = itemView.FindNotNull<RatingBar>(Resource.Id.ratingBar_messagesItem_favorite);
 
@@ -38,7 +38,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         
         [NotNull] public ImageViewAsync ImageView { get; }
         
-        [NotNull] public LinearLayout RootRelativeLayout { get; }
+        [NotNull] public RelativeLayout RootRelativeLayout { get; }
         
         [NotNull] public RatingBar RatingBar { get; }
         
