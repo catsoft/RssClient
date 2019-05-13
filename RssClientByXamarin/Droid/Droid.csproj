@@ -22,6 +22,8 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <LangVersion>latest</LangVersion>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -31,9 +33,8 @@
     <DefineConstants>TRACE;DEBUG;__ANDROID__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis />
+    <AndroidSupportedAbis>x86;x86_64</AndroidSupportedAbis>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,10 +46,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
-    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -70,6 +69,7 @@
     <Compile Include="Infrastructure\Collections\AdapterUpdater.cs" />
     <Compile Include="Infrastructure\Dialogs\DialogService.cs" />
     <Compile Include="Infrastructure\Dialogs\ToastService.cs" />
+    <Compile Include="Infrastructure\Payment\PaymentFragmentProvider.cs" />
     <Compile Include="Infrastructure\Theme\AppThemeController.cs" />
     <Compile Include="NativeExtension\EditTextExtension.cs" />
     <Compile Include="NativeExtension\Events\EventsExtension.cs" />
@@ -109,6 +109,9 @@
     <Compile Include="Screens\Contacts\ContactFragmentViewHolder.cs" />
     <Compile Include="Screens\Contacts\ContactItemViewHolder.cs" />
     <Compile Include="Screens\Contacts\ContactsWay.cs" />
+    <Compile Include="Screens\Donate\DonateFragment.cs" />
+    <Compile Include="Screens\Donate\DonateFragmentViewHolder.cs" />
+    <Compile Include="Screens\Donate\DonateWay.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchRssAdapter.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlyRssViewHolder.cs" />
     <Compile Include="Screens\FeedlySearch\FeedlySearchFragment.cs" />
@@ -199,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_check_24.xml" />
+    <AndroidResource Include="Resources\drawable\baseline_payment_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_refresh_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_rss_feed_24.xml" />
     <AndroidResource Include="Resources\drawable\vector_test.xml" />
@@ -207,6 +211,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_animation_weaver.xml" />
+    <AndroidResource Include="Resources\layout\fragment_donate.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_favorite_messages_list.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -354,6 +362,9 @@
     </PackageReference>
     <PackageReference Include="Fody">
       <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="GooglePlayServices.Wallet">
+      <Version>1.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="JetBrains.Annotations">
       <Version>2019.1.1</Version>

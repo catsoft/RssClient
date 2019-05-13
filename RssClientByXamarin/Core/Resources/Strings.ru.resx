@@ -155,4 +155,8 @@
         <value>Не верный адрес</value>
     </data>
     
+    <data name="DonateTitle" xml:space="preserve">
+        <value>Донат</value>
+    </data>
+    
 </root>

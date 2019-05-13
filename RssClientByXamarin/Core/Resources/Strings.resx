@@ -155,4 +155,8 @@ Someone may want to translate applications into other languages. I will provide 
         <value>Url is not valid</value>
     </data>
     
+    <data name="DonateTitle" xml:space="preserve">
+        <value>Donate</value>
+    </data>
+    
 </root>

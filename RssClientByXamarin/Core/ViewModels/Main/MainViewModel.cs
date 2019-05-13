@@ -7,6 +7,7 @@ using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using Core.ViewModels.About;
 using Core.ViewModels.Contacts;
+using Core.ViewModels.Donate;
 using Core.ViewModels.FeedlySearch;
 using Core.ViewModels.Messages.AllMessages;
 using Core.ViewModels.Messages.FavoriteMessages;
@@ -32,6 +33,7 @@ namespace Core.ViewModels.Main
             OpenFavoriteMessagesCommand = ReactiveCommand.Create(DoOpenFavoriteMessages).NotNull();
             OpenSettingsCommand = ReactiveCommand.Create(DoOpenSettings).NotNull();
             OpenContactsCommand = ReactiveCommand.Create(DoOpenContacts).NotNull();
+            OpenDonateCommand = ReactiveCommand.Create(DoOpenDonate).NotNull();
             OpenAboutCommand = ReactiveCommand.Create(DoOpenAbout).NotNull();
         }
 
@@ -44,6 +46,8 @@ namespace Core.ViewModels.Main
         [NotNull] public ReactiveCommand<Unit, Unit> OpenSettingsCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenContactsCommand { get; }
+        
+        [NotNull] public ReactiveCommand<Unit, Unit> OpenDonateCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenAboutCommand { get; }
 
@@ -66,6 +70,8 @@ namespace Core.ViewModels.Main
         private void DoOpenSettings() { _navigator.Go(App.Container.Resolve<IWay<SettingsViewModel>>().NotNull()); }
 
         private void DoOpenContacts() { _navigator.Go(App.Container.Resolve<IWay<ContactsViewModel>>().NotNull()); }
+        
+        private void DoOpenDonate() { _navigator.Go(App.Container.Resolve<IWay<DonateViewModel>>().NotNull()); }
 
         private void DoOpenAbout() { _navigator.Go(App.Container.Resolve<IWay<AboutViewModel>>().NotNull()); }
     }

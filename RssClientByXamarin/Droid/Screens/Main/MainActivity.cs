@@ -52,6 +52,8 @@ namespace Droid.Screens.Main
                 ViewModel.OpenContactsCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_rate)
                 this.RateInMarket();
+            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_donate)
+                ViewModel.OpenDonateCommand.ExecuteIfCan();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about) ViewModel.OpenAboutCommand.ExecuteIfCan();
 
             menuItem.SetChecked(true);

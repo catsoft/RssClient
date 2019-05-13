@@ -243,5 +243,11 @@ namespace Core.Resources {
                 return ResourceManager.GetString("UrlIsNotValid", resourceCulture);
             }
         }
+        
+        public static string DonateTitle {
+            get {
+                return ResourceManager.GetString("DonateTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using Core.ViewModels.About;
 using Core.ViewModels.AnimationWeaver;
 using Core.ViewModels.Close;
 using Core.ViewModels.Contacts;
+using Core.ViewModels.Donate;
 using Core.ViewModels.FeedlySearch;
 using Core.ViewModels.Main;
 using Core.ViewModels.Messages.AllMessages;
@@ -39,24 +40,26 @@ namespace Core.Container.Modules
 
             builder.RegisterType<MainViewModel>().AsSelf();
 
-            builder.RegisterType<AboutViewModel>().AsSelf();
             builder.RegisterType<CloseViewModel>().AsSelf();
-            builder.RegisterType<ContactsViewModel>().AsSelf();
+            
+            builder.RegisterType<FavoriteMessagesViewModel>().AsSelf();
             builder.RegisterType<FeedlySearchViewModel>().AsSelf();
-            builder.RegisterType<AllMessagesViewModel>().AsSelf();
-            builder.RegisterType<AllMessagesFilterViewModel>().AsSelf();
-
+            builder.RegisterType<SettingsViewModel>().AsSelf();
+            builder.RegisterType<ContactsViewModel>().AsSelf();
+            builder.RegisterType<DonateViewModel>().AsSelf();
+            builder.RegisterType<AboutViewModel>().AsSelf();
+    
             builder.RegisterType<AllMessagesFilterFilterViewModel>().AsSelf();
             builder.RegisterType<AllMessagesOrderFilterViewModel>().AsSelf();
-
+            builder.RegisterType<AllMessagesViewModel>().AsSelf();
+            builder.RegisterType<AllMessagesFilterViewModel>().AsSelf();
+            
             builder.RegisterType<RssFeedCreateViewModel>().AsSelf();
             builder.RegisterType<RssFeedEditViewModel>().AsSelf();
-            builder.RegisterType<FavoriteMessagesViewModel>().AsSelf();
             builder.RegisterType<RssFeedMessagesListViewModel>().AsSelf();
             builder.RegisterType<RssFeedListViewModel>().AsSelf();
             builder.RegisterType<RssFeedEditableListViewModel>().AsSelf();
             builder.RegisterType<MessageViewModel>().AsSelf();
-            builder.RegisterType<SettingsViewModel>().AsSelf();
 
             builder.RegisterType<SettingsAnimationViewModel>().AsSelf();
             builder.RegisterType<SettingsLoadImagesViewModel>().AsSelf();

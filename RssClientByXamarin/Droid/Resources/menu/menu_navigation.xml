@@ -33,6 +33,11 @@
             android:id="@+id/menuItem_navigationMenu_rate"
             android:icon="@drawable/baseline_stars_24"
             android:title="@string/menuNavigation_rate"/>
+    
+        <item
+            android:id="@+id/menuItem_navigationMenu_donate"
+            android:icon="@drawable/baseline_payment_24"
+            android:title="@string/menuNavigation_donate"/>
         
         <item
             android:id="@+id/menuItem_navigationMenu_about"

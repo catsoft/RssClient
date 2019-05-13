@@ -1,10 +1,12 @@
 ﻿using Android.App;
+using Android.Support.V7.App;
 using Autofac;
 using Core.Infrastructure.Navigation;
 using Core.ViewModels.About;
 using Core.ViewModels.AnimationWeaver;
 using Core.ViewModels.Close;
 using Core.ViewModels.Contacts;
+using Core.ViewModels.Donate;
 using Core.ViewModels.FeedlySearch;
 using Core.ViewModels.Messages.AllMessages;
 using Core.ViewModels.Messages.AllMessagesFilter;
@@ -20,6 +22,7 @@ using Droid.Screens.About;
 using Droid.Screens.AnimationWeaver;
 using Droid.Screens.Close;
 using Droid.Screens.Contacts;
+using Droid.Screens.Donate;
 using Droid.Screens.FeedlySearch;
 using Droid.Screens.Main;
 using Droid.Screens.Messages.AllMessages;
@@ -58,10 +61,12 @@ namespace Droid.Container.Modules
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();
             builder.RegisterType<AnimationWeaverWay>().As<IWay<AnimationWeaverViewModel>>();
             builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel>>();
+            builder.RegisterType<DonateWay>().As<IWay<DonateViewModel>>();
 
             builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
             
             builder.Register(c => MainActivity.Instance).As<Activity>();
+            builder.Register(c => MainActivity.Instance).As<AppCompatActivity>();
             builder.Register(c => MainActivity.Instance).As<IFragmentManager>();
         }
     }
