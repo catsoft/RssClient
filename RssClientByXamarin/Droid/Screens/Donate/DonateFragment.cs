@@ -42,11 +42,11 @@ namespace Droid.Screens.Donate
             var paymentFragment = paymentService.Resolve(Activity, 100, null, null);
             Activity.SupportFragmentManager.BeginTransaction().Add(_viewHolder.PayContainerLinearLayout.Id, paymentFragment).Commit();
             
-            OnActivation(disposable =>
-            {
-                this.BindCommand(ViewModel, model => model.PayCommand, fragment => fragment._viewHolder.PayButton)
-                    .AddTo(disposable);
-            });
+//            OnActivation(disposable =>
+//            {
+//                this.BindCommand(ViewModel, model => model.PayCommand, fragment => fragment._viewHolder.PayButton)
+//                    .AddTo(disposable);
+//            });
             
             return view;
         }

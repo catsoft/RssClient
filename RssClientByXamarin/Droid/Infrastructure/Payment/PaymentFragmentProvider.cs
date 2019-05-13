@@ -8,6 +8,9 @@ namespace Droid.Infrastructure.Payment
 {
     public class PaymentFragmentProvider
     {
+        private string MerchantId = "14181436534315449074";
+        private string MerchantName = "Catsoft";
+        
         public Fragment Resolve(Context context, double amount, GoogleApiClient.IConnectionCallbacks connectionCallbacks,
             GoogleApiClient.IOnConnectionFailedListener connectionFailedListener)
         {
@@ -36,10 +39,11 @@ namespace Droid.Infrastructure.Payment
                         .AddParameter("stripe:version", "1.15.1")
                         .Build())
                 .SetShippingAddressRequired(true)
-                .SetMerchantName("Xamarin")
+                .SetMerchantName(MerchantName)
+                .SetMerchantTransactionId(MerchantId)
                 .SetPhoneNumberRequired(true)
                 .SetShippingAddressRequired(true)
-                .SetEstimatedTotalPrice("20.00")
+                .SetEstimatedTotalPrice("1.00")
                 .SetCurrencyCode("RUB")
                 .Build();
 
