@@ -48,7 +48,13 @@ namespace Droid.Screens.Donate
 
             OnActivation(disposable =>
             {
-                this.OneWayBind(ViewModel, model => model.PriceString, fragment => fragment._viewHolder.PriceTextView)
+                this.OneWayBind(ViewModel, model => model.PriceString, fragment => fragment._viewHolder.PriceTextView.Text)
+                    .AddTo(disposable);
+                
+                this.OneWayBind(ViewModel, model => model.QiwiString, fragment => fragment._viewHolder.QiwiTextView.Text)
+                    .AddTo(disposable);
+                
+                this.BindCommand(ViewModel, model => model.QiwiCopyCommand, fragment => fragment._viewHolder.CopyImageView)
                     .AddTo(disposable);
             });
             

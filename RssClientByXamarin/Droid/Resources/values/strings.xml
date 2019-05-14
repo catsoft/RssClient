@@ -135,4 +135,5 @@
     <string name="DonateButtonTitle">Pay now</string>
     <string name="menuNavigation_donate">Donate</string>
     <string name="DonateSupportDeveloper">If you want to support developer</string>
+    <string name="DonateInDeveloping">In developing</string>
 </resources>

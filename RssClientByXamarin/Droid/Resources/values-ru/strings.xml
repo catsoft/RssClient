@@ -131,5 +131,6 @@
     <string name="DonateButtonTitle">Оплатить сейчас</string>
     <string name="menuNavigation_donate">Донат</string>
     <string name="DonateSupportDeveloper">Если хотите поддержать разработчика</string>
+    <string name="DonateInDeveloping">В разработке</string>
 
 </resources>
