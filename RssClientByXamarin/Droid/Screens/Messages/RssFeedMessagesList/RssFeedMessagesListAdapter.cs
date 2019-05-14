@@ -15,7 +15,6 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         IClickable<RssMessageServiceModel>,
         ILongClick<RssMessageServiceModel>,
         ISwipeActions<RssMessageServiceModel>
-
     {
         private readonly AppConfiguration _appConfiguration;
 
@@ -39,6 +38,8 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.list_item_rss_message, parent, false);
             var holder = new RssFeedMessageItemListViewHolder(view, _appConfiguration.LoadAndShowImages);
 
+            holder.IsShowContent = _appConfiguration.ReaderType == ReaderType.Strip;
+            
             holder.RootRelativeLayout.Click += (sender, args) => Click?.Invoke(sender, holder.Item);
             holder.RootRelativeLayout.LongClick += (sender, args) => LongClick?.Invoke(sender, holder.Item);
 

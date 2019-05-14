@@ -42,6 +42,8 @@ namespace Core.ViewModels.Messages
         [NotNull]
         private async Task DoOpenContentScreen([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
+            //TODO change Ready type navigation
+            
             var parameter = new MessageParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
             var way = App.Container.Resolve<IWayWithParameters<MessageViewModel, MessageParameters>>(typedParameter).NotNull();

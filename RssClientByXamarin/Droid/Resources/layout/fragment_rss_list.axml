@@ -37,7 +37,7 @@
         app:layout_anchorGravity="top|end"
         app:useCompatPadding="true"
         app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_check_24"
+        app:srcCompat="@drawable/baseline_done_all_24"
         app:layout_behavior="@string/fab_behaviour_hide"/>
     
     <android.support.design.widget.FloatingActionButton

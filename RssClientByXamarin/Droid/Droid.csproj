@@ -205,7 +205,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\baseline_check_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_done_all_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_file_copy_24.xml" />
     <AndroidResource Include="Resources\drawable\baseline_payment_24.xml" />

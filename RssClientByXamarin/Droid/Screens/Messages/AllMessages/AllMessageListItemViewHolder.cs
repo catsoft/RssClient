@@ -15,6 +15,8 @@ namespace Droid.Screens.Messages.AllMessages
 {
     public class AllMessageListItemViewHolder : BaseMessageItemViewHolder, IShowAndLoadImage
     {
+        private bool _isShowContent;
+
         public AllMessageListItemViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
@@ -52,33 +54,52 @@ namespace Droid.Screens.Messages.AllMessages
         
         public bool IsShowAndLoadImages { get; }
 
+        public bool IsShowContent
+        {
+            get => _isShowContent;
+            set
+            {
+                _isShowContent = value;
+                var visibility = value.ToVisibility();
+                TextWebView.Visibility = visibility;
+                ImageView.Visibility = visibility;
+            }
+        }
+
         public override void BindData(RssMessageServiceModel item)
         {
             Item = item;
 
             TitleTextView.Text = item.Title;
-            TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             CanalTextView.Text = item.RssTitle;
             RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
-
             MiniIconImageView.Visibility = IsShowAndLoadImages.ToVisibility();
             
             if (IsShowAndLoadImages)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
-                ImageService.Instance
-                    .NotNull()
-                    .LoadUrl(item.ImageUrl)
-                    .Into(ImageView);
+
+                if (IsShowContent)
+                {
+                    ImageService.Instance
+                        .NotNull()
+                        .LoadUrl(item.ImageUrl)
+                        .Into(ImageView);
+                }
                 
                 ImageService.Instance.NotNull()
                     .LoadUrl(item.RssIcon)
                     .WithCache(CacheType.All)
                     .NotNull()
                     .Into(MiniIconImageView);
+            }
+
+            if (IsShowContent)
+            {
+                TextWebView.SetHtml(item.TextHtml);
             }
         }
     }

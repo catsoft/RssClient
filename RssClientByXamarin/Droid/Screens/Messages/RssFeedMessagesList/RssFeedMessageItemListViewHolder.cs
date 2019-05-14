@@ -13,6 +13,8 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 {
     public class RssFeedMessageItemListViewHolder : BaseMessageItemViewHolder, IShowAndLoadImage
     {
+        private bool _isShowContent;
+
         public RssFeedMessageItemListViewHolder([NotNull] View itemView, bool isShowAndLoadImages) : base(itemView)
         {
             IsShowAndLoadImages = isShowAndLoadImages;
@@ -44,6 +46,18 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
         
         public bool IsShowAndLoadImages { get; }
 
+        public bool IsShowContent
+        {
+            get => _isShowContent;
+            set
+            {
+                _isShowContent = value;
+                var visibility = value.ToVisibility();
+                TextWebView.Visibility = visibility;
+                ImageView.Visibility = visibility;
+            }
+        }
+
         public override void BindData(RssMessageServiceModel item)
         {
             Item = item;
@@ -55,7 +69,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
 
-            if (IsShowAndLoadImages)
+            if (IsShowAndLoadImages && IsShowContent)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
                 ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
