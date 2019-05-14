@@ -126,8 +126,10 @@
     <Compile Include="Screens\Messages\AllMessages\AllMessagesFragment.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesListAdapter.cs" />
+    <Compile Include="Screens\Messages\AllMessages\BaseAllMessagesListAdapter.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessageListItemViewHolder.cs" />
     <Compile Include="Screens\Messages\AllMessages\AllMessagesWay.cs" />
+    <Compile Include="Screens\Messages\AllMessages\FavoriteMessagesListAdapter.cs" />
     <Compile Include="Screens\Messages\BaseMessageItemViewHolder.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragment.cs" />

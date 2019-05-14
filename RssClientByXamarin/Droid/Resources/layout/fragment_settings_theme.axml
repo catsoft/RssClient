@@ -26,21 +26,21 @@
             android:orientation="vertical">
             
             <TextView
-                style="@style/TextView.Body1"
+                style="@style/TextView.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:gravity="center|left"
                 android:text="@string/settings_theme_dark"/>
             
             <TextView
-                style="@style/TextView.Body1"
+                style="@style/TextView.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:gravity="center|left"
                 android:text="@string/settings_theme_light"/>
             
             <TextView
-                style="@style/TextView.Body1"
+                style="@style/TextView.Body2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:gravity="center|left"

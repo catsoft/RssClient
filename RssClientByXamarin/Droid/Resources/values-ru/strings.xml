@@ -132,5 +132,10 @@
     <string name="menuNavigation_donate">Донат</string>
     <string name="DonateSupportDeveloper">Если хотите поддержать разработчика</string>
     <string name="DonateInDeveloping">В разработке</string>
+    <string name="settings_start_readerType">Тип читалки</string>
+    <string name="settings_readerType_book">Как книга</string>
+    <string name="settings_readerType_strip">Лента</string>
+    <string name="ReaderTypeCaptionBook">Отображается только заголовок сообщения. По клику перед на вью пейджер с полными сообщениями</string>
+    <string name="ReaderTypeCaptionStrip">Контент сообщений в списке сообщений. Переход на оригинал по клику на сообщение</string>
 
 </resources>

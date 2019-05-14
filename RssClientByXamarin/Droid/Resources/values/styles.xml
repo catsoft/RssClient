@@ -54,6 +54,10 @@
 
     </style>
     
+    <style name="TextView.Caption" parent="Base.TextAppearance.AppCompat.Caption">
+    
+    </style>
+    
     
     <style name="TextView.Empty" parent="Base.TextAppearance.AppCompat.Large">
         <item name="android:gravity">center</item>
