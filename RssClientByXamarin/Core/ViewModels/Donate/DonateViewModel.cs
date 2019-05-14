@@ -1,8 +1,6 @@
-using System.Reactive;
-using Core.Extensions;
 using Core.Infrastructure.ViewModels;
-using JetBrains.Annotations;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Core.ViewModels.Donate
 {
@@ -10,13 +8,19 @@ namespace Core.ViewModels.Donate
     {
         public DonateViewModel()
         {
-            PayCommand = ReactiveCommand.Create<double>(DoPay).NotNull();
+            this.WhenAnyValue(model => model.Amount, model => model.Currency, (amount, currency) => $"Donate value: {amount} {currency}");
         }
-        
-        [NotNull] public ReactiveCommand<double, Unit> PayCommand { get; }
 
-        private void DoPay(double amount)
-        {
-        }
+        public string Amount = "1.0";
+
+        public string Currency = "RUB";
+
+        public string Gateway = "stripe";
+
+        public string PublishKey = "pk_test_XK3lj9w1QwRekmJaOpLrYMlo00jivh8zFO";
+
+        public string StripeVersion = "2018-11-08";
+
+        public extern string PriceString { [ObservableAsProperty] get; }
     }
 }

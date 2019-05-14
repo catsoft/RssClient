@@ -1,25 +1,18 @@
-using Android.Content;
-using Android.Gms.Common.Apis;
+using System.Collections.Generic;
+using System.Globalization;
 using Android.Gms.Wallet;
 using Android.Gms.Wallet.Fragment;
-using Android.Support.V4.App;
+using Java.Lang;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace Droid.Infrastructure.Payment
 {
     public class PaymentFragmentProvider
     {
-        private string MerchantId = "14181436534315449074";
-        private string MerchantName = "Catsoft";
-        
-        public Fragment Resolve(Context context, double amount, GoogleApiClient.IConnectionCallbacks connectionCallbacks,
-            GoogleApiClient.IOnConnectionFailedListener connectionFailedListener)
-        {
-//            var apiClient = new GoogleApiClient.Builder(context)
-//                .AddConnectionCallbacks(connectionCallbacks)
-//                .AddOnConnectionFailedListener(connectionFailedListener)
-//                .AddApi(WalletClass.API)
-//                .Build();
+        public const int RequestCode = 666;
 
+        public Fragment Resolve(string amount, string currency, string gateway, string publishKey, string version)
+        {
             var walletFragment = SupportWalletFragment.NewInstance(WalletFragmentOptions.NewBuilder()
                 .SetEnvironment(WalletConstants.EnvironmentTest)
                 .SetMode(WalletFragmentMode.BuyButton)
@@ -33,23 +26,27 @@ namespace Droid.Infrastructure.Payment
             var maskedWalletRequest = MaskedWalletRequest.NewBuilder()
                 .SetPaymentMethodTokenizationParameters(
                     PaymentMethodTokenizationParameters.NewBuilder()
-                        .SetPaymentMethodTokenizationType(WalletConstants.PaymentMethodTokenizationTypeDirect)
-                        .AddParameter("gateway", "stripe")
-                        .AddParameter("stripe:publishableKey", /**/ "dfasdfa")
-                        .AddParameter("stripe:version", "1.15.1")
+                        .SetPaymentMethodTokenizationType(WalletConstants.PaymentMethodTokenizationTypePaymentGateway)
+                        .AddParameter("gateway", gateway)
+                        .AddParameter("stripe:publishableKey", publishKey)
+                        .AddParameter("stripe:version", version)
                         .Build())
-                .SetShippingAddressRequired(true)
-                .SetMerchantName(MerchantName)
-                .SetMerchantTransactionId(MerchantId)
-                .SetPhoneNumberRequired(true)
-                .SetShippingAddressRequired(true)
-                .SetEstimatedTotalPrice("1.00")
-                .SetCurrencyCode("RUB")
+                .SetEstimatedTotalPrice(amount.ToString(CultureInfo.InvariantCulture))
+                .SetCurrencyCode(currency)
+                .AddAllowedCardNetwork(WalletConstants.PaymentMethodCard)
+                .AddAllowedCardNetwork(WalletConstants.PaymentMethodTokenizedCard)
+                .AddAllowedCardNetworks(new List<Integer>()
+                {
+                    new Integer(WalletConstants.CardNetworkAmex),
+                    new Integer(WalletConstants.CardNetworkDiscover),
+                    new Integer(WalletConstants.CardNetworkVisa),
+                    new Integer(WalletConstants.CardNetworkMastercard),
+                })
                 .Build();
 
             walletFragment.Initialize(WalletFragmentInitParams.NewBuilder()
                 .SetMaskedWalletRequest(maskedWalletRequest)
-                .SetMaskedWalletRequestCode( /**/1)
+                .SetMaskedWalletRequestCode(RequestCode)
                 .Build());
 
             return walletFragment;

@@ -131,7 +131,8 @@
     <string name="settings_auto_update">Auto update</string>
     <string name="settings_autoUpdate_intervalHint">Interval (in minutes)</string>
     <string name="widget_rssList_emptyText">Here you have nothing yet</string>
-    <string name="fab_behaviour_hide">HideFab.ScrollAwareFABBehavior</string>
+    <string name="fab_behaviour_hide" translatable="false">HideFab.ScrollAwareFABBehavior</string>
     <string name="DonateButtonTitle">Pay now</string>
     <string name="menuNavigation_donate">Donate</string>
+    <string name="DonateSupportDeveloper">If you want to support developer</string>
 </resources>

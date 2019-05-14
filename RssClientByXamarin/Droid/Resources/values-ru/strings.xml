@@ -127,5 +127,9 @@
     <string name="settings_auto_update_header">Авто обновление</string>
     <string name="settings_auto_update">Авто обновление</string>
     <string name="settings_autoUpdate_intervalHint">Интервал (в минутах)</string>
+    <string name="widget_rssList_emptyText">Здесь у вас еще ничего нет</string>
+    <string name="DonateButtonTitle">Оплатить сейчас</string>
+    <string name="menuNavigation_donate">Донат</string>
+    <string name="DonateSupportDeveloper">Если хотите поддержать разработчика</string>
 
 </resources>

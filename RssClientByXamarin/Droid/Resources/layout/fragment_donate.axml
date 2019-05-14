@@ -8,7 +8,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="If you want to support developer"
+        android:text="@string/DonateSupportDeveloper"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"/>
+    
+    <TextView
+        android:id="@+id/textView_donate_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"

@@ -15,17 +15,17 @@ namespace Droid.Screens.Donate
     public class DonateFragment : BaseFragment<DonateViewModel>
     {
         [NotNull] private DonateFragmentViewHolder _viewHolder;
-        
+
         protected override int LayoutId => Resource.Layout.fragment_donate;
-        
+
         public override bool IsRoot => true;
-        
+
         // ReSharper disable once EmptyConstructor
         // ReSharper disable once NotNullMemberIsNotInitialized
         public DonateFragment()
         {
         }
-        
+
         protected override void RestoreState(Bundle saved)
         {
         }
@@ -35,18 +35,22 @@ namespace Droid.Screens.Donate
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             Title = Strings.DonateTitle;
-            
+
             _viewHolder = new DonateFragmentViewHolder(view);
 
             var paymentService = App.Container.Resolve<PaymentFragmentProvider>();
-            var paymentFragment = paymentService.Resolve(Activity, 100, null, null);
+
+            view.Clickable = true;
+
+            var paymentFragment = paymentService.Resolve(ViewModel.Amount, ViewModel.Currency, ViewModel.Gateway, ViewModel.PublishKey,
+                ViewModel.StripeVersion);
             Activity.SupportFragmentManager.BeginTransaction().Add(_viewHolder.PayContainerLinearLayout.Id, paymentFragment).Commit();
-            
-//            OnActivation(disposable =>
-//            {
-//                this.BindCommand(ViewModel, model => model.PayCommand, fragment => fragment._viewHolder.PayButton)
-//                    .AddTo(disposable);
-//            });
+
+            OnActivation(disposable =>
+            {
+                this.OneWayBind(ViewModel, model => model.PriceString, fragment => fragment._viewHolder.PriceTextView)
+                    .AddTo(disposable);
+            });
             
             return view;
         }
