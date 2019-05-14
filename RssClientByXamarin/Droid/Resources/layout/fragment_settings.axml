@@ -10,6 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+    
+        <fragment
+            android:id="@+id/fragment_settings_readerType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="Droid.Screens.Settings.ReaderTypes.SettingsReaderTypeFragment"/>
+    
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
         
         <fragment
             android:id="@+id/fragment_settings_theme"

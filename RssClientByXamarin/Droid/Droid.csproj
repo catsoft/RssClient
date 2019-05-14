@@ -176,6 +176,8 @@
     <Compile Include="Screens\Settings\HideReadMessages\SettingsHideReadMessagesFragmentViewHolder.cs" />
     <Compile Include="Screens\Settings\Pushes\SettingsPushesFragment.cs" />
     <Compile Include="Screens\Settings\Pushes\SettingsPushesFragmentViewHolder.cs" />
+    <Compile Include="Screens\Settings\ReaderTypes\SettingsReaderTypeFragment.cs" />
+    <Compile Include="Screens\Settings\ReaderTypes\SettingsReaderTypeFragmentViewHolder.cs" />
     <Compile Include="Screens\Settings\RssDetail\SettingsRssDetailFragment.cs" />
     <Compile Include="Screens\Settings\RssDetail\SettingsRssDetailFragmentViewHolder.cs" />
     <Compile Include="Screens\Settings\SettingsFragmentViewHolder.cs" />
@@ -261,6 +263,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings_pushes.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings_reader_type.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>

@@ -18,6 +18,8 @@ namespace Core.Configuration.Settings
         public AnimationType AnimationEnter { get; set; } = AnimationType.Right;
         
         public AnimationType AnimationExit { get; set; } = AnimationType.Left;
+        
+        public ReaderType ReaderType { get; set; } = ReaderType.Strip;
 
         public bool IsDelay { get; set; } = true;
 

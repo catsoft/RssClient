@@ -24,6 +24,7 @@ using Core.ViewModels.Settings.AutoUpdating;
 using Core.ViewModels.Settings.HideReadMessages;
 using Core.ViewModels.Settings.LoadImages;
 using Core.ViewModels.Settings.Pushes;
+using Core.ViewModels.Settings.ReaderTypes;
 using Core.ViewModels.Settings.RssDetail;
 using Core.ViewModels.Settings.StartPage;
 using Core.ViewModels.Settings.Theme;
@@ -69,6 +70,7 @@ namespace Core.Container.Modules
             builder.RegisterType<SettingsThemeViewModel>().AsSelf();
             builder.RegisterType<SettingsPushesViewModel>().AsSelf();
             builder.RegisterType<SettingsAutoUpdateViewModel>().AsSelf();
+            builder.RegisterType<SettingsReaderTypeViewModel>().AsSelf();
             
             builder.RegisterType<AnimationWeaverViewModel>().AsSelf();
             

@@ -136,4 +136,7 @@
     <string name="menuNavigation_donate">Donate</string>
     <string name="DonateSupportDeveloper">If you want to support developer</string>
     <string name="DonateInDeveloping">In developing</string>
+    <string name="settings_start_readerType">Reader Type</string>
+    <string name="settings_readerType_book">Book</string>
+    <string name="settings_readerType_strip">Strip</string>
 </resources>
