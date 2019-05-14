@@ -71,6 +71,7 @@ namespace Droid.Screens.Messages.AllMessages
             Item = item;
 
             TitleTextView.Text = item.Title;
+            TitleTextView.Visibility = item.Title.IsNotEmpty().ToVisibility();
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             CanalTextView.Text = item.RssTitle;
             RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);

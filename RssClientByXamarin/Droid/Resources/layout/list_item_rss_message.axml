@@ -33,15 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:layout_below="@+id/textView_messagesItem_date"
-        android:layout_marginBottom="8dp"/>
+        android:layout_below="@+id/textView_messagesItem_date"/>
     
     <WebView
         android:id="@+id/webView_messagesItem_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_messagesItem_title"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginTop="8dp"/>
     
     <FFImageLoading.Views.ImageViewAsync
         android:id="@+id/imageView_messagesItem_image"
@@ -49,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:layout_below="@+id/webView_messagesItem_text"/>

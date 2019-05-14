@@ -1,6 +1,7 @@
 ﻿using Android.Views;
 using Android.Webkit;
 using Android.Widget;
+using Core.Extensions;
 using Core.Infrastructure.Locale;
 using Core.Services.RssMessages;
 using Droid.NativeExtension;
@@ -63,6 +64,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             Item = item;
 
             TitleTextView.Text = item.Title;
+            TitleTextView.Visibility = item.Title.IsNotEmpty().ToVisibility();
             TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
