@@ -34,6 +34,8 @@ namespace Droid.Screens.Messages.AllMessages
             TextWebView.Init();
             TextWebView.DisableScroll();
             TextWebView.TurnLoadImages(isShowAndLoadImages);
+
+            IsShowContent = true;
         }
 
         [NotNull] public TextView TitleTextView { get; }
@@ -101,6 +103,7 @@ namespace Droid.Screens.Messages.AllMessages
             if (IsShowContent)
             {
                 TextWebView.SetHtml(item.TextHtml);
+                TextWebView.Visibility = item.TextHtml.IsNotEmpty().ToVisibility();
             }
         }
     }

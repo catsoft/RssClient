@@ -31,6 +31,8 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             TextWebView.Init();
             TextWebView.DisableScroll();
             TextWebView.TurnLoadImages(isShowAndLoadImages);
+
+            IsShowContent = true;
         }
 
         [NotNull] public TextView TitleTextView { get; }
@@ -65,7 +67,6 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 
             TitleTextView.Text = item.Title;
             TitleTextView.Visibility = item.Title.IsNotEmpty().ToVisibility();
-            TextWebView.SetHtml(item.TextHtml);
             CreationDateTextView.Text = item.CreationDate.ToShortDateLocaleString();
             RootRelativeLayout.SetBackgroundColor(item.IsRead ? BackgroundItemSelectColor : BackgroundItemColor);
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
@@ -75,6 +76,12 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
                 ImageService.Instance.LoadUrl(item.ImageUrl).Into(ImageView);
+            }
+
+            if (IsShowContent)
+            {
+                TextWebView.SetHtml(item.TextHtml);
+                TextWebView.Visibility = item.TextHtml.IsNotEmpty().ToVisibility();
             }
         }
     }
