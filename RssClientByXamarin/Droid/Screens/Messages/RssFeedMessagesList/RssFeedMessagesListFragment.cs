@@ -55,7 +55,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
 
             Title = ViewModel.Parameters.RssFeedModel.Name;
             
-            var adapter = new RssFeedMessagesListAdapter(Activity, ViewModel.AppConfiguration);
+            var adapter = new RssFeedMessagesListAdapter(Activity, ViewModel.AppConfigurationViewModel.AppConfiguration);
             _viewHolder.RecyclerView.SetAdapter(adapter);
 
             var callback = new SwipeButtonTouchHelperCallback();
@@ -80,7 +80,7 @@ namespace Droid.Screens.Messages.RssFeedMessagesList
                     .AddTo(disposable);
                 
                 adapter.GetClickAction()
-                    .InvokeCommand(ViewModel.MessageItemViewModel.OpenContentScreenCommand)
+                    .InvokeCommand(ViewModel.MessageItemViewModel.HandleItemClickCommand)
                     .AddTo(disposable);
 
                 adapter.GetLongClickAction()

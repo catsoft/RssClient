@@ -9,6 +9,7 @@ using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
 using Core.Services.RssMessages;
 using Core.ViewModels.Lists;
+using Core.ViewModels.Settings;
 using JetBrains.Annotations;
 using ReactiveUI;
 
@@ -27,7 +28,9 @@ namespace Core.ViewModels.Messages.FavoriteMessages
             _configurationRepository = configurationRepository;
             LoadCommand = ReactiveCommand.CreateFromTask(DoLoad).NotNull();
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
-            RssMessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
+            AppConfigurationViewModel = new AppConfigurationViewModel(configurationRepository);
+            
+            RssMessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
         }
 
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
@@ -36,7 +39,7 @@ namespace Core.ViewModels.Messages.FavoriteMessages
         
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssMessageServiceModel>> LoadCommand { get; }
         
-        [NotNull] public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
+        [NotNull] public AppConfigurationViewModel AppConfigurationViewModel { get; }
 
         private async Task<IEnumerable<RssMessageServiceModel>> DoLoad(CancellationToken token)
         {

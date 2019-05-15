@@ -35,7 +35,7 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
             
             Title = Activity.GetText(Resource.String.rssFavoriteMessages_title);
 
-            var adapter = new FavoriteMessagesListAdapter(Activity, ViewModel.AppConfiguration);
+            var adapter = new FavoriteMessagesListAdapter(Activity, ViewModel.AppConfigurationViewModel.AppConfiguration);
             _viewHolder.RecyclerView.SetAdapter(adapter);
 
             var callback = new SwipeButtonTouchHelperCallback();
@@ -52,7 +52,7 @@ namespace Droid.Screens.Messages.FavoriteMessagesList
                     .AddTo(disposable);
                 
                 adapter.GetClickAction()
-                    .InvokeCommand(ViewModel.RssMessageItemViewModel.OpenContentScreenCommand)
+                    .InvokeCommand(ViewModel.RssMessageItemViewModel.HandleItemClickCommand)
                     .AddTo(disposable);
 
                 adapter.GetLongClickAction()

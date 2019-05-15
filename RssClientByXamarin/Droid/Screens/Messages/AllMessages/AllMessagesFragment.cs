@@ -65,7 +65,7 @@ namespace Droid.Screens.Messages.AllMessages
                     .AddTo(disposable);
                 
                 adapter.GetClickAction()
-                    .InvokeCommand(ViewModel.MessageItemViewModel.OpenContentScreenCommand)
+                    .InvokeCommand(ViewModel.MessageItemViewModel.HandleItemClickCommand)
                     .AddTo(disposable);
 
                 adapter.GetLongClickAction()

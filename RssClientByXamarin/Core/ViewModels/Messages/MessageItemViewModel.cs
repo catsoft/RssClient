@@ -2,11 +2,14 @@ using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core.Activators.Reflection;
+using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
 using Core.Services.RssMessages;
 using Core.ViewModels.Messages.Message;
+using Core.ViewModels.Settings;
 using DynamicData;
 using JetBrains.Annotations;
 using ReactiveUI;
@@ -18,20 +21,24 @@ namespace Core.ViewModels.Messages
         [NotNull] private readonly INavigator _navigator;
         [NotNull] private readonly IRssMessageService _rssMessageService;
         [CanBeNull] private readonly SourceList<RssMessageServiceModel> _sourceList;
-        
-        public MessageItemViewModel([NotNull] IRssMessageService rssMessageService, [NotNull] INavigator navigator, [CanBeNull] SourceList<RssMessageServiceModel> sourceList)
+        private readonly AppConfigurationViewModel _configurationViewModel;
+
+        public MessageItemViewModel([NotNull] IRssMessageService rssMessageService, [NotNull] INavigator navigator,
+            [CanBeNull] SourceList<RssMessageServiceModel> sourceList, AppConfigurationViewModel configurationViewModel
+        )
         {
             _rssMessageService = rssMessageService;
             _navigator = navigator;
             _sourceList = sourceList;
-            
-            OpenContentScreenCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoOpenContentScreen).NotNull();
+            _configurationViewModel = configurationViewModel;
+
+            HandleItemClickCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoHandleItemClick).NotNull();
             ChangeReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeReadItem).NotNull();
             ChangeFavoriteCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeFavoriteItem).NotNull();
             ShareItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoShareItem).NotNull();
         }
 
-        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> OpenContentScreenCommand { get; }
+        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> HandleItemClickCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeReadItemCommand { get; }
         
@@ -40,14 +47,18 @@ namespace Core.ViewModels.Messages
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ShareItemCommand { get; }
         
         [NotNull]
-        private async Task DoOpenContentScreen([NotNull] RssMessageServiceModel model, CancellationToken token)
+        private async Task DoHandleItemClick([NotNull] RssMessageServiceModel model, CancellationToken token)
         {
-            //TODO change Ready type navigation
-            
-            var parameter = new MessageParameters(model);
-            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var way = App.Container.Resolve<IWayWithParameters<MessageViewModel, MessageParameters>>(typedParameter).NotNull();
-            _navigator.Go(way);
+            var readerType = _configurationViewModel.AppConfiguration.ReaderType;
+
+            if (readerType == ReaderType.Book)
+            {
+                NavigateToViewPager(model, token);
+            }
+            else if (readerType == ReaderType.Strip)
+            {
+                NavigateToFullMessage(model, token);
+            }
 
             if (!model.IsRead)
             {
@@ -55,6 +66,22 @@ namespace Core.ViewModels.Messages
                 _sourceList?.Replace(model, model);
                 await _rssMessageService.UpdateAsync(model, token);
             }
+        }
+
+        private void NavigateToFullMessage([NotNull] RssMessageServiceModel model, CancellationToken token)
+        {
+            var parameter = new MessageParameters(model);
+            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
+            var way = App.Container.Resolve<IWayWithParameters<MessageViewModel, MessageParameters>>(typedParameter).NotNull();
+            _navigator.Go(way);
+        }
+
+        private void NavigateToViewPager([NotNull] RssMessageServiceModel model, CancellationToken token)
+        {
+            var parameter = new MessageParameters(model);
+            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
+            var way = App.Container.Resolve<IWayWithParameters<MessageViewModel, MessageParameters>>(typedParameter).NotNull();
+            _navigator.Go(way);
         }
 
         [NotNull]

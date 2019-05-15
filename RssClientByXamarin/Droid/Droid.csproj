@@ -131,6 +131,7 @@
     <Compile Include="Screens\Messages\AllMessages\AllMessagesWay.cs" />
     <Compile Include="Screens\Messages\AllMessages\FavoriteMessagesListAdapter.cs" />
     <Compile Include="Screens\Messages\BaseMessageItemViewHolder.cs" />
+    <Compile Include="Screens\Messages\Book\BookMessagesFragment.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragmentViewHolder.cs" />
@@ -216,6 +217,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_animation_weaver.xml" />
+    <AndroidResource Include="Resources\layout\fragment_book_messages.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_donate.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>

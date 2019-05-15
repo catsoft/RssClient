@@ -17,6 +17,7 @@ using Core.ViewModels.Messages.AllMessagesFilter;
 using Core.ViewModels.RssFeeds.Create;
 using Core.ViewModels.RssFeeds.List;
 using Core.ViewModels.RssFeeds.RssFeedsUpdater;
+using Core.ViewModels.Settings;
 using JetBrains.Annotations;
 using ReactiveUI;
 
@@ -40,7 +41,7 @@ namespace Core.ViewModels.Messages.AllMessages
 
             LoadRssMessagesCommand = ReactiveCommand.CreateFromTask(DoLoadRssMessages).NotNull();
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadRssMessagesCommand);
-            MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
+            MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, new AppConfigurationViewModel(configurationRepository));
 
             OpenCreateScreenCommand = ReactiveCommand.Create(DoOpenCreateScreen).NotNull();
             OpenRssListScreenCommand = ReactiveCommand.Create(DoOpenRssListScreen).NotNull();

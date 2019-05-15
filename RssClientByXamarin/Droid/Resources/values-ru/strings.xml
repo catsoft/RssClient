@@ -137,5 +137,6 @@
     <string name="settings_readerType_strip">Лента</string>
     <string name="ReaderTypeCaptionBook">Отображается только заголовок сообщения. По клику перед на вью пейджер с полными сообщениями</string>
     <string name="ReaderTypeCaptionStrip">Контент сообщений в списке сообщений. Переход на оригинал по клику на сообщение</string>
+    <string name="bookMessages_emptyText">Здесь у вас еще ничего нет</string>
 
 </resources>

@@ -15,6 +15,7 @@ using Core.Services.RssFeeds;
 using Core.Services.RssMessages;
 using Core.ViewModels.Lists;
 using Core.ViewModels.RssFeeds;
+using Core.ViewModels.Settings;
 using JetBrains.Annotations;
 using ReactiveUI;
 
@@ -41,11 +42,12 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
             RefreshCommand = ReactiveCommand.CreateFromTask(DoRefresh).NotNull();
             RefreshCommand.SelectUnit().InvokeCommand(LoadCommand);
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
+            AppConfigurationViewModel = new AppConfigurationViewModel(configurationRepository);
             
             var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.Any(rss => !rss.IsRead)).ObserveOn(RxApp.MainThreadScheduler);
             ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand, isNewMessages);
             
-            MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList);
+            MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, null);
 
             RssFeedItemViewModel.DeleteItemCommand
@@ -58,14 +60,14 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
         [NotNull] public MessageItemViewModel MessageItemViewModel { get; }
         
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
+
+        public AppConfigurationViewModel AppConfigurationViewModel { get; }
         
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssMessageServiceModel>> LoadCommand { get; }
         
         [NotNull] public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
         
         [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
-        
-        public AppConfiguration AppConfiguration => _configurationRepository.GetSettings<AppConfiguration>();
 
         private Task DoReadAllMessagesCommand(CancellationToken token)
         {

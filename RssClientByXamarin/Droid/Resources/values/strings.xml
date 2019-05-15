@@ -141,4 +141,5 @@
     <string name="settings_readerType_strip">Strip</string>
     <string name="ReaderTypeCaptionStrip">The content of messages in the message list. Go to the original by clicking on the message</string>
     <string name="ReaderTypeCaptionBook">Only the message header is displayed. By clicking in front of a view pager with full messages</string>
+    <string name="bookMessages_emptyText">Here you have nothing yet</string>
 </resources>
