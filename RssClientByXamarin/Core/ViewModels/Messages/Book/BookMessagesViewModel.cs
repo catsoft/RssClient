@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Infrastructure.Navigation;
@@ -29,6 +30,11 @@ namespace Core.ViewModels.Messages.Book
             
             AppConfigurationViewModel = new AppConfigurationViewModel(configurationRepository);
             MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
+
+            this.WhenAnyValue(model => model.CurrentPosition)
+                .Where(w => !ListViewModel.IsEmpty)
+                .Select(w => CurrentItem)
+                .InvokeCommand(MessageItemViewModel.ReadItemCommand);
         }
         
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }

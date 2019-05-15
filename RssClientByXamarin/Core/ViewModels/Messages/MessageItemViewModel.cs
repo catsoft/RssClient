@@ -35,6 +35,7 @@ namespace Core.ViewModels.Messages
 
             HandleItemClickCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoHandleItemClick).NotNull();
             ChangeReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeReadItem).NotNull();
+            ReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoReadItem).NotNull();
             ChangeFavoriteCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeFavoriteItem).NotNull();
             ShareItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoShareItem).NotNull();
             OpenInBrowserCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoOpenInBrowser).NotNull();
@@ -43,6 +44,8 @@ namespace Core.ViewModels.Messages
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> HandleItemClickCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeReadItemCommand { get; }
+        
+        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ReadItemCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeFavoriteCommand { get; }
         
@@ -92,6 +95,12 @@ namespace Core.ViewModels.Messages
             model.IsRead = !model.IsRead;
             _sourceList?.Replace(model, model);
             await _rssMessageService.UpdateAsync(model, token);
+        }
+        
+        [NotNull]
+        private Task DoReadItem(RssMessageServiceModel model, CancellationToken token)
+        {
+            return !model.IsRead ? DoChangeReadItem(model, token) : Task.CompletedTask;
         }
         
         [NotNull]

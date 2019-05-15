@@ -1,5 +1,6 @@
 using System.Reactive.Linq;
 using Android.OS;
+using Android.Support.V4.View;
 using Android.Views;
 using Core.Extensions;
 using Core.ViewModels.Messages.Book;
@@ -9,7 +10,7 @@ using ReactiveUI;
 
 namespace Droid.Screens.Messages.Book
 {
-    public class BookMessagesFragment : BaseFragment<BookMessagesViewModel>
+    public class BookMessagesFragment : BaseFragment<BookMessagesViewModel>, ViewPager.IOnPageChangeListener
     {
         private BookMessagesFragmentViewHolder _viewHolder;
         
@@ -34,6 +35,8 @@ namespace Droid.Screens.Messages.Book
             
             Title = Activity.GetText(Resource.String.rssList_title);
             
+            HasOptionsMenu = true;
+            
             OnActivation(disposable =>
             {
                 ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
@@ -44,8 +47,15 @@ namespace Droid.Screens.Messages.Book
                 var adapterHolder = new BookViewPagerAdapterHolder(Activity, ViewModel.ListViewModel.ConnectChanges);
                 _viewHolder.ViewPager.Adapter = adapterHolder.Adapter;
                 
-                this.Bind(ViewModel, model => model.CurrentPosition, fragment => fragment._viewHolder.ViewPager.CurrentItem)
+                this.OneWayBind(ViewModel, model => model.CurrentPosition, fragment => fragment._viewHolder.ViewPager.CurrentItem)
                     .AddTo(disposable);
+                
+                _viewHolder.ViewPager.AddOnPageChangeListener(this);
+                
+//                ViewModel.WhenAnyValue(model => model.CurrentPosition)
+//                    .Select(w => w.ToString())
+//                    .Subscribe(w => Title = w)
+//                    .AddTo(disposable);
                 
                 ViewModel.LoadCommand.ExecuteIfCan();
             });
@@ -70,8 +80,21 @@ namespace Droid.Screens.Messages.Book
                     ViewModel.MessageItemViewModel.OpenInBrowserCommand.ExecuteIfCan(ViewModel.CurrentItem);
                     break;
             }
-            
+
             return base.OnOptionsItemSelected(item);
+        }
+
+        public void OnPageScrollStateChanged(int state)
+        {
+        }
+
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+        {
+        }
+
+        public void OnPageSelected(int position)
+        {
+            ViewModel.CurrentPosition = position;
         }
     }
 }
