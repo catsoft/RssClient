@@ -52,11 +52,6 @@ namespace Droid.Screens.Messages.Book
                 
                 _viewHolder.ViewPager.AddOnPageChangeListener(this);
                 
-//                ViewModel.WhenAnyValue(model => model.CurrentPosition)
-//                    .Select(w => w.ToString())
-//                    .Subscribe(w => Title = w)
-//                    .AddTo(disposable);
-                
                 ViewModel.LoadCommand.ExecuteIfCan();
             });
             

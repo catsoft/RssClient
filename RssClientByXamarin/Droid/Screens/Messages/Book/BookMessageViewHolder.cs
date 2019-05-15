@@ -21,6 +21,7 @@ namespace Droid.Screens.Messages.Book
             CanalTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_bookMessage_canal);
             MiniIconImageView = itemView.FindNotNull<ImageViewAsync>(Resource.Id.imageView_bookMessage_miniIcon);
             DateTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_bookMessage_date);
+            CountingTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_bookMessage_counting);
             
             TextWebView.Init();
             TextWebView.DisableScroll();
@@ -37,6 +38,8 @@ namespace Droid.Screens.Messages.Book
         
         [NotNull] public ImageViewAsync MiniIconImageView { get; }
         
+        [NotNull] public TextView CountingTextView { get; }
+        
         public void Bind(RssMessageServiceModel message)
         {
             TextWebView.Visibility = message.TextHtml.IsNotEmpty().ToVisibility();
@@ -51,6 +54,11 @@ namespace Droid.Screens.Messages.Book
                 .WithCache(CacheType.All)
                 .NotNull()
                 .Into(MiniIconImageView);
+        }
+
+        public void SetCounting(int pagerCurrentItem, int adapterCount)
+        {
+            CountingTextView.Text = $"{pagerCurrentItem + 1}/{adapterCount}";
         }
     }
 }
