@@ -142,4 +142,6 @@
     <string name="ReaderTypeCaptionStrip">The content of messages in the message list. Go to the original by clicking on the message</string>
     <string name="ReaderTypeCaptionBook">Only the message header is displayed. By clicking in front of a view pager with full messages</string>
     <string name="bookMessages_emptyText">Here you have nothing yet</string>
+    <string name="menuBookMessage_share">Share</string>
+    <string name="menuBookMessage_openInBrowser">Open in browser</string>
 </resources>

@@ -32,6 +32,8 @@ namespace Droid.Screens.Messages.Book
 
             _viewHolder = new BookMessagesFragmentViewHolder(view);
             
+            Title = Activity.GetText(Resource.String.rssList_title);
+            
             OnActivation(disposable =>
             {
                 ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
@@ -41,11 +43,35 @@ namespace Droid.Screens.Messages.Book
                 
                 var adapterHolder = new BookViewPagerAdapterHolder(Activity, ViewModel.ListViewModel.ConnectChanges);
                 _viewHolder.ViewPager.Adapter = adapterHolder.Adapter;
-
+                
+                this.Bind(ViewModel, model => model.CurrentPosition, fragment => fragment._viewHolder.ViewPager.CurrentItem)
+                    .AddTo(disposable);
+                
                 ViewModel.LoadCommand.ExecuteIfCan();
             });
             
             return view;
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.menu_bookMessage, menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menuItem_bookMessage_share:
+                    ViewModel.MessageItemViewModel.ShareItemCommand.ExecuteIfCan(ViewModel.CurrentItem);
+                    break;
+                
+                case Resource.Id.menuItem_bookMessage_openInBrowser:
+                    ViewModel.MessageItemViewModel.OpenInBrowserCommand.ExecuteIfCan(ViewModel.CurrentItem);
+                    break;
+            }
+            
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

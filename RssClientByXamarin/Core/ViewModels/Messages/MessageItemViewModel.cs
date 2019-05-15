@@ -13,6 +13,7 @@ using Core.ViewModels.Settings;
 using DynamicData;
 using JetBrains.Annotations;
 using ReactiveUI;
+using Xamarin.Essentials;
 
 namespace Core.ViewModels.Messages
 {
@@ -36,6 +37,7 @@ namespace Core.ViewModels.Messages
             ChangeReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeReadItem).NotNull();
             ChangeFavoriteCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeFavoriteItem).NotNull();
             ShareItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoShareItem).NotNull();
+            OpenInBrowserCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoOpenInBrowser).NotNull();
         }
 
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> HandleItemClickCommand { get; }
@@ -45,6 +47,8 @@ namespace Core.ViewModels.Messages
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ChangeFavoriteCommand { get; }
         
         [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> ShareItemCommand { get; }
+        
+        [NotNull] public ReactiveCommand<RssMessageServiceModel, Unit> OpenInBrowserCommand { get; }
         
         [NotNull]
         private async Task DoHandleItemClick([NotNull] RssMessageServiceModel model, CancellationToken token)
@@ -102,6 +106,12 @@ namespace Core.ViewModels.Messages
         private async Task DoShareItem(RssMessageServiceModel model, CancellationToken token)
         {
             await _rssMessageService.ShareAsync(model, token);
+        }
+        
+        [NotNull]
+        private Task DoOpenInBrowser(RssMessageServiceModel message, CancellationToken token)
+        {
+            return Browser.OpenAsync(message.Url);
         }
     }
 }
