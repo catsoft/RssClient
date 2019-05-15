@@ -7,6 +7,7 @@ using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
 using Core.Services.RssMessages;
+using Core.ViewModels.Messages.Book;
 using Core.ViewModels.Messages.Message;
 using Core.ViewModels.Settings;
 using DynamicData;
@@ -52,7 +53,7 @@ namespace Core.ViewModels.Messages
 
             if (readerType == ReaderType.Book)
             {
-                NavigateToViewPager(model);
+                NavigateToBook();
             }
             else if (readerType == ReaderType.Strip)
             {
@@ -75,11 +76,9 @@ namespace Core.ViewModels.Messages
             _navigator.Go(way);
         }
 
-        private void NavigateToViewPager([NotNull] RssMessageServiceModel model)
+        private void NavigateToBook()
         {
-            var parameter = new MessageParameters(model);
-            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var way = App.Container.Resolve<IWayWithParameters<MessageViewModel, MessageParameters>>(typedParameter).NotNull();
+            var way = App.Container.Resolve<IWay<BookMessagesViewModel>>();
             _navigator.Go(way);
         }
 

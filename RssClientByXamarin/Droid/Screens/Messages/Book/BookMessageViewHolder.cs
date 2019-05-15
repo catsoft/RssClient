@@ -8,12 +8,8 @@ namespace Droid.Screens.Messages.Book
 {
     public class BookMessageViewHolder
     {
-        private readonly View _itemView;
-
         public BookMessageViewHolder(View itemView)
         {
-            _itemView = itemView;
-
             TextViewView = itemView.FindNotNull<WebView>(Resource.Id.webView_bookMessage_mainView);
         }
 
