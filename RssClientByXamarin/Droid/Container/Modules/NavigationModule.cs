@@ -10,6 +10,7 @@ using Core.ViewModels.Donate;
 using Core.ViewModels.FeedlySearch;
 using Core.ViewModels.Messages.AllMessages;
 using Core.ViewModels.Messages.AllMessagesFilter;
+using Core.ViewModels.Messages.Book;
 using Core.ViewModels.Messages.FavoriteMessages;
 using Core.ViewModels.Messages.Message;
 using Core.ViewModels.Messages.RssFeedMessagesList;
@@ -27,6 +28,7 @@ using Droid.Screens.FeedlySearch;
 using Droid.Screens.Main;
 using Droid.Screens.Messages.AllMessages;
 using Droid.Screens.Messages.AllMessagesFilter;
+using Droid.Screens.Messages.Book;
 using Droid.Screens.Messages.FavoriteMessagesList;
 using Droid.Screens.Messages.Message;
 using Droid.Screens.Messages.RssFeedMessagesList;
@@ -56,6 +58,7 @@ namespace Droid.Container.Modules
             builder.RegisterType<RssFeedCreateWay>().As<IWay<RssFeedCreateViewModel>>();
             builder.RegisterType<RssFeedEditWay>().As<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>();
             builder.RegisterType<MessageWay>().As<IWayWithParameters<MessageViewModel, MessageParameters>>();
+            builder.RegisterType<BookMessagesWay>().As<IWay<BookMessagesViewModel>>();
 
             builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
             builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();

@@ -2,7 +2,6 @@ using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using Autofac.Core.Activators.Reflection;
 using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Navigation;
@@ -53,11 +52,11 @@ namespace Core.ViewModels.Messages
 
             if (readerType == ReaderType.Book)
             {
-                NavigateToViewPager(model, token);
+                NavigateToViewPager(model);
             }
             else if (readerType == ReaderType.Strip)
             {
-                NavigateToFullMessage(model, token);
+                NavigateToFullMessage(model);
             }
 
             if (!model.IsRead)
@@ -68,7 +67,7 @@ namespace Core.ViewModels.Messages
             }
         }
 
-        private void NavigateToFullMessage([NotNull] RssMessageServiceModel model, CancellationToken token)
+        private void NavigateToFullMessage([NotNull] RssMessageServiceModel model)
         {
             var parameter = new MessageParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
@@ -76,7 +75,7 @@ namespace Core.ViewModels.Messages
             _navigator.Go(way);
         }
 
-        private void NavigateToViewPager([NotNull] RssMessageServiceModel model, CancellationToken token)
+        private void NavigateToViewPager([NotNull] RssMessageServiceModel model)
         {
             var parameter = new MessageParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);

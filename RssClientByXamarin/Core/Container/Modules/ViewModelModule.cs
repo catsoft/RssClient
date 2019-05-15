@@ -10,6 +10,7 @@ using Core.ViewModels.FeedlySearch;
 using Core.ViewModels.Main;
 using Core.ViewModels.Messages.AllMessages;
 using Core.ViewModels.Messages.AllMessagesFilter;
+using Core.ViewModels.Messages.Book;
 using Core.ViewModels.Messages.FavoriteMessages;
 using Core.ViewModels.Messages.Message;
 using Core.ViewModels.Messages.RssFeedMessagesList;
@@ -54,6 +55,7 @@ namespace Core.Container.Modules
             builder.RegisterType<AllMessagesOrderFilterViewModel>().AsSelf();
             builder.RegisterType<AllMessagesViewModel>().AsSelf();
             builder.RegisterType<AllMessagesFilterViewModel>().AsSelf();
+            builder.RegisterType<BookMessagesViewModel>().AsSelf();
             
             builder.RegisterType<RssFeedCreateViewModel>().AsSelf();
             builder.RegisterType<RssFeedEditViewModel>().AsSelf();

@@ -5,7 +5,6 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Configuration.Settings;
 using Core.Extensions;
 using Core.Infrastructure.Dialogs;
 using Core.Infrastructure.Navigation;
@@ -24,7 +23,6 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
     public class RssFeedMessagesListViewModel : ViewModelWithParameter<RssFeedMessagesListParameters>
     {
         [NotNull] private readonly IRssMessageService _rssMessageService;
-        [NotNull] private readonly IConfigurationRepository _configurationRepository;
         [NotNull] private readonly IRssFeedService _rssFeedService;
 
         public RssFeedMessagesListViewModel([NotNull] RssFeedMessagesListParameters parameters,
@@ -35,7 +33,6 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
             [NotNull] IDialogService dialogService) : base(parameters)
         {
             _rssMessageService = rssMessageService;
-            _configurationRepository = configurationRepository;
             _rssFeedService = rssFeedService;
 
             LoadCommand = ReactiveCommand.CreateFromTask(DoLoad).NotNull();

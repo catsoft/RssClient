@@ -7,37 +7,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_rssList_list"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager_bookMessages_pager"
         style="@style/RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     
     <TextView
-        android:id="@+id/textView_rssList_emptyText"
+        android:id="@+id/textView_bookMessages_emptyText"
         style="@style/TextView.Empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/bookMessages_emptyText"/>
-    
-    <Droid.CustomView.DrawableProgressBar
-        android:id="@+id/drawableProgressBar_rssList_topProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
-    
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_rssList_readAll"
-        style="?attr/fabStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        app:layout_anchor="@+id/recyclerView_rssList_list"
-        app:layout_anchorGravity="top|end"
-        app:useCompatPadding="true"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/baseline_done_all_24"
-        app:layout_behavior="@string/fab_behaviour_hide"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -132,6 +132,10 @@
     <Compile Include="Screens\Messages\AllMessages\FavoriteMessagesListAdapter.cs" />
     <Compile Include="Screens\Messages\BaseMessageItemViewHolder.cs" />
     <Compile Include="Screens\Messages\Book\BookMessagesFragment.cs" />
+    <Compile Include="Screens\Messages\Book\BookMessagesFragmentViewHolder.cs" />
+    <Compile Include="Screens\Messages\Book\BookMessagesWay.cs" />
+    <Compile Include="Screens\Messages\Book\BookMessageViewHolder.cs" />
+    <Compile Include="Screens\Messages\Book\BookViewPagerAdapterHolder.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListWay.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragment.cs" />
     <Compile Include="Screens\Messages\FavoriteMessagesList\FavoriteMessagesListFragmentViewHolder.cs" />
@@ -294,6 +298,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\list_item_rss_edit.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\view_book_message.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
