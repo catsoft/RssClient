@@ -55,8 +55,11 @@
         style="@style/TextView.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/divider"/>
+        android:text="counting"
+        android:layout_alignTop="@+id/textView_bookMessage_date"
+        android:layout_alignBottom="@+id/imageView_bookMessage_miniIcon"/>
     
     <WebView
         android:id="@+id/webView_bookMessage_mainView"

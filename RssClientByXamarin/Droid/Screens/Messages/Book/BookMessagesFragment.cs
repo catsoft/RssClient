@@ -44,7 +44,7 @@ namespace Droid.Screens.Messages.Book
                     .BindTo(_viewHolder.EmptyTextView, textView => textView.Visibility)
                     .AddTo(disposable);
                 
-                var adapterHolder = new BookViewPagerAdapterHolder(Activity, ViewModel.ListViewModel.ConnectChanges);
+                var adapterHolder = new BookViewPagerAdapterHolder(Activity, ViewModel.ListViewModel.ConnectChanges, ViewModel.ListViewModel.SourceList);
                 _viewHolder.ViewPager.Adapter = adapterHolder.Adapter;
                 
                 this.OneWayBind(ViewModel, model => model.CurrentPosition, fragment => fragment._viewHolder.ViewPager.CurrentItem)
