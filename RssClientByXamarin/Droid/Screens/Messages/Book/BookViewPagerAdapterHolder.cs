@@ -7,6 +7,7 @@ using ReactiveUI.AndroidSupport;
 
 namespace Droid.Screens.Messages.Book
 {
+    //TODO separate to all messages and feed messages
     public class BookViewPagerAdapterHolder
     {
         private readonly Context _context;
