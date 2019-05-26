@@ -9,27 +9,17 @@ namespace Droid.CustomView
 {
     public class DrawableProgressBar : ImageView
     {
-        protected DrawableProgressBar(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-            Init();
-        }
+        protected DrawableProgressBar(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer) { Init(); }
 
-        public DrawableProgressBar(Context context) : base(context)
-        {
-            Init();
-        }
+        public DrawableProgressBar(Context context) : base(context) { Init(); }
 
-        public DrawableProgressBar(Context context, IAttributeSet attrs) : base(context, attrs)
-        {
-            Init();
-        }
+        public DrawableProgressBar(Context context, IAttributeSet attrs) : base(context, attrs) { Init(); }
 
-        public DrawableProgressBar(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
-        {
-            Init();
-        }
+        public DrawableProgressBar(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr) { Init(); }
 
-        public DrawableProgressBar(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes) : base(context, attrs, defStyleAttr,
+        public DrawableProgressBar(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes) : base(context,
+            attrs,
+            defStyleAttr,
             defStyleRes)
         {
             Init();

@@ -48,17 +48,18 @@ namespace Core.ViewModels.RssFeeds.List
             OpenAllMessagesScreenCommand = ReactiveCommand.Create(DoOpenAllMessagesScreen).NotNull();
             OpenListEditScreenCommand = ReactiveCommand.Create(DoOpenListEditScreen).NotNull();
 
-            var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.Any(rss => rss.CountNewMessages > 0))
-                .ObserveOn(RxApp.MainThreadScheduler);
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessages, isNewMessages);
+            var isNewMessages = ListViewModel.ConnectChanges
+                .Select(w => ListViewModel.SourceList.Items.NotNull().Any(rss => rss.NotNull().CountNewMessages > 0))
+                .ObserveOn(RxApp.MainThreadScheduler.NotNull());
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessages, isNewMessages).NotNull();
 
             RssFeedsUpdaterViewModel.UpdatedRss.Subscribe(UpdateList);
         }
 
         [NotNull] public ListViewModel<RssFeedServiceModel> ListViewModel { get; }
-        
+
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
-        
+
         [NotNull] public RssFeedsUpdaterViewModel RssFeedsUpdaterViewModel { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenCreateScreenCommand { get; }
@@ -66,7 +67,7 @@ namespace Core.ViewModels.RssFeeds.List
         [NotNull] public ReactiveCommand<Unit, Unit> OpenAllMessagesScreenCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> OpenListEditScreenCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssFeedServiceModel>> GetListCommand { get; }
@@ -90,17 +91,16 @@ namespace Core.ViewModels.RssFeeds.List
             var way = App.Container.Resolve<IWay<RssFeedEditableListViewModel>>().NotNull();
             _navigator.Go(way);
         }
-        
+
         private Task DoReadAllMessages(CancellationToken arg)
         {
             return Task.Run(() =>
-            {
-                var allRssFeeds = ListViewModel.SourceList.Items.ToList();
-                foreach (var rssFeedServiceModel in allRssFeeds)
                 {
-                    RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteIfCan(rssFeedServiceModel);
-                }
-            }, arg);
+                    var allRssFeeds = ListViewModel.SourceList.Items.NotNull().ToList();
+                    foreach (var rssFeedServiceModel in allRssFeeds) 
+                        RssFeedItemViewModel.ReadAllMessagesCommand.ExecuteIfCan(rssFeedServiceModel);
+                },
+                arg);
         }
 
         private void UpdateList([NotNull] RssFeedServiceModel model)

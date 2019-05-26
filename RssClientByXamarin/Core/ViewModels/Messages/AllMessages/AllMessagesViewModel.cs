@@ -82,15 +82,14 @@ namespace Core.ViewModels.Messages.AllMessages
         private Task DoReadAllMessagesCommand(CancellationToken token)
         {
             return Task.Run(() =>
-            {
-                var allMessages = ListViewModel.SourceList.Items.Where(w => !w.IsRead).ToList();
-                foreach (var rssMessageServiceModel in allMessages)
                 {
-                    MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
-                }
-            }, token);
+                    var allMessages = ListViewModel.SourceList.Items.NotNull().Where(w => !w.NotNull().IsRead).ToList();
+                    foreach (var rssMessageServiceModel in allMessages)
+                        MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
+                },
+                token);
         }
-        
+
         [NotNull]
         [ItemNotNull]
         private Task<IEnumerable<RssMessageServiceModel>> DoLoadRssMessages(CancellationToken token)

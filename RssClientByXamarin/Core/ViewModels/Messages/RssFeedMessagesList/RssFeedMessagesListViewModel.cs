@@ -28,7 +28,7 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
         public RssFeedMessagesListViewModel([NotNull] RssFeedMessagesListParameters parameters,
             [NotNull] IRssMessageService rssMessageService,
             [NotNull] INavigator navigator,
-            [NotNull] IConfigurationRepository configurationRepository, 
+            [NotNull] IConfigurationRepository configurationRepository,
             [NotNull] IRssFeedService rssFeedService,
             [NotNull] IDialogService dialogService) : base(parameters)
         {
@@ -40,10 +40,11 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
             RefreshCommand.SelectUnit().InvokeCommand(LoadCommand);
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
             AppConfigurationViewModel = new AppConfigurationViewModel(configurationRepository);
-            
-            var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.Any(rss => !rss.IsRead)).ObserveOn(RxApp.MainThreadScheduler);
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand, isNewMessages);
-            
+
+            var isNewMessages = ListViewModel.ConnectChanges.Select(w => ListViewModel.SourceList.Items.NotNull().Any(rss => !rss.NotNull().IsRead))
+                .ObserveOn(RxApp.MainThreadScheduler.NotNull());
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand, isNewMessages).NotNull();
+
             MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, null);
 
@@ -55,37 +56,33 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
 
         [NotNull] public MessageItemViewModel MessageItemViewModel { get; }
-        
+
         [NotNull] public RssFeedItemViewModel RssFeedItemViewModel { get; }
 
-        public AppConfigurationViewModel AppConfigurationViewModel { get; }
-        
+        [NotNull] public AppConfigurationViewModel AppConfigurationViewModel { get; }
+
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssMessageServiceModel>> LoadCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<Unit, Unit> RefreshCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<Unit, Unit> ReadAllMessagesCommand { get; }
 
         private Task DoReadAllMessagesCommand(CancellationToken token)
         {
             return Task.Run(() =>
-            {
-                var allMessages = ListViewModel.SourceList.Items.Where(w => !w.IsRead).ToList();
-                foreach (var rssMessageServiceModel in allMessages)
                 {
-                    MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
-                }
-            }, token);
+                    var allMessages = ListViewModel.SourceList.Items.NotNull().Where(w => !w.NotNull().IsRead).ToList();
+                    foreach (var rssMessageServiceModel in allMessages)
+                        MessageItemViewModel.ChangeReadItemCommand.ExecuteIfCan(rssMessageServiceModel);
+                },
+                token);
         }
-        
+
         private async Task<IEnumerable<RssMessageServiceModel>> DoLoad(CancellationToken token)
         {
             return await _rssMessageService.GetMessagesForRss(Parameters.RssFeedModel.Id, token);
         }
 
-        private async Task DoRefresh(CancellationToken token)
-        {
-            await _rssFeedService.LoadAndUpdateAsync(Parameters.RssFeedModel.Id, token);
-        }
+        private async Task DoRefresh(CancellationToken token) { await _rssFeedService.LoadAndUpdateAsync(Parameters.RssFeedModel.Id, token); }
     }
 }

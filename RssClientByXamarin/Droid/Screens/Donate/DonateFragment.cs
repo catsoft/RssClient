@@ -22,42 +22,46 @@ namespace Droid.Screens.Donate
 
         // ReSharper disable once EmptyConstructor
         // ReSharper disable once NotNullMemberIsNotInitialized
-        public DonateFragment()
-        {
-        }
+        public DonateFragment() { }
 
-        protected override void RestoreState(Bundle saved)
-        {
-        }
+        protected override void RestoreState(Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             Title = Strings.DonateTitle;
 
             _viewHolder = new DonateFragmentViewHolder(view);
 
-            var paymentService = App.Container.Resolve<PaymentFragmentProvider>();
+            var paymentService = App.Container.Resolve<PaymentFragmentProvider>().NotNull();
 
             view.Clickable = true;
 
-            var paymentFragment = paymentService.Resolve(ViewModel.Amount, ViewModel.Currency, ViewModel.Gateway, ViewModel.PublishKey,
+            var paymentFragment = paymentService.Resolve(ViewModel.Amount,
+                ViewModel.Currency,
+                ViewModel.Gateway,
+                ViewModel.PublishKey,
                 ViewModel.StripeVersion);
-            Activity.SupportFragmentManager.BeginTransaction().Add(_viewHolder.PayContainerLinearLayout.Id, paymentFragment).Commit();
+            Activity.SupportFragmentManager.NotNull()
+                .BeginTransaction()
+                .NotNull()
+                .Add(_viewHolder.PayContainerLinearLayout.Id, paymentFragment)
+                .NotNull()
+                .Commit();
 
             OnActivation(disposable =>
             {
                 this.OneWayBind(ViewModel, model => model.PriceString, fragment => fragment._viewHolder.PriceTextView.Text)
                     .AddTo(disposable);
-                
+
                 this.OneWayBind(ViewModel, model => model.QiwiString, fragment => fragment._viewHolder.QiwiTextView.Text)
                     .AddTo(disposable);
-                
+
                 this.BindCommand(ViewModel, model => model.QiwiCopyCommand, fragment => fragment._viewHolder.CopyImageView)
                     .AddTo(disposable);
             });
-            
+
             return view;
         }
     }

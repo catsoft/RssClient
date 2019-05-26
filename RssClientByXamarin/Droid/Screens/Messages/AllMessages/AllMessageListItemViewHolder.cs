@@ -39,21 +39,21 @@ namespace Droid.Screens.Messages.AllMessages
         }
 
         [NotNull] public TextView TitleTextView { get; }
-        
+
         [NotNull] public WebView TextWebView { get; }
-        
+
         [NotNull] public TextView CreationDateTextView { get; }
-        
+
         [NotNull] public TextView CanalTextView { get; }
-        
+
         [NotNull] public ImageViewAsync MiniIconImageView { get; }
-        
+
         [NotNull] public ImageViewAsync ImageView { get; }
-        
+
         [NotNull] public RelativeLayout RootRelativeLayout { get; }
-        
+
         [NotNull] public RatingBar RatingBar { get; }
-        
+
         public bool IsShowAndLoadImages { get; }
 
         public bool IsShowContent
@@ -80,21 +80,20 @@ namespace Droid.Screens.Messages.AllMessages
             RatingBar.Rating = item.IsFavorite ? 1 : 0;
             RatingBar.Visibility = item.IsFavorite.ToVisibility();
             MiniIconImageView.Visibility = IsShowAndLoadImages.ToVisibility();
-            
+
             if (IsShowAndLoadImages)
             {
                 ImageView.Visibility = (!string.IsNullOrEmpty(item.Url)).ToVisibility();
 
                 if (IsShowContent)
-                {
                     ImageService.Instance
                         .NotNull()
                         .LoadUrl(item.ImageUrl)
                         .Into(ImageView);
-                }
-                
+
                 ImageService.Instance.NotNull()
                     .LoadUrl(item.RssIcon)
+                    .NotNull()
                     .WithCache(CacheType.All)
                     .NotNull()
                     .Into(MiniIconImageView);

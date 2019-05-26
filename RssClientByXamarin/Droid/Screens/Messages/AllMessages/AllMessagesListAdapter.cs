@@ -19,11 +19,9 @@ namespace Droid.Screens.Messages.AllMessages
         {
             var viewHolder = base.OnCreateViewHolder(parent, viewType);
 
-            if (viewHolder is AllMessageListItemViewHolder allMessageListItemViewHolder)
-            {
+            if (viewHolder is AllMessageListItemViewHolder allMessageListItemViewHolder) 
                 allMessageListItemViewHolder.IsShowContent = _appConfiguration.ReaderType == ReaderType.Strip;
-            }
-            
+
             return viewHolder;
         }
     }
