@@ -1,21 +1,27 @@
 using Core.Infrastructure.Navigation;
 using Core.ViewModels.Messages.Book;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 
 namespace Droid.Screens.Messages.Book
 {
-    public class BookMessagesWay : IWay<BookMessagesViewModel>
+    public class BookMessagesWay : IWayWithParameters<BookMessagesViewModel, BookMessagesParameter>
     {
-        private readonly IFragmentManager _fragmentManager;
+        [NotNull] private readonly IFragmentManager _fragmentManager;
+        private readonly BookMessagesParameter _parameter;
 
-        public BookMessagesWay(IFragmentManager fragmentManager)
+        public BookMessagesWay([NotNull] IFragmentManager fragmentManager, BookMessagesParameter parameter)
         {
             _fragmentManager = fragmentManager;
+            _parameter = parameter;
         }
         
         public void Go()
         {
-            _fragmentManager.AddFragment(new BookMessagesFragment());
+            var fragment = new BookMessagesFragment();
+            fragment.SetParameters(_parameter);
+            
+            _fragmentManager.AddFragment(fragment);
         }
     }
 }

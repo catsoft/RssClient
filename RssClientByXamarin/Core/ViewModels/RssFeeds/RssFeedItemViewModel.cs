@@ -23,37 +23,37 @@ namespace Core.ViewModels.RssFeeds
         [NotNull] private readonly INavigator _navigator;
         [CanBeNull] private readonly SourceList<RssFeedServiceModel> _sourceList;
 
-        public RssFeedItemViewModel(IRssFeedService rssFeedService, IDialogService dialogService, [NotNull] INavigator navigator, [CanBeNull] SourceList<RssFeedServiceModel> sourceList)
+        public RssFeedItemViewModel([NotNull] IRssFeedService rssFeedService,
+            [NotNull] IDialogService dialogService,
+            [NotNull] INavigator navigator,
+            [CanBeNull] SourceList<RssFeedServiceModel> sourceList)
         {
             _rssFeedService = rssFeedService;
             _dialogService = dialogService;
             _navigator = navigator;
             _sourceList = sourceList;
 
-            ShareCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoShare);
-            ShowDeleteDialogCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoShowDeleteItemDialog);
-            DeleteItemCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoItemRemove);
-            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoReadAllMessages);
-            OpenEditItemCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenEditItem);
-            OpenMessagesListCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenMessagesList);
+            ShareCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoShare).NotNull();
+            ShowDeleteDialogCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoShowDeleteItemDialog).NotNull();
+            DeleteItemCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoItemRemove).NotNull();
+            ReadAllMessagesCommand = ReactiveCommand.CreateFromTask<RssFeedServiceModel>(DoReadAllMessages).NotNull();
+            OpenEditItemCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenEditItem).NotNull();
+            OpenMessagesListCommand = ReactiveCommand.Create<RssFeedServiceModel>(DoOpenMessagesList).NotNull();
         }
 
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ShareCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ShowDeleteDialogCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> DeleteItemCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> ReadAllMessagesCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> OpenEditItemCommand { get; }
-        
+
         [NotNull] public ReactiveCommand<RssFeedServiceModel, Unit> OpenMessagesListCommand { get; }
-        
-        private async Task DoShare(RssFeedServiceModel model, CancellationToken token)
-        {
-            await _rssFeedService.ShareAsync(model, token);
-        }
+
+        private async Task DoShare(RssFeedServiceModel model, CancellationToken token) { await _rssFeedService.ShareAsync(model, token); }
 
         private void DoShowDeleteItemDialog([CanBeNull] RssFeedServiceModel model)
         {
@@ -70,8 +70,8 @@ namespace Core.ViewModels.RssFeeds
             _sourceList?.Remove(model);
             await _rssFeedService.RemoveAsync(model?.Id ?? Guid.Empty);
         }
-        
-        private async Task DoReadAllMessages(RssFeedServiceModel model, CancellationToken token)
+
+        private async Task DoReadAllMessages([NotNull] RssFeedServiceModel model, CancellationToken token)
         {
             await _rssFeedService.ReadAllMessagesAsync(model.Id, token);
             if (_sourceList != null)
@@ -81,19 +81,20 @@ namespace Core.ViewModels.RssFeeds
             }
         }
 
-        private void DoOpenEditItem(RssFeedServiceModel model)
+        private void DoOpenEditItem([NotNull] RssFeedServiceModel model)
         {
             var parameter = new RssEditParameters(model.Id);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var editWay = App.Container.Resolve<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>(typedParameter);
+            var editWay = App.Container.Resolve<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>(typedParameter).NotNull();
             _navigator.Go(editWay);
         }
-        
-        private void DoOpenMessagesList(RssFeedServiceModel model)
+
+        private void DoOpenMessagesList([NotNull] RssFeedServiceModel model)
         {
             var parameter = new RssFeedMessagesListParameters(model);
             var typedParameter = new TypedParameter(parameter.GetType(), parameter);
-            var way = App.Container.Resolve<IWayWithParameters<RssFeedMessagesListViewModel, RssFeedMessagesListParameters>>(typedParameter).NotNull();
+            var way = App.Container.Resolve<IWayWithParameters<RssFeedMessagesListViewModel, RssFeedMessagesListParameters>>(typedParameter)
+                .NotNull();
             _navigator.Go(way);
         }
     }

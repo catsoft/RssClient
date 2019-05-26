@@ -45,7 +45,11 @@ namespace Core.ViewModels.Messages.RssFeedMessagesList
                 .ObserveOn(RxApp.MainThreadScheduler.NotNull());
             ReadAllMessagesCommand = ReactiveCommand.CreateFromTask(DoReadAllMessagesCommand, isNewMessages).NotNull();
 
-            MessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
+            MessageItemViewModel = new MessageItemViewModel(rssMessageService,
+                navigator,
+                ListViewModel.SourceList,
+                AppConfigurationViewModel,
+                Parameters.RssFeedModel.Id);
             RssFeedItemViewModel = new RssFeedItemViewModel(rssFeedService, dialogService, navigator, null);
 
             RssFeedItemViewModel.DeleteItemCommand

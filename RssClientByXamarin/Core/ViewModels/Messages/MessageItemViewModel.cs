@@ -1,3 +1,4 @@
+using System;
 using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,17 +24,20 @@ namespace Core.ViewModels.Messages
         [NotNull] private readonly IRssMessageService _rssMessageService;
         [CanBeNull] private readonly SourceList<RssMessageServiceModel> _sourceList;
         [NotNull] private readonly AppConfigurationViewModel _configurationViewModel;
+        private readonly Guid _rssFeedGuid;
 
         public MessageItemViewModel([NotNull] IRssMessageService rssMessageService,
             [NotNull] INavigator navigator,
             [CanBeNull] SourceList<RssMessageServiceModel> sourceList,
-            [NotNull] AppConfigurationViewModel configurationViewModel
+            [NotNull] AppConfigurationViewModel configurationViewModel,
+            Guid rssFeedGuid
         )
         {
             _rssMessageService = rssMessageService;
             _navigator = navigator;
             _sourceList = sourceList;
             _configurationViewModel = configurationViewModel;
+            _rssFeedGuid = rssFeedGuid;
 
             HandleItemClickCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoHandleItemClick).NotNull();
             ChangeReadItemCommand = ReactiveCommand.CreateFromTask<RssMessageServiceModel>(DoChangeReadItem).NotNull();
@@ -61,7 +65,7 @@ namespace Core.ViewModels.Messages
             var readerType = _configurationViewModel.AppConfiguration.ReaderType;
 
             if (readerType == ReaderType.Book)
-                NavigateToBook();
+                NavigateToBook(model);
             else if (readerType == ReaderType.Strip)
                 NavigateToFullMessage(model);
 
@@ -81,9 +85,11 @@ namespace Core.ViewModels.Messages
             _navigator.Go(way);
         }
 
-        private void NavigateToBook()
+        private void NavigateToBook([NotNull] RssMessageServiceModel model)
         {
-            var way = App.Container.Resolve<IWay<BookMessagesViewModel>>().NotNull();
+            var parameter = new BookMessagesParameter(model.Id, _rssFeedGuid);
+            var typedParameter = new TypedParameter(parameter.GetType(), parameter);
+            var way = App.Container.Resolve<IWayWithParameters<BookMessagesViewModel, BookMessagesParameter>>(typedParameter).NotNull();
             _navigator.Go(way);
         }
 

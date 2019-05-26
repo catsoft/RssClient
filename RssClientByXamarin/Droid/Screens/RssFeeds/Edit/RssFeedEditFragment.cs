@@ -16,30 +16,20 @@ namespace Droid.Screens.RssFeeds.Edit
 {
     public class RssFeedEditFragment : BaseFragment<RssFeedEditViewModel>
     {
-        private Guid _itemId;
         [NotNull] private RssFeedEditFragmentViewHolder _viewHolder;
 
         // ReSharper disable once NotNullMemberIsNotInitialized
+        // ReSharper disable once EmptyConstructor
         public RssFeedEditFragment() { }
-
-        // ReSharper disable once NotNullMemberIsNotInitialized
-        public RssFeedEditFragment(Guid itemId) { _itemId = itemId; }
 
         protected override int LayoutId => Resource.Layout.fragment_rss_edit;
         public override bool IsRoot => false;
 
-        public override void OnSaveInstanceState([NotNull] Bundle outState)
-        {
-            base.OnSaveInstanceState(outState);
-
-            outState.PutString(nameof(_itemId), _itemId.ToString());
-        }
-
-        protected override void RestoreState([NotNull] Bundle saved) { _itemId = Guid.Parse(saved.GetString(nameof(_itemId)).NotNull()); }
+        protected override void RestoreState([NotNull] Bundle saved) { }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             Title = GetText(Resource.String.edit_title);
 
@@ -58,7 +48,7 @@ namespace Droid.Screens.RssFeeds.Edit
                 _viewHolder.EditText.GetEditorAction()
                     .Subscribe(action =>
                     {
-                        if (action.ActionId == ImeAction.Done) _viewHolder.EditText.CallOnClick();
+                        if (action?.ActionId == ImeAction.Done) _viewHolder.EditText.CallOnClick();
                     })
                     .AddTo(disposable);
 
@@ -66,7 +56,8 @@ namespace Droid.Screens.RssFeeds.Edit
                     .AddTo(disposable);
                 
                 ViewModel.WhenAnyValue(w => w.Url)
-                    .Select(w => !Patterns.WebUrl.Matcher(_viewHolder.EditText.Text).Matches())
+                    .NotNull()
+                    .Select(w => !Patterns.WebUrl.NotNull().Matcher(_viewHolder.EditText.Text).NotNull().Matches())
                     .Subscribe(w => ViewModel.IsUrlInvalid = w)
                     .AddTo(disposable);
 

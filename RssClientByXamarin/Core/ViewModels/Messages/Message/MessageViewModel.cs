@@ -1,3 +1,4 @@
+using System;
 using Core.Infrastructure.Navigation;
 using Core.Infrastructure.ViewModels;
 using Core.Repositories.Configurations;
@@ -14,7 +15,11 @@ namespace Core.ViewModels.Messages.Message
             [NotNull] MessageParameters parameters,
             [NotNull] IConfigurationRepository configurationRepository) : base(parameters)
         {
-            MessageItemViewModel = new MessageItemViewModel(messageService, navigator, null, new AppConfigurationViewModel(configurationRepository));
+            MessageItemViewModel = new MessageItemViewModel(messageService,
+                navigator,
+                null,
+                new AppConfigurationViewModel(configurationRepository),
+                Guid.Empty);
         }
 
         public MessageItemViewModel MessageItemViewModel { get; }

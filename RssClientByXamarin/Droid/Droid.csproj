@@ -624,7 +624,6 @@
     <AndroidResource Include="Resources\drawable\baseline_search_24.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\anim" />
     <Folder Include="Screens\RssFeeds" />
   </ItemGroup>
   <ItemGroup>

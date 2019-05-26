@@ -18,19 +18,19 @@ namespace Core.ViewModels.RssFeeds.Edit
     {
         [NotNull] private readonly IRssFeedService _rssFeedService;
 
-        public RssFeedEditViewModel([NotNull] IRssFeedService rssFeedService, 
+        public RssFeedEditViewModel([NotNull] IRssFeedService rssFeedService,
             [NotNull] RssEditParameters parameters,
             [NotNull] INavigator navigator) :
             base(parameters)
         {
             _rssFeedService = rssFeedService;
-
+            
             LoadCommand = ReactiveCommand.CreateFromTask<Unit, RssFeedServiceModel>(async (s, token) =>
                     await _rssFeedService.GetAsync(parameters.RssId, token))
                 .NotNull();
             LoadCommand.ToPropertyEx(this, x => x.RssFeedServiceModel);
 
-            UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl, this.WhenAnyValue(w => w.IsUrlInvalid).Select(w => !w)).NotNull();
+            UpdateCommand = ReactiveCommand.CreateFromTask(UpdateRssUrl, this.WhenAnyValue(w => w.IsUrlInvalid).NotNull().Select(w => !w)).NotNull();
             UpdateCommand.Subscribe(_ => navigator.GoBack());
 
             this.WhenAnyValue(w => w.RssFeedServiceModel)
@@ -49,9 +49,8 @@ namespace Core.ViewModels.RssFeeds.Edit
         [NotNull] public ReactiveCommand<Unit, RssFeedServiceModel> LoadCommand { get; }
 
         [NotNull] public ReactiveCommand<Unit, Unit> UpdateCommand { get; }
-        
-        [Reactive]
-        public bool IsUrlInvalid { get; set; }
+
+        [Reactive] public bool IsUrlInvalid { get; set; }
 
         public extern string ErrorMessage { [ObservableAsProperty] get; }
 

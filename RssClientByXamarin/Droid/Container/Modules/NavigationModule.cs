@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Support.V7.App;
 using Autofac;
+using Core.Extensions;
 using Core.Infrastructure.Navigation;
 using Core.ViewModels.About;
 using Core.ViewModels.AnimationWeaver;
@@ -47,30 +48,30 @@ namespace Droid.Container.Modules
         {
             base.Load(builder);
 
-            builder.RegisterType<CloseWay>().As<IWay<CloseViewModel>>();
+            builder.RegisterType<CloseWay>().NotNull().As<IWay<CloseViewModel>>();
 
-            builder.RegisterType<RssFeedMessagesListWay>().As<IWayWithParameters<RssFeedMessagesListViewModel, RssFeedMessagesListParameters>>();
-            builder.RegisterType<AllMessagesWay>().As<IWay<AllMessagesViewModel>>();
-            builder.RegisterType<FavoriteMessagesListWay>().As<IWay<FavoriteMessagesViewModel>>();
-            builder.RegisterType<AllMessagesFilterWay>().As<IWay<AllMessagesFilterViewModel>>();
-            builder.RegisterType<RssFeedListWay>().As<IWay<RssFeedListViewModel>>();
-            builder.RegisterType<RssFeedEditableListWay>().As<IWay<RssFeedEditableListViewModel>>();
-            builder.RegisterType<RssFeedCreateWay>().As<IWay<RssFeedCreateViewModel>>();
-            builder.RegisterType<RssFeedEditWay>().As<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>();
-            builder.RegisterType<MessageWay>().As<IWayWithParameters<MessageViewModel, MessageParameters>>();
-            builder.RegisterType<BookMessagesWay>().As<IWay<BookMessagesViewModel>>();
+            builder.RegisterType<RssFeedMessagesListWay>().NotNull().As<IWayWithParameters<RssFeedMessagesListViewModel, RssFeedMessagesListParameters>>();
+            builder.RegisterType<AllMessagesWay>().NotNull().As<IWay<AllMessagesViewModel>>();
+            builder.RegisterType<FavoriteMessagesListWay>().NotNull().As<IWay<FavoriteMessagesViewModel>>();
+            builder.RegisterType<AllMessagesFilterWay>().NotNull().As<IWay<AllMessagesFilterViewModel>>();
+            builder.RegisterType<RssFeedListWay>().NotNull().As<IWay<RssFeedListViewModel>>();
+            builder.RegisterType<RssFeedEditableListWay>().NotNull().As<IWay<RssFeedEditableListViewModel>>();
+            builder.RegisterType<RssFeedCreateWay>().NotNull().As<IWay<RssFeedCreateViewModel>>();
+            builder.RegisterType<RssFeedEditWay>().NotNull().As<IWayWithParameters<RssFeedEditViewModel, RssEditParameters>>();
+            builder.RegisterType<MessageWay>().NotNull().As<IWayWithParameters<MessageViewModel, MessageParameters>>();
+            builder.RegisterType<BookMessagesWay>().NotNull().As<IWayWithParameters<BookMessagesViewModel, BookMessagesParameter>>();
 
-            builder.RegisterType<AboutWay>().As<IWay<AboutViewModel>>();
-            builder.RegisterType<SettingsWay>().As<IWay<SettingsViewModel>>();
-            builder.RegisterType<AnimationWeaverWay>().As<IWay<AnimationWeaverViewModel>>();
-            builder.RegisterType<ContactsWay>().As<IWay<ContactsViewModel>>();
-            builder.RegisterType<DonateWay>().As<IWay<DonateViewModel>>();
+            builder.RegisterType<AboutWay>().NotNull().As<IWay<AboutViewModel>>();
+            builder.RegisterType<SettingsWay>().NotNull().As<IWay<SettingsViewModel>>();
+            builder.RegisterType<AnimationWeaverWay>().NotNull().As<IWay<AnimationWeaverViewModel>>();
+            builder.RegisterType<ContactsWay>().NotNull().As<IWay<ContactsViewModel>>();
+            builder.RegisterType<DonateWay>().NotNull().As<IWay<DonateViewModel>>();
 
-            builder.RegisterType<FeedlySearchWay>().As<IWay<FeedlySearchViewModel>>();
+            builder.RegisterType<FeedlySearchWay>().NotNull().As<IWay<FeedlySearchViewModel>>();
             
-            builder.Register(c => MainActivity.Instance).As<Activity>();
-            builder.Register(c => MainActivity.Instance).As<AppCompatActivity>();
-            builder.Register(c => MainActivity.Instance).As<IFragmentManager>();
+            builder.Register(c => MainActivity.Instance).NotNull().As<Activity>();
+            builder.Register(c => MainActivity.Instance).NotNull().As<AppCompatActivity>();
+            builder.Register(c => MainActivity.Instance).NotNull().As<IFragmentManager>();
         }
     }
 }

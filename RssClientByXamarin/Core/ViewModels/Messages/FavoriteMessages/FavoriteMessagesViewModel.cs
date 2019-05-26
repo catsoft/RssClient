@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Threading;
@@ -26,16 +27,17 @@ namespace Core.ViewModels.Messages.FavoriteMessages
             LoadCommand = ReactiveCommand.CreateFromTask(DoLoad).NotNull();
             ListViewModel = new ListViewModel<RssMessageServiceModel>(LoadCommand);
             AppConfigurationViewModel = new AppConfigurationViewModel(configurationRepository);
-            
-            RssMessageItemViewModel = new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel);
+
+            RssMessageItemViewModel =
+                new MessageItemViewModel(rssMessageService, navigator, ListViewModel.SourceList, AppConfigurationViewModel, Guid.Empty);
         }
 
         [NotNull] public ListViewModel<RssMessageServiceModel> ListViewModel { get; }
-        
+
         [NotNull] public MessageItemViewModel RssMessageItemViewModel { get; }
-        
+
         [NotNull] public ReactiveCommand<Unit, IEnumerable<RssMessageServiceModel>> LoadCommand { get; }
-        
+
         [NotNull] public AppConfigurationViewModel AppConfigurationViewModel { get; }
 
         private async Task<IEnumerable<RssMessageServiceModel>> DoLoad(CancellationToken token)

@@ -1,8 +1,10 @@
 using System;
 using Android.Content;
 using Android.Views;
+using Core.Extensions;
 using Core.Services.RssMessages;
 using DynamicData;
+using JetBrains.Annotations;
 using ReactiveUI.AndroidSupport;
 
 namespace Droid.Screens.Messages.Book
@@ -13,7 +15,7 @@ namespace Droid.Screens.Messages.Book
         private readonly Context _context;
         private readonly SourceList<RssMessageServiceModel> _sourceList;
 
-        public ReactivePagerAdapter<RssMessageServiceModel> Adapter { get; }
+        [NotNull] public ReactivePagerAdapter<RssMessageServiceModel> Adapter { get; }
             
         public BookViewPagerAdapterHolder(Context context, IObservable<IChangeSet<RssMessageServiceModel>> changeSet, SourceList<RssMessageServiceModel> sourceList)
         {
@@ -26,12 +28,12 @@ namespace Droid.Screens.Messages.Book
         {
             var viewHolder = new BookMessageViewHolder(view);
             viewHolder.Bind(model);
-            viewHolder.SetCounting(_sourceList.Items.IndexOf(model), Adapter.Count);
+            viewHolder.SetCounting(_sourceList.NotNull().Items.IndexOf(model), Adapter.Count);
         }
 
         private View ViewCreator(RssMessageServiceModel message, ViewGroup parent)
         {
-            var view = LayoutInflater.From(_context).Inflate(Resource.Layout.view_book_message, parent, false);
+            var view = LayoutInflater.From(_context).NotNull().Inflate(Resource.Layout.view_book_message, parent, false);
 
             return view;
         }
