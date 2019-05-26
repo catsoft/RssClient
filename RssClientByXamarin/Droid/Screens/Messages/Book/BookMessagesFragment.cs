@@ -6,6 +6,7 @@ using Core.Extensions;
 using Core.ViewModels.Messages.Book;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace Droid.Screens.Messages.Book
@@ -29,7 +30,7 @@ namespace Droid.Screens.Messages.Book
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState).NotNull();
 
             _viewHolder = new BookMessagesFragmentViewHolder(view);
             
@@ -40,6 +41,7 @@ namespace Droid.Screens.Messages.Book
             OnActivation(disposable =>
             {
                 ViewModel.WhenAnyValue(w => w.ListViewModel.IsEmpty)
+                    .NotNull()
                     .Select(w => w.ToVisibility())
                     .BindTo(_viewHolder.EmptyTextView, textView => textView.Visibility)
                     .AddTo(disposable);
@@ -58,12 +60,12 @@ namespace Droid.Screens.Messages.Book
             return view;
         }
 
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        public override void OnCreateOptionsMenu(IMenu menu, [NotNull] MenuInflater inflater)
         {
             inflater.Inflate(Resource.Menu.menu_bookMessage, menu);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        public override bool OnOptionsItemSelected([NotNull] IMenuItem item)
         {
             switch (item.ItemId)
             {
