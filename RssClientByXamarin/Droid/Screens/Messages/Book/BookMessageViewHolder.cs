@@ -1,3 +1,4 @@
+using Android.Graphics;
 using Android.Views;
 using Android.Webkit;
 using Android.Widget;
@@ -14,8 +15,14 @@ namespace Droid.Screens.Messages.Book
 {
     public class BookMessageViewHolder
     {
-        public BookMessageViewHolder(View itemView)
+        private readonly Color _backgroundItemSelectColor = new Color(0, 0, 0, 95);
+        private readonly Color _backgroundItemColor = new Color(0, 0, 0, 0);
+        
+        [NotNull] private readonly View _itemView;
+
+        public BookMessageViewHolder([NotNull] View itemView)
         {
+            _itemView = itemView;
             TextWebView = itemView.FindNotNull<WebView>(Resource.Id.webView_bookMessage_mainView);
             TitleTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_bookMessage_title);
             CanalTextView = itemView.FindNotNull<TextView>(Resource.Id.textView_bookMessage_canal);
@@ -40,7 +47,7 @@ namespace Droid.Screens.Messages.Book
         
         [NotNull] public TextView CountingTextView { get; }
         
-        public void Bind(RssMessageServiceModel message)
+        public void Bind([NotNull] RssMessageServiceModel message)
         {
             TextWebView.Visibility = message.TextHtml.IsNotEmpty().ToVisibility();
             TextWebView.SetHtml(message.TextHtml);
@@ -51,9 +58,12 @@ namespace Droid.Screens.Messages.Book
             
             ImageService.Instance.NotNull()
                 .LoadUrl(message.RssIcon)
+                .NotNull()
                 .WithCache(CacheType.All)
                 .NotNull()
                 .Into(MiniIconImageView);
+            
+            _itemView.SetBackgroundColor(message.IsRead ? _backgroundItemSelectColor : _backgroundItemColor);
         }
 
         public void SetCounting(int pagerCurrentItem, int adapterCount)

@@ -24,7 +24,7 @@ namespace Droid.Screens.Messages.Book
             Adapter = new ReactivePagerAdapter<RssMessageServiceModel>(changeSet, ViewCreator, ViewInitializer);
         }
 
-        private void ViewInitializer(RssMessageServiceModel model, View view)
+        private void ViewInitializer([NotNull] RssMessageServiceModel model, [NotNull] View view)
         {
             var viewHolder = new BookMessageViewHolder(view);
             viewHolder.Bind(model);
