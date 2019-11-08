@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Core.Extensions;
+using Core.Infrastructure.ViewModels;
 using Core.ViewModels.Main;
 using Droid.NativeExtension;
 using Droid.Screens.Navigation;
@@ -54,7 +55,7 @@ namespace Droid.Screens.Main
                 this.RateInMarket();
             else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_donate)
                 ViewModel.OpenDonateCommand.ExecuteIfCan();
-            else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about) ViewModel.OpenAboutCommand.ExecuteIfCan();
+            //else if (menuItem.ItemId == Resource.Id.menuItem_navigationMenu_about) ViewModel.OpenAboutCommand.ExecuteIfCan();
 
             menuItem.SetChecked(true);
 
